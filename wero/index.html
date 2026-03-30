@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Paiement Mobile et Wero en France</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* === VARIABLES === */
+    :root {
+      --primary: #003087;
+      --primary-hover: #00206b;
+      --primary-light: #e8eef7;
+      --accent: #0066cc;
+      --bg: #f2f5f9;
+      --surface: #ffffff;
+      --text: #1a202c;
+      --text-muted: #637083;
+      --border: #dce3ed;
+      --success: #1a6b3c;
+      --success-bg: #edf7f2;
+      --success-border: #a3d9b8;
+      --error: #b91c1c;
+      --error-bg: #fef2f2;
+      --error-border: #fca5a5;
+      --warning-bg: #fffbeb;
+      --warning-border: #fbbf24;
+      --shadow-sm: 0 1px 4px rgba(0, 48, 135, 0.08);
+      --shadow-md: 0 4px 16px rgba(0, 48, 135, 0.10);
+      --shadow-lg: 0 8px 32px rgba(0, 48, 135, 0.13);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --max-w: 560px;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* === SCREENS === */
+    .screen {
+      display: none;
+      min-height: 100vh;
+    }
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === LAYOUT WRAPPER === */
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* === SITE HEADER === */
+    .site-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .site-header .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #fff;
+    }
+    .site-header-sub {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+    .progress-badge {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* === PROGRESS BAR === */
+    .progress-bar-wrap {
+      background: rgba(255,255,255,0.2);
+      height: 4px;
+    }
+    .progress-bar-fill {
+      height: 4px;
+      background: #5ba4f5;
+      transition: width 0.4s ease;
+    }
+
+    /* === MAIN CONTENT === */
+    .main {
+      flex: 1;
+      padding: 28px 0 40px;
+    }
+
+    /* === CARD === */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .card-body {
+      padding: 28px 24px;
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* === FORM === */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font);
+      font-size: 1rem;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.12);
+    }
+    .form-input.error {
+      border-color: var(--error);
+    }
+    .form-error {
+      font-size: 0.8rem;
+      color: var(--error);
+      margin-top: 4px;
+      display: none;
+    }
+    .form-error.visible {
+      display: block;
+    }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: var(--radius-md);
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      text-decoration: none;
+      -webkit-appearance: none;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-primary:disabled {
+      background: #9aafcc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+    }
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+    .btn-full {
+      width: 100%;
+    }
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 0.875rem;
+    }
+
+    /* === DIVIDER === */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* === HOME SCREEN === */
+    .home-hero {
+      background: linear-gradient(145deg, var(--primary) 0%, #0044aa 100%);
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .home-hero-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .home-hero-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+    }
+    .home-hero-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .home-hero-desc {
+      font-size: 0.95rem;
+      opacity: 0.88;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .home-meta {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .home-tag {
+      background: rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .home-form-section {
+      padding: 28px 24px;
+    }
+    .home-form-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .home-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      background: #f8fafc;
+    }
+    .home-footer-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .home-footer-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #0a66c2;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #c0d8f0;
+      transition: background 0.2s;
+    }
+    .home-footer-linkedin:hover {
+      background: #e8f0fb;
+    }
+    .linkedin-logo {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* === WARNING SCREEN === */
+    .warning-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .warning-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: #d97706;
+      fill: none;
+      stroke-width: 2;
+    }
+    .warning-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding: 16px;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      padding: 14px;
+      background: var(--primary-light);
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      margin-top: 1px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+    .checkbox-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    /* === MODULES MENU === */
+    .modules-header {
+      margin-bottom: 20px;
+    }
+    .modules-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .modules-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .module-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+    }
+    .module-card:hover.available {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .module-card.locked {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    .module-card.completed {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+    .module-card.available {
+      border-color: var(--primary);
+    }
+    .module-num {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .module-num.locked {
+      background: #e9ecef;
+      color: #9aa5b4;
+    }
+    .module-num.available {
+      background: var(--primary);
+      color: #fff;
+    }
+    .module-num.completed {
+      background: var(--success);
+      color: #fff;
+    }
+    .module-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .module-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .module-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .module-status {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .module-status.locked {
+      background: #e9ecef;
+      color: #9aa5b4;
+    }
+    .module-status.available {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .module-status.completed {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .score-chip {
+      font-size: 0.75rem;
+      color: var(--success);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* === MODULE CONTENT === */
+    .module-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #0050a0 100%);
+      color: #fff;
+      padding: 28px 24px 24px;
+    }
+    .module-num-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+    .module-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .module-subtitle {
+      font-size: 0.875rem;
+      opacity: 0.85;
+    }
+    .module-content-body {
+      padding: 24px;
+    }
+    .content-section {
+      margin-bottom: 28px;
+    }
+    .content-section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary-light);
+    }
+    .content-section p {
+      font-size: 0.925rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .content-section p:last-child {
+      margin-bottom: 0;
+    }
+    .info-box {
+      background: var(--primary-light);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+    }
+    .info-box p {
+      font-size: 0.875rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin: 0;
+    }
+    .data-list {
+      margin: 10px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .data-list li {
+      font-size: 0.9rem;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: var(--text);
+    }
+    .data-list li:last-child {
+      border-bottom: none;
+    }
+    .data-list li::before {
+      content: "";
+      display: block;
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 7px;
+    }
+    .module-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    /* === QUIZ SCREEN === */
+    .quiz-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .quiz-meta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .quiz-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .quiz-progress-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    .quiz-progress-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+    .quiz-progress-fill {
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .quiz-body {
+      padding: 24px;
+    }
+    .question-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      font-family: var(--font);
+      font-size: 0.925rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.4;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: #f0f6ff;
+    }
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: #e8f0ff;
+    }
+    .option-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .option-btn.wrong {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-indicator {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all 0.15s;
+    }
+    .option-btn.selected .option-indicator {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .option-btn.correct .option-indicator {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+    .option-btn.wrong .option-indicator {
+      background: var(--error);
+      border-color: var(--error);
+      color: #fff;
+    }
+    .feedback-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .feedback-box.correct {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success);
+      display: block;
+    }
+    .feedback-box.wrong {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error);
+      display: block;
+    }
+    .feedback-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .quiz-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* === QUIZ RESULT === */
+    .result-header {
+      text-align: center;
+      padding: 32px 24px 20px;
+    }
+    .score-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .score-circle.high {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .score-circle.mid {
+      border-color: #d97706;
+      background: var(--warning-bg);
+      color: #92400e;
+    }
+    .score-circle.low {
+      border-color: var(--error);
+      background: var(--error-bg);
+      color: var(--error);
+    }
+    .score-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .score-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+    .result-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .result-message {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .answers-summary {
+      padding: 0 24px 8px;
+    }
+    .summary-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .summary-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+    .summary-icon {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .summary-icon.correct {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+    .summary-icon.wrong {
+      background: var(--error-bg);
+      color: var(--error);
+    }
+    .summary-q {
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .result-actions {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* === COMPLETION SCREEN === */
+    .completion-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .badge-outer {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #003087, #0066cc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 32px rgba(0, 48, 135, 0.3);
+    }
+    .badge-inner {
+      width: 120px;
+      height: 120px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .badge-check {
+      width: 40px;
+      height: 40px;
+      stroke: var(--success);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .badge-text-main {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      line-height: 1.2;
+      margin-top: 4px;
+    }
+    .completion-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .completion-message {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 380px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+    .scores-recap {
+      width: 100%;
+      max-width: 400px;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 18px 20px;
+      margin: 0 auto 28px;
+      text-align: left;
+    }
+    .scores-recap-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    .score-row:last-child {
+      border-bottom: none;
+    }
+    .score-row-name {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .score-row-val {
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    /* === UTILITIES === */
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-16 { margin-top: 16px; }
+    .mb-16 { margin-bottom: 16px; }
+    .hidden { display: none !important; }
+
+    /* === SPINNER === */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* === DESKTOP === */
+    @media (min-width: 640px) {
+      .home-hero {
+        padding: 56px 32px 48px;
+      }
+      .home-hero-title {
+        font-size: 1.9rem;
+      }
+      .card-body {
+        padding: 32px 32px;
+      }
+      .home-form-section {
+        padding: 32px 32px;
+      }
+      .module-content-body {
+        padding: 28px 32px;
+      }
+      .quiz-body {
+        padding: 28px 32px;
+      }
+      .result-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+    }
+
+    /* === GAMIFICATION === */
+    .xp-banner{background:linear-gradient(135deg,var(--primary) 0%,#0066cc 100%);color:#fff;padding:14px 20px;border-radius:var(--radius-md);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .xp-left{flex:1}.xp-label{font-size:.75rem;opacity:.85;letter-spacing:.3px}
+    .xp-value{font-size:1.4rem;font-weight:700;line-height:1.2}
+    .xp-bar-wrap{width:100%;height:5px;background:rgba(255,255,255,.3);border-radius:3px;margin-top:6px}
+    .xp-bar-fill{height:100%;background:#fff;border-radius:3px;transition:width .6s ease}
+    .badges-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:18px}
+    .badges-label{font-size:.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+    .badges-grid{display:flex;gap:6px;flex-wrap:wrap}
+    .badge-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:16px;font-size:.78rem;font-weight:600;border:1px solid transparent}
+    .badge-chip.earned{background:var(--success-bg);color:var(--success);border-color:var(--success-border)}
+    .badge-chip.locked{background:#f5f5f5;color:#bbb;border-color:#e8e8e8;filter:grayscale(1);opacity:.7}
+    .badge-earned-box{background:linear-gradient(135deg,#f0fff4,#e6fffa);border:2px solid var(--success-border);border-radius:var(--radius-md);padding:18px;margin:14px 0;text-align:center}
+    .badge-earned-icon{font-size:2.4rem;line-height:1}
+    .badge-earned-lbl{font-size:.75rem;font-weight:700;color:var(--success);text-transform:uppercase;letter-spacing:.5px;margin:8px 0 4px}
+    .badge-earned-name{font-size:1rem;font-weight:700;color:var(--text)}
+    .xp-gained{display:inline-block;background:var(--primary-light);color:var(--primary);padding:4px 12px;border-radius:12px;font-size:.85rem;font-weight:700;margin-top:8px}
+    /* === NAVIGATION SECTIONS === */
+    .section-nav-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:10}
+    .section-counter{font-size:.82rem;font-weight:600;color:var(--text-muted)}
+    .section-dots{display:flex;gap:5px;align-items:center}
+    .section-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .2s;cursor:pointer}
+    .section-dot.active{background:var(--primary);transform:scale(1.3)}
+    .section-dot.done{background:var(--success)}
+    .section-btn-row{display:flex;gap:10px;justify-content:space-between;padding:16px 20px 20px;background:var(--surface);border-top:1px solid var(--border);margin-top:auto}
+    /* === ADMIN === */
+    .admin-wrap{max-width:760px;margin:0 auto;padding:24px 16px}
+    .admin-stats{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+    .admin-stat{flex:1;min-width:110px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;text-align:center}
+    .admin-stat-n{font-size:1.8rem;font-weight:700;color:var(--primary);line-height:1}
+    .admin-stat-l{font-size:.75rem;color:var(--text-muted);margin-top:4px}
+    .admin-table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:auto}
+    .admin-table{width:100%;border-collapse:collapse;font-size:.82rem}
+    .admin-table th{background:var(--primary-light);color:var(--primary);font-weight:700;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+    .admin-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+    .admin-table tr:last-child td{border-bottom:none}
+    .admin-table tr:hover td{background:var(--primary-light)}
+    .admin-pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.72rem;font-weight:700;background:var(--success-bg);color:var(--success)}
+    .admin-msg{text-align:center;padding:40px;color:var(--text-muted);font-style:italic}
+  </style>
+</head>
+<body>
+
+  <!-- ===================== SCREEN: HOME ===================== -->
+  <div id="screen-home" class="screen active">
+    <div class="home-hero">
+      <div class="home-hero-icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="2" y1="10" x2="22" y2="10"></line>
+        </svg>
+      </div>
+      <h1 class="home-hero-title">Paiement Mobile<br>et Wero en France</h1>
+      <p class="home-hero-desc">Une formation interactive pour comprendre les usages, technologies et bonnes pratiques du paiement mobile en France.</p>
+      <div class="home-meta">
+        <span class="home-tag">6 modules</span>
+        <span class="home-tag">Gratuit</span>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="card mt-16">
+        <div class="home-form-section">
+          <button class="btn btn-primary btn-full" id="btn-start">
+            <span>Commencer →</span>
+          </button>
+        </div>
+        <div class="home-footer">
+          <p class="home-footer-name">Charles Berthou</p>
+          <a href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer" class="home-footer-linkedin">
+            <svg class="linkedin-logo" viewBox="0 0 24 24" fill="#0a66c2" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Profil LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: WARNING ===================== -->
+  <div id="screen-warning" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo">Paiement Mobile et Wero</div>
+          <div class="site-header-sub">Mise en garde</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="wrapper">
+        <div class="card">
+          <div class="card-body">
+            <div class="warning-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <h2 class="card-title text-center">Mise en garde</h2>
+            <p class="card-subtitle text-center">Merci de lire attentivement ce message avant d'accéder aux modules.</p>
+            <div class="warning-text">
+              Les contenus proposés dans ce module ont été produits à titre informatif et pédagogique. Ils ne constituent pas un conseil financier, bancaire ou juridique. L'auteur ne saurait être tenu responsable de toute decision prise sur la base de ces informations. Les données présentées sont issues de sources publiques et peuvent évoluer.
+            </div>
+            <label class="checkbox-group" for="checkbox-warning">
+              <input type="checkbox" id="checkbox-warning">
+              <span class="checkbox-label">J'ai compris</span>
+            </label>
+            <button class="btn btn-primary btn-full" id="btn-warning-validate" disabled>
+              Accéder aux modules
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MODULES MENU ===================== -->
+  <div id="screen-modules" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo">Paiement Mobile et Wero</div>
+          <div class="site-header-sub" id="header-user-name">Formation</div>
+        </div>
+        <span class="progress-badge" id="progress-badge">0 / 5</span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="wrapper">
+        <div class="modules-header">
+          <h2 class="modules-title">Vos modules</h2>
+          <p class="modules-subtitle">Complétez chaque module dans l'ordre pour progresser.</p>
+        </div>
+        <div id="modules-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MODULE CONTENT ===================== -->
+  <div id="screen-module-content" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo" id="mc-header-title">Module</div>
+          <div class="site-header-sub">Contenu</div>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="mc-progress-bar" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div id="module-content-container" class="card" style="border-radius:0; box-shadow: none; flex:1;">
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: QUIZ ===================== -->
+  <div id="screen-quiz" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo" id="quiz-header-title">Quiz</div>
+          <div class="site-header-sub" id="quiz-header-sub">Module</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="wrapper">
+        <div class="card">
+          <div class="quiz-header">
+            <div class="quiz-meta" id="quiz-meta-label">Question</div>
+            <div class="quiz-title" id="quiz-module-title"></div>
+            <div class="quiz-progress-label" id="quiz-progress-label">Question 1 / 5</div>
+            <div class="quiz-progress-track">
+              <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:20%"></div>
+            </div>
+          </div>
+
+          <div class="quiz-body">
+            <p class="question-text" id="question-text"></p>
+            <div class="options-list" id="options-list"></div>
+            <div class="feedback-box" id="feedback-box"></div>
+          </div>
+
+          <div class="quiz-footer">
+            <button class="btn btn-primary btn-full hidden" id="btn-quiz-validate">Valider la réponse</button>
+            <button class="btn btn-primary btn-full hidden" id="btn-quiz-next">Question suivante</button>
+            <button class="btn btn-primary btn-full hidden" id="btn-quiz-finish">Voir mes resultats</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: QUIZ RESULT ===================== -->
+  <div id="screen-quiz-result" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo" id="result-header-title">Resultats</div>
+          <div class="site-header-sub">Quiz complete</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="wrapper">
+        <div class="card">
+          <div class="result-header">
+            <div class="score-circle" id="score-circle">
+              <span class="score-number" id="score-number">0/5</span>
+              <span class="score-label">score</span>
+            </div>
+            <h2 class="result-title" id="result-title">Bravo !</h2>
+            <p class="result-message" id="result-message"></p>
+          </div>
+
+          <div id="badge-earned-area"></div>
+        <div class="answers-summary" id="answers-summary"></div>
+
+          <div class="result-actions">
+            <button class="btn btn-outline" id="btn-retry-quiz">Refaire le quiz</button>
+            <button class="btn btn-primary" id="btn-next-module">Module suivant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: COMPLETION ===================== -->
+  <div id="screen-completion" class="screen">
+    <div class="site-header">
+      <div class="wrapper">
+        <div>
+          <div class="site-header-logo">Formation complétée</div>
+          <div class="site-header-sub">Toutes nos félicitations</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="completion-body">
+      <div class="badge-outer">
+        <div class="badge-inner">
+          <svg class="badge-check" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <div class="badge-text-main">Formation<br>completee</div>
+        </div>
+      </div>
+
+      <h2 class="completion-title" id="completion-name">Bravo !</h2>
+      <p class="completion-message">Vous avez parcouru l'ensemble des 5 modules et valide tous les quiz de la formation <strong>Paiement Mobile et Wero en France</strong>.</p>
+
+      <div class="scores-recap" id="scores-recap"></div>
+
+      <button class="btn btn-primary" onclick="showScreen('modules')">Revoir les modules</button>
+    </div>
+  </div>
+
+
+  <script>
+    // ====================================================
+    // FIREBASE CONFIG (sera mise a jour avec les vraies valeurs)
+    // ====================================================
+    
+        var db = null;
+      // ====================================================
+    // DONNEES : MODULES & QUIZ
+    // ====================================================
+    const MODULES = [
+      {
+        id: 1,
+        title: "Le paiement mobile en France",
+        subtitle: "Vue d'ensemble, chiffres clés et acteurs du marché",
+        shortDesc: "Introduction et panorama du marché",
+        sections: [
+          {
+            title: "Qu'est-ce que le paiement mobile ?",
+            content: [
+              "Le paiement mobile désigné l'ensemble des transactions financières réalisées via un smartphone ou une tablette. Il recouvre plusieurs usages distincts : le paiement en point de vente via la technologie sans contact, le virement entre particuliers (P2P), et le paiement en ligne depuis une application.",
+              "En France, cette pratique a connu une croissance significative depuis 2020. La pandémie de Covid-19 a massivement accéléré l'adoption du paiement sans contact, modifiant durablement les comportements des consommateurs et des commerçants.",
+              "Le paiement mobile n'est pas uniquement une affaire de technologie : il transforme la relation entre le consommateur, sa banque et les commerçants."
+            ]
+          },
+          {
+            title: "Le marché français en chiffres",
+            content: [
+              "Selon la Banque de France, les paiements sans contact ont représente plus de 60 % des transactions par carte en 2023. La France figure parmi les pays européens les plus avancés en matière d'adoption du paiement sans contact.",
+              "Le virement instantané SEPA progresse fortement : en 2023, il représentait environ 20 % des virements en France, avec une adoption attendue en forte hausse suite au règlement européen de 2024 rendant les virements instantanés obligatoires à tarifs comparables.",
+              "Plus d'un Français sur deux possède une application de paiement mobile ou utilise régulièrement le paiement sans contact via son smartphone."
+            ],
+            infoBox: "La limite de paiement sans contact sans saisie du code PIN est fixée à 50 euros en France depuis mai 2020, relevée depuis les 30 euros initiaux."
+          },
+          {
+            title: "Les acteurs du marché",
+            content: [
+              "Le marché du paiement mobile en France est structuré autour de plusieurs types d'acteurs complémentaires :",
+            ],
+            list: [
+              "Les banques traditionnelles via leurs applications mobiles (BNP Paribas, Société Generale, Credit Agricole, La Banque Postale, etc.)",
+              "Les fintechs spécialisées dans les paiements (Lydia/Sumeria, PayPal, Revolut)",
+              "Les géants technologiques avec leurs portefeuilles numériques (Apple Pay, Google Pay, Samsung Pay)",
+              "Wero, la solution interbancaire européenne dédiée aux virements entre particuliers"
+            ]
+          },
+          {
+            title: "Les grandes catégories d'usage",
+            content: [
+              "Le paiement en point de vente : le smartphone remplace la carte bancaire grace a la technologie NFC. Le client approche son téléphone du terminal et la transaction est confirmee par biométrie ou code PIN.",
+              "Le virement entre particuliers (P2P) : envoyer ou recevoir de l'argent entre amis ou en famille, souvent depuis l'application de sa banque ou une application dédiée, en quelques secondes.",
+              "Le paiement en ligne : de plus en plus de sites et applications acceptent des solutions de paiement mobile comme alternative a la carte bancaire, avec un niveau de sécurité renforce."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "Quelle est la limite de paiement sans contact sans saisie du code PIN en France depuis 2020 ?",
+            options: ["30 euros", "50 euros", "100 euros", "20 euros"],
+            correct: 1,
+            explanation: "Depuis mai 2020, la limite de paiement sans contact sans saisie du code PIN a été relevee de 30 a 50 euros en France, conformement aux recommandations européennes."
+          },
+          {
+            q: "Quelle technologie est utilisee pour le paiement sans contact en magasin ?",
+            options: ["Bluetooth", "NFC", "WiFi", "Infrarouge"],
+            correct: 1,
+            explanation: "Le NFC (Near Field Communication) permet l'echange de données entre deux appareils distants de moins de 10 cm, rendant possible le paiement sans contact."
+          },
+          {
+            q: "Parmi ces acteurs, lequel est une fintech francaise specialisee dans les paiements entre particuliers ?",
+            options: ["Visa", "Lydia / Sumeria", "Western Union", "MoneyGram"],
+            correct: 1,
+            explanation: "Lydia, devenu Sumeria en 2023, est une fintech francaise pionniere des paiements P2P (entre particuliers) en France."
+          },
+          {
+            q: "Quel organisme supervise les etablissements de paiement en France ?",
+            options: ["AMF", "ACPR", "DGCCRF", "INSEE"],
+            correct: 1,
+            explanation: "L'Autorite de Controle Prudentiel et de Resolution (ACPR) supervise les banques et les etablissements de paiement en France."
+          },
+          {
+            q: "Que signifie le sigle P2P dans le contexte du paiement mobile ?",
+            options: ["Paiement par Internet", "Paiement entre particuliers", "Paiement par carte a distance", "Paiement en trois fois"],
+            correct: 1,
+            explanation: "P2P signifie Peer-to-Peer, soit de particulier a particulier. C'est le principe des virements entre amis ou membres d'une même famille."
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Les technologies du paiement mobile",
+        subtitle: "NFC, QR Code, virement instantané et authentification forte",
+        shortDesc: "NFC, QR Code, SEPA instantané, DSP2",
+        sections: [
+          {
+            title: "La technologie NFC",
+            content: [
+              "Le NFC (Near Field Communication) est une technologie de communication sans fil a tres courte portee, inférieure a 10 cm. Elle permet a deux appareils equipes de cette puce d'echanger des données simplement en les approchant.",
+              "Pour un paiement sans contact, le smartphone doit être deverrouille et approche du terminal de paiement du commerçant. La transaction est automatiquement confirmee pour les montants inférieurs a 50 euros. Au-dela, une authentification par code PIN ou biométrie est requise.",
+              "La grande majorite des smartphones commercialises depuis 2016 integrent la puce NFC. Les banques fournissent les applications qui permettent de stockér et d'utiliser une carte bancaire numerisee sur ce téléphone."
+            ]
+          },
+          {
+            title: "Le paiement par QR Code",
+            content: [
+              "Le QR Code (Quick Response Code) est une alternative au NFC pour le paiement mobile. Son principe est différent : le commerçant affiche un QR Code sur son écran ou sur une affiche, et le client le scanne avec son smartphone pour initier le paiement.",
+              "L'avantage principal du QR Code est qu'il ne nécessite pas de puce NFC sur l'appareil du commerçant. Il est particulierement adapte aux petits commerces, aux marches ou aux contextes ou l'installation d'un terminal NFC est difficile.",
+              "En France, le QR Code est surtout utilise pour les paiements en ligne et les applications de mobilite (transport, restaurants). Son usage pour les paiements physiques reste moins répandu qu'en Asie, ou il est dominant."
+            ]
+          },
+          {
+            title: "Le virement SEPA instantané",
+            content: [
+              "Le virement SEPA instantané (SCT Inst pour SEPA Instant Credit Transfer) est la technologie qui permet des transferts d'argent en moins de 10 secondes, 24 heures sur 24 et 7 jours sur 7, partout en Europe.",
+              "Contrairement au virement bancaire classique qui peut prendre 1 a 2 jours ouvrables, le virement instantané credite immediatement le compte du bénéficiaire. Cette technologie est la base des applications de paiement entre particuliers comme Wero.",
+              "Un reglement européen adopte en 2024 oblige toutes les banques de la zone euro a proposer les virements instantanés a des tarifs equivalents aux virements classiques, accelerant ainsi leur adoption massive."
+            ],
+            infoBox: "Le virement SEPA instantané est disponible 365 jours par an, y compris les jours feries et les week-ends, avec un credit en compte garanti en moins de 10 secondes."
+          },
+          {
+            title: "La directive DSP2 et l'authentification forte",
+            content: [
+              "La directive européenne DSP2 (Directive sur les Services de Paiement 2) est entree en vigueur en 2019 et impose l'authentification forte (SCA - Strong Customer Authentication) pour les paiements en ligne.",
+              "Concretement, pour valider un paiement, le système doit vérifier au moins deux facteurs parmi : ce que vous savez (code PIN, mot de passe), ce que vous possedez (votre smartphone), ce que vous etes (empreinte digitale, reconnaissance faciale).",
+              "Cette reglementation a profondement transforme les processus de paiement en ligne, rendant les achats sur internet plus sécurisés tout en simplifiant l'experience pour les utilisateurs grace aux applications bancaires mobiles."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "Que signifie l'acronyme NFC ?",
+            options: ["Network Financial Control", "Near Field Communication", "New Finance Concept", "National Fund Control"],
+            correct: 1,
+            explanation: "NFC signifie Near Field Communication, soit Communication en champ proche. C'est la technologie qui permet les paiements sans contact."
+          },
+          {
+            q: "En combien de temps maximum s'effectue un virement SEPA instantané ?",
+            options: ["1 heure", "24 heures", "10 secondes", "1 minute"],
+            correct: 2,
+            explanation: "Le virement SEPA instantané (SCT Inst) est credite sur le compte du bénéficiaire en moins de 10 secondes, disponible 24h/24 et 7j/7."
+          },
+          {
+            q: "Quelle directive européenne impose l'authentification forte pour les paiements en ligne ?",
+            options: ["RGPD", "DSP2", "MiFID", "DORA"],
+            correct: 1,
+            explanation: "La directive DSP2 (Directive sur les Services de Paiement 2) impose l'authentification forte (SCA) pour sécurisér les paiements en ligne depuis 2019."
+          },
+          {
+            q: "Parmi ces elements, lequel constitue un facteur d'authentification forte ?",
+            options: ["Votre nom de famille", "Votre empreinte digitale", "Votre adresse postale", "Votre date de naissance"],
+            correct: 1,
+            explanation: "L'empreinte digitale est un facteur biometrique (ce que vous etes), l'un des trois types de facteurs d'authentification forte reconnus par la DSP2."
+          },
+          {
+            q: "Quel est l'avantage principal du paiement par QR Code par rapport au NFC ?",
+            options: ["Il est plus rapide", "Il ne nécessite pas de puce NFC côté commerçant", "Il est plus sécurisé", "Il permet des montants plus eleves"],
+            correct: 1,
+            explanation: "Le QR Code ne nécessite pas de puce NFC sur le terminal du commerçant, ce qui le rend accèssible aux petits commerces et aux contextes ou l'installation d'un TPE NFC est complexe."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Wero : présentation et fonctionnement",
+        subtitle: "Histoire, banques partenaires et mécanisme d'une solution interbancaire",
+        shortDesc: "Origine, acteurs et fonctionnement de Wero",
+        sections: [
+          {
+            title: "L'histoire de Wero",
+            content: [
+              "Wero est une solution de paiement mobile lancee en juillet 2023 par EBA Clearing, une infrastructure de paiement creee par les principales banques européennes. Elle est le fruit d'un projet commun entre les grandes banques francaises, allemandes et belges.",
+              "Wero remplace Paylib, la solution francaise de paiement entre particuliers qui fonctionnait depuis 2012. Ce remplacement s'inscrit dans une strategie de montee en puissance européenne : la pour une solution de paiement instantané capable de rivaliser avec PayPal (Etats-Unis) ou Bizum (Espagne).",
+              "Le nom Wero est une contraction de We et Euro, exprimant à la fois l'unité européenne et la vocation pan-européenne du projet. L'ambition affichée est de devenir le standard du paiement instantané en Europe."
+            ]
+          },
+          {
+            title: "Les banques partenaires en France",
+            content: [
+              "En France, Wero est proposé directement dans l'application mobile des principales banques. Le service est intégré nativement, sans nécessite de télécharger une application supplémentaire.",
+            ],
+            list: [
+              "BNP Paribas et Hello Bank!",
+              "Société Generale et Boursorama Banque",
+              "Credit Agricole et LCL",
+              "La Banque Postale",
+              "Caisses d'Epargne",
+              "Banques Populaires",
+              "CIC et Credit Mutuel"
+            ],
+            contentAfterList: "Cette large couverture bancaire est l'un des atouts majeurs de Wero : la quasi-totalite des Francais detenant un compte dans l'une de ces banques peut utiliser le service sans démarche supplémentaire."
+          },
+          {
+            title: "Comment fonctionne Wero ?",
+            content: [
+              "Le principe de Wero est simple : votre numéro de téléphone mobile est lie a votre IBAN bancaire. Pour envoyer de l'argent a quelqu'un, vous saisissez son numéro de téléphone. Le montant est preleve instantanement depuis votre compte courant et arrive sur le sien en quelques secondes.",
+              "L'interopérabilité est le point cle : l'expediteur et le destinataire n'ont pas besoin d'être clients de la même banque. Un client de BNP Paribas peut envoyer de l'argent a un client du Credit Agricole via Wero, sans aucune démarche particuliere.",
+              "Wero fonctionne sur le territoire européen entre les banques participantes. Les transferts restent en euros et s'appuient entierement sur l'infrastructure du virement SEPA instantane."
+            ],
+            infoBox: "Contrairement à Lydia ou PayPal, l'argent envoye via Wero arrive directement sur le compte courant bancaire du destinataire. Il n'y a pas de portefeuille intermediaire a vider."
+          },
+          {
+            title: "Wero face à la concurrence",
+            content: [
+              "Wero se distingue de ses concurrents sur plusieurs points. Face a Lydia/Sumeria, Wero ne nécessite pas d'ouvrir un compte separe et l'argent est directement sur le compte bancaire. Face a PayPal, Wero est une solution bancaire et son utilisation est directement intégrée aux applications des banques.",
+              "Le principal defi de Wero reste l'adoption par les commerçants pour les paiements en ligne et en magasin, un segment encore domine par les reseaux Visa et Mastercard.",
+              "Depuis 2024, Wero developpe ses fonctionnalites de paiement e-commerce, permettant a des commerçants partenaires d'accepter le paiement par Wero sur leurs sites et applications."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "En quelle annee Wero a-t-il ete lance en France ?",
+            options: ["2019", "2021", "2023", "2025"],
+            correct: 2,
+            explanation: "Wero a été lance en juillet 2023, remplacant progressivement Paylib, l'ancienne solution de paiement entre particuliers des banques francaises."
+          },
+          {
+            q: "Quelle solution Wero a-t-il remplacee en France ?",
+            options: ["PayPal", "Lydia", "Paylib", "Virement Zero"],
+            correct: 2,
+            explanation: "Wero a remplace Paylib, la solution de paiement P2P lancee en 2012 par un consortium de banques francaises. La migration s'est effectuee progressivement depuis 2023."
+          },
+          {
+            q: "Sur quelle technologie de paiement Wero est-il base ?",
+            options: ["SWIFT", "Visa Direct", "SEPA Instant Credit Transfer", "Mastercard Send"],
+            correct: 2,
+            explanation: "Wero repose sur le virement SEPA instantané (SCT Inst), garantissant des transferts en quelques secondes entre banques européennes participantes."
+          },
+          {
+            q: "Quel identifiant utilise-t-on pour envoyer de l'argent via Wero ?",
+            options: ["Numéro de carte bancaire", "Numéro de compte IBAN", "Numéro de téléphone mobile", "Adresse email uniquement"],
+            correct: 2,
+            explanation: "Wero fonctionne en liant le numéro de téléphone mobile a l'IBAN. Pour envoyer de l'argent, il suffit du numéro de téléphone du destinataire."
+          },
+          {
+            q: "Quelle est la difference principale entre Wero et Lydia ?",
+            options: ["Wero est plus rapide", "Avec Wero, l'argent va directement sur le compte bancaire sans portefeuille intermediaire", "Wero est gratuit, Lydia est payant", "Wero fonctionne uniquement en France"],
+            correct: 1,
+            explanation: "Contrairement à Lydia/Sumeria qui dispose d'un portefeuille numerique intermediaire, l'argent envoye via Wero est directement credite sur le compte bancaire du destinataire."
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Utiliser Wero au quotidien",
+        subtitle: "Activation, envoi, réception, limites et paiement e-commerce",
+        shortDesc: "Prise en main pratique et limites d'utilisation",
+        sections: [
+          {
+            title: "S'inscrire et activer Wero",
+            content: [
+              "L'activation de Wero se fait directement depuis l'application mobile de votre banque. Aucune application separee n'est nécessaire. La démarche est généralement simple : dans l'application de votre banque, recherchez la section Wero ou Paiement entre particuliers.",
+              "Pour l'inscription, vous devez fournir un numéro de téléphone mobile valide. Vous recevrez un code de confirmation par SMS a saisir dans l'application. Une fois valide, votre numéro de téléphone est lie a votre IBAN et vous etes pret a utiliser Wero.",
+              "Si vous etiez deja inscrit sur Paylib avant juillet 2023, votre migration vers Wero a normalement ete effectuee automatiquement par votre banque. Vous avez simplement du valider l'activation de Wero dans votre application."
+            ]
+          },
+          {
+            title: "Envoyer et recevoir de l'argent",
+            content: [
+              "Pour envoyer de l'argent, la procédure standard est la suivante : ouvrez l'application de votre banque, accès a la section Wero, saisissez le numéro de téléphone du bénéficiaire depuis votre répertoire ou manuellement, indiquez le montant et éventuellement un motif, puis confirmez avec votre code PIN ou votre biométrie.",
+              "Si le destinataire n'est pas encore inscrit sur Wero, il recoira automatiquement une invitation par SMS. Il dispose d'un délai de quelques jours pour s'inscrire et récupérer le montant. Si l'inscription n'est pas effectuee dans ce délai, le montant est restitué a l'expediteur.",
+              "La reception d'argent est entierement automatique : les fonds arrivent directement sur votre compte courant, sans validation de votre part. Vous recevez généralement une notification de votre application bancaire."
+            ],
+            infoBox: "L'argent envoye par Wero arrive sur le compte courant du destinataire en quelques secondes, y compris les samedis, dimanches et jours feries."
+          },
+          {
+            title: "Les limites et plafonds",
+            content: [
+              "Les plafonds de transfert varient selon les banques et peuvent évoluer. A titre indicatif, les montants par transaction se situent généralement entre 500 et 10 000 euros, et les cumuls journaliers entre 1 000 et 10 000 euros.",
+              "Pour connaitre vos plafonds personnels, consultez directement la section Wero dans votre application bancaire ou le site web de votre banque. Certaines banques permettent de moduler ces plafonds en agence ou depuis l'application.",
+              "Si vous avez besoin d'envoyer un montant supérieur a votre plafond Wero, vous pouvez utiliser un virement SEPA classique depuis votre espace bancaire, qui ne comporte pas de limite minimale spécifique."
+            ]
+          },
+          {
+            title: "Wero pour les paiements en ligne",
+            content: [
+              "Depuis 2024, Wero se deploie comme moyen de paiement chez les commerçants en ligne. Sur les sites partenaires, une option Payer avec Wero apparait a cote des options de paiement classiques.",
+              "Le processus est simple : vous saisissez votre numéro de téléphone, recevez une notification dans votre application bancaire, puis confirmez le paiement avec votre biométrie ou code PIN. Aucune saisie de numéro de carte n'est nécessaire.",
+              "Ce developpement en e-commerce constitue un enjeu strategique majeur pour Wero, qui cherche a s'imposer comme une alternative au paiement par carte bancaire aupres des commerçants européens."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "Comment accede-t-on a Wero pour effectuer un virement ?",
+            options: ["Via une application Wero a télécharger separement", "Via l'application mobile de sa banque", "Via le site wero.com uniquement", "Via un SMS uniquement"],
+            correct: 1,
+            explanation: "Wero est intégré directement dans l'application mobile de votre banque. Il n'est pas nécessaire de télécharger une application separee."
+          },
+          {
+            q: "Que se passe-t-il si le destinataire d'un virement Wero n'est pas encore inscrit ?",
+            options: ["Le virement est refuse immediatement", "Il recoiit une invitation par SMS pour s'inscrire et récupérer l'argent", "L'argent reste bloque indefiniment", "Le virement est execute comme un virement classique"],
+            correct: 1,
+            explanation: "Si le destinataire n'est pas inscrit sur Wero, il recoit une invitation par SMS. Il dispose d'un délai pour s'inscrire et récupérer le montant. Passe ce délai, le montant est restitué a l'expediteur."
+          },
+          {
+            q: "En combien de temps l'argent arrive-t-il sur le compte du bénéficiaire via Wero ?",
+            options: ["Quelques secondes", "1 jour ouvre", "2 a 3 jours", "1 semaine"],
+            correct: 0,
+            explanation: "Grace au virement SEPA instantane, l'argent arrive sur le compte bancaire du bénéficiaire en quelques secondes, même le week-end et les jours feries."
+          },
+          {
+            q: "Comment Wero fonctionne-t-il pour les paiements chez les commerçants en ligne ?",
+            options: ["Vous saisissez votre numéro de carte bancaire", "Vous saisissez votre numéro de téléphone et confirmez dans votre appli bancaire", "Vous envoyez un virement manuel", "Vous utilisez un code a usage unique recu par email"],
+            correct: 1,
+            explanation: "Pour un paiement e-commerce via Wero, vous saisissez votre numéro de téléphone sur le site marchand, puis confirmez le paiement directement dans votre application bancaire."
+          },
+          {
+            q: "Ou trouver les plafonds de virement Wero applicables a votre compte ?",
+            options: ["Sur le site wero.com uniquement", "Dans la section Wero de l'application de votre banque", "En appelant le 3939", "Dans les conditions generales de votre contrat initial"],
+            correct: 1,
+            explanation: "Les plafonds Wero varient selon les banques. La manière la plus simple de les connaitre est de consulter la section Wero dans l'application mobile de votre banque."
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "Sécurité et bonnes pratiques",
+        subtitle: "DSP2, mécanismes de protection, prévention de la fraude",
+        shortDesc: "Sécuriser ses paiements et réagir en cas de problème",
+        sections: [
+          {
+            title: "Les mécanismes de sécurité de Wero",
+            content: [
+              "Wero intégré plusieurs couches de sécurité heritees du système bancaire reglemente. L'authentification forte (SCA) conforme a la directive DSP2 est obligatoire pour toute transaction. Aucun paiement ne peut être effectue sans validation par biométrie ou code PIN.",
+              "Les données de transaction sont chiffrées de bout en bout selon les standards bancaires en vigueur. Les banques partenaires assurent une surveillance continue des transactions pour détecter les comportements anormaux et les tentatives de fraude.",
+              "Contrairement aux applications de paiement de type fintech moins réglementées, Wero bénéficie de l'ensemble du cadre prudentiel bancaire : garantie des dépôts, mécanismes de recours, supervision de l'ACPR."
+            ]
+          },
+          {
+            title: "La DSP2 et vos droits en tant que consommateur",
+            content: [
+              "La directive DSP2 vous confere des droits importants en cas de paiement non autorise. Si vous contestez une transaction que vous n'avez pas effectuee, votre banque est tenue de la rembourser dans un délai d'un jour ouvre.",
+              "Ce principe de responsabilite bancaire par defaut est fondamental : la banque doit prouver que vous avez bien autorise la transaction et que vous n'avez pas agi avec negligence grave, et non l'inverse.",
+              "Toutefois, si la banque etablit que vous avez agi avec negligence grave (par exemple en communiquant votre code PIN), votre responsabilite peut être engagee. C'est pourquoi la confidentialite de vos codes est essentielle."
+            ],
+            infoBox: "En cas de paiement non autorise signale rapidement, votre banque est legalement tenue de vous rembourser dans un délai d'un jour ouvre (DSP2, article 73)."
+          },
+          {
+            title: "Les bonnes pratiques essentielles",
+            content: [
+              "Pour utiliser Wero et le paiement mobile en toute sécurité, quelques regles de base sont indispensables :",
+            ],
+            list: [
+              "Ne communiquez jamais votre code PIN ni vos codes d'accès bancaires, même a un conseiller ou a un proche",
+              "Verifiez toujours le numéro de téléphone du destinataire avant de valider un envoi d'argent",
+              "Mefiance absolue vis-a-vis des demandes urgentes de virement, même provenant d'un numéro connu",
+              "Activez les notifications de transaction pour être alerte immediatement de tout mouvement",
+              "Utilisez un code écran et la biométrie sur votre smartphone"
+            ]
+          },
+          {
+            title: "Que faire en cas de problème ?",
+            content: [
+              "Si votre téléphone est vole ou perdu : contactez immediatement votre operateur mobile pour bloquer la carte SIM, puis appelez votre banque pour bloquer l'accès a Wero et aux paiements mobiles. Agir vite est crucial.",
+              "Si vous constatez une transaction Wero que vous n'avez pas effectuee : contestez-la immediatement aupres de votre banque, conservez toutes les preuves (captures d'écran, SMS), et deposez plainte aupres de la police ou de la gendarmerie.",
+              "En cas de doute sur une demande de virement recue par SMS ou appel telephonique, ne donnez jamais suite directement. Rappelez vous-même votre banque au numéro officiel figure sur votre carte bancaire pour vérifier."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "Que signifie l'acronyme SCA dans le contexte des paiements ?",
+            options: ["Système de Controle Automatique", "Strong Customer Authentication", "Secure Card Access", "Standard Credit Authorization"],
+            correct: 1,
+            explanation: "La SCA (Strong Customer Authentication) est l'authentification forte imposee par la DSP2. Elle exige au moins deux facteurs d'identification pour valider un paiement."
+          },
+          {
+            q: "En cas de paiement non autorise signale, dans quel délai votre banque doit-elle vous rembourser selon la DSP2 ?",
+            options: ["30 jours", "7 jours ouvrables", "1 jour ouvre", "48 heures"],
+            correct: 2,
+            explanation: "La directive DSP2 oblige les banques a rembourser leur client dans un délai d'un jour ouvre en cas de paiement non autorise dument signale et conteste."
+          },
+          {
+            q: "Quelle est la premiere action a entreprendre si votre téléphone est vole ?",
+            options: ["Acheter un nouveau téléphone", "Contacter son operateur pour bloquer la SIM et sa banque pour bloquer les paiements mobiles", "Changer son mot de passe email", "Attendre et surveiller ses transactions"],
+            correct: 1,
+            explanation: "En cas de vol, il faut agir immediatement : bloquer la carte SIM aupres de votre operateur et bloquer Wero ainsi que les paiements mobiles aupres de votre banque."
+          },
+          {
+            q: "Laquelle de ces pratiques est absolument déconseillée ?",
+            options: ["Activer les notifications de transaction", "Verifier le numéro du destinataire avant d'envoyer", "Communiquer son code PIN pour qu'un proche effectue un paiement a sa place", "Utiliser la biométrie pour valider les paiements"],
+            correct: 2,
+            explanation: "Le code PIN est strictement confidentiel. Le communiquer, même a un proche, constitue une negligence grave au sens de la DSP2 et peut engager votre responsabilite en cas de fraude."
+          },
+          {
+            q: "Quel principal avantage Wero offre-t-il en termes de sécurité par rapport aux solutions fintech moins réglementées ?",
+            options: ["Il est plus rapide", "Il bénéficie du cadre prudentiel bancaire complet, incluant la supervision de l'ACPR", "Il ne nécessite pas d'authentification", "Il offre des plafonds plus eleves"],
+            correct: 1,
+            explanation: "Wero est une solution bancaire réglementée, bénéficiant de la supervision de l'ACPR, des garanties des dépôts et des mécanismes de recours propres au secteur bancaire."
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "L'avenir de Wero et du paiement mobile",
+        subtitle: "Expansion européenne, e-commerce et enjeux 2025-2027",
+        shortDesc: "Roadmap, défis et perspectives du paiement instantané en Europe",
+        sections: [
+          {
+            title: "L'expansion européenne de Wero",
+            content: [
+              "Lancé en France et en Allemagne en juillet 2023, puis en Belgique en 2024, Wero porte l'ambition de l'EPI (European Payments Initiative), un consortium de 20 grandes banques européennes. L'objectif est de couvrir l'ensemble de la zone euro d'ici 2027.",
+              "L'interopérabilité transfrontalière est au cœur du projet : un utilisateur belge peut envoyer de l'argent à un Français via Wero, sans friction ni frais supplémentaires. Cette fluidité pan-européenne est un atout décisif face aux solutions américaines.",
+              "D'autres pays sont en cours d'intégration : les Pays-Bas, l'Autriche, le Luxembourg et potentiellement l'Espagne, l'Italie et le Portugal à horizon 2026-2027. Chaque nouvelle banque participante renforcé la masse critique indispensable au succès du projet."
+            ]
+          },
+          {
+            title: "Wero et les commerçants : la deuxième phase",
+            content: [
+              "Le déploiement de Wero suit trois phases stratégiques. La Phase 1 (déjà active) couvre les paiements entre particuliers (P2P) : envois instantanés entre amis, famille, remboursements du quotidien.",
+              "La Phase 2, en cours depuis 2024, concerne le paiement e-commerce. Sur les sites marchands partenaires, les clients paient en saisissant leur numéro de téléphone puis en confirmant dans leur application bancaire. Cette phase est cruciale pour la montée en puissance de Wero.",
+              "La Phase 3, prévue à partir de 2025-2026, porte sur le paiement en point de vente physique (NFC et QR Code). Wero se positionnera alors en alternative directe à la carte bancaire chez les commerçants, avec l'ambition de réduire les frais d'interchange élevés des réseaux Visa et Mastercard."
+            ],
+            infoBox: "Les frais d'interchange Visa / Mastercard représentent 0,3 % à 1,5 % du montant de chaque transaction pour les commerçants. Wero vise à réduire significativement ce coût, estimé à plusieurs milliards d'euros par an pour le commerce européen."
+          },
+          {
+            title: "Les défis de la souveraineté numérique",
+            content: [
+              "L'enjeu de Wero dépasse la simple commodité des paiements : il s'agit d'un projet de souveraineté numérique européenne. Les paiements par carte en Europe sont dominés à plus de 65 % par les réseaux américains Visa et Mastercard, dont les algorithmes et les données échappent au contrôle européen.",
+              "Face à eux, Apple Pay et Google Pay captent une part croissante des paiements mobiles sans contact, créant une dépendance vis-à-vis des plateformes technologiques américaines. Wero est la réponse européenne à cette double dépendance.",
+              "La Banque Centrale Européenne (BCE) soutient activement le projet, tout en développant en parallèle l'euro numérique (CBDC — Central Bank Digital Currency), une monnaie numérique de banque centrale qui pourrait à terme compléter Wero."
+            ]
+          },
+          {
+            title: "Les tendances du paiement mobile 2025-2027",
+            content: [
+              "L'intelligence artificielle s'intègre de plus en plus dans les systèmes de paiement : détection de fraude en temps réel, analyse comportementale, personnalisation des offres. Les banques investissent massivement dans l'IA pour sécuriser et enrichir l'expérience de paiement.",
+              "Le règlement eIDAS 2.0, entré en application en 2024, impose à chaque État membre de proposer un portefeuille d'identité numérique européen (European Digital Identity Wallet). Ce portefeuille permettra d'authentifier les paiements et de stockér documents officiels et titres de transport.",
+              "Le BNPL (Buy Now Pay Later), encadré par la directive européenne sur le crédit aux consommateurs (2023), favorise les acteurs bancaires réglementés face aux fintechs moins contrôlées. Les paiements en objets connectés (montres, voitures, réfrigérateurs) représentent également un marché en pleine émergence."
+            ]
+          }
+        ],
+        quiz: [
+          {
+            q: "Que signifie l'acronyme EPI dans le contexte de Wero ?",
+            options: ["European Payment Index", "European Payments Initiative", "Euro Payment Integration", "Electronic Payments Infrastructure"],
+            correct: 1,
+            explanation: "L'EPI (European Payments Initiative) est le consortium de 20 grandes banques européennes qui développe et déploie Wero à l'échelle européenne."
+          },
+          {
+            q: "Quelle est la Phase 2 du déploiement de Wero ?",
+            options: ["Les paiements entre particuliers (P2P)", "Le paiement e-commerce sur sites marchands", "Le paiement en point de vente physique", "Le paiement international hors zone euro"],
+            correct: 1,
+            explanation: "La Phase 2 concerne le déploiement de Wero comme moyen de paiement sur les sites e-commerce partenaires, permettant de payer par numéro de téléphone sans carte bancaire."
+          },
+          {
+            q: "Quel est le principal enjeu stratégique de Wero pour l'Europe ?",
+            options: ["Remplacer les espèces", "Réduire la dépendance aux réseaux de paiement américains", "Éliminer les banques traditionnelles", "Concurrencer les cryptomonnaies"],
+            correct: 1,
+            explanation: "Wero est un projet de souveraineté numérique européenne : réduire la dépendance vis-à-vis de Visa, Mastercard, Apple Pay et Google Pay en proposant une alternative bancaire européenne interopérable."
+          },
+          {
+            q: "Que prévoit le règlement eIDAS 2.0 pour les paiements ?",
+            options: ["L'interdiction des paiements mobiles", "La création d'un portefeuille d'identité numérique européen", "La fusion de Wero avec PayPal", "L'obligation d'utiliser la carte bancaire"],
+            correct: 1,
+            explanation: "eIDAS 2.0 impose à chaque État membre de fournir un portefeuille d'identité numérique (European Digital Identity Wallet) utilisable pour authentifier les paiements."
+          },
+          {
+            q: "Quel avantage Wero offre-t-il aux commerçants face à la carte bancaire ?",
+            options: ["Les paiements sont plus lents", "Des frais de transaction potentiellement réduits par rapport aux frais d'interchange Visa / Mastercard", "Wero ne fonctionne que pour les achats en ligne", "Les remboursements sont impossibles avec Wero"],
+            correct: 1,
+            explanation: "Les frais d'interchange Visa / Mastercard représentent 0,3 % à 1,5 % par transaction. Wero vise à proposer une alternative moins coûteuse pour les commerçants, ce qui est un argument commercial fort."
+          }
+        ]
+      },
+
+    ];
+
+    const BADGES = [
+      { icon: '🏅', name: 'Initié Paiement' },
+      { icon: '⚡', name: 'Expert Technologies' },
+      { icon: '🌍', name: 'Ambassadeur Wero' },
+      { icon: '💳', name: 'Praticien Wero' },
+      { icon: '🛡️', name: 'Gardien Sécurité' },
+      { icon: '🚀', name: 'Visionnaire' }
+    ];
+
+    // ====================================================
+    // ETAT DE L'APPLICATION
+    // ====================================================
+    let appState = {
+      user: null,
+      progress: {
+        warningAccepted: false,
+        completedModules: [],
+        quizScores: {},
+        points: 0,
+        badges: []
+      },
+      currentModuleIndex: 0,
+      currentQuiz: {
+        questionIndex: 0,
+        answers: [],
+        answered: false
+      }
+    };
+
+    
+  function saveProgress() {
+    localStorage.setItem('wero_progress', JSON.stringify(appState.progress));
+  }
+
+  function loadProgress() {
+    var saved = localStorage.getItem('wero_progress');
+    if (saved) {
+      try { appState.progress = JSON.parse(saved); } catch(e) {}
+    }
+  }
+
+
+
+    function isModuleAvailable(idx) {
+      if (idx === 0) return true;
+      return appState.progress.completedModules.includes(idx - 1);
+    }
+
+    function isModuleCompleted(idx) {
+      return appState.progress.completedModules.includes(idx);
+    }
+
+    // ====================================================
+    // NAVIGATION
+    // ====================================================
+    function showScreen(name) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const el = document.getElementById('screen-' + name);
+      if (el) {
+        el.classList.add('active');
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // ====================================================
+    // ECRAN : ACCUEIL
+    // ====================================================
+      document.getElementById('btn-start').addEventListener('click', function() {
+    renderModulesMenu();
+    showScreen('modules');
+  });
+
+
+
+    // ====================================================
+    // ECRAN : MISE EN GARDE
+    // ====================================================
+    const checkboxWarning = document.getElementById('checkbox-warning');
+    const btnWarningValidate = document.getElementById('btn-warning-validate');
+
+    checkboxWarning.addEventListener('change', function() {
+      btnWarningValidate.disabled = !this.checked;
+    });
+
+    btnWarningValidate.addEventListener('click', function() {
+      appState.progress.warningAccepted = true;
+      saveProgress();
+      renderModulesMenu();
+      showScreen('modules');
+    });
+
+    // ====================================================
+    // ECRAN : MENU MODULES
+    // ====================================================
+    function renderModulesMenu() {
+      const list = document.getElementById('modules-list');
+      const count = appState.progress.completedModules.length;
+      document.getElementById('progress-badge').textContent = count + ' / ' + MODULES.length;
+
+      if (appState.user) {
+        document.getElementById('header-user-name').textContent = 'Bonjour, ' + appState.user.prenom;
+      }
+
+      // Bloc XP + badges
+      const pts = appState.progress.points || 0;
+      const maxPts = MODULES.length * 70;
+      const pct = Math.min(100, Math.round(pts / maxPts * 100));
+      const earned = appState.progress.badges || [];
+      let topHtml = '<div class="xp-banner"><div class="xp-left"><div class="xp-label">Points XP cumulés</div><div class="xp-value">' + pts + ' <span style="font-size:.9rem;opacity:.8">/ ' + maxPts + ' pts</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:' + pct + '%"></div></div></div></div>';
+      topHtml += '<div class="badges-section"><div class="badges-label">Badges obtenus</div><div class="badges-grid">';
+      BADGES.forEach(function(b, i) {
+        const got = earned.includes(i);
+        topHtml += '<span class="badge-chip ' + (got ? 'earned' : 'locked') + '">' + b.icon + ' ' + b.name + '</span>';
+      });
+      topHtml += '</div></div>';
+      document.getElementById('modules-list').insertAdjacentHTML('beforebegin', topHtml);
+
+      let html = '';
+      MODULES.forEach(function(mod, idx) {
+        const available = isModuleAvailable(idx);
+        const completed = isModuleCompleted(idx);
+        const statusClass = completed ? 'completed' : (available ? 'available' : 'locked');
+        const statusLabel = completed ? 'Terminé' : (available ? 'Disponible' : 'Verrouillé');
+        const score = appState.progress.quizScores['module' + idx];
+        const scoreStr = (completed && score !== undefined) ? 'Score : ' + score + '/5' : '';
+
+        html += '<div class="module-card ' + statusClass + '" onclick="handleModuleClick(' + idx + ')" data-idx="' + idx + '">';
+        html += '<div class="module-num ' + statusClass + '">' + (idx + 1) + '</div>';
+        html += '<div class="module-info">';
+        html += '<div class="module-name">' + mod.title + '</div>';
+        html += '<div class="module-desc">' + mod.shortDesc + '</div>';
+        if (scoreStr) {
+          html += '<div class="score-chip">' + scoreStr + '</div>';
+        }
+        html += '</div>';
+        html += '<span class="module-status ' + statusClass + '">' + statusLabel + '</span>';
+        html += '</div>';
+      });
+
+      list.innerHTML = html;
+    }
+
+    function handleModuleClick(idx) {
+      if (!isModuleAvailable(idx)) return;
+      appState.currentModuleIndex = idx;
+      renderModuleContent(idx);
+      showScreen('module-content');
+    }
+
+    // ====================================================
+    // ECRAN : CONTENU MODULE
+    // ====================================================
+    function renderModuleContent(idx, sectionIdx) {
+      sectionIdx = sectionIdx || 0;
+      appState.currentSectionIndex = sectionIdx;
+      const mod = MODULES[idx];
+      const section = mod.sections[sectionIdx];
+      const total = mod.sections.length;
+      const container = document.getElementById('module-content-container');
+      document.getElementById('mc-header-title').textContent = 'Module ' + (idx + 1);
+      const progressPct = Math.round(((idx + 1) / MODULES.length) * 100);
+      document.getElementById('mc-progress-bar').style.width = progressPct + '%';
+
+      // Barre de navigation sections
+      let dots = '';
+      for (var d = 0; d < total; d++) {
+        const cls = d < sectionIdx ? 'done' : (d === sectionIdx ? 'active' : '');
+        dots += '<span class="section-dot ' + cls + '" onclick="renderModuleContent(' + idx + ',' + d + ')"></span>';
+      }
+      const navBar = '<div class="section-nav-bar"><span class="section-counter">Section ' + (sectionIdx+1) + ' / ' + total + '</span><div class="section-dots">' + dots + '</div></div>';
+
+      // Contenu de la section courante
+      let sHtml = '<div class="content-section">';
+      sHtml += '<h3 class="content-section-title">' + section.title + '</h3>';
+      section.content.forEach(function(p) { sHtml += '<p>' + p + '</p>'; });
+      if (section.infoBox) sHtml += '<div class="info-box"><p>' + section.infoBox + '</p></div>';
+      if (section.list) {
+        sHtml += '<ul class="data-list">';
+        section.list.forEach(function(item) { sHtml += '<li>' + item + '</li>'; });
+        sHtml += '</ul>';
+      }
+      if (section.contentAfterList) sHtml += '<p style="margin-top:10px">' + section.contentAfterList + '</p>';
+      sHtml += '</div>';
+
+      // Boutons navigation
+      const isLast = sectionIdx === total - 1;
+      const btnPrev = sectionIdx > 0 ? '<button class="btn btn-outline btn-sm" onclick="renderModuleContent(' + idx + ',' + (sectionIdx-1) + ')">← Précédente</button>' : '<button class="btn btn-outline btn-sm" onclick="showScreen(\'modules\')">&#8592; Modules</button>';
+      const btnNext = isLast
+        ? '<button class="btn btn-primary btn-sm" onclick="startQuiz(' + idx + ')">Passer le quiz &#8594;</button>'
+        : '<button class="btn btn-primary btn-sm" onclick="renderModuleContent(' + idx + ',' + (sectionIdx+1) + ')">Suivante &#8594;</button>';
+      const btnRow = '<div class="section-btn-row">' + btnPrev + btnNext + '</div>';
+
+      container.innerHTML =
+        '<div class="module-header">' +
+          '<div class="module-num-label">Module ' + (idx + 1) + ' sur ' + MODULES.length + '</div>' +
+          '<h2 class="module-title">' + mod.title + '</h2>' +
+          '<p class="module-subtitle">' + mod.subtitle + '</p>' +
+        '</div>' +
+        navBar + sHtml + btnRow;
+    }
+
+    
+    // ====================================================
+    // QUIZ
+    // ====================================================
+    function startQuiz(moduleIdx) {
+      appState.currentModuleIndex = moduleIdx;
+      appState.currentQuiz = {
+        questionIndex: 0,
+        answers: [],
+        answered: false
+      };
+      renderQuestion();
+      showScreen('quiz');
+    }
+
+    function renderQuestion() {
+      const mod = MODULES[appState.currentModuleIndex];
+      const qIdx = appState.currentQuiz.questionIndex;
+      const question = mod.quiz[qIdx];
+      const total = mod.quiz.length;
+
+      document.getElementById('quiz-header-title').textContent = 'Quiz - Module ' + (appState.currentModuleIndex + 1);
+      document.getElementById('quiz-header-sub').textContent = mod.title;
+      document.getElementById('quiz-meta-label').textContent = 'Quiz module ' + (appState.currentModuleIndex + 1);
+      document.getElementById('quiz-module-title').textContent = mod.title;
+      document.getElementById('quiz-progress-label').textContent = 'Question ' + (qIdx + 1) + ' / ' + total;
+      document.getElementById('quiz-progress-fill').style.width = ((qIdx + 1) / total * 100) + '%';
+      document.getElementById('question-text').textContent = question.q;
+
+      const optionsList = document.getElementById('options-list');
+      const letters = ['A', 'B', 'C', 'D'];
+      optionsList.innerHTML = '';
+      question.options.forEach(function(opt, i) {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerHTML = '<span class="option-indicator">' + letters[i] + '</span><span>' + opt + '</span>';
+        btn.addEventListener('click', function() { selectOption(i); });
+        optionsList.appendChild(btn);
+      });
+
+      document.getElementById('feedback-box').className = 'feedback-box';
+      document.getElementById('feedback-box').innerHTML = '';
+
+      document.getElementById('btn-quiz-validate').classList.remove('hidden');
+      document.getElementById('btn-quiz-validate').disabled = true;
+      document.getElementById('btn-quiz-next').classList.add('hidden');
+      document.getElementById('btn-quiz-finish').classList.add('hidden');
+
+      appState.currentQuiz.answered = false;
+      appState.currentQuiz.selectedOption = null;
+    }
+
+    function selectOption(optIdx) {
+      if (appState.currentQuiz.answered) return;
+      appState.currentQuiz.selectedOption = optIdx;
+
+      document.querySelectorAll('.option-btn').forEach(function(btn, i) {
+        btn.classList.toggle('selected', i === optIdx);
+      });
+
+      document.getElementById('btn-quiz-validate').disabled = false;
+    }
+
+    document.getElementById('btn-quiz-validate').addEventListener('click', function() {
+      if (appState.currentQuiz.selectedOption === null) return;
+      validateAnswer();
+    });
+
+    function validateAnswer() {
+      const mod = MODULES[appState.currentModuleIndex];
+      const qIdx = appState.currentQuiz.questionIndex;
+      const question = mod.quiz[qIdx];
+      const selected = appState.currentQuiz.selectedOption;
+      const correct = question.correct;
+      const isCorrect = selected === correct;
+
+      appState.currentQuiz.answered = true;
+      appState.currentQuiz.answers.push({ selected, correct, isCorrect });
+
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach(function(btn, i) {
+        btn.disabled = true;
+        if (i === correct) {
+          btn.classList.add('correct');
+          btn.querySelector('.option-indicator').innerHTML = checkSvg();
+        }
+        if (i === selected && !isCorrect) {
+          btn.classList.remove('selected');
+          btn.classList.add('wrong');
+          btn.querySelector('.option-indicator').innerHTML = crossSvg();
+        }
+        if (i === selected && isCorrect) {
+          btn.querySelector('.option-indicator').innerHTML = checkSvg();
+        }
+      });
+
+      const feedbackBox = document.getElementById('feedback-box');
+      feedbackBox.className = 'feedback-box ' + (isCorrect ? 'correct' : 'wrong');
+      feedbackBox.innerHTML =
+        '<div class="feedback-title">' + (isCorrect ? 'Bonne réponse !' : 'Mauvaise réponse') + '</div>' +
+        '<div>' + question.explanation + '</div>';
+
+      document.getElementById('btn-quiz-validate').classList.add('hidden');
+
+      const isLast = qIdx === mod.quiz.length - 1;
+      if (isLast) {
+        document.getElementById('btn-quiz-finish').classList.remove('hidden');
+      } else {
+        document.getElementById('btn-quiz-next').classList.remove('hidden');
+      }
+    }
+
+    function checkSvg() {
+      return '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    }
+
+    function crossSvg() {
+      return '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+    }
+
+    document.getElementById('btn-quiz-next').addEventListener('click', function() {
+      appState.currentQuiz.questionIndex++;
+      renderQuestion();
+    });
+
+    document.getElementById('btn-quiz-finish').addEventListener('click', function() {
+      showQuizResult();
+    });
+
+    function showQuizResult() {
+      const mod = MODULES[appState.currentModuleIndex];
+      const answers = appState.currentQuiz.answers;
+      const score = answers.filter(function(a) { return a.isCorrect; }).length;
+      const total = answers.length;
+
+      // Sauvegarder le score + XP + badge
+      const modKey = 'module' + appState.currentModuleIndex;
+      const prevScore = appState.progress.quizScores[modKey];
+      const isFirstCompletion = !appState.progress.completedModules.includes(appState.currentModuleIndex);
+      if (prevScore === undefined || score > prevScore) {
+        appState.progress.quizScores[modKey] = score;
+      }
+      if (isFirstCompletion) {
+        appState.progress.completedModules.push(appState.currentModuleIndex);
+        // Attribuer XP : 10 pts par bonne réponse + 20 bonus si parfait
+        const gained = score * 10 + (score === total ? 20 : 0);
+        appState.progress.points = (appState.progress.points || 0) + gained;
+        appState.progress._lastGained = gained;
+        // Attribuer badge
+        if (!appState.progress.badges) appState.progress.badges = [];
+        appState.progress.badges.push(appState.currentModuleIndex);
+      } else {
+        appState.progress._lastGained = 0;
+      }
+      saveProgress();
+
+      // Affichage du resultat
+      const pct = score / total;
+      const circleEl = document.getElementById('score-circle');
+      circleEl.className = 'score-circle ' + (pct >= 0.8 ? 'high' : pct >= 0.6 ? 'mid' : 'low');
+      document.getElementById('score-number').textContent = score + '/' + total;
+      document.getElementById('result-header-title').textContent = 'Resultats - Module ' + (appState.currentModuleIndex + 1);
+
+      let title, message;
+      if (pct >= 0.8) {
+        title = 'Excellent travail !';
+        message = 'Vous maitrisez bien ce module. ' + (appState.currentModuleIndex < 4 ? 'Le module suivant est désormais débloqué.' : 'Vous avez terminé la formation !');
+      } else if (pct >= 0.6) {
+        title = 'Bien joué !';
+        message = 'Bonne comprehension du module. ' + (appState.currentModuleIndex < 4 ? 'Le module suivant est débloqué.' : 'Formation terminee !');
+      } else {
+        title = 'Module validé';
+        message = 'Ce module recèle encore quelques subtilités. N’hésitez pas à relire le contenu. ' + (appState.currentModuleIndex < 4 ? 'Module suivant débloqué.' : '');
+      }
+
+      document.getElementById('result-title').textContent = title;
+      document.getElementById('result-message').textContent = message;
+
+      // Badge + XP gagnés (seulement à la première complétion)
+      const badgeEl = document.getElementById('badge-earned-area');
+      if (badgeEl) {
+        const bidx = appState.currentModuleIndex;
+        const gained = appState.progress._lastGained || 0;
+        if (isFirstCompletion && BADGES[bidx]) {
+          badgeEl.innerHTML = '<div class="badge-earned-box"><div class="badge-earned-icon">' + BADGES[bidx].icon + '</div><div class="badge-earned-lbl">Badge obtenu !</div><div class="badge-earned-name">' + BADGES[bidx].name + '</div><div class="xp-gained">+' + gained + ' XP</div></div>';
+        } else if (!isFirstCompletion) {
+          badgeEl.innerHTML = '<p style="text-align:center;color:var(--text-muted);font-size:.85rem;margin:8px 0">Module déjà complété — pas de nouveaux points</p>';
+        }
+      }
+
+      // Resume des questions
+      let summaryHtml = '<div class="summary-title">Detail des réponses</div>';
+      answers.forEach(function(a, i) {
+        summaryHtml += '<div class="summary-item">';
+        summaryHtml += '<div class="summary-icon ' + (a.isCorrect ? 'correct' : 'wrong') + '">';
+        summaryHtml += a.isCorrect ? checkSvg() : crossSvg();
+        summaryHtml += '</div>';
+        summaryHtml += '<div class="summary-q">Q' + (i + 1) + ' : ' + mod.quiz[i].q.substring(0, 60) + (mod.quiz[i].q.length > 60 ? '...' : '') + '</div>';
+        summaryHtml += '</div>';
+      });
+      document.getElementById('answers-summary').innerHTML = summaryHtml;
+
+      // Bouton suivant
+      const isLast = appState.currentModuleIndex === MODULES.length - 1;
+      const btnNext = document.getElementById('btn-next-module');
+      if (isLast) {
+        btnNext.textContent = 'Voir mon diplôme';
+        btnNext.onclick = function() { showCompletion(); };
+      } else {
+        btnNext.textContent = 'Module suivant';
+        btnNext.onclick = function() {
+          renderModulesMenu();
+          showScreen('modules');
+        };
+      }
+
+      document.getElementById('btn-retry-quiz').onclick = function() {
+        startQuiz(appState.currentModuleIndex);
+      };
+
+      showScreen('quiz-result');
+    }
+
+    // ====================================================
+    // ECRAN : COMPLETION
+    // ====================================================
+    function showCompletion() {
+      const name = appState.user ? appState.user.prenom : '';
+      document.getElementById('completion-name').textContent = 'Bravo, ' + name + ' !';
+
+      let recapHtml = '<div class="scores-recap-title">Vos scores</div>';
+      MODULES.forEach(function(mod, idx) {
+        const score = appState.progress.quizScores['module' + idx];
+        recapHtml += '<div class="score-row">';
+        recapHtml += '<span class="score-row-name">Module ' + (idx + 1) + ' - ' + mod.title.split(' ').slice(0, 4).join(' ') + (mod.title.split(' ').length > 4 ? '...' : '') + '</span>';
+        recapHtml += '<span class="score-row-val">' + (score !== undefined ? score + '/5' : '-') + '</span>';
+        recapHtml += '</div>';
+      });
+      document.getElementById('scores-recap').innerHTML = recapHtml;
+
+      showScreen('completion');
+    }
+
+    // ====================================================
+    // INITIALISATION
+    // ====================================================
+    // ====================================================
+    // PANNEAU ADMIN
+    // ====================================================
+    
+
+          function init() {
+    loadProgress();
+    showScreen('home');
+  }
+
+
+    init();
+  </script>
+
+  <!-- ===================== SCREEN: ADMIN ===================== -->
+  </body>
+</html>
