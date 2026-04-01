@@ -28,7 +28,12 @@
       line-height: 1.6;
     }
     a { color: inherit; text-decoration: none; }
-    .site-container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    .site-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
     header.site-header {
       position: sticky;
@@ -81,7 +86,7 @@
       padding: 18px 0 70px;
     }
 
-    .panel, .module-card, .card, .feature-card, .section-box {
+    .panel, .module-card, .section-box {
       border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       border-radius: 28px;
@@ -360,7 +365,6 @@
     }
     .btn-secondary:hover { background: rgba(255,255,255,.05); }
     .btn:disabled { opacity: .45; cursor: not-allowed; }
-    .btn-full { width: 100%; }
 
     .quiz-box, .result-box, .completion-box { padding: 28px; }
     .quiz-meta { font-size: 12px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .5px; }
@@ -534,12 +538,11 @@
 <body>
   <header class="site-header">
     <div class="site-container">
-      <a href="/" aria-label="Retour à l'accueil"><strong>charlesberthou.fr</strong></a>
+      <a href="/"><strong>charlesberthou.fr</strong></a>
       <nav class="site-nav">
-        <a href="/#articles">Articles</a>
+        <a href="/articles/">Articles</a>
         <a href="/#gpts">GPTs</a>
         <a href="/#elearning">E-learning</a>
-        <a href="/#projets">Créations tech</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
@@ -547,8 +550,8 @@
 
   <main class="site-container">
     <section class="page-hero">
-      <div class="badge">E-learning • Paiement mobile</div>
-      <h1>Paiement Mobile et Wero en France</h1>
+      <div class="badge">Articles • GPTs • E-learning</div>
+      <h1>Paiement mobile et Wero en France</h1>
       <p class="lead">Une formation interactive pour comprendre les usages, technologies et bonnes pratiques du paiement mobile en France.</p>
     </section>
 
@@ -722,7 +725,7 @@
               "L’envoi d’argent s’effectue à partir du numéro du destinataire.",
               "Le montant est crédité directement sur le compte bancaire du bénéficiaire."
             ],
-            infoBox: "Wero ne repose pas sur un portefeuille intermédiaire. L’argent arrive directement sur le compte." 
+            infoBox: "Wero ne repose pas sur un portefeuille intermédiaire. L’argent arrive directement sur le compte."
           },
           {
             title: "Le positionnement",
@@ -810,7 +813,7 @@
               "La banque doit traiter la contestation dans des délais rapides.",
               "La négligence grave du client peut toutefois engager sa responsabilité."
             ],
-            infoBox: "Il ne faut jamais communiquer son code PIN ou ses accès bancaires." 
+            infoBox: "Il ne faut jamais communiquer son code PIN ou ses accès bancaires."
           },
           {
             title: "Les bonnes pratiques",
@@ -860,7 +863,7 @@
               "Le paiement en point de vente physique constitue la prochaine phase stratégique.",
               "L’enjeu est aussi économique pour les commerçants."
             ],
-            infoBox: "Wero vise à devenir une alternative crédible aux grands réseaux internationaux de paiement." 
+            infoBox: "Wero vise à devenir une alternative crédible aux grands réseaux internationaux de paiement."
           },
           {
             title: "La souveraineté numérique",
@@ -1188,7 +1191,7 @@
           ${summaryHtml}
           <div class="result-actions">
             <button class="btn btn-secondary" onclick="startQuiz(${appState.currentModuleIndex})">Refaire le quiz</button>
-            <button class="btn btn-primary" onclick="${isLast ? 'showCompletion()' : 'renderModulesMenu();showScreen(\'modules\')'}">${isLast ? 'Voir mon bilan final' : 'Module suivant'}</button>
+            <button class="btn btn-primary" onclick="${isLast ? 'showCompletion()' : 'renderModulesMenu();showScreen(\\'modules\\')'}">${isLast ? 'Voir mon bilan final' : 'Module suivant'}</button>
           </div>
         </div>
       `;
@@ -1212,7 +1215,7 @@
         <div class="panel completion-box">
           <div class="badge-earned-icon">🏆</div>
           <h2 class="completion-title">Formation terminée</h2>
-          <p class="completion-message">Vous avez parcouru l’ensemble des 6 modules du parcours Paiement mobile et Wero, avec une interface désormais cohérente avec la page d’accueil de charlesberthou.fr.</p>
+          <p class="completion-message">Vous avez parcouru l’ensemble des 6 modules du parcours Paiement mobile et Wero.</p>
           <div class="scores-recap">
             <div class="scores-recap-title">Récapitulatif des scores</div>
             ${recapHtml}
