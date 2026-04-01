@@ -88,6 +88,35 @@
       font-size: 18px;
     }
 
+    .share-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 22px;
+    }
+
+    .share-label {
+      font-size: 14px;
+      color: rgba(255,255,255,.58);
+      margin-right: 4px;
+    }
+
+    .share-btn {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .share-btn:hover {
+      background: rgba(255,255,255,.08);
+    }
+
     .wero-shell {
       padding: 18px 0 70px;
     }
@@ -751,6 +780,13 @@
       <div class="badge">Articles • GPTs • E-learning</div>
       <h1>Paiement mobile et Wero en France</h1>
       <p class="lead">Une formation interactive pour comprendre les usages, technologies et bonnes pratiques du paiement mobile en France.</p>
+
+      <div class="share-row">
+        <span class="share-label">Partager</span>
+        <a class="share-btn" id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="share-btn" id="share-mail" href="#">Email</a>
+        <button class="share-btn" id="share-copy" type="button">Copier le lien</button>
+      </div>
     </section>
 
     <section class="wero-shell">
@@ -1453,6 +1489,25 @@
 
       showScreen('completion');
     }
+
+    const shareUrl = window.location.href;
+    const shareTitle = document.title;
+
+    document.getElementById('share-linkedin').href =
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    document.getElementById('share-mail').href =
+      `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareUrl)}`;
+
+    document.getElementById('share-copy').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        const btn = document.getElementById('share-copy');
+        btn.textContent = 'Lien copié';
+        setTimeout(() => {
+          btn.textContent = 'Copier le lien';
+        }, 1500);
+      } catch (e) {}
+    });
 
     loadProgress();
     renderModulesMenu();
