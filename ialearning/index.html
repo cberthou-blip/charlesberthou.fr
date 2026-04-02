@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA Académie — Intelligence Artificielle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Palette inspirée des visuels : bleu nuit, violet électrique, cyan, sur fond clair */
+  --bg: #F2F4FA;
+  --bg2: #E8ECF5;
+  --surface: #FFFFFF;
+  --surface2: #F7F9FF;
+  --border: #D6DBF0;
+  --border-glow: rgba(99,102,241,0.3);
+
+  --navy: #0D1B3E;
+  --navy2: #1A2B5E;
+  --indigo: #4338CA;
+  --indigo-mid: #6366F1;
+  --violet: #7C3AED;
+  --violet-light: #A78BFA;
+  --cyan: #06B6D4;
+  --cyan-light: #67E8F9;
+  --magenta: #C026D3;
+
+  --text: #0D1B3E;
+  --text2: #374151;
+  --text3: #6B7280;
+  --text-inv: #FFFFFF;
+
+  --grad-hero: linear-gradient(135deg, #0D1B3E 0%, #1E3A8A 30%, #4338CA 55%, #6D28D9 72%, #7C3AED 82%, #9333EA 92%, #A855F7 100%);
+  --grad-card: linear-gradient(135deg, #4338CA 0%, #7C3AED 100%);
+  --grad-cyan: linear-gradient(135deg, #06B6D4 0%, #6366F1 100%);
+  --grad-accent: linear-gradient(135deg, #C026D3 0%, #7C3AED 50%, #4338CA 100%);
+
+  --glow-indigo: 0 0 20px rgba(99,102,241,0.35), 0 4px 15px rgba(99,102,241,0.2);
+  --glow-cyan: 0 0 20px rgba(6,182,212,0.35), 0 4px 15px rgba(6,182,212,0.2);
+  --shadow: 0 2px 12px rgba(13,27,62,0.1);
+  --shadow-md: 0 6px 24px rgba(13,27,62,0.14);
+  --shadow-lg: 0 12px 48px rgba(13,27,62,0.18);
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Texture subtile en fond */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(99,102,241,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 60% 10%, rgba(6,182,212,0.04) 0%, transparent 40%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ===== VUES ===== */
+.view { display:none; min-height:100vh; position:relative; z-index:1; }
+.view.active { display:block; }
+
+/* ===== BOUTONS ===== */
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 20px; border-radius:var(--radius-sm);
+  font-family:'Outfit',sans-serif; font-weight:600; font-size:0.9rem;
+  cursor:pointer; border:none; transition:all 0.2s;
+  text-decoration:none;
+}
+.btn-primary {
+  background: var(--grad-card);
+  color:#fff;
+  box-shadow: var(--glow-indigo);
+}
+.btn-primary:hover { transform:translateY(-1px); box-shadow:0 0 28px rgba(99,102,241,0.5),0 6px 20px rgba(99,102,241,0.3); }
+.btn-secondary {
+  background: var(--surface);
+  color: var(--indigo);
+  border: 1.5px solid var(--border);
+}
+.btn-secondary:hover { border-color:var(--indigo-mid); background:var(--surface2); }
+.btn-ghost { background:transparent; color:var(--text3); border:1.5px solid var(--border); }
+.btn-ghost:hover { color:var(--text); border-color:var(--text2); }
+.btn-cyan { background:var(--grad-cyan); color:#fff; box-shadow:var(--glow-cyan); }
+.btn-cyan:hover { transform:translateY(-1px); box-shadow:0 0 28px rgba(6,182,212,0.5); }
+.btn-lg { padding:14px 28px; font-size:1rem; border-radius:var(--radius); }
+.btn-sm { padding:7px 14px; font-size:0.8rem; }
+
+/* ===== BADGE TECH ===== */
+.tech-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 12px; border-radius:20px;
+  font-size:0.75rem; font-weight:600; letter-spacing:0.05em;
+  font-family:'JetBrains Mono', monospace;
+}
+.tech-badge-indigo { background:rgba(99,102,241,0.12); color:var(--indigo-mid); border:1px solid rgba(99,102,241,0.25); }
+.tech-badge-cyan { background:rgba(6,182,212,0.12); color:var(--cyan); border:1px solid rgba(6,182,212,0.25); }
+.tech-badge-violet { background:rgba(124,58,237,0.12); color:var(--violet); border:1px solid rgba(124,58,237,0.25); }
+.tech-badge-green { background:rgba(16,185,129,0.12); color:#059669; border:1px solid rgba(16,185,129,0.25); }
+
+/* ===== CARDS ===== */
+.card {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:24px;
+  box-shadow:var(--shadow);
+  transition:all 0.25s;
+}
+.card:hover { box-shadow:var(--shadow-md); border-color:var(--border-glow); }
+.card-dark {
+  background:var(--navy);
+  border-color:rgba(99,102,241,0.25);
+  color:var(--text-inv);
+}
+
+/* ===== BARRE DE PROGRESSION ===== */
+.progress-track {
+  background:var(--bg2);
+  border-radius:99px; height:6px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.progress-bar {
+  height:100%; border-radius:99px;
+  background:var(--grad-card);
+  box-shadow:0 0 8px rgba(99,102,241,0.5);
+  transition:width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.progress-bar-cyan {
+  background:var(--grad-cyan);
+  box-shadow:0 0 8px rgba(6,182,212,0.5);
+}
+
+/* ===== XP BAR ===== */
+.xp-bar-wrap { display:flex; align-items:center; gap:8px; }
+.xp-track { flex:1; background:rgba(255,255,255,0.15); border-radius:99px; height:8px; }
+.xp-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--cyan),var(--cyan-light)); transition:width 0.8s; }
+
+/* ===== VIGNETTE MODULE ===== */
+.module-icon {
+  width:48px; height:48px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem;
+  background:var(--grad-card);
+  box-shadow:var(--glow-indigo);
+  flex-shrink:0;
+}
+.module-icon.cyan { background:var(--grad-cyan); box-shadow:var(--glow-cyan); }
+.module-icon.violet { background:var(--grad-accent); }
+
+/* ===== INPUT ===== */
+.input-field {
+  width:100%; padding:11px 16px;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  font-family:'Outfit',sans-serif; font-size:0.95rem;
+  background:var(--surface); color:var(--text);
+  transition:all 0.2s; outline:none;
+}
+.input-field:focus { border-color:var(--indigo-mid); box-shadow:0 0 0 3px rgba(99,102,241,0.12); }
+
+/* ===== NOTIFICATION ===== */
+#notif {
+  position:fixed; top:20px; right:20px; z-index:9999;
+  padding:14px 20px; border-radius:var(--radius);
+  font-weight:600; font-size:0.9rem;
+  box-shadow:var(--shadow-lg);
+  transform:translateX(130%); transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  display:flex; align-items:center; gap:10px;
+  max-width:320px;
+}
+#notif.show { transform:translateX(0); }
+#notif.success { background:var(--navy); color:#fff; border-left:4px solid var(--cyan); }
+#notif.error { background:#FEF2F2; color:#B91C1C; border-left:4px solid #EF4444; }
+#notif.warn { background:#FFFBEB; color:#92400E; border-left:4px solid #F59E0B; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(13,27,62,0.55);
+  backdrop-filter:blur(4px);
+  z-index:1000; display:none;
+  align-items:center; justify-content:center; padding:20px;
+}
+.modal-overlay.open { display:flex; }
+.modal-box {
+  background:var(--surface);
+  border-radius:var(--radius-xl);
+  padding:32px; width:100%; max-width:500px;
+  box-shadow:var(--shadow-lg);
+  border:1px solid var(--border);
+  animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn { from{transform:scale(0.9) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+
+/* ===== LEVELUP ===== */
+#levelup-banner {
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+  z-index:10000; text-align:center; pointer-events:none;
+  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s;
+}
+#levelup-banner.show { transform:translate(-50%,-50%) scale(1); }
+.levelup-inner {
+  background:var(--navy);
+  border:2px solid var(--indigo-mid);
+  box-shadow:0 0 60px rgba(99,102,241,0.6), var(--shadow-lg);
+  border-radius:var(--radius-xl);
+  padding:40px 60px;
+  color:#fff;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeSlideIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+@keyframes orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* ============================================================
+   VUE 0 : LOGIN
+============================================================ */
+#view-login {
+  min-height:100vh;
+  display:none;
+  align-items:center; justify-content:center;
+}
+#view-login.active { display:flex; }
+
+.login-split {
+  display:grid; grid-template-columns:1fr 1fr;
+  width:100%; max-width:960px; min-height:600px;
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-lg);
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+@media(max-width:640px){ .login-split{grid-template-columns:1fr;} .login-hero{display:none!important;} }
+
+.login-hero {
+  background:var(--grad-hero);
+  padding:48px 40px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  position:relative; overflow:hidden;
+}
+.login-hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(99,102,241,0.3) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(6,182,212,0.2) 0%, transparent 50%);
+}
+.login-hero-grid {
+  position:absolute; inset:0; opacity:0.08;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+.login-hero-content { position:relative; }
+.login-logo {
+  display:inline-flex; align-items:center; gap:10px;
+  margin-bottom:40px;
+}
+.login-logo-icon {
+  width:42px; height:42px; border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+}
+.login-logo-text { font-size:1.2rem; font-weight:700; color:#fff; }
+.login-hero h2 { font-size:2rem; font-weight:800; color:#fff; line-height:1.25; margin-bottom:16px; }
+.login-hero p { color:rgba(255,255,255,0.7); line-height:1.6; }
+.login-hero-modules {
+  position:relative;
+  display:flex; flex-direction:column; gap:10px;
+}
+.lhm-item {
+  display:flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius-sm);
+  padding:10px 14px; color:rgba(255,255,255,0.85);
+  font-size:0.85rem; font-weight:500;
+}
+.lhm-dot { width:8px; height:8px; border-radius:50%; background:var(--cyan); flex-shrink:0; }
+
+.login-form-side {
+  background:var(--surface);
+  padding:48px 40px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.login-tabs {
+  display:flex; gap:4px; background:var(--bg2);
+  border-radius:var(--radius-sm); padding:4px; margin-bottom:28px;
+  border:1px solid var(--border);
+}
+.login-tab {
+  flex:1; padding:9px; border-radius:6px; border:none;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600;
+  cursor:pointer; color:var(--text3); background:transparent;
+  transition:all 0.2s;
+}
+.login-tab.active { background:var(--surface); color:var(--indigo); box-shadow:var(--shadow); }
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.navbar {
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+}
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo-icon {
+  width:36px; height:36px; border-radius:9px;
+  background:var(--grad-card); display:flex; align-items:center;
+  justify-content:center; font-size:1rem; color:#fff;
+  box-shadow:var(--glow-indigo);
+}
+.nav-logo-text { font-size:1.05rem; font-weight:800; color:var(--navy); }
+.nav-center { display:flex; align-items:center; gap:4px; }
+.nav-btn {
+  padding:7px 14px; border-radius:var(--radius-sm); border:none; cursor:pointer;
+  font-family:'Outfit',sans-serif; font-size:0.85rem; font-weight:600;
+  color:var(--text3); background:transparent; transition:all 0.2s;
+}
+.nav-btn:hover { color:var(--indigo); background:rgba(99,102,241,0.08); }
+.nav-btn.active { color:var(--indigo); background:rgba(99,102,241,0.1); }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.nav-xp {
+  display:flex; align-items:center; gap:8px;
+  background:var(--navy); color:#fff;
+  padding:6px 14px; border-radius:20px;
+  font-size:0.82rem; font-weight:700;
+  font-family:'JetBrains Mono',monospace;
+}
+.nav-xp-val { color:var(--cyan-light); }
+.nav-avatar {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--grad-card); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.85rem; cursor:pointer;
+  box-shadow:var(--glow-indigo);
+}
+
+/* ============================================================
+   VUE DASHBOARD
+============================================================ */
+.dashboard-header {
+  background:var(--navy);
+  padding:40px 32px 60px;
+  position:relative; overflow:hidden;
+}
+.dashboard-header::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 15% 60%, rgba(99,102,241,0.5) 0%, transparent 40%),
+    radial-gradient(circle at 50% 30%, rgba(124,58,237,0.4) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(6,182,212,0.3) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(168,85,247,0.35) 0%, transparent 40%);
+}
+.dh-grid {
+  position:absolute; inset:0; opacity:0.06;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+  background-size:32px 32px;
+}
+.dh-content { position:relative; max-width:1100px; margin:0 auto; }
+.dh-greeting { font-size:0.8rem; font-weight:600; color:var(--cyan); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; font-family:'JetBrains Mono',monospace; }
+.dh-name { font-size:2rem; font-weight:800; color:#fff; margin-bottom:24px; }
+.dh-stats {
+  display:flex; gap:16px; flex-wrap:wrap;
+}
+.dh-stat {
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius);
+  padding:16px 20px; min-width:140px;
+  backdrop-filter:blur(8px);
+}
+.dh-stat-val { font-size:1.8rem; font-weight:800; color:#fff; }
+.dh-stat-val span { font-size:0.9rem; color:var(--cyan-light); margin-left:4px; }
+.dh-stat-lbl { font-size:0.78rem; color:rgba(255,255,255,0.55); margin-top:4px; }
+.dh-xp-section { margin-top:20px; max-width:400px; }
+.dh-xp-labels { display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px; }
+.dh-xp-lbl { color:rgba(255,255,255,0.6); }
+.dh-xp-val { color:var(--cyan-light); font-weight:700; font-family:'JetBrains Mono',monospace; }
+.dh-xp-track { background:rgba(255,255,255,0.1); border-radius:99px; height:8px; border:1px solid rgba(255,255,255,0.1); }
+.dh-xp-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--cyan),var(--violet-light)); box-shadow:0 0 10px rgba(6,182,212,0.5); transition:width 0.8s; }
+
+.dashboard-body { padding:32px; max-width:1100px; margin:0 auto; }
+
+.modules-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+
+.module-card {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:22px;
+  cursor:pointer;
+  transition:all 0.25s;
+  position:relative; overflow:hidden;
+}
+.module-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--grad-card);
+  opacity:0; transition:opacity 0.2s;
+}
+.module-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--border-glow); }
+.module-card:hover::before { opacity:1; }
+.module-card.locked { opacity:0.5; cursor:not-allowed; }
+.module-card.locked:hover { transform:none; box-shadow:var(--shadow); }
+.module-card.completed { border-color:rgba(6,182,212,0.3); }
+.module-card.completed::before { opacity:1; background:var(--grad-cyan); }
+.mc-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.mc-icon { width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+.mc-icon.i { background:linear-gradient(135deg,#4338CA,#7C3AED); box-shadow:var(--glow-indigo); }
+.mc-icon.c { background:linear-gradient(135deg,#06B6D4,#6366F1); box-shadow:var(--glow-cyan); }
+.mc-icon.v { background:linear-gradient(135deg,#C026D3,#7C3AED); }
+.mc-icon.g { background:linear-gradient(135deg,#059669,#06B6D4); }
+.mc-status { font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:20px; font-family:'JetBrains Mono',monospace; }
+.mc-status.done { background:rgba(6,182,212,0.12); color:var(--cyan); border:1px solid rgba(6,182,212,0.25); }
+.mc-status.locked { background:var(--bg2); color:var(--text3); border:1px solid var(--border); }
+.mc-status.avail { background:rgba(99,102,241,0.1); color:var(--indigo-mid); border:1px solid rgba(99,102,241,0.2); }
+.mc-title { font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.mc-desc { font-size:0.82rem; color:var(--text3); line-height:1.5; margin-bottom:14px; }
+.mc-footer { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.mc-xp { font-size:0.78rem; font-weight:700; color:var(--violet); font-family:'JetBrains Mono',monospace; }
+.mc-prog { display:flex; align-items:center; gap:8px; flex:1; }
+.mc-prog-track { flex:1; background:var(--bg2); border-radius:99px; height:5px; border:1px solid var(--border); }
+.mc-prog-fill { height:100%; border-radius:99px; background:var(--grad-card); box-shadow:0 0 6px rgba(99,102,241,0.4); transition:width 0.6s; }
+.mc-prog-pct { font-size:0.75rem; color:var(--text3); font-weight:600; font-family:'JetBrains Mono',monospace; min-width:30px; }
+
+/* Section titres */
+.section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+.section-title { font-size:1.2rem; font-weight:800; color:var(--navy); }
+.section-sub { font-size:0.85rem; color:var(--text3); margin-top:2px; }
+
+/* ============================================================
+   VUE MODULE
+============================================================ */
+.module-header {
+  background:var(--navy);
+  padding:32px;
+  position:relative; overflow:hidden;
+}
+.module-header::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at 70% 50%, rgba(99,102,241,0.35) 0%, transparent 60%);
+}
+.mh-back {
+  display:inline-flex; align-items:center; gap:6px;
+  color:rgba(255,255,255,0.6); font-size:0.82rem; font-weight:600;
+  cursor:pointer; margin-bottom:20px; position:relative;
+  transition:color 0.2s;
+}
+.mh-back:hover { color:#fff; }
+.mh-inner { position:relative; display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+.mh-icon { width:60px; height:60px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); flex-shrink:0; }
+.mh-info { flex:1; min-width:200px; }
+.mh-num { font-size:0.75rem; font-weight:700; color:var(--cyan); letter-spacing:0.1em; font-family:'JetBrains Mono',monospace; margin-bottom:6px; }
+.mh-title { font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:10px; }
+.mh-meta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.mh-meta-item { display:flex; align-items:center; gap:6px; font-size:0.8rem; color:rgba(255,255,255,0.6); }
+.mh-progress { margin-top:20px; position:relative; }
+.mh-prog-track { background:rgba(255,255,255,0.1); border-radius:99px; height:8px; }
+.mh-prog-fill { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--cyan),var(--violet-light)); box-shadow:0 0 10px rgba(6,182,212,0.4); transition:width 0.6s; }
+
+.module-body { max-width:860px; margin:0 auto; padding:32px 24px; }
+
+.content-block {
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:28px;
+  margin-bottom:20px;
+  animation:fadeSlideIn 0.4s ease both;
+  box-shadow:var(--shadow);
+}
+.content-block.highlight {
+  border-color:rgba(99,102,241,0.3);
+  background:linear-gradient(135deg,rgba(99,102,241,0.03),rgba(124,58,237,0.03));
+}
+.cb-heading {
+  font-size:1.25rem; font-weight:800; color:var(--navy);
+  margin-bottom:14px; display:flex; align-items:center; gap:10px;
+}
+.cb-heading::before {
+  content:'';
+  display:inline-block; width:4px; height:20px;
+  background:var(--grad-card); border-radius:2px; flex-shrink:0;
+}
+.cb-text { font-size:0.92rem; line-height:1.75; color:var(--text2); }
+.cb-text strong { color:var(--navy); font-weight:700; }
+.cb-text em { color:var(--indigo-mid); font-style:normal; font-weight:600; }
+
+.info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:16px; }
+.info-card {
+  background:var(--bg2); border:1px solid var(--border);
+  border-radius:var(--radius); padding:16px;
+  border-left:3px solid var(--indigo-mid);
+}
+.info-card.cyan { border-left-color:var(--cyan); }
+.info-card.violet { border-left-color:var(--violet); }
+.info-card.green { border-left-color:#10B981; }
+.ic-label { font-size:0.72rem; font-weight:700; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; font-family:'JetBrains Mono',monospace; }
+.ic-value { font-size:0.88rem; font-weight:600; color:var(--navy); line-height:1.4; }
+
+.video-placeholder {
+  background:var(--navy);
+  border:1.5px solid rgba(99,102,241,0.3);
+  border-radius:var(--radius-lg);
+  padding:32px; text-align:center;
+  margin-bottom:20px; cursor:pointer;
+  transition:all 0.2s; position:relative; overflow:hidden;
+}
+.video-placeholder:hover { border-color:var(--cyan); box-shadow:0 0 20px rgba(6,182,212,0.2); }
+.video-placeholder::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at center, rgba(99,102,241,0.15) 0%, transparent 70%);
+}
+.vp-inner { position:relative; }
+.vp-play { width:64px; height:64px; border-radius:50%; background:var(--grad-cyan); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 16px; box-shadow:var(--glow-cyan); }
+.vp-title { color:#fff; font-weight:700; font-size:1rem; margin-bottom:6px; }
+.vp-meta { color:rgba(255,255,255,0.5); font-size:0.8rem; }
+
+.quiz-container { margin-top:8px; }
+.quiz-q { font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:18px; line-height:1.4; }
+.quiz-opts { display:flex; flex-direction:column; gap:10px; }
+.quiz-opt {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 18px; border-radius:var(--radius);
+  border:1.5px solid var(--border);
+  cursor:pointer; transition:all 0.2s;
+  background:var(--surface2); font-size:0.9rem; font-weight:500;
+}
+.quiz-opt:hover { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); }
+.quiz-opt.correct { border-color:#10B981; background:rgba(16,185,129,0.08); color:#065F46; }
+.quiz-opt.wrong { border-color:#EF4444; background:rgba(239,68,68,0.08); color:#B91C1C; }
+.quiz-opt.selected { border-color:var(--indigo-mid); background:rgba(99,102,241,0.08); }
+.quiz-opt-letter {
+  width:28px; height:28px; border-radius:7px;
+  background:var(--bg2); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; font-weight:800; color:var(--text3);
+  font-family:'JetBrains Mono',monospace; flex-shrink:0;
+}
+.quiz-opt.correct .quiz-opt-letter { background:#10B981; color:#fff; border-color:#10B981; }
+.quiz-opt.wrong .quiz-opt-letter { background:#EF4444; color:#fff; border-color:#EF4444; }
+.quiz-opt.selected .quiz-opt-letter { background:var(--indigo-mid); color:#fff; border-color:var(--indigo-mid); }
+.quiz-explain { margin-top:14px; padding:14px 16px; border-radius:var(--radius); background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.2); font-size:0.85rem; color:var(--text2); line-height:1.5; }
+
+.module-nav {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; margin-top:32px;
+}
+
+/* ============================================================
+   VUE BADGES
+============================================================ */
+.badges-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; }
+.badge-card {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius-lg); padding:22px;
+  text-align:center; transition:all 0.25s;
+}
+.badge-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); border-color:var(--border-glow); }
+.badge-card.unlocked { border-color:rgba(99,102,241,0.3); }
+.badge-card.locked-badge { opacity:0.45; filter:grayscale(0.5); }
+.badge-icon { font-size:2.2rem; margin-bottom:10px; }
+.badge-name { font-size:0.85rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.badge-desc { font-size:0.72rem; color:var(--text3); line-height:1.4; }
+
+/* ============================================================
+   VUE DÉFIS
+============================================================ */
+.challenges-list { display:flex; flex-direction:column; gap:14px; }
+.challenge-card {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius-lg); padding:20px 24px;
+  display:flex; align-items:center; gap:16px;
+  transition:all 0.2s;
+}
+.challenge-card:hover { box-shadow:var(--shadow-md); border-color:var(--border-glow); }
+.ch-icon { width:48px; height:48px; border-radius:12px; background:var(--grad-card); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; box-shadow:var(--glow-indigo); }
+.ch-info { flex:1; }
+.ch-title { font-size:0.95rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.ch-meta { font-size:0.8rem; color:var(--text3); }
+.ch-status { font-size:0.75rem; font-weight:700; padding:4px 12px; border-radius:20px; font-family:'JetBrains Mono',monospace; }
+.ch-status.pending { background:rgba(245,158,11,0.1); color:#B45309; border:1px solid rgba(245,158,11,0.3); }
+.ch-status.active { background:rgba(6,182,212,0.1); color:var(--cyan); border:1px solid rgba(6,182,212,0.3); }
+.ch-status.won { background:rgba(16,185,129,0.1); color:#065F46; border:1px solid rgba(16,185,129,0.3); }
+.ch-status.lost { background:rgba(239,68,68,0.1); color:#B91C1C; border:1px solid rgba(239,68,68,0.3); }
+
+/* ============================================================
+   VUE ADMIN
+============================================================ */
+.admin-wrap { max-width:1100px; margin:0 auto; padding:32px; }
+.admin-kpis { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; margin-bottom:28px; }
+.admin-kpi {
+  background:var(--surface); border:1.5px solid var(--border);
+  border-radius:var(--radius-lg); padding:20px;
+  border-top:3px solid var(--indigo-mid);
+}
+.admin-kpi.cyan { border-top-color:var(--cyan); }
+.admin-kpi.violet { border-top-color:var(--violet); }
+.admin-kpi.green { border-top-color:#10B981; }
+.ak-val { font-size:2rem; font-weight:800; color:var(--navy); }
+.ak-lbl { font-size:0.78rem; color:var(--text3); margin-top:4px; }
+
+.admin-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+.admin-table th { padding:11px 14px; text-align:left; font-size:0.72rem; font-weight:700; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; border-bottom:1.5px solid var(--border); background:var(--bg2); font-family:'JetBrains Mono',monospace; }
+.admin-table td { padding:13px 14px; border-bottom:1px solid var(--border); color:var(--text2); }
+.admin-table tr:hover td { background:var(--surface2); }
+.admin-table tr:last-child td { border-bottom:none; }
+
+/* Duel */
+.duel-arena {
+  display:flex; align-items:center; gap:16px;
+  background:var(--navy); border-radius:var(--radius-xl);
+  padding:28px; margin:20px 0;
+  position:relative; overflow:hidden;
+}
+.duel-arena::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at center, rgba(99,102,241,0.3) 0%, transparent 70%); }
+.duel-player {
+  flex:1; text-align:center; position:relative;
+}
+.dp-avatar {
+  width:56px; height:56px; border-radius:50%; margin:0 auto 10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; font-weight:800; color:#fff;
+}
+.dp-avatar.me { background:var(--grad-card); box-shadow:var(--glow-indigo); }
+.dp-avatar.opp { background:linear-gradient(135deg,#C026D3,#7C3AED); }
+.dp-name { font-size:0.85rem; font-weight:700; color:#fff; }
+.dp-score { font-size:2rem; font-weight:800; color:var(--cyan-light); font-family:'JetBrains Mono',monospace; }
+.duel-vs { font-size:1.2rem; font-weight:800; color:rgba(255,255,255,0.4); position:relative; flex-shrink:0; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width:768px){
+  .navbar { padding:0 16px; }
+  .nav-center { display:none; }
+  .dashboard-header { padding:24px 16px 40px; }
+  .dashboard-body { padding:20px 16px; }
+  .dh-stats { gap:10px; }
+  .module-body { padding:20px 16px; }
+  .admin-wrap { padding:20px 16px; }
+}
+
+/* scrollbar subtile */
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:var(--indigo-mid); }
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION -->
+<div id="notif"></div>
+
+<!-- LEVELUP BANNER -->
+<div id="levelup-banner">
+  <div class="levelup-inner">
+    <div style="font-size:3rem;margin-bottom:12px">🚀</div>
+    <div style="font-size:0.8rem;letter-spacing:0.15em;color:var(--cyan-light);font-family:'JetBrains Mono',monospace;margin-bottom:8px">LEVEL UP</div>
+    <div style="font-size:2rem;font-weight:800;color:#fff" id="levelup-txt">Niveau 2 atteint !</div>
+  </div>
+</div>
+
+<!-- MODAL CHALLENGE -->
+<div class="modal-overlay" id="modal-challenge">
+  <div class="modal-box">
+    <h3 style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px">⚔️ Nouveau défi</h3>
+    <p style="font-size:0.85rem;color:var(--text3);margin-bottom:20px">Défier un autre apprenant sur un module</p>
+    <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:8px">Prénom de l'adversaire</label>
+    <input class="input-field" id="ch-opponent" placeholder="ex: Marie" style="margin-bottom:14px">
+    <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:8px">Module</label>
+    <select class="input-field" id="ch-module" style="margin-bottom:20px"></select>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-primary" style="flex:1" id="btn-send-ch">Envoyer le défi ⚡</button>
+      <button class="btn btn-ghost" id="btn-close-ch">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DUEL -->
+<div class="modal-overlay" id="modal-duel">
+  <div class="modal-box" style="max-width:600px">
+    <div class="duel-arena">
+      <div class="duel-player">
+        <div class="dp-avatar me" id="duel-me-av">M</div>
+        <div class="dp-name" id="duel-me-name">Moi</div>
+        <div class="dp-score" id="duel-me-score">0</div>
+      </div>
+      <div class="duel-vs">VS</div>
+      <div class="duel-player">
+        <div class="dp-avatar opp" id="duel-opp-av">A</div>
+        <div class="dp-name" id="duel-opp-name">Adversaire</div>
+        <div class="dp-score" id="duel-opp-score">0</div>
+      </div>
+    </div>
+    <div id="duel-q-wrap"></div>
+    <div id="duel-result" style="display:none;text-align:center;padding:20px">
+      <div id="duel-result-icon" style="font-size:3rem;margin-bottom:12px"></div>
+      <div id="duel-result-text" style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px"></div>
+      <div id="duel-result-sub" style="font-size:0.85rem;color:var(--text3);margin-bottom:20px"></div>
+      <button class="btn btn-primary" id="btn-duel-close">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VUE LOGIN ==================== -->
+<div class="view" id="view-login">
+  <div class="login-split">
+    <div class="login-hero">
+      <div class="login-hero-grid"></div>
+      <div class="login-hero-content">
+        <div class="login-logo">
+          <div class="login-logo-icon">🤖</div>
+          <span class="login-logo-text">IA Académie</span>
+        </div>
+        <h2>Maîtrisez l'Intelligence Artificielle</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.6;margin-top:12px;font-size:0.9rem">10 modules progressifs. Des défis, des badges, un parcours personnalisé. De zéro à expert.</p>
+      </div>
+      <div class="login-hero-modules">
+        <div class="lhm-item"><div class="lhm-dot"></div>10 modules · 100–150 min de contenu</div>
+        <div class="lhm-item"><div class="lhm-dot" style="background:var(--violet-light)"></div>Gamification · XP · Badges · Défis</div>
+      </div>
+    </div>
+    <div class="login-form-side">
+      <h3 style="font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:6px">Bienvenue</h3>
+      <p style="font-size:0.85rem;color:var(--text3);margin-bottom:24px">Connectez-vous ou créez votre compte</p>
+      <div class="login-tabs">
+        <button class="login-tab active" id="tab-login">Connexion</button>
+        <button class="login-tab" id="tab-register">Inscription</button>
+      </div>
+      <div id="login-form">
+        <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Email</label>
+        <input class="input-field" id="li-email" type="email" placeholder="vous@exemple.fr" style="margin-bottom:14px">
+        <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Mot de passe</label>
+        <input class="input-field" id="li-pass" type="password" placeholder="••••••••" style="margin-bottom:20px">
+        <button class="btn btn-primary btn-lg" style="width:100%" id="btn-login">Se connecter →</button>
+        <p style="text-align:center;margin-top:14px;font-size:0.78rem;color:var(--text3)">Admin : admin@ia-academie.fr / admin123</p>
+      </div>
+      <div id="register-form" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+          <div>
+            <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Prénom</label>
+            <input class="input-field" id="rg-first" placeholder="Prénom">
+          </div>
+          <div>
+            <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Nom</label>
+            <input class="input-field" id="rg-last" placeholder="Nom">
+          </div>
+        </div>
+        <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Email</label>
+        <input class="input-field" id="rg-email" type="email" placeholder="vous@exemple.fr" style="margin-bottom:14px">
+        <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:6px">Mot de passe</label>
+        <input class="input-field" id="rg-pass" type="password" placeholder="••••••••" style="margin-bottom:20px">
+        <button class="btn btn-primary btn-lg" style="width:100%" id="btn-register">Créer mon compte →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VUE DASHBOARD ==================== -->
+<div class="view" id="view-dashboard">
+  <nav class="navbar">
+    <a class="nav-logo">
+      <div class="nav-logo-icon">🤖</div>
+      <span class="nav-logo-text">IA Académie</span>
+    </a>
+    <div class="nav-center">
+      <button class="nav-btn active" id="nav-dashboard">Parcours</button>
+      <button class="nav-btn" id="nav-badges-btn">Badges</button>
+      <button class="nav-btn" id="nav-defis-btn">Défis</button>
+    </div>
+    <div class="nav-right">
+      <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val">0</span> XP</div>
+      <div class="nav-avatar" id="nav-avatar">?</div>
+    </div>
+  </nav>
+
+  <div class="dashboard-header">
+    <div class="dh-grid"></div>
+    
+    <div class="dh-content">
+      <div class="dh-greeting">// Tableau de bord</div>
+      <div class="dh-name" id="dh-name">Bienvenue !</div>
+      <div class="dh-stats">
+        <div class="dh-stat">
+          <div class="dh-stat-val" id="dh-level">1<span>LVL</span></div>
+          <div class="dh-stat-lbl">Niveau actuel</div>
+        </div>
+        <div class="dh-stat">
+          <div class="dh-stat-val" id="dh-modules-done">0<span>/10</span></div>
+          <div class="dh-stat-lbl">Modules terminés</div>
+        </div>
+        <div class="dh-stat">
+          <div class="dh-stat-val" id="dh-badges-count">0</div>
+          <div class="dh-stat-lbl">Badges obtenus</div>
+        </div>
+        <div class="dh-stat">
+          <div class="dh-stat-val" id="dh-streak">0<span>🔥</span></div>
+          <div class="dh-stat-lbl">Jours consécutifs</div>
+        </div>
+      </div>
+      <div class="dh-xp-section">
+        <div class="dh-xp-labels">
+          <span class="dh-xp-lbl">Progression niveau</span>
+          <span class="dh-xp-val" id="dh-xp-label">0 / 500 XP</span>
+        </div>
+        <div class="dh-xp-track">
+          <div class="dh-xp-fill" id="dh-xp-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-body">
+
+    <!-- SECTION MODULES -->
+    <div id="section-modules">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Mes modules</div>
+          <div class="section-sub">Parcours de 10 modules · ~10–15 min chacun</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-challenge-open">⚔️ Défier</button>
+      </div>
+      <div class="modules-grid" id="modules-grid"></div>
+    </div>
+
+    <!-- SECTION BADGES (cachée par défaut) -->
+    <div id="section-badges" style="display:none">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Mes badges</div>
+          <div class="section-sub" id="badges-sub">0 badge(s) obtenu(s)</div>
+        </div>
+      </div>
+      <div class="badges-grid" id="badges-grid"></div>
+    </div>
+
+    <!-- SECTION DÉFIS (cachée par défaut) -->
+    <div id="section-defis" style="display:none">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Défis</div>
+          <div class="section-sub">Défis reçus et envoyés</div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-challenge-open2">⚔️ Nouveau défi</button>
+      </div>
+      <div class="challenges-list" id="challenges-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== VUE MODULE ==================== -->
+<div class="view" id="view-module">
+  <nav class="navbar">
+    <a class="nav-logo">
+      <div class="nav-logo-icon">🤖</div>
+      <span class="nav-logo-text">IA Académie</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val2">0</span> XP</div>
+    </div>
+  </nav>
+  <div class="module-header" id="mod-header"></div>
+  <div class="module-body" id="mod-body"></div>
+</div>
+
+<!-- ==================== VUE ADMIN ==================== -->
+<div class="view" id="view-admin">
+  <nav class="navbar">
+    <a class="nav-logo">
+      <div class="nav-logo-icon" style="background:var(--grad-accent)">🔐</div>
+      <span class="nav-logo-text">Admin — IA Académie</span>
+    </a>
+    <div class="nav-right">
+      <button class="btn btn-ghost btn-sm" id="btn-admin-logout">Déconnexion</button>
+    </div>
+  </nav>
+  <div class="admin-wrap" id="admin-wrap"></div>
+</div>
+
+<script>
+// ============================================================
+// DONNÉES
+// ============================================================
+const MODULES = [
+  {
+    id:1, title:"Les fondamentaux de l'IA",
+    icon:"🧠", color:"i",
+    desc:"Comprendre ce qu'est l'IA, son histoire et ses grandes familles.",
+    xp:120, duration:"10–12 min",
+    video:{title:"C'est quoi l'intelligence artificielle ?",url:"https://www.youtube.com/watch?v=aircAruvnKk",dur:"3:45"},
+    content:[
+      {type:"text",heading:"Qu'est-ce que l'intelligence artificielle ?",
+       text:"L'intelligence artificielle désigne l'ensemble des techniques permettant à une machine de simuler des comportements associés à l'intelligence humaine : apprendre, raisonner, résoudre des problèmes, percevoir son environnement, comprendre le langage.<br><br>Le terme a été inventé en <strong>1956</strong> par John McCarthy lors de la conférence de Dartmouth. Depuis, le domaine a connu plusieurs cycles d'enthousiasme et de désillusion, appelés <em>hivers de l'IA</em>, avant l'explosion actuelle due à la puissance de calcul et aux données massives."},
+      {type:"grid",heading:"Les 3 grands types d'IA",items:[
+        {label:"IA étroite (ANI)",value:"Spécialisée dans une seule tâche. Ex : reconnaissance d'image, traduction. Toute l'IA actuelle est étroite.",cls:""},
+        {label:"IA générale (AGI)",value:"Aussi polyvalente qu'un humain. N'existe pas encore. Objectif théorique des chercheurs.",cls:"cyan"},
+        {label:"Super-IA (ASI)",value:"Dépasserait l'humain dans tous les domaines. Purement hypothétique aujourd'hui.",cls:"violet"}
+      ]},
+      {type:"text",heading:"Pourquoi maintenant ?",
+       text:"Trois ingrédients ont convergé au cours des années 2010 :<br><br><strong>1. Big Data</strong> — des milliards de données disponibles (internet, capteurs, réseaux sociaux)<br><strong>2. Puissance de calcul</strong> — GPU massivement parallèles, cloud computing<br><strong>3. Algorithmes</strong> — les réseaux de neurones profonds (deep learning) ont prouvé leur efficacité"}
+    ],
+    quiz:[
+      {q:"Qui a inventé le terme 'intelligence artificielle' en 1956 ?",opts:["Alan Turing","John McCarthy","Marvin Minsky","Claude Shannon"],ans:1,exp:"John McCarthy a utilisé ce terme pour la première fois lors de la conférence de Dartmouth en 1956."},
+      {q:"Qu'est-ce qu'une IA étroite (ANI) ?",opts:["Une IA aussi intelligente qu'un humain","Une IA spécialisée dans une seule tâche","Une IA qui dépasse l'humain dans tous les domaines","Une IA sans apprentissage automatique"],ans:1,exp:"Toute l'IA que nous utilisons aujourd'hui est 'étroite' : elle excelle dans une tâche précise mais ne peut pas se généraliser."},
+      {q:"Lequel de ces trois facteurs N'EST PAS l'une des raisons de l'essor de l'IA ?",opts:["La disponibilité du Big Data","La puissance de calcul accrue","L'invention du transistor en 2010","Les progrès des réseaux de neurones"],ans:2,exp:"Le transistor date des années 1940-1950. L'essor récent de l'IA repose sur le Big Data, les GPU et les algorithmes de deep learning."},
+      {q:"Que désigne un 'hiver de l'IA' ?",opts:["Une période où l'IA est utilisée dans les pays froids","Une période de réduction des financements et de désillusion","Un algorithme de refroidissement du système","Une limitation légale imposée par un gouvernement"],ans:1,exp:"Les hivers de l'IA sont des périodes historiques où les promesses de l'IA n'ont pas été tenues, entraînant une chute des investissements."},
+      {q:"L'AGI (Intelligence Artificielle Générale) existe-t-elle aujourd'hui ?",opts:["Oui, c'est ChatGPT","Oui, dans les supercalculateurs","Non, c'est encore un objectif théorique","Oui, dans les robots industriels"],ans:2,exp:"L'AGI n'existe pas encore. Toutes les IA actuelles sont 'étroites', spécialisées dans des tâches précises."}
+    ]
+  },
+  {
+    id:2, title:"Machine Learning",
+    icon:"⚙️", color:"i",
+    desc:"Comment les machines apprennent à partir de données sans être explicitement programmées.",
+    xp:140, duration:"12–14 min",
+    video:{title:"Machine Learning en 5 minutes",url:"https://www.youtube.com/watch?v=9gGnTQTYNaE",dur:"5:12"},
+    content:[
+      {type:"text",heading:"L'apprentissage automatique : le principe",
+       text:"Le Machine Learning (ML) est une sous-discipline de l'IA dans laquelle une machine <strong>apprend à partir d'exemples</strong>, sans qu'on lui programme explicitement les règles.<br><br>Exemple classique : pour détecter les spams, on ne code pas une liste de règles. On fournit des milliers d'emails étiquetés (spam / non-spam) et l'algorithme trouve lui-même les patterns caractéristiques."},
+      {type:"grid",heading:"Les 3 types d'apprentissage",items:[
+        {label:"Supervisé",value:"On fournit des données avec les bonnes réponses. L'algo apprend la relation entrée-sortie. Ex : prédire un prix.",cls:""},
+        {label:"Non supervisé",value:"Données sans étiquettes. L'algo trouve des structures cachées. Ex : regrouper des clients similaires (clustering).",cls:"cyan"},
+        {label:"Par renforcement",value:"L'agent apprend en interagissant avec son environnement, par récompenses/pénalités. Ex : jeux, robotique.",cls:"violet"}
+      ]},
+      {type:"text",heading:"Overfitting et généralisation",
+       text:"Un modèle de ML doit trouver l'équilibre entre :<br><br><strong>Sous-apprentissage (underfitting)</strong> : le modèle est trop simple, il ne capture pas les patterns<br><strong>Sur-apprentissage (overfitting)</strong> : le modèle mémorise les données d'entraînement mais échoue sur de nouvelles données<br><br>La bonne généralisation est mesurée sur un <em>jeu de test</em> distinct des données d'entraînement."}
+    ],
+    quiz:[
+      {q:"Qu'est-ce que le Machine Learning ?",opts:["Programmer explicitement chaque règle","Apprendre à partir d'exemples sans règles explicites","Télécharger automatiquement des logiciels","Créer des robots physiques"],ans:1,exp:"Le ML permet aux machines d'apprendre à partir de données, sans qu'on leur programme toutes les règles."},
+      {q:"Dans l'apprentissage supervisé, qu'est-ce qu'on fournit à l'algorithme ?",opts:["Des données sans étiquettes","Des données avec les bonnes réponses","Un environnement de jeu","Des règles expertes"],ans:1,exp:"L'apprentissage supervisé nécessite des données labellisées (entrées + sorties attendues)."},
+      {q:"Le clustering est un exemple de quel type d'apprentissage ?",opts:["Supervisé","Par renforcement","Non supervisé","Semi-supervisé"],ans:2,exp:"Le clustering (regroupement) est non supervisé : l'algo découvre des groupes sans qu'on lui dise lesquels."},
+      {q:"Qu'est-ce que l'overfitting ?",opts:["Le modèle est trop simple","Le modèle mémorise trop et rate les nouvelles données","Le modèle apprend trop lentement","Le modèle utilise trop de mémoire RAM"],ans:1,exp:"L'overfitting arrive quand le modèle 'mémorise' les données d'entraînement au lieu de généraliser."},
+      {q:"L'apprentissage par renforcement est notamment utilisé pour ?",opts:["Détecter les spams","Regrouper des clients","Entraîner des agents à jouer aux jeux","Traduire des textes"],ans:2,exp:"Le RL est célèbre pour AlphaGo, les robots, et les systèmes de recommandation."}
+    ]
+  },
+  {
+    id:3, title:"Deep Learning & Réseaux de Neurones",
+    icon:"🔬", color:"c",
+    desc:"Les réseaux de neurones artificiels : comment ils fonctionnent et pourquoi ils sont révolutionnaires.",
+    xp:160, duration:"13–15 min",
+    video:{title:"Les réseaux de neurones expliqués",url:"https://www.youtube.com/watch?v=aircAruvnKk",dur:"4:01"},
+    content:[
+      {type:"text",heading:"S'inspirer du cerveau humain",
+       text:"Un réseau de neurones artificiel est inspiré du fonctionnement du cerveau. Il est composé de <strong>neurones artificiels</strong> organisés en couches :<br><br>• <em>Couche d'entrée</em> : reçoit les données brutes<br>• <em>Couches cachées</em> : transforment et abstrahent l'information<br>• <em>Couche de sortie</em> : produit la prédiction<br><br>Le Deep Learning désigne les réseaux avec de <strong>nombreuses couches cachées</strong> (plusieurs dizaines voire centaines)."},
+      {type:"grid",heading:"Architectures populaires",items:[
+        {label:"CNN",value:"Réseau convolutif. Excelle en traitement d'image. Analyse les patterns spatiaux locaux. Base de la reconnaissance visuelle.",cls:""},
+        {label:"RNN / LSTM",value:"Réseaux récurrents. Traitement de séquences (texte, audio). La mémoire court terme permet de 'se souvenir'.",cls:"cyan"},
+        {label:"Transformer",value:"Architecture révolutionnaire (2017). Base de GPT, BERT. Mécanisme d'attention. Domine le NLP et maintenant la vision.",cls:"violet"}
+      ]},
+      {type:"text",heading:"L'entraînement : la rétropropagation",
+       text:"L'entraînement d'un réseau de neurones se fait par <strong>rétropropagation du gradient</strong> :<br><br>1. On effectue une prédiction (forward pass)<br>2. On calcule l'erreur entre la prédiction et la réponse attendue<br>3. On propage l'erreur en sens inverse pour ajuster les poids de chaque neurone<br>4. On répète des millions de fois avec des mini-lots de données (mini-batches)"}
+    ],
+    quiz:[
+      {q:"Qu'est-ce que le Deep Learning ?",opts:["Un apprentissage très long","Des réseaux de neurones avec de nombreuses couches","Un algorithme de clustering","Un type d'apprentissage par renforcement"],ans:1,exp:"Le Deep Learning désigne les réseaux de neurones profonds, avec de nombreuses couches cachées."},
+      {q:"Quelle architecture est particulièrement efficace pour le traitement d'images ?",opts:["RNN","Transformer","CNN","LSTM"],ans:2,exp:"Les CNN (Convolutional Neural Networks) sont spécialement conçus pour exploiter la structure spatiale des images."},
+      {q:"Les Transformers sont la base de quel type de modèles ?",opts:["Les robots industriels","GPT et les grands modèles de langage","Les algorithmes de tri","Les systèmes de navigation GPS"],ans:1,exp:"L'architecture Transformer, introduite en 2017, est la base de GPT, BERT, et la plupart des LLM actuels."},
+      {q:"À quoi sert la rétropropagation ?",opts:["Alimenter le réseau en données","Ajuster les poids du réseau après chaque erreur","Visualiser les neurones actifs","Compresser le modèle"],ans:1,exp:"La backpropagation calcule le gradient de l'erreur et le propage en arrière pour ajuster les poids."},
+      {q:"Les LSTM sont particulièrement adaptés à quel type de données ?",opts:["Images fixes","Données tabulaires","Séquences (texte, audio, séries temporelles)","Vidéos en temps réel"],ans:2,exp:"Les LSTM (Long Short-Term Memory) gèrent la mémoire court/long terme dans les séquences."}
+    ]
+  },
+  {
+    id:4, title:"Traitement du Langage (NLP)",
+    icon:"💬", color:"v",
+    desc:"Comment les machines comprennent et génèrent le langage humain.",
+    xp:150, duration:"11–13 min",
+    video:{title:"Le NLP expliqué simplement",url:"https://www.youtube.com/watch?v=CMrHM8a3hqw",dur:"6:22"},
+    content:[
+      {type:"text",heading:"Le défi du langage naturel",
+       text:"Le langage humain est ambigu, contextuel et infiniment riche. Une même phrase peut avoir plusieurs sens selon le contexte.<br><br>Le NLP (Natural Language Processing) regroupe les techniques permettant aux machines de <strong>comprendre, analyser et générer</strong> du texte ou de la parole en langue naturelle.<br><br>Applications quotidiennes : assistants vocaux, traduction automatique, résumé automatique, chatbots, analyse de sentiments."},
+      {type:"grid",heading:"Tâches NLP classiques",items:[
+        {label:"Classification",value:"Catégoriser du texte : détection de spam, analyse de sentiments (positif/négatif), classification de thèmes.",cls:""},
+        {label:"Extraction d'entités",value:"Identifier les personnes, lieux, dates dans un texte (NER : Named Entity Recognition).",cls:"cyan"},
+        {label:"Génération",value:"Produire du texte : résumé, traduction, réponse à des questions, complétion de code.",cls:"violet"}
+      ]},
+      {type:"text",heading:"La révolution des LLM",
+       text:"Les <strong>Grands Modèles de Langage</strong> (LLM : Large Language Models) comme GPT-4 ou Llama ont transformé le domaine.<br><br>Ils sont pré-entraînés sur des corpus massifs (une grande partie d'internet) puis affinés (fine-tuning) pour des tâches spécifiques.<br><br>Leur capacité de <em>few-shot learning</em> leur permet de s'adapter à de nouvelles tâches avec très peu d'exemples."}
+    ],
+    quiz:[
+      {q:"Que signifie NLP ?",opts:["Neural Learning Processing","Natural Language Processing","Network Layer Protocol","Non-Linear Programming"],ans:1,exp:"NLP = Natural Language Processing, traitement du langage naturel."},
+      {q:"L'analyse de sentiments est une tâche de ?",opts:["Génération de texte","Extraction d'entités","Classification de texte","Traduction automatique"],ans:2,exp:"L'analyse de sentiments classe un texte (positif, négatif, neutre) : c'est une tâche de classification."},
+      {q:"Que fait le NER (Named Entity Recognition) ?",opts:["Génère des noms de produits","Identifie les personnes, lieux, dates dans un texte","Résume des documents","Traduit en temps réel"],ans:1,exp:"Le NER détecte et catégorise les entités nommées (personnes, organisations, lieux...) dans un texte."},
+      {q:"Qu'est-ce qu'un LLM ?",opts:["Un logiciel de compression","Un grand modèle de langage pré-entraîné","Un langage de programmation","Un type de mémoire informatique"],ans:1,exp:"LLM = Large Language Model. Ex : GPT-4, Claude, Llama, Mistral."},
+      {q:"Le few-shot learning signifie que le modèle ?",opts:["Apprend avec très peu d'exemples","Oublie rapidement","Fonctionne sans données","S'entraîne en quelques secondes"],ans:0,exp:"Le few-shot learning : donner 2-3 exemples dans le prompt suffit pour adapter le modèle à une nouvelle tâche."}
+    ]
+  },
+  {
+    id:5, title:"Vision par Ordinateur",
+    icon:"👁️", color:"c",
+    desc:"Comment l'IA voit et comprend les images et vidéos.",
+    xp:140, duration:"10–12 min",
+    video:{title:"Computer Vision : comment ça marche",url:"https://www.youtube.com/watch?v=2hXG8v8p0KM",dur:"4:55"},
+    content:[
+      {type:"text",heading:"L'IA qui voit",
+       text:"La vision par ordinateur (Computer Vision) permet aux machines d'analyser et d'interpréter des images et des vidéos. Une image est une grille de pixels ; l'IA apprend à y détecter des patterns significatifs.<br><br>Applications : reconnaissance faciale, voitures autonomes, diagnostic médical par imagerie, contrôle qualité industriel, réalité augmentée."},
+      {type:"grid",heading:"Tâches principales",items:[
+        {label:"Classification",value:"Répondre : 'Qu'est-ce que c'est ?' → Chat, chien, voiture. Une seule catégorie par image.",cls:""},
+        {label:"Détection",value:"Localiser et identifier plusieurs objets dans une image. Fournit des boîtes englobantes (bounding boxes).",cls:"cyan"},
+        {label:"Segmentation",value:"Délimiter pixel par pixel chaque objet. Plus précis que la détection. Utilisé en médecine et conduite autonome.",cls:"violet"}
+      ]},
+      {type:"text",heading:"Transfer Learning",
+       text:"Entraîner un CNN depuis zéro requiert des millions d'images et des semaines de calcul. Le <strong>Transfer Learning</strong> contourne ce problème :<br><br>1. On part d'un modèle pré-entraîné sur ImageNet (1,2 million d'images)<br>2. On remplace seulement les dernières couches<br>3. On ré-entraîne sur notre dataset spécifique (quelques centaines d'images suffisent)<br><br>Résultat : de très bonnes performances avec peu de données et de ressources."}
+    ],
+    quiz:[
+      {q:"Qu'est-ce que la Computer Vision ?",opts:["Un langage de programmation pour graphismes","La capacité des machines à analyser des images","Un écran haute définition pour IA","Un algorithme de compression vidéo"],ans:1,exp:"La vision par ordinateur permet aux machines d'interpréter le contenu visuel (images, vidéos)."},
+      {q:"Quelle tâche consiste à dire 'qu'est-ce que c'est ?' sur une image entière ?",opts:["Segmentation","Détection","Classification","Transfer Learning"],ans:2,exp:"La classification attribue une catégorie à l'image entière."},
+      {q:"La détection d'objets fournit en plus de la catégorie ?",opts:["La texture de l'objet","La couleur dominante","Une boîte englobante (position)","Le nombre de pixels"],ans:2,exp:"La détection localise les objets avec des bounding boxes + catégorie."},
+      {q:"Le Transfer Learning permet de ?",opts:["Transférer des fichiers plus vite","Partir d'un modèle pré-entraîné pour l'adapter","Traduire des images","Copier un réseau de neurones"],ans:1,exp:"On réutilise les connaissances d'un grand modèle entraîné sur des millions d'images."},
+      {q:"La segmentation est plus précise que la détection car elle ?",opts:["Va plus vite","Délimite chaque objet pixel par pixel","Utilise moins de données","Fonctionne en temps réel"],ans:1,exp:"La segmentation sémantique/instance trace les contours exacts de chaque objet, pixel par pixel."}
+    ]
+  },
+  {
+    id:6, title:"IA Générative",
+    icon:"✨", color:"v",
+    desc:"Créer du texte, des images, du code et de la musique avec l'IA.",
+    xp:170, duration:"13–15 min",
+    video:{title:"L'IA générative expliquée",url:"https://www.youtube.com/watch?v=G2fqAlgmoPo",dur:"5:40"},
+    content:[
+      {type:"text",heading:"Créer plutôt qu'analyser",
+       text:"L'IA générative est une catégorie d'IA capable de <strong>créer de nouveaux contenus</strong> : textes, images, vidéos, sons, code, musique.<br><br>Contrairement aux IA discriminatives (qui classifient), les IA génératives apprennent la distribution des données et peuvent en produire de nouvelles instances cohérentes."},
+      {type:"grid",heading:"Les grandes familles",items:[
+        {label:"LLM / GPT",value:"Génèrent du texte, du code, répondent à des questions. Base : architecture Transformer. Ex : GPT-4, Claude, Gemini.",cls:""},
+        {label:"Diffusion",value:"Génèrent des images à partir de bruit gaussien. Ex : Stable Diffusion, DALL-E, Midjourney.",cls:"cyan"},
+        {label:"GAN",value:"Deux réseaux s'affrontent : un générateur et un discriminateur. Produit des images photoréalistes. Deepfakes.",cls:"violet"}
+      ]},
+      {type:"text",heading:"Le Prompt Engineering",
+       text:"Avec les LLM, la qualité du résultat dépend fortement de la façon dont on formule la demande : c'est le <strong>Prompt Engineering</strong>.<br><br>Techniques efficaces :<br>• <em>Zero-shot</em> : demande directe sans exemple<br>• <em>Few-shot</em> : 2-3 exemples dans le prompt<br>• <em>Chain-of-thought</em> : demander au modèle de raisonner étape par étape<br>• <em>Role prompting</em> : donner un rôle précis au modèle"}
+    ],
+    quiz:[
+      {q:"Qu'est-ce qui distingue une IA générative d'une IA discriminative ?",opts:["La vitesse de calcul","Elle crée de nouveaux contenus plutôt que de classer","Elle utilise moins de données","Elle fonctionne sans GPU"],ans:1,exp:"L'IA générative produit de nouveaux contenus (texte, image...) au lieu de simplement classer des données existantes."},
+      {q:"Quelle technique est utilisée par Stable Diffusion et DALL-E ?",opts:["GAN","Transformer","Diffusion","RNN"],ans:2,exp:"Les modèles de diffusion partent d'un bruit aléatoire et le 'débruitent' progressivement pour générer une image."},
+      {q:"Le Chain-of-Thought prompting consiste à ?",opts:["Enchaîner plusieurs IA","Demander au modèle de raisonner étape par étape","Utiliser une chaîne de blocs","Limiter la longueur du prompt"],ans:1,exp:"Le CoT pousse le modèle à décomposer son raisonnement, améliorant les performances sur des tâches complexes."},
+      {q:"Les GAN utilisent quel mécanisme principal ?",opts:["Un seul réseau très profond","Deux réseaux en compétition (générateur + discriminateur)","Un Transformer fine-tuné","Un modèle de diffusion"],ans:1,exp:"GAN = Generative Adversarial Network. Le générateur crée, le discriminateur juge : ils s'améliorent mutuellement."},
+      {q:"ChatGPT et Claude sont basés sur quelle architecture ?",opts:["CNN","RNN classique","GAN","Transformer / LLM"],ans:3,exp:"Les assistants IA conversationnels sont des LLM basés sur l'architecture Transformer."}
+    ]
+  },
+  {
+    id:7, title:"IA dans les Secteurs Clés",
+    icon:"🏭", color:"g",
+    desc:"Applications concrètes de l'IA dans la santé, la finance, l'industrie et le commerce.",
+    xp:130, duration:"10–12 min",
+    video:{title:"L'IA transforme les industries",url:"https://www.youtube.com/watch?v=5dZ_lvDgevk",dur:"7:15"},
+    content:[
+      {type:"text",heading:"L'IA transforme chaque secteur",
+       text:"L'IA n'est plus réservée aux géants de la tech. Elle s'intègre dans tous les secteurs économiques, transformant profondément les métiers et les processus."},
+      {type:"grid",heading:"Applications par secteur",items:[
+        {label:"Santé",value:"Diagnostic par imagerie, découverte de médicaments, médecine personnalisée, surveillance des patients, chirurgie assistée.",cls:""},
+        {label:"Finance",value:"Détection de fraudes, trading algorithmique, notation de crédit, conseil automatisé (robo-advisor), conformité réglementaire.",cls:"cyan"},
+        {label:"Industrie",value:"Maintenance prédictive, contrôle qualité visuel, optimisation des chaînes logistiques, robots collaboratifs (cobots).",cls:"violet"},
+        {label:"Commerce",value:"Recommandation personnalisée, chatbots service client, gestion des stocks dynamique, optimisation des prix en temps réel.",cls:"green"}
+      ]},
+      {type:"text",heading:"L'IA dans votre quotidien",
+       text:"Au-delà des entreprises, l'IA imprègne le quotidien :<br><br>• <strong>Maison connectée</strong> : thermostats intelligents, sécurité, assistants vocaux (Alexa, Google Home)<br>• <strong>Mobilité</strong> : GPS prédictif (Waze), covoiturage dynamique, aide à la conduite<br>• <strong>Santé personnelle</strong> : montres connectées, applications de suivi, diagnostic en ligne<br>• <strong>Divertissement</strong> : recommandations Netflix/Spotify, génération de playlists"}
+    ],
+    quiz:[
+      {q:"La maintenance prédictive grâce à l'IA est principalement utilisée dans quel secteur ?",opts:["Finance","Industrie","Santé","Commerce"],ans:1,exp:"L'industrie 4.0 utilise l'IA pour anticiper les pannes machine avant qu'elles surviennent."},
+      {q:"Le trading algorithmique est une application de l'IA dans quel domaine ?",opts:["Santé","Logistique","Finance","Éducation"],ans:2,exp:"Les algorithmes de trading exécutent des transactions en millisecondes sur les marchés financiers."},
+      {q:"Quel assistant vocal est développé par Amazon ?",opts:["Siri","Cortana","Alexa","Google Assistant"],ans:2,exp:"Alexa est l'assistant vocal d'Amazon, intégré dans les enceintes Echo."},
+      {q:"Le robo-advisor est un outil d'IA pour ?",opts:["Programmer des robots","Conseiller automatiquement en investissement","Conduire des véhicules","Diagnostiquer des maladies"],ans:1,exp:"Un robo-advisor gère automatiquement un portefeuille d'investissement selon le profil de risque du client."},
+      {q:"La recommandation de produits sur Amazon ou de films sur Netflix utilise principalement ?",opts:["La vision par ordinateur","Le NLP","Le filtrage collaboratif et le ML","Les algorithmes génétiques"],ans:2,exp:"Les systèmes de recommandation combinent filtrage collaboratif (autres utilisateurs similaires) et ML."}
+    ]
+  },
+  {
+    id:8, title:"Éthique et IA Responsable",
+    icon:"⚖️", color:"i",
+    desc:"Les enjeux éthiques, les biais et la gouvernance de l'IA.",
+    xp:150, duration:"11–13 min",
+    video:{title:"L'IA et l'éthique : les grands défis",url:"https://www.youtube.com/watch?v=aR5N2Jl8k14",dur:"8:30"},
+    content:[
+      {type:"text",heading:"L'IA soulève des questions fondamentales",
+       text:"L'intelligence artificielle transforme profondément notre société. Ses bénéfices sont immenses, mais elle soulève des questions éthiques, juridiques et sociales qui doivent être adressées collectivement."},
+      {type:"grid",heading:"Les principaux défis",items:[
+        {label:"Biais algorithmiques",value:"Les IA apprennent sur des données historiques qui reflètent des inégalités sociales. Résultat : discriminations reproduites et amplifiées.",cls:""},
+        {label:"Vie privée",value:"Collecte massive de données personnelles. Surveillance. Reconnaissance faciale dans l'espace public. RGPD insuffisant ?",cls:"cyan"},
+        {label:"Emploi",value:"Automatisation de certaines tâches. Certains métiers disparaissent, de nouveaux émergent. Nécessité de requalification massive.",cls:"violet"},
+        {label:"Transparence",value:"Les grands modèles sont des 'boîtes noires'. L'explainability (XAI) est un chantier majeur pour la confiance.",cls:"green"}
+      ]},
+      {type:"text",heading:"Vers une IA responsable",
+       text:"Des initiatives émergent pour encadrer l'IA :<br><br>• <strong>AI Act européen</strong> (2024) : premier cadre légal mondial, approche par niveaux de risque<br>• <strong>Principes OCDE</strong> : transparence, équité, robustesse, sécurité<br>• <strong>IA de confiance</strong> : humain au centre, explicable, contestable<br>• <strong>Red teaming</strong> : tester les failles et biais avant déploiement<br><br>L'objectif : que l'IA bénéficie à tous, sans reproduire ni amplifier les inégalités existantes."}
+    ],
+    quiz:[
+      {q:"Un biais algorithmique survient quand ?",opts:["L'algorithme est trop lent","L'IA apprend sur des données qui reflètent des inégalités","Le modèle manque de paramètres","Le serveur est surchargé"],ans:1,exp:"Les biais dans les données d'entraînement se retrouvent dans les décisions de l'IA, parfois amplifiés."},
+      {q:"Le RGPD concerne principalement ?",opts:["La régulation des robots","La protection des données personnelles","Les droits d'auteur de l'IA","La sécurité des réseaux"],ans:1,exp:"Le RGPD (2018) est le règlement européen sur la protection des données personnelles."},
+      {q:"L'AI Act européen adopte une approche basée sur ?",opts:["Le coût de développement","Les niveaux de risque","La nationalité des entreprises","La taille des modèles"],ans:1,exp:"L'AI Act classe les systèmes d'IA selon leur niveau de risque (inacceptable, élevé, limité, minimal)."},
+      {q:"L'explainability (XAI) vise à ?",opts:["Accélérer les algorithmes","Rendre les décisions de l'IA compréhensibles","Réduire la consommation énergetique","Compresser les modèles"],ans:1,exp:"L'IA explicable permet de comprendre pourquoi un modèle a pris une décision, essentiel pour la confiance."},
+      {q:"Le 'red teaming' appliqué à l'IA consiste à ?",opts:["Tester les performances en conditions réelles","Chercher volontairement les failles, biais et comportements dangereux","Colorier les réseaux de neurones","Former des équipes de développeurs"],ans:1,exp:"Le red teaming IA implique des experts qui tentent de trouver les failles et biais avant le déploiement."}
+    ]
+  },
+  {
+    id:9, title:"Prompt Engineering",
+    icon:"🎯", color:"v",
+    desc:"Maîtriser l'art de communiquer avec les IA génératives pour obtenir les meilleurs résultats.",
+    xp:160, duration:"12–14 min",
+    video:{title:"Prompt Engineering : les meilleures techniques",url:"https://www.youtube.com/watch?v=_ZvnD73m40o",dur:"9:20"},
+    content:[
+      {type:"text",heading:"Le prompt : votre interface avec l'IA",
+       text:"Un <strong>prompt</strong> est l'instruction que vous envoyez à un modèle d'IA. La qualité de la réponse dépend directement de la qualité du prompt.<br><br>Le Prompt Engineering est la discipline qui consiste à concevoir, structurer et optimiser ces instructions pour obtenir des résultats précis, utiles et cohérents."},
+      {type:"grid",heading:"Les techniques fondamentales",items:[
+        {label:"Zero-shot",value:"Demande directe sans exemple. Fonctionne bien pour des tâches simples. Ex : 'Résume ce texte en 3 points'.",cls:""},
+        {label:"Few-shot",value:"Fournir 2-3 exemples dans le prompt. L'IA comprend le format attendu. Très efficace pour des tâches spécifiques.",cls:"cyan"},
+        {label:"Chain-of-Thought",value:"Demander de raisonner étape par étape. 'Pense à voix haute avant de répondre'. Améliore la précision sur les problèmes complexes.",cls:"violet"},
+        {label:"Role prompting",value:"Attribuer un rôle précis. 'Tu es un expert en droit fiscal'. Cadre le ton et le niveau d'expertise de la réponse.",cls:"green"}
+      ]},
+      {type:"text",heading:"Anatomie d'un bon prompt",
+       text:"Un prompt efficace contient généralement :<br><br>• <strong>Contexte</strong> : qui es-tu, pour qui, dans quel but<br>• <strong>Tâche</strong> : ce que tu veux obtenir précisément<br>• <strong>Format</strong> : longueur, structure, style souhaité<br>• <strong>Contraintes</strong> : ce qu'il ne faut pas faire<br>• <strong>Exemples</strong> (si few-shot) : illustrations du résultat attendu<br><br>Exemple : <em>'Tu es un expert en marketing B2B. Rédige 3 accroches pour une publicité LinkedIn visant des DSI, en 280 caractères chacune, ton professionnel mais direct.'</em>"}
+    ],
+    quiz:[
+      {q:"Qu'est-ce que le Prompt Engineering ?",opts:["La programmation des GPU","L'art d'optimiser les instructions envoyées aux IA","La conception de puces pour l'IA","L'ingénierie des réseaux de neurones"],ans:1,exp:"Le Prompt Engineering consiste à concevoir des instructions optimales pour obtenir les meilleurs résultats d'un LLM."},
+      {q:"Le few-shot prompting consiste à ?",opts:["Utiliser un prompt très court","Fournir quelques exemples dans le prompt","Faire tourner le modèle plusieurs fois","Limiter la température du modèle"],ans:1,exp:"Donner 2-3 exemples dans le prompt aide le modèle à comprendre exactement le format et le style attendus."},
+      {q:"Le Chain-of-Thought est particulièrement utile pour ?",opts:["Générer des images","Accélérer les réponses","Résoudre des problèmes complexes qui nécessitent un raisonnement","Réduire la consommation mémoire"],ans:2,exp:"En demandant à l'IA de raisonner étape par étape, on améliore sa précision sur les problèmes mathématiques et logiques."},
+      {q:"Le Role prompting consiste à ?",opts:["Créer plusieurs IA qui collaborent","Attribuer un rôle ou une expertise précise au modèle","Jouer à des jeux de rôle","Simuler plusieurs utilisateurs"],ans:1,exp:"'Tu es un expert en...' cadre le comportement, le ton et le niveau de détail des réponses du modèle."},
+      {q:"Parmi ces éléments, lequel N'EST PAS recommandé dans un bon prompt ?",opts:["Fournir le contexte","Spécifier le format souhaité","Être aussi vague que possible","Donner des contraintes claires"],ans:2,exp:"La précision est essentielle : plus le prompt est spécifique sur la tâche, le format et les contraintes, meilleur est le résultat."}
+    ]
+  },
+  {
+    id:10, title:"Futur de l'IA & Perspectives",
+    icon:"🚀", color:"g",
+    desc:"AGI, IA embarquée, IA quantique : où va l'intelligence artificielle ?",
+    xp:180, duration:"13–15 min",
+    video:{title:"Le futur de l'intelligence artificielle",url:"https://www.youtube.com/watch?v=RzkD_rTEBYs",dur:"11:04"},
+    content:[
+      {type:"text",heading:"L'IA en 2024 et au-delà",
+       text:"L'IA connaît une accélération sans précédent. En 2022-2024, les LLM ont bouleversé la façon dont on interagit avec les machines. Mais ce n'est que le début."},
+      {type:"grid",heading:"Les tendances majeures",items:[
+        {label:"Multimodalité",value:"Les IA fusionnent texte, image, audio, vidéo. GPT-4o, Gemini Ultra. Une IA peut analyser une photo et en parler.",cls:""},
+        {label:"IA embarquée",value:"Des modèles compacts fonctionnant sur smartphone et capteurs. Edge AI : moins de latence, plus de confidentialité.",cls:"cyan"},
+        {label:"Agents autonomes",value:"Des IA qui planifient et agissent sur plusieurs étapes. Ex : AutoGPT, agents qui naviguent sur le web et exécutent des tâches.",cls:"violet"},
+        {label:"IA quantique",value:"L'informatique quantique pourrait accélérer massivement l'entraînement et l'inférence. Horizon : 5-15 ans.",cls:"green"}
+      ]},
+      {type:"text",heading:"Vers l'AGI : espoir ou risque ?",
+       text:"L'AGI — une IA aussi polyvalente qu'un humain — est le Graal de la recherche. Certains estiment qu'elle pourrait être atteinte dans cette décennie.<br><br>Les questions qui se posent :<br><br>• <strong>Alignement</strong> : comment s'assurer qu'une AGI agit dans l'intérêt humain ?<br>• <strong>Contrôle</strong> : comment garder la main sur un système plus intelligent que nous ?<br>• <strong>Distribution</strong> : qui bénéficiera de cette technologie ?<br><br>Ce qui est certain : l'IA va redéfinir le travail, la créativité, la science et la gouvernance. Comprendre ces enjeux est désormais une compétence citoyenne essentielle."}
+    ],
+    quiz:[
+      {q:"Que signifie 'IA multimodale' ?",opts:["Une IA disponible dans plusieurs langues","Une IA qui traite différents types de données (texte, image, son)","Une IA avec plusieurs personnalités","Une IA déployée sur plusieurs serveurs"],ans:1,exp:"Les IA multimodales combinent texte, image, audio et vidéo dans un même modèle."},
+      {q:"L'Edge AI (IA embarquée) a comme principal avantage ?",opts:["Des modèles plus grands","Moins de latence et plus de confidentialité","Plus de puissance de calcul","Des coûts plus élevés"],ans:1,exp:"L'Edge AI traite les données localement (sur l'appareil), sans envoyer les données dans le cloud."},
+      {q:"Les agents autonomes se distinguent des chatbots classiques par ?",opts:["Une meilleure grammaire","Leur capacité à planifier et exécuter des actions sur plusieurs étapes","Un meilleur humour","Leur vitesse de réponse"],ans:1,exp:"Les agents IA peuvent décomposer une tâche complexe, utiliser des outils et agir dans le monde numérique."},
+      {q:"L'AGI est définie comme ?",opts:["Une IA spécialisée très performante","Une IA aussi polyvalente qu'un humain","Un robot humanoïde","Un supercalculateur"],ans:1,exp:"L'AGI (Artificial General Intelligence) serait capable de s'adapter à n'importe quelle tâche intellectuelle, comme un humain."},
+      {q:"Parmi ces défis liés à l'AGI, lequel concerne la sécurité ?",opts:["La consommation électrique","La vitesse de calcul","L'alignement : s'assurer que l'AGI agit dans l'intérêt humain","Le coût de développement"],ans:2,exp:"L'alignement est le défi majeur : comment garantir qu'un système superintelligent partage nos valeurs et objectifs ?"}
+    ]
+  }
+];
+
+const BADGES_DEF = [
+  {id:"m1",name:"Fondations",desc:"Module 1 terminé",icon:"🧱",moduleId:1},
+  {id:"m2",name:"Apprenant",desc:"Module 2 terminé",icon:"⚙️",moduleId:2},
+  {id:"m3",name:"Neurone",desc:"Module 3 terminé",icon:"🔬",moduleId:3},
+  {id:"m4",name:"Linguiste",desc:"Module 4 terminé",icon:"💬",moduleId:4},
+  {id:"m5",name:"Visionnaire",desc:"Module 5 terminé",icon:"👁️",moduleId:5},
+  {id:"m6",name:"Créateur",desc:"Module 6 terminé",icon:"✨",moduleId:6},
+  {id:"m7",name:"Industriel",desc:"Module 7 terminé",icon:"🏭",moduleId:7},
+  {id:"m8",name:"Éthicien",desc:"Module 8 terminé",icon:"⚖️",moduleId:8},
+  {id:"m9",name:"Prompteur",desc:"Module 9 terminé",icon:"🎯",moduleId:9},
+  {id:"m10",name:"Futuriste",desc:"Module 10 terminé",icon:"🚀",moduleId:10},
+  {id:"ace",name:"Quiz Ace",desc:"5 quiz parfaits",icon:"🎯",special:true},
+  {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true},
+  {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true},
+  {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true}
+];
+
+const ADMIN_EMAIL = "admin@ia-academie.fr";
+const ADMIN_PASS = "admin123";
+const XP_PER_LEVEL = 500;
+
+// ============================================================
+// STATE
+// ============================================================
+let currentUser = null;
+let currentModule = null;
+let currentStep = 0;
+let duelState = null;
+
+// ============================================================
+// STORAGE
+// ============================================================
+const DB = {
+  get:(k)=>{ try{ return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set:(k,v)=>{ localStorage.setItem(k,JSON.stringify(v)); },
+  users:()=>DB.get('ia_users')||{},
+  saveUsers:(u)=>DB.set('ia_users',u),
+  challenges:()=>DB.get('ia_challenges')||[],
+  saveChallenges:(c)=>DB.set('ia_challenges',c)
+};
+
+// ============================================================
+// UTILS
+// ============================================================
+function showNotif(msg,type='success'){
+  const n=document.getElementById('notif');
+  n.textContent=''; n.className='';
+  const icons={success:'✓',error:'✗',warn:'!'};
+  const ic=document.createElement('span');
+  ic.textContent=icons[type]||'•';
+  ic.style.cssText='width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.7rem;background:rgba(255,255,255,0.15);flex-shrink:0;';
+  n.appendChild(ic);
+  const t=document.createElement('span');
+  t.textContent=msg; n.appendChild(t);
+  n.className='show '+type;
+  setTimeout(()=>n.classList.remove('show'),3500);
+}
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showLevelUp(lvl){
+  document.getElementById('levelup-txt').textContent='Niveau '+lvl+' atteint !';
+  const b=document.getElementById('levelup-banner');
+  b.classList.add('show');
+  setTimeout(()=>b.classList.remove('show'),3000);
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+function login(email,pass){
+  if(email===ADMIN_EMAIL && pass===ADMIN_PASS){
+    currentUser={email,firstName:'Admin',lastName:'',isAdmin:true,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0};
+    launchAdmin(); return;
+  }
+  const users=DB.users();
+  const u=users[email];
+  if(!u){ showNotif('Email introuvable','error'); return; }
+  if(u.password!==pass){ showNotif('Mot de passe incorrect','error'); return; }
+  currentUser=u;
+  checkStreak();
+  launchApp();
+}
+
+function register(firstName,lastName,email,pass){
+  if(!firstName||!email||!pass){ showNotif('Tous les champs sont requis','error'); return; }
+  const users=DB.users();
+  if(users[email]){ showNotif('Email déjà utilisé','error'); return; }
+  const u={email,firstName,lastName,password:pass,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0};
+  users[email]=u; DB.saveUsers(users);
+  currentUser=u;
+  launchApp();
+}
+
+function saveCurrentUser(){
+  if(!currentUser||currentUser.isAdmin) return;
+  const users=DB.users();
+  users[currentUser.email]=currentUser;
+  DB.saveUsers(users);
+}
+
+function checkStreak(){
+  const today=new Date().toDateString();
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  if(currentUser.lastLogin===today) return;
+  if(currentUser.lastLogin===yesterday) currentUser.streak=(currentUser.streak||0)+1;
+  else currentUser.streak=1;
+  currentUser.lastLogin=today;
+  if(currentUser.streak>=7) awardBadge('streak');
+  saveCurrentUser();
+}
+
+function addXP(amount){
+  const prevLevel=currentUser.level;
+  currentUser.xp=(currentUser.xp||0)+amount;
+  currentUser.level=Math.floor(currentUser.xp/XP_PER_LEVEL)+1;
+  if(currentUser.level>prevLevel) setTimeout(()=>showLevelUp(currentUser.level),500);
+  saveCurrentUser();
+  updateNavXP();
+}
+
+function awardBadge(badgeId){
+  if(!currentUser.badges) currentUser.badges=[];
+  if(currentUser.badges.includes(badgeId)) return;
+  currentUser.badges.push(badgeId);
+  const bd=BADGES_DEF.find(b=>b.id===badgeId);
+  if(bd) showNotif(bd.icon+' Badge obtenu : '+bd.name,'success');
+  saveCurrentUser();
+}
+
+function updateNavXP(){
+  const xp=currentUser.xp||0;
+  document.querySelectorAll('.nav-xp-val,.nav-xp-val2').forEach(el=>el.textContent=xp);
+}
+
+// ============================================================
+// LAUNCH
+// ============================================================
+function launchApp(){
+  updateNavXP();
+  const av=document.getElementById('nav-avatar');
+  if(av) av.textContent=(currentUser.firstName||'?')[0].toUpperCase();
+  renderDashboard();
+  showView('view-dashboard');
+  showSection('modules');
+}
+
+function launchAdmin(){
+  renderAdmin();
+  showView('view-admin');
+}
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+function renderDashboard(){
+  const u=currentUser;
+  document.getElementById('dh-name').textContent='Bonjour, '+u.firstName+' !';
+  const mods=u.modules||{};
+  const done=Object.keys(mods).filter(k=>mods[k]&&mods[k].completed).length;
+  document.getElementById('dh-level').innerHTML=u.level+'<span>LVL</span>';
+  document.getElementById('dh-modules-done').innerHTML=done+'<span>/10</span>';
+  document.getElementById('dh-badges-count').textContent=(u.badges||[]).length;
+  document.getElementById('dh-streak').innerHTML=(u.streak||0)+'<span>🔥</span>';
+  const xpInLevel=(u.xp||0)%XP_PER_LEVEL;
+  const pct=Math.min(100,(xpInLevel/XP_PER_LEVEL)*100);
+  document.getElementById('dh-xp-fill').style.width=pct+'%';
+  document.getElementById('dh-xp-label').textContent=xpInLevel+' / '+XP_PER_LEVEL+' XP';
+  renderModulesGrid();
+  populateChallengeModal();
+}
+
+function showSection(name){
+  document.getElementById('section-modules').style.display=name==='modules'?'block':'none';
+  document.getElementById('section-badges').style.display=name==='badges'?'block':'none';
+  document.getElementById('section-defis').style.display=name==='defis'?'block':'none';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn'};
+  const target=document.getElementById(map[name]);
+  if(target) target.classList.add('active');
+  if(name==='badges') renderBadges();
+  if(name==='defis') renderChallenges();
+}
+
+function renderModulesGrid(){
+  const grid=document.getElementById('modules-grid');
+  if(!grid) return;
+  grid.innerHTML='';
+  const mods=currentUser.modules||{};
+  MODULES.forEach((m,idx)=>{
+    const prev=idx===0?true:!!(mods[idx]&&mods[idx].completed);
+    const modData=mods[m.id]||{};
+    const isLocked=!prev;
+    const isCompleted=!!modData.completed;
+    const prog=modData.progress||0;
+    const statusText=isCompleted?'✓ Terminé':isLocked?'🔒 Verrouillé':'→ Disponible';
+    const statusCls=isCompleted?'done':isLocked?'locked':'avail';
+    const iconCls=m.color;
+    const card=document.createElement('div');
+    card.className='module-card'+(isLocked?' locked':'')+(isCompleted?' completed':'');
+    card.innerHTML=
+      '<div class="mc-header">'+
+        '<div class="mc-icon '+iconCls+'">'+m.icon+'</div>'+
+        '<div class="mc-status '+statusCls+'">'+statusText+'</div>'+
+      '</div>'+
+      '<div class="mc-title">'+m.id+'. '+m.title+'</div>'+
+      '<div class="mc-desc">'+m.desc+'</div>'+
+      '<div class="mc-footer">'+
+        '<div class="mc-xp">+'+m.xp+' XP</div>'+
+        '<div class="mc-prog">'+
+          '<div class="mc-prog-track"><div class="mc-prog-fill" style="width:'+prog+'%"></div></div>'+
+          '<div class="mc-prog-pct">'+prog+'%</div>'+
+        '</div>'+
+      '</div>';
+    if(!isLocked){
+      card.addEventListener('click',function(){ openModule(m.id); });
+    }
+    grid.appendChild(card);
+  });
+}
+
+function renderBadges(){
+  const grid=document.getElementById('badges-grid');
+  if(!grid) return;
+  grid.innerHTML='';
+  const owned=currentUser.badges||[];
+  document.getElementById('badges-sub').textContent=owned.length+' badge(s) obtenu(s) sur '+BADGES_DEF.length;
+  BADGES_DEF.forEach(b=>{
+    const unlocked=owned.includes(b.id);
+    const div=document.createElement('div');
+    div.className='badge-card '+(unlocked?'unlocked':'locked-badge');
+    div.innerHTML='<div class="badge-icon">'+b.icon+'</div><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+b.desc+'</div>';
+    grid.appendChild(div);
+  });
+}
+
+function renderChallenges(){
+  const list=document.getElementById('challenges-list');
+  if(!list) return;
+  const all=DB.challenges().filter(c=>c.from===currentUser.email||c.to===currentUser.firstName);
+  if(all.length===0){
+    list.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)"><div style="font-size:3rem;margin-bottom:12px">⚔️</div><div style="font-weight:700;color:var(--navy);margin-bottom:6px">Aucun défi pour l\'instant</div><div style="font-size:0.85rem">Lancez un défi à un autre apprenant !</div></div>';
+    return;
+  }
+  list.innerHTML='';
+  all.forEach(c=>{
+    const isMine=c.from===currentUser.email;
+    const mod=MODULES.find(m=>m.id===c.moduleId);
+    const card=document.createElement('div');
+    card.className='challenge-card';
+    const statusMap={pending:'pending',active:'active',won:'won',lost:'lost'};
+    card.innerHTML=
+      '<div class="ch-icon">⚔️</div>'+
+      '<div class="ch-info">'+
+        '<div class="ch-title">'+(isMine?'Défi envoyé à <strong>'+c.to+'</strong>':'Défi reçu de <strong>'+c.from+'</strong>')+'</div>'+
+        '<div class="ch-meta">Module : '+(mod?mod.title:'?')+' · '+(isMine?'En attente de réponse':'À votre tour !')+'</div>'+
+      '</div>'+
+      '<div class="ch-status '+(statusMap[c.status]||'pending')+'">'+c.status+'</div>';
+    if(!isMine && c.status==='pending'){
+      const btn=document.createElement('button');
+      btn.className='btn btn-cyan btn-sm';
+      btn.textContent='Accepter';
+      btn.addEventListener('click',function(){ startDuel(c); });
+      card.appendChild(btn);
+    }
+    list.appendChild(card);
+  });
+}
+
+// ============================================================
+// MODULE
+// ============================================================
+function openModule(id){
+  currentModule=MODULES.find(m=>m.id===id);
+  if(!currentModule) return;
+  currentStep=0;
+  if(!currentUser.modules[id]) currentUser.modules[id]={progress:0,completed:false,quizAnswers:[]};
+  renderModuleView();
+  showView('view-module');
+}
+
+function renderModuleView(){
+  const m=currentModule;
+  const modData=currentUser.modules[m.id]||{};
+  const totalSteps=m.content.length+1+m.quiz.length+1;
+  const prog=Math.round((currentStep/totalSteps)*100);
+  modData.progress=prog;
+  currentUser.modules[m.id]=modData;
+  saveCurrentUser();
+  const iconMap={i:'background:linear-gradient(135deg,#4338CA,#7C3AED)',c:'background:linear-gradient(135deg,#06B6D4,#6366F1)',v:'background:linear-gradient(135deg,#C026D3,#7C3AED)',g:'background:linear-gradient(135deg,#059669,#06B6D4)'};
+  const iconStyle=iconMap[m.color]||iconMap.i;
+  document.getElementById('mod-header').innerHTML=
+    '<div style="'+iconStyle+';position:absolute;inset:0;opacity:0.08"></div>'+
+    '<div style="position:relative;max-width:860px;margin:0 auto">'+
+      '<div class="mh-back" id="btn-back-dash">← Retour au parcours</div>'+
+      '<div class="mh-inner">'+
+        '<div class="mh-icon" style="'+iconStyle+'">'+m.icon+'</div>'+
+        '<div class="mh-info">'+
+          '<div class="mh-num">// MODULE '+m.id+' / 10</div>'+
+          '<div class="mh-title">'+m.title+'</div>'+
+          '<div class="mh-meta">'+
+            '<div class="mh-meta-item">⏱ '+m.duration+'</div>'+
+            '<div class="mh-meta-item">⚡ +'+m.xp+' XP</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="mh-progress" style="margin-top:20px;max-width:500px">'+
+        '<div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:8px">'+
+          '<span style="color:rgba(255,255,255,0.6)">Avancement</span>'+
+          '<span style="color:var(--cyan-light);font-family:JetBrains Mono,monospace;font-weight:700">'+prog+'%</span>'+
+        '</div>'+
+        '<div class="mh-prog-track"><div class="mh-prog-fill" id="mod-prog-fill" style="width:'+prog+'%"></div></div>'+
+      '</div>'+
+    '</div>';
+  document.getElementById('btn-back-dash').addEventListener('click',function(){
+    renderDashboard();
+    showView('view-dashboard');
+    showSection('modules');
+  });
+  renderModuleStep();
+}
+
+function renderModuleStep(){
+  const m=currentModule;
+  const body=document.getElementById('mod-body');
+  body.innerHTML='';
+  const totalContent=m.content.length;
+  const isIntro=currentStep===0;
+  const isVideoStep=currentStep>0 && currentStep<=totalContent;
+  const isQuizPhase=currentStep===totalContent+1;
+  const isQuizQ=currentStep>totalContent+1 && currentStep<=totalContent+1+m.quiz.length;
+  const isComplete=currentStep>totalContent+1+m.quiz.length;
+
+  if(isIntro){
+    body.innerHTML='<div class="content-block" style="text-align:center;padding:40px">'+
+      '<div style="font-size:3rem;margin-bottom:16px">'+m.icon+'</div>'+
+      '<h2 style="font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:12px">'+m.title+'</h2>'+
+      '<p style="color:var(--text3);font-size:0.92rem;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6">'+m.desc+'</p>'+
+      '<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">'+
+        '<div class="tech-badge tech-badge-indigo">⏱ '+m.duration+'</div>'+
+        '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP</div>'+
+        '<div class="tech-badge tech-badge-violet">📚 '+m.content.length+' parties + quiz</div>'+
+      '</div>'+
+      '<button class="btn btn-primary btn-lg" id="btn-start-mod">Commencer le module →</button>'+
+    '</div>';
+    document.getElementById('btn-start-mod').addEventListener('click',function(){ currentStep++; renderModuleView(); });
+    return;
+  }
+
+  if(isVideoStep){
+    const contentIdx=currentStep-1;
+    if(contentIdx===0){
+      const vp=document.createElement('div');
+      vp.className='video-placeholder';
+      vp.innerHTML='<div class="vp-inner"><div class="vp-play">▶</div><div class="vp-title">'+m.video.title+'</div><div class="vp-meta">'+m.video.dur+' · Cliquer pour regarder sur YouTube</div></div>';
+      vp.addEventListener('click',function(){ window.open(m.video.url,'_blank'); });
+      body.appendChild(vp);
+    }
+    const c=m.content[contentIdx];
+    if(c){
+      const block=document.createElement('div');
+      block.className='content-block highlight';
+      if(c.type==='text'){
+        block.innerHTML='<div class="cb-heading">'+c.heading+'</div><div class="cb-text">'+c.text+'</div>';
+      } else if(c.type==='grid'){
+        let cards='<div class="info-grid">';
+        c.items.forEach(it=>{ cards+='<div class="info-card '+it.cls+'"><div class="ic-label">'+it.label+'</div><div class="ic-value">'+it.value+'</div></div>'; });
+        cards+='</div>';
+        block.innerHTML='<div class="cb-heading">'+c.heading+'</div>'+cards;
+      }
+      body.appendChild(block);
+    }
+    const nav=document.createElement('div');
+    nav.className='module-nav';
+    const prevBtn=document.createElement('button');
+    prevBtn.className='btn btn-ghost'; prevBtn.textContent='← Précédent';
+    prevBtn.addEventListener('click',function(){ currentStep--; renderModuleView(); });
+    const nextBtn=document.createElement('button');
+    nextBtn.className='btn btn-primary';
+    const isLastContent=contentIdx===totalContent-1;
+    nextBtn.textContent=isLastContent?'Passer au quiz ✓':'Suivant →';
+    nextBtn.addEventListener('click',function(){ currentStep++; renderModuleView(); });
+    nav.appendChild(prevBtn); nav.appendChild(nextBtn);
+    body.appendChild(nav);
+    return;
+  }
+
+  if(isQuizPhase){
+    body.innerHTML='<div class="content-block" style="text-align:center;padding:40px">'+
+      '<div style="font-size:2.5rem;margin-bottom:16px">🎯</div>'+
+      '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">Quiz du module</h3>'+
+      '<p style="color:var(--text3);font-size:0.88rem;margin-bottom:24px">'+m.quiz.length+' questions · Chaque bonne réponse compte !</p>'+
+      '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer le quiz →</button>'+
+    '</div>';
+    document.getElementById('btn-start-quiz').addEventListener('click',function(){ currentStep++; renderModuleView(); });
+    return;
+  }
+
+  if(isQuizQ){
+    const qIdx=currentStep-totalContent-2;
+    const q=m.quiz[qIdx];
+    const answered=(currentUser.modules[m.id].quizAnswers||[])[qIdx];
+    const block=document.createElement('div');
+    block.className='content-block';
+    block.innerHTML='<div style="margin-bottom:8px" class="tech-badge tech-badge-indigo">Question '+(qIdx+1)+' / '+m.quiz.length+'</div>'+
+      '<div class="quiz-q" style="margin-top:14px">'+q.q+'</div>'+
+      '<div class="quiz-opts" id="quiz-opts-wrap"></div>'+
+      '<div class="quiz-explain" id="quiz-explain" style="display:none">'+q.exp+'</div>';
+    body.appendChild(block);
+    const optsWrap=document.getElementById('quiz-opts-wrap');
+    q.opts.forEach(function(opt,oi){
+      const btn=document.createElement('div');
+      btn.className='quiz-opt';
+      const letter=String.fromCharCode(65+oi);
+      btn.innerHTML='<div class="quiz-opt-letter">'+letter+'</div><span>'+opt+'</span>';
+      if(answered!==undefined){
+        if(oi===q.ans) btn.classList.add('correct');
+        else if(oi===answered) btn.classList.add('wrong');
+      } else {
+        btn.addEventListener('click',function(){
+          currentUser.modules[m.id].quizAnswers=currentUser.modules[m.id].quizAnswers||[];
+          currentUser.modules[m.id].quizAnswers[qIdx]=oi;
+          document.getElementById('quiz-explain').style.display='block';
+          optsWrap.querySelectorAll('.quiz-opt').forEach(function(b,bi){
+            if(bi===q.ans) b.classList.add('correct');
+            else if(bi===oi && oi!==q.ans) b.classList.add('wrong');
+          });
+          if(oi===q.ans) showNotif('Bonne réponse ! +10 XP','success');
+          else showNotif('Mauvaise réponse. Consultez l\'explication.','warn');
+          if(oi===q.ans) addXP(10);
+          saveCurrentUser();
+        });
+      }
+      optsWrap.appendChild(btn);
+    });
+    const nav=document.createElement('div'); nav.className='module-nav';
+    const prevBtn=document.createElement('button');
+    prevBtn.className='btn btn-ghost'; prevBtn.textContent='← Précédent';
+    prevBtn.addEventListener('click',function(){ currentStep--; renderModuleView(); });
+    const nextBtn=document.createElement('button');
+    nextBtn.className='btn btn-primary';
+    const isLast=qIdx===m.quiz.length-1;
+    nextBtn.textContent=isLast?'Terminer le module 🎉':'Question suivante →';
+    nextBtn.addEventListener('click',function(){
+      if(answered===undefined && !currentUser.modules[m.id].quizAnswers[qIdx] && currentUser.modules[m.id].quizAnswers[qIdx]!==0){
+        showNotif('Répondez à la question avant de continuer','warn'); return;
+      }
+      currentStep++; renderModuleView();
+    });
+    nav.appendChild(prevBtn); nav.appendChild(nextBtn); body.appendChild(nav);
+    return;
+  }
+
+  if(isComplete){
+    const modData=currentUser.modules[m.id];
+    if(!modData.completed){
+      modData.completed=true;
+      addXP(m.xp);
+      awardBadge('m'+m.id);
+      const answers=modData.quizAnswers||[];
+      let perfect=true;
+      m.quiz.forEach(function(q,i){ if(answers[i]!==q.ans) perfect=false; });
+      if(perfect){
+        currentUser.perfectQuizzes=(currentUser.perfectQuizzes||0)+1;
+        if(currentUser.perfectQuizzes>=5) awardBadge('ace');
+      }
+      const allDone=MODULES.every(function(mod){ return currentUser.modules[mod.id]&&currentUser.modules[mod.id].completed; });
+      if(allDone) awardBadge('master');
+      saveCurrentUser();
+    }
+    const score=(modData.quizAnswers||[]).filter(function(a,i){ return a===m.quiz[i].ans; }).length;
+    body.innerHTML='<div class="content-block" style="text-align:center;padding:48px">'+
+      '<div style="font-size:3rem;margin-bottom:16px">🎉</div>'+
+      '<h3 style="font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:8px">Module terminé !</h3>'+
+      '<p style="color:var(--text3);margin-bottom:24px;font-size:0.9rem">Score quiz : '+score+' / '+m.quiz.length+'</p>'+
+      '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">'+
+        '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP gagné</div>'+
+        '<div class="tech-badge tech-badge-violet">🏅 Badge obtenu</div>'+
+      '</div>'+
+      '<button class="btn btn-primary btn-lg" id="btn-back-after">Retour au parcours</button>'+
+    '</div>';
+    document.getElementById('btn-back-after').addEventListener('click',function(){
+      renderDashboard(); showView('view-dashboard'); showSection('modules');
+    });
+  }
+}
+
+// ============================================================
+// DÉFIS
+// ============================================================
+function populateChallengeModal(){
+  const sel=document.getElementById('ch-module');
+  if(!sel) return;
+  sel.innerHTML='';
+  MODULES.forEach(function(m){
+    const opt=document.createElement('option');
+    opt.value=m.id; opt.textContent=m.id+'. '+m.title;
+    sel.appendChild(opt);
+  });
+}
+
+function sendChallenge(){
+  const opp=document.getElementById('ch-opponent').value.trim();
+  const modId=parseInt(document.getElementById('ch-module').value);
+  if(!opp){ showNotif('Entrez le prénom de l\'adversaire','error'); return; }
+  const ch={id:Date.now(),from:currentUser.email,to:opp,moduleId:modId,status:'pending',created:new Date().toISOString()};
+  const all=DB.challenges();
+  all.push(ch); DB.saveChallenges(all);
+  awardBadge('challenger');
+  document.getElementById('modal-challenge').classList.remove('open');
+  showNotif('Défi envoyé à '+opp+' !','success');
+}
+
+function startDuel(challenge){
+  const m=MODULES.find(function(mod){ return mod.id===challenge.moduleId; });
+  if(!m) return;
+  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,questions:m.quiz.slice(0,5)};
+  document.getElementById('duel-me-av').textContent=(currentUser.firstName||'?')[0];
+  document.getElementById('duel-me-name').textContent=currentUser.firstName;
+  document.getElementById('duel-opp-av').textContent=(challenge.from||'?')[0].toUpperCase();
+  document.getElementById('duel-opp-name').textContent=challenge.from;
+  document.getElementById('duel-result').style.display='none';
+  document.getElementById('modal-duel').classList.add('open');
+  renderDuelQuestion();
+}
+
+function renderDuelQuestion(){
+  const ds=duelState;
+  if(ds.qIdx>=ds.questions.length){ endDuel(); return; }
+  const q=ds.questions[ds.qIdx];
+  const wrap=document.getElementById('duel-q-wrap');
+  wrap.innerHTML='<div style="padding:16px 0"><div class="tech-badge tech-badge-indigo" style="margin-bottom:12px">Question '+(ds.qIdx+1)+' / '+ds.questions.length+'</div><div style="font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.4">'+q.q+'</div><div id="duel-opts"></div></div>';
+  const optsDiv=document.getElementById('duel-opts');
+  q.opts.forEach(function(opt,oi){
+    const btn=document.createElement('div');
+    btn.className='quiz-opt';
+    btn.innerHTML='<div class="quiz-opt-letter">'+String.fromCharCode(65+oi)+'</div><span>'+opt+'</span>';
+    btn.addEventListener('click',function(){
+      optsDiv.querySelectorAll('.quiz-opt').forEach(function(b,bi){
+        if(bi===q.ans) b.classList.add('correct');
+        else if(bi===oi && oi!==q.ans) b.classList.add('wrong');
+      });
+      if(oi===q.ans) ds.myScore++;
+      const oppCorrect=Math.random()>0.45;
+      if(oppCorrect) ds.oppScore++;
+      document.getElementById('duel-me-score').textContent=ds.myScore;
+      document.getElementById('duel-opp-score').textContent=ds.oppScore;
+      optsDiv.querySelectorAll('.quiz-opt').forEach(function(b){ b.style.pointerEvents='none'; });
+      setTimeout(function(){ ds.qIdx++; renderDuelQuestion(); },1200);
+    });
+    optsDiv.appendChild(btn);
+  });
+}
+
+function endDuel(){
+  const ds=duelState;
+  const won=ds.myScore>=ds.oppScore;
+  const all=DB.challenges();
+  const idx=all.findIndex(function(c){ return c.id===ds.challenge.id; });
+  if(idx>=0){ all[idx].status=won?'won':'lost'; DB.saveChallenges(all); }
+  if(won){ addXP(80); awardBadge('challenger'); }
+  document.getElementById('duel-q-wrap').innerHTML='';
+  document.getElementById('duel-result').style.display='block';
+  document.getElementById('duel-result-icon').textContent=won?'🏆':'😤';
+  document.getElementById('duel-result-text').textContent=won?'Victoire !':'Défaite';
+  document.getElementById('duel-result-sub').textContent=ds.myScore+' – '+ds.oppScore+' · '+(won?'+80 XP gagné':'Retenter pour progresser !');
+}
+
+// ============================================================
+// ADMIN
+// ============================================================
+function renderAdmin(){
+  const wrap=document.getElementById('admin-wrap');
+  if(!wrap) return;
+  const users=DB.objects||DB.users();
+  const allU=Object.values(DB.users());
+  const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
+  const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
+  wrap.innerHTML=
+    '<div style="margin-bottom:28px">'+
+      '<div class="section-title">Tableau de bord administrateur</div>'+
+      '<div style="font-size:0.85rem;color:var(--text3);margin-top:4px">Vue globale de la plateforme</div>'+
+    '</div>'+
+    '<div class="admin-kpis">'+
+      '<div class="admin-kpi"><div class="ak-val">'+allU.length+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
+      '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
+      '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
+      '<div class="admin-kpi green"><div class="ak-val">10</div><div class="ak-lbl">Modules actifs</div></div>'+
+    '</div>'+
+    '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
+    '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
+      '<table class="admin-table">'+
+        '<thead><tr>'+
+          '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th>'+
+        '</tr></thead>'+
+        '<tbody>'+
+          (allU.length===0?'<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
+          allU.map(function(u){
+            const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
+            return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3)">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td></tr>';
+          }).join(''))+
+        '</tbody>'+
+      '</table>'+
+    '</div>';
+}
+
+// ============================================================
+// EVENTS
+// ============================================================
+function init(){
+  // Login tabs
+  document.getElementById('tab-login').addEventListener('click',function(){
+    document.getElementById('tab-login').classList.add('active');
+    document.getElementById('tab-register').classList.remove('active');
+    document.getElementById('login-form').style.display='block';
+    document.getElementById('register-form').style.display='none';
+  });
+  document.getElementById('tab-register').addEventListener('click',function(){
+    document.getElementById('tab-register').classList.add('active');
+    document.getElementById('tab-login').classList.remove('active');
+    document.getElementById('register-form').style.display='block';
+    document.getElementById('login-form').style.display='none';
+  });
+  document.getElementById('btn-login').addEventListener('click',function(){
+    login(document.getElementById('li-email').value.trim(), document.getElementById('li-pass').value);
+  });
+  document.getElementById('btn-register').addEventListener('click',function(){
+    register(
+      document.getElementById('rg-first').value.trim(),
+      document.getElementById('rg-last').value.trim(),
+      document.getElementById('rg-email').value.trim(),
+      document.getElementById('rg-pass').value
+    );
+  });
+
+  // Nav
+  document.getElementById('nav-dashboard').addEventListener('click',function(){ showSection('modules'); });
+  document.getElementById('nav-badges-btn').addEventListener('click',function(){ showSection('badges'); });
+  document.getElementById('nav-defis-btn').addEventListener('click',function(){ showSection('defis'); });
+
+  // Logout admin
+  document.getElementById('btn-admin-logout').addEventListener('click',function(){
+    currentUser=null;
+    showView('view-login');
+  });
+
+  // Nav avatar (logout)
+  document.getElementById('nav-avatar').addEventListener('click',function(){
+    if(confirm('Se déconnecter ?')){ currentUser=null; showView('view-login'); }
+  });
+
+  // Challenge modal
+  document.getElementById('btn-challenge-open').addEventListener('click',function(){
+    document.getElementById('modal-challenge').classList.add('open');
+  });
+  document.getElementById('btn-challenge-open2').addEventListener('click',function(){
+    document.getElementById('modal-challenge').classList.add('open');
+  });
+  document.getElementById('btn-close-ch').addEventListener('click',function(){
+    document.getElementById('modal-challenge').classList.remove('open');
+  });
+  document.getElementById('btn-send-ch').addEventListener('click',sendChallenge);
+
+  // Duel close
+  document.getElementById('btn-duel-close').addEventListener('click',function(){
+    document.getElementById('modal-duel').classList.remove('open');
+    renderDashboard();
+  });
+
+  // Auto login
+  const savedEmail=localStorage.getItem('ia_current');
+  if(savedEmail){
+    const users=DB.users();
+    if(users[savedEmail]){ currentUser=users[savedEmail]; checkStreak(); launchApp(); return; }
+  }
+  showView('view-login');
+}
+
+// Sauvegarder l'email courant
+const origSave=saveCurrentUser;
+saveCurrentUser=function(){
+  origSave();
+  if(currentUser&&!currentUser.isAdmin) localStorage.setItem('ia_current',currentUser.email);
+};
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
