@@ -4,67 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Charles Berthou</title>
-  <meta name="description" content="Articles, GPTs et modules e-learning autour de la banque, de l’IA et des usages." />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JH2SZFYEHR');
-  </script>
-
+  <meta name="description" content="Articles, GPTs, modules e-learning et créations tech autour de la banque, de l’IA et des usages." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: Inter, Arial, sans-serif;
       background: #0a0a0a;
-      color: #ffffff;
+      color: #fff;
       line-height: 1.6;
     }
-
     a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(10, 10, 10, 0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
-
     header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 24px;
     }
-
     nav {
       display: flex;
       gap: 24px;
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.75);
       font-size: 14px;
     }
-
-    nav a:hover { color: #ffffff; }
+    nav a:hover { color: #fff; }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 42px;
-      padding: 78px 0 50px;
-      align-items: start;
+      padding: 72px 0 48px;
     }
 
     .badge, .pill {
@@ -73,13 +52,11 @@
       background: rgba(255,255,255,.04);
       border-radius: 999px;
     }
-
     .badge {
       padding: 6px 12px;
       font-size: 12px;
       color: rgba(255,255,255,.72);
     }
-
     .pill {
       padding: 6px 12px;
       font-size: 13px;
@@ -89,16 +66,14 @@
 
     h1 {
       font-size: 58px;
-      line-height: 1.03;
+      line-height: 1.05;
       margin-top: 18px;
-      max-width: 740px;
-      letter-spacing: -0.02em;
+      max-width: 700px;
     }
-
     .lead {
       margin-top: 22px;
-      max-width: 760px;
-      color: rgba(255,255,255,.68);
+      max-width: 720px;
+      color: rgba(255,255,255,.72);
       font-size: 18px;
     }
 
@@ -108,7 +83,6 @@
       margin-top: 28px;
       flex-wrap: wrap;
     }
-
     .btn {
       padding: 14px 20px;
       border-radius: 18px;
@@ -117,20 +91,15 @@
       display: inline-block;
       transition: .2s ease;
     }
-
     .btn-primary {
-      background: #ffffff;
-      color: #111111;
+      background: #fff;
+      color: #111;
     }
-
     .btn-primary:hover { opacity: .9; }
-
     .btn-secondary {
       border: 1px solid rgba(255,255,255,.14);
-      color: #ffffff;
-      background: transparent;
+      color: #fff;
     }
-
     .btn-secondary:hover {
       background: rgba(255,255,255,.05);
     }
@@ -143,17 +112,15 @@
 
     .panel {
       padding: 24px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
     }
-
     .panel-block {
-      background: rgba(255,255,255,.02);
+      background: rgba(0,0,0,.2);
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 20px;
       padding: 18px;
       margin-bottom: 14px;
     }
-
     .panel-block:last-child { margin-bottom: 0; }
 
     .muted {
@@ -164,63 +131,85 @@
     section { padding: 34px 0; }
 
     .section-title { margin-bottom: 20px; }
-
     .section-title p {
       color: rgba(255,255,255,.5);
       font-size: 14px;
     }
-
     .section-title h2 {
       font-size: 34px;
       margin-top: 6px;
     }
 
-    .grid-4, .grid-2 {
+    .grid-4, .grid-3, .grid-2 {
       display: grid;
       gap: 18px;
     }
-
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
     .card, .feature-card {
       padding: 24px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
-
+    .card.card-more {
+      padding: 20px;
+      background: rgba(255,255,255,.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .card.card-more h3 {
+      font-size: 20px;
+    }
+    .card.card-more p {
+      font-size: 13px;
+    }
     .card:hover, .feature-card:hover {
       transform: translateY(-4px);
       background: rgba(255,255,255,.05);
       border-color: rgba(255,255,255,.14);
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
     }
-
     .card h3, .feature-card h3 {
       font-size: 22px;
       line-height: 1.25;
     }
-
     .card p, .feature-card p {
       margin-top: 10px;
       color: rgba(255,255,255,.66);
       font-size: 14px;
     }
-
     .card .cta, .feature-card .cta {
       margin-top: 18px;
-      color: rgba(255,255,255,.92);
+      color: rgba(255,255,255,.9);
       font-size: 14px;
       font-weight: 600;
     }
 
     .section-box {
       padding: 30px;
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.7);
     }
 
     .contact-box {
       padding: 32px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    }
+
+    .link-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .text-link {
+      display: inline-block;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      padding-bottom: 2px;
+    }
+    .text-link:hover {
+      border-color: rgba(255,255,255,.5);
     }
 
     footer {
@@ -230,26 +219,39 @@
     }
 
     @media (max-width: 980px) {
-      .hero, .grid-4, .grid-2 {
+      .hero, .grid-4, .grid-3, .grid-2 {
         grid-template-columns: 1fr;
       }
-
-      nav { display: none; }
-
-      h1 { font-size: 42px; }
-
-      .lead { font-size: 17px; }
+      nav {
+        display: none;
+      }
+      h1 {
+        font-size: 42px;
+      }
+      .lead {
+        font-size: 17px;
+      }
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JH2SZFYEHR');
+  </script>
 </head>
 <body>
   <header>
     <div class="container">
       <a href="#top"><strong>charlesberthou.fr</strong></a>
       <nav>
-        <a href="/articles/">Articles</a>
+        <a href="#articles">Articles</a>
         <a href="#gpts">GPTs</a>
         <a href="#elearning">E-learning</a>
+        <a href="#projets">Créations tech</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -258,14 +260,14 @@
   <main id="top" class="container">
     <section class="hero">
       <div>
-        <div class="badge">Articles • GPTs • E-learning</div>
+        <div class="badge">Articles • GPTs • E-learning • Créations tech</div>
         <h1>J’écris, je conçois, je publie.</h1>
         <p class="lead">
-          Articles, GPTs et modules e-learning autour de la banque, de l’IA et des usages.
+          Articles, GPTs, modules e-learning et créations tech autour de la banque, de l’IA et des usages.
           Un espace personnel pour partager des contenus utiles, concrets et directement exploitables.
         </p>
         <div class="actions">
-          <a class="btn btn-primary" href="/articles/">Voir mes articles</a>
+          <a class="btn btn-primary" href="#projets">Voir mes projets</a>
           <a class="btn btn-secondary" href="#elearning">Explorer mes modules</a>
         </div>
       </div>
@@ -274,7 +276,7 @@
         <div class="panel-block">
           <div class="muted">Positionnement</div>
           <div style="margin-top:8px;font-size:20px;font-weight:600;">
-            Contenus, outils et pédagogie autour de la banque, de la tech et de l’IA
+            Contenus, outils et projets autour de la banque, de la tech et de l’IA
           </div>
         </div>
 
@@ -284,6 +286,7 @@
             <span class="pill">Articles</span>
             <span class="pill">GPTs</span>
             <span class="pill">E-learning</span>
+            <span class="pill">Projets tech</span>
             <span class="pill">Ressources</span>
             <span class="pill">Veille</span>
           </div>
@@ -292,7 +295,7 @@
         <div class="panel-block">
           <div class="muted">Ligne éditoriale</div>
           <div style="margin-top:8px;color:rgba(255,255,255,.72);font-size:14px;">
-            Des contenus utiles, lisibles et structurés, avec une logique simple : rendre les sujets plus clairs et plus actionnables.
+            Des contenus utiles, lisibles et concrets, avec une logique simple : rendre les sujets plus clairs et plus actionnables.
           </div>
         </div>
       </div>
@@ -305,9 +308,9 @@
       </div>
 
       <div class="grid-4">
-        <a class="feature-card" href="/articles/humanite-lumiere/">
+        <a class="feature-card" href="https://www.linkedin.com/posts/charlesberthou_ia-en-entreprise-h%C3%A2tez-vous-lentement-activity-7439249178200817664-hn5z?utm_source=share&utm_medium=member_ios&rcm=ACoAADE_CdsBsIE1qetLGNy5EI3kH0ieAbpQd8k" target="_blank" rel="noopener noreferrer">
           <h3>Article</h3>
-          <p>L’humanité a toujours tremblé devant sa propre lumière. Un texte sur l’IA, la vitesse du basculement et les choix des organisations.</p>
+          <p>IA en entreprise : hâtez-vous lentement. Un angle concret sur l’adoption, les usages et le rythme juste.</p>
           <div class="cta">Lire l’article</div>
         </a>
 
@@ -337,16 +340,32 @@
         <h2>Décryptages et prises de recul</h2>
       </div>
 
-      <div class="grid-2">
-        <a class="card" href="/articles/humanite-lumiere/">
-          <div class="badge">Article</div>
-          <h3 style="margin-top:14px;">L’humanité a toujours tremblé devant sa propre lumière</h3>
-          <p>Un texte sur l’intelligence artificielle comme rupture historique, la vitesse du basculement et le rôle décisif des organisations.</p>
+      <div class="grid-4">
+        <a class="card" href="/articles/iactualites-mars-2026/">
+          <div class="badge">Nouvel article</div>
+          <h3 style="margin-top:14px;">IA’ctualités - Ce que je retiens de Mars 2026</h3>
+          <p>Un point de synthèse sur les signaux marquants du mois : emploi, santé, énergie, gouvernance, capital, modèles et paiements.</p>
           <div class="cta">Lire</div>
         </a>
 
-        <a class="section-box" href="/articles/">
-          Voir tous les articles publiés et à venir dans une page dédiée.
+        <a class="card" href="/articles/humanite-lumi/">
+          <div class="badge">Article</div>
+          <h3 style="margin-top:14px;">L’humanité a toujours tremblé devant sa propre lumière</h3>
+          <p>Une mise en perspective du rapport ancien entre progrès, crainte collective et transformations technologiques.</p>
+          <div class="cta">Lire</div>
+        </a>
+
+        <a class="card" href="https://www.linkedin.com/posts/charlesberthou_ia-en-entreprise-h%C3%A2tez-vous-lentement-activity-7439249178200817664-hn5z?utm_source=share&utm_medium=member_ios&rcm=ACoAADE_CdsBsIE1qetLGNy5EI3kH0ieAbpQd8k" target="_blank" rel="noopener noreferrer">
+          <div class="badge">Article LinkedIn</div>
+          <h3 style="margin-top:14px;">IA en entreprise : hâtez-vous lentement</h3>
+          <p>Une lecture concrète des conditions réelles d’adoption de l’IA dans les organisations.</p>
+          <div class="cta">Lire</div>
+        </a>
+
+        <a class="card card-more" href="/articles/">
+          <div class="badge">Tous les articles</div>
+          <h3 style="margin-top:14px;">Voir plus →</h3>
+          <p>Accéder à la page Articles pour consulter l’ensemble des publications.</p>
         </a>
       </div>
     </section>
@@ -394,15 +413,46 @@
       </div>
     </section>
 
+    <section id="projets">
+      <div class="section-title">
+        <p>Créations tech</p>
+        <h2>Projets et réalisations</h2>
+      </div>
+
+      <div class="grid-3">
+        <a class="card" href="https://charlesberthou.fr/wero/" target="_blank" rel="noopener noreferrer">
+          <div class="badge">E-learning</div>
+          <h3 style="margin-top:14px;">Module e-learning Wero</h3>
+          <p>Une réalisation concrète publiée en ligne, pensée pour transmettre un sujet technique de façon claire et accessible.</p>
+          <div class="cta">Ouvrir</div>
+        </a>
+
+        <a class="card" href="https://chatgpt.com/g/g-69bfb163f2a0819182fc49080af5a099-anti-fraude-ia" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GPT</div>
+          <h3 style="margin-top:14px;">Anti-Fraude IA</h3>
+          <p>Un outil spécialisé destiné à répondre à un besoin précis avec une logique simple, directe et utile.</p>
+          <div class="cta">Ouvrir</div>
+        </a>
+
+        <a class="card" href="https://chatgpt.com/g/g-693e945e5d38819196ff775ecd4a832c-renta-ia" target="_blank" rel="noopener noreferrer">
+          <div class="badge">GPT</div>
+          <h3 style="margin-top:14px;">Renta IA</h3>
+          <p>Un projet orienté analyse, structuration et aide à la décision sur les sujets de rentabilité.</p>
+          <div class="cta">Ouvrir</div>
+        </a>
+      </div>
+    </section>
+
     <section id="contact" style="padding-bottom:70px;">
       <div class="contact-box panel">
         <p class="muted">Contact</p>
         <h2 style="margin-top:6px;">Suivre mes publications ou me contacter</h2>
         <p style="margin-top:14px;max-width:700px;color:rgba(255,255,255,.72);">
-          Retrouvez mes contenus et mes publications, ou contactez-moi directement sur LinkedIn.
+          Retrouvez mes contenus, mes projets et mes publications sur LinkedIn, ou contactez-moi directement par e-mail.
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-secondary" href="mailto:contact@charlesberthou.fr">contact@charlesberthou.fr</a>
         </div>
       </div>
     </section>
