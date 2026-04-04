@@ -53,30 +53,27 @@
       position: relative;
     }
 
-    /* Grille de points en fond */
+    /* Grille de points — concentrée sur la moitié droite uniquement */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,.18) 1px, transparent 1px);
-      background-size: 26px 26px;
-      mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, black 0%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, black 0%, transparent 100%);
+      background-image: radial-gradient(circle, rgba(255,255,255,.22) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(to right, transparent 42%, rgba(0,0,0,.4) 56%, black 68%, black 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 42%, rgba(0,0,0,.4) 56%, black 68%, black 88%, transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Orbs via ::after (double radial-gradient, pas de div parasite) */
+    /* Glow derrière le panel droit */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse 55% 75% at 78% 40%, rgba(255,255,255,.11) 0%, transparent 65%),
-        radial-gradient(ellipse 35% 45% at 18% 85%, rgba(255,255,255,.07) 0%, transparent 65%);
+      background: radial-gradient(ellipse 50% 90% at 80% 50%, rgba(255,255,255,.08) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
-      animation: orb-float 14s ease-in-out infinite;
     }
 
     /* Le contenu reste au-dessus des pseudo-éléments */
