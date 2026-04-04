@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA en entreprise : hâtez-vous lentement | Charles Berthou</title>
+  <meta name="description" content="Article de Charles Berthou sur l’adoption de l’intelligence artificielle en entreprise, entre impatience, usages réels, encadrement et transformation des organisations." />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JH2SZFYEHR');
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      color: rgba(255,255,255,.72);
+      font-size: 14px;
+    }
+
+    nav a:hover { color: #ffffff; }
+
+    .article-shell { padding: 54px 0 80px; }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 820px);
+      justify-content: center;
+    }
+
+    .article-card, .meta-card {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: 28px;
+    }
+
+    .article-card {
+      padding: 34px 34px 40px;
+      box-shadow: 0 14px 34px rgba(0,0,0,.22);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+    }
+
+    .article-kicker { margin-bottom: 16px; }
+
+    .article-title {
+      font-size: 52px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      max-width: 760px;
+    }
+
+    .article-meta {
+      color: rgba(255,255,255,.52);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 34px;
+      flex-wrap: wrap;
+    }
+
+    .share-label {
+      font-size: 13px;
+      color: rgba(255,255,255,.52);
+      margin-right: 2px;
+    }
+
+    .share-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .share-btn:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .article-content {
+      color: rgba(255,255,255,.88);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .article-content p {
+      font-size: 21px;
+      line-height: 1.9;
+      margin-bottom: 22px;
+    }
+
+    .article-content h2 {
+      font-family: Inter, Arial, sans-serif;
+      font-size: 30px;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 44px 0 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .article-content strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .article-content em { font-style: italic; }
+
+    .article-content blockquote {
+      margin: 30px 0;
+      padding: 20px 22px;
+      border-left: 3px solid rgba(255,255,255,.34);
+      background: rgba(255,255,255,.04);
+      border-radius: 0 18px 18px 0;
+      color: rgba(255,255,255,.8);
+      font-size: 20px;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .article-content ol {
+      margin: 18px 0 24px 28px;
+    }
+
+    .article-content li {
+      font-size: 21px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .meta-card {
+      margin-top: 26px;
+      padding: 26px;
+    }
+
+    .meta-title {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .meta-card p {
+      color: rgba(255,255,255,.7);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 26px;
+      color: rgba(255,255,255,.84);
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      padding-bottom: 2px;
+    }
+
+    .back-link:hover { border-color: rgba(255,255,255,.45); }
+
+    footer {
+      padding: 26px 0 50px;
+      color: rgba(255,255,255,.45);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .article-shell { padding: 36px 0 64px; }
+      .article-card { padding: 24px 22px 30px; border-radius: 24px; }
+      .meta-card { padding: 22px; border-radius: 24px; }
+      .article-title { font-size: 38px; }
+      .article-content p,
+      .article-content blockquote,
+      .article-content li { font-size: 19px; }
+      .article-content h2 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/"><strong>charlesberthou.fr</strong></a>
+      <nav>
+        <a href="/articles/">Articles</a>
+        <a href="/#gpts">GPTs</a>
+        <a href="/#elearning">E-learning</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container article-shell">
+    <div class="article-layout">
+      <article class="article-card">
+        <div class="article-kicker">
+          <span class="badge">Article</span>
+        </div>
+
+        <h1 class="article-title">IA en entreprise : hâtez-vous lentement</h1>
+        <p class="article-meta">Par Charles Berthou • Publié le 4 avril 2026</p>
+
+        <div class="share-row">
+          <span class="share-label">Partager</span>
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://charlesberthou.fr/articles/ia-entreprise" target="_blank" rel="noopener noreferrer" aria-label="Partager sur LinkedIn">in</a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https://charlesberthou.fr/articles/ia-entreprise&text=IA%20en%20entreprise%20%3A%20h%C3%A2tez-vous%20lentement" target="_blank" rel="noopener noreferrer" aria-label="Partager sur X">X</a>
+          <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesberthou.fr/articles/ia-entreprise" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">f</a>
+          <a class="share-btn" href="mailto:?subject=IA%20en%20entreprise%20%3A%20h%C3%A2tez-vous%20lentement&body=Je%20te%20partage%20cet%20article%20%3A%20https://charlesberthou.fr/articles/ia-entreprise" aria-label="Partager par mail">✉</a>
+        </div>
+
+        <div class="article-content">
+          <p><strong>Entre l’enthousiasme des promesses et l’exigence du réel :</strong> ma lecture à l’issue des rencontres au West Data Festival et de l'actualité.</p>
+
+          <p>Sur le terrain, entre impatience et attentisme.</p>
+
+          <p>Impatience de collègues qui voient, semaine après semaine, les grands laboratoires publier de nouvelles fonctionnalités et repousser les usages. Attentisme de ceux qui n’attendent plus des annonces, mais des preuves : des usages concrets et une vraie valeur ajoutée au quotidien. Cet écart est légitime, les usages progressent plus vite que la capacité collective à les organiser.</p>
+
+          <p>Selon Le Monde, près de la moitié des Français utilisent déjà l’IA générative : 85 % chez les 18-24 ans, 73 % chez les 25-39 ans, 48 % chez les 40-59 ans. Côté pro, l’Apec relève que 35 % des cadres y recourent au moins une fois par semaine, que 72 % souhaitent être formés, et que seuls 24 % l’ont déjà été.</p>
+
+          <p>Derrière ces chiffres, trois réalités :</p>
+
+          <h2>1. Des rythmes d’appropriation différents</h2>
+
+          <p>La première tient aux écarts d’appropriation. Tous n’avancent pas au même rythme. Certains expérimentent, d’autres observent, d’autres attendent des repères. L’IA bouscule les habitudes, parfois le rapport au travail, à l’expertise et à la valeur ajoutée individuelle. C’est bien pour cela qu’il faut remettre cette technologie à sa juste place : <strong>un outil au service de l’humain. Rien de plus.</strong></p>
+
+          <h2>2. Le Shadow AI progresse plus vite que les cadres</h2>
+
+          <p>La deuxième réalité est celle du Shadow AI. Microsoft emploie ce terme pour désigner l’usage d’outils sans validation, sans cadre et sans visibilité pour l’organisation. Les risques sont connus : exposition des données, difficultés de conformité, usages dispersés. Ce phénomène, bien connu des DSI, traduit de la curiosité ou un besoin métier ; il rappelle également qu’une innovation, aussi enthousiasmante soit-elle, est un véritable défi d’encadrement.</p>
+
+          <h2>3. La valeur n’est pas dans toutes les nouveautés</h2>
+
+          <p>La troisième réalité réside dans le choix. Oui, toutes les nouveautés n’ont pas vocation à entrer dans l’environnement de travail. Toutes ne produisent pas la même utilité. Il faut distinguer l’effet de démonstration du gain réel.</p>
+
+          <p>En pratique, la valeur se joue souvent sur des usages simples et répétés : rédiger un compte rendu, synthétiser un document, analyser plus vite des statistiques, faire ressortir un risque, retrouver une information dans une masse documentaire. Voilà ce qui change réellement le quotidien.</p>
+
+          <h2>Le temps de l’entreprise</h2>
+
+          <p>In fine, c’est ce qui donne sa légitimité au temps de l’entreprise. Il peut sembler plus lent que celui des annonces et des démonstrations : 1 heure sur la planète de Miller pour 7 années terrestres, comme dans Interstellar. Il répond pourtant à d’autres exigences : protection des données, sécurité, conformité, équité, continuité d’activité, qualité de service…</p>
+
+          <blockquote>« Science sans conscience n’est que ruine de l’âme », écrivait Rabelais.</blockquote>
+
+          <p>Le sens est là : faire de l’intelligence artificielle une technologie utile, ancrée dans le réel, au service du collectif et d’un progrès durable.</p>
+        </div>
+      </article>
+
+      <div class="meta-card">
+        <h2 class="meta-title">Références mentionnées</h2>
+        <p>West Data Festival, Le Monde, Apec, Microsoft, Interstellar, Rabelais.</p>
+        <a class="back-link" href="/articles/">← Retour aux articles</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="padding:0;">
+      © Charles Berthou
+    </div>
+  </footer>
+</body>
+</html>
