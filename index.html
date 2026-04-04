@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Charles Berthou</title>
   <meta name="description" content="Articles, GPTs et modules e-learning autour de la banque, de l’IA et des usages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -104,7 +107,7 @@
       background: rgba(255,255,255,.05);
     }
 
-    .panel, .card, .section-box, .feature-card {
+    .panel, .card, .section-box {
       border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       border-radius: 28px;
@@ -140,43 +143,38 @@
       margin-top: 6px;
     }
 
-    .grid-4, .grid-3, .grid-2 {
+    .grid-3, .grid-2 {
       display: grid;
       gap: 18px;
     }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
-    .card, .feature-card {
+    .card {
       padding: 24px;
       transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      min-height: 100%;
     }
     .card.card-more {
-      padding: 20px;
-      background: rgba(255,255,255,.02);
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    .card.card-more h3 { font-size: 20px; }
-    .card.card-more p { font-size: 13px; }
-
-    .card:hover, .feature-card:hover {
+    .card:hover {
       transform: translateY(-4px);
       background: rgba(255,255,255,.05);
       border-color: rgba(255,255,255,.14);
     }
-    .card h3, .feature-card h3 {
+    .card h3 {
       font-size: 22px;
       line-height: 1.25;
     }
-    .card p, .feature-card p {
+    .card p {
       margin-top: 10px;
       color: rgba(255,255,255,.66);
       font-size: 14px;
     }
-    .card .cta, .feature-card .cta {
+    .card .cta {
       margin-top: 18px;
       color: rgba(255,255,255,.9);
       font-size: 14px;
@@ -200,7 +198,7 @@
     }
 
     @media (max-width: 980px) {
-      .hero, .grid-4, .grid-3, .grid-2 {
+      .hero, .grid-3, .grid-2 {
         grid-template-columns: 1fr;
       }
       nav { display: none; }
@@ -273,71 +271,32 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-title">
-        <p>À la une</p>
-        <h2>Quelques contenus à découvrir</h2>
-      </div>
-
-      <div class="grid-4">
-        <a class="feature-card" href="/articles/iactualites-mars-2026/">
-          <h3>IA’ctualités</h3>
-          <p>Ce que je retiens de mars 2026 : emploi, santé, énergie, gouvernance, capital, modèles et paiements.</p>
-          <div class="cta">Lire l’article</div>
-        </a>
-
-        <a class="feature-card" href="/articles/humanite-lumiere/">
-          <h3>L’humanité</h3>
-          <p>Une réflexion sur le progrès, la peur collective et la bascule technologique à l’heure de l’IA.</p>
-          <div class="cta">Lire l’article</div>
-        </a>
-
-        <a class="feature-card" href="https://charlesberthou.fr/wero/" target="_blank" rel="noopener noreferrer">
-          <h3>Module Wero</h3>
-          <p>Un module e-learning pour comprendre Wero, le paiement mobile et les usages qui se structurent en France.</p>
-          <div class="cta">Accéder au module</div>
-        </a>
-
-        <a class="feature-card" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">
-          <h3>LinkedIn</h3>
-          <p>Retrouver mes publications, mes analyses et mes projets professionnels sur mon profil LinkedIn.</p>
-          <div class="cta">Voir le profil</div>
-        </a>
-      </div>
-    </section>
-
     <section id="articles">
       <div class="section-title">
         <p>Articles</p>
         <h2>Décryptages et prises de recul</h2>
       </div>
 
-      <div class="grid-4">
-        <a class="card" href="/articles/iactualites-mars-2026/">
-          <div class="badge">Nouvel article</div>
-          <h3 style="margin-top:14px;">IA’ctualités - Ce que je retiens de Mars 2026</h3>
-          <p>Un point de synthèse sur les signaux marquants du mois : emploi, santé, énergie, gouvernance, capital, modèles et paiements.</p>
-          <div class="cta">Lire</div>
-        </a>
-
-        <a class="card" href="/articles/humanite-lumiere/">
+      <div class="grid-3">
+        <a class="card" href="/humanite-lumiere/">
           <div class="badge">Article</div>
           <h3 style="margin-top:14px;">L’humanité a toujours tremblé devant sa propre lumière</h3>
-          <p>Une mise en perspective du rapport ancien entre progrès, crainte collective et transformations technologiques.</p>
+          <p>Une réflexion sur le progrès, la peur collective et la manière dont les sociétés réagissent face aux bascules technologiques.</p>
           <div class="cta">Lire</div>
         </a>
 
-        <a class="card" href="https://www.linkedin.com/posts/charlesberthou_ia-en-entreprise-h%C3%A2tez-vous-lentement-activity-7439249178200817664-hn5z?utm_source=share&utm_medium=member_ios&rcm=ACoAADE_CdsBsIE1qetLGNy5EI3kH0ieAbpQd8k" target="_blank" rel="noopener noreferrer">
-          <div class="badge">Article LinkedIn</div>
-          <h3 style="margin-top:14px;">IA en entreprise : hâtez-vous lentement</h3>
-          <p>Une lecture concrète des conditions réelles d’adoption de l’IA dans les organisations.</p>
+        <a class="card" href="/articles/ia-entreprise/">
+          <div class="badge">Article</div>
+          <h3 style="margin-top:14px;">IA en entreprise</h3>
+          <p>Une lecture concrète des conditions réelles d’adoption de l’IA dans les organisations, entre promesses, méthode et réalité terrain.</p>
           <div class="cta">Lire</div>
         </a>
 
         <a class="card card-more" href="/articles/">
           <div class="badge">Tous les articles</div>
           <h3 style="margin-top:14px;">Voir plus →</h3>
-          <p>Accéder à la page Articles pour consulter l’ensemble des publications.</p>
+          <p>Accéder à la page Articles pour retrouver l’ensemble des publications du site.</p>
+          <div class="cta">Ouvrir la page</div>
         </a>
       </div>
     </section>
