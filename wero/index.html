@@ -28,42 +28,34 @@
       line-height: 1.6;
     }
     a { color: inherit; text-decoration: none; }
-
-    .site-container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .site-container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
     header.site-header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(10, 10, 10, 0.92);
+      z-index: 20;
+      background: rgba(10, 10, 10, 0.9);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
-
     header.site-header .site-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 24px;
     }
-
     nav.site-nav {
       display: flex;
       gap: 24px;
       color: rgba(255,255,255,.75);
       font-size: 14px;
+      font-weight: 400;
     }
-
     nav.site-nav a:hover { color: #fff; }
 
     .page-hero {
-      padding: 54px 0 24px;
+      padding: 72px 0 24px;
     }
-
     .badge {
       display: inline-block;
       padding: 6px 12px;
@@ -73,14 +65,12 @@
       font-size: 12px;
       color: rgba(255,255,255,.72);
     }
-
     h1 {
-      font-size: 46px;
+      font-size: 52px;
       line-height: 1.05;
-      margin-top: 16px;
+      margin-top: 18px;
       max-width: 760px;
     }
-
     .lead {
       margin-top: 18px;
       max-width: 820px;
@@ -88,45 +78,15 @@
       font-size: 18px;
     }
 
-    .share-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 22px;
-    }
-
-    .share-label {
-      font-size: 14px;
-      color: rgba(255,255,255,.58);
-      margin-right: 4px;
-    }
-
-    .share-btn {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .share-btn:hover {
-      background: rgba(255,255,255,.08);
-    }
-
     .wero-shell {
       padding: 18px 0 70px;
     }
 
-    .panel, .module-card, .section-box {
+    .panel, .module-card, .card, .feature-card, .section-box {
       border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       border-radius: 28px;
     }
-
     .panel {
       padding: 26px;
       background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
@@ -138,7 +98,6 @@
       gap: 18px;
       margin-bottom: 22px;
     }
-
     .xp-banner {
       background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
       color: #fff;
@@ -146,21 +105,18 @@
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,.08);
     }
-
     .xp-label, .subtle-label {
       font-size: 12px;
       color: rgba(255,255,255,.58);
       text-transform: uppercase;
       letter-spacing: .4px;
     }
-
     .xp-value {
       font-size: 30px;
       font-weight: 700;
       line-height: 1.2;
       margin-top: 6px;
     }
-
     .xp-bar-wrap {
       width: 100%;
       height: 6px;
@@ -169,25 +125,21 @@
       margin-top: 12px;
       overflow: hidden;
     }
-
     .xp-bar-fill {
       height: 100%;
       background: #fff;
       border-radius: 999px;
       transition: width .4s ease;
     }
-
     .badges-panel {
       padding: 20px 22px;
     }
-
     .badges-grid {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 12px;
     }
-
     .badge-chip {
       display: inline-flex;
       align-items: center;
@@ -198,12 +150,10 @@
       font-weight: 600;
       border: 1px solid rgba(255,255,255,.08);
     }
-
     .badge-chip.earned {
       background: rgba(255,255,255,.09);
       color: #fff;
     }
-
     .badge-chip.locked {
       background: rgba(255,255,255,.02);
       color: rgba(255,255,255,.34);
@@ -216,18 +166,15 @@
       gap: 16px;
       margin-bottom: 18px;
     }
-
     .modules-title {
       font-size: 34px;
       line-height: 1.15;
     }
-
     .modules-subtitle {
       color: rgba(255,255,255,.58);
       font-size: 14px;
       margin-top: 6px;
     }
-
     .progress-pill {
       display: inline-block;
       padding: 8px 14px;
@@ -243,7 +190,6 @@
       display: grid;
       gap: 14px;
     }
-
     .module-card {
       padding: 20px 22px;
       cursor: pointer;
@@ -252,19 +198,16 @@
       align-items: center;
       gap: 16px;
     }
-
     .module-card:hover.available,
     .module-card:hover.completed {
       transform: translateY(-3px);
       background: rgba(255,255,255,.05);
       border-color: rgba(255,255,255,.16);
     }
-
     .module-card.locked {
       opacity: .42;
       cursor: default;
     }
-
     .module-num {
       width: 48px;
       height: 48px;
@@ -277,34 +220,16 @@
       font-weight: 700;
       border: 1px solid rgba(255,255,255,.10);
     }
-
     .module-num.available,
-    .module-num.completed {
-      background: #fff;
-      color: #111;
-    }
-
-    .module-num.locked {
-      background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.42);
-    }
-
-    .module-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .module-name {
-      font-size: 22px;
-      line-height: 1.25;
-    }
-
+    .module-num.completed { background: #fff; color: #111; }
+    .module-num.locked { background: rgba(255,255,255,.04); color: rgba(255,255,255,.42); }
+    .module-info { flex: 1; min-width: 0; }
+    .module-name { font-size: 22px; line-height: 1.25; }
     .module-desc, .score-chip {
       font-size: 14px;
       color: rgba(255,255,255,.62);
       margin-top: 4px;
     }
-
     .module-status {
       padding: 7px 12px;
       border-radius: 999px;
@@ -321,31 +246,26 @@
     .module-stage {
       margin-top: 20px;
     }
-
     .module-header-box {
       padding: 28px;
       margin-bottom: 16px;
     }
-
     .module-num-label {
       font-size: 12px;
       color: rgba(255,255,255,.5);
       text-transform: uppercase;
       letter-spacing: .5px;
     }
-
     .module-title {
       font-size: 34px;
       line-height: 1.15;
       margin-top: 8px;
     }
-
     .module-subtitle {
       font-size: 15px;
       color: rgba(255,255,255,.62);
       margin-top: 8px;
     }
-
     .section-nav-bar {
       display: flex;
       justify-content: space-between;
@@ -353,17 +273,11 @@
       padding: 14px 22px;
       margin-bottom: 16px;
     }
-
     .section-counter {
       font-size: 14px;
       color: rgba(255,255,255,.62);
     }
-
-    .section-dots {
-      display: flex;
-      gap: 7px;
-    }
-
+    .section-dots { display: flex; gap: 7px; }
     .section-dot {
       width: 9px;
       height: 9px;
@@ -372,33 +286,23 @@
       cursor: pointer;
       transition: .2s ease;
     }
-
-    .section-dot.active {
-      background: #fff;
-      transform: scale(1.25);
-    }
-
-    .section-dot.done {
-      background: rgba(255,255,255,.55);
-    }
+    .section-dot.active { background: #fff; transform: scale(1.25); }
+    .section-dot.done { background: rgba(255,255,255,.55); }
 
     .content-box {
       padding: 26px 28px;
     }
-
     .content-section-title {
       font-size: 22px;
       margin-bottom: 14px;
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
-
     .content-box p {
       font-size: 16px;
       color: rgba(255,255,255,.78);
       margin-bottom: 12px;
     }
-
     .info-box {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.08);
@@ -409,12 +313,7 @@
       color: rgba(255,255,255,.84);
       font-size: 14px;
     }
-
-    .data-list {
-      list-style: none;
-      margin: 14px 0;
-    }
-
+    .data-list { list-style: none; margin: 14px 0; }
     .data-list li {
       display: flex;
       gap: 10px;
@@ -424,9 +323,7 @@
       color: rgba(255,255,255,.78);
       font-size: 15px;
     }
-
     .data-list li:last-child { border-bottom: none; }
-
     .data-list li::before {
       content: "";
       width: 6px;
@@ -436,7 +333,6 @@
       background: #fff;
       margin-top: 10px;
     }
-
     .section-btn-row, .result-actions {
       display: flex;
       justify-content: space-between;
@@ -444,7 +340,6 @@
       margin-top: 18px;
       flex-wrap: wrap;
     }
-
     .btn {
       padding: 14px 20px;
       border-radius: 18px;
@@ -457,49 +352,21 @@
       cursor: pointer;
       transition: .2s ease;
     }
-
-    .btn-primary {
-      background: #fff;
-      color: #111;
-    }
-
+    .btn-primary { background: #fff; color: #111; }
     .btn-primary:hover { opacity: .9; }
-
     .btn-secondary {
       background: transparent;
       color: #fff;
       border: 1px solid rgba(255,255,255,.14);
     }
-
     .btn-secondary:hover { background: rgba(255,255,255,.05); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-full { width: 100%; }
 
-    .btn:disabled {
-      opacity: .45;
-      cursor: not-allowed;
-    }
-
-    .quiz-box, .result-box, .completion-box {
-      padding: 28px;
-    }
-
-    .quiz-meta {
-      font-size: 12px;
-      color: rgba(255,255,255,.5);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-    }
-
-    .quiz-title {
-      font-size: 28px;
-      margin-top: 6px;
-    }
-
-    .quiz-progress-label {
-      font-size: 14px;
-      color: rgba(255,255,255,.58);
-      margin-top: 8px;
-    }
-
+    .quiz-box, .result-box, .completion-box { padding: 28px; }
+    .quiz-meta { font-size: 12px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .5px; }
+    .quiz-title { font-size: 28px; margin-top: 6px; }
+    .quiz-progress-label { font-size: 14px; color: rgba(255,255,255,.58); margin-top: 8px; }
     .quiz-progress-track {
       height: 5px;
       background: rgba(255,255,255,.12);
@@ -507,24 +374,13 @@
       margin-top: 8px;
       overflow: hidden;
     }
-
     .quiz-progress-fill {
       height: 100%;
       background: #fff;
       border-radius: 999px;
     }
-
-    .question-text {
-      font-size: 22px;
-      line-height: 1.35;
-      margin: 26px 0 18px;
-    }
-
-    .options-list {
-      display: grid;
-      gap: 10px;
-    }
-
+    .question-text { font-size: 22px; line-height: 1.35; margin: 26px 0 18px; }
+    .options-list { display: grid; gap: 10px; }
     .option-btn {
       width: 100%;
       text-align: left;
@@ -541,23 +397,12 @@
       gap: 12px;
       transition: .2s ease;
     }
-
-    .option-btn:hover:not(:disabled),
-    .option-btn.selected {
+    .option-btn:hover:not(:disabled), .option-btn.selected {
       background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.18);
     }
-
-    .option-btn.correct {
-      border-color: rgba(80,255,160,.35);
-      background: rgba(80,255,160,.08);
-    }
-
-    .option-btn.wrong {
-      border-color: rgba(255,110,110,.35);
-      background: rgba(255,110,110,.08);
-    }
-
+    .option-btn.correct { border-color: rgba(80,255,160,.35); background: rgba(80,255,160,.08); }
+    .option-btn.wrong { border-color: rgba(255,110,110,.35); background: rgba(255,110,110,.08); }
     .option-indicator {
       width: 24px;
       height: 24px;
@@ -570,7 +415,6 @@
       font-size: 12px;
       font-weight: 700;
     }
-
     .feedback-box {
       display: none;
       margin-top: 16px;
@@ -580,17 +424,9 @@
       font-size: 14px;
       color: rgba(255,255,255,.84);
     }
-
     .feedback-box.correct,
-    .feedback-box.wrong {
-      display: block;
-    }
-
-    .feedback-title {
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: #fff;
-    }
+    .feedback-box.wrong { display: block; }
+    .feedback-title { font-weight: 700; margin-bottom: 4px; color: #fff; }
 
     .result-header {
       display: flex;
@@ -599,7 +435,6 @@
       margin-bottom: 20px;
       flex-wrap: wrap;
     }
-
     .score-circle {
       width: 92px;
       height: 92px;
@@ -611,30 +446,10 @@
       justify-content: center;
       background: rgba(255,255,255,.04);
     }
-
-    .score-number {
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .score-label {
-      font-size: 11px;
-      color: rgba(255,255,255,.55);
-      text-transform: uppercase;
-    }
-
-    .result-title {
-      font-size: 30px;
-      line-height: 1.1;
-    }
-
-    .result-message {
-      font-size: 15px;
-      color: rgba(255,255,255,.65);
-      margin-top: 6px;
-    }
-
+    .score-number { font-size: 26px; font-weight: 700; line-height: 1; }
+    .score-label { font-size: 11px; color: rgba(255,255,255,.55); text-transform: uppercase; }
+    .result-title { font-size: 30px; line-height: 1.1; }
+    .result-message { font-size: 15px; color: rgba(255,255,255,.65); margin-top: 6px; }
     .badge-earned-box {
       margin: 18px 0 20px;
       padding: 18px;
@@ -643,21 +458,9 @@
       background: rgba(255,255,255,.04);
       text-align: center;
     }
-
     .badge-earned-icon { font-size: 36px; }
-
-    .badge-earned-lbl {
-      font-size: 12px;
-      color: rgba(255,255,255,.55);
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    .badge-earned-name {
-      font-size: 22px;
-      margin-top: 4px;
-    }
-
+    .badge-earned-lbl { font-size: 12px; color: rgba(255,255,255,.55); text-transform: uppercase; margin-top: 8px; }
+    .badge-earned-name { font-size: 22px; margin-top: 4px; }
     .xp-gained {
       display: inline-block;
       margin-top: 10px;
@@ -667,15 +470,7 @@
       font-size: 14px;
       font-weight: 700;
     }
-
-    .summary-title {
-      font-size: 13px;
-      color: rgba(255,255,255,.52);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 12px;
-    }
-
+    .summary-title { font-size: 13px; color: rgba(255,255,255,.52); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
     .summary-item {
       display: flex;
       gap: 10px;
@@ -685,23 +480,16 @@
       color: rgba(255,255,255,.78);
       font-size: 14px;
     }
-
     .summary-item:last-child { border-bottom: none; }
 
     .completion-box { text-align: center; }
-
-    .completion-title {
-      font-size: 38px;
-      line-height: 1.1;
-    }
-
+    .completion-title { font-size: 38px; line-height: 1.1; }
     .completion-message {
       font-size: 16px;
       color: rgba(255,255,255,.66);
       max-width: 700px;
       margin: 16px auto 28px;
     }
-
     .scores-recap {
       text-align: left;
       max-width: 760px;
@@ -711,15 +499,7 @@
       border-radius: 24px;
       background: rgba(255,255,255,.03);
     }
-
-    .scores-recap-title {
-      font-size: 13px;
-      color: rgba(255,255,255,.5);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 12px;
-    }
-
+    .scores-recap-title { font-size: 13px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
     .score-row {
       display: flex;
       justify-content: space-between;
@@ -728,9 +508,7 @@
       border-bottom: 1px solid rgba(255,255,255,.08);
       font-size: 14px;
     }
-
     .score-row:last-child { border-bottom: none; }
-
     .score-row-name { color: rgba(255,255,255,.78); }
     .score-row-val { font-weight: 700; }
 
@@ -742,22 +520,14 @@
 
     @media (max-width: 980px) {
       nav.site-nav { display: none; }
-      h1 { font-size: 36px; }
+      h1 { font-size: 40px; }
       .lead { font-size: 16px; }
       .top-status { grid-template-columns: 1fr; }
-      .modules-header {
-        align-items: start;
-        flex-direction: column;
-      }
+      .modules-header { align-items: start; flex-direction: column; }
       .module-card { align-items: start; }
       .module-status { align-self: flex-start; }
-      .result-header {
-        flex-direction: column;
-        align-items: start;
-      }
-      .section-btn-row, .result-actions {
-        flex-direction: column;
-      }
+      .result-header { flex-direction: column; align-items: start; }
+      .section-btn-row, .result-actions { flex-direction: column; }
       .btn { width: 100%; }
     }
   </style>
@@ -767,7 +537,7 @@
     <div class="site-container">
       <a href="/" aria-label="Retour à l'accueil"><strong>charlesberthou.fr</strong></a>
       <nav class="site-nav">
-        <a href="/articles/">Articles</a>
+        <a href="/#articles">Articles</a>
         <a href="/#gpts">GPTs</a>
         <a href="/#elearning">E-learning</a>
         <a href="/#contact">Contact</a>
@@ -777,16 +547,9 @@
 
   <main class="site-container">
     <section class="page-hero">
-      <div class="badge">Articles • GPTs • E-learning</div>
+      <div class="badge">E-learning • Paiement mobile</div>
       <h1>Paiement mobile et Wero en France</h1>
-      <p class="lead">Une formation interactive pour comprendre les usages, technologies et bonnes pratiques du paiement mobile en France.</p>
-
-      <div class="share-row">
-        <span class="share-label">Partager</span>
-        <a class="share-btn" id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a class="share-btn" id="share-mail" href="#">Email</a>
-        <button class="share-btn" id="share-copy" type="button">Copier le lien</button>
-      </div>
+      <p class="lead">Une formation interactive pour comprendre les usages, les technologies et les bonnes pratiques du paiement mobile en France.</p>
     </section>
 
     <section class="wero-shell">
@@ -795,11 +558,8 @@
           <div class="xp-banner">
             <div class="xp-label">Points XP cumulés</div>
             <div class="xp-value"><span id="xp-current">0</span> / <span id="xp-max">420</span> pts</div>
-            <div class="xp-bar-wrap">
-              <div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div>
-            </div>
+            <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div></div>
           </div>
-
           <div class="panel badges-panel">
             <div class="subtle-label">Badges obtenus</div>
             <div class="badges-grid" id="badges-grid"></div>
@@ -962,7 +722,7 @@
               "L’envoi d’argent s’effectue à partir du numéro du destinataire.",
               "Le montant est crédité directement sur le compte bancaire du bénéficiaire."
             ],
-            infoBox: "Wero ne repose pas sur un portefeuille intermédiaire. L’argent arrive directement sur le compte."
+            infoBox: "Wero ne repose pas sur un portefeuille intermédiaire. L’argent arrive directement sur le compte." 
           },
           {
             title: "Le positionnement",
@@ -1050,7 +810,7 @@
               "La banque doit traiter la contestation dans des délais rapides.",
               "La négligence grave du client peut toutefois engager sa responsabilité."
             ],
-            infoBox: "Il ne faut jamais communiquer son code PIN ou ses accès bancaires."
+            infoBox: "Il ne faut jamais communiquer son code PIN ou ses accès bancaires." 
           },
           {
             title: "Les bonnes pratiques",
@@ -1100,7 +860,7 @@
               "Le paiement en point de vente physique constitue la prochaine phase stratégique.",
               "L’enjeu est aussi économique pour les commerçants."
             ],
-            infoBox: "Wero vise à devenir une alternative crédible aux grands réseaux internationaux de paiement."
+            infoBox: "Wero vise à devenir une alternative crédible aux grands réseaux internationaux de paiement." 
           },
           {
             title: "La souveraineté numérique",
@@ -1162,14 +922,12 @@
     function loadProgress() {
       const saved = localStorage.getItem('wero_progress_integrated');
       if (saved) {
-        try {
-          appState.progress = JSON.parse(saved);
-        } catch (e) {}
+        try { appState.progress = JSON.parse(saved); } catch(e) {}
       }
     }
 
     function showScreen(name) {
-      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + name).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1185,8 +943,8 @@
 
     function renderBadges() {
       const earned = appState.progress.badges || [];
-      document.getElementById('badges-grid').innerHTML = BADGES.map((badge, i) =>
-        `<span class="badge-chip ${earned.includes(i) ? 'earned' : 'locked'}">${badge.icon} ${badge.name}</span>`
+      document.getElementById('badges-grid').innerHTML = BADGES.map((b, i) =>
+        `<span class="badge-chip ${earned.includes(i) ? 'earned' : 'locked'}">${b.icon} ${b.name}</span>`
       ).join('');
     }
 
@@ -1194,18 +952,15 @@
       const pts = appState.progress.points || 0;
       const maxPts = MODULES.length * 70;
       const pct = Math.min(100, Math.round((pts / maxPts) * 100));
-
       document.getElementById('xp-current').textContent = pts;
       document.getElementById('xp-max').textContent = maxPts;
       document.getElementById('xp-bar-fill').style.width = pct + '%';
       document.getElementById('progress-badge').textContent = `${appState.progress.completedModules.length} / ${MODULES.length}`;
-
       renderBadges();
     }
 
     function renderModulesMenu() {
       renderTopStatus();
-
       const list = document.getElementById('modules-list');
       list.innerHTML = MODULES.map((mod, idx) => {
         const available = isModuleAvailable(idx);
@@ -1214,7 +969,6 @@
         const statusLabel = completed ? 'Terminé' : (available ? 'Disponible' : 'Verrouillé');
         const score = appState.progress.quizScores['module' + idx];
         const scoreStr = completed && score !== undefined ? `<div class="score-chip">Score : ${score}/5</div>` : '';
-
         return `
           <div class="module-card ${statusClass}" onclick="handleModuleClick(${idx})">
             <div class="module-num ${statusClass}">${idx + 1}</div>
@@ -1256,7 +1010,7 @@
         ? `<button class="btn btn-primary" onclick="startQuiz(${idx})">Passer le quiz →</button>`
         : `<button class="btn btn-primary" onclick="renderModuleContent(${idx}, ${sectionIdx + 1})">Suivante →</button>`;
 
-      document.getElementById('screen-module-content').innerHTML = `
+      const html = `
         <div class="panel module-header-box">
           <div class="module-num-label">Module ${idx + 1} sur ${MODULES.length}</div>
           <h2 class="module-title">${mod.title}</h2>
@@ -1277,6 +1031,8 @@
           <div class="section-btn-row">${prevBtn}${nextBtn}</div>
         </div>
       `;
+
+      document.getElementById('screen-module-content').innerHTML = html;
     }
 
     function startQuiz(moduleIdx) {
@@ -1297,17 +1053,14 @@
       const question = mod.quiz[qIdx];
       const total = mod.quiz.length;
 
-      document.getElementById('screen-quiz').innerHTML = `
+      const html = `
         <div class="panel quiz-box">
           <div class="quiz-meta">Quiz module ${appState.currentModuleIndex + 1}</div>
           <h2 class="quiz-title">${mod.title}</h2>
           <div class="quiz-progress-label">Question ${qIdx + 1} / ${total}</div>
-          <div class="quiz-progress-track">
-            <div class="quiz-progress-fill" style="width:${((qIdx + 1) / total) * 100}%"></div>
-          </div>
+          <div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:${((qIdx + 1) / total) * 100}%"></div></div>
 
           <p class="question-text">${question.q}</p>
-
           <div class="options-list" id="options-list">
             ${question.options.map((opt, i) => `
               <button class="option-btn" onclick="selectOption(${i})">
@@ -1327,17 +1080,16 @@
           </div>
         </div>
       `;
+
+      document.getElementById('screen-quiz').innerHTML = html;
     }
 
     function selectOption(optIdx) {
       if (appState.currentQuiz.answered) return;
-
       appState.currentQuiz.selectedOption = optIdx;
-
       document.querySelectorAll('.option-btn').forEach((btn, i) => {
         btn.classList.toggle('selected', i === optIdx);
       });
-
       document.getElementById('btn-quiz-validate').disabled = false;
     }
 
@@ -1346,9 +1098,7 @@
       const qIdx = appState.currentQuiz.questionIndex;
       const question = mod.quiz[qIdx];
       const selected = appState.currentQuiz.selectedOption;
-
       if (selected === null) return;
-
       const correct = question.correct;
       const isCorrect = selected === correct;
 
@@ -1389,20 +1139,17 @@
       if (prevScore === undefined || score > prevScore) {
         appState.progress.quizScores[modKey] = score;
       }
-
       if (isFirstCompletion) {
         appState.progress.completedModules.push(appState.currentModuleIndex);
         const gained = score * 10 + (score === total ? 20 : 0);
         appState.progress.points = (appState.progress.points || 0) + gained;
         appState.progress._lastGained = gained;
-
         if (!appState.progress.badges.includes(appState.currentModuleIndex)) {
           appState.progress.badges.push(appState.currentModuleIndex);
         }
       } else {
         appState.progress._lastGained = 0;
       }
-
       saveProgress();
 
       const pct = score / total;
@@ -1426,31 +1173,22 @@
       `).join('');
 
       const isLast = appState.currentModuleIndex === MODULES.length - 1;
-      const nextAction = isLast
-        ? "showCompletion()"
-        : "renderModulesMenu();showScreen('modules')";
 
       document.getElementById('screen-quiz-result').innerHTML = `
         <div class="panel result-box">
           <div class="result-header">
-            <div class="score-circle">
-              <div class="score-number">${score}/${total}</div>
-              <div class="score-label">score</div>
-            </div>
+            <div class="score-circle"><div class="score-number">${score}/${total}</div><div class="score-label">score</div></div>
             <div>
               <h2 class="result-title">${title}</h2>
               <p class="result-message">${message}</p>
             </div>
           </div>
-
           ${badgeHtml}
-
           <div class="summary-title">Détail des réponses</div>
           ${summaryHtml}
-
           <div class="result-actions">
             <button class="btn btn-secondary" onclick="startQuiz(${appState.currentModuleIndex})">Refaire le quiz</button>
-            <button class="btn btn-primary" onclick="${nextAction}">${isLast ? 'Voir mon bilan final' : 'Module suivant'}</button>
+            <button class="btn btn-primary" onclick="${isLast ? 'showCompletion()' : 'renderModulesMenu();showScreen(\'modules\')'}">${isLast ? 'Voir mon bilan final' : 'Module suivant'}</button>
           </div>
         </div>
       `;
@@ -1474,13 +1212,11 @@
         <div class="panel completion-box">
           <div class="badge-earned-icon">🏆</div>
           <h2 class="completion-title">Formation terminée</h2>
-          <p class="completion-message">Vous avez parcouru l’ensemble des 6 modules du parcours Paiement mobile et Wero.</p>
-
+          <p class="completion-message">Vous avez parcouru l’ensemble des 6 modules du parcours Paiement mobile et Wero, avec une interface désormais cohérente avec la page d’accueil de charlesberthou.fr.</p>
           <div class="scores-recap">
             <div class="scores-recap-title">Récapitulatif des scores</div>
             ${recapHtml}
           </div>
-
           <div class="result-actions">
             <button class="btn btn-secondary" onclick="renderModulesMenu();showScreen('modules')">Revoir les modules</button>
           </div>
@@ -1489,25 +1225,6 @@
 
       showScreen('completion');
     }
-
-    const shareUrl = window.location.href;
-    const shareTitle = document.title;
-
-    document.getElementById('share-linkedin').href =
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
-    document.getElementById('share-mail').href =
-      `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareUrl)}`;
-
-    document.getElementById('share-copy').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        const btn = document.getElementById('share-copy');
-        btn.textContent = 'Lien copié';
-        setTimeout(() => {
-          btn.textContent = 'Copier le lien';
-        }, 1500);
-      } catch (e) {}
-    });
 
     loadProgress();
     renderModulesMenu();
