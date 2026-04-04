@@ -53,30 +53,19 @@
       position: relative;
     }
 
-    /* Grille de points — concentrée sur la moitié droite uniquement */
+    /* Glow derrière le panel droit — pas de transparence parasite */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,.22) 1px, transparent 1px);
-      background-size: 24px 24px;
-      mask-image: linear-gradient(to right, transparent 42%, rgba(0,0,0,.4) 56%, black 68%, black 88%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 42%, rgba(0,0,0,.4) 56%, black 68%, black 88%, transparent 100%);
+      background:
+        radial-gradient(ellipse 55% 120% at 95% 50%, rgba(255,255,255,.07) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 60% at 60% 10%, rgba(255,255,255,.04) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Glow derrière le panel droit */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 50% 90% at 80% 50%, rgba(255,255,255,.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Le contenu reste au-dessus des pseudo-éléments */
+    /* Le contenu reste au-dessus */
     .hero > div { position: relative; z-index: 1; }
 
     @keyframes orb-float {
