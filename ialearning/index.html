@@ -680,9 +680,105 @@ body::before {
 ::-webkit-scrollbar-track { background:var(--bg2); }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 ::-webkit-scrollbar-thumb:hover { background:var(--indigo-mid); }
+
+/* LANDING PAGE */
+.landing-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.landing-hero{background:var(--grad-hero);padding:80px 32px 100px;text-align:center;position:relative;overflow:hidden;}
+.landing-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(99,102,241,0.3) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(6,182,212,0.2) 0%,transparent 50%);pointer-events:none;}
+.landing-hero-grid{position:absolute;inset:0;opacity:0.05;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:40px 40px;}
+.landing-hero-content{position:relative;max-width:700px;margin:0 auto;}
+.landing-hero h1{font-size:3rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px;}
+.landing-hero p{font-size:1.1rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:40px;}
+.landing-stats{display:flex;gap:40px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
+.ls-item{text-align:center;}
+.ls-val{display:block;font-size:2rem;font-weight:800;color:#fff;}
+.ls-lbl{display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
+.landing-modules-section{max-width:960px;margin:0 auto;padding:60px 32px;}
+.landing-modules-section h2{font-size:1.8rem;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.landing-modules-section>p{color:var(--text3);font-size:0.95rem;margin-bottom:32px;}
+.landing-modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.lm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;display:flex;align-items:center;gap:14px;transition:all 0.2s;box-shadow:var(--shadow);}
+.lm-card:hover{border-color:var(--border-glow);box-shadow:var(--shadow-md);}
+.lm-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.lm-num{font-size:0.72rem;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.lm-title{font-size:0.9rem;font-weight:700;color:var(--navy);margin-top:2px;}
+.landing-cta{background:var(--grad-hero);padding:60px 32px;text-align:center;}
+.landing-cta h2{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:12px;}
+.landing-cta p{color:rgba(255,255,255,0.7);margin-bottom:28px;font-size:0.95rem;}
+/* MOBILE */
+@media(max-width:768px){
+  .landing-hero{padding:60px 20px 80px;} .landing-hero h1{font-size:2rem;} .landing-hero p{font-size:0.95rem;}
+  .landing-stats{gap:24px;} .ls-val{font-size:1.5rem;} .landing-modules-section{padding:40px 20px;} .landing-nav{padding:0 20px;}
+}
+@media(max-width:640px){
+  .navbar{padding:0 16px;height:56px;} .nav-center{display:none;} .nav-xp{font-size:0.8rem;}
+  .dashboard-header{padding:24px 16px 32px;} .dh-stats{grid-template-columns:1fr 1fr;gap:10px;} .dh-stat-val{font-size:1.6rem;}
+  .dashboard-body{padding:20px 16px;} .modules-grid{grid-template-columns:1fr;} .badges-grid{grid-template-columns:repeat(2,1fr);}
+  .module-body{padding:20px 16px;} .module-header{padding:24px 16px;} .mh-title{font-size:1.2rem;} .content-block{padding:20px 16px;}
+  .duel-arena{flex-direction:column;gap:8px;align-items:center;} .dp-score{font-size:2rem;}
+  .login-split{grid-template-columns:1fr;} .login-hero{display:none !important;} .login-form-side{padding:32px 24px;}
+  .admin-kpis{grid-template-columns:1fr 1fr;} .admin-table th,.admin-table td{padding:10px 8px;font-size:0.8rem;}
+  .module-nav{flex-direction:column;gap:8px;} .module-nav .btn{width:100%;justify-content:center;}
+  .info-grid{grid-template-columns:1fr;} .modal-box{padding:24px 20px;}
+}
 </style>
+<meta property="og:title" content="MABN Académie — Apprendre l'IA">
+<meta property="og:description" content="Plateforme e-learning gamifiée sur l'IA. 10 modules progressifs, quiz, badges et défis entre apprenants.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://charlesberthou.fr/ialearning">
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
+
+<!-- VUE LANDING (publique) -->
+<div class="view active" id="view-landing">
+  <nav class="landing-nav">
+    <div class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%"><path d="m40 28.85-6.45-11.19A7 7 0 0 1 28.16 26a8.67 8.67 0 0 1-.89.13 8.66 8.66 0 0 0-6.93-4.05 7 7 0 0 1 9.87-9 7.26 7.26 0 0 1 1.19.92L24.88 2.65h-9.8L8.61 13.84a7 7 0 0 1 9.88.49 6.43 6.43 0 0 1 .57.72 8.69 8.69 0 0 0 0 8A7 7 0 0 1 6.37 19a7.07 7.07 0 0 1 .15-1.45L0 28.86l4.91 8.49h12.91a7 7 0 0 1-4.5-8.82 6 6 0 0 1 .33-.83 8.67 8.67 0 0 0 7-4 7 7 0 0 1 2.84 13 7.68 7.68 0 0 1-1.35.59h13z" style="fill:#c50307"/></svg></div>
+      <span class="nav-logo-text">MABN Académie</span>
+    </div>
+    <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
+  </nav>
+  <div class="landing-hero">
+    <div class="landing-hero-grid"></div>
+    <div class="landing-hero-content">
+      <div class="tech-badge tech-badge-cyan" style="margin-bottom:24px;display:inline-flex">🎓 E-Learning IA · Gamifié</div>
+      <h1>Maîtrisez l'Intelligence Artificielle</h1>
+      <p>10 modules progressifs, quiz interactifs, badges et défis. De zéro à expert en IA — gratuitement.</p>
+      <div class="landing-stats">
+        <div class="ls-item"><span class="ls-val">10</span><span class="ls-lbl">Modules</span></div>
+        <div class="ls-item"><span class="ls-val">50+</span><span class="ls-lbl">Questions</span></div>
+        <div class="ls-item"><span class="ls-val">15</span><span class="ls-lbl">Badges</span></div>
+        <div class="ls-item"><span class="ls-val">100%</span><span class="ls-lbl">Gratuit</span></div>
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-landing-start">Commencer gratuitement →</button>
+    </div>
+  </div>
+  <div class="landing-modules-section">
+    <h2>Le parcours complet</h2>
+    <p>10 modules pour maîtriser l'IA de A à Z, du niveau débutant au niveau expert.</p>
+    <div class="landing-modules-grid">
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🧠</div><div><div class="lm-num">MODULE 01</div><div class="lm-title">Les fondamentaux de l'IA</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">⚙️</div><div><div class="lm-num">MODULE 02</div><div class="lm-title">Machine Learning</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🔬</div><div><div class="lm-num">MODULE 03</div><div class="lm-title">Deep Learning et réseaux de neurones</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">💬</div><div><div class="lm-num">MODULE 04</div><div class="lm-title">NLP — Traitement du langage</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">👁️</div><div><div class="lm-num">MODULE 05</div><div class="lm-title">Vision par ordinateur</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#059669,#06B6D4)">✨</div><div><div class="lm-num">MODULE 06</div><div class="lm-title">IA Générative</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🏭</div><div><div class="lm-num">MODULE 07</div><div class="lm-title">IA appliquée aux métiers</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">⚖️</div><div><div class="lm-num">MODULE 08</div><div class="lm-title">Éthique et IA responsable</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">🎯</div><div><div class="lm-num">MODULE 09</div><div class="lm-title">Prompt Engineering</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🚀</div><div><div class="lm-num">MODULE 10</div><div class="lm-title">Futur de l'IA</div></div></div>
+    </div>
+  </div>
+  <div class="landing-cta">
+    <h2>Prêt à commencer ?</h2>
+    <p>Créez votre compte gratuit et démarrez votre parcours IA dès maintenant.</p>
+    <button class="btn btn-primary btn-lg" id="btn-landing-register">Créer mon compte →</button>
+  </div>
+</div>
+
 
 <!-- NOTIFICATION -->
 <div id="notif"></div>
@@ -1193,9 +1289,22 @@ const BADGES_DEF = [
   {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true}
 ];
 
-const ADMIN_EMAIL = "admin@ia-academie.fr";
-const ADMIN_PASS = "admin123";
 const XP_PER_LEVEL = 500;
+
+// ============================================================
+// FIREBASE
+// ============================================================
+const firebaseConfig = {
+  apiKey:"AIzaSyBGgfYNa0x_hR0anZx3sdo8zxVqE6JiqCU",
+  authDomain:"mabn-academie.firebaseapp.com",
+  projectId:"mabn-academie",
+  storageBucket:"mabn-academie.firebasestorage.app",
+  messagingSenderId:"1070690058491",
+  appId:"1:1070690058491:web:5812ce416854d0c472705e"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 // ============================================================
 // STATE
@@ -1204,18 +1313,6 @@ let currentUser = null;
 let currentModule = null;
 let currentStep = 0;
 let duelState = null;
-
-// ============================================================
-// STORAGE
-// ============================================================
-const DB = {
-  get:(k)=>{ try{ return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
-  set:(k,v)=>{ localStorage.setItem(k,JSON.stringify(v)); },
-  users:()=>DB.get('ia_users')||{},
-  saveUsers:(u)=>DB.set('ia_users',u),
-  challenges:()=>DB.get('ia_challenges')||[],
-  saveChallenges:(c)=>DB.set('ia_challenges',c)
-};
 
 // ============================================================
 // UTILS
@@ -1250,35 +1347,35 @@ function showLevelUp(lvl){
 // ============================================================
 // AUTH
 // ============================================================
-function login(email,pass){
-  if(email===ADMIN_EMAIL && pass===ADMIN_PASS){
-    currentUser={email,firstName:'Admin',lastName:'',isAdmin:true,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0};
-    launchAdmin(); return;
+async function login(email,pass){
+  try {
+    await auth.signInWithEmailAndPassword(email,pass);
+  } catch(e) {
+    const msg=(e.code==='auth/user-not-found'||e.code==='auth/wrong-password'||e.code==='auth/invalid-credential')
+      ?'Email ou mot de passe incorrect':'Erreur de connexion';
+    showNotif(msg,'error');
   }
-  const users=DB.users();
-  const u=users[email];
-  if(!u){ showNotif('Email introuvable','error'); return; }
-  if(u.password!==pass){ showNotif('Mot de passe incorrect','error'); return; }
-  currentUser=u;
-  checkStreak();
-  launchApp();
 }
 
-function register(firstName,lastName,email,pass){
+async function register(firstName,lastName,email,pass){
   if(!firstName||!email||!pass){ showNotif('Tous les champs sont requis','error'); return; }
-  const users=DB.users();
-  if(users[email]){ showNotif('Email déjà utilisé','error'); return; }
-  const u={email,firstName,lastName,password:pass,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0};
-  users[email]=u; DB.saveUsers(users);
-  currentUser=u;
-  launchApp();
+  try {
+    const cred=await auth.createUserWithEmailAndPassword(email,pass);
+    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0};
+    await db.collection('users').doc(cred.user.uid).set(u);
+  } catch(e) {
+    const msg=e.code==='auth/email-already-in-use'?'Email déjà utilisé':'Erreur lors de l\'inscription';
+    showNotif(msg,'error');
+  }
 }
 
 function saveCurrentUser(){
   if(!currentUser||currentUser.isAdmin) return;
-  const users=DB.users();
-  users[currentUser.email]=currentUser;
-  DB.saveUsers(users);
+  const fu=auth.currentUser;
+  if(!fu) return;
+  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes}=currentUser;
+  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes},{merge:true})
+    .catch(e=>console.error('saveCurrentUser:',e));
 }
 
 function checkStreak(){
@@ -1416,37 +1513,51 @@ function renderBadges(){
   });
 }
 
-function renderChallenges(){
+async function renderChallenges(){
   const list=document.getElementById('challenges-list');
   if(!list) return;
-  const all=DB.challenges().filter(c=>c.from===currentUser.email||c.to===currentUser.firstName);
-  if(all.length===0){
-    list.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)"><div style="font-size:3rem;margin-bottom:12px">⚔️</div><div style="font-weight:700;color:var(--navy);margin-bottom:6px">Aucun défi pour l\'instant</div><div style="font-size:0.85rem">Lancez un défi à un autre apprenant !</div></div>';
-    return;
-  }
-  list.innerHTML='';
-  all.forEach(c=>{
-    const isMine=c.from===currentUser.email;
-    const mod=MODULES.find(m=>m.id===c.moduleId);
-    const card=document.createElement('div');
-    card.className='challenge-card';
-    const statusMap={pending:'pending',active:'active',won:'won',lost:'lost'};
-    card.innerHTML=
-      '<div class="ch-icon">⚔️</div>'+
-      '<div class="ch-info">'+
-        '<div class="ch-title">'+(isMine?'Défi envoyé à <strong>'+c.to+'</strong>':'Défi reçu de <strong>'+c.from+'</strong>')+'</div>'+
-        '<div class="ch-meta">Module : '+(mod?mod.title:'?')+' · '+(isMine?'En attente de réponse':'À votre tour !')+'</div>'+
-      '</div>'+
-      '<div class="ch-status '+(statusMap[c.status]||'pending')+'">'+c.status+'</div>';
-    if(!isMine && c.status==='pending'){
-      const btn=document.createElement('button');
-      btn.className='btn btn-cyan btn-sm';
-      btn.textContent='Accepter';
-      btn.addEventListener('click',function(){ startDuel(c); });
-      card.appendChild(btn);
+  const fu=auth.currentUser;
+  if(!fu) return;
+  list.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
+  try {
+    const [snap1,snap2]=await Promise.all([
+      db.collection('challenges').where('fromUid','==',fu.uid).get(),
+      db.collection('challenges').where('to','==',currentUser.firstName).get()
+    ]);
+    const seen=new Set();
+    const all=[];
+    snap1.forEach(d=>{ if(!seen.has(d.id)){ seen.add(d.id); all.push({id:d.id,...d.data()}); } });
+    snap2.forEach(d=>{ if(!seen.has(d.id)){ seen.add(d.id); all.push({id:d.id,...d.data()}); } });
+    if(all.length===0){
+      list.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)"><div style="font-size:3rem;margin-bottom:12px">⚔️</div><div style="font-weight:700;color:var(--navy);margin-bottom:6px">Aucun défi pour l\'instant</div><div style="font-size:0.85rem">Lancez un défi à un autre apprenant !</div></div>';
+      return;
     }
-    list.appendChild(card);
-  });
+    list.innerHTML='';
+    all.forEach(c=>{
+      const isMine=c.fromUid===fu.uid;
+      const mod=MODULES.find(m=>m.id===c.moduleId);
+      const card=document.createElement('div');
+      card.className='challenge-card';
+      const statusMap={pending:'pending',active:'active',won:'won',lost:'lost'};
+      card.innerHTML=
+        '<div class="ch-icon">⚔️</div>'+
+        '<div class="ch-info">'+
+          '<div class="ch-title">'+(isMine?'Défi envoyé à <strong>'+c.to+'</strong>':'Défi reçu de <strong>'+(c.fromName||c.from)+'</strong>')+'</div>'+
+          '<div class="ch-meta">Module : '+(mod?mod.title:'?')+' · '+(isMine?'En attente de réponse':'À votre tour !')+'</div>'+
+        '</div>'+
+        '<div class="ch-status '+(statusMap[c.status]||'pending')+'">'+c.status+'</div>';
+      if(!isMine && c.status==='pending'){
+        const btn=document.createElement('button');
+        btn.className='btn btn-cyan btn-sm';
+        btn.textContent='Accepter';
+        btn.addEventListener('click',function(){ startDuel(c); });
+        card.appendChild(btn);
+      }
+      list.appendChild(card);
+    });
+  } catch(e) {
+    list.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Erreur de chargement.</div>';
+  }
 }
 
 // ============================================================
@@ -1681,16 +1792,21 @@ function populateChallengeModal(){
   });
 }
 
-function sendChallenge(){
+async function sendChallenge(){
   const opp=document.getElementById('ch-opponent').value.trim();
   const modId=parseInt(document.getElementById('ch-module').value);
   if(!opp){ showNotif('Entrez le prénom de l\'adversaire','error'); return; }
-  const ch={id:Date.now(),from:currentUser.email,to:opp,moduleId:modId,status:'pending',created:new Date().toISOString()};
-  const all=DB.challenges();
-  all.push(ch); DB.saveChallenges(all);
-  awardBadge('challenger');
-  document.getElementById('modal-challenge').classList.remove('open');
-  showNotif('Défi envoyé à '+opp+' !','success');
+  const fu=auth.currentUser;
+  if(!fu) return;
+  const ch={fromUid:fu.uid,from:currentUser.email,fromName:currentUser.firstName,to:opp,moduleId:modId,status:'pending',created:new Date().toISOString()};
+  try {
+    await db.collection('challenges').add(ch);
+    awardBadge('challenger');
+    document.getElementById('modal-challenge').classList.remove('open');
+    showNotif('Défi envoyé à '+opp+' !','success');
+  } catch(e) {
+    showNotif('Erreur lors de l\'envoi du défi','error');
+  }
 }
 
 function startDuel(challenge){
@@ -1699,8 +1815,8 @@ function startDuel(challenge){
   duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,questions:m.quiz.slice(0,5)};
   document.getElementById('duel-me-av').textContent=(currentUser.firstName||'?')[0];
   document.getElementById('duel-me-name').textContent=currentUser.firstName;
-  document.getElementById('duel-opp-av').textContent=(challenge.from||'?')[0].toUpperCase();
-  document.getElementById('duel-opp-name').textContent=challenge.from;
+  document.getElementById('duel-opp-av').textContent=(challenge.fromName||challenge.from||'?')[0].toUpperCase();
+  document.getElementById('duel-opp-name').textContent=challenge.fromName||challenge.from;
   document.getElementById('duel-result').style.display='none';
   document.getElementById('modal-duel').classList.add('open');
   renderDuelQuestion();
@@ -1723,8 +1839,11 @@ function renderDuelQuestion(){
         else if(bi===oi && oi!==q.ans) b.classList.add('wrong');
       });
       if(oi===q.ans) ds.myScore++;
-      const oppCorrect=Math.random()>0.45;
-      if(oppCorrect) ds.oppScore++;
+      const seed=typeof ds.challenge.id==='string'
+        ?ds.challenge.id.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0)
+        :(ds.challenge.id||0);
+      const oppWinRate=0.40+(seed%31)/100;
+      if(Math.random()<oppWinRate) ds.oppScore++;
       document.getElementById('duel-me-score').textContent=ds.myScore;
       document.getElementById('duel-opp-score').textContent=ds.oppScore;
       optsDiv.querySelectorAll('.quiz-opt').forEach(function(b){ b.style.pointerEvents='none'; });
@@ -1737,9 +1856,12 @@ function renderDuelQuestion(){
 function endDuel(){
   const ds=duelState;
   const won=ds.myScore>=ds.oppScore;
-  const all=DB.challenges();
-  const idx=all.findIndex(function(c){ return c.id===ds.challenge.id; });
-  if(idx>=0){ all[idx].status=won?'won':'lost'; DB.saveChallenges(all); }
+  db.collection('challenges').doc(ds.challenge.id).update({
+    status:won?'won':'lost',
+    myScore:ds.myScore,
+    oppScore:ds.oppScore,
+    completedAt:new Date().toISOString()
+  }).catch(e=>console.error('endDuel:',e));
   if(won){ addXP(80); awardBadge('challenger'); }
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
@@ -1751,45 +1873,70 @@ function endDuel(){
 // ============================================================
 // ADMIN
 // ============================================================
-function renderAdmin(){
+async function renderAdmin(){
   const wrap=document.getElementById('admin-wrap');
   if(!wrap) return;
-  const users=DB.objects||DB.users();
-  const allU=Object.values(DB.users());
-  const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
-  const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
-  wrap.innerHTML=
-    '<div style="margin-bottom:28px">'+
-      '<div class="section-title">Tableau de bord administrateur</div>'+
-      '<div style="font-size:0.85rem;color:var(--text3);margin-top:4px">Vue globale de la plateforme</div>'+
-    '</div>'+
-    '<div class="admin-kpis">'+
-      '<div class="admin-kpi"><div class="ak-val">'+allU.length+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
-      '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
-      '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
-      '<div class="admin-kpi green"><div class="ak-val">10</div><div class="ak-lbl">Modules actifs</div></div>'+
-    '</div>'+
-    '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
-    '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
-      '<table class="admin-table">'+
-        '<thead><tr>'+
-          '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th>'+
-        '</tr></thead>'+
-        '<tbody>'+
-          (allU.length===0?'<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
-          allU.map(function(u){
-            const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-            return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3)">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td></tr>';
-          }).join(''))+
-        '</tbody>'+
-      '</table>'+
-    '</div>';
+  wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
+  try {
+    const snap=await db.collection('users').get();
+    const allU=[];
+    snap.forEach(d=>allU.push(d.data()));
+    const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
+    const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
+    wrap.innerHTML=
+      '<div style="margin-bottom:28px">'+
+        '<div class="section-title">Tableau de bord administrateur</div>'+
+        '<div style="font-size:0.85rem;color:var(--text3);margin-top:4px">Vue globale de la plateforme</div>'+
+      '</div>'+
+      '<div class="admin-kpis">'+
+        '<div class="admin-kpi"><div class="ak-val">'+allU.length+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
+        '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
+        '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
+        '<div class="admin-kpi green"><div class="ak-val">10</div><div class="ak-lbl">Modules actifs</div></div>'+
+      '</div>'+
+      '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
+      '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
+        '<table class="admin-table">'+
+          '<thead><tr>'+
+            '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th>'+
+          '</tr></thead>'+
+          '<tbody>'+
+            (allU.length===0?'<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
+            allU.map(function(u){
+              const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
+              return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3)">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td></tr>';
+            }).join(''))+
+          '</tbody>'+
+        '</table>'+
+      '</div>';
+  } catch(e) {
+    wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Erreur de chargement.</div>';
+  }
 }
 
 // ============================================================
 // EVENTS
 // ============================================================
 function init(){
+  // Landing page buttons
+  const goLogin=function(){
+    document.getElementById('tab-login').classList.add('active');
+    document.getElementById('tab-register').classList.remove('active');
+    document.getElementById('login-form').style.display='block';
+    document.getElementById('register-form').style.display='none';
+    showView('view-login');
+  };
+  const goRegister=function(){
+    document.getElementById('tab-register').classList.add('active');
+    document.getElementById('tab-login').classList.remove('active');
+    document.getElementById('register-form').style.display='block';
+    document.getElementById('login-form').style.display='none';
+    showView('view-login');
+  };
+  document.getElementById('btn-landing-login').addEventListener('click',goLogin);
+  document.getElementById('btn-landing-start').addEventListener('click',goRegister);
+  document.getElementById('btn-landing-register').addEventListener('click',goRegister);
+
   // Login tabs
   document.getElementById('tab-login').addEventListener('click',function(){
     document.getElementById('tab-login').classList.add('active');
@@ -1822,13 +1969,12 @@ function init(){
 
   // Logout admin
   document.getElementById('btn-admin-logout').addEventListener('click',function(){
-    currentUser=null;
-    showView('view-login');
+    auth.signOut(); currentUser=null; showView('view-landing');
   });
 
   // Nav avatar (logout)
   document.getElementById('nav-avatar').addEventListener('click',function(){
-    if(confirm('Se déconnecter ?')){ currentUser=null; showView('view-login'); }
+    if(confirm('Se déconnecter ?')){ auth.signOut(); currentUser=null; showView('view-landing'); }
   });
 
   // Challenge modal
@@ -1849,21 +1995,29 @@ function init(){
     renderDashboard();
   });
 
-  // Auto login
-  const savedEmail=localStorage.getItem('ia_current');
-  if(savedEmail){
-    const users=DB.users();
-    if(users[savedEmail]){ currentUser=users[savedEmail]; checkStreak(); launchApp(); return; }
-  }
-  showView('view-login');
+  // Firebase auth state observer — replaces localStorage auto-login
+  auth.onAuthStateChanged(async function(firebaseUser){
+    if(firebaseUser){
+      try {
+        const snap=await db.collection('users').doc(firebaseUser.uid).get();
+        if(snap.exists){
+          currentUser=snap.data();
+          if(currentUser.isAdmin){ launchAdmin(); }
+          else { checkStreak(); launchApp(); }
+        } else {
+          auth.signOut();
+          showView('view-landing');
+        }
+      } catch(e){
+        console.error('Auth state error:',e);
+        showView('view-landing');
+      }
+    } else {
+      currentUser=null;
+      showView('view-landing');
+    }
+  });
 }
-
-// Sauvegarder l'email courant
-const origSave=saveCurrentUser;
-saveCurrentUser=function(){
-  origSave();
-  if(currentUser&&!currentUser.isAdmin) localStorage.setItem('ia_current',currentUser.email);
-};
 
 document.addEventListener('DOMContentLoaded',init);
 </script>
