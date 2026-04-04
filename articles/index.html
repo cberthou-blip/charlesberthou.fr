@@ -4,216 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Articles | Charles Berthou</title>
-  <meta name="description" content="Articles et analyses de Charles Berthou autour de l’IA, de la banque, de la transformation et des usages numériques." />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-JH2SZFYEHR');
-  </script>
-
+  <meta name="description" content="Articles et décryptages autour de l’IA, de la banque, des paiements et des usages numériques." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: #0a0a0a;
-      color: #ffffff;
-      line-height: 1.6;
-    }
-
+    body { font-family: Inter, Arial, sans-serif; background: #0a0a0a; color: #fff; line-height: 1.6; }
     a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(10, 10, 10, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 24px;
-    }
-
-    nav {
-      display: flex;
-      gap: 24px;
-      color: rgba(255,255,255,.72);
-      font-size: 14px;
-    }
-
-    nav a:hover { color: #ffffff; }
-
-    .page-hero {
-      display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 42px;
-      padding: 78px 0 50px;
-      align-items: start;
-    }
-
-    .badge, .pill {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      border-radius: 999px;
-    }
-
-    .badge {
-      padding: 6px 12px;
-      font-size: 12px;
-      color: rgba(255,255,255,.72);
-    }
-
-    .pill {
-      padding: 6px 12px;
-      font-size: 13px;
-      color: rgba(255,255,255,.82);
-      margin: 6px 6px 0 0;
-    }
-
-    h1 {
-      font-size: 58px;
-      line-height: 1.03;
-      margin-top: 18px;
-      max-width: 740px;
-      letter-spacing: -0.02em;
-    }
-
-    .lead {
-      margin-top: 22px;
-      max-width: 760px;
-      color: rgba(255,255,255,.68);
-      font-size: 18px;
-    }
-
-    .panel, .card, .section-box {
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      border-radius: 28px;
-    }
-
-    .panel {
-      padding: 24px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-    }
-
-    .panel-block {
-      background: rgba(255,255,255,.02);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-
-    .panel-block:last-child { margin-bottom: 0; }
-
-    .muted {
-      color: rgba(255,255,255,.5);
-      font-size: 14px;
-    }
-
-    section { padding: 34px 0; }
-
-    .section-title { margin-bottom: 20px; }
-
-    .section-title p {
-      color: rgba(255,255,255,.5);
-      font-size: 14px;
-    }
-
-    .section-title h2 {
-      font-size: 34px;
-      margin-top: 6px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 24px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,.05);
-      border-color: rgba(255,255,255,.14);
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
-    }
-
-    .card h3 {
-      font-size: 24px;
-      line-height: 1.2;
-      margin-top: 14px;
-    }
-
-    .meta {
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,.5);
-    }
-
-    .date {
-      margin-top: 6px;
-      font-size: 13px;
-      color: rgba(255,255,255,.42);
-    }
-
-    .card p {
-      margin-top: 12px;
-      color: rgba(255,255,255,.66);
-      font-size: 14px;
-    }
-
-    .cta {
-      margin-top: 18px;
-      color: rgba(255,255,255,.92);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .section-box {
-      padding: 30px;
-      color: rgba(255,255,255,.72);
-    }
-
-    footer {
-      padding: 26px 0 50px;
-      color: rgba(255,255,255,.45);
-      font-size: 13px;
-    }
-
-    @media (max-width: 980px) {
-      .page-hero, .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      nav { display: none; }
-
-      h1 { font-size: 42px; }
-
-      .lead { font-size: 17px; }
-    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08); }
+    header .container { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; }
+    nav { display: flex; gap: 24px; color: rgba(255,255,255,.75); font-size: 14px; }
+    nav a:hover { color: #fff; }
+    .hero { padding: 72px 0 34px; }
+    .badge { display: inline-block; padding: 6px 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); border-radius: 999px; font-size: 12px; color: rgba(255,255,255,.72); }
+    h1 { font-size: 52px; line-height: 1.05; margin-top: 18px; }
+    .lead { margin-top: 18px; max-width: 760px; color: rgba(255,255,255,.72); font-size: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding-bottom: 70px; }
+    .card { border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); border-radius: 28px; padding: 24px; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-4px); background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.14); }
+    .meta { color: rgba(255,255,255,.5); font-size: 13px; margin-bottom: 12px; }
+    .card h2 { font-size: 26px; line-height: 1.2; }
+    .card p { margin-top: 12px; color: rgba(255,255,255,.66); font-size: 15px; }
+    .cta { margin-top: 18px; color: rgba(255,255,255,.9); font-size: 14px; font-weight: 600; }
+    footer { padding: 24px 0 50px; color: rgba(255,255,255,.45); font-size: 13px; }
+    @media (max-width: 980px) { nav { display: none; } h1 { font-size: 38px; } .lead { font-size: 17px; } .grid { grid-template-columns: 1fr; } }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-JH2SZFYEHR');
+  </script>
 </head>
 <body>
   <header>
@@ -229,72 +51,29 @@
   </header>
 
   <main class="container">
-    <section class="page-hero">
-      <div>
-        <div class="badge">Articles</div>
-        <h1>Analyses, décryptages et prises de recul</h1>
-        <p class="lead">
-          Une sélection de textes publiés autour de l’intelligence artificielle, de la transformation, de la banque et des usages numériques.
-        </p>
-      </div>
-
-      <div class="panel">
-        <div class="panel-block">
-          <div class="muted">Rubrique</div>
-          <div style="margin-top:8px;font-size:20px;font-weight:600;">
-            Une bibliothèque de textes pour approfondir des sujets de fond
-          </div>
-        </div>
-
-        <div class="panel-block">
-          <div class="muted">Thèmes</div>
-          <div style="margin-top:10px;">
-            <span class="pill">IA</span>
-            <span class="pill">Transformation</span>
-            <span class="pill">Banque</span>
-            <span class="pill">Usages</span>
-            <span class="pill">Tech</span>
-          </div>
-        </div>
-
-        <div class="panel-block">
-          <div class="muted">Logique</div>
-          <div style="margin-top:8px;color:rgba(255,255,255,.72);font-size:14px;">
-            Des textes conçus pour prendre du recul, clarifier les enjeux et proposer une lecture structurée.
-          </div>
-        </div>
-      </div>
+    <section class="hero">
+      <div class="badge">Articles</div>
+      <h1>Décryptages et prises de recul</h1>
+      <p class="lead">Articles autour de l’IA, de la banque, des paiements et des usages numériques.</p>
     </section>
 
-    <section>
-      <div class="section-title">
-        <p>Bibliothèque</p>
-        <h2>Articles disponibles</h2>
-      </div>
+    <section class="grid">
+      <a class="card" href="/articles/iactualites-mars-2026/">
+        <div class="meta">Avril 2026 • IA</div>
+        <h2>IA’ctualités - Ce que je retiens de Mars 2026</h2>
+        <p>Un point de synthèse sur les signaux marquants du mois : emploi, santé, énergie, gouvernance, capital, modèles et paiements.</p>
+        <div class="cta">Lire l’article</div>
+      </a>
 
-      <div class="grid-2">
-        <a class="card" href="/articles/humanite-lumiere/">
-          <div class="badge">Article</div>
-          <h3>L’humanité a toujours tremblé devant sa propre lumière</h3>
-          <div class="meta">Par Charles Berthou</div>
-          <div class="date">Publié le 1er avril 2026</div>
-          <p>
-            Un texte sur l’intelligence artificielle comme rupture historique, la vitesse du basculement et la responsabilité des organisations face au changement.
-          </p>
-          <div class="cta">Lire l’article</div>
-        </a>
-
-        <div class="section-box">
-          D’autres articles viendront enrichir cette page progressivement.
-        </div>
-      </div>
+      <a class="card" href="https://www.linkedin.com/posts/charlesberthou_ia-en-entreprise-h%C3%A2tez-vous-lentement-activity-7439249178200817664-hn5z?utm_source=share&utm_medium=member_ios&rcm=ACoAADE_CdsBsIE1qetLGNy5EI3kH0ieAbpQd8k" target="_blank" rel="noopener noreferrer">
+        <div class="meta">Article LinkedIn • IA</div>
+        <h2>IA en entreprise : hâtez-vous lentement</h2>
+        <p>Une lecture concrète des conditions réelles d’adoption de l’IA dans les organisations.</p>
+        <div class="cta">Lire l’article</div>
+      </a>
     </section>
+
+    <footer>© Charles Berthou</footer>
   </main>
-
-  <footer>
-    <div class="container" style="padding:0;">
-      © Charles Berthou
-    </div>
-  </footer>
 </body>
 </html>
