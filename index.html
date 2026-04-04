@@ -53,56 +53,34 @@
       position: relative;
     }
 
-    /* Orb lumineux derrière le panel */
-    .hero-orb {
-      position: absolute;
-      top: -60px;
-      right: -120px;
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle at center,
-        rgba(255,255,255,.055) 0%,
-        rgba(255,255,255,.02) 45%,
-        transparent 70%);
-      border-radius: 50%;
-      filter: blur(48px);
-      pointer-events: none;
-      animation: orb-float 12s ease-in-out infinite;
-      z-index: 0;
-    }
-
-    /* Orb secondaire, accent gauche */
-    .hero-orb-2 {
-      position: absolute;
-      bottom: -80px;
-      left: -60px;
-      width: 340px;
-      height: 340px;
-      background: radial-gradient(circle at center,
-        rgba(255,255,255,.03) 0%,
-        transparent 70%);
-      border-radius: 50%;
-      filter: blur(36px);
-      pointer-events: none;
-      animation: orb-float 18s ease-in-out infinite reverse;
-      z-index: 0;
-    }
-
     /* Grille de points en fond */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,.09) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 80% 80% at 65% 40%, black 0%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 65% 40%, black 0%, transparent 100%);
+      background-image: radial-gradient(circle, rgba(255,255,255,.18) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 90% at 72% 50%, black 0%, transparent 100%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* S'assurer que le contenu reste au-dessus */
-    .hero > * { position: relative; z-index: 1; }
+    /* Orbs via ::after (double radial-gradient, pas de div parasite) */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 75% at 78% 40%, rgba(255,255,255,.11) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 45% at 18% 85%, rgba(255,255,255,.07) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: orb-float 14s ease-in-out infinite;
+    }
+
+    /* Le contenu reste au-dessus des pseudo-éléments */
+    .hero > div { position: relative; z-index: 1; }
 
     @keyframes orb-float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -296,8 +274,6 @@
 
   <main id="top" class="container">
     <section class="hero">
-      <div class="hero-orb"></div>
-      <div class="hero-orb-2"></div>
       <div>
         <div class="badge">Articles • GPTs • E-learning</div>
         <h1>J’écris, je conçois, je publie.</h1>
