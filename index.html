@@ -51,23 +51,7 @@
       align-items: start;
       gap: 42px;
       padding: 72px 0 48px;
-      position: relative;
     }
-
-    /* Glow derrière le panel droit — pas de transparence parasite */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 55% 120% at 95% 50%, rgba(255,255,255,.07) 0%, transparent 65%),
-        radial-gradient(ellipse 30% 60% at 60% 10%, rgba(255,255,255,.04) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Le contenu reste au-dessus */
-    .hero > div { position: relative; z-index: 1; }
 
     @keyframes orb-float {
       0%, 100% { transform: translate(0, 0) scale(1); }
