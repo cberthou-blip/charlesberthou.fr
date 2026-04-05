@@ -633,6 +633,49 @@ body::before {
 .ch-status.lost { background:rgba(239,68,68,0.1); color:#B91C1C; border:1px solid rgba(239,68,68,0.3); }
 .ch-status.cancelled { background:rgba(107,114,128,0.1); color:#4B5563; border:1px solid rgba(107,114,128,0.3); }
 
+/* ===== LEADERBOARD ===== */
+.lb-list { display:flex; flex-direction:column; gap:8px; }
+.lb-row { display:flex; align-items:center; gap:14px; background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:14px 18px; transition:all 0.2s; }
+.lb-row.me { border-color:var(--indigo-mid); background:rgba(99,102,241,0.05); box-shadow:var(--glow-indigo); }
+.lb-rank { font-family:'JetBrains Mono',monospace; font-weight:800; font-size:1rem; color:var(--text3); width:28px; flex-shrink:0; text-align:center; }
+.lb-rank.gold { color:#F59E0B; }
+.lb-rank.silver { color:#9CA3AF; }
+.lb-rank.bronze { color:#D97706; }
+.lb-avatar { width:38px; height:38px; border-radius:50%; background:var(--grad-card); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:1rem; flex-shrink:0; }
+.lb-info { flex:1; }
+.lb-name { font-weight:700; color:var(--navy); font-size:0.92rem; }
+.lb-sub { font-size:0.78rem; color:var(--text3); margin-top:2px; }
+.lb-xp { font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--indigo-mid); font-size:0.95rem; }
+
+/* ===== DAILY CHALLENGE ===== */
+.daily-card { background:var(--navy); border-radius:var(--radius-lg); padding:28px; margin-bottom:24px; position:relative; overflow:hidden; }
+.daily-card::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 70% 50%, rgba(6,182,212,0.2) 0%, transparent 60%); pointer-events:none; }
+.daily-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:var(--cyan); border-radius:20px; padding:4px 12px; font-size:0.75rem; font-weight:700; font-family:'JetBrains Mono',monospace; margin-bottom:14px; }
+.daily-q { color:#fff; font-size:1rem; font-weight:700; line-height:1.5; margin-bottom:20px; }
+.daily-opts { display:flex; flex-direction:column; gap:8px; }
+.daily-opt { background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.12); border-radius:var(--radius-sm); padding:11px 16px; color:rgba(255,255,255,0.85); font-size:0.88rem; cursor:pointer; transition:all 0.2s; text-align:left; font-family:'Outfit',sans-serif; }
+.daily-opt:hover { background:rgba(255,255,255,0.12); border-color:var(--cyan); }
+.daily-opt.correct { background:rgba(16,185,129,0.2); border-color:#10B981; color:#6EE7B7; pointer-events:none; }
+.daily-opt.wrong { background:rgba(239,68,68,0.15); border-color:#EF4444; color:#FCA5A5; pointer-events:none; }
+.daily-timer { position:absolute; top:20px; right:20px; font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:rgba(255,255,255,0.4); }
+.daily-done { text-align:center; padding:20px 0; }
+.daily-done-icon { font-size:2.5rem; margin-bottom:8px; }
+.daily-done-text { color:#fff; font-weight:700; font-size:1rem; margin-bottom:4px; }
+.daily-done-sub { color:rgba(255,255,255,0.5); font-size:0.82rem; }
+
+/* ===== QUESTS ===== */
+.quests-list { display:flex; flex-direction:column; gap:12px; }
+.quest-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 20px; display:flex; align-items:center; gap:16px; }
+.quest-card.done { border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.04); }
+.quest-icon { font-size:1.6rem; flex-shrink:0; }
+.quest-info { flex:1; }
+.quest-title { font-weight:700; color:var(--navy); font-size:0.92rem; margin-bottom:6px; }
+.quest-bar-track { height:6px; background:var(--bg2); border-radius:3px; overflow:hidden; }
+.quest-bar-fill { height:100%; border-radius:3px; background:var(--grad-cyan); transition:width 0.5s ease; }
+.quest-prog { font-size:0.75rem; color:var(--text3); margin-top:5px; }
+.quest-xp { font-family:'JetBrains Mono',monospace; font-weight:800; font-size:0.85rem; color:var(--indigo-mid); flex-shrink:0; }
+.quest-done-badge { background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; font-size:0.72rem; font-weight:700; flex-shrink:0; }
+
 /* ============================================================
    VUE ADMIN
 ============================================================ */
@@ -920,6 +963,8 @@ body::before {
       <button class="nav-btn active" id="nav-dashboard">Parcours</button>
       <button class="nav-btn" id="nav-badges-btn">Badges</button>
       <button class="nav-btn" id="nav-defis-btn">Défis</button>
+      <button class="nav-btn" id="nav-classement-btn">🏆 Classement</button>
+      <button class="nav-btn" id="nav-quetes-btn">🎯 Quêtes</button>
     </div>
     <div class="nav-right">
       <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val">0</span> XP</div>
@@ -986,6 +1031,30 @@ body::before {
         </div>
       </div>
       <div class="badges-grid" id="badges-grid"></div>
+    </div>
+
+    <!-- SECTION CLASSEMENT (cachée par défaut) -->
+    <div id="section-classement" style="display:none">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Classement</div>
+          <div class="section-sub">Tous les apprenants · mis à jour en temps réel</div>
+        </div>
+      </div>
+      <div id="leaderboard-content"></div>
+    </div>
+
+    <!-- SECTION QUÊTES (cachée par défaut) -->
+    <div id="section-quetes" style="display:none">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Quêtes de la semaine</div>
+          <div class="section-sub" id="quetes-sub">Réinitialisées chaque lundi</div>
+        </div>
+      </div>
+      <div id="daily-challenge-content"></div>
+      <div class="section-title" style="margin-bottom:16px;margin-top:8px">Missions de la semaine</div>
+      <div class="quests-list" id="quests-list"></div>
     </div>
 
     <!-- SECTION DÉFIS (cachée par défaut) -->
@@ -1515,6 +1584,13 @@ function launchApp(){
   const av=document.getElementById('nav-avatar');
   if(av) av.textContent=(currentUser.firstName||'?')[0].toUpperCase();
   renderDashboard();
+  // Show quest dot if daily not done
+  const todayKey=getTodayKey();
+  const dailyDone=(currentUser.dailyDone||{})[todayKey];
+  if(dailyDone==null){
+    const btn=document.getElementById('nav-quetes-btn');
+    if(btn) btn.innerHTML='🎯 Quêtes <span style="display:inline-block;width:8px;height:8px;background:#EF4444;border-radius:50%;margin-left:4px;vertical-align:middle"></span>';
+  }
   showView('view-dashboard');
   showSection('modules');
 }
@@ -1548,12 +1624,16 @@ function showSection(name){
   document.getElementById('section-modules').style.display=name==='modules'?'block':'none';
   document.getElementById('section-badges').style.display=name==='badges'?'block':'none';
   document.getElementById('section-defis').style.display=name==='defis'?'block':'none';
+  document.getElementById('section-classement').style.display=name==='classement'?'block':'none';
+  document.getElementById('section-quetes').style.display=name==='quetes'?'block':'none';
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn'};
+  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn',classement:'nav-classement-btn',quetes:'nav-quetes-btn'};
   const target=document.getElementById(map[name]);
   if(target) target.classList.add('active');
   if(name==='badges') renderBadges();
   if(name==='defis') renderChallenges();
+  if(name==='classement') renderLeaderboard();
+  if(name==='quetes'){ renderDailyChallenge(); renderQuests(); }
 }
 
 function renderModulesGrid(){
@@ -2016,6 +2096,203 @@ function endDuel(){
 }
 
 // ============================================================
+// LEADERBOARD
+// ============================================================
+async function renderLeaderboard(){
+  const wrap=document.getElementById('leaderboard-content');
+  if(!wrap) return;
+  wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
+  try {
+    const snap=await db.collection('users').get();
+    const all=[];
+    snap.forEach(d=>{ const u=d.data(); if(!u.isAdmin) all.push(u); });
+    all.sort(function(a,b){ return (b.xp||0)-(a.xp||0); });
+    if(all.length===0){ wrap.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)">Aucun apprenant pour l\'instant.</div>'; return; }
+    const rankIcons={0:'🥇',1:'🥈',2:'🥉'};
+    const rankCls={0:'gold',1:'silver',2:'bronze'};
+    wrap.innerHTML='<div class="lb-list">'+all.map(function(u,i){
+      const isMe=currentUser&&u.email===currentUser.email;
+      const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
+      return '<div class="lb-row'+(isMe?' me':'')+'">'+
+        '<div class="lb-rank '+(rankCls[i]||'')+'>'+(rankIcons[i]||('#'+(i+1)))+'</div>'+
+        '<div class="lb-avatar" style="'+(isMe?'background:var(--grad-accent)':'')+'">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+
+        '<div class="lb-info">'+
+          '<div class="lb-name">'+(u.firstName||'')+(isMe?' <span style="font-size:0.72rem;background:rgba(99,102,241,0.15);color:var(--indigo-mid);padding:2px 7px;border-radius:10px;margin-left:4px">Vous</span>':'')+'</div>'+
+          '<div class="lb-sub">Niveau '+u.level+' · '+mDone+' module'+(mDone>1?'s':'')+' terminé'+(mDone>1?'s':'')+'</div>'+
+        '</div>'+
+        '<div class="lb-xp">'+( u.xp||0)+' XP</div>'+
+      '</div>';
+    }).join('')+'</div>';
+  } catch(e){
+    wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Erreur de chargement.</div>';
+  }
+}
+
+// ============================================================
+// DAILY CHALLENGE
+// ============================================================
+function getDailyQuestion(){
+  const allQ=[];
+  MODULES.forEach(function(m){ (m.quiz||[]).forEach(function(q){ allQ.push({...q,moduleTitle:m.title}); }); });
+  const today=new Date(); const seed=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate();
+  return allQ[seed%allQ.length];
+}
+
+function getTodayKey(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+
+function getSecondsTillMidnight(){
+  const now=new Date(); const midnight=new Date(now); midnight.setHours(24,0,0,0);
+  return Math.floor((midnight-now)/1000);
+}
+
+function formatCountdown(secs){
+  const h=Math.floor(secs/3600); const m=Math.floor((secs%3600)/60); const s=secs%60;
+  return (h>0?h+'h ':'')+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';
+}
+
+let dailyTimerInterval=null;
+
+function renderDailyChallenge(){
+  const wrap=document.getElementById('daily-challenge-content');
+  if(!wrap) return;
+  if(dailyTimerInterval){ clearInterval(dailyTimerInterval); dailyTimerInterval=null; }
+  const q=getDailyQuestion();
+  const todayKey=getTodayKey();
+  const dailyDone=(currentUser.dailyDone||{})[todayKey];
+
+  if(dailyDone!=null){
+    const correct=dailyDone===q.ans;
+    wrap.innerHTML=
+      '<div class="daily-card">'+
+        '<div class="daily-badge">📅 Défi du jour</div>'+
+        '<div class="daily-done">'+
+          '<div class="daily-done-icon">'+(correct?'✅':'❌')+'</div>'+
+          '<div class="daily-done-text">'+(correct?'Bonne réponse ! +30 XP':'Pas cette fois...')+'</div>'+
+          '<div class="daily-done-sub">Revenez demain pour le prochain défi</div>'+
+          '<div style="margin-top:12px;font-size:0.82rem;color:rgba(255,255,255,0.5)">'+q.exp+'</div>'+
+        '</div>'+
+        '<div class="daily-timer" id="daily-timer">Prochain défi dans --:--:--</div>'+
+      '</div>';
+    let secs=getSecondsTillMidnight();
+    document.getElementById('daily-timer').textContent='Prochain défi dans '+formatCountdown(secs);
+    dailyTimerInterval=setInterval(function(){
+      secs--;
+      const el=document.getElementById('daily-timer');
+      if(el) el.textContent='Prochain défi dans '+formatCountdown(secs);
+      else clearInterval(dailyTimerInterval);
+    },1000);
+    return;
+  }
+
+  wrap.innerHTML=
+    '<div class="daily-card" id="daily-card">'+
+      '<div class="daily-badge">📅 Défi du jour · +30 XP</div>'+
+      '<div class="daily-q">'+q.q+'</div>'+
+      '<div class="daily-opts">'+
+        q.opts.map(function(o,i){ return '<button class="daily-opt" data-idx="'+i+'">'+o+'</button>'; }).join('')+
+      '</div>'+
+      '<div class="daily-timer" id="daily-timer-live"></div>'+
+    '</div>';
+
+  let secs=getSecondsTillMidnight();
+  const timerEl=document.getElementById('daily-timer-live');
+  if(timerEl) timerEl.textContent='Expire dans '+formatCountdown(secs);
+  dailyTimerInterval=setInterval(function(){
+    secs--;
+    const el=document.getElementById('daily-timer-live');
+    if(el) el.textContent='Expire dans '+formatCountdown(secs);
+    else clearInterval(dailyTimerInterval);
+  },1000);
+
+  wrap.querySelectorAll('.daily-opt').forEach(function(btn){
+    btn.addEventListener('click',async function(){
+      const chosen=parseInt(btn.dataset.idx);
+      const correct=chosen===q.ans;
+      wrap.querySelectorAll('.daily-opt').forEach(function(b){
+        const bi=parseInt(b.dataset.idx);
+        if(bi===q.ans) b.classList.add('correct');
+        else if(bi===chosen&&!correct) b.classList.add('wrong');
+        b.disabled=true;
+      });
+      if(!currentUser.dailyDone) currentUser.dailyDone={};
+      currentUser.dailyDone[todayKey]=chosen;
+      if(correct){ addXP(30); showNotif('+30 XP — Bonne réponse !','success'); }
+      else { showNotif('Raté ! Revenez demain.','warn'); }
+      await saveCurrentUser();
+      setTimeout(function(){ renderDailyChallenge(); },1500);
+    });
+  });
+}
+
+// ============================================================
+// WEEKLY QUESTS
+// ============================================================
+function getWeekNumber(){
+  const d=new Date(); const jan1=new Date(d.getFullYear(),0,1);
+  return Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);
+}
+
+function renderQuests(){
+  const list=document.getElementById('quests-list');
+  const sub=document.getElementById('quetes-sub');
+  if(!list) return;
+  const u=currentUser;
+  const mods=u.modules||{};
+  const mDone=Object.keys(mods).filter(function(k){ return mods[k]&&mods[k].completed; }).length;
+  const wonChallenges=(u.wonChallenges||0);
+  const streak=u.streak||0;
+  const weekKey='week-'+new Date().getFullYear()+'-'+getWeekNumber();
+  const claimed=u.questsClaimed||{};
+
+  const quests=[
+    {id:'w_module',icon:'📚',title:'Termine 1 module cette semaine',xp:50, current:Math.min(mDone,1),target:1,done:mDone>=1},
+    {id:'w_duel',icon:'⚔️',title:'Remporte 1 défi cette semaine',xp:80, current:Math.min(wonChallenges,1),target:1,done:wonChallenges>=1},
+    {id:'w_streak',icon:'🔥',title:'Maintiens ta série 5 jours consécutifs',xp:60, current:Math.min(streak,5),target:5,done:streak>=5},
+    {id:'w_quiz',icon:'🎯',title:'Fais 3 quiz parfaits (5/5)',xp:70, current:Math.min(u.perfectQuizzes||0,3),target:3,done:(u.perfectQuizzes||0)>=3},
+    {id:'w_daily',icon:'📅',title:'Réponds au défi du jour 3 fois',xp:40, current:Math.min(Object.keys(u.dailyDone||{}).length,3),target:3,done:Object.keys(u.dailyDone||{}).length>=3},
+  ];
+
+  // Calculate days until next Monday
+  const now=new Date();
+  const daysUntilMonday=(8-now.getDay())%7||7;
+  if(sub) sub.textContent='Réinitialisées dans '+daysUntilMonday+' jour'+(daysUntilMonday>1?'s':'')+' · Semaine '+(getWeekNumber());
+
+  list.innerHTML='';
+  quests.forEach(function(q){
+    const isClaimed=!!claimed[weekKey+'_'+q.id];
+    const canClaim=q.done&&!isClaimed;
+    const div=document.createElement('div');
+    div.className='quest-card'+(isClaimed?' done':'');
+    const pct=Math.round((q.current/q.target)*100);
+    div.innerHTML=
+      '<div class="quest-icon">'+q.icon+'</div>'+
+      '<div class="quest-info">'+
+        '<div class="quest-title">'+q.title+'</div>'+
+        '<div class="quest-bar-track"><div class="quest-bar-fill" style="width:'+pct+'%"></div></div>'+
+        '<div class="quest-prog">'+q.current+' / '+q.target+'</div>'+
+      '</div>'+
+      (isClaimed?'<div class="quest-done-badge">✓ Réclamé</div>':'<div class="quest-xp">+'+q.xp+' XP</div>');
+    if(canClaim){
+      const claimBtn=document.createElement('button');
+      claimBtn.className='btn btn-primary btn-sm';
+      claimBtn.style.cssText='padding:6px 14px;font-size:0.78rem;margin-left:8px;flex-shrink:0;';
+      claimBtn.textContent='Réclamer';
+      claimBtn.addEventListener('click',async function(){
+        claimBtn.disabled=true;
+        if(!currentUser.questsClaimed) currentUser.questsClaimed={};
+        currentUser.questsClaimed[weekKey+'_'+q.id]=true;
+        addXP(q.xp);
+        showNotif('+'+q.xp+' XP — Quête accomplie !','success');
+        await saveCurrentUser();
+        renderQuests();
+      });
+      div.querySelector('.quest-xp').replaceWith(claimBtn);
+    }
+    list.appendChild(div);
+  });
+}
+
+// ============================================================
 // ADMIN
 // ============================================================
 async function renderAdmin(){
@@ -2178,6 +2455,8 @@ function init(){
   document.getElementById('nav-dashboard').addEventListener('click',function(){ showSection('modules'); });
   document.getElementById('nav-badges-btn').addEventListener('click',function(){ showSection('badges'); });
   document.getElementById('nav-defis-btn').addEventListener('click',function(){ showSection('defis'); });
+  document.getElementById('nav-classement-btn').addEventListener('click',function(){ showSection('classement'); });
+  document.getElementById('nav-quetes-btn').addEventListener('click',function(){ showSection('quetes'); });
 
   // Logout admin
   document.getElementById('btn-admin-logout').addEventListener('click',function(){
