@@ -694,11 +694,29 @@ body::before {
 .speed-bonus { display:inline-block; background:rgba(6,182,212,0.15); color:var(--cyan); border:1px solid rgba(6,182,212,0.3); border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:700; margin-left:8px; }
 
 /* ===== STREAK ALERT ===== */
-.streak-banner { display:flex; align-items:center; gap:10px; background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,88,12,0.08)); border:1.5px solid rgba(245,158,11,0.3); border-radius:var(--radius); padding:12px 18px; margin:16px 32px 0; }
+.streak-banner { display:flex; align-items:center; gap:10px; background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,88,12,0.08)); border:1.5px solid rgba(245,158,11,0.3); border-radius:var(--radius); padding:12px 18px; margin:0 0 24px 0; }
 .streak-banner-icon { font-size:1.4rem; flex-shrink:0; }
 .streak-banner-text { flex:1; font-size:0.88rem; font-weight:600; color:#92400E; }
 .streak-banner-sub { font-size:0.78rem; font-weight:400; color:#B45309; margin-top:2px; }
-@media(max-width:640px){ .streak-banner { margin:12px 16px 0; } }
+@media(max-width:640px){ .streak-banner { margin:0 0 20px 0; } }
+
+/* ===== PROFILE ===== */
+.profile-header { background:var(--grad-hero); padding:48px 32px 60px; text-align:center; position:relative; overflow:hidden; }
+.profile-header::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 60%,rgba(99,102,241,0.3) 0%,transparent 60%); pointer-events:none; }
+.profile-header-content { position:relative; }
+.profile-avatar-big { width:80px; height:80px; border-radius:50%; background:var(--grad-accent); display:flex; align-items:center; justify-content:center; color:#fff; font-size:2rem; font-weight:800; margin:0 auto 16px; border:3px solid rgba(255,255,255,0.3); box-shadow:0 0 30px rgba(124,58,237,0.5); }
+.profile-name { font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:4px; }
+.profile-email { font-size:0.85rem; color:rgba(255,255,255,0.55); }
+.profile-body { max-width:640px; margin:0 auto; padding:32px; }
+.profile-section { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius-lg); padding:24px; margin-bottom:20px; }
+.profile-section-title { font-size:0.78rem; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.08em; font-family:'JetBrains Mono',monospace; margin-bottom:16px; }
+.profile-field { margin-bottom:14px; }
+.profile-field label { display:block; font-size:0.82rem; font-weight:600; color:var(--text2); margin-bottom:6px; }
+.profile-stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.profile-stat { text-align:center; background:var(--bg2); border-radius:var(--radius); padding:14px 8px; }
+.profile-stat-val { font-size:1.4rem; font-weight:800; color:var(--navy); font-family:'JetBrains Mono',monospace; }
+.profile-stat-lbl { font-size:0.72rem; color:var(--text3); margin-top:4px; text-transform:uppercase; letter-spacing:0.05em; }
+@media(max-width:640px){ .profile-body { padding:20px 16px; } .profile-stats-grid { grid-template-columns:repeat(3,1fr); } }
 
 /* ===== TEAMS ===== */
 .team-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius-lg); padding:22px; margin-bottom:16px; }
@@ -1112,6 +1130,60 @@ body::before {
       <div id="duel-result-text" style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px"></div>
       <div id="duel-result-sub" style="font-size:0.85rem;color:var(--text3);margin-bottom:20px"></div>
       <button class="btn btn-primary" id="btn-duel-close">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VUE PROFIL ==================== -->
+<div class="view" id="view-profile">
+  <nav class="navbar">
+    <a class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%"><path d="m40 28.85-6.45-11.19A7 7 0 0 1 28.16 26a8.67 8.67 0 0 1-.89.13 8.66 8.66 0 0 0-6.93-4.05 7 7 0 0 1 9.87-9 7.26 7.26 0 0 1 1.19.92L24.88 2.65h-9.8L8.61 13.84a7 7 0 0 1 9.88.49 6.43 6.43 0 0 1 .57.72 8.69 8.69 0 0 0 0 8A7 7 0 0 1 6.37 19a7.07 7.07 0 0 1 .15-1.45L0 28.86l4.91 8.49h12.91a7 7 0 0 1-4.5-8.82 6 6 0 0 1 .33-.83 8.67 8.67 0 0 0 7-4 7 7 0 0 1 2.84 13 7.68 7.68 0 0 1-1.35.59h13z" style="fill:#c50307"/></svg></div>
+      <span class="nav-logo-text">MABN Académie</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val3">0</span> XP</div>
+      <button class="btn btn-ghost btn-sm" id="btn-profile-back">← Retour</button>
+    </div>
+  </nav>
+  <div class="profile-header">
+    <div class="profile-header-content">
+      <div class="profile-avatar-big" id="profile-avatar-big">?</div>
+      <div class="profile-name" id="profile-fullname">Prénom Nom</div>
+      <div class="profile-email" id="profile-email-display">email@exemple.fr</div>
+    </div>
+  </div>
+  <div class="profile-body">
+    <!-- Stats -->
+    <div class="profile-section">
+      <div class="profile-section-title">Mes statistiques</div>
+      <div class="profile-stats-grid" id="profile-stats-grid"></div>
+    </div>
+    <!-- Modifier le prénom/nom -->
+    <div class="profile-section">
+      <div class="profile-section-title">Modifier mes informations</div>
+      <div class="profile-field">
+        <label>Prénom</label>
+        <input class="input-field" id="profile-first" type="text" placeholder="Prénom">
+      </div>
+      <div class="profile-field">
+        <label>Nom</label>
+        <input class="input-field" id="profile-last" type="text" placeholder="Nom">
+      </div>
+      <button class="btn btn-primary" id="btn-profile-save" style="width:100%">Enregistrer les modifications</button>
+    </div>
+    <!-- Changer le mot de passe -->
+    <div class="profile-section">
+      <div class="profile-section-title">Changer le mot de passe</div>
+      <div class="profile-field">
+        <label>Nouveau mot de passe</label>
+        <input class="input-field" id="profile-newpass" type="password" placeholder="Au moins 6 caractères">
+      </div>
+      <button class="btn btn-secondary" id="btn-profile-pass" style="width:100%">Mettre à jour le mot de passe</button>
+    </div>
+    <!-- Déconnexion -->
+    <div class="profile-section" style="text-align:center">
+      <button class="btn btn-ghost" id="btn-profile-logout" style="color:#B91C1C;border-color:rgba(239,68,68,0.3);width:100%">Se déconnecter</button>
     </div>
   </div>
 </div>
@@ -1779,8 +1851,8 @@ function saveCurrentUser(){
   if(!currentUser||currentUser.isAdmin) return;
   const fu=auth.currentUser;
   if(!fu) return;
-  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed}=currentUser;
-  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{}},{merge:true})
+  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=currentUser;
+  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0},{merge:true})
     .catch(e=>console.error('saveCurrentUser:',e));
 }
 
@@ -2410,7 +2482,7 @@ function endDuel(){
     oppScore:ds.oppScore,
     completedAt:new Date().toISOString()
   }).catch(e=>console.error('endDuel:',e));
-  if(won){ addXP(150); awardBadge('challenger'); }
+  if(won){ addXP(150); awardBadge('challenger'); currentUser.wonChallenges=(currentUser.wonChallenges||0)+1; saveCurrentUser(); }
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
   document.getElementById('duel-result-icon').textContent=won?'🏆':'😤';
@@ -2445,7 +2517,10 @@ async function renderTeams(){
         '<div class="team-header">'+
           '<div class="team-avatar">'+myTeam.emoji+'</div>'+
           '<div><div class="team-name">'+myTeam.name+'</div><div class="team-meta">Votre équipe · '+memberData.length+' membre'+(memberData.length>1?'s':'')+' · '+totalXP+' XP cumulés</div></div>'+
-          '<button id="btn-leave-team" style="margin-left:auto;background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:5px 12px;font-size:0.78rem;font-weight:600;cursor:pointer">Quitter</button>'+
+          '<div style="display:flex;gap:8px;margin-left:auto">'+
+            '<button id="btn-invite-team" style="background:rgba(99,102,241,0.1);color:var(--indigo);border:1px solid rgba(99,102,241,0.3);border-radius:6px;padding:5px 12px;font-size:0.78rem;font-weight:600;cursor:pointer">+ Inviter</button>'+
+            '<button id="btn-leave-team" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:5px 12px;font-size:0.78rem;font-weight:600;cursor:pointer">Quitter</button>'+
+          '</div>'+
         '</div>'+
         '<div class="team-members">'+
           memberData.map(function(u){ return '<div class="team-member-chip"><div class="team-member-av">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+u.firstName+' <span style="color:var(--text3);font-weight:400">('+u.xp+' XP)</span></div>'; }).join('')+
@@ -2458,6 +2533,50 @@ async function renderTeams(){
         else { await db.collection('teams').doc(myTeam.id).update({members:newMembers}); }
         showNotif('Vous avez quitté l\'équipe','success');
         renderTeams();
+      });
+      // Invite button
+      document.getElementById('btn-invite-team').addEventListener('click',async function(){
+        // Fetch all users not already in team
+        try {
+          const usersSnap=await db.collection('users').get();
+          const candidates=[];
+          usersSnap.forEach(function(d){
+            const u=d.data();
+            if(!u.isAdmin && !(myTeam.members||[]).includes(d.id)){
+              candidates.push({uid:d.id,name:u.firstName+' '+u.lastName});
+            }
+          });
+          if(candidates.length===0){ showNotif('Aucun apprenant disponible à inviter','warn'); return; }
+          // Build a simple select modal
+          const overlay=document.createElement('div');
+          overlay.style.cssText='position:fixed;inset:0;background:rgba(13,27,62,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;';
+          overlay.innerHTML=
+            '<div style="background:#fff;border-radius:var(--radius-lg);padding:28px;width:340px;max-width:calc(100vw - 32px)">'+
+              '<div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px">👥 Inviter dans l\'équipe</div>'+
+              '<select id="invite-select" class="input-field" style="margin-bottom:16px">'+
+                candidates.map(function(c){ return '<option value="'+c.uid+'">'+c.name+'</option>'; }).join('')+
+              '</select>'+
+              '<div style="display:flex;gap:10px">'+
+                '<button id="invite-confirm" class="btn btn-primary" style="flex:1">Inviter</button>'+
+                '<button id="invite-cancel" class="btn btn-ghost" style="flex:1">Annuler</button>'+
+              '</div>'+
+            '</div>';
+          document.body.appendChild(overlay);
+          document.getElementById('invite-cancel').addEventListener('click',function(){ overlay.remove(); });
+          document.getElementById('invite-confirm').addEventListener('click',async function(){
+            const sel=document.getElementById('invite-select');
+            const uid=sel.value;
+            const name=candidates.find(function(c){ return c.uid===uid; });
+            if(!uid) return;
+            try {
+              await db.collection('teams').doc(myTeam.id).update({members:firebase.firestore.FieldValue.arrayUnion(uid)});
+              overlay.remove();
+              showNotif((name?name.name:'Apprenant')+' ajouté à l\'équipe !','success');
+              renderTeams();
+            } catch(e){ showNotif('Erreur : '+e.message,'error'); }
+          });
+          overlay.addEventListener('click',function(e){ if(e.target===overlay) overlay.remove(); });
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); }
       });
       const sep=document.createElement('div');
       sep.className='section-title';
@@ -2522,6 +2641,29 @@ async function createTeam(){
     showNotif('Équipe "'+name.trim()+'" créée !','success');
     renderTeams();
   } catch(e){ showNotif('Erreur : '+e.message,'error'); }
+}
+
+// ============================================================
+// PROFILE
+// ============================================================
+function renderProfile(){
+  const u=currentUser;
+  document.getElementById('profile-avatar-big').textContent=(u.firstName||'?')[0].toUpperCase();
+  document.getElementById('profile-fullname').textContent=(u.firstName||'')+' '+(u.lastName||'');
+  document.getElementById('profile-email-display').textContent=u.email||'';
+  document.getElementById('nav-xp-val3').textContent=u.xp||0;
+  document.getElementById('profile-first').value=u.firstName||'';
+  document.getElementById('profile-last').value=u.lastName||'';
+  const mods=u.modules||{};
+  const mDone=Object.keys(mods).filter(function(k){ return mods[k]&&mods[k].completed; }).length;
+  const grid=document.getElementById('profile-stats-grid');
+  grid.innerHTML=
+    '<div class="profile-stat"><div class="profile-stat-val">'+u.level+'</div><div class="profile-stat-lbl">Niveau</div></div>'+
+    '<div class="profile-stat"><div class="profile-stat-val">'+(u.xp||0)+'</div><div class="profile-stat-lbl">XP Total</div></div>'+
+    '<div class="profile-stat"><div class="profile-stat-val">'+mDone+'/10</div><div class="profile-stat-lbl">Modules</div></div>'+
+    '<div class="profile-stat"><div class="profile-stat-val">'+(u.badges||[]).length+'</div><div class="profile-stat-lbl">Badges</div></div>'+
+    '<div class="profile-stat"><div class="profile-stat-val">'+(u.streak||0)+'🔥</div><div class="profile-stat-lbl">Série</div></div>'+
+    '<div class="profile-stat"><div class="profile-stat-val">'+(u.wonChallenges||0)+'</div><div class="profile-stat-lbl">Victoires</div></div>';
 }
 
 // ============================================================
@@ -2894,9 +3036,48 @@ function init(){
     auth.signOut(); currentUser=null; showView('view-landing');
   });
 
-  // Nav avatar (logout)
+  // Nav avatar → profile
   document.getElementById('nav-avatar').addEventListener('click',function(){
+    renderProfile();
+    showView('view-profile');
+  });
+  document.getElementById('btn-profile-back').addEventListener('click',function(){
+    showView('view-dashboard');
+  });
+  document.getElementById('btn-profile-logout').addEventListener('click',function(){
     if(confirm('Se déconnecter ?')){ auth.signOut(); currentUser=null; showView('view-landing'); }
+  });
+  document.getElementById('btn-profile-save').addEventListener('click',async function(){
+    const first=document.getElementById('profile-first').value.trim();
+    const last=document.getElementById('profile-last').value.trim();
+    if(!first||!last){ showNotif('Prénom et nom requis','error'); return; }
+    const btn=document.getElementById('btn-profile-save');
+    btn.disabled=true; btn.textContent='Enregistrement...';
+    currentUser.firstName=first; currentUser.lastName=last;
+    saveCurrentUser();
+    document.getElementById('profile-avatar-big').textContent=first[0].toUpperCase();
+    document.getElementById('profile-fullname').textContent=first+' '+last;
+    document.getElementById('nav-avatar').textContent=first[0].toUpperCase();
+    btn.disabled=false; btn.textContent='Enregistrer les modifications';
+    showNotif('Profil mis à jour','success');
+  });
+  document.getElementById('btn-profile-pass').addEventListener('click',async function(){
+    const pass=document.getElementById('profile-newpass').value;
+    if(!pass||pass.length<6){ showNotif('Minimum 6 caractères','error'); return; }
+    const btn=document.getElementById('btn-profile-pass');
+    btn.disabled=true; btn.textContent='Mise à jour...';
+    try {
+      await auth.currentUser.updatePassword(pass);
+      document.getElementById('profile-newpass').value='';
+      showNotif('Mot de passe mis à jour','success');
+    } catch(e){
+      if(e.code==='auth/requires-recent-login'){
+        showNotif('Reconnectez-vous avant de changer le mot de passe','warn');
+      } else {
+        showNotif('Erreur : '+e.message,'error');
+      }
+    }
+    btn.disabled=false; btn.textContent='Mettre à jour le mot de passe';
   });
 
   // Challenge modal
