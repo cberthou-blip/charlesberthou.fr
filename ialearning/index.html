@@ -1291,13 +1291,13 @@ body::before {
       <span class="nav-logo-text">MABN Académie</span>
     </a>
     <div class="nav-center">
-      <button class="nav-btn active" id="nav-dashboard">🗺️ Parcours</button>
-      <button class="nav-btn" id="nav-badges-btn">🏅 Badges</button>
-      <button class="nav-btn" id="nav-defis-btn">⚔️ Défis</button>
-      <button class="nav-btn" id="nav-classement-btn">🏆 Classement</button>
-      <button class="nav-btn" id="nav-quetes-btn">🎯 Quêtes</button>
-      <button class="nav-btn" id="nav-equipes-btn">👥 Équipes</button>
-      <button class="nav-btn" id="nav-admin-btn" style="display:none;background:rgba(192,38,211,0.08);color:var(--magenta);border-color:rgba(192,38,211,0.2)">🔐 Admin</button>
+      <button class="nav-btn active" id="nav-dashboard">Parcours</button>
+      <button class="nav-btn" id="nav-badges-btn">Badges</button>
+      <button class="nav-btn" id="nav-defis-btn">Défis</button>
+      <button class="nav-btn" id="nav-classement-btn">Classement</button>
+      <button class="nav-btn" id="nav-quetes-btn">Quêtes</button>
+      <button class="nav-btn" id="nav-equipes-btn">Équipes</button>
+      <button class="nav-btn" id="nav-admin-btn" style="display:none;background:rgba(192,38,211,0.08);color:var(--magenta);border-color:rgba(192,38,211,0.2)">Admin</button>
     </div>
     <div class="nav-right">
       <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val">0</span> XP</div>
@@ -3163,7 +3163,7 @@ async function renderAdmin(){
   try {
     const snap=await db.collection('users').get();
     const allU=[];
-    snap.forEach(d=>{ const u=d.data(); if(!u.isAdmin) allU.push({...u, uid:d.id}); });
+    snap.forEach(d=>{ const u=d.data(); allU.push({...u, uid:d.id}); });
     const pendingU=allU.filter(function(u){ return u.approved===false; });
     const activeU=allU.filter(function(u){ return u.approved!==false; });
     const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
