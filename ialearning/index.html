@@ -631,6 +631,7 @@ body::before {
 .ch-status.active { background:rgba(6,182,212,0.1); color:var(--cyan); border:1px solid rgba(6,182,212,0.3); }
 .ch-status.won { background:rgba(16,185,129,0.1); color:#065F46; border:1px solid rgba(16,185,129,0.3); }
 .ch-status.lost { background:rgba(239,68,68,0.1); color:#B91C1C; border:1px solid rgba(239,68,68,0.3); }
+.ch-status.cancelled { background:rgba(107,114,128,0.1); color:#4B5563; border:1px solid rgba(107,114,128,0.3); }
 
 /* ============================================================
    VUE ADMIN
@@ -1059,6 +1060,13 @@ const MODULES = [
       {q:"Qu'est-ce que l'IA ne sait PAS encore bien faire aujourd'hui ?",opts:["Reconnaître des visages sur une photo","Traduire un texte en temps réel","Raisonner de façon fiable sur des problèmes totalement nouveaux","Générer des images réalistes"],ans:2,exp:"L'IA actuelle excelle dans les tâches pour lesquelles elle a été entraînée, mais elle manque de bon sens et de capacité à raisonner sur des situations vraiment nouvelles."},
       {q:"Les GPU ont été essentiels à l'IA parce que...",opts:["Ils consomment moins d'énergie","Ils sont conçus pour le calcul parallèle massif, parfait pour entraîner des IA","Ils stockent plus de données","Ils sont moins chers que les processeurs classiques"],ans:1,exp:"Les GPU peuvent effectuer des milliers de calculs simultanément. Cette capacité de calcul parallèle est idéale pour entraîner des réseaux de neurones."},
       {q:"L'architecture qui a tout changé dans l'IA à partir de 2017 s'appelle...",opts:["Le CNN (réseau convolutif)","Le GAN (réseau adverse)","Le Transformer","Le LSTM"],ans:2,exp:"L'architecture Transformer, présentée dans le papier 'Attention is All You Need' (2017), est la base de ChatGPT, Claude, Gemini et de la plupart des IA actuelles."}
+    ],
+    duelQuiz:[
+      {q:"Le mécanisme central de l'architecture Transformer s'appelle...",opts:["Backpropagation","Self-Attention","Convolution","Gradient Descent"],ans:1,exp:"Le mécanisme d'attention (self-attention) permet au Transformer de peser l'importance de chaque mot par rapport aux autres dans une séquence, rendant l'IA bien plus performante sur le langage."},
+      {q:"Qu'est-ce que l'apprentissage 'supervisé' ?",opts:["L'IA apprend en jouant contre elle-même","L'IA apprend à partir d'exemples étiquetés par des humains","L'IA apprend sans aucune donnée préalable","L'IA apprend uniquement par essais et erreurs"],ans:1,exp:"L'apprentissage supervisé utilise des données étiquetées (ex : des images avec les noms des objets) pour entraîner un modèle. C'est la technique la plus utilisée en IA aujourd'hui."},
+      {q:"AlphaGo a battu un champion mondial de Go en 2016. Pourquoi ce fut si marquant ?",opts:["Le Go n'avait jamais été joué par ordinateur auparavant","Le Go était considéré trop complexe pour l'IA en raison de son nombre astronomique de combinaisons","AlphaGo a triché en consultant internet","C'était la première IA à utiliser un processeur"],ans:1,exp:"Le Go possède plus de configurations possibles que d'atomes dans l'univers. Beaucoup pensaient qu'il faudrait des décennies avant qu'une IA y excelle. AlphaGo y est parvenu en 2016."},
+      {q:"L'IA 'étroite' (narrow AI) se distingue de l'AGI par...",opts:["Sa vitesse de calcul","Sa capacité à s'exprimer en langage naturel","Son excellente maîtrise d'un seul domaine précis vs la polyvalence humaine","Son coût de développement"],ans:2,exp:"L'IA étroite (tout ce que nous avons aujourd'hui) est excellente dans des tâches spécifiques pour lesquelles elle a été entraînée. L'AGI serait aussi polyvalente qu'un humain sur n'importe quel problème."},
+      {q:"Comment un réseau de neurones 'apprend'-il concrètement ?",opts:["En lisant des encyclopédies programmées par des ingénieurs","En ajustant des millions de paramètres numériques pour minimiser les erreurs","En copiant les réponses d'autres IA","En observant des humains travailler en temps réel"],ans:1,exp:"Un réseau de neurones ajuste ses 'poids' (paramètres numériques) à chaque exemple via la rétropropagation du gradient. Après des milliards d'ajustements, le modèle devient précis."}
     ]
   },
   {
@@ -1084,6 +1092,13 @@ const MODULES = [
       {q:"Quelle entreprise française produit des LLM compétitifs en open-source ?",opts:["BNP Paribas","Thales","Mistral AI","Orange"],ans:2,exp:"Mistral AI, fondée à Paris en 2023, produit des modèles de langage très performants et les publie souvent en open-source, une approche distincte des géants américains."},
       {q:"Qu'est-ce qu'une 'hallucination' d'un LLM ?",opts:["Une erreur de connexion internet","Une image générée de façon artistique","Quand le modèle invente des informations avec une fausse confiance","Quand le modèle refuse de répondre"],ans:2,exp:"Les hallucinations sont des affirmations inventées par le LLM présentées comme des faits. C'est la limite principale : le modèle ne sait pas ce qu'il ne sait pas."},
       {q:"Quelle entreprise a créé ChatGPT ?",opts:["Google","Meta","Anthropic","OpenAI"],ans:3,exp:"OpenAI, fondée en 2015, a lancé ChatGPT en novembre 2022. Ce lancement a provoqué une véritable révolution dans l'adoption grand public de l'IA."}
+    ],
+    duelQuiz:[
+      {q:"RLHF est la technique qui a rendu les LLM utiles et agréables. Que signifie-t-elle ?",opts:["Rapid Learning for High Frequency","Reinforcement Learning from Human Feedback","Recursive Language Hierarchy Framework","Réseau de Logique à Haute Fidélité"],ans:1,exp:"RLHF (Reinforcement Learning from Human Feedback) : des humains notent les réponses du modèle, et celui-ci apprend à produire des réponses mieux appréciées. C'est ce qui différencie ChatGPT d'un simple modèle de prédiction de texte."},
+      {q:"La 'fenêtre de contexte' d'un LLM détermine...",opts:["La vitesse d'affichage des réponses","La quantité de texte que le modèle peut traiter et 'mémoriser' en une fois","Le nombre de langues supportées","La résolution des images générées"],ans:1,exp:"La fenêtre de contexte est la mémoire de travail du LLM. GPT-4 peut traiter ~128 000 tokens en une fois. Au-delà, il commence à 'oublier' le début de la conversation."},
+      {q:"Mistral AI publie ses modèles en open-source. Quelle est la principale conséquence ?",opts:["Personne ne peut les utiliser commercialement","N'importe qui peut les télécharger, les modifier et les déployer localement","Seules les entreprises françaises peuvent y accéder","Ils sont moins performants que les modèles fermés"],ans:1,exp:"L'open-source permet à des développeurs du monde entier d'utiliser, modifier et améliorer les modèles Mistral. Cela favorise l'innovation et évite la dépendance aux grandes plateformes américaines."},
+      {q:"Qu'est-ce que le 'fine-tuning' d'un LLM ?",opts:["Le processus initial d'entraînement sur des milliards de textes","Ré-entraîner un modèle existant sur des données spécifiques pour l'adapter à un usage précis","Une technique pour réduire les hallucinations","La compression d'un modèle pour le rendre plus rapide"],ans:1,exp:"Le fine-tuning prend un modèle déjà pré-entraîné et l'affine sur des données ciblées (ex : données médicales, juridiques, d'une entreprise). Moins coûteux que de tout réentraîner."},
+      {q:"Parmi ces caractéristiques, laquelle est VRAIE pour tous les LLM actuels ?",opts:["Ils ont accès à internet en temps réel","Ils comprennent vraiment le sens de ce qu'ils disent","Ils prédisent le token suivant le plus probable","Ils vérifient les faits dans une base de données officielle"],ans:2,exp:"Tous les LLM fonctionnent en prédisant statistiquement le token suivant. Ils ne 'comprennent' pas, ne vérifient pas les faits et (sauf plugin) n'ont pas accès à internet en temps réel."}
     ]
   },
   {
@@ -1110,6 +1125,13 @@ const MODULES = [
       {q:"La technique 'chain of thought' consiste à...",opts:["Enchaîner plusieurs IA","Demander à l'IA de raisonner étape par étape","Utiliser plusieurs prompts en même temps","Limiter la longueur des réponses"],ans:1,exp:"En ajoutant 'Raisonne étape par étape' dans votre prompt, vous poussez l'IA à décomposer sa réflexion, ce qui améliore fortement la précision sur les problèmes complexes."},
       {q:"La technique 'few-shot' consiste à...",opts:["Utiliser des prompts très courts","Envoyer plusieurs requêtes à la suite","Donner des exemples concrets du résultat attendu","Restreindre les sujets abordés"],ans:2,exp:"Le few-shot learning consiste à inclure 2-3 exemples dans votre prompt pour montrer exactement le style, le format ou le type de réponse que vous attendez."},
       {q:"Si une première réponse de l'IA ne vous satisfait pas, que faut-il faire ?",opts:["Changer d'IA","Reformuler et itérer votre prompt","Attendre que l'IA s'améliore seule","Relancer la page"],ans:1,exp:"L'itération est la clé ! Affinez votre prompt : précisez le ton, la longueur, le format, ajoutez du contexte. Le dialogue avec une IA est un processus d'aller-retour."}
+    ],
+    duelQuiz:[
+      {q:"Qu'est-ce qu'un 'system prompt' ?",opts:["Le premier message d'une conversation","Une instruction donnée en amont pour cadrer le comportement de l'IA pour toute la conversation","Un prompt très long","Un prompt qui contient du code"],ans:1,exp:"Le system prompt est un message d'instruction invisible pour l'utilisateur final qui définit le rôle, le ton et les limites de l'IA. Les développeurs l'utilisent pour personnaliser le comportement d'un assistant."},
+      {q:"La technique 'Tree of Thought' va plus loin que 'Chain of Thought' en...",opts:["Utilisant des emojis dans les prompts","Explorant plusieurs chemins de raisonnement en parallèle avant de choisir le meilleur","Limitant les réponses à 3 étapes","Demandant à l'IA de répondre en vers"],ans:1,exp:"Tree of Thought explore plusieurs raisonnements possibles simultanément, comme un arbre de décisions. Plus puissant que Chain of Thought pour les problèmes complexes avec de nombreuses solutions possibles."},
+      {q:"Un prompt 'zero-shot' signifie...",opts:["Un prompt très court (zéro mot superflu)","Donner une instruction sans fournir aucun exemple","Un prompt qui demande à l'IA de ne rien faire","Un prompt envoyé la nuit"],ans:1,exp:"Zero-shot = pas d'exemple. One-shot = un exemple. Few-shot = quelques exemples. Plus vous donnez d'exemples, plus l'IA comprend exactement ce que vous attendez."},
+      {q:"La 'temperature' d'un LLM réglée à 0 produit...",opts:["Des réponses plus créatives","Des réponses plus courtes","Des réponses déterministes et toujours identiques","Des réponses plus rapides"],ans:2,exp:"Temperature 0 = l'IA choisit toujours le token le plus probable → réponses prévisibles et cohérentes. Temperature élevée = plus d'aléatoire → créativité mais moins de précision."},
+      {q:"RAG (Retrieval-Augmented Generation) consiste à...",opts:["Générer des images avec du texte","Connecter le LLM à une base de données externe pour réduire les hallucinations","Accélérer les temps de réponse","Rendre le modèle plus petit"],ans:1,exp:"RAG permet de connecter un LLM à des documents ou bases de données spécifiques. Avant de répondre, le modèle 'récupère' les passages pertinents et s'en sert pour répondre avec moins d'hallucinations."}
     ]
   },
   {
@@ -1135,6 +1157,13 @@ const MODULES = [
       {q:"Quelle application IA permet d'apprendre avec un tuteur personnalisé ?",opts:["Duolingo uniquement","Suno","Khanmigo de Khan Academy","Runway"],ans:2,exp:"Khanmigo est l'assistant IA de Khan Academy. Il joue le rôle d'un tuteur de Socrate : il guide l'élève avec des questions plutôt que de donner directement les réponses."},
       {q:"Suno et Udio sont des outils IA pour...",opts:["Générer des vidéos","Créer de la musique à partir de texte","Analyser des données financières","Retoucher des photos"],ans:1,exp:"Suno et Udio permettent de générer des chansons complètes (mélodie, paroles, voix chantée) à partir d'une simple description textuelle. Une révolution pour la création musicale."},
       {q:"Quelle est la meilleure façon d'utiliser l'IA pour vous aider au travail ?",opts:["La laisser faire tout le travail à votre place","L'utiliser comme amplificateur de vos propres capacités","Eviter de l'utiliser pour rester compétitif","Demander à votre entreprise d'interdire son usage"],ans:1,exp:"L'IA est plus efficace quand elle augmente vos compétences : vous apportez le jugement, le contexte et la créativité, elle vous aide à aller plus vite et plus loin."}
+    ],
+    duelQuiz:[
+      {q:"Qu'est-ce que l'IA 'agentique' (agentic AI) ?",opts:["Une IA qui imite les agents de voyage","Une IA capable de planifier et d'enchaîner des tâches de façon autonome sans validation à chaque étape","Une IA très rapide","Une IA spécialisée dans les ressources humaines"],ans:1,exp:"Les agents IA peuvent décomposer un objectif complexe en sous-tâches, exécuter des actions réelles (chercher sur le web, écrire du code, envoyer des emails) et s'adapter de façon autonome."},
+      {q:"Adobe Firefly se distingue des autres générateurs d'images car...",opts:["Il est gratuit pour tous","Il génère des vidéos aussi","Il est entraîné sur des images sous licence, le rendant légalement plus sûr pour usage commercial","Il fonctionne sans internet"],ans:2,exp:"Contrairement à Midjourney ou DALL-E, Adobe Firefly est entraîné sur des images sous licence Adobe Stock et du domaine public. Cela réduit les risques légaux liés au droit d'auteur pour un usage professionnel."},
+      {q:"Quel risque faut-il surveiller en utilisant l'IA pour des emails professionnels confidentiels ?",opts:["La longueur des emails générés","La confidentialité : les textes envoyés peuvent servir à entraîner les modèles","La qualité orthographique","Le temps de génération"],ans:1,exp:"Les données saisies dans des outils IA grand public peuvent être utilisées pour améliorer les modèles. Pour des données confidentielles (stratégie, données clients...), il faut utiliser des versions enterprise avec des garanties de confidentialité."},
+      {q:"L'outil Perplexity AI est particulièrement utile pour...",opts:["Générer des images","Composer de la musique","Effectuer des recherches web avec citations directes, limitant les hallucinations","Créer des présentations PowerPoint"],ans:2,exp:"Perplexity est un moteur de recherche propulsé par IA qui cite ses sources en temps réel. Il répond directement aux questions en s'appuyant sur des pages web actuelles, ce qui réduit les hallucinations."},
+      {q:"Microsoft Copilot intégré à Office 365 permet principalement de...",opts:["Remplacer complètement les employés","Analyser, résumer et rédiger directement dans Word, Excel et Outlook","Créer des sites web automatiquement","Gérer la comptabilité de l'entreprise"],ans:1,exp:"Microsoft Copilot s'intègre dans les outils du quotidien : résumer des emails dans Outlook, analyser des données dans Excel, rédiger des présentations dans PowerPoint... sans quitter ses outils habituels."}
     ]
   },
   {
@@ -1160,6 +1189,13 @@ const MODULES = [
       {q:"Qu'est-ce qu'un 'prompt engineer' ?",opts:["Un ingénieur qui conçoit des processeurs","Un spécialiste qui optimise les instructions données aux IA","Un développeur de jeux vidéo","Un technicien en réseau"],ans:1,exp:"Le prompt engineering est un nouveau métier qui consiste à concevoir des instructions efficaces pour obtenir les meilleurs résultats des IA. Un domaine en forte demande."},
       {q:"Dans quel secteur l'IA détecte-t-elle certains cancers mieux que des humains ?",opts:["La finance","L'automobile","La santé / radiologie","L'éducation"],ans:2,exp:"Des études ont montré que des IA spécialisées en imagerie médicale détectent certains cancers (sein, peau) avec une précision égale ou supérieure à celle des radiologues experts."},
       {q:"Pour les professionnels qualifiés (médecins, avocats, etc.), l'IA va principalement...",opts:["Remplacer leur métier dans les 2 ans","Augmenter leur productivité et amplifier leurs capacités","N'avoir aucun impact sur leur travail","Diminuer leur valeur sur le marché"],ans:1,exp:"Pour les métiers qualifiés, l'IA est surtout un amplificateur : elle permet de traiter plus de cas, de trouver des informations plus vite, de rédiger plus rapidement, sans remplacer le jugement humain."}
+    ],
+    duelQuiz:[
+      {q:"NVIDIA est devenue l'une des entreprises les plus valorisées au monde grâce à l'IA. Pourquoi ?",opts:["Elle a créé ChatGPT","Ses GPU H100/H200 sont devenus le composant indispensable pour entraîner les grands modèles","Elle possède les plus grands datacenters","Elle a racheté OpenAI"],ans:1,exp:"Les GPU de NVIDIA, initialement conçus pour les jeux vidéo, sont devenus le composant clé pour entraîner et faire tourner les LLM. La demande explose au point que certains GPU se revendent 10 fois leur prix."},
+      {q:"La 'course aux puces' (chip war) dans le contexte de l'IA désigne...",opts:["Une compétition entre fabricants de PC gamer","La compétition géopolitique entre USA et Chine pour contrôler la fabrication des semi-conducteurs avancés","Un tournoi entre ingénieurs en informatique","La concurrence entre AMD et Intel"],ans:1,exp:"Les semi-conducteurs avancés (fabriqués principalement par TSMC à Taïwan) sont au cœur de la compétition géopolitique USA-Chine. Les USA ont imposé des restrictions à l'export de puces vers la Chine."},
+      {q:"Le modèle économique 'AI as a Service' ( AIaaS) signifie...",opts:["Vendre des robots IA aux entreprises","Proposer l'accès à des modèles d'IA via API sans que les clients aient à les développer","Former des consultants en IA","Offrir l'IA gratuitement à tout le monde"],ans:1,exp:"Des entreprises comme OpenAI, Anthropic ou Mistral vendent l'accès à leurs modèles via API. Les entreprises clientes intègrent ces capacités IA dans leurs produits sans avoir à développer leurs propres modèles."},
+      {q:"Quel pays a publié dès 2017 un plan national pour devenir leader mondial de l'IA d'ici 2030 ?",opts:["La France","L'Inde","La Chine","L'Allemagne"],ans:2,exp:"En juillet 2017, la Chine a publié un plan national de développement de l'IA visant à atteindre la tête mondiale du secteur d'ici 2030. Elle a depuis massivement investi dans la recherche, les entreprises et les données."},
+      {q:"Selon le rapport McKinsey 2023, l'IA générative pourrait créer quelle valeur économique annuelle ?",opts:["Entre 100 et 200 milliards de dollars","Entre 500 milliards et 1 000 milliards de dollars","Entre 2 600 et 4 400 milliards de dollars","Plus de 10 000 milliards de dollars"],ans:2,exp:"McKinsey estime que l'IA générative pourrait ajouter entre 2,6 et 4,4 trillions de dollars de valeur économique par an. La productivité des travailleurs du savoir pourrait augmenter de 40 à 60%."}
     ]
   },
   {
@@ -1185,6 +1221,13 @@ const MODULES = [
       {q:"Comment l'IA peut-elle AIDER l'environnement ?",opts:["En remplaçant les humains dans les usines","En optimisant les réseaux électriques et en aidant à concevoir de nouvelles batteries","En supprimant le besoin de datacenters","En réduisant le nombre d'ordinateurs"],ans:1,exp:"L'IA peut optimiser la distribution d'énergie, améliorer les prévisions météo pour les énergies renouvelables, découvrir de nouveaux matériaux pour les batteries et réduire le gaspillage."},
       {q:"Qu'est-ce que la 'Green AI' ?",opts:["Une IA spécialisée dans l'écologie","Une approche qui vise à réduire l'empreinte environnementale du développement de l'IA","Un label pour les datacenters verts","Un modèle d'IA qui tourne sur énergie solaire"],ans:1,exp:"La Green AI est un mouvement qui cherche à rendre le développement de l'IA plus sobre énergétiquement : modèles plus efficaces, mesure de l'impact carbone, alimentation en énergie renouvelable."},
       {q:"Quelle stratégie permet de réduire la consommation des IA sans sacrifier les performances ?",opts:["Augmenter la taille des modèles","Utiliser des modèles plus petits et plus efficaces","Déconnecter les IA d'internet","Limiter les questions à 10 mots"],ans:1,exp:"Des recherches montrent que des modèles bien conçus et optimisés peuvent être 10 à 100 fois plus petits que GPT-3 tout en obtenant des résultats similaires sur de nombreuses tâches."}
+    ],
+    duelQuiz:[
+      {q:"CodeCarbon est un outil open-source qui permet de...",opts:["Générer du code sans erreur","Mesurer automatiquement l'empreinte CO2 d'un projet d'IA","Réduire la taille des modèles d'IA","Vérifier la qualité du code Python"],ans:1,exp:"CodeCarbon se branche directement dans un projet Python et mesure la consommation électrique et l'empreinte carbone réelle du code qui tourne. Indispensable pour une démarche de Green AI sérieuse."},
+      {q:"La fabrication des puces pour l'IA nécessite des matériaux rares. Quel problème majeur cela crée-t-il ?",opts:["Les puces deviennent trop petites","Leur extraction est très polluante et crée des dépendances géopolitiques","Les puces fonctionnent moins bien","Cela ralentit la recherche en IA"],ans:1,exp:"Les terres rares et métaux précis nécessaires aux semi-conducteurs sont concentrés dans peu de pays. Leur extraction génère pollution et conflits, et leur raréfaction potentielle est une menace pour le secteur IA."},
+      {q:"Comment l'IA améliore-t-elle concrètement les énergies renouvelables ?",opts:["En remplaçant les panneaux solaires traditionnels","En prédisant la production éolienne/solaire pour optimiser la distribution sur le réseau électrique","En fabriquant des éoliennes plus rapidement","En réduisant le coût des matériaux"],ans:1,exp:"L'IA prédit avec précision la production des éoliennes et panneaux solaires (selon la météo), permettant aux opérateurs de réseau d'équilibrer offre et demande électrique de façon optimale."},
+      {q:"La consommation d'eau des datacenters IA est une préoccupation croissante car...",opts:["L'eau est utilisée pour refroidir les serveurs et peut représenter des millions de litres par an","L'eau sert à fabriquer les puces","Les employés boivent beaucoup","Les datacenters sont construits près des rivières"],ans:0,exp:"Les serveurs des datacenters produisent énormément de chaleur. Pour les refroidir, on utilise des systèmes à eau qui peuvent consommer des millions de litres par jour. Un datacenter GPT-4 peut utiliser autant d'eau qu'une petite ville."},
+      {q:"L'IA peut aider à lutter contre le changement climatique notamment en...",opts:["Remplaçant les humains dans les manifestations écologistes","Optimisant la consommation énergétique des bâtiments et industries en temps réel","Supprimant le besoin de voitures","Automatisant les discours politiques sur l'environnement"],ans:1,exp:"Des IA optimisent en temps réel la consommation énergétique des bâtiments (chauffage, climatisation, éclairage), peuvent réduire les émissions de 5 à 10% dans des secteurs clés comme le transport ou l'industrie."}
     ]
   },
   {
@@ -1210,6 +1253,13 @@ const MODULES = [
       {q:"L'AI Act européen classe les systèmes d'IA selon...",opts:["Leur prix","Leur pays d'origine","Leur niveau de risque pour les droits fondamentaux","La taille de l'entreprise qui les développe"],ans:2,exp:"L'AI Act adopte une approche basée sur le risque : plus une IA peut affecter les droits fondamentaux des personnes, plus les obligations légales sont strictes."},
       {q:"Selon l'AI Act, quelle utilisation de l'IA est INTERDITE ?",opts:["Les chatbots de service client","La reconnaissance faciale dans les aéroports","La notation sociale des citoyens par le gouvernement","Les filtres de photos sur smartphone"],ans:2,exp:"Les systèmes de 'notation sociale' à la chinoise sont explicitement interdits par l'AI Act européen comme constituant un risque inacceptable pour les droits fondamentaux."},
       {q:"Selon l'AI Act, un chatbot a l'obligation de...",opts:["Répondre en moins de 2 secondes","Se signaler comme IA pour ne pas tromper l'utilisateur","Être disponible 24h/24","Refuser toutes les questions personnelles"],ans:1,exp:"Les systèmes d'IA à risque limité, comme les chatbots, doivent informer clairement les utilisateurs qu'ils interagissent avec une IA et non avec un humain."}
+    ],
+    duelQuiz:[
+      {q:"L'explicabilité de l'IA (XAI - Explainable AI) désigne...",opts:["La capacité de l'IA à s'exprimer en langage simple","La capacité à comprendre et expliquer comment une IA prend ses décisions","Un outil pour créer des tutoriels IA","La traduction automatique des modèles"],ans:1,exp:"XAI (eXplainable AI) cherche à rendre les décisions des IA compréhensibles par les humains. Crucial pour les IA à forts enjeux (médecine, justice, crédit) où 'c'est l'algorithme qui l'a dit' n'est pas acceptable."},
+      {q:"L'AI Act prévoit des amendes pouvant aller jusqu'à...",opts:["1 million d'euros","10 millions ou 2% du CA mondial","35 millions d'euros ou 7% du CA mondial pour les violations les plus graves","100 millions d'euros fixes"],ans:2,exp:"Pour les violations les plus graves (risques inacceptables), l'AI Act prévoit des amendes allant jusqu'à 35 millions d'euros ou 7% du chiffre d'affaires mondial annuel. Un signal fort sur le sérieux de la régulation européenne."},
+      {q:"Le 'droit à l'explication' du RGPD signifie qu'une personne peut...",opts:["Demander à l'IA de se justifier","Obtenir une explication sur toute décision automatisée la concernant (refus de crédit, offre d'emploi...)","Connaître le code source des algorithmes","Exiger qu'une IA soit retirée du marché"],ans:1,exp:"Le RGPD européen donne aux individus le droit d'obtenir une explication humaine et intelligible sur toute décision automatisée significative les concernant. Une protection importante face à l'opacité des algorithmes."},
+      {q:"Un algorithme de recrutement entraîné sur des données historiques risque de reproduire...",opts:["Des erreurs de syntaxe","Les biais systémiques existants dans ces données (inégalités de genre, d'origine...)","Des bugs informatiques aléatoires","Des préférences pour les candidats les plus diplômés"],ans:1,exp:"Si les données d'entraînement reflètent des décisions de recrutement passées biaisées, l'algorithme apprend que ces biais sont 'corrects'. Il perpétue et peut même amplifier les discriminations."},
+      {q:"Les deepfakes vocaux (clonage de voix par IA) ont déjà été utilisés pour...",opts:["Améliorer la qualité des appels téléphoniques","Escroquer des dirigeants d'entreprises en imitant la voix de leur patron","Créer des assistants vocaux plus naturels uniquement","Traduire des discours en temps réel"],ans:1,exp:"Des cas documentés existent : une entreprise a perdu 200 000€ après qu'un dirigeant a reçu un appel d'une IA imitant parfaitement la voix de son PDG lui demandant un virement urgent."}
     ]
   },
   {
@@ -1235,6 +1285,13 @@ const MODULES = [
       {q:"Pourquoi les algorithmes de recommandation peuvent-ils nuire à la démocratie ?",opts:["Ils consomment trop d'électricité","Ils créent des bulles de filtre qui polarisent les opinions","Ils ralentissent internet","Ils exposent trop de publicités politiques"],ans:1,exp:"Les algorithmes montrent aux utilisateurs du contenu qui renforce leurs opinions existantes pour maximiser l'engagement. Cela crée des bulles où les gens ne sont exposés qu'aux idées qui leur ressemblent."},
       {q:"Quel est le principal défi de l'IA pour l'éducation aujourd'hui ?",opts:["Les coûts trop élevés pour les écoles","La résistance des enseignants","Le plagiat et la nécessité de repenser l'évaluation","L'IA n'est pas encore assez précise pour l'éducation"],ans:2,exp:"La facilité avec laquelle les élèves peuvent utiliser des LLM pour rédiger leurs travaux oblige les enseignants à repenser fondamentalement les modes d'évaluation."},
       {q:"L'IA peut améliorer l'accès aux soins médicaux notamment grâce à...",opts:["La rédaction de prescriptions automatiques","Le diagnostic assisté accessible dans les zones sans spécialistes","La suppression des médecins généralistes","La création de médicaments sans essais cliniques"],ans:1,exp:"Dans les déserts médicaux ou les pays en développement, une IA de diagnostic peut donner accès à un niveau d'expertise spécialisée qui serait autrement inaccessible."}
+    ],
+    duelQuiz:[
+      {q:"AlphaFold a résolu le problème du 'repliement des protéines'. Pourquoi est-ce révolutionnaire pour la médecine ?",opts:["Cela permet de créer de la nourriture synthétique","La structure 3D d'une protéine détermine sa fonction et comment la cibler avec des médicaments","Cela permet de soigner les maladies génétiques directement","Cela accélère les scanners médicaux"],ans:1,exp:"Connaître la structure d'une protéine permet de concevoir des médicaments qui s'y fixent précisément. AlphaFold a prédit les structures de ~200 millions de protéines, accélérant massivement la découverte de traitements."},
+      {q:"Qu'est-ce qu'un 'jumeau numérique' (digital twin) dans la médecine du futur ?",opts:["Un robot chirurgien","Une simulation numérique personnalisée d'un patient pour tester des traitements virtuellement","Un deuxième dossier médical en ligne","Une IA qui parle à la place du médecin"],ans:1,exp:"Un jumeau numérique médical est un modèle numérique d'un patient (génome, habitudes, données de santé). On peut tester des traitements sur ce jumeau virtuel avant de les appliquer au vrai patient."},
+      {q:"Comment l'IA peut-elle renforcer la désinformation politique à grande échelle ?",opts:["En ralentissant les réseaux sociaux","En générant automatiquement des milliers d'articles, vidéos ou profils faux à très faible coût","En bloquant les comptes malveillants","En traduisant la désinformation étrangère"],ans:1,exp:"L'IA générative permet de produire du contenu faux (texte, image, vidéo) à une vitesse et une échelle industrielles, pour un coût proche de zéro. Les campagnes de désinformation peuvent toucher des millions de personnes."},
+      {q:"Le concept de 'bulle algorithmique' dans les réseaux sociaux fonctionne parce que...",opts:["Les algorithmes censurent les opinions différentes","Les algorithmes maximisent l'engagement en montrant du contenu qui confirme les opinions existantes","Les utilisateurs bloquent les gens qu'ils n'aiment pas","Les réseaux sociaux filtrent les contenus politiques"],ans:1,exp:"Les algorithmes de recommandation optimisent l'engagement (clics, temps passé). Les contenus qui confirment nos croyances nous engagent davantage. Résultat : chacun vit dans une 'bulle' de confirmations."},
+      {q:"L'IA peut contribuer à l'équité dans l'éducation notamment en...",opts:["Remplaçant tous les enseignants","Donnant accès à un tuteur personnalisé de qualité à des élèves qui n'y auraient pas accès autrement","Notant automatiquement tous les élèves","Créant des examens impossibles à tricher"],ans:1,exp:"Dans des zones sans accès à des enseignants spécialisés ou avec des classes surchargées, un tuteur IA comme Khanmigo peut offrir un accompagnement personnalisé adapté au niveau de chaque élève."}
     ]
   },
   {
@@ -1260,6 +1317,13 @@ const MODULES = [
       {q:"Que signifie RLHF ?",opts:["Rapid Learning for High Frequency","Reinforcement Learning from Human Feedback","Recursive Language Hierarchy Framework","Réseaux de Logique Humaine et Fonctions"],ans:1,exp:"RLHF = Reinforcement Learning from Human Feedback. Des humains notent les réponses du modèle, et celui-ci apprend à produire des réponses mieux appréciées. C'est ce qui rend les LLM 'utiles et agréables'."},
       {q:"Pourquoi un LLM hallucine-t-il ?",opts:["Parce qu'il est mal programmé","Parce qu'il prédit le token le plus probable sans vérifier les faits","Parce qu'il manque de mémoire RAM","Parce qu'il est connecté à de mauvaises sources"],ans:1,exp:"Un LLM génère toujours le texte le plus statistiquement probable. Il ne consulte pas une base de données pour vérifier. Si une réponse fausse est 'vraisemblable', il la produit avec confiance."},
       {q:"Dans quel ordre se déroule l'entraînement d'un LLM ?",opts:["RLHF → Fine-tuning → Pré-entraînement","Fine-tuning → Pré-entraînement → RLHF","Pré-entraînement → Fine-tuning → RLHF","Pré-entraînement → RLHF → Fine-tuning"],ans:2,exp:"On commence par le pré-entraînement (apprendre le langage sur des milliards de textes), puis le fine-tuning (apprendre à être utile), puis le RLHF (apprendre à plaire aux humains)."}
+    ],
+    duelQuiz:[
+      {q:"Un 'embedding' dans un LLM, c'est quoi ?",opts:["Un résumé automatique de texte","Une représentation mathématique (vecteur numérique) d'un mot qui encode son sens","Un type de mémoire RAM spécialisée","Un plugin pour étendre les capacités de l'IA"],ans:1,exp:"Les embeddings transforment les mots en vecteurs numériques dans un espace à haute dimension. Les mots proches sémantiquement (roi/reine, chien/chat) ont des vecteurs proches. C'est ainsi que l'IA 'comprend' le sens."},
+      {q:"Temperature élevée vs temperature à 0 dans un LLM : quelle est la différence ?",opts:["Temperature élevée = réponses plus longues","Temperature 0 = déterministe et précis, temperature élevée = plus créatif et aléatoire","Temperature élevée = réponses plus rapides","Temperature 0 = mode sécurisé qui refuse certaines questions"],ans:1,exp:"La temperature contrôle l'aléatoire dans le choix des tokens. T=0 : toujours le token le plus probable → cohérent et prévisible. T=1 ou plus : exploration de tokens moins probables → créativité mais moins de fiabilité."},
+      {q:"Pourquoi les LLM n'ont-ils généralement pas de 'mémoire' entre les conversations ?",opts:["Pour protéger la vie privée des utilisateurs uniquement","Chaque conversation repart du modèle de base figé ; les échanges précédents ne sont pas retenus sauf si sauvegardés explicitement","Les LLM oublient délibérément pour éviter les biais","Pour économiser de l'énergie"],ans:1,exp:"Un LLM est un modèle aux poids figés. La conversation actuelle est dans sa fenêtre de contexte, mais quand la conversation se termine, tout est perdu. Les 'mémoires' dans ChatGPT sont une couche applicative ajoutée par-dessus."},
+      {q:"Le mécanisme d''attention' dans un Transformer permet au modèle de...",opts:["Rester concentré pendant de longues conversations","Peser l'importance de chaque token par rapport aux autres dans la séquence","Mémoriser les conversations précédentes","Accélérer le calcul sur GPU"],ans:1,exp:"L'attention calcule pour chaque token un 'poids' d'importance par rapport à tous les autres tokens de la séquence. Cela permet de capturer les relations contextuelles à longue distance (ex : le pronom 'il' se réfère à quel nom ?)."},
+      {q:"La 'distillation' d'un modèle IA consiste à...",opts:["Purifier les données d'entraînement","Entraîner un petit modèle à reproduire le comportement d'un grand modèle, pour être plus léger","Supprimer les paramètres inutilisés","Combiner plusieurs modèles en un seul"],ans:1,exp:"La distillation (knowledge distillation) permet de créer un petit modèle 'élève' qui apprend d'un grand modèle 'professeur'. Le résultat est un modèle compact presque aussi performant, idéal pour mobile ou edge computing."}
     ]
   },
   {
@@ -1285,6 +1349,13 @@ const MODULES = [
       {q:"Dans le scénario pessimiste pour 2035, quel est le risque principal évoqué ?",opts:["L'IA va rendre tout le monde chômeur immédiatement","L'IA amplifie les inégalités et déstabilise la démocratie","L'IA tombera en panne mondiale","L'IA sera interdite par tous les gouvernements"],ans:1,exp:"Le scénario sombre inclut la concentration du pouvoir dans peu de mains, la désinformation à grande échelle et le creusement des inégalités entre ceux qui maîtrisent l'IA et les autres."},
       {q:"Quelle est la première action recommandée pour s'adapter à la révolution IA ?",opts:["Attendre que l'IA se stabilise avant de l'adopter","Expérimenter avec les outils IA disponibles gratuitement","Apprendre à programmer en Python","Lire des articles académiques sur le deep learning"],ans:1,exp:"La meilleure façon d'apprendre l'IA est de pratiquer. Des outils comme ChatGPT, Claude ou Gemini ont des versions gratuites accessibles à tous. Testez, explorez, apprenez par l'expérience."},
       {q:"Pourquoi le débat citoyen sur l'IA est-il important ?",opts:["Pour que les ingénieurs aient moins de pression","Parce que les décisions de régulation se prennent maintenant et affecteront tous les aspects de la société","Pour augmenter le cours en bourse des entreprises IA","Parce que l'IA n'évolue que si les citoyens l'approuvent"],ans:1,exp:"Les lois, régulations et normes éthiques autour de l'IA se construisent en ce moment même. Ces décisions façonneront notre société pour des décennies. La participation citoyenne au débat est essentielle."}
+    ],
+    duelQuiz:[
+      {q:"L''alignement de l'IA' est le défi de...",opts:["Aligner les réponses de l'IA sur une ligne graphique","S'assurer que les IA avancées agissent conformément aux valeurs et aux intérêts humains","Synchroniser plusieurs IA pour travailler ensemble","Optimiser la vitesse des modèles"],ans:1,exp:"L'alignement est considéré comme le défi fondamental de l'IA avancée : comment s'assurer qu'une IA très puissante poursuit réellement les buts que nous lui assignons, et non des objectifs qui dérivent ?"},
+      {q:"Un 'agent IA' de nouvelle génération se distingue d'un chatbot classique par...",opts:["Sa capacité à répondre plus rapidement","Sa capacité à planifier, exécuter des actions réelles et s'adapter de façon autonome sur plusieurs étapes","Sa taille plus compacte","Son absence de fenêtre de contexte"],ans:1,exp:"Un agent IA peut recevoir un objectif complexe ('réserve-moi un vol et un hôtel pour Paris la semaine prochaine'), décomposer la tâche, chercher sur internet, comparer les options et finaliser une réservation, de façon autonome."},
+      {q:"La 'singularité technologique' de Ray Kurzweil désigne...",opts:["Le moment où internet et l'IA fusionneront","Le point où l'IA dépasserait l'intelligence humaine et s'améliorerait de façon exponentielle et potentiellement incontrôlable","L'invention du premier ordinateur quantique","La connexion de tous les cerveaux humains à internet"],ans:1,exp:"La singularité est un concept controversé : le moment hypothétique où une IA générale dépasse l'humain et commence à s'améliorer elle-même de façon exponentielle, créant un changement technologique tellement rapide qu'il devient imprévisible."},
+      {q:"L'IA 'multimodale' peut...",opts:["Fonctionner sur plusieurs appareils simultanément","Traiter et générer simultanément du texte, des images, de l'audio et de la vidéo","S'adapter automatiquement à différentes langues","Fonctionner sans connexion internet"],ans:1,exp:"Les modèles multimodaux (GPT-4o, Gemini Ultra, Claude 3...) peuvent ingérer et produire différents types de médias. Vous pouvez montrer une photo d'un plat et demander la recette, ou décrire une musique pour qu'elle soit générée."},
+      {q:"Selon la majorité des experts, quelle est la condition principale pour que l'IA bénéficie à toute l'humanité ?",opts:["Que les modèles soient tous open-source","Que la régulation internationale soit robuste et que l'accès aux technologies soit équitable","Que l'IA soit développée uniquement par des démocraties","Que les IA soient interdites au grand public"],ans:1,exp:"Sans régulation internationale coordonnée, l'IA risque de concentrer le pouvoir dans peu de mains, d'amplifier les inégalités et d'être utilisée de façon dangereuse. L'accès équitable est aussi crucial pour éviter que seuls les pays riches en bénéficient."}
     ]
   }
 ];
@@ -1562,8 +1633,8 @@ async function renderChallenges(){
       const mod=MODULES.find(m=>m.id===c.moduleId);
       const card=document.createElement('div');
       card.className='challenge-card';
-      const statusLabels={pending:'En attente',active:'En cours',won:'Victoire 🏆',lost:'Défaite 😤'};
-      const statusCls={pending:'pending',active:'active',won:'won',lost:'lost'};
+      const statusLabels={pending:'En attente',active:'En cours',won:'Victoire 🏆',lost:'Défaite 😤',cancelled:'Annulé'};
+      const statusCls={pending:'pending',active:'active',won:'won',lost:'lost',cancelled:'cancelled'};
       let metaText='Module : '+(mod?mod.title:'?')+' · ';
       if(c.status==='pending'){
         metaText+=isMine?'En attente de réponse':'À votre tour !';
@@ -1572,6 +1643,8 @@ async function renderChallenges(){
       } else if(c.status==='won'||c.status==='lost'){
         const scoreStr=(c.myScore!=null&&c.oppScore!=null)?' · Score : '+c.myScore+' – '+c.oppScore:'';
         metaText+=isMine?'Défi terminé'+scoreStr:(c.status==='won'?'Victoire'+scoreStr:'Défaite'+scoreStr);
+      } else if(c.status==='cancelled'){
+        metaText+='Défi annulé';
       }
       card.innerHTML=
         '<div class="ch-icon">'+(c.status==='won'?'🏆':c.status==='lost'?'😤':'⚔️')+'</div>'+
@@ -1586,6 +1659,20 @@ async function renderChallenges(){
         btn.textContent='Accepter';
         btn.addEventListener('click',function(){ startDuel(c); });
         card.appendChild(btn);
+      }
+      if(isMine && c.status==='pending'){
+        const cbtn=document.createElement('button');
+        cbtn.className='btn btn-ghost btn-sm';
+        cbtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
+        cbtn.textContent='Annuler';
+        cbtn.addEventListener('click',async function(){
+          cbtn.disabled=true; cbtn.textContent='...';
+          try {
+            await db.collection('challenges').doc(c.id).update({status:'cancelled'});
+            renderChallenges();
+          } catch(e){ cbtn.disabled=false; cbtn.textContent='Annuler'; }
+        });
+        card.appendChild(cbtn);
       }
       list.appendChild(card);
     });
@@ -1870,7 +1957,7 @@ async function sendChallenge(){
 function startDuel(challenge){
   const m=MODULES.find(function(mod){ return mod.id===challenge.moduleId; });
   if(!m) return;
-  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,questions:m.quiz.slice(0,5)};
+  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,questions:(m.duelQuiz||m.quiz).slice(0,5)};
   document.getElementById('duel-me-av').textContent=(currentUser.firstName||'?')[0];
   document.getElementById('duel-me-name').textContent=currentUser.firstName;
   document.getElementById('duel-opp-av').textContent=(challenge.fromName||challenge.from||'?')[0].toUpperCase();
@@ -1920,12 +2007,12 @@ function endDuel(){
     oppScore:ds.oppScore,
     completedAt:new Date().toISOString()
   }).catch(e=>console.error('endDuel:',e));
-  if(won){ addXP(80); awardBadge('challenger'); }
+  if(won){ addXP(150); awardBadge('challenger'); }
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
   document.getElementById('duel-result-icon').textContent=won?'🏆':'😤';
   document.getElementById('duel-result-text').textContent=won?'Victoire !':'Défaite';
-  document.getElementById('duel-result-sub').textContent=ds.myScore+' – '+ds.oppScore+' · '+(won?'+80 XP gagné':'Retenter pour progresser !');
+  document.getElementById('duel-result-sub').textContent=ds.myScore+' – '+ds.oppScore+' · '+(won?'+150 XP gagné':'Retenter pour progresser !');
 }
 
 // ============================================================
@@ -1956,17 +2043,46 @@ async function renderAdmin(){
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
         '<table class="admin-table">'+
           '<thead><tr>'+
-            '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th>'+
+            '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th><th>Actions</th>'+
           '</tr></thead>'+
           '<tbody>'+
-            (allU.length===0?'<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
+            (allU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
             allU.map(function(u){
               const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-              return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3)">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td></tr>';
+              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Reset</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
             }).join(''))+
           '</tbody>'+
         '</table>'+
       '</div>';
+    // Admin action buttons
+    wrap.querySelectorAll('.btn-admin-reset').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const uid=btn.dataset.uid;
+        const name=btn.dataset.name;
+        if(!confirm('Réinitialiser le parcours de '+name+' ? (XP, modules, badges remis à zéro)')) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('users').doc(uid).update({
+            xp:0, level:1, modules:{}, badges:[], streak:0, lastActive:null, perfectQuizzes:0
+          });
+          showNotif(name+' : parcours réinitialisé','success');
+          renderAdmin();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Reset'; }
+      });
+    });
+    wrap.querySelectorAll('.btn-admin-delete').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const uid=btn.dataset.uid;
+        const name=btn.dataset.name;
+        if(!confirm('Supprimer définitivement le compte de '+name+' ? (irréversible)')) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('users').doc(uid).delete();
+          showNotif(name+' : compte supprimé','success');
+          renderAdmin();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+      });
+    });
     // Video management section
     let videoSnap;
     try { videoSnap=await db.collection('settings').doc('videos').get(); } catch(e){ videoSnap=null; }
