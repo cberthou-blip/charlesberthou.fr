@@ -955,6 +955,7 @@ body::before {
     <div class="landing-nav-links">
       <button class="landing-nav-link" onclick="document.getElementById('landing-modules').scrollIntoView({behavior:'smooth'})">Modules</button>
       <button class="landing-nav-link" onclick="document.getElementById('landing-features').scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
+      <button class="landing-nav-link" onclick="document.getElementById('landing-garanties').scrollIntoView({behavior:'smooth'})">Garanties</button>
     </div>
     <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
   </nav>
@@ -1069,7 +1070,7 @@ body::before {
   </div>
 
   <!-- GARANTIES -->
-  <div style="background:var(--surface);border-top:1.5px solid var(--border);padding:60px 40px;text-align:center;">
+  <div id="landing-garanties" style="background:var(--surface);border-top:1.5px solid var(--border);padding:60px 40px;text-align:center;">
     <div style="max-width:800px;margin:0 auto;">
       <div style="font-size:0.72rem;font-weight:800;color:var(--indigo-mid);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;font-family:'JetBrains Mono',monospace">Méthode &amp; Garanties</div>
       <h2 style="font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:24px;letter-spacing:-0.01em">Une formation fiable, encadrée et protégée</h2>
@@ -1324,7 +1325,7 @@ body::before {
         </div>
         <div class="dh-stat">
           <div class="dh-stat-val" id="dh-streak">0<span>🔥</span></div>
-          <div class="dh-stat-lbl">Jours consécutifs</div>
+          <div class="dh-stat-lbl" title="Nombre de jours consécutifs où vous avez répondu au défi du jour">Série de défis 🔥</div>
         </div>
       </div>
       <div class="dh-xp-section">
@@ -1790,7 +1791,7 @@ const BADGES_DEF = [
   {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true,hint:"Lancez et remportez un défi contre un collègue"},
   {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true,hint:"Connectez-vous 7 jours de suite"},
   {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true,hint:"Terminez les 10 modules de formation"},
-  {id:"captain",name:"Capitaine",desc:"Fondateur d'une équipe",icon:"⚓",special:true,hint:"Créez votre propre équipe"}
+  {id:"captain",name:"Capitaine",desc:"Fondateur d'une équipe",icon:"👑",special:true,hint:"Créez votre propre équipe"}
 ];
 
 const XP_PER_LEVEL = 500;
@@ -1904,12 +1905,8 @@ function saveCurrentUser(){
 
 function checkStreak(){
   const today=new Date().toDateString();
-  const yesterday=new Date(Date.now()-86400000).toDateString();
   if(currentUser.lastLogin===today) return;
-  if(currentUser.lastLogin===yesterday) currentUser.streak=(currentUser.streak||0)+1;
-  else currentUser.streak=1;
   currentUser.lastLogin=today;
-  if(currentUser.streak>=7) awardBadge('streak');
   saveCurrentUser();
 }
 
@@ -2181,6 +2178,21 @@ async function renderChallenges(){
           } catch(e){ cbtn.disabled=false; cbtn.textContent='Annuler'; }
         });
         card.appendChild(cbtn);
+      }
+      if(c.status==='won'||c.status==='lost'||c.status==='cancelled'){
+        const dbtn=document.createElement('button');
+        dbtn.className='btn btn-ghost btn-sm';
+        dbtn.style.cssText='border-color:rgba(156,163,175,0.4);color:var(--text3);font-size:0.75rem;padding:4px 10px;';
+        dbtn.textContent='🗑️ Supprimer';
+        dbtn.addEventListener('click',async function(){
+          if(!confirm('Supprimer ce défi de votre liste ?')) return;
+          dbtn.disabled=true;
+          try {
+            await db.collection('challenges').doc(c.id).delete();
+            renderChallenges();
+          } catch(e){ dbtn.disabled=false; showNotif('Erreur : '+e.message,'error'); }
+        });
+        card.appendChild(dbtn);
       }
       list.appendChild(card);
     });
@@ -2635,7 +2647,7 @@ async function renderTeams(){
           memberData.map(function(md,mi){
   const memberUid=(myTeam.members||[])[mi]||'';
   const isCap=memberUid===myTeam.captainUid||memberUid===myTeam.createdBy;
-  return '<div class="team-member-chip"><div class="team-member-av">'+((md.firstName||'?')[0].toUpperCase())+'</div>'+md.firstName+(isCap?' <span style="font-size:0.7rem;color:var(--magenta)">⚓</span>':'')+'<span style="color:var(--text3);font-weight:400;margin-left:4px">('+md.xp+' XP)</span></div>';
+  return '<div class="team-member-chip"><div class="team-member-av">'+((md.firstName||'?')[0].toUpperCase())+'</div>'+md.firstName+(isCap?' <span style="font-size:0.7rem;color:var(--magenta)">👑</span>':'')+'<span style="color:var(--text3);font-weight:400;margin-left:4px">('+md.xp+' XP)</span></div>';
 }).join('')+
         '</div>';
       wrap.appendChild(div);
@@ -2790,31 +2802,118 @@ async function renderLeaderboard(){
   if(!wrap) return;
   wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
   try {
-    const snap=await db.collection('users').get();
+    // Fetch users and teams
+    const [userSnap,teamSnap]=await Promise.all([
+      db.collection('users').get(),
+      db.collection('teams').get()
+    ]);
     const all=[];
-    snap.forEach(d=>{ const u=d.data(); if(!u.isAdmin) all.push(u); });
+    userSnap.forEach(d=>{ const u=d.data(); if(!u.isAdmin&&u.approved!==false) all.push({...u,uid:d.id}); });
     all.sort(function(a,b){ return (b.xp||0)-(a.xp||0); });
+    const teams=[];
+    teamSnap.forEach(d=>teams.push({id:d.id,...d.data()}));
+
+    // Build captain map: uid -> teamName
+    const captainMap={};
+    teams.forEach(function(t){
+      const capUid=t.captainUid||t.createdBy;
+      if(capUid) captainMap[capUid]=t.name;
+    });
+
+    // Build team XP map
+    const teamXP=teams.map(function(t){
+      const xp=(t.members||[]).reduce(function(sum,uid){
+        const u=all.find(function(u){ return u.uid===uid; });
+        return sum+(u?u.xp||0:0);
+      },0);
+      return {id:t.id,name:t.name,emoji:t.emoji,members:(t.members||[]).length,xp,captainName:t.createdByName};
+    });
+    teamXP.sort(function(a,b){ return b.xp-a.xp; });
+
     if(all.length===0){ wrap.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)">Aucun apprenant pour l\'instant.</div>'; return; }
-    const myRank = all.findIndex(function(u){ return currentUser && u.email===currentUser.email; });
+    const myRank=all.findIndex(function(u){ return currentUser&&u.email===currentUser.email; });
     const rankIcons={0:'🥇',1:'🥈',2:'🥉'};
     const rankCls={0:'gold',1:'silver',2:'bronze'};
-    wrap.innerHTML=
-      (myRank>=0 ? '<div style="background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(124,58,237,0.08));border:1.5px solid rgba(99,102,241,0.2);border-radius:var(--radius);padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px"><div style="font-size:1.3rem">🏅</div><div><div style="font-weight:800;font-size:0.9rem;color:var(--navy)">Tu es classé(e) <span style="color:var(--indigo-mid)">#'+(myRank+1)+' sur '+all.length+' participants</span></div><div style="font-size:0.78rem;color:var(--text3);margin-top:2px">Continue à progresser pour grimper !</div></div></div>' : '')+
-      '<div class="lb-list">'+all.map(function(u,i){
+
+    // Podium top 3
+    const top3=all.slice(0,3);
+    const podiumOrder=[1,0,2]; // silver, gold, bronze display order
+    const podiumHeights=['60px','90px','45px'];
+    let podiumHTML='<div style="display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-bottom:36px;padding:0 20px">';
+    podiumOrder.forEach(function(pos){
+      if(!top3[pos]) return;
+      const u=top3[pos];
+      const icons=['🥇','🥈','🥉'];
+      const colors=['linear-gradient(135deg,#F59E0B,#D97706)','linear-gradient(135deg,#C0C0C0,#9CA3AF)','linear-gradient(135deg,#CD7F32,#92400E)'];
+      const isMe=currentUser&&u.email===currentUser.email;
+      const capTeam=captainMap[u.uid];
+      podiumHTML+=
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:160px">'+
+          '<div style="font-size:1.5rem">'+icons[pos]+'</div>'+
+          '<div style="width:52px;height:52px;border-radius:50%;background:'+(isMe?'var(--grad-accent)':colors[pos])+';display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.2)">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+
+          '<div style="font-weight:800;font-size:0.85rem;color:var(--navy);text-align:center">'+u.firstName+(capTeam?' <span title="Capitaine de '+capTeam+'">👑</span>':'')+'</div>'+
+          (capTeam?'<div style="font-size:0.7rem;color:var(--magenta);font-weight:600">'+capTeam+'</div>':'')+
+          '<div style="height:'+podiumHeights[pos]+';width:100%;background:'+colors[pos]+';border-radius:8px 8px 0 0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.88rem">'+(u.xp||0)+' XP</div>'+
+        '</div>';
+    });
+    podiumHTML+='</div>';
+
+    // Team leaderboard
+    let teamLBHTML='';
+    if(teamXP.length>0){
+      const teamRankIcons={0:'🥇',1:'🥈',2:'🥉'};
+      teamLBHTML=
+        '<div style="margin-bottom:32px">'+
+          '<div style="font-weight:800;font-size:1rem;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px">🏟️ Classement des équipes</div>'+
+          '<div class="lb-list">'+
+          teamXP.map(function(t,i){
+            const isMyTeam=teams.find(function(te){ return te.id===t.id&&(te.members||[]).some(function(uid){ return currentUser&&all.find(function(u){ return u.uid===uid&&u.email===currentUser.email; }); }); });
+            return '<div class="lb-row'+(isMyTeam?' me':'')+'">'+
+              '<div class="lb-rank '+(rankCls[i]||'')+'>'+(teamRankIcons[i]||('#'+(i+1)))+'</div>'+
+              '<div class="lb-avatar" style="font-size:1.1rem;background:var(--surface2);color:var(--text)">'+t.emoji+'</div>'+
+              '<div class="lb-info">'+
+                '<div class="lb-name">'+t.name+(isMyTeam?' <span style="font-size:0.72rem;background:rgba(99,102,241,0.15);color:var(--indigo-mid);padding:2px 7px;border-radius:10px;margin-left:4px">Mon équipe</span>':'')+'</div>'+
+                '<div class="lb-sub">'+t.members+' membre'+(t.members>1?'s':'')+' · Capitaine : '+(t.captainName||'—')+'</div>'+
+              '</div>'+
+              '<div class="lb-xp">'+t.xp+' XP</div>'+
+            '</div>';
+          }).join('')+
+          '</div>'+
+        '</div>'+
+        '<div style="font-weight:800;font-size:1rem;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px">👤 Classement individuel</div>';
+    }
+
+    // My rank banner
+    const myRankBanner=myRank>=0?
+      '<div style="background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(124,58,237,0.08));border:1.5px solid rgba(99,102,241,0.2);border-radius:var(--radius);padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px">'+
+        '<div style="font-size:1.3rem">🏅</div>'+
+        '<div><div style="font-weight:800;font-size:0.9rem;color:var(--navy)">Tu es classé(e) <span style="color:var(--indigo-mid)">#'+(myRank+1)+' sur '+all.length+' participants</span></div>'+
+        '<div style="font-size:0.78rem;color:var(--text3);margin-top:2px">Continue à progresser pour grimper !</div></div>'+
+      '</div>' : '';
+
+    // Individual leaderboard
+    const indivLB='<div class="lb-list">'+all.map(function(u,i){
       const isMe=currentUser&&u.email===currentUser.email;
       const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
+      const capTeam=captainMap[u.uid];
       return '<div class="lb-row'+(isMe?' me':'')+'">'+
         '<div class="lb-rank '+(rankCls[i]||'')+'>'+(rankIcons[i]||('#'+(i+1)))+'</div>'+
         '<div class="lb-avatar" style="'+(isMe?'background:var(--grad-accent)':'')+'">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+
         '<div class="lb-info">'+
-          '<div class="lb-name">'+(u.firstName||'')+(isMe?' <span style="font-size:0.72rem;background:rgba(99,102,241,0.15);color:var(--indigo-mid);padding:2px 7px;border-radius:10px;margin-left:4px">Vous</span>':'')+'</div>'+
-          '<div class="lb-sub">Niveau '+u.level+' · '+mDone+' module'+(mDone>1?'s':'')+' terminé'+(mDone>1?'s':'')+'</div>'+
+          '<div class="lb-name">'+(u.firstName||'')+
+            (capTeam?' <span title="Capitaine de '+capTeam+'" style="font-size:0.8rem">👑</span> <span style="font-size:0.72rem;color:var(--magenta);font-weight:600">'+capTeam+'</span>':'')+
+            (isMe?' <span style="font-size:0.72rem;background:rgba(99,102,241,0.15);color:var(--indigo-mid);padding:2px 7px;border-radius:10px;margin-left:4px">Vous</span>':'')+
+          '</div>'+
+          '<div class="lb-sub">Niv. '+u.level+' · '+mDone+' module'+(mDone>1?'s':'')+' terminé'+(mDone>1?'s':'')+'</div>'+
         '</div>'+
-        '<div class="lb-xp">'+( u.xp||0)+' XP</div>'+
+        '<div class="lb-xp">'+(u.xp||0)+' XP</div>'+
       '</div>';
     }).join('')+'</div>';
+
+    wrap.innerHTML=podiumHTML+teamLBHTML+myRankBanner+indivLB;
   } catch(e){
     wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Erreur de chargement.</div>';
+    console.error(e);
   }
 }
 
@@ -2932,8 +3031,17 @@ function renderDailyChallenge(){
       if(correct){ addXP(30); showNotif('+30 XP — Bonne réponse !','success'); }
       else { showNotif('Raté ! '+(dailyQStep<2?'Question suivante...':'Revenez demain.'),'warn'); }
       if(dailyQStep>=2){
+        // All done — update challenge streak
+        const yesterday=new Date(Date.now()-86400000);
+        const yesterdayKey=yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+yesterday.getDate();
+        const didYesterday=(currentUser.dailyDone||{})[yesterdayKey]!=null;
+        currentUser.streak=didYesterday?(currentUser.streak||0)+1:1;
+        if(currentUser.streak>=7) awardBadge('streak');
         currentUser.dailyDone[todayKey]=arr;
         await saveCurrentUser();
+        // Update dashboard streak display
+        const dhStreak=document.getElementById('dh-streak');
+        if(dhStreak) dhStreak.innerHTML=currentUser.streak+'<span>🔥</span>';
         setTimeout(function(){ dailyQStep=0; renderDailyChallenge(); },1500);
       } else {
         currentUser.dailyDone[todayKey]=arr;
@@ -3222,6 +3330,7 @@ async function renderAdmin(){
             '<td>—</td>'+
             '<td>'+
               '<button class="btn-admin-rename-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(99,102,241,0.08);color:var(--indigo);border:1px solid rgba(99,102,241,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✏️ Renommer</button>'+
+              '<button class="btn-admin-captain-team" data-id="'+t.id+'" data-name="'+t.name+'" data-members="'+(t.members||[]).join(',')+'" style="background:rgba(245,158,11,0.08);color:#B45309;border:1px solid rgba(245,158,11,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">👑 Capitaine</button>'+
               '<button class="btn-admin-delete-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button>'+
             '</td>'+
           '</tr>';
@@ -3245,6 +3354,46 @@ async function renderAdmin(){
           showNotif('Équipe renommée : '+newName.trim(),'success');
           renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✏️ Renommer'; }
+      });
+    });
+    wrap.querySelectorAll('.btn-admin-captain-team').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const tid=btn.dataset.id;
+        const tname=btn.dataset.name;
+        const memberUids=(btn.dataset.members||'').split(',').filter(Boolean);
+        if(memberUids.length===0){ showNotif('Équipe vide','warn'); return; }
+        try {
+          // Fetch member names
+          const memberDocs=await Promise.all(memberUids.map(uid=>db.collection('users').doc(uid).get()));
+          const members=memberDocs.map((d,i)=>({uid:memberUids[i],name:(d.exists?(d.data().firstName+' '+d.data().lastName):'Inconnu')}));
+          // Build modal
+          const overlay=document.createElement('div');
+          overlay.style.cssText='position:fixed;inset:0;background:rgba(13,27,62,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;';
+          overlay.innerHTML=
+            '<div style="background:#fff;border-radius:var(--radius-lg);padding:28px;width:360px;max-width:calc(100vw - 32px)">'+
+              '<div style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:16px">👑 Nommer le capitaine de «'+tname+'»</div>'+
+              '<select id="captain-select" class="input-field" style="margin-bottom:16px">'+
+                members.map(function(m){ return '<option value="'+m.uid+'">'+m.name+'</option>'; }).join('')+
+              '</select>'+
+              '<div style="display:flex;gap:10px">'+
+                '<button id="captain-confirm" class="btn btn-primary" style="flex:1">Confirmer</button>'+
+                '<button id="captain-cancel" class="btn btn-ghost" style="flex:1">Annuler</button>'+
+              '</div>'+
+            '</div>';
+          document.body.appendChild(overlay);
+          document.getElementById('captain-cancel').addEventListener('click',function(){ overlay.remove(); });
+          document.getElementById('captain-confirm').addEventListener('click',async function(){
+            const newCaptainUid=document.getElementById('captain-select').value;
+            const newCaptainName=members.find(m=>m.uid===newCaptainUid)&&members.find(m=>m.uid===newCaptainUid).name;
+            try {
+              await db.collection('teams').doc(tid).update({captainUid:newCaptainUid,createdByName:newCaptainName});
+              overlay.remove();
+              showNotif(newCaptainName+' est le nouveau capitaine de «'+tname+'»','success');
+              renderAdminPanel();
+            } catch(e){ showNotif('Erreur : '+e.message,'error'); }
+          });
+          overlay.addEventListener('click',function(e){ if(e.target===overlay) overlay.remove(); });
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); }
       });
     });
     wrap.querySelectorAll('.btn-admin-delete-team').forEach(function(btn){
