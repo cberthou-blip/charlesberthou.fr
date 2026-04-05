@@ -676,6 +676,23 @@ body::before {
 .quest-xp { font-family:'JetBrains Mono',monospace; font-weight:800; font-size:0.85rem; color:var(--indigo-mid); flex-shrink:0; }
 .quest-done-badge { background:rgba(16,185,129,0.15); color:#059669; border:1px solid rgba(16,185,129,0.3); border-radius:20px; padding:3px 10px; font-size:0.72rem; font-weight:700; flex-shrink:0; }
 
+/* ===== MASTERY ===== */
+.mastery-badge { display:inline-flex; align-items:center; gap:5px; border-radius:20px; padding:3px 10px; font-size:0.72rem; font-weight:700; flex-shrink:0; }
+.mastery-debutant { background:rgba(16,185,129,0.1); color:#059669; border:1px solid rgba(16,185,129,0.3); }
+.mastery-confirme { background:rgba(99,102,241,0.12); color:var(--indigo); border:1px solid rgba(99,102,241,0.3); }
+.mastery-expert { background:rgba(245,158,11,0.12); color:#B45309; border:1px solid rgba(245,158,11,0.35); }
+
+/* ===== SPEED MODE ===== */
+.speed-toggle { display:flex; align-items:center; gap:10px; background:rgba(6,182,212,0.08); border:1.5px solid rgba(6,182,212,0.25); border-radius:var(--radius-sm); padding:12px 16px; margin-bottom:20px; cursor:pointer; }
+.speed-toggle input[type=checkbox] { width:18px; height:18px; accent-color:var(--cyan); cursor:pointer; }
+.speed-toggle-label { font-size:0.88rem; font-weight:600; color:var(--text2); }
+.speed-toggle-sub { font-size:0.78rem; color:var(--text3); margin-top:2px; }
+.speed-timer-wrap { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.speed-timer-bar-track { flex:1; height:6px; background:var(--bg2); border-radius:3px; overflow:hidden; }
+.speed-timer-bar-fill { height:100%; border-radius:3px; background:var(--grad-cyan); transition:width 0.1s linear; }
+.speed-timer-val { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.85rem; color:var(--cyan); width:28px; text-align:right; flex-shrink:0; }
+.speed-bonus { display:inline-block; background:rgba(6,182,212,0.15); color:var(--cyan); border:1px solid rgba(6,182,212,0.3); border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:700; margin-left:8px; }
+
 /* ============================================================
    VUE ADMIN
 ============================================================ */
@@ -1471,6 +1488,7 @@ let currentModule = null;
 let currentStep = 0;
 let duelState = null;
 let customVideos = {};
+let speedMode = false;
 
 // ============================================================
 // UTILS
@@ -1493,6 +1511,16 @@ function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+}
+
+function getMastery(modData, quiz){
+  const answers=modData.quizAnswers||[];
+  const answered=answers.filter(function(a,i){ return a!=null; }).length;
+  if(answered===0) return null;
+  const score=answers.filter(function(a,i){ return i<quiz.length && a===quiz[i].ans; }).length;
+  if(score<=2) return {level:'debutant',label:'🌱 Débutant',cls:'mastery-debutant'};
+  if(score<=4) return {level:'confirme',label:'⭐ Confirmé',cls:'mastery-confirme'};
+  return {level:'expert',label:'🏆 Expert',cls:'mastery-expert'};
 }
 
 function getYouTubeId(url){
@@ -1537,8 +1565,8 @@ function saveCurrentUser(){
   if(!currentUser||currentUser.isAdmin) return;
   const fu=auth.currentUser;
   if(!fu) return;
-  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes}=currentUser;
-  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes},{merge:true})
+  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed}=currentUser;
+  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{}},{merge:true})
     .catch(e=>console.error('saveCurrentUser:',e));
 }
 
@@ -1660,7 +1688,7 @@ function renderModulesGrid(){
       '<div class="mc-title">'+m.id+'. '+m.title+'</div>'+
       '<div class="mc-desc">'+m.desc+'</div>'+
       '<div class="mc-footer">'+
-        '<div class="mc-xp">+'+m.xp+' XP</div>'+
+        '<div class="mc-xp">+'+m.xp+' XP'+(function(){ const ms=getMastery(modData,m.quiz); return ms?'<span class="mastery-badge '+ms.cls+'" style="margin-left:8px">'+ms.label+'</span>':''; }())+'</div>'+
         '<div class="mc-prog">'+
           '<div class="mc-prog-track"><div class="mc-prog-fill" style="width:'+prog+'%"></div></div>'+
           '<div class="mc-prog-pct">'+prog+'%</div>'+
@@ -1891,10 +1919,18 @@ function renderModuleStep(){
     body.innerHTML='<div class="content-block" style="text-align:center;padding:40px">'+
       '<div style="font-size:2.5rem;margin-bottom:16px">🎯</div>'+
       '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">Quiz du module</h3>'+
-      '<p style="color:var(--text3);font-size:0.88rem;margin-bottom:24px">'+m.quiz.length+' questions · Chaque bonne réponse compte !</p>'+
+      '<p style="color:var(--text3);font-size:0.88rem;margin-bottom:20px">'+m.quiz.length+' questions · Chaque bonne réponse compte !</p>'+
+      '<label class="speed-toggle" id="speed-toggle-label">'+
+        '<input type="checkbox" id="speed-mode-check">'+
+        '<div><div class="speed-toggle-label">⚡ Mode Vitesse</div><div class="speed-toggle-sub">10 secondes par question · Réponse en moins de 5s = +20 XP bonus</div></div>'+
+      '</label>'+
       '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer le quiz →</button>'+
     '</div>';
-    document.getElementById('btn-start-quiz').addEventListener('click',function(){ currentStep++; renderModuleView(); });
+    document.getElementById('btn-start-quiz').addEventListener('click',function(){
+      const chk=document.getElementById('speed-mode-check');
+      speedMode=chk?chk.checked:false;
+      currentStep++; renderModuleView();
+    });
     return;
   }
 
@@ -1902,14 +1938,26 @@ function renderModuleStep(){
     const qIdx=currentStep-totalContent-2;
     const q=m.quiz[qIdx];
     const answered=(currentUser.modules[m.id].quizAnswers||[])[qIdx];
+    const timerHTML=speedMode?'<div class="speed-timer-wrap" id="speed-timer-wrap"><div class="speed-timer-bar-track"><div class="speed-timer-bar-fill" id="speed-bar" style="width:100%"></div></div><div class="speed-timer-val" id="speed-val">10</div></div>':'';
     const block=document.createElement('div');
     block.className='content-block';
-    block.innerHTML='<div style="margin-bottom:8px" class="tech-badge tech-badge-indigo">Question '+(qIdx+1)+' / '+m.quiz.length+'</div>'+
+    block.innerHTML=timerHTML+
+      '<div style="margin-bottom:8px" class="tech-badge tech-badge-indigo">Question '+(qIdx+1)+' / '+m.quiz.length+(speedMode?' <span class="speed-bonus">⚡ Mode Vitesse</span>':'')+'</div>'+
       '<div class="quiz-q" style="margin-top:14px">'+q.q+'</div>'+
       '<div class="quiz-opts" id="quiz-opts-wrap"></div>'+
       '<div class="quiz-explain" id="quiz-explain" style="display:none">'+q.exp+'</div>';
     body.appendChild(block);
     const optsWrap=document.getElementById('quiz-opts-wrap');
+    let speedTimer=null;
+    let questionStartTime=Date.now();
+    function lockOpts(chosen){
+      if(speedTimer){ clearInterval(speedTimer); speedTimer=null; }
+      optsWrap.querySelectorAll('.quiz-opt').forEach(function(b,bi){
+        if(bi===q.ans) b.classList.add('correct');
+        else if(bi===chosen && chosen!==q.ans) b.classList.add('wrong');
+        b.style.pointerEvents='none';
+      });
+    }
     q.opts.forEach(function(opt,oi){
       const btn=document.createElement('div');
       btn.className='quiz-opt';
@@ -1917,24 +1965,45 @@ function renderModuleStep(){
       btn.innerHTML='<div class="quiz-opt-letter">'+letter+'</div><span>'+opt+'</span>';
       if(answered!=null){
         if(oi===q.ans) btn.classList.add('correct');
-        else if(oi===answered) btn.classList.add('wrong');
+        else if(oi===answered && answered!==q.ans) btn.classList.add('wrong');
       } else {
         btn.addEventListener('click',function(){
-          currentUser.modules[m.id].quizAnswers=currentUser.modules[m.id].quizAnswers||[];
+          if(btn.style.pointerEvents==='none') return;
+          const elapsed=(Date.now()-questionStartTime)/1000;
           currentUser.modules[m.id].quizAnswers[qIdx]=oi;
+          lockOpts(oi);
           document.getElementById('quiz-explain').style.display='block';
-          optsWrap.querySelectorAll('.quiz-opt').forEach(function(b,bi){
-            if(bi===q.ans) b.classList.add('correct');
-            else if(bi===oi && oi!==q.ans) b.classList.add('wrong');
-          });
-          if(oi===q.ans) showNotif('Bonne réponse ! +10 XP','success');
-          else showNotif('Mauvaise réponse. Consultez l\'explication.','warn');
-          if(oi===q.ans) addXP(10);
+          if(oi===q.ans){
+            const bonus=speedMode&&elapsed<5;
+            const xpGain=bonus?30:10;
+            showNotif('Bonne réponse ! +'+xpGain+' XP'+(bonus?' ⚡ Bonus vitesse !':''),'success');
+            addXP(xpGain);
+          } else {
+            showNotif('Mauvaise réponse. Consultez l\'explication.','warn');
+          }
           saveCurrentUser();
         });
       }
       optsWrap.appendChild(btn);
     });
+    if(speedMode && answered==null){
+      let secs=10;
+      const barEl=document.getElementById('speed-bar');
+      const valEl=document.getElementById('speed-val');
+      speedTimer=setInterval(function(){
+        secs--;
+        if(barEl) barEl.style.width=(secs/10*100)+'%';
+        if(valEl){ valEl.textContent=secs; valEl.style.color=secs<=3?'#EF4444':'var(--cyan)'; }
+        if(secs<=0){
+          clearInterval(speedTimer); speedTimer=null;
+          currentUser.modules[m.id].quizAnswers[qIdx]=-1;
+          lockOpts(-1);
+          document.getElementById('quiz-explain').style.display='block';
+          showNotif('Temps écoulé !','warn');
+          saveCurrentUser();
+        }
+      },1000);
+    }
     const nav=document.createElement('div'); nav.className='module-nav';
     const prevBtn=document.createElement('button');
     prevBtn.className='btn btn-ghost'; prevBtn.textContent='← Précédent';
@@ -1971,10 +2040,15 @@ function renderModuleStep(){
       saveCurrentUser();
     }
     const score=(modData.quizAnswers||[]).filter(function(a,i){ return a===m.quiz[i].ans; }).length;
+    const mastery=getMastery(modData,m.quiz);
+    if(mastery) modData.mastery=mastery.level;
+    const masteryHTML=mastery?'<div class="mastery-badge '+mastery.cls+'" style="font-size:0.88rem;padding:6px 14px;margin-bottom:20px">'+mastery.label+' — Niveau de maîtrise</div>':'';
+    const scoreMsg=score===m.quiz.length?'Quiz parfait ! 🎯':score>=3?'Bon travail !':'Continuez à vous entraîner !';
     body.innerHTML='<div class="content-block" style="text-align:center;padding:48px">'+
       '<div style="font-size:3rem;margin-bottom:16px">🎉</div>'+
       '<h3 style="font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:8px">Module terminé !</h3>'+
-      '<p style="color:var(--text3);margin-bottom:24px;font-size:0.9rem">Score quiz : '+score+' / '+m.quiz.length+'</p>'+
+      '<p style="color:var(--text3);margin-bottom:8px;font-size:0.9rem">Score quiz : '+score+' / '+m.quiz.length+' · '+scoreMsg+'</p>'+
+      masteryHTML+
       '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">'+
         '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP gagné</div>'+
         '<div class="tech-badge tech-badge-violet">🏅 Badge obtenu</div>'+
