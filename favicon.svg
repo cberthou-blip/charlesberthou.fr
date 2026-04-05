@@ -1,11 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Favicon Charles Berthou">
   <defs>
-    <linearGradient id="cbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="cGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#cfcfcf"/>
+      <stop offset="80%" stop-color="#a8d4ff"/>
+    </linearGradient>
+    <linearGradient id="bGrad" x1="0%" y1="0%" x2="60%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="55%" stop-color="#FF5500"/>
+      <stop offset="100%" stop-color="#0077FF"/>
     </linearGradient>
   </defs>
+
+  <!-- Fond arrondi sombre -->
   <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+
+  <!-- Lettre C -->
   <path d="M28 16
            C19 16, 12 23, 12 32
            C12 41, 19 48, 28 48
@@ -17,7 +26,9 @@
            C30.6 23.8, 32.8 24.7, 34.5 26.5
            L40 22
            C37 18, 33 16, 28 16 Z"
-        fill="url(#cbGrad)"/>
+        fill="url(#cGrad)"/>
+
+  <!-- Lettre B -->
   <path d="M38 14
            L46 14
            L43.8 26.2
@@ -31,5 +42,5 @@
            C52 32.4, 49.7 30.2, 46.6 30.2
            C43.6 30.2, 41.3 32.4, 41.3 35.4
            C41.3 38.4, 43.6 40.6, 46.6 40.6 Z"
-        fill="#ffffff"/>
+        fill="url(#bGrad)"/>
 </svg>
