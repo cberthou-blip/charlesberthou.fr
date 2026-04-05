@@ -714,12 +714,17 @@ body::before {
   .navbar{padding:0 16px;height:56px;} .nav-center{display:none;} .nav-xp{font-size:0.8rem;}
   .dashboard-header{padding:24px 16px 32px;} .dh-stats{grid-template-columns:1fr 1fr;gap:10px;} .dh-stat-val{font-size:1.6rem;}
   .dashboard-body{padding:20px 16px;} .modules-grid{grid-template-columns:1fr;} .badges-grid{grid-template-columns:repeat(2,1fr);}
-  .module-body{padding:20px 16px;} .module-header{padding:24px 16px;} .mh-title{font-size:1.2rem;} .content-block{padding:20px 16px;}
+  .module-body{padding:20px 16px;} .module-header{padding:24px 16px;} .mh-title{font-size:1.2rem;} .content-block{padding:20px 16px;overflow-x:hidden;}
   .duel-arena{flex-direction:column;gap:8px;align-items:center;} .dp-score{font-size:2rem;}
   .login-split{grid-template-columns:1fr;} .login-hero{display:none !important;} .login-form-side{padding:32px 24px;}
   .admin-kpis{grid-template-columns:1fr 1fr;} .admin-table th,.admin-table td{padding:10px 8px;font-size:0.8rem;}
   .module-nav{flex-direction:column;gap:8px;} .module-nav .btn{width:100%;justify-content:center;}
-  .info-grid{grid-template-columns:1fr;} .modal-box{padding:24px 20px;}
+  .info-grid{grid-template-columns:1fr;} .modal-box{padding:24px 20px;margin:16px;width:calc(100% - 32px);max-width:none;}
+  .mh-inner{flex-direction:column;gap:10px;} .mh-icon{width:44px;height:44px;font-size:1.4rem;}
+  .section-head{flex-direction:column;gap:10px;align-items:flex-start;}
+  .landing-modules-grid{grid-template-columns:1fr;}
+  .cb-heading{font-size:1rem;} .cb-text{font-size:0.88rem;} .quiz-q{font-size:0.92rem;}
+  .admin-wrap{overflow-x:auto;}
 }
 </style>
 <meta property="og:title" content="MABN Académie — Apprendre l'IA">
@@ -761,15 +766,15 @@ body::before {
     <p>10 modules pour maîtriser l'IA de A à Z, du niveau débutant au niveau expert.</p>
     <div class="landing-modules-grid">
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🧠</div><div><div class="lm-num">MODULE 01</div><div class="lm-title">Les fondamentaux de l'IA</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">⚙️</div><div><div class="lm-num">MODULE 02</div><div class="lm-title">Machine Learning</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🔬</div><div><div class="lm-num">MODULE 03</div><div class="lm-title">Deep Learning et réseaux de neurones</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">💬</div><div><div class="lm-num">MODULE 04</div><div class="lm-title">NLP — Traitement du langage</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">👁️</div><div><div class="lm-num">MODULE 05</div><div class="lm-title">Vision par ordinateur</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#059669,#06B6D4)">✨</div><div><div class="lm-num">MODULE 06</div><div class="lm-title">IA Générative</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🏭</div><div><div class="lm-num">MODULE 07</div><div class="lm-title">IA appliquée aux métiers</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">⚖️</div><div><div class="lm-num">MODULE 08</div><div class="lm-title">Éthique et IA responsable</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">🎯</div><div><div class="lm-num">MODULE 09</div><div class="lm-title">Prompt Engineering</div></div></div>
-      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🚀</div><div><div class="lm-num">MODULE 10</div><div class="lm-title">Futur de l'IA</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🤖</div><div><div class="lm-num">MODULE 02</div><div class="lm-title">ChatGPT, Claude, Gemini...</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">💬</div><div><div class="lm-num">MODULE 03</div><div class="lm-title">L'art du prompt</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">⚡</div><div><div class="lm-num">MODULE 04</div><div class="lm-title">L'IA dans ma vie</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">💰</div><div><div class="lm-num">MODULE 05</div><div class="lm-title">IA et économie</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#059669,#06B6D4)">🌱</div><div><div class="lm-num">MODULE 06</div><div class="lm-title">IA et écologie</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">⚖️</div><div><div class="lm-num">MODULE 07</div><div class="lm-title">Éthique et IA</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#059669,#06B6D4)">🌍</div><div><div class="lm-num">MODULE 08</div><div class="lm-title">IA et société</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">🔧</div><div><div class="lm-num">MODULE 09</div><div class="lm-title">Comment l'IA pense vraiment</div></div></div>
+      <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">🚀</div><div><div class="lm-num">MODULE 10</div><div class="lm-title">L'avenir de l'IA</div></div></div>
     </div>
   </div>
   <div class="landing-cta">
@@ -797,8 +802,9 @@ body::before {
   <div class="modal-box">
     <h3 style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px">⚔️ Nouveau défi</h3>
     <p style="font-size:0.85rem;color:var(--text3);margin-bottom:20px">Défier un autre apprenant sur un module</p>
-    <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:8px">Prénom de l'adversaire</label>
-    <input class="input-field" id="ch-opponent" placeholder="ex: Marie" style="margin-bottom:14px">
+    <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:8px">Choisir un adversaire</label>
+    <select class="input-field" id="ch-opponent" style="margin-bottom:6px"><option value="">Chargement...</option></select>
+    <p style="font-size:0.75rem;color:var(--text3);margin-bottom:14px;line-height:1.4">💡 L'adversaire verra le défi dans sa section <strong>Défis</strong> après s'être connecté.</p>
     <label style="font-size:0.82rem;font-weight:600;color:var(--text2);display:block;margin-bottom:8px">Module</label>
     <select class="input-field" id="ch-module" style="margin-bottom:20px"></select>
     <div style="display:flex;gap:10px">
@@ -1019,255 +1025,252 @@ const MODULES = [
   {
     id:1, title:"Les fondamentaux de l'IA",
     icon:"🧠", color:"i",
-    desc:"Comprendre ce qu'est l'IA, son histoire et ses grandes familles.",
-    xp:120, duration:"10–12 min",
+    desc:"Comprendre ce qu'est l'IA, ce qu'elle sait faire (et pas encore), et pourquoi elle explose maintenant.",
+    xp:100, duration:"10-12 min",
     video:{title:"C'est quoi l'intelligence artificielle ?",url:"https://www.youtube.com/watch?v=aircAruvnKk",dur:"3:45"},
     content:[
-      {type:"text",heading:"Qu'est-ce que l'intelligence artificielle ?",
-       text:"L'intelligence artificielle désigne l'ensemble des techniques permettant à une machine de simuler des comportements associés à l'intelligence humaine : apprendre, raisonner, résoudre des problèmes, percevoir son environnement, comprendre le langage.<br><br>Le terme a été inventé en <strong>1956</strong> par John McCarthy lors de la conférence de Dartmouth. Depuis, le domaine a connu plusieurs cycles d'enthousiasme et de désillusion, appelés <em>hivers de l'IA</em>, avant l'explosion actuelle due à la puissance de calcul et aux données massives."},
-      {type:"grid",heading:"Les 3 grands types d'IA",items:[
-        {label:"IA étroite (ANI)",value:"Spécialisée dans une seule tâche. Ex : reconnaissance d'image, traduction. Toute l'IA actuelle est étroite.",cls:""},
-        {label:"IA générale (AGI)",value:"Aussi polyvalente qu'un humain. N'existe pas encore. Objectif théorique des chercheurs.",cls:"cyan"},
-        {label:"Super-IA (ASI)",value:"Dépasserait l'humain dans tous les domaines. Purement hypothétique aujourd'hui.",cls:"violet"}
+      {type:"text",heading:"L'IA en une phrase",
+       text:"L'intelligence artificielle, c'est la capacité d'une machine à <strong>accomplir des tâches qui nécessitaient jusqu'ici l'intelligence humaine</strong> : comprendre un texte, reconnaître une image, traduire une langue, jouer aux échecs, ou même écrire un poème.<br><br>Ce n'est pas de la magie : c'est du calcul, des données et des algorithmes. Mais le résultat peut être bluffant."},
+      {type:"grid",heading:"Ce que l'IA sait faire... et pas encore",items:[
+        {label:"Elle sait faire",value:"Reconnaître des visages, traduire du texte, générer des images, rédiger des emails, analyser des données médicales, jouer mieux que les humains aux échecs et au Go.",cls:""},
+        {label:"Elle ne sait pas encore bien faire",value:"Comprendre vraiment le sens des choses, raisonner de façon fiable sur des problèmes nouveaux, avoir du bon sens, ressentir des émotions.",cls:"cyan"},
+        {label:"Elle ne sait pas faire (pour l'instant)",value:"Être aussi polyvalente qu'un humain, apprendre sans données, agir physiquement dans le monde réel avec la dextérité d'un enfant de 5 ans.",cls:"violet"}
       ]},
-      {type:"text",heading:"Pourquoi maintenant ?",
-       text:"Trois ingrédients ont convergé au cours des années 2010 :<br><br><strong>1. Big Data</strong> — des milliards de données disponibles (internet, capteurs, réseaux sociaux)<br><strong>2. Puissance de calcul</strong> — GPU massivement parallèles, cloud computing<br><strong>3. Algorithmes</strong> — les réseaux de neurones profonds (deep learning) ont prouvé leur efficacité"}
+      {type:"text",heading:"Les 3 ingrédients de l'explosion IA",
+       text:"Pourquoi l'IA explose-t-elle maintenant et pas avant ? Trois ingrédients ont convergé en même temps :<br><br><strong>1. Big Data</strong> — Internet a produit des milliards de textes, images, vidéos. Les IA apprennent en ingurgitant ces données.<br><strong>2. GPU (puces graphiques)</strong> — Ces processeurs ultra-rapides, conçus pour les jeux vidéo, se sont révélés parfaits pour entraîner des IA.<br><strong>3. Algorithmes</strong> — Les réseaux de neurones profonds et l'architecture Transformer ont tout changé à partir de 2017."}
     ],
     quiz:[
-      {q:"Qui a inventé le terme 'intelligence artificielle' en 1956 ?",opts:["Alan Turing","John McCarthy","Marvin Minsky","Claude Shannon"],ans:1,exp:"John McCarthy a utilisé ce terme pour la première fois lors de la conférence de Dartmouth en 1956."},
-      {q:"Qu'est-ce qu'une IA étroite (ANI) ?",opts:["Une IA aussi intelligente qu'un humain","Une IA spécialisée dans une seule tâche","Une IA qui dépasse l'humain dans tous les domaines","Une IA sans apprentissage automatique"],ans:1,exp:"Toute l'IA que nous utilisons aujourd'hui est 'étroite' : elle excelle dans une tâche précise mais ne peut pas se généraliser."},
-      {q:"Lequel de ces trois facteurs N'EST PAS l'une des raisons de l'essor de l'IA ?",opts:["La disponibilité du Big Data","La puissance de calcul accrue","L'invention du transistor en 2010","Les progrès des réseaux de neurones"],ans:2,exp:"Le transistor date des années 1940-1950. L'essor récent de l'IA repose sur le Big Data, les GPU et les algorithmes de deep learning."},
-      {q:"Que désigne un 'hiver de l'IA' ?",opts:["Une période où l'IA est utilisée dans les pays froids","Une période de réduction des financements et de désillusion","Un algorithme de refroidissement du système","Une limitation légale imposée par un gouvernement"],ans:1,exp:"Les hivers de l'IA sont des périodes historiques où les promesses de l'IA n'ont pas été tenues, entraînant une chute des investissements."},
-      {q:"L'AGI (Intelligence Artificielle Générale) existe-t-elle aujourd'hui ?",opts:["Oui, c'est ChatGPT","Oui, dans les supercalculateurs","Non, c'est encore un objectif théorique","Oui, dans les robots industriels"],ans:2,exp:"L'AGI n'existe pas encore. Toutes les IA actuelles sont 'étroites', spécialisées dans des tâches précises."}
+      {q:"En une phrase simple, l'IA c'est quoi ?",opts:["Un robot humanoïde intelligent","La capacité d'une machine à réaliser des tâches nécessitant l'intelligence humaine","Un logiciel capable de se connecter à internet","Un ordinateur très rapide"],ans:1,exp:"L'IA désigne les techniques permettant à une machine d'accomplir des tâches qui requièrent normalement l'intelligence humaine : comprendre, apprendre, décider."},
+      {q:"Parmi ces 3 ingrédients, lequel N'a PAS contribué à l'explosion de l'IA ?",opts:["La disponibilité du Big Data","L'invention des disques durs SSD","La puissance des GPU","Les progrès des algorithmes"],ans:1,exp:"Les SSD ont amélioré le stockage, mais l'explosion de l'IA repose avant tout sur le Big Data, les GPU ultra-rapides et les avancées algorithmiques (deep learning, Transformers)."},
+      {q:"Qu'est-ce que l'IA ne sait PAS encore bien faire aujourd'hui ?",opts:["Reconnaître des visages sur une photo","Traduire un texte en temps réel","Raisonner de façon fiable sur des problèmes totalement nouveaux","Générer des images réalistes"],ans:2,exp:"L'IA actuelle excelle dans les tâches pour lesquelles elle a été entraînée, mais elle manque de bon sens et de capacité à raisonner sur des situations vraiment nouvelles."},
+      {q:"Les GPU ont été essentiels à l'IA parce que...",opts:["Ils consomment moins d'énergie","Ils sont conçus pour le calcul parallèle massif, parfait pour entraîner des IA","Ils stockent plus de données","Ils sont moins chers que les processeurs classiques"],ans:1,exp:"Les GPU peuvent effectuer des milliers de calculs simultanément. Cette capacité de calcul parallèle est idéale pour entraîner des réseaux de neurones."},
+      {q:"L'architecture qui a tout changé dans l'IA à partir de 2017 s'appelle...",opts:["Le CNN (réseau convolutif)","Le GAN (réseau adverse)","Le Transformer","Le LSTM"],ans:2,exp:"L'architecture Transformer, présentée dans le papier 'Attention is All You Need' (2017), est la base de ChatGPT, Claude, Gemini et de la plupart des IA actuelles."}
     ]
   },
   {
-    id:2, title:"Machine Learning",
-    icon:"⚙️", color:"i",
-    desc:"Comment les machines apprennent à partir de données sans être explicitement programmées.",
-    xp:140, duration:"12–14 min",
-    video:{title:"Machine Learning en 5 minutes",url:"https://www.youtube.com/watch?v=9gGnTQTYNaE",dur:"5:12"},
+    id:2, title:"ChatGPT, Claude, Gemini : les grands LLM",
+    icon:"🤖", color:"i",
+    desc:"Comprendre ce que sont les grands modèles de langage, qui les fabrique et quelles sont leurs limites.",
+    xp:120, duration:"10-12 min",
+    video:{title:"Comment fonctionnent ChatGPT et les LLM ?",url:"https://www.youtube.com/watch?v=5sLYAQS9sWQ",dur:"6:12"},
     content:[
-      {type:"text",heading:"L'apprentissage automatique : le principe",
-       text:"Le Machine Learning (ML) est une sous-discipline de l'IA dans laquelle une machine <strong>apprend à partir d'exemples</strong>, sans qu'on lui programme explicitement les règles.<br><br>Exemple classique : pour détecter les spams, on ne code pas une liste de règles. On fournit des milliers d'emails étiquetés (spam / non-spam) et l'algorithme trouve lui-même les patterns caractéristiques."},
-      {type:"grid",heading:"Les 3 types d'apprentissage",items:[
-        {label:"Supervisé",value:"On fournit des données avec les bonnes réponses. L'algo apprend la relation entrée-sortie. Ex : prédire un prix.",cls:""},
-        {label:"Non supervisé",value:"Données sans étiquettes. L'algo trouve des structures cachées. Ex : regrouper des clients similaires (clustering).",cls:"cyan"},
-        {label:"Par renforcement",value:"L'agent apprend en interagissant avec son environnement, par récompenses/pénalités. Ex : jeux, robotique.",cls:"violet"}
+      {type:"text",heading:"Qu'est-ce qu'un LLM ?",
+       text:"Un <strong>LLM (Large Language Model)</strong> est une IA entraînée sur des quantités astronomiques de textes — une bonne partie d'internet — pour apprendre à prédire quel mot vient ensuite dans une phrase.<br><br>En faisant cela des milliards de fois, le modèle finit par acquérir une compréhension implicite du langage, des faits, du raisonnement et même de la créativité. ChatGPT, Claude, Gemini : tous fonctionnent sur ce principe."},
+      {type:"grid",heading:"Le panorama des acteurs",items:[
+        {label:"OpenAI (USA)",value:"Créateurs de ChatGPT et GPT-4. Pionniers du domaine. Partenariat avec Microsoft. Les modèles GPT sont parmi les plus utilisés au monde.",cls:""},
+        {label:"Anthropic & Google",value:"Anthropic (Claude) mise sur la sécurité IA. Google (Gemini) intègre l'IA dans sa suite d'outils. Meta publie Llama en open-source.",cls:"cyan"},
+        {label:"Mistral (France)",value:"La pépite française ! Mistral AI produit des modèles très performants et compacts, disponibles en open-source. Fierté de la tech européenne.",cls:"violet"}
       ]},
-      {type:"text",heading:"Overfitting et généralisation",
-       text:"Un modèle de ML doit trouver l'équilibre entre :<br><br><strong>Sous-apprentissage (underfitting)</strong> : le modèle est trop simple, il ne capture pas les patterns<br><strong>Sur-apprentissage (overfitting)</strong> : le modèle mémorise les données d'entraînement mais échoue sur de nouvelles données<br><br>La bonne généralisation est mesurée sur un <em>jeu de test</em> distinct des données d'entraînement."}
+      {type:"text",heading:"Les limites à connaître : les hallucinations",
+       text:"Le point noir des LLM : ils <strong>hallucinent</strong>. C'est-à-dire qu'ils inventent des informations avec une confiance totale.<br><br>Exemples réels : citations d'articles scientifiques qui n'existent pas, noms de personnes inventés, dates incorrectes... Le modèle ne sait pas ce qu'il ignore.<br><br><strong>Règle d'or</strong> : vérifiez toujours les faits importants que vous donne un LLM, surtout pour les chiffres, les dates et les sources."}
     ],
     quiz:[
-      {q:"Qu'est-ce que le Machine Learning ?",opts:["Programmer explicitement chaque règle","Apprendre à partir d'exemples sans règles explicites","Télécharger automatiquement des logiciels","Créer des robots physiques"],ans:1,exp:"Le ML permet aux machines d'apprendre à partir de données, sans qu'on leur programme toutes les règles."},
-      {q:"Dans l'apprentissage supervisé, qu'est-ce qu'on fournit à l'algorithme ?",opts:["Des données sans étiquettes","Des données avec les bonnes réponses","Un environnement de jeu","Des règles expertes"],ans:1,exp:"L'apprentissage supervisé nécessite des données labellisées (entrées + sorties attendues)."},
-      {q:"Le clustering est un exemple de quel type d'apprentissage ?",opts:["Supervisé","Par renforcement","Non supervisé","Semi-supervisé"],ans:2,exp:"Le clustering (regroupement) est non supervisé : l'algo découvre des groupes sans qu'on lui dise lesquels."},
-      {q:"Qu'est-ce que l'overfitting ?",opts:["Le modèle est trop simple","Le modèle mémorise trop et rate les nouvelles données","Le modèle apprend trop lentement","Le modèle utilise trop de mémoire RAM"],ans:1,exp:"L'overfitting arrive quand le modèle 'mémorise' les données d'entraînement au lieu de généraliser."},
-      {q:"L'apprentissage par renforcement est notamment utilisé pour ?",opts:["Détecter les spams","Regrouper des clients","Entraîner des agents à jouer aux jeux","Traduire des textes"],ans:2,exp:"Le RL est célèbre pour AlphaGo, les robots, et les systèmes de recommandation."}
+      {q:"LLM signifie...",opts:["Logical Learning Machine","Large Language Model","Linear Language Module","Linked Learning Method"],ans:1,exp:"LLM = Large Language Model, soit Grand Modèle de Langage. ChatGPT, Claude et Gemini sont tous des LLM."},
+      {q:"Comment un LLM apprend-il fondamentalement ?",opts:["En lisant des livres de règles programmées par des humains","En prédisant le mot suivant dans des milliards de textes","En observant des humains travailler","En jouant à des jeux vidéo"],ans:1,exp:"Les LLM sont entraînés à prédire le mot suivant dans un texte, encore et encore. Ce processus simple répété des milliards de fois leur permet d'acquérir une compréhension du langage."},
+      {q:"Quelle entreprise française produit des LLM compétitifs en open-source ?",opts:["BNP Paribas","Thales","Mistral AI","Orange"],ans:2,exp:"Mistral AI, fondée à Paris en 2023, produit des modèles de langage très performants et les publie souvent en open-source, une approche distincte des géants américains."},
+      {q:"Qu'est-ce qu'une 'hallucination' d'un LLM ?",opts:["Une erreur de connexion internet","Une image générée de façon artistique","Quand le modèle invente des informations avec une fausse confiance","Quand le modèle refuse de répondre"],ans:2,exp:"Les hallucinations sont des affirmations inventées par le LLM présentées comme des faits. C'est la limite principale : le modèle ne sait pas ce qu'il ne sait pas."},
+      {q:"Quelle entreprise a créé ChatGPT ?",opts:["Google","Meta","Anthropic","OpenAI"],ans:3,exp:"OpenAI, fondée en 2015, a lancé ChatGPT en novembre 2022. Ce lancement a provoqué une véritable révolution dans l'adoption grand public de l'IA."}
     ]
   },
   {
-    id:3, title:"Deep Learning & Réseaux de Neurones",
-    icon:"🔬", color:"c",
-    desc:"Les réseaux de neurones artificiels : comment ils fonctionnent et pourquoi ils sont révolutionnaires.",
-    xp:160, duration:"13–15 min",
-    video:{title:"Les réseaux de neurones expliqués",url:"https://www.youtube.com/watch?v=aircAruvnKk",dur:"4:01"},
+    id:3, title:"L'art du prompt",
+    icon:"💬", color:"c",
+    desc:"Apprendre à bien communiquer avec une IA pour obtenir des résultats vraiment utiles.",
+    xp:110, duration:"10-12 min",
+    video:{title:"Comment écrire un bon prompt ?",url:"https://www.youtube.com/watch?v=_ZvnD73m40o",dur:"5:30"},
     content:[
-      {type:"text",heading:"S'inspirer du cerveau humain",
-       text:"Un réseau de neurones artificiel est inspiré du fonctionnement du cerveau. Il est composé de <strong>neurones artificiels</strong> organisés en couches :<br><br>• <em>Couche d'entrée</em> : reçoit les données brutes<br>• <em>Couches cachées</em> : transforment et abstrahent l'information<br>• <em>Couche de sortie</em> : produit la prédiction<br><br>Le Deep Learning désigne les réseaux avec de <strong>nombreuses couches cachées</strong> (plusieurs dizaines voire centaines)."},
-      {type:"grid",heading:"Architectures populaires",items:[
-        {label:"CNN",value:"Réseau convolutif. Excelle en traitement d'image. Analyse les patterns spatiaux locaux. Base de la reconnaissance visuelle.",cls:""},
-        {label:"RNN / LSTM",value:"Réseaux récurrents. Traitement de séquences (texte, audio). La mémoire court terme permet de 'se souvenir'.",cls:"cyan"},
-        {label:"Transformer",value:"Architecture révolutionnaire (2017). Base de GPT, BERT. Mécanisme d'attention. Domine le NLP et maintenant la vision.",cls:"violet"}
+      {type:"text",heading:"Qu'est-ce qu'un prompt ?",
+       text:"Un <strong>prompt</strong>, c'est simplement ce que vous écrivez à une IA pour lui demander quelque chose. C'est votre interface avec l'intelligence artificielle.<br><br>La bonne nouvelle : pas besoin d'être développeur pour bien prompter. La mauvaise nouvelle : un prompt flou donne une réponse floue. La qualité de votre question détermine la qualité de la réponse."},
+      {type:"grid",heading:"Les 4 ingrédients d'un bon prompt",items:[
+        {label:"Rôle",value:"Donnez un rôle à l'IA. 'Tu es un nutritionniste expert' ou 'Tu es un professeur qui explique à un enfant de 10 ans'.",cls:""},
+        {label:"Contexte",value:"Expliquez la situation. 'Je prépare une réunion avec mon équipe de 5 personnes demain matin sur le sujet X'.",cls:"cyan"},
+        {label:"Instruction",value:"Formulez précisément ce que vous voulez. 'Rédige', 'Résume', 'Explique', 'Compare', 'Liste les 5 points clés'.",cls:"violet"},
+        {label:"Format",value:"Précisez la forme souhaitée. 'En 3 paragraphes', 'Sous forme de tableau', 'En bullet points', 'En moins de 100 mots'.",cls:""}
       ]},
-      {type:"text",heading:"L'entraînement : la rétropropagation",
-       text:"L'entraînement d'un réseau de neurones se fait par <strong>rétropropagation du gradient</strong> :<br><br>1. On effectue une prédiction (forward pass)<br>2. On calcule l'erreur entre la prédiction et la réponse attendue<br>3. On propage l'erreur en sens inverse pour ajuster les poids de chaque neurone<br>4. On répète des millions de fois avec des mini-lots de données (mini-batches)"}
+      {type:"text",heading:"Techniques avancées : itération, chain of thought, few-shot",
+       text:"<strong>L'itération</strong> : votre premier prompt est rarement parfait. Affinez-le. Dites 'Plus court', 'Avec plus d'exemples', 'Dans un ton plus décontracté'.<br><br><strong>Chain of Thought</strong> : pour les problèmes complexes, ajoutez 'Raisonne étape par étape avant de répondre'. L'IA devient bien plus précise.<br><br><strong>Few-shot</strong> : montrez des exemples de ce que vous voulez. 'Voici un exemple du style que j'attends : [exemple]. Maintenant fais la même chose pour...'"}
     ],
     quiz:[
-      {q:"Qu'est-ce que le Deep Learning ?",opts:["Un apprentissage très long","Des réseaux de neurones avec de nombreuses couches","Un algorithme de clustering","Un type d'apprentissage par renforcement"],ans:1,exp:"Le Deep Learning désigne les réseaux de neurones profonds, avec de nombreuses couches cachées."},
-      {q:"Quelle architecture est particulièrement efficace pour le traitement d'images ?",opts:["RNN","Transformer","CNN","LSTM"],ans:2,exp:"Les CNN (Convolutional Neural Networks) sont spécialement conçus pour exploiter la structure spatiale des images."},
-      {q:"Les Transformers sont la base de quel type de modèles ?",opts:["Les robots industriels","GPT et les grands modèles de langage","Les algorithmes de tri","Les systèmes de navigation GPS"],ans:1,exp:"L'architecture Transformer, introduite en 2017, est la base de GPT, BERT, et la plupart des LLM actuels."},
-      {q:"À quoi sert la rétropropagation ?",opts:["Alimenter le réseau en données","Ajuster les poids du réseau après chaque erreur","Visualiser les neurones actifs","Compresser le modèle"],ans:1,exp:"La backpropagation calcule le gradient de l'erreur et le propage en arrière pour ajuster les poids."},
-      {q:"Les LSTM sont particulièrement adaptés à quel type de données ?",opts:["Images fixes","Données tabulaires","Séquences (texte, audio, séries temporelles)","Vidéos en temps réel"],ans:2,exp:"Les LSTM (Long Short-Term Memory) gèrent la mémoire court/long terme dans les séquences."}
+      {q:"Un prompt, c'est quoi ?",opts:["Un logiciel de programmation","L'instruction que vous donnez à une IA","Le nom d'un modèle d'IA","Un type de processeur"],ans:1,exp:"Un prompt est simplement le texte que vous envoyez à une IA pour lui demander quelque chose. La qualité du prompt influence directement la qualité de la réponse."},
+      {q:"Parmi les 4 ingrédients d'un bon prompt, lequel consiste à dire 'tu es un expert en...' ?",opts:["Le format","Le contexte","Le rôle","L'instruction"],ans:2,exp:"Donner un rôle à l'IA (ex : 'Tu es un coach sportif', 'Tu es un avocat spécialisé') cadre ses réponses et améliore leur pertinence."},
+      {q:"La technique 'chain of thought' consiste à...",opts:["Enchaîner plusieurs IA","Demander à l'IA de raisonner étape par étape","Utiliser plusieurs prompts en même temps","Limiter la longueur des réponses"],ans:1,exp:"En ajoutant 'Raisonne étape par étape' dans votre prompt, vous poussez l'IA à décomposer sa réflexion, ce qui améliore fortement la précision sur les problèmes complexes."},
+      {q:"La technique 'few-shot' consiste à...",opts:["Utiliser des prompts très courts","Envoyer plusieurs requêtes à la suite","Donner des exemples concrets du résultat attendu","Restreindre les sujets abordés"],ans:2,exp:"Le few-shot learning consiste à inclure 2-3 exemples dans votre prompt pour montrer exactement le style, le format ou le type de réponse que vous attendez."},
+      {q:"Si une première réponse de l'IA ne vous satisfait pas, que faut-il faire ?",opts:["Changer d'IA","Reformuler et itérer votre prompt","Attendre que l'IA s'améliore seule","Relancer la page"],ans:1,exp:"L'itération est la clé ! Affinez votre prompt : précisez le ton, la longueur, le format, ajoutez du contexte. Le dialogue avec une IA est un processus d'aller-retour."}
     ]
   },
   {
-    id:4, title:"Traitement du Langage (NLP)",
-    icon:"💬", color:"v",
-    desc:"Comment les machines comprennent et génèrent le langage humain.",
-    xp:150, duration:"11–13 min",
-    video:{title:"Le NLP expliqué simplement",url:"https://www.youtube.com/watch?v=CMrHM8a3hqw",dur:"6:22"},
+    id:4, title:"L'IA dans ma vie : usages concrets",
+    icon:"⚡", color:"c",
+    desc:"Découvrir comment l'IA peut vous aider concrètement au travail, dans vos loisirs et au quotidien.",
+    xp:110, duration:"10-12 min",
+    video:{title:"10 façons d'utiliser l'IA au quotidien",url:"https://www.youtube.com/watch?v=JMaHFh_bOvk",dur:"7:05"},
     content:[
-      {type:"text",heading:"Le défi du langage naturel",
-       text:"Le langage humain est ambigu, contextuel et infiniment riche. Une même phrase peut avoir plusieurs sens selon le contexte.<br><br>Le NLP (Natural Language Processing) regroupe les techniques permettant aux machines de <strong>comprendre, analyser et générer</strong> du texte ou de la parole en langue naturelle.<br><br>Applications quotidiennes : assistants vocaux, traduction automatique, résumé automatique, chatbots, analyse de sentiments."},
-      {type:"grid",heading:"Tâches NLP classiques",items:[
-        {label:"Classification",value:"Catégoriser du texte : détection de spam, analyse de sentiments (positif/négatif), classification de thèmes.",cls:""},
-        {label:"Extraction d'entités",value:"Identifier les personnes, lieux, dates dans un texte (NER : Named Entity Recognition).",cls:"cyan"},
-        {label:"Génération",value:"Produire du texte : résumé, traduction, réponse à des questions, complétion de code.",cls:"violet"}
+      {type:"text",heading:"L'IA au travail",
+       text:"L'IA n'est pas là pour remplacer les travailleurs — elle est là pour <strong>amplifier leurs capacités</strong>. Concrètement :<br><br>• <strong>Emails et communication</strong> : rédiger, reformuler, traduire en quelques secondes<br>• <strong>Analyse et résumé</strong> : synthétiser un document de 50 pages en 5 points clés<br>• <strong>Rédaction</strong> : articles, rapports, présentations, fiches produit<br>• <strong>Code</strong> : GitHub Copilot aide les développeurs à coder 2x plus vite"},
+      {type:"grid",heading:"IA et créativité",items:[
+        {label:"Images",value:"Midjourney, DALL-E, Adobe Firefly génèrent des visuels professionnels en quelques secondes à partir d'une description texte.",cls:""},
+        {label:"Musique",value:"Suno et Udio créent des chansons complètes (paroles + mélodie + voix) à partir d'un simple texte. Révolution pour les créateurs.",cls:"cyan"},
+        {label:"Vidéo",value:"Runway, Pika et Sora transforment du texte ou des images en vidéos. Le cinéma et la pub ne seront plus jamais pareils.",cls:"violet"}
       ]},
-      {type:"text",heading:"La révolution des LLM",
-       text:"Les <strong>Grands Modèles de Langage</strong> (LLM : Large Language Models) comme GPT-4 ou Llama ont transformé le domaine.<br><br>Ils sont pré-entraînés sur des corpus massifs (une grande partie d'internet) puis affinés (fine-tuning) pour des tâches spécifiques.<br><br>Leur capacité de <em>few-shot learning</em> leur permet de s'adapter à de nouvelles tâches avec très peu d'exemples."}
+      {type:"text",heading:"L'IA dans le quotidien",
+       text:"Au-delà du travail, l'IA s'invite dans la vie de tous les jours :<br><br>• <strong>Cuisine</strong> : demandez des recettes adaptées à ce que vous avez dans le frigo<br>• <strong>Langues</strong> : DeepL et les LLM permettent de lire et écrire dans n'importe quelle langue<br>• <strong>Apprentissage</strong> : Khan Academy avec Khanmigo, des tutoriels personnalisés 24h/24<br>• <strong>Santé</strong> : des applications qui analysent vos symptômes (avec précaution !)"}
     ],
     quiz:[
-      {q:"Que signifie NLP ?",opts:["Neural Learning Processing","Natural Language Processing","Network Layer Protocol","Non-Linear Programming"],ans:1,exp:"NLP = Natural Language Processing, traitement du langage naturel."},
-      {q:"L'analyse de sentiments est une tâche de ?",opts:["Génération de texte","Extraction d'entités","Classification de texte","Traduction automatique"],ans:2,exp:"L'analyse de sentiments classe un texte (positif, négatif, neutre) : c'est une tâche de classification."},
-      {q:"Que fait le NER (Named Entity Recognition) ?",opts:["Génère des noms de produits","Identifie les personnes, lieux, dates dans un texte","Résume des documents","Traduit en temps réel"],ans:1,exp:"Le NER détecte et catégorise les entités nommées (personnes, organisations, lieux...) dans un texte."},
-      {q:"Qu'est-ce qu'un LLM ?",opts:["Un logiciel de compression","Un grand modèle de langage pré-entraîné","Un langage de programmation","Un type de mémoire informatique"],ans:1,exp:"LLM = Large Language Model. Ex : GPT-4, Claude, Llama, Mistral."},
-      {q:"Le few-shot learning signifie que le modèle ?",opts:["Apprend avec très peu d'exemples","Oublie rapidement","Fonctionne sans données","S'entraîne en quelques secondes"],ans:0,exp:"Le few-shot learning : donner 2-3 exemples dans le prompt suffit pour adapter le modèle à une nouvelle tâche."}
+      {q:"Quel outil IA aide les développeurs à coder plus rapidement ?",opts:["ChatGPT Coder","GitHub Copilot","Microsoft Word IA","Adobe Code AI"],ans:1,exp:"GitHub Copilot, propulsé par OpenAI, suggère du code en temps réel directement dans l'éditeur. Les développeurs rapportent un gain de productivité de 40 à 55%."},
+      {q:"Midjourney est un outil qui permet de...",opts:["Composer de la musique automatiquement","Générer des images à partir d'une description texte","Créer des présentations PowerPoint","Traduire des documents"],ans:1,exp:"Midjourney est l'un des outils de génération d'images les plus populaires. Il crée des visuels de qualité professionnelle à partir d'un simple prompt texte."},
+      {q:"Quelle application IA permet d'apprendre avec un tuteur personnalisé ?",opts:["Duolingo uniquement","Suno","Khanmigo de Khan Academy","Runway"],ans:2,exp:"Khanmigo est l'assistant IA de Khan Academy. Il joue le rôle d'un tuteur de Socrate : il guide l'élève avec des questions plutôt que de donner directement les réponses."},
+      {q:"Suno et Udio sont des outils IA pour...",opts:["Générer des vidéos","Créer de la musique à partir de texte","Analyser des données financières","Retoucher des photos"],ans:1,exp:"Suno et Udio permettent de générer des chansons complètes (mélodie, paroles, voix chantée) à partir d'une simple description textuelle. Une révolution pour la création musicale."},
+      {q:"Quelle est la meilleure façon d'utiliser l'IA pour vous aider au travail ?",opts:["La laisser faire tout le travail à votre place","L'utiliser comme amplificateur de vos propres capacités","Eviter de l'utiliser pour rester compétitif","Demander à votre entreprise d'interdire son usage"],ans:1,exp:"L'IA est plus efficace quand elle augmente vos compétences : vous apportez le jugement, le contexte et la créativité, elle vous aide à aller plus vite et plus loin."}
     ]
   },
   {
-    id:5, title:"Vision par Ordinateur",
-    icon:"👁️", color:"c",
-    desc:"Comment l'IA voit et comprend les images et vidéos.",
-    xp:140, duration:"10–12 min",
-    video:{title:"Computer Vision : comment ça marche",url:"https://www.youtube.com/watch?v=2hXG8v8p0KM",dur:"4:55"},
+    id:5, title:"IA et économie",
+    icon:"💰", color:"v",
+    desc:"Comprendre l'impact de l'IA sur l'emploi, les entreprises et l'économie mondiale.",
+    xp:130, duration:"10-12 min",
+    video:{title:"L'IA va-t-elle détruire des emplois ?",url:"https://www.youtube.com/watch?v=7Pq-S557XQU",dur:"8:20"},
     content:[
-      {type:"text",heading:"L'IA qui voit",
-       text:"La vision par ordinateur (Computer Vision) permet aux machines d'analyser et d'interpréter des images et des vidéos. Une image est une grille de pixels ; l'IA apprend à y détecter des patterns significatifs.<br><br>Applications : reconnaissance faciale, voitures autonomes, diagnostic médical par imagerie, contrôle qualité industriel, réalité augmentée."},
-      {type:"grid",heading:"Tâches principales",items:[
-        {label:"Classification",value:"Répondre : 'Qu'est-ce que c'est ?' → Chat, chien, voiture. Une seule catégorie par image.",cls:""},
-        {label:"Détection",value:"Localiser et identifier plusieurs objets dans une image. Fournit des boîtes englobantes (bounding boxes).",cls:"cyan"},
-        {label:"Segmentation",value:"Délimiter pixel par pixel chaque objet. Plus précis que la détection. Utilisé en médecine et conduite autonome.",cls:"violet"}
+      {type:"text",heading:"Un marché colossal",
+       text:"L'IA est l'une des plus grandes opportunités économiques de l'histoire. Quelques chiffres pour comprendre l'ampleur :<br><br>• Le marché mondial de l'IA devrait dépasser <strong>1 500 milliards de dollars</strong> d'ici 2030<br>• Les Big Tech (Microsoft, Google, Amazon, Meta) investissent chacune des dizaines de milliards par an<br>• En 2023-2024, l'IA générative a attiré plus de <strong>25 milliards de dollars</strong> de capital-risque rien qu'aux USA"},
+      {type:"grid",heading:"Emplois : menacés, renforcés, créés",items:[
+        {label:"Emplois menacés",value:"Saisie de données, traduction basique, certains postes comptables, modération de contenu, rédaction répétitive. L'IA peut déjà faire ces tâches.",cls:""},
+        {label:"Emplois renforcés",value:"Médecins, avocats, enseignants, ingénieurs, designers... Ils gardent leur valeur mais l'IA les rend 2x à 5x plus productifs.",cls:"cyan"},
+        {label:"Emplois créés",value:"Prompt engineer, spécialiste IA, éthicien de l'IA, formateur IA, expert en sécurité des modèles... Des milliers de nouveaux métiers émergent.",cls:"violet"}
       ]},
-      {type:"text",heading:"Transfer Learning",
-       text:"Entraîner un CNN depuis zéro requiert des millions d'images et des semaines de calcul. Le <strong>Transfer Learning</strong> contourne ce problème :<br><br>1. On part d'un modèle pré-entraîné sur ImageNet (1,2 million d'images)<br>2. On remplace seulement les dernières couches<br>3. On ré-entraîne sur notre dataset spécifique (quelques centaines d'images suffisent)<br><br>Résultat : de très bonnes performances avec peu de données et de ressources."}
+      {type:"text",heading:"Les secteurs les plus transformés",
+       text:"<strong>Santé</strong> : diagnostic assisté, découverte de médicaments, médecine préventive personnalisée. L'IA détecte certains cancers mieux que des radiologues.<br><br><strong>Finance</strong> : détection de fraudes en temps réel, trading algorithmique, notation de crédit automatisée, conseil en investissement.<br><br><strong>Automobile</strong> : aide à la conduite, maintenance prédictive, design assisté. Tesla, Waymo et les constructeurs traditionnels y investissent massivement."}
     ],
     quiz:[
-      {q:"Qu'est-ce que la Computer Vision ?",opts:["Un langage de programmation pour graphismes","La capacité des machines à analyser des images","Un écran haute définition pour IA","Un algorithme de compression vidéo"],ans:1,exp:"La vision par ordinateur permet aux machines d'interpréter le contenu visuel (images, vidéos)."},
-      {q:"Quelle tâche consiste à dire 'qu'est-ce que c'est ?' sur une image entière ?",opts:["Segmentation","Détection","Classification","Transfer Learning"],ans:2,exp:"La classification attribue une catégorie à l'image entière."},
-      {q:"La détection d'objets fournit en plus de la catégorie ?",opts:["La texture de l'objet","La couleur dominante","Une boîte englobante (position)","Le nombre de pixels"],ans:2,exp:"La détection localise les objets avec des bounding boxes + catégorie."},
-      {q:"Le Transfer Learning permet de ?",opts:["Transférer des fichiers plus vite","Partir d'un modèle pré-entraîné pour l'adapter","Traduire des images","Copier un réseau de neurones"],ans:1,exp:"On réutilise les connaissances d'un grand modèle entraîné sur des millions d'images."},
-      {q:"La segmentation est plus précise que la détection car elle ?",opts:["Va plus vite","Délimite chaque objet pixel par pixel","Utilise moins de données","Fonctionne en temps réel"],ans:1,exp:"La segmentation sémantique/instance trace les contours exacts de chaque objet, pixel par pixel."}
+      {q:"Quel est l'ordre de grandeur du marché mondial de l'IA d'ici 2030 ?",opts:["100 milliards de dollars","500 milliards de dollars","1 500 milliards de dollars","50 milliards de dollars"],ans:2,exp:"Les estimations convergent autour de 1 500 milliards de dollars (1,5 trillion) pour le marché mondial de l'IA d'ici 2030, ce qui en fait l'une des plus grandes transformations économiques de l'histoire."},
+      {q:"Parmi ces métiers, lequel est LE PLUS menacé par l'IA à court terme ?",opts:["Chirurgien","Plombier","Agent de saisie de données","Architecte créatif"],ans:2,exp:"Les tâches répétitives et codifiables sont les plus vulnérables. La saisie de données, la modération de contenu et certaines tâches comptables peuvent déjà être automatisées."},
+      {q:"Qu'est-ce qu'un 'prompt engineer' ?",opts:["Un ingénieur qui conçoit des processeurs","Un spécialiste qui optimise les instructions données aux IA","Un développeur de jeux vidéo","Un technicien en réseau"],ans:1,exp:"Le prompt engineering est un nouveau métier qui consiste à concevoir des instructions efficaces pour obtenir les meilleurs résultats des IA. Un domaine en forte demande."},
+      {q:"Dans quel secteur l'IA détecte-t-elle certains cancers mieux que des humains ?",opts:["La finance","L'automobile","La santé / radiologie","L'éducation"],ans:2,exp:"Des études ont montré que des IA spécialisées en imagerie médicale détectent certains cancers (sein, peau) avec une précision égale ou supérieure à celle des radiologues experts."},
+      {q:"Pour les professionnels qualifiés (médecins, avocats, etc.), l'IA va principalement...",opts:["Remplacer leur métier dans les 2 ans","Augmenter leur productivité et amplifier leurs capacités","N'avoir aucun impact sur leur travail","Diminuer leur valeur sur le marché"],ans:1,exp:"Pour les métiers qualifiés, l'IA est surtout un amplificateur : elle permet de traiter plus de cas, de trouver des informations plus vite, de rédiger plus rapidement, sans remplacer le jugement humain."}
     ]
   },
   {
-    id:6, title:"IA Générative",
-    icon:"✨", color:"v",
-    desc:"Créer du texte, des images, du code et de la musique avec l'IA.",
-    xp:170, duration:"13–15 min",
-    video:{title:"L'IA générative expliquée",url:"https://www.youtube.com/watch?v=G2fqAlgmoPo",dur:"5:40"},
+    id:6, title:"IA et écologie",
+    icon:"🌱", color:"g",
+    desc:"Comprendre l'empreinte environnementale de l'IA et comment le secteur tente d'y répondre.",
+    xp:120, duration:"10-12 min",
+    video:{title:"L'IA est-elle mauvaise pour la planète ?",url:"https://www.youtube.com/watch?v=jfUpF8SJkTE",dur:"6:48"},
     content:[
-      {type:"text",heading:"Créer plutôt qu'analyser",
-       text:"L'IA générative est une catégorie d'IA capable de <strong>créer de nouveaux contenus</strong> : textes, images, vidéos, sons, code, musique.<br><br>Contrairement aux IA discriminatives (qui classifient), les IA génératives apprennent la distribution des données et peuvent en produire de nouvelles instances cohérentes."},
-      {type:"grid",heading:"Les grandes familles",items:[
-        {label:"LLM / GPT",value:"Génèrent du texte, du code, répondent à des questions. Base : architecture Transformer. Ex : GPT-4, Claude, Gemini.",cls:""},
-        {label:"Diffusion",value:"Génèrent des images à partir de bruit gaussien. Ex : Stable Diffusion, DALL-E, Midjourney.",cls:"cyan"},
-        {label:"GAN",value:"Deux réseaux s'affrontent : un générateur et un discriminateur. Produit des images photoréalistes. Deepfakes.",cls:"violet"}
+      {type:"text",heading:"Le coût énergétique de l'IA",
+       text:"Entraîner un grand modèle d'IA consomme énormément d'énergie. Un chiffre parlant : l'entraînement de GPT-3 a émis environ <strong>552 tonnes de CO2</strong> — l'équivalent de 300 allers-retours Paris-New York en avion.<br><br>Et ce n'est que l'entraînement. Chaque requête envoyée à ChatGPT consomme environ <strong>10 fois plus d'énergie</strong> qu'une recherche Google. Avec des milliards d'utilisateurs, ça s'accumule."},
+      {type:"grid",heading:"Les deux visages de l'IA et l'écologie",items:[
+        {label:"L'IA aggrave",value:"Datacenter énergivores, empreinte carbone des entraînements, fabrication des puces (eau, métaux rares), explosion de la consommation électrique mondiale.",cls:""},
+        {label:"L'IA aide",value:"Optimisation des réseaux électriques, prévision météo pour l'éolien/solaire, découverte de nouveaux matériaux pour les batteries, réduction du gaspillage alimentaire.",cls:"cyan"},
+        {label:"Le bilan",value:"Difficile à trancher : l'IA peut être un outil puissant pour lutter contre le changement climatique, à condition que son déploiement soit pensé de façon responsable.",cls:"violet"}
       ]},
-      {type:"text",heading:"Le Prompt Engineering",
-       text:"Avec les LLM, la qualité du résultat dépend fortement de la façon dont on formule la demande : c'est le <strong>Prompt Engineering</strong>.<br><br>Techniques efficaces :<br>• <em>Zero-shot</em> : demande directe sans exemple<br>• <em>Few-shot</em> : 2-3 exemples dans le prompt<br>• <em>Chain-of-thought</em> : demander au modèle de raisonner étape par étape<br>• <em>Role prompting</em> : donner un rôle précis au modèle"}
+      {type:"text",heading:"Les solutions : vers une Green AI",
+       text:"Le secteur prend conscience du problème et explore des pistes :<br><br>• <strong>Modèles plus efficaces</strong> : des recherches montrent qu'on peut obtenir de bonnes performances avec des modèles 10 à 100 fois plus petits<br>• <strong>Énergies renouvelables</strong> : Microsoft, Google et Amazon s'engagent à alimenter leurs datacenters en 100% d'énergie verte<br>• <strong>Mesurer l'impact</strong> : des outils comme CodeCarbon permettent de calculer l'empreinte CO2 d'un projet IA"}
     ],
     quiz:[
-      {q:"Qu'est-ce qui distingue une IA générative d'une IA discriminative ?",opts:["La vitesse de calcul","Elle crée de nouveaux contenus plutôt que de classer","Elle utilise moins de données","Elle fonctionne sans GPU"],ans:1,exp:"L'IA générative produit de nouveaux contenus (texte, image...) au lieu de simplement classer des données existantes."},
-      {q:"Quelle technique est utilisée par Stable Diffusion et DALL-E ?",opts:["GAN","Transformer","Diffusion","RNN"],ans:2,exp:"Les modèles de diffusion partent d'un bruit aléatoire et le 'débruitent' progressivement pour générer une image."},
-      {q:"Le Chain-of-Thought prompting consiste à ?",opts:["Enchaîner plusieurs IA","Demander au modèle de raisonner étape par étape","Utiliser une chaîne de blocs","Limiter la longueur du prompt"],ans:1,exp:"Le CoT pousse le modèle à décomposer son raisonnement, améliorant les performances sur des tâches complexes."},
-      {q:"Les GAN utilisent quel mécanisme principal ?",opts:["Un seul réseau très profond","Deux réseaux en compétition (générateur + discriminateur)","Un Transformer fine-tuné","Un modèle de diffusion"],ans:1,exp:"GAN = Generative Adversarial Network. Le générateur crée, le discriminateur juge : ils s'améliorent mutuellement."},
-      {q:"ChatGPT et Claude sont basés sur quelle architecture ?",opts:["CNN","RNN classique","GAN","Transformer / LLM"],ans:3,exp:"Les assistants IA conversationnels sont des LLM basés sur l'architecture Transformer."}
+      {q:"Combien de tonnes de CO2 l'entraînement de GPT-3 a-t-il environ émis ?",opts:["5 tonnes","50 tonnes","552 tonnes","5 000 tonnes"],ans:2,exp:"L'entraînement de GPT-3 a émis environ 552 tonnes de CO2. C'est l'équivalent de 300 allers-retours Paris-New York en avion, rien que pour entraîner le modèle une fois."},
+      {q:"Une requête à ChatGPT consomme combien de fois plus d'énergie qu'une recherche Google ?",opts:["La même quantité","2 fois plus","10 fois plus","100 fois plus"],ans:2,exp:"Une requête à ChatGPT consomme environ 10 fois plus d'énergie qu'une recherche Google classique. Avec des centaines de millions d'utilisateurs quotidiens, l'impact cumulé est significatif."},
+      {q:"Comment l'IA peut-elle AIDER l'environnement ?",opts:["En remplaçant les humains dans les usines","En optimisant les réseaux électriques et en aidant à concevoir de nouvelles batteries","En supprimant le besoin de datacenters","En réduisant le nombre d'ordinateurs"],ans:1,exp:"L'IA peut optimiser la distribution d'énergie, améliorer les prévisions météo pour les énergies renouvelables, découvrir de nouveaux matériaux pour les batteries et réduire le gaspillage."},
+      {q:"Qu'est-ce que la 'Green AI' ?",opts:["Une IA spécialisée dans l'écologie","Une approche qui vise à réduire l'empreinte environnementale du développement de l'IA","Un label pour les datacenters verts","Un modèle d'IA qui tourne sur énergie solaire"],ans:1,exp:"La Green AI est un mouvement qui cherche à rendre le développement de l'IA plus sobre énergétiquement : modèles plus efficaces, mesure de l'impact carbone, alimentation en énergie renouvelable."},
+      {q:"Quelle stratégie permet de réduire la consommation des IA sans sacrifier les performances ?",opts:["Augmenter la taille des modèles","Utiliser des modèles plus petits et plus efficaces","Déconnecter les IA d'internet","Limiter les questions à 10 mots"],ans:1,exp:"Des recherches montrent que des modèles bien conçus et optimisés peuvent être 10 à 100 fois plus petits que GPT-3 tout en obtenant des résultats similaires sur de nombreuses tâches."}
     ]
   },
   {
-    id:7, title:"IA dans les Secteurs Clés",
-    icon:"🏭", color:"g",
-    desc:"Applications concrètes de l'IA dans la santé, la finance, l'industrie et le commerce.",
-    xp:130, duration:"10–12 min",
-    video:{title:"L'IA transforme les industries",url:"https://www.youtube.com/watch?v=5dZ_lvDgevk",dur:"7:15"},
+    id:7, title:"Éthique et IA",
+    icon:"⚖️", color:"v",
+    desc:"Explorer les biais, la vie privée, les deepfakes et le cadre légal européen autour de l'IA.",
+    xp:130, duration:"10-12 min",
+    video:{title:"Les biais de l'IA expliqués",url:"https://www.youtube.com/watch?v=aR5N2Jl8k14",dur:"7:15"},
     content:[
-      {type:"text",heading:"L'IA transforme chaque secteur",
-       text:"L'IA n'est plus réservée aux géants de la tech. Elle s'intègre dans tous les secteurs économiques, transformant profondément les métiers et les processus."},
-      {type:"grid",heading:"Applications par secteur",items:[
-        {label:"Santé",value:"Diagnostic par imagerie, découverte de médicaments, médecine personnalisée, surveillance des patients, chirurgie assistée.",cls:""},
-        {label:"Finance",value:"Détection de fraudes, trading algorithmique, notation de crédit, conseil automatisé (robo-advisor), conformité réglementaire.",cls:"cyan"},
-        {label:"Industrie",value:"Maintenance prédictive, contrôle qualité visuel, optimisation des chaînes logistiques, robots collaboratifs (cobots).",cls:"violet"},
-        {label:"Commerce",value:"Recommandation personnalisée, chatbots service client, gestion des stocks dynamique, optimisation des prix en temps réel.",cls:"green"}
+      {type:"text",heading:"Les biais algorithmiques : quand l'IA discrimine",
+       text:"Les IA apprennent à partir de données produites par des humains. Si ces données reflètent des préjugés, l'IA les reproduit — et parfois les amplifie.<br><br><strong>Exemple 1 : Amazon</strong> — L'algorithme de recrutement développé par Amazon pénalisait les CV de femmes. Il avait appris sur des données historiques où les ingénieurs étaient majoritairement des hommes.<br><br><strong>Exemple 2 : Reconnaissance faciale</strong> — Des études ont montré que certains systèmes avaient un taux d'erreur 35 fois plus élevé pour les visages de femmes noires que pour les hommes blancs."},
+      {type:"grid",heading:"Vie privée et deepfakes",items:[
+        {label:"Données personnelles",value:"Les LLM sont entraînés sur des milliards de textes qui peuvent contenir vos données. Que devient votre vie privée quand vous chattez avec une IA ?",cls:""},
+        {label:"Deepfakes",value:"Des vidéos ou sons fabriqués par IA imitant des personnes réelles. Utilisés pour la désinformation, les escroqueries ou le harcèlement. Difficiles à détecter.",cls:"cyan"},
+        {label:"Risques concrets",value:"Usurpation d'identité, faux appels vocaux imitant des proches, fausses déclarations de personnalités publiques... Des cas réels existent déjà.",cls:"violet"}
       ]},
-      {type:"text",heading:"L'IA dans votre quotidien",
-       text:"Au-delà des entreprises, l'IA imprègne le quotidien :<br><br>• <strong>Maison connectée</strong> : thermostats intelligents, sécurité, assistants vocaux (Alexa, Google Home)<br>• <strong>Mobilité</strong> : GPS prédictif (Waze), covoiturage dynamique, aide à la conduite<br>• <strong>Santé personnelle</strong> : montres connectées, applications de suivi, diagnostic en ligne<br>• <strong>Divertissement</strong> : recommandations Netflix/Spotify, génération de playlists"}
+      {type:"text",heading:"L'AI Act européen : le premier cadre légal mondial",
+       text:"En 2024, l'Union Européenne a adopté l'<strong>AI Act</strong>, le premier grand cadre légal au monde pour réguler l'IA. Il classe les systèmes selon 4 niveaux de risque :<br><br>• <strong>Risque inacceptable</strong> : interdit (ex : notation sociale des citoyens, manipulation subliminale)<br>• <strong>Risque élevé</strong> : très encadré (ex : IA médicale, recrutement, justice)<br>• <strong>Risque limité</strong> : obligations de transparence (ex : chatbots doivent se signaler)<br>• <strong>Risque minimal</strong> : libre utilisation (ex : filtres photo, jeux vidéo)"}
     ],
     quiz:[
-      {q:"La maintenance prédictive grâce à l'IA est principalement utilisée dans quel secteur ?",opts:["Finance","Industrie","Santé","Commerce"],ans:1,exp:"L'industrie 4.0 utilise l'IA pour anticiper les pannes machine avant qu'elles surviennent."},
-      {q:"Le trading algorithmique est une application de l'IA dans quel domaine ?",opts:["Santé","Logistique","Finance","Éducation"],ans:2,exp:"Les algorithmes de trading exécutent des transactions en millisecondes sur les marchés financiers."},
-      {q:"Quel assistant vocal est développé par Amazon ?",opts:["Siri","Cortana","Alexa","Google Assistant"],ans:2,exp:"Alexa est l'assistant vocal d'Amazon, intégré dans les enceintes Echo."},
-      {q:"Le robo-advisor est un outil d'IA pour ?",opts:["Programmer des robots","Conseiller automatiquement en investissement","Conduire des véhicules","Diagnostiquer des maladies"],ans:1,exp:"Un robo-advisor gère automatiquement un portefeuille d'investissement selon le profil de risque du client."},
-      {q:"La recommandation de produits sur Amazon ou de films sur Netflix utilise principalement ?",opts:["La vision par ordinateur","Le NLP","Le filtrage collaboratif et le ML","Les algorithmes génétiques"],ans:2,exp:"Les systèmes de recommandation combinent filtrage collaboratif (autres utilisateurs similaires) et ML."}
+      {q:"Pourquoi l'IA de recrutement d'Amazon pénalisait-elle les femmes ?",opts:["C'était un choix délibéré des ingénieurs","Elle avait appris sur des données historiques de recrutement dominées par des hommes","Les femmes postulaient moins","L'algorithme était mal programmé intentionnellement"],ans:1,exp:"L'IA avait appris à partir de 10 ans de CV envoyés à Amazon, dans un secteur tech historiquement masculin. Elle a 'appris' que le genre masculin était corrélé au succès, reproduisant le biais existant."},
+      {q:"Un deepfake, c'est quoi ?",opts:["Un faux compte sur les réseaux sociaux","Un contenu vidéo ou audio fabriqué par IA pour imiter une personne réelle","Une technique de hacking","Un type de malware"],ans:1,exp:"Les deepfakes sont des vidéos, images ou sons générés par IA qui imitent de façon convaincante des personnes réelles. Ils posent de sérieux problèmes de désinformation et d'usurpation d'identité."},
+      {q:"L'AI Act européen classe les systèmes d'IA selon...",opts:["Leur prix","Leur pays d'origine","Leur niveau de risque pour les droits fondamentaux","La taille de l'entreprise qui les développe"],ans:2,exp:"L'AI Act adopte une approche basée sur le risque : plus une IA peut affecter les droits fondamentaux des personnes, plus les obligations légales sont strictes."},
+      {q:"Selon l'AI Act, quelle utilisation de l'IA est INTERDITE ?",opts:["Les chatbots de service client","La reconnaissance faciale dans les aéroports","La notation sociale des citoyens par le gouvernement","Les filtres de photos sur smartphone"],ans:2,exp:"Les systèmes de 'notation sociale' à la chinoise sont explicitement interdits par l'AI Act européen comme constituant un risque inacceptable pour les droits fondamentaux."},
+      {q:"Selon l'AI Act, un chatbot a l'obligation de...",opts:["Répondre en moins de 2 secondes","Se signaler comme IA pour ne pas tromper l'utilisateur","Être disponible 24h/24","Refuser toutes les questions personnelles"],ans:1,exp:"Les systèmes d'IA à risque limité, comme les chatbots, doivent informer clairement les utilisateurs qu'ils interagissent avec une IA et non avec un humain."}
     ]
   },
   {
-    id:8, title:"Éthique et IA Responsable",
-    icon:"⚖️", color:"i",
-    desc:"Les enjeux éthiques, les biais et la gouvernance de l'IA.",
-    xp:150, duration:"11–13 min",
-    video:{title:"L'IA et l'éthique : les grands défis",url:"https://www.youtube.com/watch?v=aR5N2Jl8k14",dur:"8:30"},
+    id:8, title:"IA et société",
+    icon:"🌍", color:"g",
+    desc:"Comment l'IA transforme l'éducation, la santé et la démocratie.",
+    xp:120, duration:"10-12 min",
+    video:{title:"L'IA va-t-elle transformer l'école ?",url:"https://www.youtube.com/watch?v=hJP5GqnTrNo",dur:"6:30"},
     content:[
-      {type:"text",heading:"L'IA soulève des questions fondamentales",
-       text:"L'intelligence artificielle transforme profondément notre société. Ses bénéfices sont immenses, mais elle soulève des questions éthiques, juridiques et sociales qui doivent être adressées collectivement."},
-      {type:"grid",heading:"Les principaux défis",items:[
-        {label:"Biais algorithmiques",value:"Les IA apprennent sur des données historiques qui reflètent des inégalités sociales. Résultat : discriminations reproduites et amplifiées.",cls:""},
-        {label:"Vie privée",value:"Collecte massive de données personnelles. Surveillance. Reconnaissance faciale dans l'espace public. RGPD insuffisant ?",cls:"cyan"},
-        {label:"Emploi",value:"Automatisation de certaines tâches. Certains métiers disparaissent, de nouveaux émergent. Nécessité de requalification massive.",cls:"violet"},
-        {label:"Transparence",value:"Les grands modèles sont des 'boîtes noires'. L'explainability (XAI) est un chantier majeur pour la confiance.",cls:"green"}
+      {type:"text",heading:"IA et éducation : entre promesse et défi",
+       text:"L'IA transforme profondément l'éducation — pour le meilleur et pour le pire.<br><br><strong>Les promesses :</strong> des tuteurs personnalisés disponibles 24h/24 pour chaque élève (Khanmigo), des explications adaptées au niveau de chacun, des retours instantanés sur les exercices.<br><br><strong>Les défis :</strong> le plagiat explose. Des étudiants utilisent ChatGPT pour rédiger leurs dissertations. Les enseignants doivent repenser l'évaluation. La question n'est plus 'l'élève peut-il chercher ?' mais 'sait-il penser ?'"},
+      {type:"grid",heading:"IA et santé : des avancées majeures",items:[
+        {label:"Diagnostic",value:"Des IA détectent certains cancers, rétinopathies et maladies cardiaques avec une précision comparable aux meilleurs spécialistes. Accessibilité accrue dans les déserts médicaux.",cls:""},
+        {label:"AlphaFold",value:"En 2022, DeepMind (Google) a résolu avec AlphaFold le problème du repliement des protéines — un problème biologique ouvert depuis 50 ans. Révolution pour la médecine.",cls:"cyan"},
+        {label:"Médecine personnalisée",value:"L'IA analyse votre génome, vos données de santé et votre mode de vie pour proposer des traitements sur mesure. Le futur de la médecine.",cls:"violet"}
       ]},
-      {type:"text",heading:"Vers une IA responsable",
-       text:"Des initiatives émergent pour encadrer l'IA :<br><br>• <strong>AI Act européen</strong> (2024) : premier cadre légal mondial, approche par niveaux de risque<br>• <strong>Principes OCDE</strong> : transparence, équité, robustesse, sécurité<br>• <strong>IA de confiance</strong> : humain au centre, explicable, contestable<br>• <strong>Red teaming</strong> : tester les failles et biais avant déploiement<br><br>L'objectif : que l'IA bénéficie à tous, sans reproduire ni amplifier les inégalités existantes."}
+      {type:"text",heading:"IA et démocratie : les risques",
+       text:"L'IA pose des défis sérieux à la démocratie :<br><br>• <strong>Deepfakes politiques</strong> : des fausses vidéos de politiciens peuvent influencer des élections<br>• <strong>Désinformation à grande échelle</strong> : des IA génèrent des milliers d'articles faux par heure<br>• <strong>Bulles de filtre</strong> : les algorithmes de recommandation enfoncent les utilisateurs dans des visions du monde de plus en plus polarisées<br><br>La démocratie du XXIe siècle devra apprendre à se défendre contre ces nouvelles menaces."}
     ],
     quiz:[
-      {q:"Un biais algorithmique survient quand ?",opts:["L'algorithme est trop lent","L'IA apprend sur des données qui reflètent des inégalités","Le modèle manque de paramètres","Le serveur est surchargé"],ans:1,exp:"Les biais dans les données d'entraînement se retrouvent dans les décisions de l'IA, parfois amplifiés."},
-      {q:"Le RGPD concerne principalement ?",opts:["La régulation des robots","La protection des données personnelles","Les droits d'auteur de l'IA","La sécurité des réseaux"],ans:1,exp:"Le RGPD (2018) est le règlement européen sur la protection des données personnelles."},
-      {q:"L'AI Act européen adopte une approche basée sur ?",opts:["Le coût de développement","Les niveaux de risque","La nationalité des entreprises","La taille des modèles"],ans:1,exp:"L'AI Act classe les systèmes d'IA selon leur niveau de risque (inacceptable, élevé, limité, minimal)."},
-      {q:"L'explainability (XAI) vise à ?",opts:["Accélérer les algorithmes","Rendre les décisions de l'IA compréhensibles","Réduire la consommation énergetique","Compresser les modèles"],ans:1,exp:"L'IA explicable permet de comprendre pourquoi un modèle a pris une décision, essentiel pour la confiance."},
-      {q:"Le 'red teaming' appliqué à l'IA consiste à ?",opts:["Tester les performances en conditions réelles","Chercher volontairement les failles, biais et comportements dangereux","Colorier les réseaux de neurones","Former des équipes de développeurs"],ans:1,exp:"Le red teaming IA implique des experts qui tentent de trouver les failles et biais avant le déploiement."}
+      {q:"Khanmigo est...",opts:["Un jeu vidéo éducatif","L'assistant IA tuteur de Khan Academy","Un outil de détection du plagiat","Une plateforme de cours en ligne"],ans:1,exp:"Khanmigo est l'assistant IA de Khan Academy qui joue le rôle de tuteur socratique : il guide les élèves avec des questions plutôt que de donner directement les réponses."},
+      {q:"Qu'a accompli AlphaFold de DeepMind en 2022 ?",opts:["Battre le champion du monde d'échecs","Résoudre le problème du repliement des protéines ouvert depuis 50 ans","Créer la première IA consciente","Traduire toutes les langues du monde"],ans:1,exp:"AlphaFold a prédit avec une précision quasi parfaite la structure 3D de presque toutes les protéines connues. Une avancée majeure pour la biologie et la découverte de médicaments."},
+      {q:"Pourquoi les algorithmes de recommandation peuvent-ils nuire à la démocratie ?",opts:["Ils consomment trop d'électricité","Ils créent des bulles de filtre qui polarisent les opinions","Ils ralentissent internet","Ils exposent trop de publicités politiques"],ans:1,exp:"Les algorithmes montrent aux utilisateurs du contenu qui renforce leurs opinions existantes pour maximiser l'engagement. Cela crée des bulles où les gens ne sont exposés qu'aux idées qui leur ressemblent."},
+      {q:"Quel est le principal défi de l'IA pour l'éducation aujourd'hui ?",opts:["Les coûts trop élevés pour les écoles","La résistance des enseignants","Le plagiat et la nécessité de repenser l'évaluation","L'IA n'est pas encore assez précise pour l'éducation"],ans:2,exp:"La facilité avec laquelle les élèves peuvent utiliser des LLM pour rédiger leurs travaux oblige les enseignants à repenser fondamentalement les modes d'évaluation."},
+      {q:"L'IA peut améliorer l'accès aux soins médicaux notamment grâce à...",opts:["La rédaction de prescriptions automatiques","Le diagnostic assisté accessible dans les zones sans spécialistes","La suppression des médecins généralistes","La création de médicaments sans essais cliniques"],ans:1,exp:"Dans les déserts médicaux ou les pays en développement, une IA de diagnostic peut donner accès à un niveau d'expertise spécialisée qui serait autrement inaccessible."}
     ]
   },
   {
-    id:9, title:"Prompt Engineering",
-    icon:"🎯", color:"v",
-    desc:"Maîtriser l'art de communiquer avec les IA génératives pour obtenir les meilleurs résultats.",
-    xp:160, duration:"12–14 min",
-    video:{title:"Prompt Engineering : les meilleures techniques",url:"https://www.youtube.com/watch?v=_ZvnD73m40o",dur:"9:20"},
+    id:9, title:"Comment l'IA pense vraiment",
+    icon:"🔧", color:"c",
+    desc:"Comprendre les tokens, l'entraînement et pourquoi l'IA hallucine — sans jargon technique.",
+    xp:140, duration:"10-12 min",
+    video:{title:"Comment ChatGPT fonctionne vraiment",url:"https://www.youtube.com/watch?v=flXrLGPY3SU",dur:"8:45"},
     content:[
-      {type:"text",heading:"Le prompt : votre interface avec l'IA",
-       text:"Un <strong>prompt</strong> est l'instruction que vous envoyez à un modèle d'IA. La qualité de la réponse dépend directement de la qualité du prompt.<br><br>Le Prompt Engineering est la discipline qui consiste à concevoir, structurer et optimiser ces instructions pour obtenir des résultats précis, utiles et cohérents."},
-      {type:"grid",heading:"Les techniques fondamentales",items:[
-        {label:"Zero-shot",value:"Demande directe sans exemple. Fonctionne bien pour des tâches simples. Ex : 'Résume ce texte en 3 points'.",cls:""},
-        {label:"Few-shot",value:"Fournir 2-3 exemples dans le prompt. L'IA comprend le format attendu. Très efficace pour des tâches spécifiques.",cls:"cyan"},
-        {label:"Chain-of-Thought",value:"Demander de raisonner étape par étape. 'Pense à voix haute avant de répondre'. Améliore la précision sur les problèmes complexes.",cls:"violet"},
-        {label:"Role prompting",value:"Attribuer un rôle précis. 'Tu es un expert en droit fiscal'. Cadre le ton et le niveau d'expertise de la réponse.",cls:"green"}
+      {type:"text",heading:"Les tokens : l'unité de base de l'IA",
+       text:"Les IA ne lisent pas les mots comme vous. Elles découpent le texte en <strong>tokens</strong> — des fragments de mots, des syllabes, ou des mots entiers.<br><br>Exemples : 'intelligence' devient ['intel', 'ligence'] • 'bonjour' devient ['bon', 'jour'] • 'the' reste ['the']<br><br>GPT-4 peut traiter environ 128 000 tokens à la fois. C'est sa 'fenêtre de contexte' — sa mémoire de travail. Au-delà, il oublie le début de la conversation."},
+      {type:"grid",heading:"L'entraînement en 3 étapes",items:[
+        {label:"1. Pré-entraînement",value:"Le modèle ingurgite des centaines de milliards de tokens (livres, articles, sites web). Il apprend la structure du langage et des faits sur le monde. Coûte des millions d'euros.",cls:""},
+        {label:"2. Fine-tuning",value:"On affine le modèle sur des données plus spécifiques. On lui apprend à être utile, à suivre des instructions, à adopter un certain style de réponse.",cls:"cyan"},
+        {label:"3. RLHF",value:"Reinforcement Learning from Human Feedback. Des humains notent les réponses. Le modèle apprend à produire des réponses que les humains préfèrent. Rend l'IA 'agréable'.",cls:"violet"}
       ]},
-      {type:"text",heading:"Anatomie d'un bon prompt",
-       text:"Un prompt efficace contient généralement :<br><br>• <strong>Contexte</strong> : qui es-tu, pour qui, dans quel but<br>• <strong>Tâche</strong> : ce que tu veux obtenir précisément<br>• <strong>Format</strong> : longueur, structure, style souhaité<br>• <strong>Contraintes</strong> : ce qu'il ne faut pas faire<br>• <strong>Exemples</strong> (si few-shot) : illustrations du résultat attendu<br><br>Exemple : <em>'Tu es un expert en marketing B2B. Rédige 3 accroches pour une publicité LinkedIn visant des DSI, en 280 caractères chacune, ton professionnel mais direct.'</em>"}
+      {type:"text",heading:"Pourquoi l'IA hallucine",
+       text:"Les hallucinations sont le talon d'Achille des LLM. Pourquoi cela arrive-t-il ?<br><br>Un LLM prédit toujours le token le plus probable — il ne 'vérifie' pas les faits dans une base de données. Si une réponse plausible mais fausse est statistiquement probable, il la génère avec confiance.<br><br><strong>Analogie</strong> : imaginez quelqu'un qui finit les phrases des autres de façon très convaincante, sans avoir vérifié si ce qu'il dit est vrai. C'est exactement ce que fait un LLM."}
     ],
     quiz:[
-      {q:"Qu'est-ce que le Prompt Engineering ?",opts:["La programmation des GPU","L'art d'optimiser les instructions envoyées aux IA","La conception de puces pour l'IA","L'ingénierie des réseaux de neurones"],ans:1,exp:"Le Prompt Engineering consiste à concevoir des instructions optimales pour obtenir les meilleurs résultats d'un LLM."},
-      {q:"Le few-shot prompting consiste à ?",opts:["Utiliser un prompt très court","Fournir quelques exemples dans le prompt","Faire tourner le modèle plusieurs fois","Limiter la température du modèle"],ans:1,exp:"Donner 2-3 exemples dans le prompt aide le modèle à comprendre exactement le format et le style attendus."},
-      {q:"Le Chain-of-Thought est particulièrement utile pour ?",opts:["Générer des images","Accélérer les réponses","Résoudre des problèmes complexes qui nécessitent un raisonnement","Réduire la consommation mémoire"],ans:2,exp:"En demandant à l'IA de raisonner étape par étape, on améliore sa précision sur les problèmes mathématiques et logiques."},
-      {q:"Le Role prompting consiste à ?",opts:["Créer plusieurs IA qui collaborent","Attribuer un rôle ou une expertise précise au modèle","Jouer à des jeux de rôle","Simuler plusieurs utilisateurs"],ans:1,exp:"'Tu es un expert en...' cadre le comportement, le ton et le niveau de détail des réponses du modèle."},
-      {q:"Parmi ces éléments, lequel N'EST PAS recommandé dans un bon prompt ?",opts:["Fournir le contexte","Spécifier le format souhaité","Être aussi vague que possible","Donner des contraintes claires"],ans:2,exp:"La précision est essentielle : plus le prompt est spécifique sur la tâche, le format et les contraintes, meilleur est le résultat."}
+      {q:"Un 'token' dans le contexte d'un LLM, c'est quoi ?",opts:["Un mot entier","Un fragment de texte (syllabe, mot partiel ou mot entier)","Un pixel dans une image","Une ligne de code"],ans:1,exp:"Les LLM découpent le texte en tokens — des fragments qui peuvent être des mots entiers, des syllabes ou des signes de ponctuation. 'intelligence' peut être découpé en 2-3 tokens."},
+      {q:"Qu'est-ce que la 'fenêtre de contexte' d'un LLM ?",opts:["La résolution de l'écran du serveur","La quantité de tokens que le modèle peut traiter en même temps","Le temps de réponse maximum","Le nombre d'utilisateurs simultanés"],ans:1,exp:"La fenêtre de contexte est la 'mémoire de travail' du LLM : la quantité de texte (en tokens) qu'il peut considérer en une seule fois. Au-delà, les informations plus anciennes sont oubliées."},
+      {q:"Que signifie RLHF ?",opts:["Rapid Learning for High Frequency","Reinforcement Learning from Human Feedback","Recursive Language Hierarchy Framework","Réseaux de Logique Humaine et Fonctions"],ans:1,exp:"RLHF = Reinforcement Learning from Human Feedback. Des humains notent les réponses du modèle, et celui-ci apprend à produire des réponses mieux appréciées. C'est ce qui rend les LLM 'utiles et agréables'."},
+      {q:"Pourquoi un LLM hallucine-t-il ?",opts:["Parce qu'il est mal programmé","Parce qu'il prédit le token le plus probable sans vérifier les faits","Parce qu'il manque de mémoire RAM","Parce qu'il est connecté à de mauvaises sources"],ans:1,exp:"Un LLM génère toujours le texte le plus statistiquement probable. Il ne consulte pas une base de données pour vérifier. Si une réponse fausse est 'vraisemblable', il la produit avec confiance."},
+      {q:"Dans quel ordre se déroule l'entraînement d'un LLM ?",opts:["RLHF → Fine-tuning → Pré-entraînement","Fine-tuning → Pré-entraînement → RLHF","Pré-entraînement → Fine-tuning → RLHF","Pré-entraînement → RLHF → Fine-tuning"],ans:2,exp:"On commence par le pré-entraînement (apprendre le langage sur des milliards de textes), puis le fine-tuning (apprendre à être utile), puis le RLHF (apprendre à plaire aux humains)."}
     ]
   },
   {
-    id:10, title:"Futur de l'IA & Perspectives",
-    icon:"🚀", color:"g",
-    desc:"AGI, IA embarquée, IA quantique : où va l'intelligence artificielle ?",
-    xp:180, duration:"13–15 min",
-    video:{title:"Le futur de l'intelligence artificielle",url:"https://www.youtube.com/watch?v=RzkD_rTEBYs",dur:"11:04"},
+    id:10, title:"L'avenir de l'IA",
+    icon:"🚀", color:"v",
+    desc:"L'AGI, les scénarios pour 2035 et ce que vous pouvez faire dès aujourd'hui.",
+    xp:150, duration:"10-12 min",
+    video:{title:"Le futur de l'intelligence artificielle",url:"https://www.youtube.com/watch?v=RzkD_rTEBYs",dur:"9:50"},
     content:[
-      {type:"text",heading:"L'IA en 2024 et au-delà",
-       text:"L'IA connaît une accélération sans précédent. En 2022-2024, les LLM ont bouleversé la façon dont on interagit avec les machines. Mais ce n'est que le début."},
-      {type:"grid",heading:"Les tendances majeures",items:[
-        {label:"Multimodalité",value:"Les IA fusionnent texte, image, audio, vidéo. GPT-4o, Gemini Ultra. Une IA peut analyser une photo et en parler.",cls:""},
-        {label:"IA embarquée",value:"Des modèles compacts fonctionnant sur smartphone et capteurs. Edge AI : moins de latence, plus de confidentialité.",cls:"cyan"},
-        {label:"Agents autonomes",value:"Des IA qui planifient et agissent sur plusieurs étapes. Ex : AutoGPT, agents qui naviguent sur le web et exécutent des tâches.",cls:"violet"},
-        {label:"IA quantique",value:"L'informatique quantique pourrait accélérer massivement l'entraînement et l'inférence. Horizon : 5-15 ans.",cls:"green"}
+      {type:"text",heading:"L'AGI : le Saint Graal de l'IA",
+       text:"L'<strong>AGI (Intelligence Artificielle Générale)</strong> désigne une IA aussi polyvalente et adaptable qu'un humain — capable de s'attaquer à n'importe quel problème intellectuel, d'apprendre de nouvelles compétences sans entraînement spécifique.<br><br>Ce n'est pas ce que nous avons aujourd'hui. ChatGPT est brillant dans certains domaines mais reste une IA 'étroite' malgré ses apparences.<br><br><strong>Les opinions des experts divergent :</strong> certains (Sam Altman, Demis Hassabis) pensent que l'AGI arrivera dans les années 2020-2030. D'autres estiment que nous sommes encore à des décennies de là."},
+      {type:"grid",heading:"3 scénarios pour 2035",items:[
+        {label:"Scénario optimiste",value:"L'IA éradique des maladies, accélère la science, crée une abondance économique. Les humains travaillent moins et se consacrent à la créativité et aux liens sociaux.",cls:""},
+        {label:"Scénario réaliste",value:"L'IA transforme profondément le marché du travail avec des gagnants et des perdants. Les pays qui maîtrisent l'IA dominent l'économie mondiale. Des inégalités se creusent.",cls:"cyan"},
+        {label:"Scénario pessimiste",value:"L'IA amplifie les inégalités, déstabilise la démocratie via la désinformation, concentre le pouvoir dans peu de mains, et des accidents graves surviennent faute de régulation.",cls:"violet"}
       ]},
-      {type:"text",heading:"Vers l'AGI : espoir ou risque ?",
-       text:"L'AGI — une IA aussi polyvalente qu'un humain — est le Graal de la recherche. Certains estiment qu'elle pourrait être atteinte dans cette décennie.<br><br>Les questions qui se posent :<br><br>• <strong>Alignement</strong> : comment s'assurer qu'une AGI agit dans l'intérêt humain ?<br>• <strong>Contrôle</strong> : comment garder la main sur un système plus intelligent que nous ?<br>• <strong>Distribution</strong> : qui bénéficiera de cette technologie ?<br><br>Ce qui est certain : l'IA va redéfinir le travail, la créativité, la science et la gouvernance. Comprendre ces enjeux est désormais une compétence citoyenne essentielle."}
+      {type:"text",heading:"Ce que vous pouvez faire dès aujourd'hui",
+       text:"Face à cette révolution, vous n'êtes pas passif. Voici des actions concrètes :<br><br>• <strong>Expérimentez</strong> : créez un compte gratuit sur ChatGPT, Claude ou Gemini. Testez. Apprenez par la pratique.<br>• <strong>Développez votre esprit critique</strong> : vérifiez toujours les informations importantes données par une IA.<br>• <strong>Formez-vous</strong> : le prompting, la compréhension des biais, la maîtrise des outils IA deviennent des compétences essentielles.<br>• <strong>Participez au débat</strong> : la régulation de l'IA se décide maintenant. Votre voix de citoyen compte."}
     ],
     quiz:[
-      {q:"Que signifie 'IA multimodale' ?",opts:["Une IA disponible dans plusieurs langues","Une IA qui traite différents types de données (texte, image, son)","Une IA avec plusieurs personnalités","Une IA déployée sur plusieurs serveurs"],ans:1,exp:"Les IA multimodales combinent texte, image, audio et vidéo dans un même modèle."},
-      {q:"L'Edge AI (IA embarquée) a comme principal avantage ?",opts:["Des modèles plus grands","Moins de latence et plus de confidentialité","Plus de puissance de calcul","Des coûts plus élevés"],ans:1,exp:"L'Edge AI traite les données localement (sur l'appareil), sans envoyer les données dans le cloud."},
-      {q:"Les agents autonomes se distinguent des chatbots classiques par ?",opts:["Une meilleure grammaire","Leur capacité à planifier et exécuter des actions sur plusieurs étapes","Un meilleur humour","Leur vitesse de réponse"],ans:1,exp:"Les agents IA peuvent décomposer une tâche complexe, utiliser des outils et agir dans le monde numérique."},
-      {q:"L'AGI est définie comme ?",opts:["Une IA spécialisée très performante","Une IA aussi polyvalente qu'un humain","Un robot humanoïde","Un supercalculateur"],ans:1,exp:"L'AGI (Artificial General Intelligence) serait capable de s'adapter à n'importe quelle tâche intellectuelle, comme un humain."},
-      {q:"Parmi ces défis liés à l'AGI, lequel concerne la sécurité ?",opts:["La consommation électrique","La vitesse de calcul","L'alignement : s'assurer que l'AGI agit dans l'intérêt humain","Le coût de développement"],ans:2,exp:"L'alignement est le défi majeur : comment garantir qu'un système superintelligent partage nos valeurs et objectifs ?"}
+      {q:"Comment définit-on l'AGI ?",opts:["Une IA très rapide","Une IA aussi polyvalente et adaptable qu'un humain pour toute tâche intellectuelle","Le modèle GPT-5 d'OpenAI","Une IA qui dépasse l'humain dans tous les domaines"],ans:1,exp:"L'AGI est une IA généraliste capable de s'attaquer à n'importe quel problème intellectuel, comme un humain. Elle n'existe pas encore aujourd'hui."},
+      {q:"Quelle est la position des experts sur l'arrivée de l'AGI ?",opts:["Tous s'accordent qu'elle arrivera avant 2030","Tous s'accordent qu'elle n'arrivera jamais","Les experts ont des opinions très divergentes sur le calendrier","Les experts pensent unanimement qu'elle existe déjà"],ans:2,exp:"C'est l'un des débats les plus clivants en IA. Certains experts pensent que l'AGI est proche (années 2020-2030), d'autres pensent qu'on en est encore à des décennies."},
+      {q:"Dans le scénario pessimiste pour 2035, quel est le risque principal évoqué ?",opts:["L'IA va rendre tout le monde chômeur immédiatement","L'IA amplifie les inégalités et déstabilise la démocratie","L'IA tombera en panne mondiale","L'IA sera interdite par tous les gouvernements"],ans:1,exp:"Le scénario sombre inclut la concentration du pouvoir dans peu de mains, la désinformation à grande échelle et le creusement des inégalités entre ceux qui maîtrisent l'IA et les autres."},
+      {q:"Quelle est la première action recommandée pour s'adapter à la révolution IA ?",opts:["Attendre que l'IA se stabilise avant de l'adopter","Expérimenter avec les outils IA disponibles gratuitement","Apprendre à programmer en Python","Lire des articles académiques sur le deep learning"],ans:1,exp:"La meilleure façon d'apprendre l'IA est de pratiquer. Des outils comme ChatGPT, Claude ou Gemini ont des versions gratuites accessibles à tous. Testez, explorez, apprenez par l'expérience."},
+      {q:"Pourquoi le débat citoyen sur l'IA est-il important ?",opts:["Pour que les ingénieurs aient moins de pression","Parce que les décisions de régulation se prennent maintenant et affecteront tous les aspects de la société","Pour augmenter le cours en bourse des entreprises IA","Parce que l'IA n'évolue que si les citoyens l'approuvent"],ans:1,exp:"Les lois, régulations et normes éthiques autour de l'IA se construisent en ce moment même. Ces décisions façonneront notre société pour des décennies. La participation citoyenne au débat est essentielle."}
     ]
   }
 ];
@@ -1706,7 +1709,7 @@ function renderModuleStep(){
       btn.className='quiz-opt';
       const letter=String.fromCharCode(65+oi);
       btn.innerHTML='<div class="quiz-opt-letter">'+letter+'</div><span>'+opt+'</span>';
-      if(answered!==undefined){
+      if(answered!=null){
         if(oi===q.ans) btn.classList.add('correct');
         else if(oi===answered) btn.classList.add('wrong');
       } else {
@@ -1781,15 +1784,31 @@ function renderModuleStep(){
 // ============================================================
 // DÉFIS
 // ============================================================
-function populateChallengeModal(){
-  const sel=document.getElementById('ch-module');
-  if(!sel) return;
-  sel.innerHTML='';
+async function populateChallengeModal(){
+  const modSel=document.getElementById('ch-module');
+  if(!modSel) return;
+  modSel.innerHTML='';
   MODULES.forEach(function(m){
     const opt=document.createElement('option');
     opt.value=m.id; opt.textContent=m.id+'. '+m.title;
-    sel.appendChild(opt);
+    modSel.appendChild(opt);
   });
+  const oppSel=document.getElementById('ch-opponent');
+  if(!oppSel) return;
+  try {
+    const snap=await db.collection('users').get();
+    oppSel.innerHTML='<option value="">-- Choisir un apprenant --</option>';
+    snap.forEach(function(d){
+      const u=d.data();
+      if(u.email===currentUser.email) return;
+      const opt=document.createElement('option');
+      opt.value=u.firstName; opt.textContent=u.firstName+(u.lastName?' '+u.lastName:'');
+      oppSel.appendChild(opt);
+    });
+    if(oppSel.options.length===1) oppSel.innerHTML='<option value="">Aucun autre apprenant inscrit</option>';
+  } catch(e){
+    oppSel.innerHTML='<option value="">Erreur de chargement</option>';
+  }
 }
 
 async function sendChallenge(){
