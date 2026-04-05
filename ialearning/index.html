@@ -3025,7 +3025,7 @@ async function renderAdmin(){
             (allU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
             allU.map(function(u){
               const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Reset</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
+              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
             }).join(''))+
           '</tbody>'+
         '</table>'+
@@ -3043,7 +3043,7 @@ async function renderAdmin(){
           });
           showNotif(name+' : parcours réinitialisé','success');
           renderAdmin();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Reset'; }
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Réinit.'; }
       });
     });
     wrap.querySelectorAll('.btn-admin-delete').forEach(function(btn){
