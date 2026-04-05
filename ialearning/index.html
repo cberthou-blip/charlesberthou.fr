@@ -1562,14 +1562,24 @@ async function renderChallenges(){
       const mod=MODULES.find(m=>m.id===c.moduleId);
       const card=document.createElement('div');
       card.className='challenge-card';
-      const statusMap={pending:'pending',active:'active',won:'won',lost:'lost'};
+      const statusLabels={pending:'En attente',active:'En cours',won:'Victoire 🏆',lost:'Défaite 😤'};
+      const statusCls={pending:'pending',active:'active',won:'won',lost:'lost'};
+      let metaText='Module : '+(mod?mod.title:'?')+' · ';
+      if(c.status==='pending'){
+        metaText+=isMine?'En attente de réponse':'À votre tour !';
+      } else if(c.status==='active'){
+        metaText+='Duel en cours';
+      } else if(c.status==='won'||c.status==='lost'){
+        const scoreStr=(c.myScore!=null&&c.oppScore!=null)?' · Score : '+c.myScore+' – '+c.oppScore:'';
+        metaText+=isMine?'Défi terminé'+scoreStr:(c.status==='won'?'Victoire'+scoreStr:'Défaite'+scoreStr);
+      }
       card.innerHTML=
-        '<div class="ch-icon">⚔️</div>'+
+        '<div class="ch-icon">'+(c.status==='won'?'🏆':c.status==='lost'?'😤':'⚔️')+'</div>'+
         '<div class="ch-info">'+
           '<div class="ch-title">'+(isMine?'Défi envoyé à <strong>'+c.to+'</strong>':'Défi reçu de <strong>'+(c.fromName||c.from)+'</strong>')+'</div>'+
-          '<div class="ch-meta">Module : '+(mod?mod.title:'?')+' · '+(isMine?'En attente de réponse':'À votre tour !')+'</div>'+
+          '<div class="ch-meta">'+metaText+'</div>'+
         '</div>'+
-        '<div class="ch-status '+(statusMap[c.status]||'pending')+'">'+c.status+'</div>';
+        '<div class="ch-status '+(statusCls[c.status]||'pending')+'">'+(statusLabels[c.status]||c.status)+'</div>';
       if(!isMine && c.status==='pending'){
         const btn=document.createElement('button');
         btn.className='btn btn-cyan btn-sm';
