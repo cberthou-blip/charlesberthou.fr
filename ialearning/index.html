@@ -3161,7 +3161,7 @@ async function renderAdmin(){
   if(!wrap) return;
   wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
   try {
-    const snap=await db.collection('users').get();
+    const snap=await db.collection('users').get({ source: 'server' });
     const allU=[];
     snap.forEach(d=>{ const u=d.data(); allU.push({...u, uid:d.id}); });
     const pendingU=allU.filter(function(u){ return u.approved===false; });
