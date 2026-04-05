@@ -775,33 +775,117 @@ body::before {
 ::-webkit-scrollbar-thumb:hover { background:var(--indigo-mid); }
 
 /* LANDING PAGE */
-.landing-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
-.landing-hero{background:var(--grad-hero);padding:80px 32px 100px;text-align:center;position:relative;overflow:hidden;}
-.landing-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(99,102,241,0.3) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(6,182,212,0.2) 0%,transparent 50%);pointer-events:none;}
-.landing-hero-grid{position:absolute;inset:0;opacity:0.05;background-image:linear-gradient(rgba(255,255,255,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.5) 1px,transparent 1px);background-size:40px 40px;}
-.landing-hero-content{position:relative;max-width:700px;margin:0 auto;}
-.landing-hero h1{font-size:3rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px;}
-.landing-hero p{font-size:1.1rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:40px;}
-.landing-stats{display:flex;gap:40px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
-.ls-item{text-align:center;}
-.ls-val{display:block;font-size:2rem;font-weight:800;color:#fff;}
-.ls-lbl{display:block;font-size:0.8rem;color:rgba(255,255,255,0.6);letter-spacing:0.05em;}
-.landing-modules-section{max-width:960px;margin:0 auto;padding:60px 32px;}
-.landing-modules-section h2{font-size:1.8rem;font-weight:800;color:var(--navy);margin-bottom:8px;}
-.landing-modules-section>p{color:var(--text3);font-size:0.95rem;margin-bottom:32px;}
-.landing-modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
-.lm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;display:flex;align-items:center;gap:14px;transition:all 0.2s;box-shadow:var(--shadow);}
-.lm-card:hover{border-color:var(--border-glow);box-shadow:var(--shadow-md);}
+.landing-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.landing-nav-links{display:flex;align-items:center;gap:6px;}
+.landing-nav-link{padding:7px 14px;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;color:var(--text3);background:transparent;border:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.landing-nav-link:hover{color:var(--indigo);background:rgba(99,102,241,0.07);}
+
+/* HERO */
+.landing-hero{background:var(--grad-hero);padding:100px 40px 120px;text-align:center;position:relative;overflow:hidden;}
+.landing-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(99,102,241,0.35) 0%,transparent 55%),radial-gradient(circle at 80% 70%,rgba(6,182,212,0.25) 0%,transparent 55%),radial-gradient(circle at 50% 100%,rgba(124,58,237,0.2) 0%,transparent 50%);pointer-events:none;}
+.landing-hero-grid{position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(rgba(255,255,255,0.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.8) 1px,transparent 1px);background-size:48px 48px;}
+.landing-hero-content{position:relative;max-width:760px;margin:0 auto;}
+.landing-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;font-family:'JetBrains Mono',monospace;}
+.landing-hero h1{font-size:3.4rem;font-weight:800;color:#fff;line-height:1.1;margin-bottom:10px;letter-spacing:-0.02em;}
+.landing-hero h1 span{background:linear-gradient(90deg,var(--cyan-light),#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.landing-hero-sub{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:40px;max-width:540px;margin-left:auto;margin-right:auto;}
+.landing-stats{display:flex;gap:0;justify-content:center;margin-bottom:44px;flex-wrap:wrap;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-lg);padding:20px 10px;max-width:560px;margin-left:auto;margin-right:auto;}
+.ls-item{text-align:center;flex:1;min-width:100px;padding:0 12px;}
+.ls-item+.ls-item{border-left:1px solid rgba(255,255,255,0.1);}
+.ls-val{display:block;font-size:1.8rem;font-weight:800;color:#fff;font-family:'JetBrains Mono',monospace;}
+.ls-lbl{display:block;font-size:0.72rem;color:rgba(255,255,255,0.55);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;}
+.landing-hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:44px;}
+
+/* FEATURES */
+.landing-features{max-width:1020px;margin:0 auto;padding:80px 40px;}
+.landing-features-header{text-align:center;margin-bottom:48px;}
+.landing-features-header h2{font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:-0.01em;}
+.landing-features-header p{color:var(--text3);font-size:0.95rem;max-width:480px;margin:0 auto;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;transition:all 0.2s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;opacity:0;transition:opacity 0.2s;}
+.feat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.feat-card:hover::before{opacity:1;}
+.feat-card.fc-indigo::before{background:var(--grad-card);}
+.feat-card.fc-cyan::before{background:var(--grad-cyan);}
+.feat-card.fc-violet::before{background:linear-gradient(90deg,var(--violet),var(--magenta));}
+.feat-card.fc-green::before{background:linear-gradient(90deg,#059669,#06B6D4);}
+.feat-card.fc-amber::before{background:linear-gradient(90deg,#F59E0B,#EF4444);}
+.feat-card.fc-pink::before{background:linear-gradient(90deg,#EC4899,#8B5CF6);}
+.feat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;}
+.feat-icon.fi-indigo{background:rgba(99,102,241,0.1);}
+.feat-icon.fi-cyan{background:rgba(6,182,212,0.1);}
+.feat-icon.fi-violet{background:rgba(124,58,237,0.1);}
+.feat-icon.fi-green{background:rgba(5,150,105,0.1);}
+.feat-icon.fi-amber{background:rgba(245,158,11,0.1);}
+.feat-icon.fi-pink{background:rgba(236,72,153,0.1);}
+.feat-title{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.feat-desc{font-size:0.84rem;color:var(--text3);line-height:1.6;}
+.feat-tag{display:inline-block;margin-top:12px;font-size:0.72rem;font-weight:700;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:6px;}
+.feat-tag.ft-indigo{background:rgba(99,102,241,0.1);color:var(--indigo);}
+.feat-tag.ft-cyan{background:rgba(6,182,212,0.1);color:var(--cyan);}
+.feat-tag.ft-violet{background:rgba(124,58,237,0.1);color:var(--violet);}
+.feat-tag.ft-green{background:rgba(5,150,105,0.1);color:#059669;}
+.feat-tag.ft-amber{background:rgba(245,158,11,0.1);color:#B45309;}
+.feat-tag.ft-pink{background:rgba(236,72,153,0.1);color:#DB2777;}
+
+/* HOW IT WORKS */
+.landing-how{background:var(--navy);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.landing-how::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(99,102,241,0.15) 0%,transparent 60%),radial-gradient(circle at 70% 50%,rgba(6,182,212,0.1) 0%,transparent 60%);pointer-events:none;}
+.landing-how-content{position:relative;max-width:900px;margin:0 auto;}
+.landing-how h2{font-size:2rem;font-weight:800;color:#fff;margin-bottom:10px;}
+.landing-how-sub{color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:56px;}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative;}
+.how-steps::before{content:'';position:absolute;top:28px;left:calc(16.66% + 16px);right:calc(16.66% + 16px);height:2px;background:linear-gradient(90deg,rgba(99,102,241,0.4),rgba(6,182,212,0.4));pointer-events:none;}
+.how-step{text-align:center;}
+.how-step-num{width:56px;height:56px;border-radius:50%;background:var(--grad-cyan);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 20px;box-shadow:var(--glow-cyan);}
+.how-step-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;}
+.how-step-desc{font-size:0.84rem;color:rgba(255,255,255,0.55);line-height:1.6;}
+
+/* MODULES */
+.landing-modules-section{max-width:1020px;margin:0 auto;padding:80px 40px;}
+.landing-modules-section h2{font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:8px;letter-spacing:-0.01em;}
+.landing-modules-section>p{color:var(--text3);font-size:0.95rem;margin-bottom:36px;}
+.landing-modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.lm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all 0.2s;box-shadow:var(--shadow);}
+.lm-card:hover{border-color:var(--border-glow);box-shadow:var(--shadow-md);transform:translateX(3px);}
 .lm-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
-.lm-num{font-size:0.72rem;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
+.lm-num{font-size:0.7rem;font-weight:700;color:var(--text3);font-family:'JetBrains Mono',monospace;}
 .lm-title{font-size:0.9rem;font-weight:700;color:var(--navy);margin-top:2px;}
-.landing-cta{background:var(--grad-hero);padding:60px 32px;text-align:center;}
-.landing-cta h2{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:12px;}
-.landing-cta p{color:rgba(255,255,255,0.7);margin-bottom:28px;font-size:0.95rem;}
+
+/* CTA */
+.landing-cta{background:var(--grad-hero);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.landing-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(6,182,212,0.2) 0%,transparent 60%);pointer-events:none;}
+.landing-cta-content{position:relative;max-width:580px;margin:0 auto;}
+.landing-cta h2{font-size:2.2rem;font-weight:800;color:#fff;margin-bottom:14px;line-height:1.2;}
+.landing-cta p{color:rgba(255,255,255,0.65);margin-bottom:36px;font-size:0.95rem;line-height:1.6;}
+.landing-cta-proof{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:24px;flex-wrap:wrap;}
+.cta-proof-item{font-size:0.8rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:6px;}
+
+/* FOOTER */
+.landing-footer{background:var(--navy);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;}
+.landing-footer-text{font-size:0.8rem;color:rgba(255,255,255,0.35);}
+
 /* MOBILE */
 @media(max-width:768px){
-  .landing-hero{padding:60px 20px 80px;} .landing-hero h1{font-size:2rem;} .landing-hero p{font-size:0.95rem;}
-  .landing-stats{gap:24px;} .ls-val{font-size:1.5rem;} .landing-modules-section{padding:40px 20px;} .landing-nav{padding:0 20px;}
+  .landing-nav{padding:0 20px;height:60px;}
+  .landing-nav-links{display:none;}
+  .landing-hero{padding:60px 20px 80px;}
+  .landing-hero h1{font-size:2.2rem;}
+  .landing-hero-sub{font-size:0.95rem;}
+  .landing-stats{max-width:100%;}
+  .landing-features{padding:60px 20px;}
+  .features-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .landing-how{padding:60px 20px;}
+  .how-steps{grid-template-columns:1fr;gap:32px;}
+  .how-steps::before{display:none;}
+  .landing-modules-section{padding:60px 20px;}
+  .landing-cta{padding:60px 20px;}
+  .landing-footer{flex-direction:column;gap:8px;text-align:center;}
+}
+@media(max-width:480px){
+  .features-grid{grid-template-columns:1fr;}
+  .landing-hero h1{font-size:1.8rem;}
 }
 @media(max-width:640px){
   .navbar{padding:0 16px;height:56px;} .nav-center{display:none;} .nav-xp{font-size:0.8rem;}
@@ -820,8 +904,8 @@ body::before {
   .admin-wrap{overflow-x:auto;}
 }
 </style>
-<meta property="og:title" content="MABN Académie — Apprendre l'IA">
-<meta property="og:description" content="Plateforme e-learning gamifiée sur l'IA. 10 modules progressifs, quiz, badges et défis entre apprenants.">
+<meta property="og:title" content="MABN Académie — Montez en compétences, et en niveau">
+<meta property="og:description" content="Formation IA gamifiée : 10 modules, quiz chronométrés, classement, défis entre collègues et mode équipe. 100% gratuit.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charlesberthou.fr/ialearning">
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -832,31 +916,115 @@ body::before {
 
 <!-- VUE LANDING (publique) -->
 <div class="view active" id="view-landing">
+
+  <!-- NAV -->
   <nav class="landing-nav">
     <div class="nav-logo">
       <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%"><path d="m40 28.85-6.45-11.19A7 7 0 0 1 28.16 26a8.67 8.67 0 0 1-.89.13 8.66 8.66 0 0 0-6.93-4.05 7 7 0 0 1 9.87-9 7.26 7.26 0 0 1 1.19.92L24.88 2.65h-9.8L8.61 13.84a7 7 0 0 1 9.88.49 6.43 6.43 0 0 1 .57.72 8.69 8.69 0 0 0 0 8A7 7 0 0 1 6.37 19a7.07 7.07 0 0 1 .15-1.45L0 28.86l4.91 8.49h12.91a7 7 0 0 1-4.5-8.82 6 6 0 0 1 .33-.83 8.67 8.67 0 0 0 7-4 7 7 0 0 1 2.84 13 7.68 7.68 0 0 1-1.35.59h13z" style="fill:#c50307"/></svg></div>
       <span class="nav-logo-text">MABN Académie</span>
     </div>
+    <div class="landing-nav-links">
+      <button class="landing-nav-link" onclick="document.getElementById('landing-features').scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
+      <button class="landing-nav-link" onclick="document.getElementById('landing-modules').scrollIntoView({behavior:'smooth'})">Modules</button>
+    </div>
     <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
   </nav>
+
+  <!-- HERO -->
   <div class="landing-hero">
     <div class="landing-hero-grid"></div>
     <div class="landing-hero-content">
-      <div class="tech-badge tech-badge-cyan" style="margin-bottom:24px;display:inline-flex">🎓 E-Learning IA · Gamifié · Classement · Quêtes</div>
-      <h1>Maîtrisez l'Intelligence Artificielle</h1>
-      <p>10 modules progressifs, quiz interactifs, badges et défis. De zéro à expert en IA — gratuitement.</p>
-      <div class="landing-stats">
+      <div class="landing-hero-eyebrow">🎓 Formation IA · 100% Gratuit · Gamifié</div>
+      <h1>Montez en compétences<br>— et en <span>niveau</span></h1>
+      <p class="landing-hero-sub">10 modules progressifs sur l'Intelligence Artificielle. Apprenez, gagnez des XP, débloquez des badges, défiez vos collègues.</p>
+      <div class="landing-stats" style="margin-bottom:0">
         <div class="ls-item"><span class="ls-val">10</span><span class="ls-lbl">Modules</span></div>
         <div class="ls-item"><span class="ls-val">100+</span><span class="ls-lbl">Questions</span></div>
         <div class="ls-item"><span class="ls-val">15</span><span class="ls-lbl">Badges</span></div>
-        <div class="ls-item"><span class="ls-val">⚡</span><span class="ls-lbl">Mode Vitesse</span></div>
+        <div class="ls-item"><span class="ls-val">∞</span><span class="ls-lbl">Défis</span></div>
       </div>
-      <button class="btn btn-primary btn-lg" id="btn-landing-start">Commencer gratuitement →</button>
+      <div class="landing-hero-btns">
+        <button class="btn btn-primary btn-lg" id="btn-landing-start">Commencer gratuitement →</button>
+        <button class="btn btn-ghost btn-lg" id="btn-landing-login2" style="color:#fff;border-color:rgba(255,255,255,0.25)" onclick="document.getElementById('btn-landing-login').click()">Déjà inscrit ? Se connecter</button>
+      </div>
     </div>
   </div>
-  <div class="landing-modules-section">
+
+  <!-- FEATURES -->
+  <div class="landing-features" id="landing-features">
+    <div class="landing-features-header">
+      <h2>Apprendre autrement</h2>
+      <p>Une expérience conçue pour garder votre motivation au maximum — à chaque session.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card fc-indigo">
+        <div class="feat-icon fi-indigo">📚</div>
+        <div class="feat-title">Parcours progressif</div>
+        <div class="feat-desc">10 modules structurés de débutant à expert. Chaque module se débloque en progressant, avec vidéo, contenu et quiz.</div>
+        <div class="feat-tag ft-indigo">10 modules · ~12 min chacun</div>
+      </div>
+      <div class="feat-card fc-cyan">
+        <div class="feat-icon fi-cyan">⚡</div>
+        <div class="feat-title">Quiz &amp; Mode Vitesse</div>
+        <div class="feat-desc">Testez vos connaissances après chaque module. Activez le Mode Vitesse : 10 secondes par question pour un bonus XP si vous répondez vite.</div>
+        <div class="feat-tag ft-cyan">Bonus vitesse : +30 XP</div>
+      </div>
+      <div class="feat-card fc-amber">
+        <div class="feat-icon fi-amber">🏆</div>
+        <div class="feat-title">Classement &amp; XP</div>
+        <div class="feat-desc">Chaque bonne réponse rapporte des XP. Montez de niveau, grimpez dans le classement général et comparez-vous à vos collègues.</div>
+        <div class="feat-tag ft-amber">Classement en temps réel</div>
+      </div>
+      <div class="feat-card fc-violet">
+        <div class="feat-icon fi-violet">🎯</div>
+        <div class="feat-title">Quêtes &amp; Défi du jour</div>
+        <div class="feat-desc">Une nouvelle question chaque jour pour maintenir votre série. Des missions hebdomadaires avec récompenses XP à réclamer.</div>
+        <div class="feat-tag ft-violet">Défi quotidien · +30 XP</div>
+      </div>
+      <div class="feat-card fc-pink">
+        <div class="feat-icon fi-pink">⚔️</div>
+        <div class="feat-title">Défis entre apprenants</div>
+        <div class="feat-desc">Défiez un collègue sur un module avancé ("+"). Questions complémentaires inédites, score en direct. Le vainqueur remporte 150 XP.</div>
+        <div class="feat-tag ft-pink">Duel · +150 XP</div>
+      </div>
+      <div class="feat-card fc-green">
+        <div class="feat-icon fi-green">👥</div>
+        <div class="feat-title">Mode Équipe</div>
+        <div class="feat-desc">Créez votre équipe avec vos collègues d'un même point de vente. Comparez les XP cumulés et affrontez d'autres équipes.</div>
+        <div class="feat-tag ft-green">Nouveau</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="landing-how">
+    <div class="landing-how-content">
+      <h2>Comment ça marche</h2>
+      <p class="landing-how-sub">Trois étapes, une seule règle : ne jamais s'ennuyer.</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">🧠</div>
+          <div class="how-step-title">Apprenez</div>
+          <div class="how-step-desc">Parcourez les modules à votre rythme. Vidéos, contenu structuré et quiz interactifs pour ancrer les connaissances.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">⚡</div>
+          <div class="how-step-title">Progressez</div>
+          <div class="how-step-desc">Gagnez des XP, montez de niveau, débloquez des badges. Le défi du jour et les quêtes hebdo relancent l'envie chaque matin.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">🏆</div>
+          <div class="how-step-title">Affrontez</div>
+          <div class="how-step-desc">Défiez vos collègues en duel, rejoignez une équipe, grimpez dans le classement. La compétition, moteur de l'apprentissage.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div class="landing-modules-section" id="landing-modules">
     <h2>Le parcours complet</h2>
-    <p>10 modules pour maîtriser l'IA de A à Z, du niveau débutant au niveau expert.</p>
+    <p>10 modules pour maîtriser l'IA de A à Z — de zéro à expert, sans prérequis.</p>
     <div class="landing-modules-grid">
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🧠</div><div><div class="lm-num">MODULE 01</div><div class="lm-title">Les fondamentaux de l'IA</div></div></div>
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🤖</div><div><div class="lm-num">MODULE 02</div><div class="lm-title">ChatGPT, Claude, Gemini...</div></div></div>
@@ -870,11 +1038,30 @@ body::before {
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">🚀</div><div><div class="lm-num">MODULE 10</div><div class="lm-title">L'avenir de l'IA</div></div></div>
     </div>
   </div>
+
+  <!-- CTA -->
   <div class="landing-cta">
-    <h2>Prêt à commencer ?</h2>
-    <p>Créez votre compte gratuit et démarrez votre parcours IA dès maintenant.</p>
-    <button class="btn btn-primary btn-lg" id="btn-landing-register">Créer mon compte →</button>
+    <div class="landing-cta-content">
+      <h2>Prêt à monter<br>en niveau ?</h2>
+      <p>Créez votre compte gratuitement et commencez votre premier module en moins de 2 minutes.</p>
+      <button class="btn btn-primary btn-lg" id="btn-landing-register" style="padding:14px 36px;font-size:1rem">Créer mon compte gratuitement →</button>
+      <div class="landing-cta-proof">
+        <div class="cta-proof-item">✓ Aucune carte bancaire requise</div>
+        <div class="cta-proof-item">✓ 100% gratuit</div>
+        <div class="cta-proof-item">✓ Accessible immédiatement</div>
+      </div>
+    </div>
   </div>
+
+  <!-- FOOTER -->
+  <div class="landing-footer">
+    <div class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;width:28px;height:28px;"><svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%"><path d="m40 28.85-6.45-11.19A7 7 0 0 1 28.16 26a8.67 8.67 0 0 1-.89.13 8.66 8.66 0 0 0-6.93-4.05 7 7 0 0 1 9.87-9 7.26 7.26 0 0 1 1.19.92L24.88 2.65h-9.8L8.61 13.84a7 7 0 0 1 9.88.49 6.43 6.43 0 0 1 .57.72 8.69 8.69 0 0 0 0 8A7 7 0 0 1 6.37 19a7.07 7.07 0 0 1 .15-1.45L0 28.86l4.91 8.49h12.91a7 7 0 0 1-4.5-8.82 6 6 0 0 1 .33-.83 8.67 8.67 0 0 0 7-4 7 7 0 0 1 2.84 13 7.68 7.68 0 0 1-1.35.59h13z" style="fill:#c50307"/></svg></div>
+      <span class="nav-logo-text" style="color:rgba(255,255,255,0.5);font-size:0.9rem">MABN Académie</span>
+    </div>
+    <div class="landing-footer-text">© 2025 MABN Académie · Formation IA gamifiée</div>
+  </div>
+
 </div>
 
 
