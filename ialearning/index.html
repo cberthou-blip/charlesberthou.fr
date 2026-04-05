@@ -953,8 +953,8 @@ body::before {
       <span class="nav-logo-text">MABN Académie</span>
     </div>
     <div class="landing-nav-links">
-      <button class="landing-nav-link" onclick="document.getElementById('landing-features').scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
       <button class="landing-nav-link" onclick="document.getElementById('landing-modules').scrollIntoView({behavior:'smooth'})">Modules</button>
+      <button class="landing-nav-link" onclick="document.getElementById('landing-features').scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
     </div>
     <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
   </nav>
@@ -1064,6 +1064,22 @@ body::before {
         <div class="feat-title">Mode Équipe</div>
         <div class="feat-desc">Créez votre équipe avec vos collègues d'un même point de vente. Comparez les XP cumulés et affrontez d'autres équipes.</div>
         <div class="feat-tag ft-green">Nouveau</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GARANTIES -->
+  <div style="background:var(--surface);border-top:1.5px solid var(--border);padding:60px 40px;text-align:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <div style="font-size:0.72rem;font-weight:800;color:var(--indigo-mid);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;font-family:'JetBrains Mono',monospace">Méthode &amp; Garanties</div>
+      <h2 style="font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:24px;letter-spacing:-0.01em">Une formation fiable, encadrée et protégée</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">✅ Formation conçue pour CMMABN</div>
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">📅 Contenus mis à jour régulièrement</div>
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">🔍 Sources expertes &amp; relecture métier</div>
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">🔒 Accès encadré — salariés uniquement</div>
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">🛡️ Données apprenants protégées</div>
+        <div style="background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 18px;font-size:0.83rem;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:8px">📈 Parcours accessible &amp; évolutif</div>
       </div>
     </div>
   </div>
@@ -1195,6 +1211,18 @@ body::before {
     <!-- Déconnexion -->
     <div class="profile-section" style="text-align:center">
       <button class="btn btn-ghost" id="btn-profile-logout" style="color:#B91C1C;border-color:rgba(239,68,68,0.3);width:100%">Se déconnecter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VUE PENDING ==================== -->
+<div class="view" id="view-pending">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg)">
+    <div style="max-width:440px;width:100%;padding:40px;text-align:center">
+      <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--indigo),var(--violet));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 24px">⏳</div>
+      <h2 style="font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:12px">Compte en attente de validation</h2>
+      <p style="color:var(--text3);font-size:0.9rem;line-height:1.6;margin-bottom:28px">Votre demande d'accès a bien été enregistrée. Un administrateur doit valider votre compte avant que vous puissiez accéder à la plateforme.<br><br>Vous recevrez une notification dès que votre accès sera activé.</p>
+      <button class="btn btn-ghost" id="btn-pending-logout" style="width:100%">Se déconnecter</button>
     </div>
   </div>
 </div>
@@ -1761,7 +1789,8 @@ const BADGES_DEF = [
   {id:"ace",name:"Quiz Ace",desc:"5 quiz parfaits",icon:"🎯",special:true,hint:"Obtenez 5/5 à 5 quiz différents"},
   {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true,hint:"Lancez et remportez un défi contre un collègue"},
   {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true,hint:"Connectez-vous 7 jours de suite"},
-  {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true,hint:"Terminez les 10 modules de formation"}
+  {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true,hint:"Terminez les 10 modules de formation"},
+  {id:"captain",name:"Capitaine",desc:"Fondateur d'une équipe",icon:"⚓",special:true,hint:"Créez votre propre équipe"}
 ];
 
 const XP_PER_LEVEL = 500;
@@ -1855,8 +1884,9 @@ async function register(firstName,lastName,email,pass){
   if(!firstName||!email||!pass){ showNotif('Tous les champs sont requis','error'); return; }
   try {
     const cred=await auth.createUserWithEmailAndPassword(email,pass);
-    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0};
+    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
     await db.collection('users').doc(cred.user.uid).set(u);
+    showNotif('Demande d\'accès envoyée — en attente de validation','warn');
   } catch(e) {
     const msg=e.code==='auth/email-already-in-use'?'Email déjà utilisé':'Erreur lors de l\'inscription';
     showNotif(msg,'error');
@@ -1927,7 +1957,7 @@ function launchApp(){
   const streakVal=currentUser.streak||0;
   const existingBanner=document.getElementById('streak-banner');
   if(existingBanner) existingBanner.remove();
-  if(streakVal>=2){
+  if(streakVal>=3){
     const banner=document.createElement('div');
     banner.id='streak-banner';
     banner.className='streak-banner';
@@ -2025,7 +2055,11 @@ function showSection(name){
   if(name==='badges') renderBadges();
   if(name==='defis') renderChallenges();
   if(name==='classement') renderLeaderboard();
-  if(name==='quetes'){ renderDailyChallenge(); renderQuests(); }
+  if(name==='quetes'){
+    const qBtn=document.getElementById('nav-quetes-btn');
+    if(qBtn) qBtn.textContent='🎯 Quêtes';
+    renderDailyChallenge(); renderQuests();
+  }
   if(name==='equipes') renderTeams();
   if(name==='admin') renderAdminPanel();
 }
@@ -2598,7 +2632,11 @@ async function renderTeams(){
           '</div>'+
         '</div>'+
         '<div class="team-members">'+
-          memberData.map(function(u){ return '<div class="team-member-chip"><div class="team-member-av">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+u.firstName+' <span style="color:var(--text3);font-weight:400">('+u.xp+' XP)</span></div>'; }).join('')+
+          memberData.map(function(md,mi){
+  const memberUid=(myTeam.members||[])[mi]||'';
+  const isCap=memberUid===myTeam.captainUid||memberUid===myTeam.createdBy;
+  return '<div class="team-member-chip"><div class="team-member-av">'+((md.firstName||'?')[0].toUpperCase())+'</div>'+md.firstName+(isCap?' <span style="font-size:0.7rem;color:var(--magenta)">⚓</span>':'')+'<span style="color:var(--text3);font-weight:400;margin-left:4px">('+md.xp+' XP)</span></div>';
+}).join('')+
         '</div>';
       wrap.appendChild(div);
       document.getElementById('btn-leave-team').addEventListener('click',async function(){
@@ -2711,9 +2749,11 @@ async function createTeam(){
       name:name.trim(), emoji,
       members:[fu.uid],
       createdBy:fu.uid,
+      captainUid:fu.uid,
       createdByName:currentUser.firstName,
       created:new Date().toISOString()
     });
+    awardBadge('captain');
     showNotif('Équipe "'+name.trim()+'" créée !','success');
     renderTeams();
   } catch(e){ showNotif('Erreur : '+e.message,'error'); }
@@ -2995,6 +3035,8 @@ async function renderAdmin(){
     const snap=await db.collection('users').get();
     const allU=[];
     snap.forEach(d=>{ const u=d.data(); if(!u.isAdmin) allU.push({...u, uid:d.id}); });
+    const pendingU=allU.filter(function(u){ return u.approved===false; });
+    const activeU=allU.filter(function(u){ return u.approved!==false; });
     const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
     const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
     wrap.innerHTML=
@@ -3011,7 +3053,7 @@ async function renderAdmin(){
       (function(){
         const moduleStats=MODULES.map(function(mod){
           let started=0, completed=0;
-          allU.forEach(function(u){
+          activeU.forEach(function(u){
             const md=(u.modules||{})[mod.id];
             if(md){ started++; if(md.completed) completed++; }
           });
@@ -3036,6 +3078,20 @@ async function renderAdmin(){
             '</table>'+
           '</div>';
       }())+
+      (pendingU.length>0 ?
+        '<div style="background:rgba(245,158,11,0.06);border:1.5px solid rgba(245,158,11,0.3);border-radius:var(--radius-lg);padding:20px;margin-bottom:28px">'+
+          '<div style="font-weight:800;color:#92400E;margin-bottom:12px;font-size:0.9rem">⏳ Demandes d\'inscription en attente ('+pendingU.length+')</div>'+
+          '<table class="admin-table" style="background:transparent"><thead><tr><th>Prénom</th><th>Email</th><th>Actions</th></tr></thead><tbody>'+
+          pendingU.map(function(u){
+            return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td>'+
+              '<td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td>'+
+              '<td>'+
+                '<button class="btn-admin-approve" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" style="background:rgba(16,185,129,0.1);color:#065F46;border:1px solid rgba(16,185,129,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✓ Approuver</button>'+
+                '<button class="btn-admin-reject" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Refuser</button>'+
+              '</td></tr>';
+          }).join('')+
+          '</tbody></table></div>'
+      : '')+
       '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
         '<table class="admin-table">'+
@@ -3043,10 +3099,10 @@ async function renderAdmin(){
             '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th><th>Actions</th>'+
           '</tr></thead>'+
           '<tbody>'+
-            (allU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
-            allU.map(function(u){
+            (activeU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
+            activeU.map(function(u){
               const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
+              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button><button class="btn-admin-makeadmin" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" data-isadmin="'+(u.isAdmin?'true':'false')+'" style="background:rgba(192,38,211,0.08);color:var(--magenta);border:1px solid rgba(192,38,211,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-left:4px">'+(u.isAdmin?'✕ Admin':'★ Admin')+'</button></td></tr>';
             }).join(''))+
           '</tbody>'+
         '</table>'+
@@ -3080,6 +3136,47 @@ async function renderAdmin(){
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
       });
     });
+    wrap.querySelectorAll('.btn-admin-makeadmin').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const uid=btn.dataset.uid;
+        const name=btn.dataset.name;
+        const isAdmin=btn.dataset.isadmin==='true';
+        const action=isAdmin?'retirer les droits admin à':'rendre admin';
+        if(!confirm('Voulez-vous '+action+' '+name+' ?')) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('users').doc(uid).update({isAdmin:!isAdmin});
+          showNotif(name+(isAdmin?' n\'est plus admin':' est maintenant admin'),'success');
+          renderAdminPanel();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; }
+      });
+    });
+    wrap.querySelectorAll('.btn-admin-approve').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const uid=btn.dataset.uid;
+        const name=btn.dataset.name;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('users').doc(uid).update({approved:true});
+          showNotif(name+' : accès approuvé ✓','success');
+          renderAdminPanel();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✓ Approuver'; }
+      });
+    });
+    wrap.querySelectorAll('.btn-admin-reject').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const uid=btn.dataset.uid;
+        const name=btn.dataset.name;
+        if(!confirm('Refuser et supprimer la demande de '+name+' ?')) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('users').doc(uid).delete();
+          // Also delete Firebase Auth user - not possible client-side, just remove Firestore doc
+          showNotif(name+' : demande refusée','warn');
+          renderAdminPanel();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Refuser'; }
+      });
+    });
     // Video management section
     let videoSnap;
     try { videoSnap=await db.collection('settings').doc('videos').get(); } catch(e){ videoSnap=null; }
@@ -3102,6 +3199,68 @@ async function renderAdmin(){
       '<button class="btn btn-primary" id="btn-save-videos" style="width:100%">💾 Enregistrer les vidéos</button>'+
       '<div id="vid-status" style="text-align:center;font-size:0.82rem;color:var(--text3);margin-top:8px;min-height:18px"></div>';
     wrap.appendChild(videoSection);
+
+    // Teams section
+    const teamsSection=document.createElement('div');
+    teamsSection.style.marginTop='32px';
+    let teamsHtml='<div class="section-title" style="margin-bottom:16px">Gestion des équipes</div>';
+    try {
+      const tsnap=await db.collection('teams').get();
+      const teams=[];
+      tsnap.forEach(d=>teams.push({id:d.id,...d.data()}));
+      if(teams.length===0){
+        teamsHtml+='<div style="color:var(--text3);font-size:0.88rem;padding:16px">Aucune équipe créée.</div>';
+      } else {
+        teamsHtml+='<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
+          '<table class="admin-table"><thead><tr><th>Équipe</th><th>Membres</th><th>Capitaine</th><th>XP cumulés</th><th>Actions</th></tr></thead><tbody>';
+        for(const t of teams){
+          const memberCount=(t.members||[]).length;
+          teamsHtml+='<tr>'+
+            '<td><strong>'+t.emoji+' '+t.name+'</strong></td>'+
+            '<td>'+memberCount+'</td>'+
+            '<td>'+(t.createdByName||'—')+'</td>'+
+            '<td>—</td>'+
+            '<td>'+
+              '<button class="btn-admin-rename-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(99,102,241,0.08);color:var(--indigo);border:1px solid rgba(99,102,241,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✏️ Renommer</button>'+
+              '<button class="btn-admin-delete-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button>'+
+            '</td>'+
+          '</tr>';
+        }
+        teamsHtml+='</tbody></table></div>';
+      }
+    } catch(e){ teamsHtml+='<div style="color:var(--text3)">Erreur de chargement des équipes.</div>'; }
+    teamsSection.innerHTML=teamsHtml;
+    wrap.appendChild(teamsSection);
+
+    // Team admin action listeners
+    wrap.querySelectorAll('.btn-admin-rename-team').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const tid=btn.dataset.id;
+        const oldName=btn.dataset.name;
+        const newName=prompt('Nouveau nom pour l\'équipe "'+oldName+'" :',oldName);
+        if(!newName||!newName.trim()||newName.trim()===oldName) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('teams').doc(tid).update({name:newName.trim()});
+          showNotif('Équipe renommée : '+newName.trim(),'success');
+          renderAdminPanel();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✏️ Renommer'; }
+      });
+    });
+    wrap.querySelectorAll('.btn-admin-delete-team').forEach(function(btn){
+      btn.addEventListener('click',async function(){
+        const tid=btn.dataset.id;
+        const name=btn.dataset.name;
+        if(!confirm('Supprimer définitivement l\'équipe "'+name+'" ?')) return;
+        btn.disabled=true; btn.textContent='...';
+        try {
+          await db.collection('teams').doc(tid).delete();
+          showNotif('Équipe "'+name+'" supprimée','success');
+          renderAdminPanel();
+        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+      });
+    });
+
     document.getElementById('btn-save-videos').addEventListener('click',async function(){
       const data={};
       MODULES.forEach(function(mod){
@@ -3198,6 +3357,9 @@ function init(){
   document.getElementById('btn-profile-logout').addEventListener('click',function(){
     if(confirm('Se déconnecter ?')){ auth.signOut(); currentUser=null; showView('view-landing'); }
   });
+  document.getElementById('btn-pending-logout').addEventListener('click',function(){
+    auth.signOut(); currentUser=null; showView('view-landing');
+  });
   document.getElementById('btn-profile-save').addEventListener('click',async function(){
     const first=document.getElementById('profile-first').value.trim();
     const last=document.getElementById('profile-last').value.trim();
@@ -3262,6 +3424,7 @@ function init(){
             if(vsnap.exists) customVideos=vsnap.data();
           } catch(e){ customVideos={}; }
           if(currentUser.isAdmin){ launchAdmin(); }
+          else if(currentUser.approved===false){ showView('view-pending'); }
           else { checkStreak(); launchApp(); }
         } else {
           auth.signOut();
