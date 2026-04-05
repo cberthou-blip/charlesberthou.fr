@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -693,6 +693,24 @@ body::before {
 .speed-timer-val { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.85rem; color:var(--cyan); width:28px; text-align:right; flex-shrink:0; }
 .speed-bonus { display:inline-block; background:rgba(6,182,212,0.15); color:var(--cyan); border:1px solid rgba(6,182,212,0.3); border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:700; margin-left:8px; }
 
+/* ===== STREAK ALERT ===== */
+.streak-banner { display:flex; align-items:center; gap:10px; background:linear-gradient(135deg,rgba(245,158,11,0.12),rgba(234,88,12,0.08)); border:1.5px solid rgba(245,158,11,0.3); border-radius:var(--radius); padding:12px 18px; margin:16px 32px 0; }
+.streak-banner-icon { font-size:1.4rem; flex-shrink:0; }
+.streak-banner-text { flex:1; font-size:0.88rem; font-weight:600; color:#92400E; }
+.streak-banner-sub { font-size:0.78rem; font-weight:400; color:#B45309; margin-top:2px; }
+@media(max-width:640px){ .streak-banner { margin:12px 16px 0; } }
+
+/* ===== TEAMS ===== */
+.team-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius-lg); padding:22px; margin-bottom:16px; }
+.team-card.mine { border-color:var(--indigo-mid); background:rgba(99,102,241,0.03); }
+.team-header { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+.team-avatar { width:48px; height:48px; border-radius:12px; background:var(--grad-card); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+.team-name { font-weight:800; color:var(--navy); font-size:1rem; }
+.team-meta { font-size:0.8rem; color:var(--text3); margin-top:3px; }
+.team-members { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+.team-member-chip { display:flex; align-items:center; gap:6px; background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:4px 10px; font-size:0.78rem; font-weight:600; color:var(--text2); }
+.team-member-av { width:22px; height:22px; border-radius:50%; background:var(--grad-card); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.7rem; font-weight:700; flex-shrink:0; }
+
 /* ============================================================
    VUE ADMIN
 ============================================================ */
@@ -824,14 +842,14 @@ body::before {
   <div class="landing-hero">
     <div class="landing-hero-grid"></div>
     <div class="landing-hero-content">
-      <div class="tech-badge tech-badge-cyan" style="margin-bottom:24px;display:inline-flex">🎓 E-Learning IA · Gamifié</div>
+      <div class="tech-badge tech-badge-cyan" style="margin-bottom:24px;display:inline-flex">🎓 E-Learning IA · Gamifié · Classement · Quêtes</div>
       <h1>Maîtrisez l'Intelligence Artificielle</h1>
       <p>10 modules progressifs, quiz interactifs, badges et défis. De zéro à expert en IA — gratuitement.</p>
       <div class="landing-stats">
         <div class="ls-item"><span class="ls-val">10</span><span class="ls-lbl">Modules</span></div>
-        <div class="ls-item"><span class="ls-val">50+</span><span class="ls-lbl">Questions</span></div>
+        <div class="ls-item"><span class="ls-val">100+</span><span class="ls-lbl">Questions</span></div>
         <div class="ls-item"><span class="ls-val">15</span><span class="ls-lbl">Badges</span></div>
-        <div class="ls-item"><span class="ls-val">100%</span><span class="ls-lbl">Gratuit</span></div>
+        <div class="ls-item"><span class="ls-val">⚡</span><span class="ls-lbl">Mode Vitesse</span></div>
       </div>
       <button class="btn btn-primary btn-lg" id="btn-landing-start">Commencer gratuitement →</button>
     </div>
@@ -982,6 +1000,7 @@ body::before {
       <button class="nav-btn" id="nav-defis-btn">Défis</button>
       <button class="nav-btn" id="nav-classement-btn">🏆 Classement</button>
       <button class="nav-btn" id="nav-quetes-btn">🎯 Quêtes</button>
+      <button class="nav-btn" id="nav-equipes-btn">👥 Équipes</button>
     </div>
     <div class="nav-right">
       <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val">0</span> XP</div>
@@ -1048,6 +1067,18 @@ body::before {
         </div>
       </div>
       <div class="badges-grid" id="badges-grid"></div>
+    </div>
+
+    <!-- SECTION ÉQUIPES (cachée par défaut) -->
+    <div id="section-equipes" style="display:none">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Équipes</div>
+          <div class="section-sub">Créez ou rejoignez une équipe pour les défis collectifs</div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="btn-create-team">👥 Créer une équipe</button>
+      </div>
+      <div id="teams-content"></div>
     </div>
 
     <!-- SECTION CLASSEMENT (cachée par défaut) -->
@@ -1621,6 +1652,23 @@ function launchApp(){
   }
   showView('view-dashboard');
   showSection('modules');
+  // Streak banner
+  const streakVal=currentUser.streak||0;
+  const existingBanner=document.getElementById('streak-banner');
+  if(existingBanner) existingBanner.remove();
+  if(streakVal>=2){
+    const banner=document.createElement('div');
+    banner.id='streak-banner';
+    banner.className='streak-banner';
+    banner.innerHTML=
+      '<div class="streak-banner-icon">🔥</div>'+
+      '<div>'+
+        '<div class="streak-banner-text">Série de '+streakVal+' jours — continuez comme ça !</div>'+
+        '<div class="streak-banner-sub">Reconnectez-vous demain pour maintenir votre série et débloquer le badge Assidu (7 jours).</div>'+
+      '</div>';
+    const dashBody=document.querySelector('.dashboard-body');
+    if(dashBody) dashBody.insertBefore(banner,dashBody.firstChild);
+  }
 }
 
 function launchAdmin(){
@@ -1654,14 +1702,16 @@ function showSection(name){
   document.getElementById('section-defis').style.display=name==='defis'?'block':'none';
   document.getElementById('section-classement').style.display=name==='classement'?'block':'none';
   document.getElementById('section-quetes').style.display=name==='quetes'?'block':'none';
+  document.getElementById('section-equipes').style.display=name==='equipes'?'block':'none';
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn',classement:'nav-classement-btn',quetes:'nav-quetes-btn'};
+  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn',classement:'nav-classement-btn',quetes:'nav-quetes-btn',equipes:'nav-equipes-btn'};
   const target=document.getElementById(map[name]);
   if(target) target.classList.add('active');
   if(name==='badges') renderBadges();
   if(name==='defis') renderChallenges();
   if(name==='classement') renderLeaderboard();
   if(name==='quetes'){ renderDailyChallenge(); renderQuests(); }
+  if(name==='equipes') renderTeams();
 }
 
 function renderModulesGrid(){
@@ -2053,8 +2103,24 @@ function renderModuleStep(){
         '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP gagné</div>'+
         '<div class="tech-badge tech-badge-violet">🏅 Badge obtenu</div>'+
       '</div>'+
-      '<button class="btn btn-primary btn-lg" id="btn-back-after">Retour au parcours</button>'+
+      (score<3?'<div style="margin-bottom:20px"><div style="background:rgba(245,158,11,0.08);border:1.5px solid rgba(245,158,11,0.25);border-radius:var(--radius);padding:16px 18px;text-align:left"><div style="font-weight:700;color:#92400E;font-size:0.88rem;margin-bottom:10px">📖 Parcours adaptatif — Points à revoir</div>'+
+        (m.content||[]).slice(0,2).map(function(c){ return '<div style="font-size:0.82rem;color:#B45309;padding:6px 0;border-bottom:1px solid rgba(245,158,11,0.15)">→ '+c.heading+'</div>'; }).join('')+
+        '<div style="font-size:0.78rem;color:var(--text3);margin-top:8px">Relisez ces sections pour consolider vos connaissances avant de passer au module suivant.</div>'+
+      '</div></div>':'')+
+      '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'+
+        (score<3?'<button class="btn btn-secondary" id="btn-retry-module">↺ Refaire le quiz</button>':'')+
+        '<button class="btn btn-primary btn-lg" id="btn-back-after">Retour au parcours</button>'+
+      '</div>'+
     '</div>';
+    if(score<3){
+      const retryBtn=document.getElementById('btn-retry-module');
+      if(retryBtn) retryBtn.addEventListener('click',function(){
+        currentUser.modules[m.id].quizAnswers=[];
+        currentStep=m.content.length+1;
+        saveCurrentUser();
+        renderModuleView();
+      });
+    }
     document.getElementById('btn-back-after').addEventListener('click',function(){
       renderDashboard(); showView('view-dashboard'); showSection('modules');
     });
@@ -2167,6 +2233,112 @@ function endDuel(){
   document.getElementById('duel-result-icon').textContent=won?'🏆':'😤';
   document.getElementById('duel-result-text').textContent=won?'Victoire !':'Défaite';
   document.getElementById('duel-result-sub').textContent=ds.myScore+' – '+ds.oppScore+' · '+(won?'+150 XP gagné':'Retenter pour progresser !');
+}
+
+// ============================================================
+// TEAMS
+// ============================================================
+async function renderTeams(){
+  const wrap=document.getElementById('teams-content');
+  if(!wrap) return;
+  wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
+  const fu=auth.currentUser;
+  if(!fu){ wrap.innerHTML=''; return; }
+  try {
+    const snap=await db.collection('teams').get();
+    const allTeams=[];
+    snap.forEach(d=>allTeams.push({id:d.id,...d.data()}));
+    const myTeam=allTeams.find(t=>(t.members||[]).includes(fu.uid));
+    wrap.innerHTML='';
+
+    // My team section
+    if(myTeam){
+      const membersSnap=await Promise.all((myTeam.members||[]).map(uid=>db.collection('users').doc(uid).get()));
+      const memberData=membersSnap.map(s=>s.data()).filter(Boolean);
+      const totalXP=memberData.reduce(function(s,u){ return s+(u.xp||0); },0);
+      const div=document.createElement('div');
+      div.className='team-card mine';
+      div.innerHTML=
+        '<div class="team-header">'+
+          '<div class="team-avatar">'+myTeam.emoji+'</div>'+
+          '<div><div class="team-name">'+myTeam.name+'</div><div class="team-meta">Votre équipe · '+memberData.length+' membre'+(memberData.length>1?'s':'')+' · '+totalXP+' XP cumulés</div></div>'+
+          '<button id="btn-leave-team" style="margin-left:auto;background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:5px 12px;font-size:0.78rem;font-weight:600;cursor:pointer">Quitter</button>'+
+        '</div>'+
+        '<div class="team-members">'+
+          memberData.map(function(u){ return '<div class="team-member-chip"><div class="team-member-av">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+u.firstName+' <span style="color:var(--text3);font-weight:400">('+u.xp+' XP)</span></div>'; }).join('')+
+        '</div>';
+      wrap.appendChild(div);
+      document.getElementById('btn-leave-team').addEventListener('click',async function(){
+        if(!confirm('Quitter l\'équipe '+myTeam.name+' ?')) return;
+        const newMembers=(myTeam.members||[]).filter(uid=>uid!==fu.uid);
+        if(newMembers.length===0){ await db.collection('teams').doc(myTeam.id).delete(); }
+        else { await db.collection('teams').doc(myTeam.id).update({members:newMembers}); }
+        showNotif('Vous avez quitté l\'équipe','success');
+        renderTeams();
+      });
+      const sep=document.createElement('div');
+      sep.className='section-title';
+      sep.style.cssText='margin:24px 0 16px';
+      sep.textContent='Autres équipes';
+      wrap.appendChild(sep);
+    }
+
+    // All other teams
+    const otherTeams=allTeams.filter(t=>!myTeam||t.id!==myTeam.id);
+    if(otherTeams.length===0&&!myTeam){
+      const empty=document.createElement('div');
+      empty.style.cssText='text-align:center;padding:48px;color:var(--text3)';
+      empty.innerHTML='<div style="font-size:3rem;margin-bottom:12px">👥</div><div style="font-weight:700;color:var(--navy);margin-bottom:6px">Aucune équipe pour l\'instant</div><div style="font-size:0.85rem">Créez la première équipe !</div>';
+      wrap.appendChild(empty);
+    } else {
+      otherTeams.forEach(function(t){
+        const card=document.createElement('div');
+        card.className='team-card';
+        const memberCount=(t.members||[]).length;
+        card.innerHTML=
+          '<div class="team-header">'+
+            '<div class="team-avatar">'+t.emoji+'</div>'+
+            '<div><div class="team-name">'+t.name+'</div><div class="team-meta">'+memberCount+' membre'+(memberCount>1?'s':'')+' · Créée par '+t.createdByName+'</div></div>'+
+            (!myTeam?'<button class="btn-join-team btn btn-secondary btn-sm" data-id="'+t.id+'" style="margin-left:auto">Rejoindre</button>':'')+
+          '</div>';
+        wrap.appendChild(card);
+      });
+      if(!myTeam){
+        wrap.querySelectorAll('.btn-join-team').forEach(function(btn){
+          btn.addEventListener('click',async function(){
+            const tid=btn.dataset.id;
+            btn.disabled=true; btn.textContent='...';
+            await db.collection('teams').doc(tid).update({members:firebase.firestore.FieldValue.arrayUnion(fu.uid)});
+            showNotif('Équipe rejointe !','success');
+            renderTeams();
+          });
+        });
+      }
+    }
+  } catch(e){
+    wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Erreur de chargement.</div>';
+    console.error(e);
+  }
+}
+
+async function createTeam(){
+  const name=prompt('Nom de votre équipe :');
+  if(!name||!name.trim()) return;
+  const emojis=['🚀','🎯','⚡','🏆','🧠','🔥','💡','🌟','🎮','💪'];
+  const emoji=emojis[Math.floor(Math.random()*emojis.length)];
+  const fu=auth.currentUser;
+  if(!fu) return;
+  try {
+    await db.collection('teams').add({
+      name:name.trim(), emoji,
+      members:[fu.uid],
+      createdBy:fu.uid,
+      createdByName:currentUser.firstName,
+      created:new Date().toISOString()
+    });
+    showNotif('Équipe "'+name.trim()+'" créée !','success');
+    renderTeams();
+  } catch(e){ showNotif('Erreur : '+e.message,'error'); }
 }
 
 // ============================================================
@@ -2531,6 +2703,8 @@ function init(){
   document.getElementById('nav-defis-btn').addEventListener('click',function(){ showSection('defis'); });
   document.getElementById('nav-classement-btn').addEventListener('click',function(){ showSection('classement'); });
   document.getElementById('nav-quetes-btn').addEventListener('click',function(){ showSection('quetes'); });
+  document.getElementById('nav-equipes-btn').addEventListener('click',function(){ showSection('equipes'); });
+  document.getElementById('btn-create-team').addEventListener('click',createTeam);
 
   // Logout admin
   document.getElementById('btn-admin-logout').addEventListener('click',function(){
