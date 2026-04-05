@@ -228,6 +228,15 @@ body::before {
 @keyframes fadeSlideIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 @keyframes orbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes confetti-fall {
+  0% { transform:translateY(-10px) rotate(0deg); opacity:1; }
+  100% { transform:translateY(100vh) rotate(720deg); opacity:0; }
+}
+.confetti-piece {
+  position:fixed; top:-10px; width:8px; height:8px; border-radius:2px;
+  animation:confetti-fall linear forwards;
+  z-index:9999; pointer-events:none;
+}
 
 /* ============================================================
    VUE 0 : LOGIN
@@ -344,6 +353,8 @@ body::before {
 }
 .nav-btn:hover { color:var(--indigo); background:rgba(99,102,241,0.08); }
 .nav-btn.active { color:var(--indigo); background:rgba(99,102,241,0.1); }
+.nav-btn-notif { position:relative; }
+.nav-btn-notif::after { content:''; position:absolute; top:4px; right:4px; width:7px; height:7px; background:#EF4444; border-radius:50%; border:1.5px solid var(--bg); }
 .nav-right { display:flex; align-items:center; gap:12px; }
 .nav-xp {
   display:flex; align-items:center; gap:8px;
@@ -1378,7 +1389,7 @@ body::before {
 <!-- ==================== VUE MODULE ==================== -->
 <div class="view" id="view-module">
   <nav class="navbar">
-    <a class="nav-logo" onclick="renderDashboard();showView('view-dashboard');showSection('modules')" title="Retour au tableau de bord">
+    <a class="nav-logo" onclick="confirmLeaveModule()" title="Retour au tableau de bord">
       <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><svg data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="100%" height="100%"><path d="m40 28.85-6.45-11.19A7 7 0 0 1 28.16 26a8.67 8.67 0 0 1-.89.13 8.66 8.66 0 0 0-6.93-4.05 7 7 0 0 1 9.87-9 7.26 7.26 0 0 1 1.19.92L24.88 2.65h-9.8L8.61 13.84a7 7 0 0 1 9.88.49 6.43 6.43 0 0 1 .57.72 8.69 8.69 0 0 0 0 8A7 7 0 0 1 6.37 19a7.07 7.07 0 0 1 .15-1.45L0 28.86l4.91 8.49h12.91a7 7 0 0 1-4.5-8.82 6 6 0 0 1 .33-.83 8.67 8.67 0 0 0 7-4 7 7 0 0 1 2.84 13 7.68 7.68 0 0 1-1.35.59h13z" style="fill:#c50307"/></svg></div>
       <span class="nav-logo-text">MABN Académie</span>
     </a>
@@ -1733,20 +1744,20 @@ const MODULES = [
 ];
 
 const BADGES_DEF = [
-  {id:"m1",name:"Fondations",desc:"Module 1 terminé",icon:"🧱",moduleId:1},
-  {id:"m2",name:"Apprenant",desc:"Module 2 terminé",icon:"⚙️",moduleId:2},
-  {id:"m3",name:"Neurone",desc:"Module 3 terminé",icon:"🔬",moduleId:3},
-  {id:"m4",name:"Linguiste",desc:"Module 4 terminé",icon:"💬",moduleId:4},
-  {id:"m5",name:"Visionnaire",desc:"Module 5 terminé",icon:"👁️",moduleId:5},
-  {id:"m6",name:"Créateur",desc:"Module 6 terminé",icon:"✨",moduleId:6},
-  {id:"m7",name:"Industriel",desc:"Module 7 terminé",icon:"🏭",moduleId:7},
-  {id:"m8",name:"Éthicien",desc:"Module 8 terminé",icon:"⚖️",moduleId:8},
-  {id:"m9",name:"Prompteur",desc:"Module 9 terminé",icon:"🎯",moduleId:9},
-  {id:"m10",name:"Futuriste",desc:"Module 10 terminé",icon:"🚀",moduleId:10},
-  {id:"ace",name:"Quiz Ace",desc:"5 quiz parfaits",icon:"🎯",special:true},
-  {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true},
-  {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true},
-  {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true}
+  {id:"m1",name:"Fondations",desc:"Module 1 terminé",icon:"🧱",moduleId:1,hint:"Terminez le module 1 — Les bases de l'IA"},
+  {id:"m2",name:"Apprenant",desc:"Module 2 terminé",icon:"⚙️",moduleId:2,hint:"Terminez le module 2 — Comment ça marche"},
+  {id:"m3",name:"Neurone",desc:"Module 3 terminé",icon:"🔬",moduleId:3,hint:"Terminez le module 3 — Les réseaux de neurones"},
+  {id:"m4",name:"Linguiste",desc:"Module 4 terminé",icon:"💬",moduleId:4,hint:"Terminez le module 4 — Les grands modèles de langage"},
+  {id:"m5",name:"Visionnaire",desc:"Module 5 terminé",icon:"👁️",moduleId:5,hint:"Terminez le module 5 — L'IA par l'image"},
+  {id:"m6",name:"Créateur",desc:"Module 6 terminé",icon:"✨",moduleId:6,hint:"Terminez le module 6 — L'IA générative audio & vidéo"},
+  {id:"m7",name:"Industriel",desc:"Module 7 terminé",icon:"🏭",moduleId:7,hint:"Terminez le module 7 — L'IA dans le code"},
+  {id:"m8",name:"Éthicien",desc:"Module 8 terminé",icon:"⚖️",moduleId:8,hint:"Terminez le module 8 — Éthique et limites"},
+  {id:"m9",name:"Prompteur",desc:"Module 9 terminé",icon:"🎯",moduleId:9,hint:"Terminez le module 9 — L'IA dans la vie perso"},
+  {id:"m10",name:"Futuriste",desc:"Module 10 terminé",icon:"🚀",moduleId:10,hint:"Terminez le module 10 — Microsoft Copilot au travail"},
+  {id:"ace",name:"Quiz Ace",desc:"5 quiz parfaits",icon:"🎯",special:true,hint:"Obtenez 5/5 à 5 quiz différents"},
+  {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true,hint:"Lancez et remportez un défi contre un collègue"},
+  {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true,hint:"Connectez-vous 7 jours de suite"},
+  {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true,hint:"Terminez les 10 modules de formation"}
 ];
 
 const XP_PER_LEVEL = 500;
@@ -1775,6 +1786,7 @@ let currentStep = 0;
 let duelState = null;
 let customVideos = {};
 let speedMode = false;
+let dailyQStep = 0;
 
 // ============================================================
 // UTILS
@@ -1934,6 +1946,44 @@ function launchAdmin(){
 // ============================================================
 // DASHBOARD
 // ============================================================
+function launchConfetti(){
+  const colors=['#6366F1','#7C3AED','#06B6D4','#C026D3','#F59E0B','#10B981','#EF4444'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration=(1.5+Math.random()*2)+'s';
+    el.style.animationDelay=(Math.random()*0.8)+'s';
+    el.style.width=(6+Math.random()*8)+'px';
+    el.style.height=(6+Math.random()*8)+'px';
+    document.body.appendChild(el);
+    setTimeout(function(){ el.remove(); },4000);
+  }
+}
+
+function updateTeamNotifBadge(){
+  const btn=document.getElementById('nav-equipes-btn');
+  if(!btn||!currentUser) return;
+  if(currentUser.pendingTeamNotif){
+    btn.classList.add('nav-btn-notif');
+  } else {
+    btn.classList.remove('nav-btn-notif');
+  }
+}
+
+function confirmLeaveModule(){
+  const m=currentModule;
+  if(!m) { renderDashboard();showView('view-dashboard');showSection('modules'); return; }
+  const totalContent=m.content.length;
+  const isComplete=currentStep>totalContent+1+m.quiz.length;
+  const inQuiz=currentStep>totalContent+1&&!isComplete;
+  if(inQuiz){
+    if(!confirm('Tu es en plein quiz ! Quitter maintenant ne sauvegarde pas tes réponses en cours. Continuer quand même ?')) return;
+  }
+  renderDashboard();showView('view-dashboard');showSection('modules');
+}
+
 function renderDashboard(){
   const u=currentUser;
   document.getElementById('dh-name').textContent='Bonjour, '+u.firstName+' !';
@@ -1949,6 +1999,7 @@ function renderDashboard(){
   document.getElementById('dh-xp-label').textContent=xpInLevel+' / '+XP_PER_LEVEL+' XP';
   renderModulesGrid();
   populateChallengeModal();
+  updateTeamNotifBadge();
 }
 
 function showSection(name){
@@ -2016,7 +2067,7 @@ function renderBadges(){
     const unlocked=owned.includes(b.id);
     const div=document.createElement('div');
     div.className='badge-card '+(unlocked?'unlocked':'locked-badge');
-    div.innerHTML='<div class="badge-icon">'+b.icon+'</div><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+b.desc+'</div>';
+    div.innerHTML='<div class="badge-icon">'+(unlocked?b.icon:'🔒')+'</div><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+(unlocked?b.desc:(b.hint||b.desc))+'</div>';
     grid.appendChild(div);
   });
 }
@@ -2343,6 +2394,7 @@ function renderModuleStep(){
       const allDone=MODULES.every(function(mod){ return currentUser.modules[mod.id]&&currentUser.modules[mod.id].completed; });
       if(allDone) awardBadge('master');
       saveCurrentUser();
+      launchConfetti();
     }
     const score=(modData.quizAnswers||[]).filter(function(a,i){ return a===m.quiz[i].ans; }).length;
     const mastery=getMastery(modData,m.quiz);
@@ -2364,6 +2416,7 @@ function renderModuleStep(){
       '</div></div>':'')+
       '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'+
         (score<3?'<button class="btn btn-secondary" id="btn-retry-module">↺ Refaire le quiz</button>':'')+
+        '<button class="btn btn-cyan" id="btn-duel-after">⚔️ Défier un collègue</button>'+
         '<button class="btn btn-primary btn-lg" id="btn-back-after">Retour au parcours</button>'+
       '</div>'+
     '</div>';
@@ -2379,6 +2432,13 @@ function renderModuleStep(){
     document.getElementById('btn-back-after').addEventListener('click',function(){
       renderDashboard(); showView('view-dashboard'); showSection('modules');
     });
+    const duelAfterBtn=document.getElementById('btn-duel-after');
+    if(duelAfterBtn){
+      duelAfterBtn.addEventListener('click',function(){
+        renderDashboard(); showView('view-dashboard'); showSection('defis');
+        setTimeout(function(){ document.getElementById('btn-new-challenge')&&document.getElementById('btn-new-challenge').click(); },300);
+      });
+    }
   }
 }
 
@@ -2499,6 +2559,11 @@ async function renderTeams(){
   wrap.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3)">Chargement...</div>';
   const fu=auth.currentUser;
   if(!fu){ wrap.innerHTML=''; return; }
+  if(currentUser && currentUser.pendingTeamNotif){
+    currentUser.pendingTeamNotif=false;
+    try { await db.collection('users').doc(fu.uid).update({pendingTeamNotif:false}); } catch(e2){}
+    updateTeamNotifBadge();
+  }
   try {
     const snap=await db.collection('teams').get();
     const allTeams=[];
@@ -2570,6 +2635,7 @@ async function renderTeams(){
             if(!uid) return;
             try {
               await db.collection('teams').doc(myTeam.id).update({members:firebase.firestore.FieldValue.arrayUnion(uid)});
+              try { await db.collection('users').doc(uid).update({pendingTeamNotif:true}); } catch(e2){}
               overlay.remove();
               showNotif((name?name.name:'Apprenant')+' ajouté à l\'équipe !','success');
               renderTeams();
@@ -2679,9 +2745,12 @@ async function renderLeaderboard(){
     snap.forEach(d=>{ const u=d.data(); if(!u.isAdmin) all.push(u); });
     all.sort(function(a,b){ return (b.xp||0)-(a.xp||0); });
     if(all.length===0){ wrap.innerHTML='<div style="text-align:center;padding:48px;color:var(--text3)">Aucun apprenant pour l\'instant.</div>'; return; }
+    const myRank = all.findIndex(function(u){ return currentUser && u.email===currentUser.email; });
     const rankIcons={0:'🥇',1:'🥈',2:'🥉'};
     const rankCls={0:'gold',1:'silver',2:'bronze'};
-    wrap.innerHTML='<div class="lb-list">'+all.map(function(u,i){
+    wrap.innerHTML=
+      (myRank>=0 ? '<div style="background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(124,58,237,0.08));border:1.5px solid rgba(99,102,241,0.2);border-radius:var(--radius);padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px"><div style="font-size:1.3rem">🏅</div><div><div style="font-weight:800;font-size:0.9rem;color:var(--navy)">Tu es classé(e) <span style="color:var(--indigo-mid)">#'+(myRank+1)+' sur '+all.length+' participants</span></div><div style="font-size:0.78rem;color:var(--text3);margin-top:2px">Continue à progresser pour grimper !</div></div></div>' : '')+
+      '<div class="lb-list">'+all.map(function(u,i){
       const isMe=currentUser&&u.email===currentUser.email;
       const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
       return '<div class="lb-row'+(isMe?' me':'')+'">'+
@@ -2702,12 +2771,17 @@ async function renderLeaderboard(){
 // ============================================================
 // DAILY CHALLENGE
 // ============================================================
-function getDailyQuestion(){
+function getDailyQuestions(){
   const allQ=[];
   MODULES.forEach(function(m){ (m.quiz||[]).forEach(function(q){ allQ.push({...q,moduleTitle:m.title}); }); });
   const today=new Date(); const seed=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate();
-  return allQ[seed%allQ.length];
+  const seen=new Set([seed%allQ.length]);
+  let i2=(seed*7+3)%allQ.length; while(seen.has(i2)){ i2=(i2+1)%allQ.length; } seen.add(i2);
+  let i3=(seed*13+7)%allQ.length; while(seen.has(i3)){ i3=(i3+1)%allQ.length; } seen.add(i3);
+  return [allQ[seed%allQ.length],allQ[i2],allQ[i3]];
 }
+
+function getDailyQuestion(){ return getDailyQuestions()[0]; }
 
 function getTodayKey(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
 
@@ -2727,20 +2801,33 @@ function renderDailyChallenge(){
   const wrap=document.getElementById('daily-challenge-content');
   if(!wrap) return;
   if(dailyTimerInterval){ clearInterval(dailyTimerInterval); dailyTimerInterval=null; }
-  const q=getDailyQuestion();
+  const qs=getDailyQuestions();
   const todayKey=getTodayKey();
-  const dailyDone=(currentUser.dailyDone||{})[todayKey];
+  const rawDone=(currentUser.dailyDone||{})[todayKey];
+  const dailyDoneArr=Array.isArray(rawDone)?rawDone:(rawDone!=null?[rawDone,null,null]:null);
 
-  if(dailyDone!=null){
-    const correct=dailyDone===q.ans;
+  if(dailyDoneArr!==null){
+    const correctCount=dailyDoneArr.filter(function(a,i){ return i<qs.length && a===qs[i].ans; }).length;
+    const totalXP=correctCount*30;
     wrap.innerHTML=
       '<div class="daily-card">'+
-        '<div class="daily-badge">📅 Défi du jour</div>'+
+        '<div class="daily-badge">📅 Défi du jour — terminé</div>'+
         '<div class="daily-done">'+
-          '<div class="daily-done-icon">'+(correct?'✅':'❌')+'</div>'+
-          '<div class="daily-done-text">'+(correct?'Bonne réponse ! +30 XP':'Pas cette fois...')+'</div>'+
+          '<div class="daily-done-icon">'+(correctCount===3?'🏆':correctCount>=2?'✅':correctCount>=1?'😊':'❌')+'</div>'+
+          '<div class="daily-done-text">'+correctCount+' / 3 bonnes réponses'+(totalXP>0?' — +'+totalXP+' XP':'')+'</div>'+
+          '<div style="display:flex;flex-direction:column;gap:8px;margin:12px 0;text-align:left">'+
+            qs.map(function(q,i){
+              const chosen=dailyDoneArr[i];
+              const correct=chosen===q.ans;
+              return '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;font-size:0.82rem">'+
+                '<div style="margin-bottom:4px;color:rgba(255,255,255,0.7)">Q'+(i+1)+' — '+q.moduleTitle+'</div>'+
+                '<div style="font-weight:600;color:'+(correct?'#6EE7B7':'#FCA5A5')+'">'+
+                  (correct?'✓':'✗')+' '+q.opts[q.ans]+
+                '</div>'+
+              '</div>';
+            }).join('')+
+          '</div>'+
           '<div class="daily-done-sub">Revenez demain pour le prochain défi</div>'+
-          '<div style="margin-top:12px;font-size:0.82rem;color:rgba(255,255,255,0.5)">'+q.exp+'</div>'+
         '</div>'+
         '<div class="daily-timer" id="daily-timer">Prochain défi dans --:--:--</div>'+
       '</div>';
@@ -2755,9 +2842,11 @@ function renderDailyChallenge(){
     return;
   }
 
+  const q=qs[dailyQStep];
   wrap.innerHTML=
     '<div class="daily-card" id="daily-card">'+
-      '<div class="daily-badge">📅 Défi du jour · +30 XP</div>'+
+      '<div class="daily-badge">📅 Défi du jour · Question '+(dailyQStep+1)+' / 3</div>'+
+      '<div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:8px">'+q.moduleTitle+'</div>'+
       '<div class="daily-q">'+q.q+'</div>'+
       '<div class="daily-opts">'+
         q.opts.map(function(o,i){ return '<button class="daily-opt" data-idx="'+i+'">'+o+'</button>'; }).join('')+
@@ -2777,6 +2866,7 @@ function renderDailyChallenge(){
 
   wrap.querySelectorAll('.daily-opt').forEach(function(btn){
     btn.addEventListener('click',async function(){
+      if(dailyTimerInterval){ clearInterval(dailyTimerInterval); dailyTimerInterval=null; }
       const chosen=parseInt(btn.dataset.idx);
       const correct=chosen===q.ans;
       wrap.querySelectorAll('.daily-opt').forEach(function(b){
@@ -2786,11 +2876,21 @@ function renderDailyChallenge(){
         b.disabled=true;
       });
       if(!currentUser.dailyDone) currentUser.dailyDone={};
-      currentUser.dailyDone[todayKey]=chosen;
+      const existing=currentUser.dailyDone[todayKey];
+      const arr=Array.isArray(existing)?[...existing]:[null,null,null];
+      arr[dailyQStep]=chosen;
       if(correct){ addXP(30); showNotif('+30 XP — Bonne réponse !','success'); }
-      else { showNotif('Raté ! Revenez demain.','warn'); }
-      await saveCurrentUser();
-      setTimeout(function(){ renderDailyChallenge(); },1500);
+      else { showNotif('Raté ! '+(dailyQStep<2?'Question suivante...':'Revenez demain.'),'warn'); }
+      if(dailyQStep>=2){
+        currentUser.dailyDone[todayKey]=arr;
+        await saveCurrentUser();
+        setTimeout(function(){ dailyQStep=0; renderDailyChallenge(); },1500);
+      } else {
+        currentUser.dailyDone[todayKey]=arr;
+        await saveCurrentUser();
+        dailyQStep++;
+        setTimeout(function(){ renderDailyChallenge(); },1500);
+      }
     });
   });
 }
@@ -2887,6 +2987,34 @@ async function renderAdmin(){
         '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
         '<div class="admin-kpi green"><div class="ak-val">10</div><div class="ak-lbl">Modules actifs</div></div>'+
       '</div>'+
+      (function(){
+        const moduleStats=MODULES.map(function(mod){
+          let started=0, completed=0;
+          allU.forEach(function(u){
+            const md=(u.modules||{})[mod.id];
+            if(md){ started++; if(md.completed) completed++; }
+          });
+          const pct=started>0?Math.round((completed/started)*100):0;
+          const color=pct>=70?'var(--cyan)':pct>=40?'var(--indigo-mid)':'#EF4444';
+          return '<tr><td><strong>'+mod.icon+' '+mod.title+'</strong></td>'+
+            '<td>'+started+'</td>'+
+            '<td>'+completed+'</td>'+
+            '<td><div style="display:flex;align-items:center;gap:8px">'+
+              '<div style="flex:1;height:6px;background:var(--bg2);border-radius:3px;min-width:60px">'+
+                '<div style="height:6px;width:'+pct+'%;background:'+color+';border-radius:3px"></div>'+
+              '</div>'+
+              '<span style="font-size:0.78rem;font-weight:700;color:'+color+';font-family:JetBrains Mono,monospace;min-width:32px">'+pct+'%</span>'+
+            '</div></td>'+
+          '</tr>';
+        });
+        return '<div class="section-title" style="margin:28px 0 16px">Statistiques par module</div>'+
+          '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:28px">'+
+            '<table class="admin-table">'+
+              '<thead><tr><th>Module</th><th>Commencé</th><th>Terminé</th><th>Taux de complétion</th></tr></thead>'+
+              '<tbody>'+moduleStats.join('')+'</tbody>'+
+            '</table>'+
+          '</div>';
+      }())+
       '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
         '<table class="admin-table">'+
