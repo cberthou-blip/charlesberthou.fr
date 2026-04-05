@@ -963,7 +963,7 @@ body::before {
   <div class="landing-hero">
     <div class="landing-hero-grid"></div>
     <div class="landing-hero-content">
-      <div class="landing-hero-eyebrow">🎓 Formation IA · Gamifiée · Réservé CMMABN</div>
+      <div class="landing-hero-eyebrow">🎓 Formation IA · Gamifiée</div>
       <h1>Montez en compétences<br>— et en <span>niveau</span></h1>
       <p class="landing-hero-sub">10 modules progressifs sur l'Intelligence Artificielle. Apprenez, gagnez des XP, débloquez des badges, défiez vos collègues.</p>
       <div class="landing-stats" style="margin-bottom:0">
@@ -994,6 +994,31 @@ body::before {
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#059669,#06B6D4)">🌍</div><div><div class="lm-num">MODULE 08</div><div class="lm-title">IA et société</div></div></div>
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#06B6D4,#6366F1)">🔧</div><div><div class="lm-num">MODULE 09</div><div class="lm-title">Comment l'IA pense vraiment</div></div></div>
       <div class="lm-card"><div class="lm-icon" style="background:linear-gradient(135deg,#C026D3,#7C3AED)">🚀</div><div><div class="lm-num">MODULE 10</div><div class="lm-title">L'avenir de l'IA</div></div></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="landing-how">
+    <div class="landing-how-content">
+      <h2>Comment ça marche</h2>
+      <p class="landing-how-sub">Trois étapes, une seule règle : ne jamais s'ennuyer.</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">🧠</div>
+          <div class="how-step-title">Apprenez</div>
+          <div class="how-step-desc">Parcourez les modules à votre rythme. Vidéos, contenu structuré et quiz interactifs pour ancrer les connaissances.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">⚡</div>
+          <div class="how-step-title">Progressez</div>
+          <div class="how-step-desc">Gagnez des XP, montez de niveau, débloquez des badges. Le défi du jour et les quêtes hebdo relancent l'envie chaque matin.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">🏆</div>
+          <div class="how-step-title">Affrontez</div>
+          <div class="how-step-desc">Défiez vos collègues en duel, rejoignez une équipe, grimpez dans le classement. La compétition, moteur de l'apprentissage.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1039,31 +1064,6 @@ body::before {
         <div class="feat-title">Mode Équipe</div>
         <div class="feat-desc">Créez votre équipe avec vos collègues d'un même point de vente. Comparez les XP cumulés et affrontez d'autres équipes.</div>
         <div class="feat-tag ft-green">Nouveau</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <div class="landing-how">
-    <div class="landing-how-content">
-      <h2>Comment ça marche</h2>
-      <p class="landing-how-sub">Trois étapes, une seule règle : ne jamais s'ennuyer.</p>
-      <div class="how-steps">
-        <div class="how-step">
-          <div class="how-step-num">🧠</div>
-          <div class="how-step-title">Apprenez</div>
-          <div class="how-step-desc">Parcourez les modules à votre rythme. Vidéos, contenu structuré et quiz interactifs pour ancrer les connaissances.</div>
-        </div>
-        <div class="how-step">
-          <div class="how-step-num">⚡</div>
-          <div class="how-step-title">Progressez</div>
-          <div class="how-step-desc">Gagnez des XP, montez de niveau, débloquez des badges. Le défi du jour et les quêtes hebdo relancent l'envie chaque matin.</div>
-        </div>
-        <div class="how-step">
-          <div class="how-step-num">🏆</div>
-          <div class="how-step-title">Affrontez</div>
-          <div class="how-step-desc">Défiez vos collègues en duel, rejoignez une équipe, grimpez dans le classement. La compétition, moteur de l'apprentissage.</div>
-        </div>
       </div>
     </div>
   </div>
@@ -1267,6 +1267,7 @@ body::before {
       <button class="nav-btn" id="nav-classement-btn">🏆 Classement</button>
       <button class="nav-btn" id="nav-quetes-btn">🎯 Quêtes</button>
       <button class="nav-btn" id="nav-equipes-btn">👥 Équipes</button>
+      <button class="nav-btn" id="nav-admin-btn" style="display:none;background:rgba(192,38,211,0.08);color:var(--magenta);border-color:rgba(192,38,211,0.2)">🔐 Admin</button>
     </div>
     <div class="nav-right">
       <div class="nav-xp">⚡ <span class="nav-xp-val" id="nav-xp-val">0</span> XP</div>
@@ -1345,6 +1346,9 @@ body::before {
         <button class="btn btn-primary btn-sm" id="btn-create-team">👥 Créer une équipe</button>
       </div>
       <div id="teams-content"></div>
+    </div>
+    <div class="section-block" id="section-admin" style="display:none">
+      <div class="admin-wrap" id="admin-panel-wrap"></div>
     </div>
 
     <!-- SECTION CLASSEMENT (cachée par défaut) -->
@@ -1939,8 +1943,11 @@ function launchApp(){
 }
 
 function launchAdmin(){
-  renderAdmin();
-  showView('view-admin');
+  checkStreak();
+  launchApp();
+  const adminBtn=document.getElementById('nav-admin-btn');
+  if(adminBtn) adminBtn.style.display='';
+  setTimeout(function(){ showSection('admin'); },200);
 }
 
 // ============================================================
@@ -2009,8 +2016,10 @@ function showSection(name){
   document.getElementById('section-classement').style.display=name==='classement'?'block':'none';
   document.getElementById('section-quetes').style.display=name==='quetes'?'block':'none';
   document.getElementById('section-equipes').style.display=name==='equipes'?'block':'none';
+  const adminSec=document.getElementById('section-admin');
+  if(adminSec) adminSec.style.display=name==='admin'?'block':'none';
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn',classement:'nav-classement-btn',quetes:'nav-quetes-btn',equipes:'nav-equipes-btn'};
+  const map={modules:'nav-dashboard',badges:'nav-badges-btn',defis:'nav-defis-btn',classement:'nav-classement-btn',quetes:'nav-quetes-btn',equipes:'nav-equipes-btn',admin:'nav-admin-btn'};
   const target=document.getElementById(map[name]);
   if(target) target.classList.add('active');
   if(name==='badges') renderBadges();
@@ -2018,6 +2027,7 @@ function showSection(name){
   if(name==='classement') renderLeaderboard();
   if(name==='quetes'){ renderDailyChallenge(); renderQuests(); }
   if(name==='equipes') renderTeams();
+  if(name==='admin') renderAdminPanel();
 }
 
 function renderModulesGrid(){
@@ -2966,6 +2976,17 @@ function renderQuests(){
 // ============================================================
 // ADMIN
 // ============================================================
+async function renderAdminPanel(){
+  // Renders admin into the dashboard section panel
+  const panelWrap=document.getElementById('admin-panel-wrap');
+  if(!panelWrap) return;
+  // Temporarily swap admin-wrap to point to panelWrap
+  panelWrap.id='admin-wrap';
+  await renderAdmin();
+  // Restore ID so both can work
+  const el=document.getElementById('admin-wrap');
+  if(el) el.id='admin-panel-wrap';
+}
 async function renderAdmin(){
   const wrap=document.getElementById('admin-wrap');
   if(!wrap) return;
@@ -3157,6 +3178,8 @@ function init(){
   document.getElementById('nav-classement-btn').addEventListener('click',function(){ showSection('classement'); });
   document.getElementById('nav-quetes-btn').addEventListener('click',function(){ showSection('quetes'); });
   document.getElementById('nav-equipes-btn').addEventListener('click',function(){ showSection('equipes'); });
+  const adminNavBtn=document.getElementById('nav-admin-btn');
+  if(adminNavBtn) adminNavBtn.addEventListener('click',function(){ showSection('admin'); });
   document.getElementById('btn-create-team').addEventListener('click',createTeam);
 
   // Logout admin
