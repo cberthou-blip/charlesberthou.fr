@@ -1885,12 +1885,30 @@ async function register(firstName,lastName,email,pass){
   if(!firstName||!email||!pass){ showNotif('Tous les champs sont requis','error'); return; }
   try {
     const cred=await auth.createUserWithEmailAndPassword(email,pass);
-    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:1,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
+    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
     await db.collection('users').doc(cred.user.uid).set(u);
     showNotif('Demande d\'accès envoyée — en attente de validation','warn');
   } catch(e) {
-    const msg=e.code==='auth/email-already-in-use'?'Email déjà utilisé':'Erreur lors de l\'inscription';
-    showNotif(msg,'error');
+    if(e.code==='auth/email-already-in-use'){
+      // Account exists in Auth — check if Firestore doc was deleted by admin
+      try {
+        const cred2=await auth.signInWithEmailAndPassword(email,pass);
+        const doc=await db.collection('users').doc(cred2.user.uid).get();
+        if(!doc.exists){
+          // Auth account exists but Firestore doc was removed (deleted by admin) → re-create
+          const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
+          await db.collection('users').doc(cred2.user.uid).set(u);
+          showNotif('Demande d\'accès envoyée — en attente de validation','warn');
+        } else {
+          await auth.signOut();
+          showNotif('Cet email est déjà associé à un compte existant.','error');
+        }
+      } catch(e2){
+        showNotif('Email déjà utilisé. Si vous avez été supprimé par un admin, reconnectez-vous avec votre ancien mot de passe.','error');
+      }
+      return;
+    }
+    showNotif('Erreur lors de l\'inscription : '+e.message,'error');
   }
 }
 
@@ -2209,6 +2227,7 @@ function openModule(id){
   if(!currentModule) return;
   currentStep=0;
   if(!currentUser.modules[id]) currentUser.modules[id]={progress:0,completed:false,quizAnswers:[]};
+  if(!currentUser.modules[id].startedAt) currentUser.modules[id].startedAt=Date.now();
   renderModuleView();
   showView('view-module');
 }
@@ -2438,6 +2457,7 @@ function renderModuleStep(){
     const modData=currentUser.modules[m.id];
     if(!modData.completed){
       modData.completed=true;
+      modData.completedAt=Date.now();
       addXP(m.xp);
       awardBadge('m'+m.id);
       const answers=modData.quizAnswers||[];
@@ -3147,6 +3167,10 @@ async function renderAdmin(){
     const activeU=allU.filter(function(u){ return u.approved!==false; });
     const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
     const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
+    const globalCompletionPct=activeU.length>0?Math.round(totalMods/(activeU.length*MODULES.length)*100):0;
+    const _allTimes=[];
+    MODULES.forEach(function(mod){ activeU.forEach(function(u){ const md=(u.modules||{})[mod.id]; if(md&&md.completed&&md.startedAt&&md.completedAt) _allTimes.push((md.completedAt-md.startedAt)/60000); }); });
+    const globalAvgMin=_allTimes.length>0?Math.round(_allTimes.reduce(function(a,b){return a+b;},0)/_allTimes.length):null;
     wrap.innerHTML=
       '<div style="margin-bottom:28px">'+
         '<div class="section-title">Tableau de bord administrateur</div>'+
@@ -3156,17 +3180,22 @@ async function renderAdmin(){
         '<div class="admin-kpi"><div class="ak-val">'+allU.length+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
         '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
         '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
-        '<div class="admin-kpi green"><div class="ak-val">10</div><div class="ak-lbl">Modules actifs</div></div>'+
+        '<div class="admin-kpi green"><div class="ak-val">'+globalCompletionPct+'%</div><div class="ak-lbl">Taux de complétion global</div></div>'+
+        '<div class="admin-kpi"><div class="ak-val">'+(globalAvgMin!==null?globalAvgMin+' min':'—')+'</div><div class="ak-lbl">Temps moyen / module</div></div>'+
       '</div>'+
       (function(){
+        let allModuleAvgTimes=[];
         const moduleStats=MODULES.map(function(mod){
           let started=0, completed=0;
+          const times=[];
           activeU.forEach(function(u){
             const md=(u.modules||{})[mod.id];
-            if(md){ started++; if(md.completed) completed++; }
+            if(md){ started++; if(md.completed){ completed++; if(md.startedAt&&md.completedAt) times.push((md.completedAt-md.startedAt)/60000); } }
           });
           const pct=started>0?Math.round((completed/started)*100):0;
           const color=pct>=70?'var(--cyan)':pct>=40?'var(--indigo-mid)':'#EF4444';
+          const avgMin=times.length>0?Math.round(times.reduce(function(a,b){return a+b;},0)/times.length):null;
+          if(avgMin!==null) allModuleAvgTimes.push(avgMin);
           return '<tr><td><strong>'+mod.icon+' '+mod.title+'</strong></td>'+
             '<td>'+started+'</td>'+
             '<td>'+completed+'</td>'+
@@ -3176,12 +3205,13 @@ async function renderAdmin(){
               '</div>'+
               '<span style="font-size:0.78rem;font-weight:700;color:'+color+';font-family:JetBrains Mono,monospace;min-width:32px">'+pct+'%</span>'+
             '</div></td>'+
+            '<td style="font-family:JetBrains Mono,monospace;font-size:0.82rem;font-weight:700;color:var(--text2)">'+(avgMin!==null?avgMin+' min':'—')+'</td>'+
           '</tr>';
         });
         return '<div class="section-title" style="margin:28px 0 16px">Statistiques par module</div>'+
           '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:28px">'+
             '<table class="admin-table">'+
-              '<thead><tr><th>Module</th><th>Commencé</th><th>Terminé</th><th>Taux de complétion</th></tr></thead>'+
+              '<thead><tr><th>Module</th><th>Commencé</th><th>Terminé</th><th>Taux de complétion</th><th>Temps moyen</th></tr></thead>'+
               '<tbody>'+moduleStats.join('')+'</tbody>'+
             '</table>'+
           '</div>';
@@ -3227,7 +3257,7 @@ async function renderAdmin(){
             xp:0, level:1, modules:{}, badges:[], streak:0, lastActive:null, perfectQuizzes:0
           });
           showNotif(name+' : parcours réinitialisé','success');
-          renderAdmin();
+          renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Réinit.'; }
       });
     });
@@ -3240,7 +3270,7 @@ async function renderAdmin(){
         try {
           await db.collection('users').doc(uid).delete();
           showNotif(name+' : compte supprimé','success');
-          renderAdmin();
+          renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
       });
     });
