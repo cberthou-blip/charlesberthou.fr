@@ -1953,17 +1953,29 @@ let _saveQueue = Promise.resolve();
 function buildUserSaveData(user){
   if(!user) return null;
   const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=user;
+  // Sanitize modules: remove undefined fields Firestore rejects
+  const cleanModules={};
+  Object.keys(modules||{}).forEach(function(k){
+    const m=modules[k]||{};
+    cleanModules[k]={
+      progress:m.progress||0,
+      completed:m.completed||false,
+      quizAnswers:(m.quizAnswers||[]).map(function(v){ return v==null?null:v; }),
+      startedAt:m.startedAt||null,
+      currentStep:m.currentStep||0
+    };
+  });
   return {
-    email,
-    firstName,
-    lastName,
-    xp,
-    level,
-    modules,
-    badges,
-    streak,
-    lastLogin,
-    perfectQuizzes,
+    email:email||'',
+    firstName:firstName||'',
+    lastName:lastName||'',
+    xp:xp||0,
+    level:level||1,
+    modules:cleanModules,
+    badges:badges||[],
+    streak:streak||0,
+    lastLogin:lastLogin||null,
+    perfectQuizzes:perfectQuizzes||0,
     dailyDone:dailyDone||{},
     questsClaimed:questsClaimed||{},
     wonChallenges:wonChallenges||0
@@ -2025,13 +2037,6 @@ function launchApp(){
   const av=document.getElementById('nav-avatar');
   if(av) av.textContent=(currentUser.firstName||'?')[0].toUpperCase();
   renderDashboard();
-  // Show quest dot if daily not done
-  const todayKey=getTodayKey();
-  const dailyDone=(currentUser.dailyDone||{})[todayKey];
-  if(dailyDone==null){
-    const btn=document.getElementById('nav-quetes-btn');
-    if(btn) btn.innerHTML='Quêtes <span style="display:inline-block;width:8px;height:8px;background:#EF4444;border-radius:50%;margin-left:4px;vertical-align:middle"></span>';
-  }
   showView('view-dashboard');
   showSection('modules');
   // Streak banner
@@ -3331,7 +3336,7 @@ async function renderAdmin(){
             (activeU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
             activeU.map(function(u){
               const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button><button class="btn-admin-makeadmin" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" data-isadmin="'+(u.isAdmin?'true':'false')+'" style="background:rgba(192,38,211,0.08);color:var(--magenta);border:1px solid rgba(192,38,211,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-left:4px">'+(u.isAdmin?'Retirer Admin':'Donner Admin')+'</button></td></tr>';
+              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
             }).join(''))+
           '</tbody>'+
         '</table>'+
@@ -3365,22 +3370,6 @@ async function renderAdmin(){
             renderAdminPanel();
           } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
         }, 'Supprimer le compte de '+name+' ?');
-      });
-    });
-    wrap.querySelectorAll('.btn-admin-makeadmin').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        const uid=btn.dataset.uid;
-        const name=btn.dataset.name;
-        const isAdmin=btn.dataset.isadmin==='true';
-        const action=isAdmin?'retirer les droits admin à':'rendre admin';
-        showConfirm('Voulez-vous '+action+' '+name+' ?', async function(){
-          btn.disabled=true; btn.textContent='...';
-          try {
-            await db.collection('users').doc(uid).update({isAdmin:!isAdmin});
-            showNotif(name+(isAdmin?' n\'est plus admin':' est maintenant admin'),'success');
-            renderAdminPanel();
-          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; }
-        });
       });
     });
     wrap.querySelectorAll('.btn-admin-approve').forEach(function(btn){

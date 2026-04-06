@@ -12,15 +12,15 @@ service cloud.firestore {
       return request.auth.uid == userId;
     }
 
-    // Reads the caller's own document to verify admin status.
-    // Uses exists() guard to avoid errors on first-ever sign-up.
+    // Reads the caller's own doc to verify admin status.
+    // exists() guard avoids errors on first sign-up (no doc yet).
     function isAdmin() {
       return isSignedIn()
         && exists(/databases/$(database)/documents/users/$(request.auth.uid))
         && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Returns true when the write does NOT touch isAdmin or approved.
+    // Returns true when the update does NOT touch isAdmin or approved.
     function notChangingProtectedFields() {
       return !request.resource.data.diff(resource.data)
                .affectedKeys()
@@ -31,38 +31,63 @@ service cloud.firestore {
 
     match /users/{userId} {
 
-      // Read: own document OR admin
-      allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
+      // READ: any signed-in user can read any user document.
+      // Needed for leaderboard, challenge opponent list, team member lookup.
+      allow read: if isSignedIn();
 
-      // Create: own document only; isAdmin and approved must be false (or absent)
+      // CREATE: own document only; isAdmin and approved must be absent or false.
       allow create: if isSignedIn() && isOwner(userId)
         && (!('isAdmin' in request.resource.data) || request.resource.data.isAdmin == false)
         && (!('approved' in request.resource.data) || request.resource.data.approved == false);
 
-      // Update: own document (cannot touch isAdmin / approved) OR admin (unrestricted)
+      // UPDATE: own doc (cannot change isAdmin / approved) OR admin (unrestricted).
       allow update: if isSignedIn() && (
         (isOwner(userId) && notChangingProtectedFields())
         || isAdmin()
       );
 
-      // Delete: admin only
+      // DELETE: admin only.
       allow delete: if isAdmin();
     }
 
     // ─── /challenges/{docId} ──────────────────────────────────────────────────
 
     match /challenges/{docId} {
-      // Any authenticated user can read challenges
+      // Any signed-in user can read challenges.
+      // (Client queries already filter by fromUid / recipient name.)
       allow read: if isSignedIn();
-      // Only admins can create / update / delete challenges
-      allow write: if isAdmin();
+
+      // Create: sender must identify themselves as fromUid.
+      allow create: if isSignedIn()
+        && request.resource.data.fromUid == request.auth.uid;
+
+      // Update / delete: any authenticated user.
+      // Participants update status/scores after a duel; either side can archive.
+      allow update, delete: if isSignedIn();
     }
 
     // ─── /teams/{teamId} ──────────────────────────────────────────────────────
 
     match /teams/{teamId} {
       allow read: if isSignedIn();
-      allow write: if isAdmin();
+
+      // Members can create a team where they are the first (and only) member.
+      allow create: if isSignedIn()
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.captainUid == request.auth.uid;
+
+      // Members or admin can update a team they belong to.
+      allow update: if isSignedIn() && (
+        isAdmin()
+        || resource.data.members.hasAny([request.auth.uid])
+        || request.resource.data.members.hasAny([request.auth.uid])
+      );
+
+      // Only captain or admin can delete a team.
+      allow delete: if isSignedIn() && (
+        isAdmin()
+        || resource.data.captainUid == request.auth.uid
+      );
     }
 
     // ─── /settings/{docId} ────────────────────────────────────────────────────
