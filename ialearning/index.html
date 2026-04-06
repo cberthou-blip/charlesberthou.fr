@@ -1917,11 +1917,11 @@ async function register(firstName,lastName,email,pass){
 }
 
 function saveCurrentUser(){
-  if(!currentUser||currentUser.isAdmin) return;
+  if(!currentUser||currentUser.isAdmin) return Promise.resolve();
   const fu=auth.currentUser;
-  if(!fu) return;
+  if(!fu) return Promise.resolve();
   const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=currentUser;
-  db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0},{merge:true})
+  return db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0},{merge:true})
     .catch(e=>console.error('saveCurrentUser:',e));
 }
 
