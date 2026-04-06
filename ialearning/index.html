@@ -2240,9 +2240,13 @@ function renderModuleView(){
   const modData=currentUser.modules[m.id]||{};
   const totalSteps=m.content.length+1+m.quiz.length+1;
   const prog=Math.round((currentStep/totalSteps)*100);
+  const isCompletionStep=currentStep>m.content.length+1+m.quiz.length;
   modData.progress=prog;
   currentUser.modules[m.id]=modData;
-  saveCurrentUser();
+  // Ne pas sauvegarder ici au step de completion (completed est encore false) :
+  // le bloc isComplete dans renderModuleStep() sauvegarde après avoir mis completed=true.
+  // Ne pas sauvegarder non plus si le module est déjà terminé (évite les écrasements inutiles).
+  if(!isCompletionStep && !modData.completed) saveCurrentUser();
   const iconMap={i:'background:linear-gradient(135deg,#4338CA,#7C3AED)',c:'background:linear-gradient(135deg,#06B6D4,#6366F1)',v:'background:linear-gradient(135deg,#C026D3,#7C3AED)',g:'background:linear-gradient(135deg,#059669,#06B6D4)'};
   const iconStyle=iconMap[m.color]||iconMap.i;
   document.getElementById('mod-header').innerHTML=
@@ -2269,6 +2273,7 @@ function renderModuleView(){
       '</div>'+
     '</div>';
   document.getElementById('btn-back-dash').addEventListener('click',function(){
+    saveCurrentUser();
     renderDashboard();
     showView('view-dashboard');
     showSection('modules');
