@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Helpers ──────────────────────────────────────────────────────────────
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Reads the caller's own document to verify admin status.
+    // Uses exists() guard to avoid errors on first-ever sign-up.
+    function isAdmin() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Returns true when the write does NOT touch isAdmin or approved.
+    function notChangingProtectedFields() {
+      return !request.resource.data.diff(resource.data)
+               .affectedKeys()
+               .hasAny(['isAdmin', 'approved']);
+    }
+
+    // ─── /users/{userId} ──────────────────────────────────────────────────────
+
+    match /users/{userId} {
+
+      // Read: own document OR admin
+      allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
+
+      // Create: own document only; isAdmin and approved must be false (or absent)
+      allow create: if isSignedIn() && isOwner(userId)
+        && (!('isAdmin' in request.resource.data) || request.resource.data.isAdmin == false)
+        && (!('approved' in request.resource.data) || request.resource.data.approved == false);
+
+      // Update: own document (cannot touch isAdmin / approved) OR admin (unrestricted)
+      allow update: if isSignedIn() && (
+        (isOwner(userId) && notChangingProtectedFields())
+        || isAdmin()
+      );
+
+      // Delete: admin only
+      allow delete: if isAdmin();
+    }
+
+    // ─── /challenges/{docId} ──────────────────────────────────────────────────
+
+    match /challenges/{docId} {
+      // Any authenticated user can read challenges
+      allow read: if isSignedIn();
+      // Only admins can create / update / delete challenges
+      allow write: if isAdmin();
+    }
+
+    // ─── /teams/{teamId} ──────────────────────────────────────────────────────
+
+    match /teams/{teamId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ─── /settings/{docId} ────────────────────────────────────────────────────
+
+    match /settings/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ─── Catch-all: deny everything else ──────────────────────────────────────
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

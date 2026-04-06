@@ -936,6 +936,22 @@ body::before {
   .cb-heading{font-size:1rem;} .cb-text{font-size:0.88rem;} .quiz-q{font-size:0.92rem;}
   .admin-wrap{overflow-x:auto;}
 }
+
+/* Custom confirm modal */
+.confirm-overlay{position:fixed;inset:0;background:rgba(10,14,30,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.confirm-overlay.open{opacity:1;pointer-events:all;}
+.confirm-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:32px 28px;max-width:380px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.confirm-box h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:12px;}
+.confirm-box p{font-size:0.88rem;color:var(--text3);margin-bottom:24px;line-height:1.5;}
+.confirm-box-btns{display:flex;gap:10px;justify-content:center;}
+
+/* Skeleton loader */
+#app-skeleton{position:fixed;inset:0;background:var(--bg,#f0f2f8);z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.3s;}
+#app-skeleton.hidden{opacity:0;pointer-events:none;}
+.sk-logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--indigo,#4338CA),var(--violet,#7C3AED));display:flex;align-items:center;justify-content:center;}
+.sk-spinner{width:36px;height:36px;border:3px solid rgba(99,102,241,0.2);border-top-color:var(--indigo,#4338CA);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.sk-text{font-family:'Outfit',sans-serif;font-size:0.85rem;color:var(--text3,#8892b0);font-weight:500;}
 </style>
 <meta property="og:title" content="IA cadémie — Montez en compétences, et en niveau">
 <meta property="og:description" content="Formation IA gamifiée : 10 modules, quiz chronométrés, classement, défis entre collègues et mode équipe. 100% gratuit.">
@@ -946,6 +962,12 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
+
+<div id="app-skeleton">
+  <div class="sk-logo"><img src="../favicon.svg" style="width:28px;height:28px;object-fit:contain;"/></div>
+  <div class="sk-spinner"></div>
+  <div class="sk-text">Chargement…</div>
+</div>
 
 <!-- VUE LANDING (publique) -->
 <div class="view active" id="view-landing">
@@ -1828,6 +1850,18 @@ let dailyQStep = 0;
 // ============================================================
 // UTILS
 // ============================================================
+function showConfirm(msg, onOk, title){
+  const overlay=document.getElementById('confirm-overlay');
+  document.getElementById('confirm-msg').textContent=msg;
+  document.getElementById('confirm-title').textContent=title||'Confirmation';
+  overlay.classList.add('open');
+  const ok=document.getElementById('confirm-ok');
+  const cancel=document.getElementById('confirm-cancel');
+  function close(){ overlay.classList.remove('open'); ok.replaceWith(ok.cloneNode(true)); cancel.replaceWith(cancel.cloneNode(true)); }
+  document.getElementById('confirm-ok').addEventListener('click',function(){ close(); onOk(); });
+  document.getElementById('confirm-cancel').addEventListener('click',function(){ close(); });
+}
+
 function showNotif(msg,type='success'){
   const n=document.getElementById('notif');
   n.textContent=''; n.className='';
@@ -1915,13 +1949,21 @@ async function register(firstName,lastName,email,pass){
   }
 }
 
+let _saveQueue = Promise.resolve();
 function saveCurrentUser(){
   if(!currentUser||currentUser.isAdmin) return Promise.resolve();
   const fu=auth.currentUser;
   if(!fu) return Promise.resolve();
   const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=currentUser;
-  return db.collection('users').doc(fu.uid).set({email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0},{merge:true})
-    .catch(e=>console.error('saveCurrentUser:',e));
+  const data={email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0};
+  const p=_saveQueue.then(function(){
+    return db.collection('users').doc(fu.uid).set(data,{merge:true});
+  }).catch(function(e){
+    console.error('saveCurrentUser:',e);
+    showNotif('⚠️ Sauvegarde échouée — vos données seront synchronisées à la reconnexion','error');
+  });
+  _saveQueue=p;
+  return p;
 }
 
 function checkStreak(){
@@ -2034,7 +2076,8 @@ function confirmLeaveModule(){
   const isComplete=currentStep>totalContent+1+m.quiz.length;
   const inQuiz=currentStep>totalContent+1&&!isComplete;
   if(inQuiz){
-    if(!confirm('Tu es en plein quiz ! Quitter maintenant ne sauvegarde pas tes réponses en cours. Continuer quand même ?')) return;
+    showConfirm('Quitter maintenant ne sauvegarde pas tes réponses en cours. Continuer quand même ?', function(){ renderDashboard();showView('view-dashboard');showSection('modules'); }, 'Tu es en plein quiz !');
+    return;
   }
   renderDashboard();showView('view-dashboard');showSection('modules');
 }
@@ -2205,13 +2248,14 @@ async function renderChallenges(){
         dbtn.className='btn btn-ghost btn-sm';
         dbtn.style.cssText='border-color:rgba(156,163,175,0.4);color:var(--text3);font-size:0.75rem;padding:4px 10px;';
         dbtn.textContent='🗑️ Supprimer';
-        dbtn.addEventListener('click',async function(){
-          if(!confirm('Supprimer ce défi de votre liste ?')) return;
-          dbtn.disabled=true;
-          try {
-            await db.collection('challenges').doc(c.id).delete();
-            renderChallenges();
-          } catch(e){ dbtn.disabled=false; showNotif('Erreur : '+e.message,'error'); }
+        dbtn.addEventListener('click',function(){
+          showConfirm('Cette action est irréversible.', async function(){
+            dbtn.disabled=true;
+            try {
+              await db.collection('challenges').doc(c.id).delete();
+              renderChallenges();
+            } catch(e){ dbtn.disabled=false; showNotif('Erreur : '+e.message,'error'); }
+          }, 'Supprimer ce défi ?');
         });
         card.appendChild(dbtn);
       }
@@ -2228,9 +2272,13 @@ async function renderChallenges(){
 function openModule(id){
   currentModule=MODULES.find(m=>m.id===id);
   if(!currentModule) return;
-  currentStep=0;
   if(!currentUser.modules[id]) currentUser.modules[id]={progress:0,completed:false,quizAnswers:[]};
   if(!currentUser.modules[id].startedAt) currentUser.modules[id].startedAt=Date.now();
+  // Restore last step (but not completion screen — let user see it fresh)
+  const saved=currentUser.modules[id].currentStep||0;
+  const m=currentModule;
+  const maxStep=m.content.length+1+m.quiz.length; // last quiz question step
+  currentStep=(saved>0&&saved<=maxStep)?saved:0;
   renderModuleView();
   showView('view-module');
 }
@@ -2242,6 +2290,7 @@ function renderModuleView(){
   const prog=Math.round((currentStep/totalSteps)*100);
   const isCompletionStep=currentStep>m.content.length+1+m.quiz.length;
   modData.progress=prog;
+  if(!isCompletionStep) modData.currentStep=currentStep;
   currentUser.modules[m.id]=modData;
   // Ne pas sauvegarder ici au step de completion (completed est encore false) :
   // le bloc isComplete dans renderModuleStep() sauvegarde après avoir mis completed=true.
@@ -2679,13 +2728,14 @@ async function renderTeams(){
 }).join('')+
         '</div>';
       wrap.appendChild(div);
-      document.getElementById('btn-leave-team').addEventListener('click',async function(){
-        if(!confirm('Quitter l\'équipe '+myTeam.name+' ?')) return;
-        const newMembers=(myTeam.members||[]).filter(uid=>uid!==fu.uid);
-        if(newMembers.length===0){ await db.collection('teams').doc(myTeam.id).delete(); }
-        else { await db.collection('teams').doc(myTeam.id).update({members:newMembers}); }
-        showNotif('Vous avez quitté l\'équipe','success');
-        renderTeams();
+      document.getElementById('btn-leave-team').addEventListener('click',function(){
+        showConfirm('Vous allez quitter l\'équipe '+myTeam.name+'.', async function(){
+          const newMembers=(myTeam.members||[]).filter(uid=>uid!==fu.uid);
+          if(newMembers.length===0){ await db.collection('teams').doc(myTeam.id).delete(); }
+          else { await db.collection('teams').doc(myTeam.id).update({members:newMembers}); }
+          showNotif('Vous avez quitté l\'équipe','success');
+          renderTeams();
+        }, 'Quitter l\'équipe ?');
       });
       // Invite button
       document.getElementById('btn-invite-team').addEventListener('click',async function(){
@@ -2879,7 +2929,7 @@ async function renderLeaderboard(){
         '<div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:160px">'+
           '<div style="font-size:1.5rem">'+icons[pos]+'</div>'+
           '<div style="width:52px;height:52px;border-radius:50%;background:'+(isMe?'var(--grad-accent)':colors[pos])+';display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.2)">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+
-          '<div style="font-weight:800;font-size:0.85rem;color:var(--navy);text-align:center">'+u.firstName+(capTeam?' <span title="Capitaine de '+capTeam+'">👑</span>':'')+'</div>'+
+          '<div style="font-weight:800;font-size:0.85rem;color:var(--navy);text-align:center">'+u.firstName+(u.lastName?' '+u.lastName[0]+'.':'')+(capTeam?' <span title="Capitaine de '+capTeam+'">👑</span>':'')+'</div>'+
           (capTeam?'<div style="font-size:0.7rem;color:var(--magenta);font-weight:600">'+capTeam+'</div>':'')+
           '<div style="height:'+podiumHeights[pos]+';width:100%;background:'+colors[pos]+';border-radius:8px 8px 0 0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.88rem">'+(u.xp||0)+' XP</div>'+
         '</div>';
@@ -2928,7 +2978,7 @@ async function renderLeaderboard(){
         '<div class="lb-rank '+(rankCls[i]||'')+'>'+(rankIcons[i]||('#'+(i+1)))+'</div>'+
         '<div class="lb-avatar" style="'+(isMe?'background:var(--grad-accent)':'')+'">'+((u.firstName||'?')[0].toUpperCase())+'</div>'+
         '<div class="lb-info">'+
-          '<div class="lb-name">'+(u.firstName||'')+
+          '<div class="lb-name">'+(u.firstName||'')+(u.lastName?' '+u.lastName[0]+'.':'')+
             (capTeam?' <span title="Capitaine de '+capTeam+'" style="font-size:0.8rem">👑</span> <span style="font-size:0.72rem;color:var(--magenta);font-weight:600">'+capTeam+'</span>':'')+
             (isMe?' <span style="font-size:0.72rem;background:rgba(99,102,241,0.15);color:var(--indigo-mid);padding:2px 7px;border-radius:10px;margin-left:4px">Vous</span>':'')+
           '</div>'+
@@ -3267,46 +3317,49 @@ async function renderAdmin(){
       '</div>';
     // Admin action buttons
     wrap.querySelectorAll('.btn-admin-reset').forEach(function(btn){
-      btn.addEventListener('click',async function(){
+      btn.addEventListener('click',function(){
         const uid=btn.dataset.uid;
         const name=btn.dataset.name;
-        if(!confirm('Réinitialiser le parcours de '+name+' ? (XP, modules, badges remis à zéro)')) return;
-        btn.disabled=true; btn.textContent='...';
-        try {
-          await db.collection('users').doc(uid).update({
-            xp:0, level:1, modules:{}, badges:[], streak:0, lastActive:null, perfectQuizzes:0
-          });
-          showNotif(name+' : parcours réinitialisé','success');
-          renderAdminPanel();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Réinit.'; }
+        showConfirm('XP, modules et badges remis à zéro. Action irréversible.', async function(){
+          btn.disabled=true; btn.textContent='...';
+          try {
+            await db.collection('users').doc(uid).update({
+              xp:0, level:1, modules:{}, badges:[], streak:0, lastActive:null, perfectQuizzes:0
+            });
+            showNotif(name+' : parcours réinitialisé','success');
+            renderAdminPanel();
+          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='↺ Réinit.'; }
+        }, 'Réinitialiser le parcours de '+name+' ?');
       });
     });
     wrap.querySelectorAll('.btn-admin-delete').forEach(function(btn){
-      btn.addEventListener('click',async function(){
+      btn.addEventListener('click',function(){
         const uid=btn.dataset.uid;
         const name=btn.dataset.name;
-        if(!confirm('Supprimer définitivement le compte de '+name+' ? (irréversible)')) return;
-        btn.disabled=true; btn.textContent='...';
-        try {
-          await db.collection('users').doc(uid).delete();
-          showNotif(name+' : compte supprimé','success');
-          renderAdminPanel();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+        showConfirm('Cette suppression est définitive et irréversible.', async function(){
+          btn.disabled=true; btn.textContent='...';
+          try {
+            await db.collection('users').doc(uid).delete();
+            showNotif(name+' : compte supprimé','success');
+            renderAdminPanel();
+          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+        }, 'Supprimer le compte de '+name+' ?');
       });
     });
     wrap.querySelectorAll('.btn-admin-makeadmin').forEach(function(btn){
-      btn.addEventListener('click',async function(){
+      btn.addEventListener('click',function(){
         const uid=btn.dataset.uid;
         const name=btn.dataset.name;
         const isAdmin=btn.dataset.isadmin==='true';
         const action=isAdmin?'retirer les droits admin à':'rendre admin';
-        if(!confirm('Voulez-vous '+action+' '+name+' ?')) return;
-        btn.disabled=true; btn.textContent='...';
-        try {
-          await db.collection('users').doc(uid).update({isAdmin:!isAdmin});
-          showNotif(name+(isAdmin?' n\'est plus admin':' est maintenant admin'),'success');
-          renderAdminPanel();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; }
+        showConfirm('Voulez-vous '+action+' '+name+' ?', async function(){
+          btn.disabled=true; btn.textContent='...';
+          try {
+            await db.collection('users').doc(uid).update({isAdmin:!isAdmin});
+            showNotif(name+(isAdmin?' n\'est plus admin':' est maintenant admin'),'success');
+            renderAdminPanel();
+          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; }
+        });
       });
     });
     wrap.querySelectorAll('.btn-admin-approve').forEach(function(btn){
@@ -3322,17 +3375,18 @@ async function renderAdmin(){
       });
     });
     wrap.querySelectorAll('.btn-admin-reject').forEach(function(btn){
-      btn.addEventListener('click',async function(){
+      btn.addEventListener('click',function(){
         const uid=btn.dataset.uid;
         const name=btn.dataset.name;
-        if(!confirm('Refuser et supprimer la demande de '+name+' ?')) return;
-        btn.disabled=true; btn.textContent='...';
-        try {
-          await db.collection('users').doc(uid).delete();
-          // Also delete Firebase Auth user - not possible client-side, just remove Firestore doc
-          showNotif(name+' : demande refusée','warn');
-          renderAdminPanel();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Refuser'; }
+        showConfirm('La demande de '+name+' sera supprimée définitivement.', async function(){
+          btn.disabled=true; btn.textContent='...';
+          try {
+            await db.collection('users').doc(uid).delete();
+            // Also delete Firebase Auth user - not possible client-side, just remove Firestore doc
+            showNotif(name+' : demande refusée','warn');
+            renderAdminPanel();
+          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Refuser'; }
+        }, 'Refuser la demande de '+name+' ?');
       });
     });
     // Video management section
@@ -3447,16 +3501,17 @@ async function renderAdmin(){
       });
     });
     wrap.querySelectorAll('.btn-admin-delete-team').forEach(function(btn){
-      btn.addEventListener('click',async function(){
+      btn.addEventListener('click',function(){
         const tid=btn.dataset.id;
         const name=btn.dataset.name;
-        if(!confirm('Supprimer définitivement l\'équipe "'+name+'" ?')) return;
-        btn.disabled=true; btn.textContent='...';
-        try {
-          await db.collection('teams').doc(tid).delete();
-          showNotif('Équipe "'+name+'" supprimée','success');
-          renderAdminPanel();
-        } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+        showConfirm('L\'équipe "'+name+'" sera supprimée définitivement.', async function(){
+          btn.disabled=true; btn.textContent='...';
+          try {
+            await db.collection('teams').doc(tid).delete();
+            showNotif('Équipe "'+name+'" supprimée','success');
+            renderAdminPanel();
+          } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✕ Suppr.'; }
+        }, 'Supprimer l\'équipe "'+name+'" ?');
       });
     });
 
@@ -3553,8 +3608,8 @@ function init(){
   document.getElementById('btn-profile-back').addEventListener('click',function(){
     showView('view-dashboard');
   });
-  document.getElementById('btn-profile-logout').addEventListener('click',async function(){
-    if(confirm('Se déconnecter ?')){ await saveCurrentUser(); auth.signOut(); currentUser=null; showView('view-landing'); }
+  document.getElementById('btn-profile-logout').addEventListener('click',function(){
+    showConfirm('Votre progression est sauvegardée automatiquement.', async function(){ await saveCurrentUser(); auth.signOut(); currentUser=null; showView('view-landing'); }, 'Se déconnecter ?');
   });
   document.getElementById('btn-pending-logout').addEventListener('click',async function(){
     await saveCurrentUser(); auth.signOut(); currentUser=null; showView('view-landing');
@@ -3624,19 +3679,34 @@ function init(){
             const vsnap=await db.collection('settings').doc('videos').get();
             if(vsnap.exists) customVideos=vsnap.data();
           } catch(e){ customVideos={}; }
+          document.getElementById('app-skeleton').classList.add('hidden');
           if(currentUser.isAdmin){ launchAdmin(); }
-          else if(currentUser.approved===false){ showView('view-pending'); }
+          else if(currentUser.approved===false){
+            showView('view-pending');
+            // Écouter en temps réel l'approbation du compte
+            const unsub=db.collection('users').doc(firebaseUser.uid).onSnapshot(function(doc){
+              if(doc.exists&&doc.data().approved===true){
+                unsub();
+                currentUser=doc.data();
+                checkStreak();
+                launchApp();
+              }
+            });
+          }
           else { checkStreak(); launchApp(); }
         } else {
           auth.signOut();
+          document.getElementById('app-skeleton').classList.add('hidden');
           showView('view-landing');
         }
       } catch(e){
         console.error('Auth state error:',e);
+        document.getElementById('app-skeleton').classList.add('hidden');
         showView('view-landing');
       }
     } else {
       currentUser=null;
+      document.getElementById('app-skeleton').classList.add('hidden');
       showView('view-landing');
     }
   });
@@ -3644,5 +3714,16 @@ function init(){
 
 document.addEventListener('DOMContentLoaded',init);
 </script>
+
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h3 id="confirm-title">Confirmation</h3>
+    <p id="confirm-msg"></p>
+    <div class="confirm-box-btns">
+      <button class="btn btn-ghost" id="confirm-cancel">Annuler</button>
+      <button class="btn btn-primary" id="confirm-ok">Confirmer</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
