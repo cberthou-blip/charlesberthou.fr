@@ -3066,6 +3066,10 @@ function renderDailyChallenge(){
       const prev=Array.isArray(existing)?existing.filter(function(v){return v!==null&&v!==undefined;}):(existing!=null?[existing]:[]);
       const arr=prev.slice(0,dailyQStep);
       arr.push(chosen);
+      // Mettre à jour dailyDone EN MÉMOIRE avant tout appel addXP/awardBadge
+      // (ces fonctions appellent saveCurrentUser() en fire-and-forget :
+      // si dailyDone n'est pas encore mis à jour, leurs saves écraseraient la progression)
+      currentUser.dailyDone[todayKey]=arr;
       if(correct){ addXP(30); showNotif('+30 XP — Bonne réponse !','success'); }
       else { showNotif('Raté ! '+(dailyQStep<2?'Question suivante...':'Revenez demain.'),'warn'); }
       if(dailyQStep>=2){
@@ -3075,14 +3079,12 @@ function renderDailyChallenge(){
         const didYesterday=(currentUser.dailyDone||{})[yesterdayKey]!=null;
         currentUser.streak=didYesterday?(currentUser.streak||0)+1:1;
         if(currentUser.streak>=7) awardBadge('streak');
-        currentUser.dailyDone[todayKey]=arr;
         await saveCurrentUser();
         // Update dashboard streak display
         const dhStreak=document.getElementById('dh-streak');
         if(dhStreak) dhStreak.innerHTML=currentUser.streak+'<span>🔥</span>';
         setTimeout(function(){ dailyQStep=0; renderDailyChallenge(); },1500);
       } else {
-        currentUser.dailyDone[todayKey]=arr;
         await saveCurrentUser();
         dailyQStep++;
         setTimeout(function(){ renderDailyChallenge(); },1500);
