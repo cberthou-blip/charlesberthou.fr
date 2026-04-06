@@ -2979,7 +2979,16 @@ function renderDailyChallenge(){
   const rawDone=(currentUser.dailyDone||{})[todayKey];
   const dailyDoneArr=Array.isArray(rawDone)?rawDone:(rawDone!=null?[rawDone,null,null]:null);
 
-  if(dailyDoneArr!==null){
+  // Only "fully done" when all 3 questions have a recorded answer
+  const isFullyDone=dailyDoneArr!==null && dailyDoneArr.filter(function(v){ return v!==null&&v!==undefined; }).length>=qs.length;
+
+  // Restore step from saved progress so logout/login doesn't reset mid-series
+  if(dailyDoneArr!==null && !isFullyDone){
+    const answered=dailyDoneArr.filter(function(v){ return v!==null&&v!==undefined; }).length;
+    if(dailyQStep<answered) dailyQStep=answered;
+  }
+
+  if(isFullyDone){
     const correctCount=dailyDoneArr.filter(function(a,i){ return i<qs.length && a===qs[i].ans; }).length;
     const totalXP=correctCount*30;
     wrap.innerHTML=
