@@ -789,8 +789,11 @@ body::before {
    RESPONSIVE
 ============================================================ */
 @media(max-width:768px){
-  .navbar { padding:0 16px; }
-  .nav-center { display:none; }
+  .navbar { padding:0 16px; flex-wrap:wrap; height:auto; padding-bottom:4px; }
+  .nav-logo { order:1; }
+  .nav-right { order:2; }
+  .nav-center { order:3; width:100%; overflow-x:auto; padding:4px 0 6px; border-top:1px solid var(--border); margin-top:4px; scrollbar-width:none; -ms-overflow-style:none; }
+  .nav-center::-webkit-scrollbar { display:none; }
   .dashboard-header { padding:24px 16px 40px; }
   .dashboard-body { padding:20px 16px; }
   .dh-stats { gap:10px; }
@@ -918,7 +921,7 @@ body::before {
   .landing-hero h1{font-size:1.8rem;}
 }
 @media(max-width:640px){
-  .navbar{padding:0 16px;height:56px;} .nav-center{display:none;} .nav-xp{font-size:0.8rem;}
+  .navbar{padding:0 16px;height:auto;padding-bottom:4px;} .nav-center{order:3;width:100%;overflow-x:auto;padding:4px 0 6px;border-top:1px solid var(--border);margin-top:4px;scrollbar-width:none;-ms-overflow-style:none;} .nav-center::-webkit-scrollbar{display:none;} .nav-xp{font-size:0.8rem;}
   .dashboard-header{padding:24px 16px 32px;} .dh-stats{grid-template-columns:1fr 1fr;gap:10px;} .dh-stat-val{font-size:1.6rem;}
   .dashboard-body{padding:20px 16px;} .modules-grid{grid-template-columns:1fr;} .badges-grid{grid-template-columns:repeat(2,1fr);}
   .module-body{padding:20px 16px;} .module-header{padding:24px 16px;} .mh-title{font-size:1.2rem;} .content-block{padding:20px 16px;overflow-x:hidden;}
@@ -2859,7 +2862,7 @@ async function renderLeaderboard(){
     // Podium top 3
     const top3=all.slice(0,3);
     const podiumOrder=[1,0,2]; // silver, gold, bronze display order
-    const podiumHeights=['60px','90px','45px'];
+    const podiumHeights=['90px','60px','45px']; // indexed by rank: 0=gold tallest, 1=silver medium, 2=bronze shortest
     let podiumHTML='<div style="display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-bottom:36px;padding:0 20px">';
     podiumOrder.forEach(function(pos){
       if(!top3[pos]) return;
@@ -3182,7 +3185,7 @@ async function renderAdmin(){
         '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
         '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
         '<div class="admin-kpi green"><div class="ak-val">'+globalCompletionPct+'%</div><div class="ak-lbl">Taux de complétion global</div></div>'+
-        '<div class="admin-kpi"><div class="ak-val">'+(globalAvgMin!==null?globalAvgMin+' min':'—')+'</div><div class="ak-lbl">Temps moyen / module</div></div>'+
+        '<div class="admin-kpi"><div class="ak-val">'+(globalAvgMin===null?'—':globalAvgMin===0?'< 1 min':globalAvgMin+' min')+'</div><div class="ak-lbl">Temps moyen / module</div></div>'+
       '</div>'+
       (function(){
         let allModuleAvgTimes=[];
@@ -3206,7 +3209,7 @@ async function renderAdmin(){
               '</div>'+
               '<span style="font-size:0.78rem;font-weight:700;color:'+color+';font-family:JetBrains Mono,monospace;min-width:32px">'+pct+'%</span>'+
             '</div></td>'+
-            '<td style="font-family:JetBrains Mono,monospace;font-size:0.82rem;font-weight:700;color:var(--text2)">'+(avgMin!==null?avgMin+' min':'—')+'</td>'+
+            '<td style="font-family:JetBrains Mono,monospace;font-size:0.82rem;font-weight:700;color:var(--text2)">'+(avgMin===null?'—':avgMin===0?'< 1 min':avgMin+' min')+'</td>'+
           '</tr>';
         });
         return '<div class="section-title" style="margin:28px 0 16px">Statistiques par module</div>'+
