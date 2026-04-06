@@ -1950,14 +1950,35 @@ async function register(firstName,lastName,email,pass){
 }
 
 let _saveQueue = Promise.resolve();
+function buildUserSaveData(user){
+  if(!user) return null;
+  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=user;
+  return {
+    email,
+    firstName,
+    lastName,
+    xp,
+    level,
+    modules,
+    badges,
+    streak,
+    lastLogin,
+    perfectQuizzes,
+    dailyDone:dailyDone||{},
+    questsClaimed:questsClaimed||{},
+    wonChallenges:wonChallenges||0
+  };
+}
 function saveCurrentUser(){
   if(!currentUser||currentUser.isAdmin) return Promise.resolve();
   const fu=auth.currentUser;
   if(!fu) return Promise.resolve();
-  const {email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone,questsClaimed,wonChallenges}=currentUser;
-  const data={email,firstName,lastName,xp,level,modules,badges,streak,lastLogin,perfectQuizzes,dailyDone:dailyDone||{},questsClaimed:questsClaimed||{},wonChallenges:wonChallenges||0};
+  const uid=fu.uid;
+  const fallbackData=buildUserSaveData(currentUser);
   const p=_saveQueue.then(function(){
-    return db.collection('users').doc(fu.uid).set(data,{merge:true});
+    const sameUser=auth.currentUser&&auth.currentUser.uid===uid;
+    const liveData=sameUser&&currentUser&&!currentUser.isAdmin?buildUserSaveData(currentUser):null;
+    return db.collection('users').doc(uid).set(liveData||fallbackData,{merge:true});
   }).catch(function(e){
     console.error('saveCurrentUser:',e);
     showNotif('⚠️ Sauvegarde échouée — vos données seront synchronisées à la reconnexion','error');
