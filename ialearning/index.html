@@ -51,6 +51,8 @@
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
+html { overflow-x: hidden; }
+
 body {
   font-family: 'Outfit', sans-serif;
   background: var(--bg);
@@ -2957,10 +2959,13 @@ function renderProfile(){
   const mDone=Object.keys(mods).filter(function(k){ return mods[k]&&mods[k].completed; }).length;
   const grid=document.getElementById('profile-stats-grid');
   const statsSection=grid&&grid.closest('.profile-section');
+  const profileNavXp=document.querySelector('#view-profile .nav-xp');
   if(u.isAdmin){
     if(statsSection) statsSection.style.display='none';
+    if(profileNavXp) profileNavXp.style.display='none';
   } else {
     if(statsSection) statsSection.style.display='';
+    if(profileNavXp) profileNavXp.style.display='';
     grid.innerHTML=
       '<div class="profile-stat"><div class="profile-stat-val">'+u.level+'</div><div class="profile-stat-lbl">Niveau</div></div>'+
       '<div class="profile-stat"><div class="profile-stat-val">'+(u.xp||0)+'</div><div class="profile-stat-lbl">XP Total</div></div>'+
@@ -3419,16 +3424,16 @@ async function renderAdmin(){
         });
         return '<div class="section-title" style="margin:28px 0 16px">Statistiques par module</div>'+
           '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:28px">'+
-            '<table class="admin-table">'+
+            '<div class="admin-table-wrap"><table class="admin-table">'+
               '<thead><tr><th>Module</th><th>Commencé</th><th>Terminé</th><th>Taux de complétion</th><th>Temps moyen</th></tr></thead>'+
               '<tbody>'+moduleStats.join('')+'</tbody>'+
-            '</table>'+
+            '</table></div>'+
           '</div>';
       }())+
       (pendingU.length>0 ?
         '<div style="background:rgba(245,158,11,0.06);border:1.5px solid rgba(245,158,11,0.3);border-radius:var(--radius-lg);padding:20px;margin-bottom:28px">'+
           '<div style="font-weight:800;color:#92400E;margin-bottom:12px;font-size:0.9rem">⏳ Demandes d\'inscription en attente ('+pendingU.length+')</div>'+
-          '<table class="admin-table" style="background:transparent"><thead><tr><th>Prénom</th><th>Email</th><th>Actions</th></tr></thead><tbody>'+
+          '<div class="admin-table-wrap"><table class="admin-table" style="background:transparent"><thead><tr><th>Prénom</th><th>Email</th><th>Actions</th></tr></thead><tbody>'+
           pendingU.map(function(u){
             return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td>'+
               '<td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td>'+
@@ -3437,7 +3442,7 @@ async function renderAdmin(){
                 '<button class="btn-admin-reject" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Refuser</button>'+
               '</td></tr>';
           }).join('')+
-          '</tbody></table></div>'
+          '</tbody></table></div></div>'
       : '')+
       '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
