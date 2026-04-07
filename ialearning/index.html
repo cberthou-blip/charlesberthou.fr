@@ -2036,6 +2036,15 @@ function updateNavXP(){
 // LAUNCH
 // ============================================================
 function launchApp(){
+  // Restaurer la navbar apprenant (au cas où un admin était connecté avant)
+  ['nav-dashboard','nav-badges-btn','nav-defis-btn','nav-classement-btn','nav-quetes-btn','nav-equipes-btn'].forEach(function(id){
+    const el=document.getElementById(id);
+    if(el) el.style.display='';
+  });
+  const adminBtn=document.getElementById('nav-admin-btn');
+  if(adminBtn) adminBtn.style.display='none';
+  const xpEl=document.getElementById('nav-xp-val');
+  if(xpEl) xpEl.closest('.nav-xp').style.display='';
   updateNavXP();
   const av=document.getElementById('nav-avatar');
   if(av) av.textContent=(currentUser.firstName||'?')[0].toUpperCase();
