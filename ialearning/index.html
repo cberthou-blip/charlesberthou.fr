@@ -961,6 +961,8 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('BsM09E6NSTqmwTwI6');</script>
 </head>
 <body>
 
@@ -3483,7 +3485,7 @@ async function renderAdmin(){
             return '<tr><td><strong>'+u.firstName+' '+u.lastName+'</strong></td>'+
               '<td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td>'+
               '<td>'+
-                '<button class="btn-admin-approve" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" style="background:rgba(16,185,129,0.1);color:#065F46;border:1px solid rgba(16,185,129,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✓ Approuver</button>'+
+                '<button class="btn-admin-approve" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" data-email="'+u.email+'" style="background:rgba(16,185,129,0.1);color:#065F46;border:1px solid rgba(16,185,129,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✓ Approuver</button>'+
                 '<button class="btn-admin-reject" data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Refuser</button>'+
               '</td></tr>';
           }).join('')+
@@ -3556,9 +3558,11 @@ async function renderAdmin(){
       btn.addEventListener('click',async function(){
         const uid=btn.dataset.uid;
         const name=btn.dataset.name;
+        const email=btn.dataset.email;
         btn.disabled=true; btn.textContent='...';
         try {
           await db.collection('users').doc(uid).update({approved:true});
+          emailjs.send('service_09gzhyn','pqbikeb',{to_email:email,to_name:name}).catch(function(err){console.warn('EmailJS:',err);});
           showNotif(name+' : accès approuvé ✓','success');
           renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✓ Approuver'; }
