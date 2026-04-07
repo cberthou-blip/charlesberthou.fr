@@ -762,6 +762,8 @@ body::before {
 .admin-table td { padding:13px 14px; border-bottom:1px solid var(--border); color:var(--text2); }
 .admin-table tr:hover td { background:var(--surface2); }
 .admin-table tr:last-child td { border-bottom:none; }
+.admin-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.admin-cell-actions { display:flex; flex-wrap:wrap; gap:4px; }
 
 /* Duel */
 .duel-arena {
@@ -3369,7 +3371,7 @@ async function renderAdmin(){
       : '')+
       '<div class="section-title" style="margin-bottom:16px">Apprenants</div>'+
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
-        '<table class="admin-table">'+
+        '<div class="admin-table-wrap"><table class="admin-table">'+
           '<thead><tr>'+
             '<th>Prénom</th><th>Email</th><th>XP</th><th>Niveau</th><th>Modules</th><th>Badges</th><th>Actions</th>'+
           '</tr></thead>'+
@@ -3377,10 +3379,10 @@ async function renderAdmin(){
             (activeU.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:2rem">Aucun apprenant.</td></tr>':
             activeU.map(function(u){
               const mDone=Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length;
-              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></td></tr>';
+              return '<tr data-uid="'+u.uid+'" data-name="'+(u.firstName||'')+'"><td><strong>'+u.firstName+' '+u.lastName+'</strong></td><td style="color:var(--text3);font-size:0.82rem">'+u.email+'</td><td><span style="font-family:JetBrains Mono,monospace;font-weight:700;color:var(--indigo-mid)">'+u.xp+'</span></td><td>'+u.level+'</td><td>'+mDone+' / 10</td><td>'+(u.badges||[]).length+'</td><td><div class="admin-cell-actions"><button class="btn-admin-reset" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(245,158,11,0.1);color:#B45309;border:1px solid rgba(245,158,11,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">↺ Réinit.</button><button class="btn-admin-delete" data-uid="'+u.uid+'" data-name="'+(u.firstName||'Cet apprenant')+'" style="background:rgba(239,68,68,0.1);color:#B91C1C;border:1px solid rgba(239,68,68,0.3);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button></div></td></tr>';
             }).join(''))+
           '</tbody>'+
-        '</table>'+
+        '</table></div>'+
       '</div>';
     // Admin action buttons
     wrap.querySelectorAll('.btn-admin-reset').forEach(function(btn){
@@ -3469,7 +3471,7 @@ async function renderAdmin(){
         teamsHtml+='<div style="color:var(--text3);font-size:0.88rem;padding:16px">Aucune équipe créée.</div>';
       } else {
         teamsHtml+='<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">'+
-          '<table class="admin-table"><thead><tr><th>Équipe</th><th>Membres</th><th>Capitaine</th><th>XP cumulés</th><th>Actions</th></tr></thead><tbody>';
+          '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Équipe</th><th>Membres</th><th>Capitaine</th><th>XP cumulés</th><th>Actions</th></tr></thead><tbody>';
         for(const t of teams){
           const memberCount=(t.members||[]).length;
           teamsHtml+='<tr>'+
@@ -3477,14 +3479,14 @@ async function renderAdmin(){
             '<td>'+memberCount+'</td>'+
             '<td>'+(t.createdByName||'—')+'</td>'+
             '<td>—</td>'+
-            '<td>'+
-              '<button class="btn-admin-rename-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(99,102,241,0.08);color:var(--indigo);border:1px solid rgba(99,102,241,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">✏️ Renommer</button>'+
-              '<button class="btn-admin-captain-team" data-id="'+t.id+'" data-name="'+t.name+'" data-members="'+(t.members||[]).join(',')+'" style="background:rgba(245,158,11,0.08);color:#B45309;border:1px solid rgba(245,158,11,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer;margin-right:4px">👑 Capitaine</button>'+
+            '<td><div class="admin-cell-actions">'+
+              '<button class="btn-admin-rename-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(99,102,241,0.08);color:var(--indigo);border:1px solid rgba(99,102,241,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✏️ Renommer</button>'+
+              '<button class="btn-admin-captain-team" data-id="'+t.id+'" data-name="'+t.name+'" data-members="'+(t.members||[]).join(',')+'" style="background:rgba(245,158,11,0.08);color:#B45309;border:1px solid rgba(245,158,11,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">👑 Capitaine</button>'+
               '<button class="btn-admin-delete-team" data-id="'+t.id+'" data-name="'+t.name+'" style="background:rgba(239,68,68,0.08);color:#B91C1C;border:1px solid rgba(239,68,68,0.25);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:600;cursor:pointer">✕ Suppr.</button>'+
-            '</td>'+
+            '</div></td>'+
           '</tr>';
         }
-        teamsHtml+='</tbody></table></div>';
+        teamsHtml+='</tbody></table></div></div>';
       }
     } catch(e){ teamsHtml+='<div style="color:var(--text3)">Erreur de chargement des équipes.</div>'; }
     teamsSection.innerHTML=teamsHtml;
@@ -3506,8 +3508,8 @@ async function renderAdmin(){
     videoSection.innerHTML=
       '<div class="section-title" style="margin-bottom:16px">Vidéos des modules</div>'+
       '<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px">'+
-        '<table class="admin-table"><thead><tr><th>Module</th><th>URL YouTube</th></tr></thead>'+
-        '<tbody>'+videoRows+'</tbody></table>'+
+        '<div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Module</th><th>URL YouTube</th></tr></thead>'+
+        '<tbody>'+videoRows+'</tbody></table></div>'+
       '</div>'+
       '<button class="btn btn-primary" id="btn-save-videos" style="width:100%">💾 Enregistrer les vidéos</button>'+
       '<div id="vid-status" style="text-align:center;font-size:0.82rem;color:var(--text3);margin-top:8px;min-height:18px"></div>';
