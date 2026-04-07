@@ -3388,10 +3388,10 @@ async function renderAdmin(){
     ]);
     const allU=[];
     snap.forEach(d=>{ const u=d.data(); allU.push({...u, uid:d.id}); });
-    const pendingU=allU.filter(function(u){ return u.approved===false; });
-    const activeU=allU.filter(function(u){ return u.approved!==false; });
-    const totalXP=allU.reduce(function(s,u){ return s+(u.xp||0); },0);
-    const totalMods=allU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
+    const pendingU=allU.filter(function(u){ return u.approved===false && !u.isAdmin; });
+    const activeU=allU.filter(function(u){ return u.approved!==false && !u.isAdmin; });
+    const totalXP=activeU.reduce(function(s,u){ return s+(u.xp||0); },0);
+    const totalMods=activeU.reduce(function(s,u){ return s+Object.keys(u.modules||{}).filter(function(k){ return u.modules[k]&&u.modules[k].completed; }).length; },0);
     const globalCompletionPct=activeU.length>0?Math.round(totalMods/(activeU.length*MODULES.length)*100):0;
     const _allTimes=[];
     MODULES.forEach(function(mod){ activeU.forEach(function(u){ const md=(u.modules||{})[mod.id]; if(md&&md.completed&&md.startedAt&&md.completedAt) _allTimes.push((md.completedAt-md.startedAt)/60000); }); });
@@ -3421,7 +3421,7 @@ async function renderAdmin(){
       '</div>'+
       '<div class="admin-section-label">📊 Vue globale</div>'+
       '<div class="admin-kpis">'+
-        '<div class="admin-kpi"><div class="ak-val">'+allU.length+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
+        '<div class="admin-kpi"><div class="ak-val">'+(pendingU.length+activeU.length)+'</div><div class="ak-lbl">Apprenants inscrits</div></div>'+
         '<div class="admin-kpi cyan"><div class="ak-val">'+totalMods+'</div><div class="ak-lbl">Modules complétés</div></div>'+
         '<div class="admin-kpi violet"><div class="ak-val">'+totalXP+'</div><div class="ak-lbl">XP total plateforme</div></div>'+
         '<div class="admin-kpi green"><div class="ak-val">'+globalCompletionPct+'%</div><div class="ak-lbl">Taux de complétion global</div></div>'+
