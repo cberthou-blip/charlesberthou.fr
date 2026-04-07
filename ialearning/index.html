@@ -2039,6 +2039,8 @@ function launchApp(){
   updateNavXP();
   const av=document.getElementById('nav-avatar');
   if(av) av.textContent=(currentUser.firstName||'?')[0].toUpperCase();
+  const dh=document.querySelector('.dashboard-header');
+  if(dh) dh.style.display='';
   renderDashboard();
   showView('view-dashboard');
   showSection('modules');
@@ -2075,6 +2077,9 @@ function launchAdmin(){
   if(av) av.textContent=(currentUser.firstName||'A')[0].toUpperCase();
   const xpEl=document.getElementById('nav-xp-val');
   if(xpEl) xpEl.closest('.nav-xp').style.display='none';
+  // Masquer le bandeau apprenant (niveau, modules, badges, streak, XP)
+  const dh=document.querySelector('.dashboard-header');
+  if(dh) dh.style.display='none';
   // Afficher le dashboard et aller directement sur admin
   showView('view-dashboard');
   showSection('admin');
@@ -2910,13 +2915,19 @@ function renderProfile(){
   const mods=u.modules||{};
   const mDone=Object.keys(mods).filter(function(k){ return mods[k]&&mods[k].completed; }).length;
   const grid=document.getElementById('profile-stats-grid');
-  grid.innerHTML=
-    '<div class="profile-stat"><div class="profile-stat-val">'+u.level+'</div><div class="profile-stat-lbl">Niveau</div></div>'+
-    '<div class="profile-stat"><div class="profile-stat-val">'+(u.xp||0)+'</div><div class="profile-stat-lbl">XP Total</div></div>'+
-    '<div class="profile-stat"><div class="profile-stat-val">'+mDone+'/10</div><div class="profile-stat-lbl">Modules</div></div>'+
-    '<div class="profile-stat"><div class="profile-stat-val">'+(u.badges||[]).length+'</div><div class="profile-stat-lbl">Badges</div></div>'+
-    '<div class="profile-stat"><div class="profile-stat-val">'+(u.streak||0)+'🔥</div><div class="profile-stat-lbl">Série</div></div>'+
-    '<div class="profile-stat"><div class="profile-stat-val">'+(u.wonChallenges||0)+'</div><div class="profile-stat-lbl">Victoires</div></div>';
+  const statsSection=grid&&grid.closest('.profile-section');
+  if(u.isAdmin){
+    if(statsSection) statsSection.style.display='none';
+  } else {
+    if(statsSection) statsSection.style.display='';
+    grid.innerHTML=
+      '<div class="profile-stat"><div class="profile-stat-val">'+u.level+'</div><div class="profile-stat-lbl">Niveau</div></div>'+
+      '<div class="profile-stat"><div class="profile-stat-val">'+(u.xp||0)+'</div><div class="profile-stat-lbl">XP Total</div></div>'+
+      '<div class="profile-stat"><div class="profile-stat-val">'+mDone+'/10</div><div class="profile-stat-lbl">Modules</div></div>'+
+      '<div class="profile-stat"><div class="profile-stat-val">'+(u.badges||[]).length+'</div><div class="profile-stat-lbl">Badges</div></div>'+
+      '<div class="profile-stat"><div class="profile-stat-val">'+(u.streak||0)+'🔥</div><div class="profile-stat-lbl">Série</div></div>'+
+      '<div class="profile-stat"><div class="profile-stat-val">'+(u.wonChallenges||0)+'</div><div class="profile-stat-lbl">Victoires</div></div>';
+  }
 }
 
 // ============================================================
