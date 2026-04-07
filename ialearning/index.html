@@ -2294,7 +2294,7 @@ async function renderChallenges(){
       const statusCls={pending:'pending',active:'active',won:'won',lost:'lost',cancelled:'cancelled'};
       let metaText='Module : '+(mod?mod.title:'?')+' · ';
       if(c.status==='pending'){
-        metaText+=isMine?'En attente de réponse':'À votre tour !';
+        metaText+=isMine?(c.fromScore!=null?'En attente de réponse de '+c.to:'Jouez votre partie !'):'À votre tour !';
       } else if(c.status==='active'){
         metaText+='Duel en cours';
       } else if(c.status==='won'||c.status==='lost'){
@@ -2310,26 +2310,47 @@ async function renderChallenges(){
           '<div class="ch-meta">'+metaText+'</div>'+
         '</div>'+
         '<div class="ch-status '+(statusCls[c.status]||'pending')+'">'+(statusLabels[c.status]||c.status)+'</div>';
+      // Corriger l'affichage pour le challenger
+      if(isMine && (c.status==='won'||c.status==='lost')){
+        const icon=card.querySelector('.ch-icon');
+        const badge=card.querySelector('.ch-status');
+        if(c.status==='won'){ icon.textContent='💀'; badge.textContent='Défaite 💀'; badge.className='ch-status lost'; }
+        else { icon.textContent='🏆'; badge.textContent='Victoire 🏆'; badge.className='ch-status won'; }
+      }
       if(!isMine && c.status==='pending'){
-        const btn=document.createElement('button');
-        btn.className='btn btn-cyan btn-sm';
-        btn.textContent='Accepter';
-        btn.addEventListener('click',function(){ startDuel(c); });
-        card.appendChild(btn);
+        if(c.fromScore!=null){
+          const btn=document.createElement('button');
+          btn.className='btn btn-cyan btn-sm';
+          btn.textContent='Accepter';
+          btn.addEventListener('click',function(){ startDuel(c); });
+          card.appendChild(btn);
+        } else {
+          const ws=document.createElement('span');
+          ws.style.cssText='font-size:0.8rem;color:var(--text3);padding:5px 8px;';
+          ws.textContent='En attente que '+(c.fromName||c.from)+' joue…';
+          card.appendChild(ws);
+        }
       }
       if(isMine && c.status==='pending'){
-        const cbtn=document.createElement('button');
-        cbtn.className='btn btn-ghost btn-sm';
-        cbtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
-        cbtn.textContent='Annuler';
-        cbtn.addEventListener('click',async function(){
-          cbtn.disabled=true; cbtn.textContent='...';
-          try {
-            await db.collection('challenges').doc(c.id).update({status:'cancelled'});
-            renderChallenges();
-          } catch(e){ cbtn.disabled=false; cbtn.textContent='Annuler'; }
-        });
-        card.appendChild(cbtn);
+        if(c.fromScore==null){
+          const pbtn=document.createElement('button');
+          pbtn.className='btn btn-cyan btn-sm';
+          pbtn.textContent='Jouer ma partie';
+          pbtn.addEventListener('click',function(){ startDuelAsChallenger(c); });
+          card.appendChild(pbtn);
+        }
+          const cbtn=document.createElement('button');
+          cbtn.className='btn btn-ghost btn-sm';
+          cbtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
+          cbtn.textContent='Annuler';
+          cbtn.addEventListener('click',async function(){
+            cbtn.disabled=true; cbtn.textContent='...';
+            try {
+              await db.collection('challenges').doc(c.id).update({status:'cancelled'});
+              renderChallenges();
+            } catch(e){ cbtn.disabled=false; cbtn.textContent='Annuler'; }
+          });
+          card.appendChild(cbtn);
       }
       if(c.status==='won'||c.status==='lost'||c.status==='cancelled'){
         const dbtn=document.createElement('button');
@@ -2708,10 +2729,11 @@ async function sendChallenge(){
   if(!fu) return;
   const ch={fromUid:fu.uid,from:currentUser.email,fromName:currentUser.firstName,to:opp,moduleId:modId,status:'pending',created:new Date().toISOString()};
   try {
-    await db.collection('challenges').add(ch);
-    awardBadge('challenger');
+    const docRef=await db.collection('challenges').add(ch);
+    const challengeWithId={id:docRef.id,...ch};
     document.getElementById('modal-challenge').classList.remove('open');
-    showNotif('Défi envoyé à '+opp+' !','success');
+    showNotif('Défi envoyé à '+opp+' ! Jouez votre partie maintenant.','success');
+    startDuelAsChallenger(challengeWithId);
   } catch(e) {
     showNotif('Erreur lors de l\'envoi du défi','error');
   }
@@ -2720,11 +2742,26 @@ async function sendChallenge(){
 function startDuel(challenge){
   const m=MODULES.find(function(mod){ return mod.id===challenge.moduleId; });
   if(!m) return;
-  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,questions:(m.duelQuiz||m.quiz).slice(0,5)};
+  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,isChallenger:false,questions:(m.duelQuiz||m.quiz).slice(0,5)};
   document.getElementById('duel-me-av').textContent=(currentUser.firstName||'?')[0];
   document.getElementById('duel-me-name').textContent=currentUser.firstName;
   document.getElementById('duel-opp-av').textContent=(challenge.fromName||challenge.from||'?')[0].toUpperCase();
   document.getElementById('duel-opp-name').textContent=challenge.fromName||challenge.from;
+  document.getElementById('duel-result').style.display='none';
+  document.getElementById('modal-duel').classList.add('open');
+  renderDuelQuestion();
+}
+
+function startDuelAsChallenger(challenge){
+  const m=MODULES.find(function(mod){ return mod.id===challenge.moduleId; });
+  if(!m) return;
+  duelState={challenge,module:m,qIdx:0,myScore:0,oppScore:0,isChallenger:true,questions:(m.duelQuiz||m.quiz).slice(0,5)};
+  document.getElementById('duel-me-av').textContent=(currentUser.firstName||'?')[0];
+  document.getElementById('duel-me-name').textContent=currentUser.firstName;
+  document.getElementById('duel-opp-av').textContent=(challenge.to||'?')[0].toUpperCase();
+  document.getElementById('duel-opp-name').textContent=challenge.to;
+  document.getElementById('duel-me-score').textContent='0';
+  document.getElementById('duel-opp-score').textContent='?';
   document.getElementById('duel-result').style.display='none';
   document.getElementById('modal-duel').classList.add('open');
   renderDuelQuestion();
@@ -2747,13 +2784,15 @@ function renderDuelQuestion(){
         else if(bi===oi && oi!==q.ans) b.classList.add('wrong');
       });
       if(oi===q.ans) ds.myScore++;
-      const seed=typeof ds.challenge.id==='string'
-        ?ds.challenge.id.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0)
-        :(ds.challenge.id||0);
-      const oppWinRate=0.40+(seed%31)/100;
-      if(Math.random()<oppWinRate) ds.oppScore++;
+      if(!ds.isChallenger){
+        const seed=typeof ds.challenge.id==='string'
+          ?ds.challenge.id.split('').reduce(function(a,c){return a+c.charCodeAt(0);},0)
+          :(ds.challenge.id||0);
+        const oppWinRate=0.40+(seed%31)/100;
+        if(Math.random()<oppWinRate) ds.oppScore++;
+        document.getElementById('duel-opp-score').textContent=ds.oppScore;
+      }
       document.getElementById('duel-me-score').textContent=ds.myScore;
-      document.getElementById('duel-opp-score').textContent=ds.oppScore;
       optsDiv.querySelectorAll('.quiz-opt').forEach(function(b){ b.style.pointerEvents='none'; });
       setTimeout(function(){ ds.qIdx++; renderDuelQuestion(); },1200);
     });
@@ -2763,19 +2802,25 @@ function renderDuelQuestion(){
 
 function endDuel(){
   const ds=duelState;
-  const won=ds.myScore>=ds.oppScore;
-  db.collection('challenges').doc(ds.challenge.id).update({
-    status:won?'won':'lost',
-    myScore:ds.myScore,
-    oppScore:ds.oppScore,
-    completedAt:new Date().toISOString()
-  }).catch(e=>console.error('endDuel:',e));
+  if(ds.isChallenger){
+    db.collection('challenges').doc(ds.challenge.id).update({fromScore:ds.myScore}).catch(e=>console.error('endDuel challenger:',e));
+    awardBadge('challenger');
+    document.getElementById('duel-q-wrap').innerHTML='';
+    document.getElementById('duel-result').style.display='block';
+    document.getElementById('duel-result-icon').textContent='⚔️';
+    document.getElementById('duel-result-text').textContent='Partie enregistrée !';
+    document.getElementById('duel-result-sub').textContent='Score : '+ds.myScore+' / '+ds.questions.length+' · En attente de '+ds.challenge.to;
+    return;
+  }
+  const oppScore=ds.challenge.fromScore!=null?ds.challenge.fromScore:ds.oppScore;
+  const won=ds.myScore>=oppScore;
+  db.collection('challenges').doc(ds.challenge.id).update({status:won?'won':'lost',myScore:ds.myScore,oppScore:oppScore,completedAt:new Date().toISOString()}).catch(e=>console.error('endDuel:',e));
   if(won){ addXP(150); awardBadge('challenger'); currentUser.wonChallenges=(currentUser.wonChallenges||0)+1; saveCurrentUser().catch(e=>console.error('save error',e)); }
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
-  document.getElementById('duel-result-icon').textContent=won?'🏆':'😤';
+  document.getElementById('duel-result-icon').textContent=won?'🏆':'💀';
   document.getElementById('duel-result-text').textContent=won?'Victoire !':'Défaite';
-  document.getElementById('duel-result-sub').textContent=ds.myScore+' – '+ds.oppScore+' · '+(won?'+150 XP gagné':'Retenter pour progresser !');
+  document.getElementById('duel-result-sub').textContent=ds.myScore+' - '+oppScore+' · '+(won?'+150 XP gagné':'Retenter pour progresser !');
 }
 
 // ============================================================
