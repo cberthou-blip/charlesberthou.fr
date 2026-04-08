@@ -1912,6 +1912,10 @@ function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  if(id==='view-landing'){
+    const _btn=document.getElementById('btn-landing-login');
+    if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace →':'Se connecter →'; }
+  }
 }
 
 function getMastery(modData, quiz){
@@ -3713,7 +3717,10 @@ function init(){
     document.getElementById('login-form').style.display='none';
     showView('view-login');
   };
-  document.getElementById('btn-landing-login').addEventListener('click',goLogin);
+  document.getElementById('btn-landing-login').addEventListener('click',function(){
+    if(document.getElementById('btn-landing-login').getAttribute('data-loggedin')==='1'){ launchApp(); return; }
+    goLogin();
+  });
   document.getElementById('btn-landing-start').addEventListener('click',goRegister);
   document.getElementById('btn-landing-register').addEventListener('click',goRegister);
 
