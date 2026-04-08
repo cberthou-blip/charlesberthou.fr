@@ -3041,7 +3041,7 @@ async function renderLeaderboard(){
   try {
     // Fetch users and teams
     const [userSnap,teamSnap]=await Promise.all([
-      (function(){ const _n=Date.now(); if(!_usersCache||_n-_usersCacheTime>60000){ return db.collection('users').get().then(s=>{ _usersCache=s; _usersCacheTime=_n; return s; }); } return Promise.resolve(_usersCache); })()
+      (function(){ const _n=Date.now(); if(!_usersCache||_n-_usersCacheTime>60000){ return db.collection('users').get().then(s=>{ _usersCache=s; _usersCacheTime=_n; return s; }); } return Promise.resolve(_usersCache); })(),
       db.collection('teams').get()
     ]);
     const all=[];
