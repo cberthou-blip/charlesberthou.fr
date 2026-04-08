@@ -587,6 +587,7 @@ body::before {
   border:1.5px solid var(--border);
   cursor:pointer; transition:all 0.2s;
   background:var(--surface2); font-size:0.9rem; font-weight:500;
+  outline:none;
 }
 .quiz-opt:hover { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); }
 .quiz-opt.correct { border-color:#10B981; background:rgba(16,185,129,0.08); color:#065F46; }
@@ -961,8 +962,6 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init({publicKey:'BsM09E6NSTqmwTwI6',privateKey:'pfg0hCmLXbq6laIW3GA8X'});</script>
 </head>
 <body>
 
@@ -1961,9 +1960,9 @@ async function register(firstName,lastName,email,pass){
   if(!firstName||!email||!pass){ showNotif('Tous les champs sont requis','error'); return; }
   try {
     const cred=await auth.createUserWithEmailAndPassword(email,pass);
-    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
+    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:true};
     await db.collection('users').doc(cred.user.uid).set(u);
-    showNotif('Demande d\'accès envoyée — en attente de validation','warn');
+    showNotif('Compte créé avec succès !','success');
   } catch(e) {
     if(e.code==='auth/email-already-in-use'){
       // Account exists in Auth — check if Firestore doc was deleted by admin
@@ -1972,9 +1971,9 @@ async function register(firstName,lastName,email,pass){
         const doc=await db.collection('users').doc(cred2.user.uid).get();
         if(!doc.exists){
           // Auth account exists but Firestore doc was removed (deleted by admin) → re-create
-          const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
+          const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:true};
           await db.collection('users').doc(cred2.user.uid).set(u);
-          showNotif('Demande d\'accès envoyée — en attente de validation','warn');
+          showNotif('Compte créé avec succès !','success');
         } else {
           await auth.signOut();
           showNotif('Cet email est déjà associé à un compte existant.','error');
@@ -3562,7 +3561,6 @@ async function renderAdmin(){
         btn.disabled=true; btn.textContent='...';
         try {
           await db.collection('users').doc(uid).update({approved:true});
-          emailjs.send('service_09gzhyn','pqbikeb',{to_email:email,to_name:name}).catch(function(err){console.warn('EmailJS:',err);});
           showNotif(name+' : accès approuvé ✓','success');
           renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✓ Approuver'; }
@@ -3874,18 +3872,6 @@ function init(){
             if(vsnap.exists) customVideos=vsnap.data();
           } catch(e){ customVideos={}; }
                     if(currentUser.isAdmin){ launchAdmin(); }
-          else if(currentUser.approved===false){
-            showView('view-pending');
-            // Écouter en temps réel l'approbation du compte
-            const unsub=db.collection('users').doc(firebaseUser.uid).onSnapshot(function(doc){
-              if(doc.exists&&doc.data().approved===true){
-                unsub();
-                currentUser=doc.data();
-                checkStreak();
-                launchApp();
-              }
-            });
-          }
           else { checkStreak(); launchApp(); }
         } else {
           auth.signOut();
