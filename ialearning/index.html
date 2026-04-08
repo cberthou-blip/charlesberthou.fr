@@ -1963,7 +1963,7 @@ async function register(firstName,lastName,email,pass){
   _registering = true;
   try {
     const cred=await auth.createUserWithEmailAndPassword(email,pass);
-    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:true};
+    const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
     await db.collection('users').doc(cred.user.uid).set(u);
     _registering = false;
     currentUser=u;
@@ -1979,7 +1979,7 @@ async function register(firstName,lastName,email,pass){
         const doc=await db.collection('users').doc(cred2.user.uid).get();
         if(!doc.exists){
           // Auth account exists but Firestore doc was removed (deleted by admin) → re-create
-          const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:true};
+          const u={email,firstName,lastName,xp:0,level:1,modules:{},badges:[],streak:0,lastLogin:new Date().toDateString(),perfectQuizzes:0,approved:false};
           await db.collection('users').doc(cred2.user.uid).set(u);
           currentUser=u;
           showNotif('Compte créé avec succès !','success');
@@ -3571,7 +3571,7 @@ async function renderAdmin(){
         const email=btn.dataset.email;
         btn.disabled=true; btn.textContent='...';
         try {
-          await db.collection('users').doc(uid).update({approved:true});
+          await db.collection('users').doc(uid).update({approved:false});
           showNotif(name+' : accès approuvé ✓','success');
           renderAdminPanel();
         } catch(e){ showNotif('Erreur : '+e.message,'error'); btn.disabled=false; btn.textContent='✓ Approuver'; }

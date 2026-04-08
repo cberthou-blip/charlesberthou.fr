@@ -35,9 +35,10 @@ service cloud.firestore {
       // Needed for leaderboard, challenge opponent list, team member lookup.
       allow read: if isSignedIn();
 
-      // CREATE: own document only; isAdmin must be absent or false.
+      // CREATE: own document only; isAdmin and approved must be absent or false.
       allow create: if isSignedIn() && isOwner(userId)
-        && (!('isAdmin' in request.resource.data) || request.resource.data.isAdmin == false);
+        && (!('isAdmin' in request.resource.data) || request.resource.data.isAdmin == false)
+        && (!('approved' in request.resource.data) || request.resource.data.approved == false);
 
       // UPDATE: own doc (cannot change isAdmin / approved) OR admin (unrestricted).
       allow update: if isSignedIn() && (
