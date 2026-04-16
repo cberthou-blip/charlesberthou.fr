@@ -2413,6 +2413,7 @@ async function renderChallenges(){
 function openModule(id){
   currentModule=MODULES.find(m=>m.id===id);
   if(!currentModule) return;
+  if(!currentUser.modules) currentUser.modules={};
   if(!currentUser.modules[id]) currentUser.modules[id]={progress:0,completed:false,quizAnswers:[]};
   if(!currentUser.modules[id].startedAt) currentUser.modules[id].startedAt=Date.now();
   // Restore last step (but not completion screen — let user see it fresh)
