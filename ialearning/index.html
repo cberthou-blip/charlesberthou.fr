@@ -2853,7 +2853,7 @@ function endDuel(){
     document.getElementById('duel-result').style.display='block';
     document.getElementById('duel-result-icon').textContent='⚔️';
     document.getElementById('duel-result-text').textContent='Ta partie est terminée !';
-    document.getElementById('duel-result-sub').textContent='Ton score : '+ds.myScore+' / '+total+' — En attente que '+(ds.challenge.to||'l\047adversaire')+' joue sa partie.';
+    document.getElementById('duel-result-sub').textContent='Ton score : '+ds.myScore+' / '+total+' — En attente que '+(ds.challenge.to||"l'adversaire")+' joue sa partie.';
     return;
   }
   // Challenged player: compare against challenger real score
