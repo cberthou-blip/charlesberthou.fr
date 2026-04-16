@@ -201,14 +201,13 @@ body::before {
   align-items:flex-start; justify-content:center; padding:20px;
 }
 .modal-overlay.open { display:flex; }
-.modal-overlay.open { overflow-y:auto; }
+  .modal-overlay.open { overflow-y:auto; }
 .modal-box {
   background:var(--surface);
   border-radius:var(--radius-xl);
   padding:32px; width:100%; max-width:500px;
   box-shadow:var(--shadow-lg);
   border:1px solid var(--border);
-  max-height:90vh; overflow-y:auto;
   animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
 @keyframes popIn { from{transform:scale(0.9) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
@@ -1913,7 +1912,7 @@ function showView(id){
   if(dailyTimerInterval){ clearInterval(dailyTimerInterval); dailyTimerInterval=null; }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if(id!=='view-module') window.scrollTo(0,0);
+  window.scrollTo(0,0);
   if(id==='view-landing'){
     const _btn=document.getElementById('btn-landing-login');
     if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace →':'Se connecter →'; }
@@ -2269,13 +2268,6 @@ function renderModulesGrid(){
     if(!isLocked){
       card.addEventListener('click',function(){ openModule(m.id); });
     }
-    else {
-      card.addEventListener('click',function(){
-        const _pd=idx>0?(mods[MODULES[idx-1].id]||{}):{};
-        if(!_pd.completed) showNotif('Terminez et validez le module précédent pour débloquer celui-ci.','warn');
-        else showNotif('Obtenez au moins 3/5 au quiz du module précédent pour continuer.','warn');
-      });
-    }
     grid.appendChild(card);
   });
 }
@@ -2354,22 +2346,22 @@ async function renderChallenges(){
           btn.textContent='Relever le défi';
           btn.addEventListener('click',function(){ startDuel(c); });
           card.appendChild(btn);
+          const refuseBtn=document.createElement('button');
+          refuseBtn.className='btn btn-ghost btn-sm';
+          refuseBtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
+          refuseBtn.textContent='Refuser';
+          refuseBtn.addEventListener('click',async function(){
+            refuseBtn.disabled=true; refuseBtn.textContent='...';
+            try{ await db.collection('challenges').doc(c.id).update({status:'cancelled'}); renderChallenges(); }
+            catch(e){ refuseBtn.disabled=false; refuseBtn.textContent='Refuser'; showNotif('Erreur lors du refus','error'); }
+          });
+          card.appendChild(refuseBtn);
         } else {
           const ws=document.createElement('span');
           ws.style.cssText='font-size:0.8rem;color:var(--text3);padding:5px 8px;';
           ws.textContent='En attente que '+(c.fromName||c.from)+' joue…';
           card.appendChild(ws);
         }
-        const refuseBtn=document.createElement('button');
-        refuseBtn.className='btn btn-ghost btn-sm';
-        refuseBtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
-        refuseBtn.textContent='Refuser';
-        refuseBtn.addEventListener('click',async function(){
-          refuseBtn.disabled=true; refuseBtn.textContent='...';
-          try{ await db.collection('challenges').doc(c.id).update({status:'cancelled'}); renderChallenges(); }
-          catch(e){ refuseBtn.disabled=false; refuseBtn.textContent='Refuser'; showNotif('Erreur lors du refus','error'); }
-        });
-        card.appendChild(refuseBtn);
       }
       if(isMine && c.status==='pending'){
         if(c.fromScore==null){
@@ -2434,7 +2426,6 @@ function openModule(id){
 
 function renderModuleView(){
   const m=currentModule;
-  window.scrollTo(0,0);
   const modData=currentUser.modules[m.id]||{};
   const totalSteps=m.content.length+1+m.quiz.length+1;
   const prog=Math.round((currentStep/totalSteps)*100);
@@ -2556,13 +2547,13 @@ function renderModuleStep(){
   if(isQuizPhase){
     body.innerHTML='<div class="content-block" style="text-align:center;padding:40px">'+
       '<div style="font-size:2.5rem;margin-bottom:16px">🎯</div>'+
-      '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">Évaluation du module</h3>'+
+      '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">\u00c9valuation du module</h3>'+
       '<p style="color:var(--text3);font-size:0.88rem;margin-bottom:20px">'+m.quiz.length+' questions · Chaque bonne réponse compte !</p>'+
       '<label class="speed-toggle" id="speed-toggle-label">'+
         '<input type="checkbox" id="speed-mode-check">'+
         '<div><div class="speed-toggle-label">⚡ Mode Vitesse</div><div class="speed-toggle-sub">10 secondes par question · Réponse en moins de 5s = +20 XP bonus</div></div>'+
       '</label>'+
-      '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer l'évaluation →</button>'+
+      '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer l’évaluation →</button>'+
     '</div>';
     document.getElementById('btn-start-quiz').addEventListener('click',function(){
       const chk=document.getElementById('speed-mode-check');
@@ -2690,11 +2681,11 @@ function renderModuleStep(){
     const mastery=getMastery(modData,m.quiz);
     if(mastery) modData.mastery=mastery.level;
     const masteryHTML=mastery?'<div class="mastery-badge '+mastery.cls+'" style="font-size:0.88rem;padding:6px 14px;margin-bottom:20px">'+mastery.label+' — Niveau de maîtrise</div>':'';
-    const scoreMsg=score===m.quiz.length?'Évaluation parfaite ! 🎯':score>=3?'Bon travail !':'Continuez à vous entraîner !';
+    const scoreMsg=score===m.quiz.length?'\u00c9valuation parfaite ! \ud83c\udfaf':score>=3?'Bon travail !':'Continuez \u00e0 vous entra\u00eener !';
     body.innerHTML='<div class="content-block" style="text-align:center;padding:48px">'+
       '<div style="font-size:3rem;margin-bottom:16px">🎉</div>'+
       '<h3 style="font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:8px">Module terminé !</h3>'+
-      '<p style="color:var(--text3);margin-bottom:8px;font-size:0.9rem">Score : '+score+' / '+m.quiz.length+' · '+scoreMsg+'</p>'+
+      '<p style="color:var(--text3);margin-bottom:8px;font-size:0.9rem">Score : '+score+' / '+m.quiz.length+' \u00b7 '+scoreMsg+'</p>'+
       masteryHTML+
       '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">'+
         '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP gagné</div>'+
@@ -2845,7 +2836,6 @@ function renderDuelQuestion(){
 
 function endDuel(){
   const ds=duelState;
-  const total=ds.questions.length;
   if(ds.isChallenger){
     db.collection('challenges').doc(ds.challenge.id).update({fromScore:ds.myScore}).catch(e=>console.error('endDuel challenger:',e));
     awardBadge('challenger');
@@ -2853,25 +2843,21 @@ function endDuel(){
     document.getElementById('duel-result').style.display='block';
     document.getElementById('duel-result-icon').textContent='⚔️';
     document.getElementById('duel-result-text').textContent='Ta partie est terminée !';
-    document.getElementById('duel-result-sub').textContent='Ton score : '+ds.myScore+' / '+total+' — En attente que '+(ds.challenge.to||"l'adversaire")+' joue sa partie.';
+    document.getElementById('duel-result-sub').textContent='Ton score : '+ds.myScore+' / '+ds.questions.length+' — En attente que '+(ds.challenge.to||"l'adversaire")+' joue sa partie.';
     return;
   }
-  // Challenged player: compare against challenger real score
   const challengerScore=ds.challenge.fromScore!=null?ds.challenge.fromScore:ds.oppScore;
   const won=ds.myScore>challengerScore||(ds.myScore===challengerScore&&ds.myScore===total);
   const draw=ds.myScore===challengerScore&&!won;
   db.collection('challenges').doc(ds.challenge.id).update({status:draw?'draw':(won?'won':'lost'),myScore:ds.myScore,oppScore:challengerScore,completedAt:new Date().toISOString()}).catch(e=>console.error('endDuel:',e));
   if(won){ addXP(150); awardBadge('challenger'); currentUser.wonChallenges=(currentUser.wonChallenges||0)+1; saveCurrentUser().catch(e=>console.error('save error',e)); }
-  else if(draw){ addXP(50); saveCurrentUser().catch(e=>console.error('save error',e)); }
-  const icon=won?'🏆':draw?'🤝':'💀';
-  const label=won?'Victoire !':draw?'Égalité':'Défaite';
-  const xpMsg=won?' · +150 XP':draw?' · +50 XP':'';
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
   document.getElementById('duel-result-icon').textContent=icon;
   document.getElementById('duel-result-text').textContent=label;
   document.getElementById('duel-result-sub').textContent='Toi : '+ds.myScore+' / '+total+'  —  '+(ds.challenge.fromName||ds.challenge.from)+' : '+challengerScore+' / '+total+xpMsg;
 }
+
 // ============================================================
 // TEAMS
 // ============================================================
