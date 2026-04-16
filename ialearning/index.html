@@ -57,7 +57,7 @@ body {
   font-family: 'Outfit', sans-serif;
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -75,7 +75,7 @@ body::before {
 }
 
 /* ===== VUES ===== */
-.view { display:none; min-height:100vh; position:relative; z-index:1; }
+.view { display:none; min-height:100dvh; position:relative; z-index:1; }
 .view.active { display:block; }
 
 /* ===== BOUTONS ===== */
@@ -246,7 +246,7 @@ body::before {
    VUE 0 : LOGIN
 ============================================================ */
 #view-login {
-  min-height:100vh;
+  min-height:100dvh;
   display:none;
   align-items:center; justify-content:center;
 }
@@ -590,6 +590,8 @@ body::before {
   background:var(--surface2); font-size:0.9rem; font-weight:500;
   outline:none;
 }
+.quiz-opt:focus { outline:none; }
+.quiz-opt:focus-visible { outline:none; box-shadow:none; }
 .quiz-opt:hover { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); }
 .quiz-opt.correct { border-color:#10B981; background:rgba(16,185,129,0.08); color:#065F46; }
 .quiz-opt.wrong { border-color:#EF4444; background:rgba(239,68,68,0.08); color:#B91C1C; }
@@ -945,6 +947,7 @@ body::before {
   .landing-modules-grid{grid-template-columns:1fr;}
   .cb-heading{font-size:1rem;} .cb-text{font-size:0.88rem;} .quiz-q{font-size:0.92rem;}
   .admin-wrap{overflow-x:auto;}
+  .landing-nav,.landing-hero,.landing-features,.landing-how,.landing-modules-section,.landing-cta,.landing-footer { padding-left:20px; padding-right:20px; }
 }
 
 /* Custom confirm modal */
@@ -2837,6 +2840,7 @@ function renderDuelQuestion(){
 
 function endDuel(){
   const ds=duelState;
+  const total=ds.questions.length;
   if(ds.isChallenger){
     db.collection('challenges').doc(ds.challenge.id).update({fromScore:ds.myScore}).catch(e=>console.error('endDuel challenger:',e));
     awardBadge('challenger');
@@ -2852,6 +2856,10 @@ function endDuel(){
   const draw=ds.myScore===challengerScore&&!won;
   db.collection('challenges').doc(ds.challenge.id).update({status:draw?'draw':(won?'won':'lost'),myScore:ds.myScore,oppScore:challengerScore,completedAt:new Date().toISOString()}).catch(e=>console.error('endDuel:',e));
   if(won){ addXP(150); awardBadge('challenger'); currentUser.wonChallenges=(currentUser.wonChallenges||0)+1; saveCurrentUser().catch(e=>console.error('save error',e)); }
+  else if(draw){ addXP(50); saveCurrentUser().catch(e=>console.error('save error',e)); }
+  const icon=won?'🏆':draw?'🤝':'💀';
+  const label=won?'Victoire !':draw?'Égalité':'Défaite';
+  const xpMsg=won?' · +150 XP':draw?' · +50 XP':'';
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
   document.getElementById('duel-result-icon').textContent=icon;
