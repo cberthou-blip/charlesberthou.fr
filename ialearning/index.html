@@ -592,7 +592,8 @@ body::before {
 }
 .quiz-opt:focus { outline:none; }
 .quiz-opt:focus-visible { outline:none; box-shadow:none; }
-.quiz-opt:hover { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); }
+@media(hover:hover){ .quiz-opt:hover { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); } }
+.quiz-opt:active { border-color:var(--indigo-mid); background:rgba(99,102,241,0.04); }
 .quiz-opt.correct { border-color:#10B981; background:rgba(16,185,129,0.08); color:#065F46; }
 .quiz-opt.wrong { border-color:#EF4444; background:rgba(239,68,68,0.08); color:#B91C1C; }
 .quiz-opt.selected { border-color:var(--indigo-mid); background:rgba(99,102,241,0.08); }
@@ -2860,6 +2861,7 @@ function endDuel(){
   const icon=won?'🏆':draw?'🤝':'💀';
   const label=won?'Victoire !':draw?'Égalité':'Défaite';
   const xpMsg=won?' · +150 XP':draw?' · +50 XP':'';
+  document.getElementById('duel-opp-score').textContent=challengerScore;
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
   document.getElementById('duel-result-icon').textContent=icon;
