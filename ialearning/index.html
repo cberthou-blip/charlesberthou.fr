@@ -198,15 +198,17 @@ body::before {
   position:fixed; inset:0; background:rgba(13,27,62,0.55);
   backdrop-filter:blur(4px);
   z-index:1000; display:none;
-  align-items:center; justify-content:center; padding:20px;
+  align-items:flex-start; justify-content:center; padding:20px;
 }
 .modal-overlay.open { display:flex; }
+.modal-overlay.open { overflow-y:auto; }
 .modal-box {
   background:var(--surface);
   border-radius:var(--radius-xl);
   padding:32px; width:100%; max-width:500px;
   box-shadow:var(--shadow-lg);
   border:1px solid var(--border);
+  max-height:90vh; overflow-y:auto;
   animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
 @keyframes popIn { from{transform:scale(0.9) translateY(20px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
@@ -1323,7 +1325,7 @@ body::before {
       <div class="dh-name" id="dh-name">Bienvenue !</div>
       <div class="dh-stats">
         <div class="dh-stat">
-          <div class="dh-stat-val" id="dh-level">1<span>LVL</span></div>
+          <div class="dh-stat-val" id="dh-level">1<span>Niv.</span></div>
           <div class="dh-stat-lbl">Niveau actuel</div>
         </div>
         <div class="dh-stat">
@@ -1565,8 +1567,8 @@ const MODULES = [
     duelQuiz:[
       {q:"Parmi ces prompts, lequel obtiendra la réponse la plus utile ?",opts:["Aide-moi.","Rédige un email.","Tu es un expert RH. Rédige un email professionnel pour refuser poliment une candidature, en moins de 100 mots.","Écris quelque chose sur les RH."],ans:2,exp:"Le meilleur prompt inclut un rôle (expert RH), une instruction précise (refuser poliment), un format (moins de 100 mots) et un contexte (candidature). Plus c'est précis, meilleur est le résultat."},
       {q:"Pourquoi ajouter 'explique-moi comme si j'avais 15 ans' dans un prompt ?",opts:["Pour que l'IA réponde plus vite","Pour calibrer le niveau de langage et la complexité de la réponse","Pour obtenir des réponses plus courtes","Pour éviter les hallucinations"],ans:1,exp:"Préciser le niveau de l'interlocuteur (débutant, expert, enfant, professionnel) est une technique de cadrage très efficace. L'IA adapte son vocabulaire, ses exemples et sa structure à l'audience définie."},
-      {q:"Si l'IA vous donne une réponse trop générale, quelle est la meilleure réaction ?",opts:["Recommencer depuis zéro","Affiner votre prompt en ajoutant contexte, format et contraintes","Essayer une autre IA","Accepter la réponse telle quelle"],ans:1,exp:"L'itération est au cœur du prompting efficace. Une réponse trop générale signifie que votre prompt manque de précision. Ajoutez un contexte, une contrainte de format, ou un exemple de ce que vous attendez."},
-      {q:"La technique 'chaîne de pensée' est particulièrement utile pour...",opts:["Générer des images","Résoudre des problèmes complexes qui nécessitent plusieurs étapes de raisonnement","Accélérer les réponses","Produire des réponses plus courtes"],ans:1,exp:"En demandant à l'IA de 'raisonner étape par étape', on l'oblige à décomposer un problème. Résultat : bien moins d'erreurs sur les calculs, les analyses et les raisonnements à plusieurs niveaux."},
+      {q:"Quelle technique consiste à demander à l'IA de jouer le rôle d'un expert avant de répondre ?",opts:["Le zero-shot","Le role prompting (attribution de rôle)","Le chain of thought","Le few-shot"],ans:1,exp:"Le role prompting consiste à donner un rôle précis à l'IA : 'Tu es un expert en cybersécurité' ou 'Tu es un coach de vie'. Cette technique cadre les réponses et améliore leur pertinence et leur niveau d'expertise."},
+      {q:"Qu'est-ce qu'une 'hallucination' d'une IA générative ?",opts:["Une erreur de traduction","Une réponse inventée mais présentée avec confiance comme vraie","Un plantage du système","Une réponse trop longue"],ans:1,exp:"L'hallucination est l'un des défis majeurs des LLM : l'IA peut inventer des faits, des citations ou des sources inexistantes, mais les formuler avec le même ton confiant que ses bonnes réponses. Il faut toujours vérifier les informations importantes."},
       {q:"Vous voulez que l'IA rédige des posts dans votre style. Quelle technique est la plus efficace ?",opts:["Lui demander juste 'écris un post LinkedIn'","Lui fournir 2-3 exemples de vos anciens posts, puis lui demander d'en écrire un dans le même style","Lui dire combien d'abonnés vous avez","Lui demander d'être créatif"],ans:1,exp:"Donner des exemples concrets du résultat attendu (few-shot) est très efficace. En voyant vos vrais posts, l'IA capture votre ton et votre style bien mieux qu'avec une description abstraite."}
     ]
   },
@@ -1824,7 +1826,7 @@ const BADGES_DEF = [
   {id:"m8",name:"Éthicien",desc:"Module 8 terminé",icon:"⚖️",moduleId:8,hint:"Terminez le module 8 — Éthique et limites"},
   {id:"m9",name:"Prompteur",desc:"Module 9 terminé",icon:"🎯",moduleId:9,hint:"Terminez le module 9 — L'IA dans la vie perso"},
   {id:"m10",name:"Futuriste",desc:"Module 10 terminé",icon:"🚀",moduleId:10,hint:"Terminez le module 10 — Microsoft Copilot au travail"},
-  {id:"ace",name:"Quiz Ace",desc:"5 quiz parfaits",icon:"🎯",special:true,hint:"Obtenez 5/5 à 5 quiz différents"},
+  {id:"ace",name:"Évaluateur Pro",desc:"5 évaluation parfaites",icon:"🎯",special:true,hint:"Obtenez 5/5 à 5 quiz différents"},
   {id:"challenger",name:"Challenger",desc:"Premier défi envoyé",icon:"⚔️",special:true,hint:"Lancez et remportez un défi contre un collègue"},
   {id:"streak",name:"Assidu",desc:"7 jours consécutifs",icon:"🔥",special:true,hint:"Connectez-vous 7 jours de suite"},
   {id:"master",name:"Maître IA",desc:"Tous les modules terminés",icon:"🏆",special:true,hint:"Terminez les 10 modules de formation"},
@@ -1911,7 +1913,7 @@ function showView(id){
   if(dailyTimerInterval){ clearInterval(dailyTimerInterval); dailyTimerInterval=null; }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  if(id!=='view-module') window.scrollTo(0,0);
   if(id==='view-landing'){
     const _btn=document.getElementById('btn-landing-login');
     if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace →':'Se connecter →'; }
@@ -2185,7 +2187,7 @@ function renderDashboard(){
   document.getElementById('dh-name').textContent='Bonjour, '+(u.firstName||'')+' !';
   const mods=u.modules||{};
   const done=Object.keys(mods).filter(k=>mods[k]&&mods[k].completed).length;
-  document.getElementById('dh-level').innerHTML=u.level+'<span>LVL</span>';
+  document.getElementById('dh-level').innerHTML=u.level+'<span>Niv.</span>';
   document.getElementById('dh-modules-done').innerHTML=done+'<span>/10</span>';
   document.getElementById('dh-badges-count').textContent=(u.badges||[]).length;
   document.getElementById('dh-streak').innerHTML=(u.streak||0)+'<span>🔥</span>';
@@ -2229,12 +2231,23 @@ function renderModulesGrid(){
   grid.innerHTML='';
   const mods=currentUser.modules||{};
   MODULES.forEach((m,idx)=>{
-    const prev=idx===0?true:!!(mods[idx]&&mods[idx].completed);
+    const prevMod=idx===0?null:MODULES[idx-1];
+    const prevData=idx===0?null:(mods[prevMod.id]||{});
+    const prevCompleted=idx===0?true:!!(prevData&&prevData.completed);
+    const prevScore=idx===0?5:(prevData&&prevData.quizAnswers?(prevData.quizAnswers.filter(function(a,i){ return prevMod&&i<prevMod.quiz.length&&a===prevMod.quiz[i].ans; }).length):0);
+    const prev=prevCompleted&&prevScore>=3;
     const modData=mods[m.id]||{};
     const isLocked=!prev;
     const isCompleted=!!modData.completed;
     const prog=modData.progress||0;
-    const statusText=isCompleted?'✓ Terminé':isLocked?'🔒 Verrouillé':'→ Disponible';
+    let statusText;
+    if(isCompleted) statusText='✓ Terminé';
+    else if(!isLocked) statusText='→ Disponible';
+    else if(idx>0){
+      const _pd=mods[MODULES[idx-1].id]||{};
+      if(!(_pd.completed)) statusText='🔒 Terminez le module précédent';
+      else statusText='🔒 Score insuffisant (min. 3/5)';
+    } else statusText='🔒 Verrouillé';
     const statusCls=isCompleted?'done':isLocked?'locked':'avail';
     const iconCls=m.color;
     const card=document.createElement('div');
@@ -2255,6 +2268,13 @@ function renderModulesGrid(){
       '</div>';
     if(!isLocked){
       card.addEventListener('click',function(){ openModule(m.id); });
+    }
+    else {
+      card.addEventListener('click',function(){
+        const _pd=idx>0?(mods[MODULES[idx-1].id]||{}):{};
+        if(!_pd.completed) showNotif('Terminez et validez le module précédent pour débloquer celui-ci.','warn');
+        else showNotif('Obtenez au moins 3/5 au quiz du module précédent pour continuer.','warn');
+      });
     }
     grid.appendChild(card);
   });
@@ -2300,8 +2320,8 @@ async function renderChallenges(){
       const mod=MODULES.find(m=>m.id===c.moduleId);
       const card=document.createElement('div');
       card.className='challenge-card';
-      const statusLabels={pending:'En attente',active:'En cours',won:'Victoire 🏆',lost:'Défaite 😤',cancelled:'Annulé'};
-      const statusCls={pending:'pending',active:'active',won:'won',lost:'lost',cancelled:'cancelled'};
+      const statusLabels={pending:'En attente',active:'En cours',won:'Victoire 🏆',lost:'Défaite 😤',cancelled:'Annulé',draw:'Égalité 🤝'};
+      const statusCls={pending:'pending',active:'active',won:'won',lost:'lost',cancelled:'cancelled',draw:'won'};
       let metaText='Module : '+(mod?mod.title:'?')+' · ';
       if(c.status==='pending'){
         metaText+=isMine?(c.fromScore!=null?'En attente de réponse de '+c.to:'Jouez votre partie !'):'À votre tour !';
@@ -2331,7 +2351,7 @@ async function renderChallenges(){
         if(c.fromScore!=null){
           const btn=document.createElement('button');
           btn.className='btn btn-cyan btn-sm';
-          btn.textContent='Accepter';
+          btn.textContent='Relever le défi';
           btn.addEventListener('click',function(){ startDuel(c); });
           card.appendChild(btn);
         } else {
@@ -2340,6 +2360,16 @@ async function renderChallenges(){
           ws.textContent='En attente que '+(c.fromName||c.from)+' joue…';
           card.appendChild(ws);
         }
+        const refuseBtn=document.createElement('button');
+        refuseBtn.className='btn btn-ghost btn-sm';
+        refuseBtn.style.cssText='border-color:rgba(239,68,68,0.4);color:#B91C1C;font-size:0.78rem;padding:5px 12px;';
+        refuseBtn.textContent='Refuser';
+        refuseBtn.addEventListener('click',async function(){
+          refuseBtn.disabled=true; refuseBtn.textContent='...';
+          try{ await db.collection('challenges').doc(c.id).update({status:'cancelled'}); renderChallenges(); }
+          catch(e){ refuseBtn.disabled=false; refuseBtn.textContent='Refuser'; showNotif('Erreur lors du refus','error'); }
+        });
+        card.appendChild(refuseBtn);
       }
       if(isMine && c.status==='pending'){
         if(c.fromScore==null){
@@ -2404,6 +2434,7 @@ function openModule(id){
 
 function renderModuleView(){
   const m=currentModule;
+  window.scrollTo(0,0);
   const modData=currentUser.modules[m.id]||{};
   const totalSteps=m.content.length+1+m.quiz.length+1;
   const prog=Math.round((currentStep/totalSteps)*100);
@@ -2525,13 +2556,13 @@ function renderModuleStep(){
   if(isQuizPhase){
     body.innerHTML='<div class="content-block" style="text-align:center;padding:40px">'+
       '<div style="font-size:2.5rem;margin-bottom:16px">🎯</div>'+
-      '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">Quiz du module</h3>'+
+      '<h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:10px">Évaluation du module</h3>'+
       '<p style="color:var(--text3);font-size:0.88rem;margin-bottom:20px">'+m.quiz.length+' questions · Chaque bonne réponse compte !</p>'+
       '<label class="speed-toggle" id="speed-toggle-label">'+
         '<input type="checkbox" id="speed-mode-check">'+
         '<div><div class="speed-toggle-label">⚡ Mode Vitesse</div><div class="speed-toggle-sub">10 secondes par question · Réponse en moins de 5s = +20 XP bonus</div></div>'+
       '</label>'+
-      '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer le quiz →</button>'+
+      '<button class="btn btn-primary btn-lg" id="btn-start-quiz">Démarrer l'évaluation →</button>'+
     '</div>';
     document.getElementById('btn-start-quiz').addEventListener('click',function(){
       const chk=document.getElementById('speed-mode-check');
@@ -2659,11 +2690,11 @@ function renderModuleStep(){
     const mastery=getMastery(modData,m.quiz);
     if(mastery) modData.mastery=mastery.level;
     const masteryHTML=mastery?'<div class="mastery-badge '+mastery.cls+'" style="font-size:0.88rem;padding:6px 14px;margin-bottom:20px">'+mastery.label+' — Niveau de maîtrise</div>':'';
-    const scoreMsg=score===m.quiz.length?'Quiz parfait ! 🎯':score>=3?'Bon travail !':'Continuez à vous entraîner !';
+    const scoreMsg=score===m.quiz.length?'Évaluation parfaite ! 🎯':score>=3?'Bon travail !':'Continuez à vous entraîner !';
     body.innerHTML='<div class="content-block" style="text-align:center;padding:48px">'+
       '<div style="font-size:3rem;margin-bottom:16px">🎉</div>'+
       '<h3 style="font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:8px">Module terminé !</h3>'+
-      '<p style="color:var(--text3);margin-bottom:8px;font-size:0.9rem">Score quiz : '+score+' / '+m.quiz.length+' · '+scoreMsg+'</p>'+
+      '<p style="color:var(--text3);margin-bottom:8px;font-size:0.9rem">Score : '+score+' / '+m.quiz.length+' · '+scoreMsg+'</p>'+
       masteryHTML+
       '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">'+
         '<div class="tech-badge tech-badge-cyan">⚡ +'+m.xp+' XP gagné</div>'+
@@ -2814,27 +2845,33 @@ function renderDuelQuestion(){
 
 function endDuel(){
   const ds=duelState;
+  const total=ds.questions.length;
   if(ds.isChallenger){
     db.collection('challenges').doc(ds.challenge.id).update({fromScore:ds.myScore}).catch(e=>console.error('endDuel challenger:',e));
     awardBadge('challenger');
     document.getElementById('duel-q-wrap').innerHTML='';
     document.getElementById('duel-result').style.display='block';
     document.getElementById('duel-result-icon').textContent='⚔️';
-    document.getElementById('duel-result-text').textContent='Partie enregistrée !';
-    document.getElementById('duel-result-sub').textContent='Score : '+ds.myScore+' / '+ds.questions.length+' · En attente de '+ds.challenge.to;
+    document.getElementById('duel-result-text').textContent='Ta partie est terminée !';
+    document.getElementById('duel-result-sub').textContent='Ton score : '+ds.myScore+' / '+total+' — En attente que '+(ds.challenge.to||'l\047adversaire')+' joue sa partie.';
     return;
   }
-  const oppScore=ds.challenge.fromScore!=null?ds.challenge.fromScore:ds.oppScore;
-  const won=ds.myScore>=oppScore;
-  db.collection('challenges').doc(ds.challenge.id).update({status:won?'won':'lost',myScore:ds.myScore,oppScore:oppScore,completedAt:new Date().toISOString()}).catch(e=>console.error('endDuel:',e));
+  // Challenged player: compare against challenger real score
+  const challengerScore=ds.challenge.fromScore!=null?ds.challenge.fromScore:ds.oppScore;
+  const won=ds.myScore>challengerScore||(ds.myScore===challengerScore&&ds.myScore===total);
+  const draw=ds.myScore===challengerScore&&!won;
+  db.collection('challenges').doc(ds.challenge.id).update({status:draw?'draw':(won?'won':'lost'),myScore:ds.myScore,oppScore:challengerScore,completedAt:new Date().toISOString()}).catch(e=>console.error('endDuel:',e));
   if(won){ addXP(150); awardBadge('challenger'); currentUser.wonChallenges=(currentUser.wonChallenges||0)+1; saveCurrentUser().catch(e=>console.error('save error',e)); }
+  else if(draw){ addXP(50); saveCurrentUser().catch(e=>console.error('save error',e)); }
+  const icon=won?'🏆':draw?'🤝':'💀';
+  const label=won?'Victoire !':draw?'Égalité':'Défaite';
+  const xpMsg=won?' · +150 XP':draw?' · +50 XP':'';
   document.getElementById('duel-q-wrap').innerHTML='';
   document.getElementById('duel-result').style.display='block';
-  document.getElementById('duel-result-icon').textContent=won?'🏆':'💀';
-  document.getElementById('duel-result-text').textContent=won?'Victoire !':'Défaite';
-  document.getElementById('duel-result-sub').textContent=ds.myScore+' - '+oppScore+' · '+(won?'+150 XP gagné':'Retenter pour progresser !');
+  document.getElementById('duel-result-icon').textContent=icon;
+  document.getElementById('duel-result-text').textContent=label;
+  document.getElementById('duel-result-sub').textContent='Toi : '+ds.myScore+' / '+total+'  —  '+(ds.challenge.fromName||ds.challenge.from)+' : '+challengerScore+' / '+total+xpMsg;
 }
-
 // ============================================================
 // TEAMS
 // ============================================================
@@ -3174,6 +3211,7 @@ function getDailyQuestions(){
 function getDailyQuestion(){ return getDailyQuestions()[0]; }
 
 function getTodayKey(){ const d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function getMondayKey(){ const d=new Date(); const day=d.getDay(); const diff=d.getDate()-(day===0?6:day-1); const mon=new Date(d.setDate(diff)); return mon.getFullYear()+'-'+(mon.getMonth()+1)+'-'+mon.getDate(); }
 
 function getSecondsTillMidnight(){
   const now=new Date(); const midnight=new Date(now); midnight.setHours(24,0,0,0);
@@ -3330,8 +3368,8 @@ function renderQuests(){
     {id:'w_module',icon:'📚',title:'Termine 1 module cette semaine',xp:50, current:Math.min(mDone,1),target:1,done:mDone>=1},
     {id:'w_duel',icon:'⚔️',title:'Remporte 1 défi cette semaine',xp:80, current:Math.min(wonChallenges,1),target:1,done:wonChallenges>=1},
     {id:'w_streak',icon:'🔥',title:'Maintiens ta série 5 jours consécutifs',xp:60, current:Math.min(streak,5),target:5,done:streak>=5},
-    {id:'w_quiz',icon:'🎯',title:'Fais 3 quiz parfaits (5/5)',xp:70, current:Math.min(u.perfectQuizzes||0,3),target:3,done:(u.perfectQuizzes||0)>=3},
-    {id:'w_daily',icon:'📅',title:'Réponds au défi du jour 3 fois',xp:40, current:Math.min(Object.keys(u.dailyDone||{}).length,3),target:3,done:Object.keys(u.dailyDone||{}).length>=3},
+    {id:'w_quiz',icon:'🎯',title:'Fais 3 évaluation parfaites (5/5)',xp:70, current:Math.min(u.perfectQuizzes||0,3),target:3,done:(u.perfectQuizzes||0)>=3},
+    {id:'w_daily',icon:'📅',title:'Réponds au défi du jour 3 fois cette semaine',xp:40, current:(function(){ const mk=getMondayKey(); return Math.min(Object.keys(u.dailyDone||{}).filter(function(k){ return k>=mk; }).length,3); }()),target:3,done:(function(){ const mk=getMondayKey(); return Object.keys(u.dailyDone||{}).filter(function(k){ return k>=mk; }).length>=3; }())},
   ];
 
   // Calculate days until next Monday
@@ -3449,7 +3487,7 @@ async function renderAdmin(){
       '<div class="admin-section-label">🏆 Performance & Social</div>'+
       '<div class="admin-kpis">'+
         '<div class="admin-kpi green"><div class="ak-val">'+certifiedU.length+'</div><div class="ak-lbl">Apprenants certifiés (10/10)</div></div>'+
-        '<div class="admin-kpi cyan"><div class="ak-val">'+totalPerfectQuizzes+'</div><div class="ak-lbl">Quiz parfaits (5/5) au total</div></div>'+
+        '<div class="admin-kpi cyan"><div class="ak-val">'+totalPerfectQuizzes+'</div><div class="ak-lbl">Évaluations parfaites (5/5) au total</div></div>'+
         '<div class="admin-kpi violet"><div class="ak-val">'+avgLevel+'</div><div class="ak-lbl">Niveau moyen</div></div>'+
         '<div class="admin-kpi"><div class="ak-val ak-val-sm">'+worstModTitle+'</div><div class="ak-lbl">Module le plus bloquant</div></div>'+
         '<div class="admin-kpi cyan"><div class="ak-val">'+totalChallenges+'</div><div class="ak-lbl">Défis lancés</div></div>'+
