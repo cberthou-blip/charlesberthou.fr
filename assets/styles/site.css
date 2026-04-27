@@ -220,6 +220,81 @@ section,
   padding: 7px 10px;
 }
 
+.vector-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(205, 191, 170, 0.82);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 242, 0.72)),
+    var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.vector-panel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.visual-surface {
+  fill: rgba(255, 255, 255, 0.58);
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.visual-line,
+.visual-link {
+  fill: none;
+  stroke: rgba(95, 107, 118, 0.28);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.visual-link {
+  stroke-width: 2.6;
+}
+
+.visual-accent,
+.visual-dot {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.visual-dot {
+  stroke-width: 4;
+  opacity: 0.72;
+}
+
+.visual-card {
+  fill: rgba(247, 243, 236, 0.88);
+  stroke: rgba(205, 191, 170, 0.9);
+  stroke-width: 2;
+}
+
+.visual-node {
+  stroke: #fffaf2;
+  stroke-width: 6;
+}
+
+.visual-node.teal {
+  fill: var(--teal);
+}
+
+.visual-node.blue {
+  fill: var(--blue);
+}
+
+.visual-node.coral {
+  fill: var(--coral);
+}
+
+.visual-node.gold {
+  fill: var(--gold);
+}
+
 .hero h1 {
   max-width: 930px;
   font-size: clamp(2rem, 5.8vw, 3.45rem);
@@ -454,6 +529,16 @@ section,
 .section-heading.wide h2,
 .section-heading.wide p:not(.eyebrow) {
   max-width: 860px;
+}
+
+.tools-heading {
+  align-items: center;
+}
+
+.tools-visual {
+  padding: 8px;
+  max-width: 360px;
+  justify-self: stretch;
 }
 
 .editorial-heading {
@@ -821,6 +906,11 @@ section,
 }
 
 @media (max-width: 719px) {
+  .tools-visual {
+    max-width: 320px;
+    justify-self: center;
+  }
+
   .page-hero h1 {
     max-width: 15ch;
     font-size: clamp(1.72rem, 7.2vw, 2.15rem);
@@ -1101,6 +1191,11 @@ section,
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
     padding: 34px;
+  }
+
+  .tools-heading {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+    gap: 34px;
   }
 
   .contact-panel .section-heading {
