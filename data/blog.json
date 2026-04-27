@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "title": "IA'ctualités - Ce que je retiens de mars 2026",
+      "description": "Une synthèse des signaux utiles du mois : emploi, santé, énergie, gouvernance, capital, modèles et paiements.",
+      "date": "2026-04-06",
+      "readingTime": "4 min",
+      "url": "/blog/actumars2026/",
+      "tags": ["IA", "Veille", "Banque"]
+    },
+    {
+      "title": "IA en entreprise : hâtez-vous lentement",
+      "description": "Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.",
+      "date": "2026-04-04",
+      "readingTime": "5 min",
+      "url": "/blog/ia-entreprise/",
+      "tags": ["IA", "Entreprise", "Transformation"]
+    },
+    {
+      "title": "L'humanité a toujours tremblé devant sa propre lumière",
+      "description": "Une réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique majeure.",
+      "date": "2026-04-01",
+      "readingTime": "9 min",
+      "url": "/blog/humanite-lumiere/",
+      "tags": ["IA", "Progrès", "Société"]
+    }
+  ]
+}

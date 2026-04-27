@@ -8,7 +8,53 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "AGENTS.md",
+      "CLAUDE*.md",
+      "blog/README.md",
+      "blog/_article-template.html"
+    ],
+    "redirects": [
+      {
+        "source": "/articles",
+        "destination": "/blog/",
+        "type": 301
+      },
+      {
+        "source": "/articles/",
+        "destination": "/blog/",
+        "type": 301
+      },
+      {
+        "source": "/articles/actumars2026",
+        "destination": "/blog/actumars2026/",
+        "type": 301
+      },
+      {
+        "source": "/articles/actumars2026/",
+        "destination": "/blog/actumars2026/",
+        "type": 301
+      },
+      {
+        "source": "/articles/humanite-lumiere",
+        "destination": "/blog/humanite-lumiere/",
+        "type": 301
+      },
+      {
+        "source": "/articles/humanite-lumiere/",
+        "destination": "/blog/humanite-lumiere/",
+        "type": 301
+      },
+      {
+        "source": "/articles/ia-entreprise",
+        "destination": "/blog/ia-entreprise/",
+        "type": 301
+      },
+      {
+        "source": "/articles/ia-entreprise/",
+        "destination": "/blog/ia-entreprise/",
+        "type": 301
+      }
     ],
     "headers": [
       {

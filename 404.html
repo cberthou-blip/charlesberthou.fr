@@ -2,153 +2,58 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page introuvable — Charles Berthou</title>
+  <title>Page introuvable | charlesberthou.fr</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #0a0a0a;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Header ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    nav { display: flex; gap: 24px; }
-    nav a {
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255,255,255,.75);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    nav a:hover { color: #fff; }
-
-    @media (max-width: 980px) { nav { display: none; } }
-
-    /* ── Main ── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .code {
-      font-size: 96px;
-      font-weight: 700;
-      line-height: 1;
-      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.3) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-size: 16px;
-      color: rgba(255,255,255,.6);
-      max-width: 420px;
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
-
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-
-    .btn {
-      padding: 14px 20px;
-      border-radius: 18px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity .2s;
-    }
-    .btn:hover { opacity: .85; }
-    .btn-primary { background: #fff; color: #111; }
-    .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.2); }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 13px;
-      color: rgba(255,255,255,.3);
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@450;550;650;750;850&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css" />
   <script>
-    // Redirection intelligente selon l'URL demandée
     (function () {
       var path = window.location.pathname.toLowerCase();
       var dest = null;
-      if (path.indexOf('/gpts') !== -1)           dest = '/#gpts';
-      else if (path.indexOf('/e-learning') !== -1) dest = '/#elearning';
-      else if (path.indexOf('/elearning') !== -1)  dest = '/#elearning';
-      else if (path.indexOf('/contact') !== -1)    dest = '/#contact';
-      else if (path.indexOf('/articles') !== -1)   dest = '/articles/';
-      if (dest) {
-        window.location.replace(dest);
-      }
+      if (path.indexOf("/articles") === 0) dest = path.replace("/articles", "/blog");
+      else if (path.indexOf("/gpts") !== -1) dest = "/#outils";
+      else if (path.indexOf("/e-learning") !== -1 || path.indexOf("/elearning") !== -1) dest = "/#outils";
+      else if (path.indexOf("/contact") !== -1) dest = "/#contact";
+      if (dest) window.location.replace(dest);
     })();
   </script>
 </head>
 <body>
-  <header>
-    <a class="logo" href="/">Charles Berthou</a>
-    <nav>
-      <a href="/articles/">Articles</a>
-      <a href="/#gpts">GPTs</a>
-      <a href="/#elearning">E-learning</a>
-      <a href="/#contact">Contact</a>
-    </nav>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="/">charlesberthou.fr</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/#blog">Blog</a>
+        <a href="/#outils">Outils IA</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <div class="code">404</div>
-    <h1>Cette page n'existe pas</h1>
-    <p>Le lien est peut-être cassé ou la page a été déplacée. Vous pouvez revenir à l'accueil ou consulter les articles.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="/">Retour à l'accueil</a>
-      <a class="btn btn-secondary" href="/articles/">Voir les articles</a>
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1 style="font-size:clamp(2.2rem,8vw,4.2rem);line-height:1;margin:10px 0 14px;">Page introuvable</h1>
+      <p class="lead">Le lien a peut-être changé. La rubrique Articles est désormais rassemblée dans le Blog.</p>
+      <div class="actions">
+        <a class="button" href="/">Retour à l'accueil</a>
+        <a class="button secondary" href="/blog/">Ouvrir le blog</a>
+      </div>
     </div>
   </main>
 
-  <footer>© Charles Berthou</footer>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© Charles Berthou</p>
+      <div class="footer-links">
+        <a href="/blog/">Blog</a>
+        <a href="/ialearning/">IA learning</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

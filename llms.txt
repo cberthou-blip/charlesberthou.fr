@@ -1,0 +1,29 @@
+# charlesberthou.fr
+
+> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
+
+## Pages principales
+
+- Accueil: https://charlesberthou.fr/
+- Blog: https://charlesberthou.fr/blog/
+- Outils IA: https://charlesberthou.fr/#outils
+- E-learning Wero: https://charlesberthou.fr/wero/
+- IA learning: https://charlesberthou.fr/ialearning/
+
+## Articles
+
+- IA'ctualités - Ce que je retiens de mars 2026: https://charlesberthou.fr/blog/actumars2026/
+- IA en entreprise : hâtez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
+- L'humanité a toujours tremblé devant sa propre lumière: https://charlesberthou.fr/blog/humanite-lumiere/
+
+## Ressources externes
+
+- Prompts GitHub Gist: https://gist.github.com/cberthou-blip
+- Kleo, apprendre l'IA aux enfants: https://kleoia.fr/
+- LinkedIn: https://www.linkedin.com/in/charlesberthou
+
+## Ligne éditoriale
+
+Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
+
+Dernière mise à jour: 2026-04-27
