@@ -1,16 +1,21 @@
 const CATEGORY_ORDER = ["Conseil clientèle", "Métiers siège", "Management"];
-const DOMAIN_FILTERS = [
-  { label: "RH", matches: ["RH"] },
-  { label: "Pilotage", matches: ["Pilotage"] },
-  { label: "Assistance", matches: ["assistance reseau / support"] },
-  { label: "Conformité / Risques / Contrôle", matches: ["conformite / risques / controle"] },
-  { label: "Projets / Organisation", matches: ["Projets / Organisation"] },
-  { label: "Marketing / Communication", matches: ["Marketing / Communication"] },
-  { label: "Juridique / Fiscalité", matches: ["juridique / fiscalite"] },
-  { label: "Finance", matches: ["Finance / Pilotage"] },
-  { label: "Audit / Inspection", matches: ["Audit / Inspection"] },
-  { label: "Engagements", matches: ["Engagements / Recouvrement / Contentieux"] },
-];
+const DOMAIN_LABELS = {
+  "Conseiller clientèle": "Conseiller clientèle",
+  "Clientèle professionnelle et agricole": "Pro / Agri",
+  "Conseil patrimonial": "Patrimonial",
+  Financement: "Financement",
+  "Pilotage et comités": "Pilotage",
+  "Assistance réseau / support": "Assistance",
+  "Conformité / Risques / Contrôle": "Conformité / Risques / Contrôle",
+  "Projets / Organisation": "Projets / Organisation",
+  RH: "RH",
+  "Marketing / Communication": "Marketing / Communication",
+  "Juridique / Fiscalité": "Juridique / Fiscalité",
+  "Finance / Pilotage": "Finance",
+  "Audit / Inspection": "Audit / Inspection",
+  "Engagements / Recouvrement / Contentieux": "Engagements",
+  Manager: "Manager",
+};
 const MAX_RESULTS = 2;
 
 const state = {
@@ -199,7 +204,7 @@ function renderLibrary() {
 
   const categoryCases = getCasesForCategory(state.selectedCategory);
   const availableDomains = getAvailableDomains(categoryCases);
-  if (state.selectedDomain && !availableDomains.some((domain) => domain.label === state.selectedDomain)) {
+  if (state.selectedDomain && !availableDomains.some((domain) => domain.key === state.selectedDomain)) {
     state.selectedDomain = null;
   }
 
@@ -257,7 +262,7 @@ function renderLibrary() {
 
 function getLibraryTitle() {
   if (state.selectedDomain) {
-    return state.selectedDomain;
+    return getDomainLabel(state.selectedDomain);
   }
   if (state.selectedCategory) {
     return `Domaines de ${state.selectedCategory}`;
@@ -266,10 +271,21 @@ function getLibraryTitle() {
 }
 
 function getAvailableDomains(items) {
-  return DOMAIN_FILTERS.map((domain) => ({
-    ...domain,
-    count: items.filter((item) => itemMatchesDomain(item, domain)).length,
-  })).filter((domain) => domain.count > 0);
+  const domains = new Map();
+
+  items.forEach((item) => {
+    const key = getDomainKey(item);
+    if (!domains.has(key)) {
+      domains.set(key, {
+        key,
+        label: getDomainLabel(key),
+        count: 0,
+      });
+    }
+    domains.get(key).count += 1;
+  });
+
+  return Array.from(domains.values());
 }
 
 function createDomainTags(domains, totalCount) {
@@ -281,7 +297,7 @@ function createDomainTags(domains, totalCount) {
   wrapper.appendChild(allButton);
 
   domains.forEach((domain) => {
-    wrapper.appendChild(createDomainButton(domain.label, domain.label, domain.count));
+    wrapper.appendChild(createDomainButton(domain.label, domain.key, domain.count));
   });
 
   return wrapper;
@@ -360,7 +376,7 @@ function selectCase(id) {
   state.selectedId = id;
   if (selected) {
     state.selectedCategory = selected.categorie;
-    state.selectedDomain = getDomainsForCase(selected)[0]?.label || null;
+    state.selectedDomain = getDomainKey(selected);
   }
   renderCategoryChooser();
   renderLibrary();
@@ -445,23 +461,16 @@ function getCasesForCategory(category) {
 
 function getVisibleCases() {
   return getCasesForCategory(state.selectedCategory).filter((item) => {
-    return !state.selectedDomain || getDomainsForCase(item).some((domain) => domain.label === state.selectedDomain);
+    return !state.selectedDomain || getDomainKey(item) === state.selectedDomain;
   });
 }
 
-function getDomainsForCase(item) {
-  return DOMAIN_FILTERS.filter((domain) => itemMatchesDomain(item, domain));
+function getDomainKey(item) {
+  return item.sous_categorie || item.categorie || "Autres";
 }
 
-function itemMatchesDomain(item, domain) {
-  const haystack = normalize([
-    item.sous_categorie,
-    item.profil,
-    item.categorie,
-    ...(item.tags || []),
-  ].filter(Boolean).join(" "));
-
-  return domain.matches.some((match) => haystack.includes(normalize(match)));
+function getDomainLabel(key) {
+  return DOMAIN_LABELS[key] || key;
 }
 
 function getGainLabel(item) {
