@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IA’ctions</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">IA’ctions</p>
+          <h1>Simplifiez une tâche avec l'IA</h1>
+        </div>
+
+        <section class="search-panel" aria-label="Recherche IA’ctions">
+          <label for="searchInput">Que voulez-vous faire ?</label>
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 5.2a5.6 5.6 0 1 1 0 11.2 5.6 5.6 0 0 1 0-11.2m0-2a7.6 7.6 0 1 0 4.7 13.6l3.2 3.2a1 1 0 0 0 1.4-1.4l-3.2-3.2a7.6 7.6 0 0 0-6.1-12.2Z"></path>
+            </svg>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Ex. reformuler un mail client sensible">
+          </div>
+          <div class="search-results-panel" aria-live="polite">
+            <div class="results-head">
+              <span class="results-title" id="searchStatus">Suggestions de recherche</span>
+              <span class="results-help" id="searchHelp">Cliquez une fiche pour voir comment l’utiliser.</span>
+            </div>
+            <div class="results" id="searchResults"></div>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="column" aria-labelledby="categoryTitle">
+        <div class="column-head">
+          <p>1</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6.5h16M4 12h16M4 17.5h16"></path>
+            <path d="M7 4.5v4M12 10v4M17 15.5v4"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="categoryTitle">Choix de la catégorie</h2>
+            <span>Commencez par le domaine de travail.</span>
+          </div>
+        </div>
+        <div class="category-chooser" id="categoryChooser"></div>
+      </section>
+
+      <section class="column" aria-labelledby="libraryTitle">
+        <div class="column-head">
+          <p>2</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 5.5h5l2 2h7v11H5z"></path>
+            <path d="M8 11h8M8 15h6"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="libraryTitle">Bibliothèque</h2>
+            <span>Sélectionnez le cas d’usage le plus proche.</span>
+          </div>
+        </div>
+        <div class="library" id="library"></div>
+      </section>
+
+      <section class="column" aria-labelledby="assistantTitle">
+        <div class="column-head">
+          <p>3</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4.5a4 4 0 0 1 4 4c0 2.5-2 3.4-2 5.5h-4c0-2.1-2-3-2-5.5a4 4 0 0 1 4-4z"></path>
+            <path d="M10 17h4M10.7 20h2.6"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="assistantTitle">Assistant cas d’usage</h2>
+            <span>Suivez les étapes pour utiliser l’IA’ction.</span>
+          </div>
+        </div>
+        <div class="assistant-card" id="assistantCard">
+          <p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>
+        </div>
+      </section>
+    </main>
+
+    <section class="calculator-section" aria-labelledby="calculatorTitle">
+      <div class="calculator-inner">
+        <div class="calculator-title">
+          <h2 id="calculatorTitle">
+            <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 4.5h12v15H6z"></path>
+              <path d="M9 8h6M9 12h1.5M13.5 12H15M9 16h1.5M13.5 16H15"></path>
+            </svg>
+            Calculateur de gain
+          </h2>
+          <p>Estimation simple à partir de la fiche sélectionnée.</p>
+        </div>
+        <form class="calculator" id="gainForm">
+          <label class="calc-task-field">
+            Tâche
+            <input id="calcTask" type="text" value="Comprendre rapidement une procédure interne">
+          </label>
+          <label>
+            Fréquence / mois
+            <input id="calcFrequency" type="number" min="0" step="1" value="5">
+          </label>
+          <label>
+            Avant IA (min)
+            <input id="calcBefore" type="number" min="0" step="1" value="20">
+          </label>
+          <label>
+            Après IA (min)
+            <input id="calcAfter" type="number" min="0" step="1" value="10">
+          </label>
+          <div class="gain-box" aria-label="Résultats du calcul">
+            <div>
+              <span>Gain mensuel</span>
+              <strong id="monthlyGain">50 min</strong>
+            </div>
+            <div>
+              <span>Gain annuel</span>
+              <strong id="annualGain">10 h</strong>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
