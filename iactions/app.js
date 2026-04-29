@@ -1,10 +1,23 @@
 const CATEGORY_ORDER = ["Conseil clientèle", "Métiers siège", "Management"];
+const DOMAIN_FILTERS = [
+  { label: "RH", matches: ["RH"] },
+  { label: "Pilotage", matches: ["Pilotage"] },
+  { label: "Assistance", matches: ["Assistance réseau / support"] },
+  { label: "Conformité / Risques / Contrôle", matches: ["Conformité / Risques / Contrôle"] },
+  { label: "Projets / Organisation", matches: ["Projets / Organisation"] },
+  { label: "Marketing / Communication", matches: ["Marketing / Communication"] },
+  { label: "Juridique / Fiscalité", matches: ["Juridique / Fiscalité"] },
+  { label: "Finance", matches: ["Finance / Pilotage"] },
+  { label: "Audit / Inspection", matches: ["Audit / Inspection"] },
+  { label: "Engagements", matches: ["Engagements / Recouvrement / Contentieux"] },
+];
 const MAX_RESULTS = 2;
 
 const state = {
   cases: [],
   selectedId: null,
-  selectedCategory: CATEGORY_ORDER[0],
+  selectedCategory: null,
+  selectedDomain: null,
 };
 
 const searchInput = document.querySelector("#searchInput");
@@ -32,7 +45,7 @@ async function init() {
     }
     const payload = await response.json();
     state.cases = Array.isArray(payload) ? payload : payload.fiches || [];
-    state.selectedId = getCasesForCategory(state.selectedCategory)[0]?.id || null;
+    state.selectedId = state.cases[0]?.id || null;
 
     renderCategoryChooser();
     renderLibrary();
@@ -161,28 +174,40 @@ function createResultCard(item, isSuggestion = false) {
 function renderCategoryChooser() {
   categoryChooser.innerHTML = "";
 
+  categoryChooser.appendChild(createCategoryButton("Toutes", null, state.cases.length));
+
   CATEGORY_ORDER.forEach((category) => {
     const count = getCasesForCategory(category).length;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `category-choice${category === state.selectedCategory ? " is-selected" : ""}`;
-    button.addEventListener("click", () => selectCategory(category));
-    button.innerHTML = `
-      <span>${escapeHtml(category)}</span>
-      <strong>${count > 0 ? `${count} fiches` : "À venir"}</strong>
-    `;
-    categoryChooser.appendChild(button);
+    categoryChooser.appendChild(createCategoryButton(category, category, count));
   });
+}
+
+function createCategoryButton(label, value, count) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `category-choice${value === state.selectedCategory ? " is-selected" : ""}`;
+  button.addEventListener("click", () => selectCategory(value));
+  button.innerHTML = `
+    <span>${escapeHtml(label)}</span>
+    <strong>${count > 0 ? `${count} fiches` : "À venir"}</strong>
+  `;
+  return button;
 }
 
 function renderLibrary() {
   library.innerHTML = "";
 
   const categoryCases = getCasesForCategory(state.selectedCategory);
-  if (categoryCases.length === 0) {
+  const availableDomains = getAvailableDomains(categoryCases);
+  if (state.selectedDomain && !availableDomains.some((domain) => domain.label === state.selectedDomain)) {
+    state.selectedDomain = null;
+  }
+
+  const visibleCases = getVisibleCases();
+  if (visibleCases.length === 0) {
     library.innerHTML = `
       <div class="library-empty">
-        <h3>${escapeHtml(state.selectedCategory)}</h3>
+        <h3>Aucune fiche trouvée</h3>
         <p>Aucune fiche dans cette première version.</p>
       </div>
     `;
@@ -191,25 +216,87 @@ function renderLibrary() {
 
   const categoryBlock = document.createElement("section");
   categoryBlock.className = "category-block";
-  categoryBlock.innerHTML = `<h3 class="category-title">${escapeHtml(state.selectedCategory)}</h3>`;
+  categoryBlock.innerHTML = `
+    <div class="library-summary">
+      <div>
+        <span class="filter-label">Domaines</span>
+        <h3 class="category-title">${escapeHtml(getLibraryTitle())}</h3>
+      </div>
+      <strong>${visibleCases.length} fiches</strong>
+    </div>
+  `;
 
-  groupBy(categoryCases, "sous_categorie").forEach((items, subCategory) => {
-    const subBlock = document.createElement("div");
-    subBlock.className = "sub-category";
-    subBlock.innerHTML = `<h3>${escapeHtml(subCategory)}</h3>`;
+  categoryBlock.appendChild(createDomainTags(availableDomains, categoryCases.length));
 
-    const list = document.createElement("div");
-    list.className = "case-list";
+  groupBy(visibleCases, "categorie").forEach((items, category) => {
+    const categoryGroup = document.createElement("div");
+    categoryGroup.className = "library-category-group";
+    categoryGroup.innerHTML = state.selectedCategory ? "" : `<h3>${escapeHtml(category)}</h3>`;
 
-    items.forEach((item) => {
-      list.appendChild(createLibraryCard(item));
+    groupBy(items, "sous_categorie").forEach((subItems, subCategory) => {
+      const subBlock = document.createElement("div");
+      subBlock.className = "sub-category";
+      subBlock.innerHTML = `<h4>${escapeHtml(subCategory)}</h4>`;
+
+      const list = document.createElement("div");
+      list.className = "case-list";
+
+      subItems.forEach((item) => {
+        list.appendChild(createLibraryCard(item));
+      });
+
+      subBlock.appendChild(list);
+      categoryGroup.appendChild(subBlock);
     });
 
-    subBlock.appendChild(list);
-    categoryBlock.appendChild(subBlock);
+    categoryBlock.appendChild(categoryGroup);
   });
 
   library.appendChild(categoryBlock);
+}
+
+function getLibraryTitle() {
+  if (state.selectedDomain) {
+    return state.selectedDomain;
+  }
+  if (state.selectedCategory) {
+    return `Domaines de ${state.selectedCategory}`;
+  }
+  return "Tous les domaines";
+}
+
+function getAvailableDomains(items) {
+  return DOMAIN_FILTERS.map((domain) => ({
+    ...domain,
+    count: items.filter((item) => itemMatchesDomain(item, domain)).length,
+  })).filter((domain) => domain.count > 0);
+}
+
+function createDomainTags(domains, totalCount) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "job-tags";
+  wrapper.setAttribute("aria-label", "Domaines disponibles");
+
+  const allButton = createDomainButton("Tous les domaines", null, totalCount);
+  wrapper.appendChild(allButton);
+
+  domains.forEach((domain) => {
+    wrapper.appendChild(createDomainButton(domain.label, domain.label, domain.count));
+  });
+
+  return wrapper;
+}
+
+function createDomainButton(label, value, count) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `job-tag${state.selectedDomain === value ? " is-selected" : ""}`;
+  button.addEventListener("click", () => selectDomain(value));
+  button.innerHTML = `
+    <span>${escapeHtml(label)}</span>
+    <small>${count}</small>
+  `;
+  return button;
 }
 
 function createLibraryCard(item) {
@@ -219,7 +306,7 @@ function createLibraryCard(item) {
   card.addEventListener("click", () => selectCase(item.id));
   card.innerHTML = `
     <h4>${escapeHtml(item.tache)}</h4>
-    <p>${escapeHtml(item.iaction)} · ${escapeHtml(item.reglage)}</p>
+    <p>${escapeHtml(item.categorie)} · ${escapeHtml(item.iaction)} · ${escapeHtml(item.reglage)}</p>
     <span class="gain-note">${getGainLabel(item)}</span>
   `;
   return card;
@@ -273,6 +360,7 @@ function selectCase(id) {
   state.selectedId = id;
   if (selected) {
     state.selectedCategory = selected.categorie;
+    state.selectedDomain = getDomainsForCase(selected)[0]?.label || null;
   }
   renderCategoryChooser();
   renderLibrary();
@@ -284,8 +372,19 @@ function selectCase(id) {
 
 function selectCategory(category) {
   state.selectedCategory = category;
-  state.selectedId = getCasesForCategory(category)[0]?.id || null;
+  state.selectedDomain = null;
+  state.selectedId = getVisibleCases()[0]?.id || null;
   renderCategoryChooser();
+  renderLibrary();
+  renderSearchResults(searchInput.value);
+  renderSelectedCase();
+  updateCalculatorFromSelection();
+  updateGains();
+}
+
+function selectDomain(domain) {
+  state.selectedDomain = domain;
+  state.selectedId = getVisibleCases()[0]?.id || null;
   renderLibrary();
   renderSearchResults(searchInput.value);
   renderSelectedCase();
@@ -338,7 +437,31 @@ function getSelectedCase() {
 }
 
 function getCasesForCategory(category) {
+  if (!category) {
+    return state.cases;
+  }
   return state.cases.filter((item) => item.categorie === category);
+}
+
+function getVisibleCases() {
+  return getCasesForCategory(state.selectedCategory).filter((item) => {
+    return !state.selectedDomain || getDomainsForCase(item).some((domain) => domain.label === state.selectedDomain);
+  });
+}
+
+function getDomainsForCase(item) {
+  return DOMAIN_FILTERS.filter((domain) => itemMatchesDomain(item, domain));
+}
+
+function itemMatchesDomain(item, domain) {
+  const haystack = normalize([
+    item.sous_categorie,
+    item.profil,
+    item.categorie,
+    ...(item.tags || []),
+  ].filter(Boolean).join(" "));
+
+  return domain.matches.some((match) => haystack.includes(normalize(match)));
 }
 
 function getGainLabel(item) {
