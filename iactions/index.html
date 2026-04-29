@@ -34,7 +34,7 @@
     </header>
 
     <main class="workspace">
-      <section class="column" aria-labelledby="categoryTitle">
+      <section class="column explorer-column" aria-labelledby="explorerTitle">
         <div class="column-head">
           <p>1</p>
           <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
@@ -42,31 +42,22 @@
             <path d="M7 4.5v4M12 10v4M17 15.5v4"></path>
           </svg>
           <div class="column-title">
-            <h2 id="categoryTitle">Choix de la catégorie</h2>
-            <span>Commencez par le domaine de travail.</span>
+            <h2 id="explorerTitle">Explorer les cas d’usage</h2>
+            <span>Choisissez un métier ou directement un domaine.</span>
           </div>
         </div>
-        <div class="category-chooser" id="categoryChooser"></div>
+        <div class="explorer-card">
+          <div class="filter-block">
+            <span class="filter-label">Métiers</span>
+            <div class="category-chooser" id="categoryChooser"></div>
+          </div>
+          <div class="library" id="library"></div>
+        </div>
       </section>
 
-      <section class="column" aria-labelledby="libraryTitle">
+      <section class="column assistant-column" aria-labelledby="assistantTitle">
         <div class="column-head">
           <p>2</p>
-          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 5.5h5l2 2h7v11H5z"></path>
-            <path d="M8 11h8M8 15h6"></path>
-          </svg>
-          <div class="column-title">
-            <h2 id="libraryTitle">Bibliothèque</h2>
-            <span>Sélectionnez le cas d’usage le plus proche.</span>
-          </div>
-        </div>
-        <div class="library" id="library"></div>
-      </section>
-
-      <section class="column" aria-labelledby="assistantTitle">
-        <div class="column-head">
-          <p>3</p>
           <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 4.5a4 4 0 0 1 4 4c0 2.5-2 3.4-2 5.5h-4c0-2.1-2-3-2-5.5a4 4 0 0 1 4-4z"></path>
             <path d="M10 17h4M10.7 20h2.6"></path>
