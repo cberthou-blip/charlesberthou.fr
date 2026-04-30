@@ -16,16 +16,17 @@
         </div>
 
         <section class="search-panel" aria-label="Recherche IA’ctions">
-          <label for="searchInput">Quelle tâche voulez-vous simplifier ?</label>
+          <label for="searchInput">Décrivez votre tâche</label>
           <div class="search-box">
             <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M10.8 5.2a5.6 5.6 0 1 1 0 11.2 5.6 5.6 0 0 1 0-11.2m0-2a7.6 7.6 0 1 0 4.7 13.6l3.2 3.2a1 1 0 0 0 1.4-1.4l-3.2-3.2a7.6 7.6 0 0 0-6.1-12.2Z"></path>
             </svg>
-            <input id="searchInput" type="search" autocomplete="off" placeholder="Ex. reformuler un mail client sensible">
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Ex. transcrire et résumer une réunion projet">
           </div>
+          <button class="suggest-task-button" id="suggestTaskButton" type="button">Proposer une tâche</button>
           <div class="search-results-panel" aria-live="polite">
             <div class="results-head">
-              <span class="results-title" id="searchStatus">Suggestions de recherche</span>
+              <span class="results-title" id="searchStatus">Idées de tâches à simplifier</span>
               <span class="results-help" id="searchHelp">Cliquez une fiche pour voir comment l’utiliser.</span>
             </div>
             <div class="results" id="searchResults"></div>
@@ -43,22 +44,11 @@
             <path d="M7 4.5v4M12 10v4M17 15.5v4"></path>
           </svg>
           <div class="column-title">
-            <h2 id="explorerTitle">Quelle tâche simplifier ?</h2>
-            <span>Explorez par intention, métier ou domaine.</span>
+            <h2 id="explorerTitle">Explorateur de tâches et cas d’usage</h2>
+            <span>Explorez par métier ou domaine.</span>
           </div>
         </div>
         <div class="explorer-card">
-          <div class="filter-block intent-block">
-            <span class="filter-label">Je veux...</span>
-            <div class="intent-chooser" id="intentChooser"></div>
-          </div>
-          <div class="ideas-panel" aria-label="Idées de tâches à simplifier">
-            <div class="ideas-head">
-              <span>Idées à tester</span>
-              <p>Des exemples pour découvrir des usages utiles.</p>
-            </div>
-            <div class="idea-rail" id="ideaRail"></div>
-          </div>
           <div class="filter-block">
             <span class="filter-label">Métiers</span>
             <div class="category-chooser" id="categoryChooser"></div>
