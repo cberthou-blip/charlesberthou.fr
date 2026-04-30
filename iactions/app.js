@@ -136,6 +136,7 @@ function bindEvents() {
 
   if (suggestTaskButton) {
     suggestTaskButton.addEventListener("click", () => {
+      searchInput.scrollIntoView({ behavior: "smooth", block: "center" });
       searchInput.focus();
     });
   }
