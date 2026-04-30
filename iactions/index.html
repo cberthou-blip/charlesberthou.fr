@@ -12,7 +12,6 @@
         <div class="hero-copy">
           <p class="eyebrow">IA’ctions</p>
           <h1>Simplifiez une tâche avec l'IA</h1>
-          <p class="hero-subtitle">Trouvez une tâche concrète à alléger, même si vous ne savez pas encore quoi chercher.</p>
         </div>
 
         <section class="search-panel" aria-label="Recherche IA’ctions">
@@ -34,8 +33,12 @@
       </div>
     </header>
 
-    <main class="workspace">
-      <section class="column explorer-column" aria-labelledby="explorerTitle">
+    <main class="workspace" aria-labelledby="explorerTitle">
+      <div class="workspace-head">
+        <h2 id="explorerTitle">Explorateur de tâches et cas d’usage</h2>
+      </div>
+
+      <section class="column" aria-labelledby="categoryTitle">
         <div class="column-head">
           <p>1</p>
           <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
@@ -43,29 +46,38 @@
             <path d="M7 4.5v4M12 10v4M17 15.5v4"></path>
           </svg>
           <div class="column-title">
-            <h2 id="explorerTitle">Explorateur de tâches et cas d’usage</h2>
-            <span>Explorez par métier ou domaine.</span>
+            <h2 id="categoryTitle">Métiers</h2>
+            <span>Commencez par le domaine de travail.</span>
           </div>
         </div>
-        <div class="explorer-card">
-          <div class="filter-block">
-            <span class="filter-label">Métiers</span>
-            <div class="category-chooser" id="categoryChooser"></div>
-          </div>
-          <div class="library" id="library"></div>
-        </div>
+        <div class="category-chooser" id="categoryChooser"></div>
       </section>
 
-      <section class="column assistant-column" aria-labelledby="assistantTitle">
+      <section class="column" aria-labelledby="libraryTitle">
         <div class="column-head">
           <p>2</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 5.5h5l2 2h7v11H5z"></path>
+            <path d="M8 11h8M8 15h6"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="libraryTitle">Domaines</h2>
+            <span>Sélectionnez le cas d’usage le plus proche.</span>
+          </div>
+        </div>
+        <div class="library" id="library"></div>
+      </section>
+
+      <section class="column" aria-labelledby="assistantTitle">
+        <div class="column-head">
+          <p>3</p>
           <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 4.5a4 4 0 0 1 4 4c0 2.5-2 3.4-2 5.5h-4c0-2.1-2-3-2-5.5a4 4 0 0 1 4-4z"></path>
             <path d="M10 17h4M10.7 20h2.6"></path>
           </svg>
           <div class="column-title">
             <h2 id="assistantTitle">Mode d’emploi</h2>
-            <span>Ouvrez, ajoutez, choisissez, vérifiez.</span>
+            <span>Suivez les étapes pour utiliser l’IA’ction.</span>
           </div>
         </div>
         <div class="assistant-card" id="assistantCard">
