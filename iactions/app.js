@@ -59,9 +59,23 @@ const PRUDENT_ESTIMATES = {
 };
 const MAX_RESULTS = 2;
 const DISCOVERY_LIMIT = 6;
+const FEATURED_TASK_IDS = ["MS-017", "MS-043"];
+const DEFAULT_IACTION_SETTINGS = {
+  "Résumer un texte": {
+    "Type de résumé": ["Liste à puce", "Paragraphe"],
+    "Longueur de résumé": ["court", "moyen", "long"],
+  },
+  "Résumer un document": {
+    "Longueur de résumé": ["court", "moyen", "long"],
+  },
+  "Reformuler un texte": {
+    "Mode de reformulation": ["Paraphraser", "Adoucir", "Simplifier", "Etoffer"],
+  },
+};
 
 const state = {
   cases: [],
+  settings: DEFAULT_IACTION_SETTINGS,
   selectedId: null,
   selectedIntent: null,
   selectedCategory: null,
@@ -70,6 +84,7 @@ const state = {
 };
 
 const searchInput = document.querySelector("#searchInput");
+const suggestTaskButton = document.querySelector("#suggestTaskButton");
 const searchStatus = document.querySelector("#searchStatus");
 const searchHelp = document.querySelector("#searchHelp");
 const searchResults = document.querySelector("#searchResults");
@@ -96,8 +111,9 @@ async function init() {
     }
     const payload = await response.json();
     state.cases = Array.isArray(payload) ? payload : payload.fiches || [];
+    state.settings = payload.parametres_iactions || DEFAULT_IACTION_SETTINGS;
     applyPrudentEstimates(state.cases);
-    state.selectedId = state.cases[0]?.id || null;
+    state.selectedId = getDefaultSuggestions()[0]?.id || state.cases[0]?.id || null;
 
     renderIntentChooser();
     renderIdeaRail();
@@ -117,6 +133,12 @@ function bindEvents() {
   searchInput.addEventListener("input", () => {
     renderSearchResults(searchInput.value);
   });
+
+  if (suggestTaskButton) {
+    suggestTaskButton.addEventListener("click", () => {
+      searchInput.focus();
+    });
+  }
 
   gainForm.addEventListener("input", updateGains);
 }
@@ -179,7 +201,7 @@ function applyPrudentEstimates(items) {
 
 function getRankedResults(query) {
   if (query.trim().length === 0) {
-    return getStarterCases().slice(0, MAX_RESULTS);
+    return getDefaultSuggestions();
   }
 
   const ranked = state.cases
@@ -194,6 +216,21 @@ function getRankedResults(query) {
   return ranked.slice(0, MAX_RESULTS).map((entry) => entry.item);
 }
 
+function getDefaultSuggestions() {
+  const featured = FEATURED_TASK_IDS
+    .map((id) => state.cases.find((item) => item.id === id))
+    .filter(Boolean);
+
+  if (featured.length >= MAX_RESULTS) {
+    return featured.slice(0, MAX_RESULTS);
+  }
+
+  return state.cases
+    .slice()
+    .sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a))
+    .slice(0, MAX_RESULTS);
+}
+
 function renderSearchResults(query) {
   const results = getRankedResults(query);
   const cleanQuery = query.trim();
@@ -203,7 +240,7 @@ function renderSearchResults(query) {
     : "Idées de tâches à simplifier";
   searchHelp.textContent = cleanQuery
     ? "Fiches les plus proches des mots saisis dans la barre."
-    : "Deux exemples concrets. Tapez une tâche pour affiner.";
+    : "Deux exemples à fort gain de temps. Tapez une tâche pour affiner.";
 
   searchResults.innerHTML = "";
   if (results.length === 0) {
@@ -239,7 +276,7 @@ function createResultCard(item, isSuggestion = false) {
         <h3>${escapeHtml(item.tache)}</h3>
         <span class="gain-pill">${getMonthlyGainLabel(item)}</span>
       </div>
-      <p class="result-meta">${escapeHtml(item.iaction)} · ${escapeHtml(item.reglage)}</p>
+      <p class="result-meta">${escapeHtml(item.iaction)} · ${escapeHtml(getSettingsLabel(item))}</p>
       <p class="result-line"><strong>Ajoutez</strong> ${escapeHtml(item.entree)}</p>
       <p class="result-line"><strong>Vérifiez</strong> ${escapeHtml(item.verification.slice(0, 3).join(", "))}</p>
     `;
@@ -249,6 +286,10 @@ function createResultCard(item, isSuggestion = false) {
 }
 
 function renderIntentChooser() {
+  if (!intentChooser) {
+    return;
+  }
+
   intentChooser.innerHTML = "";
 
   INTENT_FILTERS.forEach((intent) => {
@@ -272,6 +313,10 @@ function createIntentButton(intent, value, count) {
 }
 
 function renderIdeaRail() {
+  if (!ideaRail) {
+    return;
+  }
+
   ideaRail.innerHTML = "";
   getIdeaCases().forEach((entry) => {
     const card = document.createElement("button");
@@ -321,8 +366,8 @@ function renderLibrary() {
   }
 
   const visibleCases = getVisibleCases();
-  const isDiscoveryMode = !state.selectedIntent && !state.selectedCategory && !state.selectedDomain && !state.showFullLibrary;
-  const displayedCases = isDiscoveryMode ? getStarterCases() : visibleCases;
+  const isDiscoveryMode = false;
+  const displayedCases = visibleCases;
   if (visibleCases.length === 0) {
     library.innerHTML = `
       <div class="library-empty">
@@ -417,10 +462,7 @@ function getLibraryTitle() {
   if (state.selectedCategory) {
     return `Domaines de ${state.selectedCategory}`;
   }
-  if (state.showFullLibrary) {
-    return "Toute la bibliothèque";
-  }
-  return "Tâches à tester";
+  return "Tous les domaines";
 }
 
 function getAvailableDomains(items) {
@@ -518,7 +560,7 @@ function renderSelectedCase() {
       </div>
       <div class="usage-row">
         <dt>${getIcon("settings")} Choisissez</dt>
-        <dd>${escapeHtml(selected.reglage)}</dd>
+        <dd>${escapeHtml(getSettingsLabel(selected))}</dd>
       </div>
       <div class="usage-row">
         <dt>${getIcon("check")} Vérifiez</dt>
@@ -759,6 +801,31 @@ function textIncludes(item, terms) {
   ].filter(Boolean).join(" "));
 
   return terms.some((term) => haystack.includes(normalize(term)));
+}
+
+function getSettingsLabel(item) {
+  const settings = state.settings[item.iaction] || DEFAULT_IACTION_SETTINGS[item.iaction];
+  if (!settings) {
+    return item.reglage || "Aucun réglage";
+  }
+
+  return Object.entries(settings)
+    .map(([label, choices]) => `${label} : ${formatChoiceList(choices)}`)
+    .join(" · ");
+}
+
+function formatChoiceList(choices) {
+  const values = Array.isArray(choices) ? choices : [choices];
+
+  if (values.length <= 1) {
+    return values[0] || "";
+  }
+
+  if (values.length === 2) {
+    return `${values[0]} ou ${values[1]}`;
+  }
+
+  return `${values.slice(0, -1).join(", ")} ou ${values[values.length - 1]}`;
 }
 
 function getMonthlyGain(item) {
