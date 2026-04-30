@@ -130,6 +130,25 @@ h1 {
   outline-color: rgba(255, 255, 255, 0.42);
 }
 
+.suggest-task-button {
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--white);
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.suggest-task-button:hover,
+.suggest-task-button:focus {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  outline: 0;
+}
+
 .search-results-panel {
   margin-top: 16px;
   border: 1px solid rgba(255, 255, 255, 0.26);
