@@ -266,7 +266,8 @@ section,
 }
 
 .hero-tech .button.secondary {
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(248, 251, 255, 0.72);
+  background: rgba(13, 27, 62, 0.28);
   color: #f8fbff;
 }
 
@@ -421,15 +422,15 @@ section,
 
 .hero-copy .eyebrow {
   width: fit-content;
-  border: 1px solid rgba(15, 118, 110, 0.22);
-  background: rgba(15, 118, 110, 0.06);
+  border: 1px solid rgba(6, 182, 212, 0.28);
+  background: rgba(6, 182, 212, 0.1);
   padding: 7px 10px;
 }
 
 .vector-panel {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(205, 191, 170, 0.82);
+  border: 1px solid var(--line);
   border-radius: 8px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(247, 249, 255, 0.78)),
@@ -528,7 +529,7 @@ section,
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  border: 1px solid var(--ink);
+  border: 1px solid transparent;
   border-radius: 6px;
   padding: 0 18px;
   background: var(--grad-card);
@@ -544,6 +545,11 @@ section,
   border-color: var(--line-strong);
 }
 
+.button.secondary:hover {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+
 .button:hover,
 .nav-cta:hover {
   transform: translateY(-1px);
@@ -555,9 +561,9 @@ section,
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.22);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.07);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
 }
 
@@ -924,8 +930,8 @@ section,
 }
 
 .tool-card.highlight {
-  background: linear-gradient(145deg, #fff 0%, #fff8ec 100%);
-  border-color: #cbbda9;
+  background: linear-gradient(145deg, #fff 0%, #f7f9ff 100%);
+  border-color: var(--line-strong);
 }
 
 .tool-featured {
@@ -953,9 +959,9 @@ section,
   display: inline-flex;
   align-items: center;
   min-height: 30px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.24);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.06);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
   padding: 0 11px;
   font-size: 0.82rem;
@@ -997,7 +1003,7 @@ section,
   align-content: space-between;
   gap: 28px;
   min-height: 360px;
-  border: 1px solid #cbbda9;
+  border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   padding: 28px;
@@ -1008,9 +1014,9 @@ section,
 }
 
 .blog-feature:hover {
-  border-color: #bcae9a;
+  border-color: var(--line-strong);
   transform: translateY(-2px);
-  box-shadow: 0 22px 52px rgba(37, 28, 18, 0.12);
+  box-shadow: var(--shadow);
 }
 
 .blog-feature h2,
@@ -1266,7 +1272,7 @@ section,
   gap: 22px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.64);
+  background: rgba(255, 255, 255, 0.9);
   padding-block: 28px;
   box-shadow: var(--shadow-soft);
 }
@@ -1282,7 +1288,9 @@ section,
 }
 
 .llm-summary-band {
-  background: linear-gradient(135deg, #101827 0%, #17202a 52%, #0f2f33 100%);
+  background:
+    radial-gradient(circle at 18% 16%, rgba(6, 182, 212, 0.22), transparent 34%),
+    linear-gradient(135deg, #0d1b3e 0%, #1e3a8a 50%, #4338ca 100%);
   color: #f8fbff;
 }
 
@@ -1309,6 +1317,7 @@ section,
 
 .llm-summary-panel .button.secondary {
   border-color: rgba(248, 251, 255, 0.72);
+  background: rgba(13, 27, 62, 0.28);
   color: #f8fbff;
 }
 
@@ -1444,7 +1453,7 @@ section,
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 30px 0 42px;
-  color: var(--muted);
+  color: #465168;
   font-size: 0.92rem;
 }
 
@@ -1457,6 +1466,10 @@ section,
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+}
+
+.footer-links a:hover {
+  color: var(--blue);
 }
 
 @media (min-width: 720px) {
@@ -1710,7 +1723,7 @@ section,
 
 .xp-banner {
   padding: 22px;
-  background: linear-gradient(145deg, #fff 0%, #fff8ec 100%);
+  background: linear-gradient(145deg, #fff 0%, #f7f9ff 100%);
 }
 
 .xp-label,
@@ -1750,7 +1763,7 @@ section,
 .quiz-progress-fill {
   height: 100%;
   border-radius: 999px;
-  background: var(--teal);
+  background: var(--grad-cyan);
   transition: width 0.35s ease;
 }
 
@@ -1775,8 +1788,8 @@ section,
 }
 
 .badge-chip.earned {
-  border-color: rgba(15, 118, 110, 0.25);
-  background: rgba(15, 118, 110, 0.07);
+  border-color: rgba(6, 182, 212, 0.25);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
 }
 
@@ -1877,9 +1890,9 @@ section,
   justify-content: center;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.22);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.07);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
   font-weight: 850;
 }
@@ -1972,10 +1985,10 @@ section,
 }
 
 .info-box {
-  border: 1px solid rgba(15, 118, 110, 0.22);
+  border: 1px solid rgba(6, 182, 212, 0.24);
   border-left: 3px solid var(--teal);
   border-radius: 0 8px 8px 0;
-  background: rgba(15, 118, 110, 0.06);
+  background: rgba(6, 182, 212, 0.08);
   color: #33404a;
   padding: 14px 16px;
   margin: 18px 0;
@@ -2018,7 +2031,7 @@ section,
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  border: 1px solid var(--ink);
+  border: 1px solid transparent;
   border-radius: 6px;
   padding: 0 18px;
   font: inherit;
@@ -2029,13 +2042,14 @@ section,
 }
 
 .btn-primary {
-  background: var(--ink);
+  background: var(--grad-card);
   color: #fff;
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--ink);
+  border-color: var(--line-strong);
+  background: #fff;
+  color: var(--blue);
 }
 
 .btn:hover {
@@ -2085,8 +2099,8 @@ section,
 }
 
 .option-btn.correct {
-  border-color: rgba(15, 118, 110, 0.38);
-  background: rgba(15, 118, 110, 0.07);
+  border-color: rgba(6, 182, 212, 0.38);
+  background: rgba(6, 182, 212, 0.1);
 }
 
 .option-btn.wrong {
@@ -2142,9 +2156,9 @@ section,
   place-items: center;
   width: 88px;
   height: 88px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.22);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.07);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
 }
 
@@ -2178,9 +2192,9 @@ section,
   display: inline-flex;
   align-items: center;
   min-height: 30px;
-  border: 1px solid rgba(15, 118, 110, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.24);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.06);
+  background: rgba(6, 182, 212, 0.1);
   color: var(--teal);
   padding: 0 11px;
   margin-top: 10px;
