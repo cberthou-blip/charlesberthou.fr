@@ -1,19 +1,19 @@
 # charlesberthou.fr
 
-> Site personnel francophone consacre a l'intelligence artificielle, aux usages numeriques, a la banque, aux prompts, aux GPTs et aux parcours pedagogiques.
+> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
 
-## Resume LLM
+## Résumé LLM
 
-charlesberthou.fr publie des analyses, reperes et ressources pratiques pour comprendre l'IA generative, ses effets sur les organisations, la banque, les paiements, la fraude, la pedagogie et la culture numerique. Le site privilegie une approche concrete: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
+charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la banque, les paiements, la fraude, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
 - Blog: https://charlesberthou.fr/blog/
 - Outils IA: https://charlesberthou.fr/#outils
-- Resume LLM: https://charlesberthou.fr/resume-llm/
-- A propos: https://charlesberthou.fr/a-propos/
-- Confidentialite: https://charlesberthou.fr/confidentialite/
+- Résumé LLM: https://charlesberthou.fr/resume-llm/
+- À propos: https://charlesberthou.fr/a-propos/
+- Confidentialité: https://charlesberthou.fr/confidentialite/
 - E-learning Wero: https://charlesberthou.fr/wero/
 - IA Learning: https://charlesberthou.fr/ialearning/
 
@@ -33,10 +33,10 @@ charlesberthou.fr publie des analyses, reperes et ressources pratiques pour comp
 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
-- Themes: intelligence artificielle, IA generative, agents IA, banque, paiement, fraude, adoption en entreprise, shadow AI, prompts, GPTs, e-learning, culture numerique.
+- Themes: intelligence artificielle, IA générative, agents IA, banque, paiement, fraude, adoption en entreprise, shadow AI, prompts, GPTs, e-learning, culture numérique.
 
-## Ligne editoriale
+## Ligne éditoriale
 
-Les contenus cherchent a rendre l'intelligence artificielle plus lisible, plus concrete et plus facile a transmettre, avec un ton professionnel, sobre et francophone.
+Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
 
-Derniere mise a jour: 2026-05-10
+Dernière mise à jour: 2026-05-10

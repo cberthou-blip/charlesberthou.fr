@@ -48,6 +48,12 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(8, 145, 178, 0.42);
+  outline-offset: 3px;
+}
+
 .icon-sprite {
   position: absolute;
   width: 0;
@@ -127,6 +133,11 @@ section,
   color: var(--muted);
   font-size: 0.84rem;
   font-weight: 750;
+  scrollbar-width: none;
+}
+
+.main-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .main-nav a {
@@ -251,6 +262,10 @@ section,
 .hero-tech .button.secondary {
   background: rgba(255, 255, 255, 0.06);
   color: #f8fbff;
+}
+
+.hero-tech .button.secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .hero-tech .mini-card {
@@ -1126,8 +1141,60 @@ section,
     min-height: 46px;
   }
 
+  .main-nav {
+    gap: 4px;
+    font-size: 0.78rem;
+  }
+
+  .main-nav a {
+    padding-inline: 6px;
+  }
+
   .hero-card-grid {
     margin-top: 20px;
+  }
+
+  .signal-panel {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .signal-orbit {
+    min-height: 230px;
+  }
+
+  .signal-orbit::before {
+    inset: 34px;
+  }
+
+  .signal-orbit::after {
+    inset: 68px;
+  }
+
+  .orbit-core {
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    font-size: 0.92rem;
+  }
+
+  .orbit-node {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 0.74rem;
+  }
+
+  .node-a { left: 12px; top: 52%; }
+  .node-b { right: 12px; top: 26px; }
+  .node-c { right: 14px; bottom: 28px; }
+  .node-d { left: 22px; top: 28px; }
+
+  .signal-metrics {
+    gap: 8px;
+  }
+
+  .signal-metrics strong {
+    font-size: 1.12rem;
   }
 
   .mini-card p:not(.meta),
@@ -1415,6 +1482,10 @@ section,
 
   .hero {
     padding: 78px 0 82px;
+  }
+
+  .hero.hero-tech {
+    padding: 58px 0 56px;
   }
 
   .hero-grid,
