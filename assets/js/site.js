@@ -152,9 +152,8 @@ async function renderBlogAreas() {
       blogTarget.innerHTML = blogDirectory(posts);
     }
   } catch (error) {
-    const fallback = `<p class="meta">Les publications n'ont pas pu être chargées pour le moment.</p>`;
-    if (homeTarget) homeTarget.innerHTML = fallback;
-    if (blogTarget) blogTarget.innerHTML = fallback;
+    // Keep the static article cards already present in the page.
+    return;
   }
 }
 

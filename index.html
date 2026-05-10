@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'self'; upgrade-insecure-requests" />
   <title>IA, banque et culture numérique | Charles Berthou</title>
   <meta name="description" content="Mes analyses, prompts, GPTs et parcours pédagogiques pour comprendre l'intelligence artificielle, la banque et les usages numériques." />
   <link rel="canonical" href="https://charlesberthou.fr/" />
@@ -91,14 +92,16 @@
       <nav class="main-nav" aria-label="Navigation principale">
         <a href="#blog">Blog</a>
         <a href="#outils">Outils IA</a>
+        <a href="/resume-llm/">Resume LLM</a>
+        <a href="/a-propos/">A propos</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="contenu">
-    <section class="hero">
-      <div class="container hero-grid text-only">
+    <section class="hero hero-tech">
+      <div class="container hero-grid hero-tech-grid">
         <div class="hero-copy">
           <p class="eyebrow">Banque · transformation IA</p>
           <h1>Comprendre l'IA, ses usages et ses effets sur nos repères.</h1>
@@ -130,6 +133,24 @@
             </a>
           </div>
         </div>
+        <aside class="signal-panel" aria-label="Carte des sujets IA">
+          <div class="signal-panel-top">
+            <span class="signal-status">Live notes</span>
+            <span>IA / banque / usages</span>
+          </div>
+          <div class="signal-orbit" aria-hidden="true">
+            <span class="orbit-core">IA</span>
+            <span class="orbit-node node-a">Banque</span>
+            <span class="orbit-node node-b">Prompt</span>
+            <span class="orbit-node node-c">Culture</span>
+            <span class="orbit-node node-d">Risque</span>
+          </div>
+          <div class="signal-metrics">
+            <div><strong>3</strong><span>articles longs</span></div>
+            <div><strong>2</strong><span>assistants GPT</span></div>
+            <div><strong>2</strong><span>parcours</span></div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -314,6 +335,19 @@
       </div>
     </section>
 
+    <section class="section llm-summary-band" id="resume-llm" aria-labelledby="llm-summary-title">
+      <div class="container llm-summary-panel">
+        <div>
+          <p class="eyebrow">Resume LLM</p>
+          <h2 id="llm-summary-title">Une fiche courte pour les moteurs IA.</h2>
+          <p>
+            charlesberthou.fr publie des analyses francophones sur l'intelligence artificielle, la banque, les usages numeriques, la pedagogie et les outils pratiques comme les prompts, GPTs et parcours e-learning.
+          </p>
+        </div>
+        <a class="button secondary" href="/resume-llm/">Lire le resume</a>
+      </div>
+    </section>
+
     <section class="section soft" id="contact">
       <div class="container contact-panel">
         <div class="section-heading">
@@ -348,6 +382,9 @@
       <div class="footer-links">
         <a href="#blog">Blog</a>
         <a href="#outils">Outils IA</a>
+        <a href="/resume-llm/">Resume LLM</a>
+        <a href="/a-propos/">A propos</a>
+        <a href="/confidentialite/">Confidentialite</a>
         <a href="#contact">Contact</a>
         <a href="/sitemap.xml">Sitemap</a>
       </div>

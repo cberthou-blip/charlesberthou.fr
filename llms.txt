@@ -1,20 +1,27 @@
 # charlesberthou.fr
 
-> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
+> Site personnel francophone consacre a l'intelligence artificielle, aux usages numeriques, a la banque, aux prompts, aux GPTs et aux parcours pedagogiques.
+
+## Resume LLM
+
+charlesberthou.fr publie des analyses, reperes et ressources pratiques pour comprendre l'IA generative, ses effets sur les organisations, la banque, les paiements, la fraude, la pedagogie et la culture numerique. Le site privilegie une approche concrete: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
 - Blog: https://charlesberthou.fr/blog/
 - Outils IA: https://charlesberthou.fr/#outils
+- Resume LLM: https://charlesberthou.fr/resume-llm/
+- A propos: https://charlesberthou.fr/a-propos/
+- Confidentialite: https://charlesberthou.fr/confidentialite/
 - E-learning Wero: https://charlesberthou.fr/wero/
-- IA learning: https://charlesberthou.fr/ialearning/
+- IA Learning: https://charlesberthou.fr/ialearning/
 
 ## Articles
 
-- IA'ctualités - Ce que je retiens de mars 2026: https://charlesberthou.fr/blog/actumars2026/
-- IA en entreprise : hâtez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
-- L'humanité a toujours tremblé devant sa propre lumière: https://charlesberthou.fr/blog/humanite-lumiere/
+- IA'ctualites - Ce que je retiens de mars 2026: https://charlesberthou.fr/blog/actumars2026/
+- IA en entreprise : hatez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
+- L'humanite a toujours tremble devant sa propre lumiere: https://charlesberthou.fr/blog/humanite-lumiere/
 
 ## Ressources externes
 
@@ -22,8 +29,14 @@
 - Kleo, apprendre l'IA aux enfants: https://kleoia.fr/
 - LinkedIn: https://www.linkedin.com/in/charlesberthou
 
-## Ligne éditoriale
+## Entites et themes
 
-Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
+- Auteur: Charles Berthou
+- Site: charlesberthou.fr
+- Themes: intelligence artificielle, IA generative, agents IA, banque, paiement, fraude, adoption en entreprise, shadow AI, prompts, GPTs, e-learning, culture numerique.
 
-Dernière mise à jour: 2026-04-27
+## Ligne editoriale
+
+Les contenus cherchent a rendre l'intelligence artificielle plus lisible, plus concrete et plus facile a transmettre, avec un ton professionnel, sobre et francophone.
+
+Derniere mise a jour: 2026-05-10

@@ -3,9 +3,30 @@
 
   <url>
     <loc>https://charlesberthou.fr/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://charlesberthou.fr/a-propos/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://charlesberthou.fr/resume-llm/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://charlesberthou.fr/confidentialite/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
   <url>
@@ -45,7 +66,7 @@
 
   <url>
     <loc>https://charlesberthou.fr/llms.txt</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
