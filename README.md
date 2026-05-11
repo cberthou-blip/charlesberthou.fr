@@ -24,7 +24,7 @@ Firebase n'est pas utilise pour l'hébergement du site principal. Le fichier `fi
 GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot. Les anciennes routes publiques sont conservees sous forme de pages statiques `noindex` avec canonical et redirection HTML/JavaScript:
 
 - `/articles/` vers `/blog/`
-- `/articles/actumars2026/` vers `/blog/actumars2026/`
+- `/articles/actumars2026/` vers `/blog/`
 - `/articles/ia-entreprise/` vers `/blog/ia-entreprise/`
 - `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
 - `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`

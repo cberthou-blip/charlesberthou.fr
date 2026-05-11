@@ -20,7 +20,6 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 ## Articles
 
 - Le token, prochaine monnaie de l'IA: https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/
-- IA'ctualites - Ce que je retiens de mars 2026: https://charlesberthou.fr/blog/actumars2026/
 - IA en entreprise : hatez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
 - L'humanite a toujours tremble devant sa propre lumiere: https://charlesberthou.fr/blog/humanite-lumiere/
 
