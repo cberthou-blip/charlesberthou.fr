@@ -10,9 +10,12 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 - Accueil: https://charlesberthou.fr/
 - Blog: https://charlesberthou.fr/blog/
+- Services: https://charlesberthou.fr/services/
 - Outils IA: https://charlesberthou.fr/#outils
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
+- Résumé LLM: https://charlesberthou.fr/resume-llm/
+- Sitemap XML: https://charlesberthou.fr/sitemap.xml
 - E-learning Wero: https://charlesberthou.fr/wero/
 - IA Learning: https://charlesberthou.fr/ialearning/
 

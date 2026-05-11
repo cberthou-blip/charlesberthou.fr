@@ -1155,7 +1155,7 @@ section,
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 10px 14px;
 }
 
 .footer-links a:hover {
@@ -1287,6 +1287,11 @@ section,
   .footer-grid {
     grid-template-columns: 1fr auto;
     align-items: center;
+  }
+
+  .footer-links {
+    justify-content: flex-end;
+    max-width: 760px;
   }
 }
 
