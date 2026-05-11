@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Le token, prochaine monnaie de l’IA",
+      "description": "Une lecture économique du token comme nouvelle unité comptable de l’IA : coût du calcul, infrastructures, dépendance d’usage et discipline de consommation.",
+      "date": "2026-05-11",
+      "readingTime": "9 min",
+      "url": "/blog/le-token-prochaine-monnaie-ia/",
+      "tags": ["IA", "Économie", "Tokens"]
+    },
+    {
       "title": "IA'ctualités - Ce que je retiens de mars 2026",
       "description": "Une synthèse des signaux utiles du mois : emploi, santé, énergie, gouvernance, capital, modèles et paiements.",
       "date": "2026-04-06",

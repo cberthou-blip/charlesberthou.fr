@@ -27,4 +27,5 @@ GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot.
 - `/articles/actumars2026/` vers `/blog/actumars2026/`
 - `/articles/ia-entreprise/` vers `/blog/ia-entreprise/`
 - `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
+- `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`
 - `/gpts/`, `/contact/`, `/e-learning/`, `/elearning/` vers les ancres utiles de l'accueil.
