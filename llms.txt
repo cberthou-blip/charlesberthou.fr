@@ -2,7 +2,7 @@
 
 > Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
 
-## Résumé LLM
+## Résumé du site
 
 charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la banque, les paiements, la fraude, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
 
@@ -11,7 +11,6 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 - Accueil: https://charlesberthou.fr/
 - Blog: https://charlesberthou.fr/blog/
 - Outils IA: https://charlesberthou.fr/#outils
-- Résumé LLM: https://charlesberthou.fr/resume-llm/
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
 - E-learning Wero: https://charlesberthou.fr/wero/

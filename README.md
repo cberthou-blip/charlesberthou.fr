@@ -7,7 +7,7 @@ Site personnel statique publie avec GitHub Pages.
 - `/` : accueil éditorial, blog, outils IA et contact.
 - `/blog/` : index des articles.
 - `/blog/*/` : articles publics.
-- `/resume-llm/` et `/llms.txt` : contexte synthetique pour moteurs IA et LLM.
+- `/llms.txt` : contexte synthetique technique pour moteurs IA et LLM, non mis en avant dans l'interface.
 - `/a-propos/` : positionnement éditorial.
 - `/confidentialite/` : politique de confidentialité.
 - `/wero/` : module e-learning statique.
@@ -28,4 +28,5 @@ GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot.
 - `/articles/ia-entreprise/` vers `/blog/ia-entreprise/`
 - `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
 - `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`
+- `/resume-llm/` vers `/`
 - `/gpts/`, `/contact/`, `/e-learning/`, `/elearning/` vers les ancres utiles de l'accueil.

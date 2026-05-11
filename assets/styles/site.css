@@ -1287,40 +1287,6 @@ section,
   padding-top: 16px;
 }
 
-.llm-summary-band {
-  background:
-    radial-gradient(circle at 18% 16%, rgba(6, 182, 212, 0.22), transparent 34%),
-    linear-gradient(135deg, #0d1b3e 0%, #1e3a8a 50%, #4338ca 100%);
-  color: #f8fbff;
-}
-
-.llm-summary-panel {
-  display: grid;
-  gap: 22px;
-  align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 26px;
-}
-
-.llm-summary-panel h2 {
-  max-width: 760px;
-  font-size: clamp(1.45rem, 4vw, 2.4rem);
-  line-height: 1.12;
-}
-
-.llm-summary-panel p:not(.eyebrow) {
-  max-width: 780px;
-  color: rgba(248, 251, 255, 0.72);
-}
-
-.llm-summary-panel .button.secondary {
-  border-color: rgba(248, 251, 255, 0.72);
-  background: rgba(13, 27, 62, 0.28);
-  color: #f8fbff;
-}
-
 .content-grid {
   display: grid;
   gap: 18px;
@@ -1565,11 +1531,6 @@ section,
   .contact-share .share-label {
     flex-basis: 100%;
     text-align: right;
-  }
-
-  .llm-summary-panel {
-    grid-template-columns: minmax(0, 1fr) auto;
-    padding: 34px;
   }
 
   .content-grid.two {
