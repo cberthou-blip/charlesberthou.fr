@@ -281,6 +281,24 @@ section,
   align-items: center;
 }
 
+.hero-visual-panel {
+  width: min(100%, 460px);
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  justify-self: end;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+}
+
+.hero-visual-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .signal-panel {
   display: grid;
   gap: 20px;
@@ -912,6 +930,11 @@ section,
   .signal-panel {
     gap: 14px;
     padding: 16px;
+  }
+
+  .hero-visual-panel {
+    width: min(100%, 360px);
+    justify-self: center;
   }
 
   .signal-orbit {
