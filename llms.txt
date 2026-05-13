@@ -1,22 +1,24 @@
 # charlesberthou.fr
 
-> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
+> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, aux cas d'usage IA, aux registres IA et aux parcours pédagogiques.
 
 ## Résumé du site
 
-charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la banque, les paiements, la fraude, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
+charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils gratuits, registre IA, maturité IA et parcours d'apprentissage.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
-- Blog: https://charlesberthou.fr/blog/
+- Articles: https://charlesberthou.fr/blog/
 - Services: https://charlesberthou.fr/services/
-- Outils IA: https://charlesberthou.fr/#outils
+- Outils IA: https://charlesberthou.fr/outils-ia/
+- Explorateur de cas d'usage IA: https://charlesberthou.fr/outils-ia/cas-usage/
+- Registre IA: https://charlesberthou.fr/outils-ia/registre-ia/
+- Test de maturité IA: https://charlesberthou.fr/outils-ia/maturite-ia/
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
 - Résumé LLM: https://charlesberthou.fr/resume-llm/
 - Sitemap XML: https://charlesberthou.fr/sitemap.xml
-- E-learning Wero: https://charlesberthou.fr/wero/
 - IA Learning: https://charlesberthou.fr/ialearning/
 
 ## Articles
@@ -27,7 +29,6 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 ## Ressources externes
 
-- Prompts GitHub Gist: https://gist.github.com/cberthou-blip
 - Kleo, apprendre l'IA aux enfants: https://kleoia.fr/
 - LinkedIn: https://www.linkedin.com/in/charlesberthou
 
@@ -35,10 +36,10 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
-- Themes: intelligence artificielle, IA générative, agents IA, banque, paiement, fraude, adoption en entreprise, shadow AI, prompts, GPTs, e-learning, culture numérique.
+- Themes: intelligence artificielle, IA générative, agents IA, adoption en entreprise, shadow AI, cas d'usage IA, registre IA, maturité IA, e-learning, culture numérique.
 
 ## Ligne éditoriale
 
 Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
 
-Dernière mise à jour: 2026-05-11
+Dernière mise à jour: 2026-05-13

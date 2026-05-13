@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'self'; upgrade-insecure-requests" />
+  <title>Test de maturité IA | Charles Berthou</title>
+  <meta name="description" content="Test gratuit de maturité IA pour situer une entreprise : usages, compétences, cas d'usage, gouvernance, gains et passage à l'échelle." />
+  <link rel="canonical" href="https://charlesberthou.fr/outils-ia/maturite-ia/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="charlesberthou.fr" />
+  <meta property="og:title" content="Test de maturité IA" />
+  <meta property="og:description" content="Situer une entreprise sur son adoption de l'IA en quelques minutes." />
+  <meta property="og:url" content="https://charlesberthou.fr/outils-ia/maturite-ia/" />
+  <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260513-tools" />
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="/">charlesberthou.fr</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/blog/">Articles</a>
+        <a href="/outils-ia/" aria-current="page">Outils IA</a>
+        <a href="/services/">Services</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" class="tool-page maturity-tool" data-maturity-tool>
+    <section class="page-hero tool-hero">
+      <div class="container tool-hero-grid">
+        <div>
+          <p class="eyebrow">Test de maturité IA</p>
+          <h1>Votre entreprise a-t-elle pris le bon train ?</h1>
+          <p class="lead">
+            Notez six dimensions. Le diagnostic se met à jour instantanément avec des jauges, des priorités et une prochaine étape concrète.
+          </p>
+        </div>
+        <div class="maturity-score-card" id="maturityScoreCard">
+          <span>Score global</span>
+          <strong id="maturityScore">0/24</strong>
+          <small id="maturityLevel">À initialiser</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tool-workspace-section">
+      <div class="container maturity-layout">
+        <section class="maturity-questions" aria-labelledby="maturityQuestionsTitle">
+          <div class="panel-heading compact-heading">
+            <div>
+              <p class="eyebrow">Questions</p>
+              <h2 id="maturityQuestionsTitle">Évaluez chaque axe</h2>
+            </div>
+            <button class="button secondary" type="button" id="resetMaturity">Réinitialiser</button>
+          </div>
+          <div id="maturityAxes"></div>
+        </section>
+
+        <aside class="maturity-results" aria-live="polite">
+          <section class="maturity-panel">
+            <p class="eyebrow">Lecture</p>
+            <h2 id="maturityTitle">Démarrage à cadrer</h2>
+            <p id="maturitySummary">Déplacez les curseurs pour obtenir une lecture adaptée.</p>
+          </section>
+          <section class="maturity-panel">
+            <p class="eyebrow">Jauges</p>
+            <div class="axis-bars" id="axisBars"></div>
+          </section>
+          <section class="maturity-panel">
+            <p class="eyebrow">Priorités</p>
+            <div class="priority-list" id="maturityPriorities"></div>
+          </section>
+          <section class="maturity-panel">
+            <p class="eyebrow">Registre</p>
+            <p id="registerSignal">Le registre local n'a pas encore été consulté.</p>
+            <a class="text-link" href="/outils-ia/registre-ia/">Ouvrir le registre IA</a>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© Charles Berthou</p>
+      <div class="footer-links">
+        <a href="/">Accueil</a>
+        <a href="/blog/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
+        <a href="/services/">Services</a>
+        <a href="/a-propos/">À propos</a>
+        <a href="/confidentialite/">Confidentialité</a>
+        <a href="/resume-llm/">Résumé LLM</a>
+        <a href="/sitemap.xml">Sitemap</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/js/site.js" defer></script>
+  <script src="/outils-ia/assets/maturite-ia.js" defer></script>
+</body>
+</html>

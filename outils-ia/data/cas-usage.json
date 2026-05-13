@@ -1,0 +1,2785 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "date_creation": "2026-05-13",
+    "nombre_cas": 80,
+    "categories": [
+      "Relation client",
+      "Fonctions support",
+      "Management"
+    ],
+    "objectif": "Aider une équipe à repérer des cas d’usage IA concrets, les explorer et estimer prudemment leur gain de temps."
+  },
+  "outils": [
+    "Assistant de synthèse texte",
+    "Assistant de synthèse document",
+    "Assistant de reformulation",
+    "Dictée augmentée",
+    "Assistant de cadrage",
+    "Compte rendu de réunion"
+  ],
+  "fiches": [
+    {
+      "id": "CU-001",
+      "source_id": "CC-001",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Comprendre rapidement une procédure interne",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Procédure complète copiée/collée",
+      "sortie": "Résumé opérationnel avec étapes, délais, pièces et points de vigilance",
+      "utilisation": "Lire le résumé puis vérifier les points sensibles dans la procédure source",
+      "verification": [
+        "délais",
+        "seuils",
+        "justificatifs",
+        "exceptions",
+        "conformité"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 8,
+      "frequence": 5,
+      "tags": [
+        "procédure",
+        "traitement client",
+        "résumé",
+        "délai",
+        "justificatif"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Procédures"
+      ]
+    },
+    {
+      "id": "CU-002",
+      "source_id": "CC-002",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Résumer une procédure en PDF",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "PDF de procédure joint dans l'outil",
+      "sortie": "Résumé structuré avec étapes à appliquer et points de contrôle",
+      "utilisation": "Lire le résumé puis ouvrir le PDF source pour confirmer les points critiques",
+      "verification": [
+        "version du document",
+        "délais",
+        "pièces",
+        "conditions",
+        "exceptions"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "pdf",
+        "procédure",
+        "document",
+        "résumé",
+        "contrôle"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Procédures"
+      ]
+    },
+    {
+      "id": "CU-003",
+      "source_id": "CC-003",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Résumer une demande client longue",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Message client long copié/collé",
+      "sortie": "Synthèse de la demande, besoin principal et actions à mener",
+      "utilisation": "Repérer la demande réelle puis vérifier les éléments factuels dans le message initial",
+      "verification": [
+        "besoin client",
+        "dates",
+        "montants",
+        "décisions",
+        "pièces jointes"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 8,
+      "frequence": 8,
+      "tags": [
+        "demande client",
+        "mail long",
+        "synthèse",
+        "besoin",
+        "action"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Demandes client"
+      ]
+    },
+    {
+      "id": "CU-004",
+      "source_id": "CC-004",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Reformuler un mail client sensible",
+      "outil": "Assistant de reformulation",
+      "reglage": "Adoucir",
+      "entree": "Projet de mail client copié/collé",
+      "sortie": "Version plus claire, calme et professionnelle du message",
+      "utilisation": "Relire la reformulation puis vérifier qu'elle ne change pas le fond du message",
+      "verification": [
+        "ton",
+        "exactitude",
+        "décisions",
+        "conformité",
+        "absence de promesse"
+      ],
+      "gain_minutes": 7,
+      "temps_avant_minutes": 15,
+      "temps_apres_minutes": 8,
+      "frequence": 6,
+      "tags": [
+        "mail client",
+        "sensible",
+        "reformulation",
+        "ton",
+        "professionnel"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Relation client"
+      ]
+    },
+    {
+      "id": "CU-005",
+      "source_id": "CC-005",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Simplifier une explication produit",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Explication produit ou passage de documentation copié/collé",
+      "sortie": "Explication simple et compréhensible pour un client",
+      "utilisation": "Contrôler que la simplification reste exacte et adaptée au profil client",
+      "verification": [
+        "exactitude",
+        "conditions",
+        "risques",
+        "frais",
+        "profil client"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 8,
+      "frequence": 7,
+      "tags": [
+        "produit",
+        "explication",
+        "simplifier",
+        "client",
+        "pédagogie"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Produits"
+      ]
+    },
+    {
+      "id": "CU-006",
+      "source_id": "CC-006",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Étoffer une réponse client trop courte",
+      "outil": "Assistant de reformulation",
+      "reglage": "Étoffer",
+      "entree": "Réponse client courte copiée/collée",
+      "sortie": "Réponse complète, claire et structurée",
+      "utilisation": "Vérifier que les ajouts sont exacts et ne créent pas d'décision non validé",
+      "verification": [
+        "informations ajoutées",
+        "décisions",
+        "conditions",
+        "ton",
+        "conformité"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 8,
+      "frequence": 6,
+      "tags": [
+        "réponse client",
+        "étoffer",
+        "mail",
+        "clarté",
+        "relation client"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Relation client"
+      ]
+    },
+    {
+      "id": "CU-007",
+      "source_id": "CC-007",
+      "categorie": "Relation client",
+      "domaine": "Service client",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Dicter une note après rendez-vous",
+      "outil": "Dictée augmentée",
+      "reglage": "Compte rendu structuré",
+      "entree": "Note dictée juste après le rendez-vous",
+      "sortie": "Note de rendez-vous structurée avec décisions, actions et suites",
+      "utilisation": "Relire la note puis corriger les noms, montants et prochaines actions",
+      "verification": [
+        "identité client",
+        "montants",
+        "décisions",
+        "actions",
+        "échéances"
+      ],
+      "gain_minutes": 9,
+      "temps_avant_minutes": 17,
+      "temps_apres_minutes": 8,
+      "frequence": 10,
+      "tags": [
+        "dictée",
+        "rendez-vous",
+        "note",
+        "compte rendu",
+        "actions"
+      ],
+      "chemin": [
+        "Relation client",
+        "Service client",
+        "Rendez-vous"
+      ]
+    },
+    {
+      "id": "CU-008",
+      "source_id": "CC-008",
+      "categorie": "Relation client",
+      "domaine": "Ventes B2B",
+      "profil": "Chargé d'affaires B2B",
+      "tache": "Résumer une procédure B2B",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Procédure B2B copiée/collée",
+      "sortie": "Résumé opérationnel avec conditions, étapes, justificatifs et risques",
+      "utilisation": "Vérifier les critères d'éligibilité et les pièces attendues dans la source",
+      "verification": [
+        "éligibilité",
+        "conditions",
+        "justificatifs",
+        "délais",
+        "exceptions"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "pro",
+        "B2B",
+        "procédure",
+        "résumé",
+        "justificatifs"
+      ],
+      "chemin": [
+        "Relation client",
+        "Ventes B2B",
+        "Procédures"
+      ]
+    },
+    {
+      "id": "CU-009",
+      "source_id": "CC-009",
+      "categorie": "Relation client",
+      "domaine": "Ventes B2B",
+      "profil": "Chargé d'affaires B2B",
+      "tache": "Résumer un bilan comptable",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé détaillé",
+      "entree": "Bilan comptable joint dans l'outil",
+      "sortie": "Synthèse des grands équilibres, variations et points d'attention",
+      "utilisation": "Utiliser la synthèse comme préparation puis vérifier les chiffres clés dans le bilan",
+      "verification": [
+        "chiffre d'affaires",
+        "résultat",
+        "endettement",
+        "trésorerie",
+        "variations"
+      ],
+      "gain_minutes": 18,
+      "temps_avant_minutes": 26,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "bilan comptable",
+        "pro",
+        "analyse",
+        "document",
+        "chiffres"
+      ],
+      "chemin": [
+        "Relation client",
+        "Ventes B2B",
+        "Analyse financière"
+      ]
+    },
+    {
+      "id": "CU-010",
+      "source_id": "CC-010",
+      "categorie": "Relation client",
+      "domaine": "Ventes B2B",
+      "profil": "Chargé d'affaires B2B",
+      "tache": "Résumer un document fiscal ou social",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Document fiscal ou social joint dans l'outil",
+      "sortie": "Résumé des informations utiles, échéances et impacts possibles",
+      "utilisation": "Identifier les points utiles au dossier puis vérifier chaque donnée sensible dans le document",
+      "verification": [
+        "période",
+        "montants",
+        "échéances",
+        "statut",
+        "obligations"
+      ],
+      "gain_minutes": 14,
+      "temps_avant_minutes": 22,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "fiscal",
+        "social",
+        "document",
+        "échéance",
+        "pro"
+      ],
+      "chemin": [
+        "Relation client",
+        "Ventes B2B",
+        "Documents"
+      ]
+    },
+    {
+      "id": "CU-011",
+      "source_id": "CC-011",
+      "categorie": "Relation client",
+      "domaine": "Ventes B2B",
+      "profil": "Chargé d'affaires B2B",
+      "tache": "Reformuler une proposition commerciale",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Proposition commerciale copiée/collée",
+      "sortie": "Proposition reformulée, plus lisible et orientée client",
+      "utilisation": "Relire la proposition et contrôler que l'offre, les conditions et les limites sont inchangées",
+      "verification": [
+        "prix",
+        "conditions",
+        "périmètre",
+        "durée",
+        "mentions obligatoires"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "proposition commerciale",
+        "reformulation",
+        "pro",
+        "offre",
+        "client"
+      ],
+      "chemin": [
+        "Relation client",
+        "Ventes B2B",
+        "Commercial"
+      ]
+    },
+    {
+      "id": "CU-012",
+      "source_id": "CC-012",
+      "categorie": "Relation client",
+      "domaine": "Ventes B2B",
+      "profil": "Chargé d'affaires B2B",
+      "tache": "Dicter un compte rendu de visite client B2B",
+      "outil": "Dictée augmentée",
+      "reglage": "Compte rendu structuré",
+      "entree": "Compte rendu dicté après visite client",
+      "sortie": "Compte rendu structuré avec contexte, besoins, décisions et actions",
+      "utilisation": "Relire puis corriger les données client, montants, dates et décisions",
+      "verification": [
+        "identité client",
+        "activité",
+        "besoins",
+        "montants",
+        "actions"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 5,
+      "tags": [
+        "dictée",
+        "visite client",
+        "pro",
+        "B2B",
+        "compte rendu"
+      ],
+      "chemin": [
+        "Relation client",
+        "Ventes B2B",
+        "Rendez-vous"
+      ]
+    },
+    {
+      "id": "CU-013",
+      "source_id": "CC-013",
+      "categorie": "Relation client",
+      "domaine": "Conseil spécialisé",
+      "profil": "Conseiller spécialisé",
+      "tache": "Résumer une note marché",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Note marché copiée/collée",
+      "sortie": "Synthèse des tendances, risques et messages utiles pour l'échange client",
+      "utilisation": "Utiliser la synthèse comme support de préparation puis vérifier les chiffres cités",
+      "verification": [
+        "date",
+        "indices",
+        "performance",
+        "risques",
+        "source"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "marché",
+        "offre",
+        "synthèse",
+        "risque",
+        "conseil spécialisé"
+      ],
+      "chemin": [
+        "Relation client",
+        "Conseil spécialisé",
+        "Marchés"
+      ]
+    },
+    {
+      "id": "CU-014",
+      "source_id": "CC-014",
+      "categorie": "Relation client",
+      "domaine": "Conseil spécialisé",
+      "profil": "Conseiller spécialisé",
+      "tache": "Résumer une note réglementaire",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Note réglementaire copiée/collée",
+      "sortie": "Résumé des obligations, impacts métier et points de vigilance",
+      "utilisation": "Repérer les impacts concrets puis confirmer les obligations dans la note source",
+      "verification": [
+        "obligations",
+        "dates d'effet",
+        "périmètre",
+        "exceptions",
+        "conformité"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "réglementaire",
+        "conformité",
+        "obligation",
+        "résumé",
+        "conseil spécialisé"
+      ],
+      "chemin": [
+        "Relation client",
+        "Conseil spécialisé",
+        "Réglementaire"
+      ]
+    },
+    {
+      "id": "CU-015",
+      "source_id": "CC-015",
+      "categorie": "Relation client",
+      "domaine": "Conseil spécialisé",
+      "profil": "Conseiller spécialisé",
+      "tache": "Simplifier une explication offre",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Explication offre ou support produit copié/collé",
+      "sortie": "Explication claire du offre, de ses avantages et de ses risques",
+      "utilisation": "Vérifier que le niveau de détail est adapté et que les risques restent visibles",
+      "verification": [
+        "risques",
+        "frais",
+        "horizon",
+        "fiscalité",
+        "profil investisseur"
+      ],
+      "gain_minutes": 7,
+      "temps_avant_minutes": 15,
+      "temps_apres_minutes": 8,
+      "frequence": 5,
+      "tags": [
+        "offre",
+        "simplifier",
+        "pédagogie",
+        "risque",
+        "client"
+      ],
+      "chemin": [
+        "Relation client",
+        "Conseil spécialisé",
+        "Placements"
+      ]
+    },
+    {
+      "id": "CU-016",
+      "source_id": "CC-016",
+      "categorie": "Relation client",
+      "domaine": "Conseil spécialisé",
+      "profil": "Conseiller spécialisé",
+      "tache": "Reformuler une recommandation spécialisée",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Recommandation spécialisée copiée/collée",
+      "sortie": "Recommandation reformulée avec un ton clair et professionnel",
+      "utilisation": "Contrôler que le conseil, les réserves et les limites restent strictement identiques",
+      "verification": [
+        "objectif client",
+        "profil de risque",
+        "réserves",
+        "fiscalité",
+        "conformité"
+      ],
+      "gain_minutes": 9,
+      "temps_avant_minutes": 17,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "conseil spécialisé",
+        "recommandation",
+        "reformulation",
+        "conseil",
+        "conformité"
+      ],
+      "chemin": [
+        "Relation client",
+        "Conseil spécialisé",
+        "Recommandations"
+      ]
+    },
+    {
+      "id": "CU-017",
+      "source_id": "CC-017",
+      "categorie": "Relation client",
+      "domaine": "Finance et projets",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Résumer un dossier de projet",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé détaillé",
+      "entree": "Dossier de projet joint dans l'outil",
+      "sortie": "Synthèse du besoin, du montage, des conditions et des points à instruire",
+      "utilisation": "Préparer l'instruction puis vérifier les données financières et conditions dans le dossier",
+      "verification": [
+        "besoin",
+        "montant",
+        "durée",
+        "conditions",
+        "capacité de remboursement"
+      ],
+      "gain_minutes": 18,
+      "temps_avant_minutes": 26,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "projet",
+        "dossier",
+        "résumé",
+        "condition",
+        "instruction"
+      ],
+      "chemin": [
+        "Relation client",
+        "Finance et projets",
+        "Dossiers"
+      ]
+    },
+    {
+      "id": "CU-018",
+      "source_id": "CC-018",
+      "categorie": "Relation client",
+      "domaine": "Finance et projets",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Résumer une convention ou un contrat",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Convention ou contrat joint dans l'outil",
+      "sortie": "Résumé des parties, obligations, dates, frais et clauses sensibles",
+      "utilisation": "Utiliser le résumé pour s'orienter puis vérifier chaque clause importante dans le document",
+      "verification": [
+        "parties",
+        "durée",
+        "obligations",
+        "frais",
+        "clauses sensibles"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 23,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "contrat",
+        "convention",
+        "document",
+        "clause",
+        "résumé"
+      ],
+      "chemin": [
+        "Relation client",
+        "Finance et projets",
+        "Contrats"
+      ]
+    },
+    {
+      "id": "CU-019",
+      "source_id": "CC-019",
+      "categorie": "Relation client",
+      "domaine": "Pilotage",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Reformuler une note de comité",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Note de comité copiée/collée",
+      "sortie": "Note plus lisible, structurée et factuelle",
+      "utilisation": "Relire la note reformulée puis vérifier que les faits, chiffres et réserves sont inchangés",
+      "verification": [
+        "faits",
+        "chiffres",
+        "avis",
+        "réserves",
+        "décision attendue"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "comité",
+        "note",
+        "reformulation",
+        "factuel",
+        "décision"
+      ],
+      "chemin": [
+        "Relation client",
+        "Pilotage",
+        "Notes"
+      ]
+    },
+    {
+      "id": "CU-020",
+      "source_id": "CC-020",
+      "categorie": "Relation client",
+      "domaine": "Pilotage",
+      "profil": "Conseiller / chargé de clientèle",
+      "tache": "Dicter une note de visite stratégique",
+      "outil": "Dictée augmentée",
+      "reglage": "Note structurée",
+      "entree": "Note dictée après visite stratégique",
+      "sortie": "Note structurée avec contexte, enjeux, décisions, risques et prochaines étapes",
+      "utilisation": "Relire puis vérifier les informations sensibles avant partage ou classement",
+      "verification": [
+        "enjeux",
+        "décisions",
+        "risques",
+        "montants",
+        "prochaines étapes"
+      ],
+      "gain_minutes": 13,
+      "temps_avant_minutes": 21,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "dictée",
+        "visite stratégique",
+        "note",
+        "enjeux",
+        "actions"
+      ],
+      "chemin": [
+        "Relation client",
+        "Pilotage",
+        "Visites"
+      ]
+    },
+    {
+      "id": "CU-021",
+      "source_id": "MS-001",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Résumer une procédure d’assistance terrain",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Procédure PDF ou Word",
+      "sortie": "Mode d’emploi opérationnel pour répondre aux équipes terrain",
+      "utilisation": "Identifier les étapes utiles avant traitement",
+      "verification": [
+        "version",
+        "périmètre",
+        "exceptions",
+        "contacts"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 6,
+      "tags": [
+        "assistance terrain",
+        "support",
+        "procédure",
+        "équipe terrain"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Procédures"
+      ]
+    },
+    {
+      "id": "CU-022",
+      "source_id": "MS-002",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Résumer une demande équipe terrain longue",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Mail ou message d’équipe terrain",
+      "sortie": "Demande reformulée en points à traiter",
+      "utilisation": "Qualifier la demande puis orienter le traitement",
+      "verification": [
+        "urgence",
+        "outil concerné",
+        "pièces",
+        "interlocuteur"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 3,
+      "frequence": 8,
+      "tags": [
+        "équipe terrain",
+        "support",
+        "demande",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Demandes équipes terrain"
+      ]
+    },
+    {
+      "id": "CU-023",
+      "source_id": "MS-003",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Reformuler une réponse support à une équipe terrain",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Brouillon de réponse support",
+      "sortie": "Réponse plus claire et structurée",
+      "utilisation": "Relire puis envoyer à l’équipe terrain",
+      "verification": [
+        "procédure",
+        "délai",
+        "responsable",
+        "pièce attendue"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 3,
+      "frequence": 8,
+      "tags": [
+        "réponse",
+        "support",
+        "équipe terrain",
+        "paraphraser"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Réponses équipes terrain"
+      ]
+    },
+    {
+      "id": "CU-024",
+      "source_id": "MS-004",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Dicter une note de traitement support",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral du traitement réalisé",
+      "sortie": "Trace écrite à intégrer au suivi",
+      "utilisation": "Corriger puis classer dans l’outil de suivi",
+      "verification": [
+        "dossier",
+        "date",
+        "action",
+        "suite à donner"
+      ],
+      "gain_minutes": 7,
+      "temps_avant_minutes": 15,
+      "temps_apres_minutes": 4,
+      "frequence": 6,
+      "tags": [
+        "support",
+        "dictée",
+        "traitement",
+        "suivi"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Suivi"
+      ]
+    },
+    {
+      "id": "CU-025",
+      "source_id": "MS-005",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Préparer une réponse à un cas équipe terrain complexe",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte anonymisé du cas équipe terrain",
+      "sortie": "Trame de réponse et points à vérifier",
+      "utilisation": "Utiliser la trame comme brouillon, jamais comme décision automatique",
+      "verification": [
+        "procédure source",
+        "conformité",
+        "données client",
+        "validation métier"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "cas complexe",
+        "équipe terrain",
+        "support"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Cas complexes"
+      ]
+    },
+    {
+      "id": "CU-026",
+      "source_id": "MS-006",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Résumer un incident outil métier",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Description d’incident ou échanges internes",
+      "sortie": "Synthèse de l’incident, impacts et actions en cours",
+      "utilisation": "Partager une information courte aux équipes concernées",
+      "verification": [
+        "outil",
+        "périmètre",
+        "heure",
+        "impact",
+        "statut"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 4,
+      "frequence": 4,
+      "tags": [
+        "incident",
+        "outil",
+        "support",
+        "synthèse"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Incidents"
+      ]
+    },
+    {
+      "id": "CU-027",
+      "source_id": "MS-007",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Synthétiser des irritants terrain",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Liste de retours équipes terrain",
+      "sortie": "Regroupement des irritants par thème",
+      "utilisation": "Préparer une remontée priorisée",
+      "verification": [
+        "fréquence",
+        "criticité",
+        "exemples",
+        "doublons"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 23,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "irritants",
+        "terrain",
+        "synthèse",
+        "priorisation"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Retours terrain"
+      ]
+    },
+    {
+      "id": "CU-028",
+      "source_id": "MS-008",
+      "categorie": "Fonctions support",
+      "domaine": "Support interne",
+      "profil": "Assistant terrain / support",
+      "tache": "Étoffer une note d’information terrain",
+      "outil": "Assistant de reformulation",
+      "reglage": "Étoffer",
+      "entree": "Brouillon court de note terrain",
+      "sortie": "Note plus complète et plus claire",
+      "utilisation": "Relire puis diffuser aux équipes terrain",
+      "verification": [
+        "message principal",
+        "date",
+        "périmètre",
+        "action attendue"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "note terrain",
+        "information",
+        "étoffer",
+        "support"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Support interne",
+        "Communication terrain"
+      ]
+    },
+    {
+      "id": "CU-029",
+      "source_id": "MS-009",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Résumer une note conformité",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Note conformité PDF ou Word",
+      "sortie": "Obligations, périmètre, dates et points de vigilance",
+      "utilisation": "Préparer une lecture ciblée ou une communication interne",
+      "verification": [
+        "obligations",
+        "dates",
+        "exceptions",
+        "validation conformité"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "conformité",
+        "note",
+        "obligation",
+        "risque"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Notes conformité"
+      ]
+    },
+    {
+      "id": "CU-030",
+      "source_id": "MS-010",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Simplifier une consigne conformité",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Consigne conformité technique",
+      "sortie": "Version plus compréhensible pour les collaborateurs",
+      "utilisation": "Relire puis diffuser avec validation métier",
+      "verification": [
+        "sens juridique",
+        "obligation",
+        "périmètre",
+        "risque de simplification excessive"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "conformité",
+        "simplifier",
+        "consigne",
+        "collaborateur"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Consignes"
+      ]
+    },
+    {
+      "id": "CU-031",
+      "source_id": "MS-011",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Préparer une grille de questions sur un cas de contrôle",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte anonymisé du cas",
+      "sortie": "Questions à poser et points à documenter",
+      "utilisation": "Utiliser comme support de préparation",
+      "verification": [
+        "faits",
+        "preuves",
+        "procédure applicable",
+        "validation expert"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "contrôle",
+        "questions",
+        "risque"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Analyse de cas"
+      ]
+    },
+    {
+      "id": "CU-032",
+      "source_id": "MS-012",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Transcrire et résumer une réunion conformité",
+      "outil": "Compte rendu de réunion",
+      "reglage": "Compte rendu synthétique",
+      "entree": "Réunion enregistrée",
+      "sortie": "Décisions, actions, porteurs et points de vigilance",
+      "utilisation": "Relire puis diffuser aux participants",
+      "verification": [
+        "participants",
+        "décisions",
+        "actions",
+        "délais"
+      ],
+      "gain_minutes": 35,
+      "temps_avant_minutes": 50,
+      "temps_apres_minutes": 15,
+      "frequence": 2,
+      "tags": [
+        "réunion",
+        "conformité",
+        "transcription",
+        "compte rendu"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Réunions"
+      ]
+    },
+    {
+      "id": "CU-033",
+      "source_id": "MS-013",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Résumer des constats de contrôle",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Notes ou constats bruts",
+      "sortie": "Synthèse des constats par thème",
+      "utilisation": "Préparer un retour structuré",
+      "verification": [
+        "preuve",
+        "gravité",
+        "récurrence",
+        "périmètre"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 7,
+      "frequence": 4,
+      "tags": [
+        "contrôle",
+        "constats",
+        "synthèse",
+        "risque"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Constats"
+      ]
+    },
+    {
+      "id": "CU-034",
+      "source_id": "MS-014",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Reformuler un rappel conformité",
+      "outil": "Assistant de reformulation",
+      "reglage": "Adoucir",
+      "entree": "Brouillon de rappel ou recadrage",
+      "sortie": "Message clair, ferme et non agressif",
+      "utilisation": "Relire puis diffuser au bon niveau",
+      "verification": [
+        "ton",
+        "obligation",
+        "risque",
+        "destinataires"
+      ],
+      "gain_minutes": 7,
+      "temps_avant_minutes": 15,
+      "temps_apres_minutes": 4,
+      "frequence": 4,
+      "tags": [
+        "rappel",
+        "conformité",
+        "adoucir",
+        "message"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Communication"
+      ]
+    },
+    {
+      "id": "CU-035",
+      "source_id": "MS-015",
+      "categorie": "Fonctions support",
+      "domaine": "Conformité et risques",
+      "profil": "Conformité / risques / contrôle",
+      "tache": "Dicter une note de contrôle",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral des constats",
+      "sortie": "Note écrite exploitable",
+      "utilisation": "Corriger puis rattacher au dossier",
+      "verification": [
+        "faits",
+        "preuves",
+        "dates",
+        "actions"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "dictée",
+        "contrôle",
+        "note",
+        "constat"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Conformité et risques",
+        "Notes"
+      ]
+    },
+    {
+      "id": "CU-036",
+      "source_id": "MS-016",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Résumer un compte rendu projet",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Compte rendu ou notes projet",
+      "sortie": "Décisions, actions, risques et prochaines étapes",
+      "utilisation": "Préparer un suivi projet rapide",
+      "verification": [
+        "porteurs",
+        "délais",
+        "décisions",
+        "risques"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 5,
+      "frequence": 6,
+      "tags": [
+        "projet",
+        "compte rendu",
+        "synthèse",
+        "actions"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Suivi projet"
+      ]
+    },
+    {
+      "id": "CU-037",
+      "source_id": "MS-017",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Transcrire et résumer une réunion projet",
+      "outil": "Compte rendu de réunion",
+      "reglage": "Compte rendu synthétique",
+      "entree": "Réunion projet enregistrée",
+      "sortie": "Compte rendu avec décisions, actions et échéances",
+      "utilisation": "Relire puis partager avec l’équipe projet",
+      "verification": [
+        "décisions",
+        "actions",
+        "responsables",
+        "délais"
+      ],
+      "gain_minutes": 40,
+      "temps_avant_minutes": 55,
+      "temps_apres_minutes": 15,
+      "frequence": 4,
+      "tags": [
+        "réunion",
+        "projet",
+        "transcription",
+        "actions"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Réunions projet"
+      ]
+    },
+    {
+      "id": "CU-038",
+      "source_id": "MS-018",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Structurer un plan d’action projet",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte projet anonymisé",
+      "sortie": "Plan d’action structuré",
+      "utilisation": "Utiliser comme base puis ajuster au projet réel",
+      "verification": [
+        "priorités",
+        "responsables",
+        "délais",
+        "contraintes"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "projet",
+        "plan d’action",
+        "organisation"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Plan d’action"
+      ]
+    },
+    {
+      "id": "CU-039",
+      "source_id": "MS-019",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Reformuler une note de changement",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Note de changement ou mode opératoire",
+      "sortie": "Message plus clair pour les utilisateurs",
+      "utilisation": "Diffuser après validation métier",
+      "verification": [
+        "périmètre",
+        "date",
+        "impacts",
+        "action attendue"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "changement",
+        "organisation",
+        "simplifier",
+        "note"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Conduite du changement"
+      ]
+    },
+    {
+      "id": "CU-040",
+      "source_id": "MS-020",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Résumer une expression de besoin",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Expression de besoin ou document projet",
+      "sortie": "Objectif, besoins, contraintes et points à clarifier",
+      "utilisation": "Préparer cadrage ou échange métier",
+      "verification": [
+        "besoin réel",
+        "périmètre",
+        "contraintes",
+        "hypothèses"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "besoin",
+        "projet",
+        "cadrage",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Cadrage"
+      ]
+    },
+    {
+      "id": "CU-041",
+      "source_id": "MS-021",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Dicter un point d’avancement projet",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral de l’avancement",
+      "sortie": "Point projet écrit",
+      "utilisation": "Corriger puis envoyer ou intégrer au support projet",
+      "verification": [
+        "jalons",
+        "risques",
+        "décisions",
+        "prochaines étapes"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 5,
+      "tags": [
+        "dictée",
+        "projet",
+        "avancement",
+        "suivi"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Suivi projet"
+      ]
+    },
+    {
+      "id": "CU-042",
+      "source_id": "MS-022",
+      "categorie": "Fonctions support",
+      "domaine": "Projets et organisation",
+      "profil": "Chef de projet / organisateur",
+      "tache": "Simplifier un mode opératoire",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Mode opératoire technique",
+      "sortie": "Version plus claire pour les utilisateurs",
+      "utilisation": "Relire puis faire valider avant diffusion",
+      "verification": [
+        "étapes",
+        "exceptions",
+        "captures",
+        "droits utilisateurs"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 4,
+      "tags": [
+        "mode opératoire",
+        "simplifier",
+        "organisation",
+        "utilisateur"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Projets et organisation",
+        "Modes opératoires"
+      ]
+    },
+    {
+      "id": "CU-043",
+      "source_id": "MS-023",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Résumer un CV ou un dossier candidat",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé court",
+      "entree": "CV ou dossier candidat",
+      "sortie": "Synthèse du parcours, compétences et points à creuser",
+      "utilisation": "Préparer une lecture rapide avant entretien",
+      "verification": [
+        "expérience",
+        "dates",
+        "compétences",
+        "neutralité"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 6,
+      "tags": [
+        "RH",
+        "CV",
+        "recrutement",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Recrutement"
+      ]
+    },
+    {
+      "id": "CU-044",
+      "source_id": "MS-024",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Reformuler une annonce de recrutement",
+      "outil": "Assistant de reformulation",
+      "reglage": "Étoffer",
+      "entree": "Brouillon d’annonce",
+      "sortie": "Annonce plus claire, complète et attractive",
+      "utilisation": "Relire puis publier après validation",
+      "verification": [
+        "missions",
+        "profil",
+        "lieu",
+        "contrat",
+        "non-discrimination"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 3,
+      "tags": [
+        "RH",
+        "recrutement",
+        "annonce",
+        "étoffer"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Recrutement"
+      ]
+    },
+    {
+      "id": "CU-045",
+      "source_id": "MS-025",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Préparer une trame d’entretien",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte du poste et compétences recherchées",
+      "sortie": "Trame de questions d’entretien",
+      "utilisation": "Adapter la trame au poste et au candidat",
+      "verification": [
+        "neutralité",
+        "questions autorisées",
+        "compétences",
+        "niveau attendu"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "RH",
+        "entretien",
+        "recrutement"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Entretiens"
+      ]
+    },
+    {
+      "id": "CU-046",
+      "source_id": "MS-026",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Résumer des notes d’entretien",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Notes prises pendant l’entretien",
+      "sortie": "Synthèse structurée du candidat",
+      "utilisation": "Préparer le retour interne",
+      "verification": [
+        "faits observés",
+        "subjectivité",
+        "points à confirmer",
+        "décision"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 5,
+      "tags": [
+        "RH",
+        "entretien",
+        "notes",
+        "synthèse"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Entretiens"
+      ]
+    },
+    {
+      "id": "CU-047",
+      "source_id": "MS-027",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Transcrire et résumer une réunion formation",
+      "outil": "Compte rendu de réunion",
+      "reglage": "Compte rendu synthétique",
+      "entree": "Réunion formation enregistrée",
+      "sortie": "Décisions, besoins, actions et échéances",
+      "utilisation": "Relire puis partager aux parties prenantes",
+      "verification": [
+        "besoins",
+        "actions",
+        "dates",
+        "responsables"
+      ],
+      "gain_minutes": 35,
+      "temps_avant_minutes": 50,
+      "temps_apres_minutes": 15,
+      "frequence": 2,
+      "tags": [
+        "RH",
+        "formation",
+        "réunion",
+        "transcription"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Formation"
+      ]
+    },
+    {
+      "id": "CU-048",
+      "source_id": "MS-028",
+      "categorie": "Fonctions support",
+      "domaine": "RH",
+      "profil": "Ressources humaines",
+      "tache": "Dicter une note RH",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral d’un échange ou d’un dossier",
+      "sortie": "Note RH structurée",
+      "utilisation": "Corriger puis classer selon les règles internes",
+      "verification": [
+        "confidentialité",
+        "faits",
+        "dates",
+        "personnes concernées"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "RH",
+        "dictée",
+        "note",
+        "dossier"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "RH",
+        "Notes"
+      ]
+    },
+    {
+      "id": "CU-049",
+      "source_id": "MS-029",
+      "categorie": "Fonctions support",
+      "domaine": "Marketing et communication",
+      "profil": "Marketing / communication",
+      "tache": "Reformuler une communication interne",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Brouillon de communication interne",
+      "sortie": "Message plus clair et plus fluide",
+      "utilisation": "Relire puis diffuser",
+      "verification": [
+        "message clé",
+        "date",
+        "cible",
+        "action attendue"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 5,
+      "tags": [
+        "communication",
+        "interne",
+        "paraphraser",
+        "message"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Marketing et communication",
+        "Communication interne"
+      ]
+    },
+    {
+      "id": "CU-050",
+      "source_id": "MS-030",
+      "categorie": "Fonctions support",
+      "domaine": "Marketing et communication",
+      "profil": "Marketing / communication",
+      "tache": "Étoffer un brouillon d’article intranet",
+      "outil": "Assistant de reformulation",
+      "reglage": "Étoffer",
+      "entree": "Brouillon court d’article",
+      "sortie": "Article plus complet et lisible",
+      "utilisation": "Supprimer le superflu puis publier après validation",
+      "verification": [
+        "ton",
+        "exactitude",
+        "cible",
+        "longueur"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "article",
+        "intranet",
+        "communication",
+        "étoffer"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Marketing et communication",
+        "Contenus"
+      ]
+    },
+    {
+      "id": "CU-051",
+      "source_id": "MS-031",
+      "categorie": "Fonctions support",
+      "domaine": "Marketing et communication",
+      "profil": "Marketing / communication",
+      "tache": "Résumer une note produit",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé court",
+      "entree": "Note produit PDF ou Word",
+      "sortie": "Points clés, cible, bénéfices et vigilance",
+      "utilisation": "Préparer un support ou une communication courte",
+      "verification": [
+        "conditions",
+        "dates",
+        "cible",
+        "validation produit"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 4,
+      "tags": [
+        "produit",
+        "marketing",
+        "note",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Marketing et communication",
+        "Produit"
+      ]
+    },
+    {
+      "id": "CU-052",
+      "source_id": "MS-032",
+      "categorie": "Fonctions support",
+      "domaine": "Marketing et communication",
+      "profil": "Marketing / communication",
+      "tache": "Préparer un plan de communication",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Objectif, cible, message et échéance",
+      "sortie": "Plan de communication structuré",
+      "utilisation": "Utiliser comme base de travail puis arbitrer",
+      "verification": [
+        "cible",
+        "canal",
+        "calendrier",
+        "validation"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "communication",
+        "plan",
+        "campagne"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Marketing et communication",
+        "Plan de communication"
+      ]
+    },
+    {
+      "id": "CU-053",
+      "source_id": "MS-033",
+      "categorie": "Fonctions support",
+      "domaine": "Marketing et communication",
+      "profil": "Marketing / communication",
+      "tache": "Dicter un brief de communication",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral du besoin de communication",
+      "sortie": "Brief écrit exploitable",
+      "utilisation": "Corriger puis partager à l’équipe",
+      "verification": [
+        "objectif",
+        "cible",
+        "message",
+        "échéance"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 3,
+      "tags": [
+        "brief",
+        "communication",
+        "dictée",
+        "marketing"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Marketing et communication",
+        "Brief"
+      ]
+    },
+    {
+      "id": "CU-054",
+      "source_id": "MS-034",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et fiscalité",
+      "profil": "Juridique / fiscalité",
+      "tache": "Résumer un contrat",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Contrat PDF ou Word",
+      "sortie": "Clauses clés, obligations, risques et échéances",
+      "utilisation": "Préparer une lecture juridique ciblée",
+      "verification": [
+        "clauses",
+        "durée",
+        "résiliation",
+        "responsabilité"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "juridique",
+        "contrat",
+        "résumé",
+        "clauses"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et fiscalité",
+        "Contrats"
+      ]
+    },
+    {
+      "id": "CU-055",
+      "source_id": "MS-035",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et fiscalité",
+      "profil": "Juridique / fiscalité",
+      "tache": "Résumer une note fiscale",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Note fiscale",
+      "sortie": "Synthèse des règles, dates et impacts pratiques",
+      "utilisation": "Préparer une analyse ou un échange interne",
+      "verification": [
+        "date",
+        "texte applicable",
+        "seuils",
+        "périmètre"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "fiscalité",
+        "note",
+        "règle",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et fiscalité",
+        "Fiscalité"
+      ]
+    },
+    {
+      "id": "CU-056",
+      "source_id": "MS-036",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et fiscalité",
+      "profil": "Juridique / fiscalité",
+      "tache": "Reformuler une réponse juridique interne",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Brouillon de réponse juridique",
+      "sortie": "Réponse plus claire et structurée",
+      "utilisation": "Relire puis valider juridiquement avant envoi",
+      "verification": [
+        "base juridique",
+        "nuance",
+        "risque",
+        "destinataire"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "juridique",
+        "réponse",
+        "paraphraser",
+        "interne"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et fiscalité",
+        "Réponses internes"
+      ]
+    },
+    {
+      "id": "CU-057",
+      "source_id": "MS-037",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et fiscalité",
+      "profil": "Juridique / fiscalité",
+      "tache": "Préparer les questions à poser sur un dossier juridique",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte anonymisé du dossier",
+      "sortie": "Liste de questions et points à documenter",
+      "utilisation": "Utiliser pour cadrer l’analyse, sans remplacer l’expertise juridique",
+      "verification": [
+        "texte applicable",
+        "faits",
+        "pièces",
+        "risque"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "juridique",
+        "questions",
+        "dossier"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et fiscalité",
+        "Analyse dossier"
+      ]
+    },
+    {
+      "id": "CU-058",
+      "source_id": "MS-038",
+      "categorie": "Fonctions support",
+      "domaine": "Finance et pilotage",
+      "profil": "Finance / pilotage",
+      "tache": "Résumer un rapport budgétaire",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Rapport budgétaire PDF ou Word",
+      "sortie": "Principaux écarts, tendances et points d’attention",
+      "utilisation": "Préparer une analyse ou une présentation",
+      "verification": [
+        "chiffres",
+        "période",
+        "périmètre",
+        "écarts"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 8,
+      "frequence": 4,
+      "tags": [
+        "finance",
+        "budget",
+        "pilotage",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Finance et pilotage",
+        "Budget"
+      ]
+    },
+    {
+      "id": "CU-059",
+      "source_id": "MS-039",
+      "categorie": "Fonctions support",
+      "domaine": "Finance et pilotage",
+      "profil": "Finance / pilotage",
+      "tache": "Synthétiser des commentaires d’indicateurs",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Commentaires ou notes de pilotage",
+      "sortie": "Synthèse des messages clés",
+      "utilisation": "Préparer un tableau de bord commenté",
+      "verification": [
+        "indicateurs",
+        "période",
+        "source",
+        "écarts"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 5,
+      "tags": [
+        "pilotage",
+        "indicateurs",
+        "synthèse",
+        "finance"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Finance et pilotage",
+        "Tableaux de bord"
+      ]
+    },
+    {
+      "id": "CU-060",
+      "source_id": "MS-040",
+      "categorie": "Fonctions support",
+      "domaine": "Finance et pilotage",
+      "profil": "Finance / pilotage",
+      "tache": "Structurer une analyse d’écarts",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte, indicateurs et écarts constatés",
+      "sortie": "Trame d’analyse d’écarts",
+      "utilisation": "Compléter avec les chiffres réels et causes vérifiées",
+      "verification": [
+        "source",
+        "période",
+        "causes",
+        "effets"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "écarts",
+        "pilotage",
+        "analyse"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Finance et pilotage",
+        "Analyse"
+      ]
+    },
+    {
+      "id": "CU-061",
+      "source_id": "MS-041",
+      "categorie": "Fonctions support",
+      "domaine": "Finance et pilotage",
+      "profil": "Finance / pilotage",
+      "tache": "Dicter une note de synthèse de pilotage",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral de l’analyse",
+      "sortie": "Note écrite de synthèse",
+      "utilisation": "Corriger les chiffres puis partager",
+      "verification": [
+        "montants",
+        "période",
+        "indicateurs",
+        "conclusion"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "pilotage",
+        "dictée",
+        "synthèse",
+        "finance"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Finance et pilotage",
+        "Notes"
+      ]
+    },
+    {
+      "id": "CU-062",
+      "source_id": "MS-042",
+      "categorie": "Fonctions support",
+      "domaine": "Audit et contrôle",
+      "profil": "Audit / inspection",
+      "tache": "Résumer un rapport d’audit",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Rapport d’audit PDF ou Word",
+      "sortie": "Constats, risques, recommandations et échéances",
+      "utilisation": "Préparer une restitution ou un suivi",
+      "verification": [
+        "constats",
+        "criticité",
+        "recommandations",
+        "délais"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "audit",
+        "rapport",
+        "inspection",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Audit et contrôle",
+        "Rapports"
+      ]
+    },
+    {
+      "id": "CU-063",
+      "source_id": "MS-043",
+      "categorie": "Fonctions support",
+      "domaine": "Audit et contrôle",
+      "profil": "Audit / inspection",
+      "tache": "Transcrire et résumer une réunion de restitution",
+      "outil": "Compte rendu de réunion",
+      "reglage": "Compte rendu synthétique",
+      "entree": "Réunion de restitution enregistrée",
+      "sortie": "Décisions, actions, désaccords éventuels et échéances",
+      "utilisation": "Relire puis partager aux participants",
+      "verification": [
+        "actions",
+        "porteurs",
+        "délais",
+        "points sensibles"
+      ],
+      "gain_minutes": 35,
+      "temps_avant_minutes": 50,
+      "temps_apres_minutes": 15,
+      "frequence": 2,
+      "tags": [
+        "audit",
+        "réunion",
+        "restitution",
+        "transcription"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Audit et contrôle",
+        "Réunions"
+      ]
+    },
+    {
+      "id": "CU-064",
+      "source_id": "MS-044",
+      "categorie": "Fonctions support",
+      "domaine": "Audit et contrôle",
+      "profil": "Audit / inspection",
+      "tache": "Reformuler une observation d’audit",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Brouillon d’observation",
+      "sortie": "Observation plus claire et factuelle",
+      "utilisation": "Relire puis vérifier le fond avant diffusion",
+      "verification": [
+        "faits",
+        "preuve",
+        "formulation",
+        "risque"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "audit",
+        "observation",
+        "paraphraser",
+        "constat"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Audit et contrôle",
+        "Observations"
+      ]
+    },
+    {
+      "id": "CU-065",
+      "source_id": "MS-045",
+      "categorie": "Fonctions support",
+      "domaine": "Audit et contrôle",
+      "profil": "Audit / inspection",
+      "tache": "Préparer une checklist d’audit",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Périmètre d’audit et objectif de contrôle",
+      "sortie": "Checklist de points à vérifier",
+      "utilisation": "Adapter la checklist au référentiel réel",
+      "verification": [
+        "référentiel",
+        "preuves",
+        "périmètre",
+        "risques"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "audit",
+        "checklist",
+        "contrôle"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Audit et contrôle",
+        "Préparation"
+      ]
+    },
+    {
+      "id": "CU-066",
+      "source_id": "MS-046",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et recouvrement",
+      "profil": "Engagements / recouvrement / contentieux",
+      "tache": "Résumer un dossier contentieux",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Dossier contentieux ou pièces associées",
+      "sortie": "Chronologie, montants, étapes et points sensibles",
+      "utilisation": "Préparer une analyse ou un échange interne",
+      "verification": [
+        "dates",
+        "montants",
+        "actes",
+        "statut du dossier"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "contentieux",
+        "recouvrement",
+        "dossier",
+        "résumé"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et recouvrement",
+        "Dossiers"
+      ]
+    },
+    {
+      "id": "CU-067",
+      "source_id": "MS-047",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et recouvrement",
+      "profil": "Engagements / recouvrement / contentieux",
+      "tache": "Reformuler une relance interne",
+      "outil": "Assistant de reformulation",
+      "reglage": "Adoucir",
+      "entree": "Brouillon de relance",
+      "sortie": "Message ferme, clair et non agressif",
+      "utilisation": "Relire puis envoyer",
+      "verification": [
+        "délai",
+        "montant",
+        "destinataire",
+        "ton"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 3,
+      "frequence": 5,
+      "tags": [
+        "relance",
+        "recouvrement",
+        "adoucir",
+        "message"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et recouvrement",
+        "Relances"
+      ]
+    },
+    {
+      "id": "CU-068",
+      "source_id": "MS-048",
+      "categorie": "Fonctions support",
+      "domaine": "Juridique et recouvrement",
+      "profil": "Engagements / recouvrement / contentieux",
+      "tache": "Structurer une analyse de dossier de décision",
+      "outil": "Assistant de cadrage",
+      "reglage": "Prompt structuré",
+      "entree": "Contexte anonymisé du dossier",
+      "sortie": "Trame d’analyse et points à vérifier",
+      "utilisation": "Compléter avec les données réelles et validations internes",
+      "verification": [
+        "conditions",
+        "risques",
+        "montants",
+        "décision attendue"
+      ],
+      "gain_minutes": 15,
+      "temps_avant_minutes": 25,
+      "temps_apres_minutes": 10,
+      "frequence": 3,
+      "tags": [
+        "assistant de cadrage",
+        "décision",
+        "analyse",
+        "risque"
+      ],
+      "chemin": [
+        "Fonctions support",
+        "Juridique et recouvrement",
+        "Analyse"
+      ]
+    },
+    {
+      "id": "CU-069",
+      "source_id": "MG-001",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Résumer des retours d’équipe",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé moyen",
+      "entree": "Notes ou retours d’équipe",
+      "sortie": "Synthèse par thèmes, irritants et actions possibles",
+      "utilisation": "Préparer un point collectif ou une remontée",
+      "verification": [
+        "anonymisation",
+        "fréquence",
+        "urgence",
+        "action possible"
+      ],
+      "gain_minutes": 12,
+      "temps_avant_minutes": 20,
+      "temps_apres_minutes": 7,
+      "frequence": 4,
+      "tags": [
+        "management",
+        "équipe",
+        "retours",
+        "synthèse"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Retours équipe"
+      ]
+    },
+    {
+      "id": "CU-070",
+      "source_id": "MG-002",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Reformuler un message sensible",
+      "outil": "Assistant de reformulation",
+      "reglage": "Adoucir",
+      "entree": "Brouillon de message managérial",
+      "sortie": "Message plus clair, apaisé et professionnel",
+      "utilisation": "Relire puis ajuster au contexte humain",
+      "verification": [
+        "ton",
+        "destinataire",
+        "faits",
+        "risque RH"
+      ],
+      "gain_minutes": 7,
+      "temps_avant_minutes": 15,
+      "temps_apres_minutes": 4,
+      "frequence": 5,
+      "tags": [
+        "management",
+        "message sensible",
+        "adoucir",
+        "équipe"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Communication"
+      ]
+    },
+    {
+      "id": "CU-071",
+      "source_id": "MG-003",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Dicter une note après entretien individuel",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral de l’entretien",
+      "sortie": "Note écrite exploitable",
+      "utilisation": "Corriger puis classer selon les règles internes",
+      "verification": [
+        "confidentialité",
+        "faits",
+        "actions",
+        "dates"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "entretien",
+        "manager",
+        "dictée",
+        "note"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Entretiens individuels"
+      ]
+    },
+    {
+      "id": "CU-072",
+      "source_id": "MG-004",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Résumer un document RH ou organisationnel",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Document RH, note ou procédure",
+      "sortie": "Points clés, impacts et actions à prévoir",
+      "utilisation": "Préparer une communication à l’équipe",
+      "verification": [
+        "date",
+        "périmètre",
+        "obligations",
+        "validation RH"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 3,
+      "tags": [
+        "management",
+        "RH",
+        "organisation",
+        "résumé"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Documents internes"
+      ]
+    },
+    {
+      "id": "CU-073",
+      "source_id": "MG-005",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Simplifier une consigne à transmettre",
+      "outil": "Assistant de reformulation",
+      "reglage": "Simplifier",
+      "entree": "Consigne ou instruction interne",
+      "sortie": "Message plus simple et directement actionnable",
+      "utilisation": "Diffuser à l’équipe après relecture",
+      "verification": [
+        "sens",
+        "action attendue",
+        "date",
+        "périmètre"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 3,
+      "frequence": 6,
+      "tags": [
+        "consigne",
+        "manager",
+        "simplifier",
+        "équipe"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Consignes"
+      ]
+    },
+    {
+      "id": "CU-074",
+      "source_id": "MG-006",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Étoffer un message de réunion",
+      "outil": "Assistant de reformulation",
+      "reglage": "Étoffer",
+      "entree": "Brouillon court d’invitation ou de message",
+      "sortie": "Message plus complet avec objectif et attentes",
+      "utilisation": "Relire puis envoyer aux participants",
+      "verification": [
+        "objectif",
+        "ordre du jour",
+        "horaire",
+        "attendus"
+      ],
+      "gain_minutes": 6,
+      "temps_avant_minutes": 14,
+      "temps_apres_minutes": 3,
+      "frequence": 5,
+      "tags": [
+        "réunion",
+        "manager",
+        "message",
+        "étoffer"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Réunions"
+      ]
+    },
+    {
+      "id": "CU-075",
+      "source_id": "MG-007",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Résumer un plan d’action",
+      "outil": "Assistant de synthèse texte",
+      "reglage": "Résumé court",
+      "entree": "Plan d’action ou notes associées",
+      "sortie": "Actions, responsables, échéances et priorités",
+      "utilisation": "Suivre l’avancement avec l’équipe",
+      "verification": [
+        "responsables",
+        "délais",
+        "priorités",
+        "indicateurs"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 4,
+      "tags": [
+        "plan d’action",
+        "manager",
+        "suivi",
+        "résumé"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Plan d’action"
+      ]
+    },
+    {
+      "id": "CU-076",
+      "source_id": "MG-008",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Dicter un bilan d’activité",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral des faits marquants",
+      "sortie": "Bilan écrit à retravailler",
+      "utilisation": "Corriger puis intégrer à un support ou mail",
+      "verification": [
+        "chiffres",
+        "période",
+        "faits",
+        "actions"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 3,
+      "tags": [
+        "bilan",
+        "activité",
+        "manager",
+        "dictée"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Bilan"
+      ]
+    },
+    {
+      "id": "CU-077",
+      "source_id": "MG-009",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Reformuler un compte rendu",
+      "outil": "Assistant de reformulation",
+      "reglage": "Paraphraser",
+      "entree": "Brouillon de compte rendu",
+      "sortie": "Compte rendu plus clair et mieux structuré",
+      "utilisation": "Relire puis diffuser",
+      "verification": [
+        "décisions",
+        "actions",
+        "porteurs",
+        "délais"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 4,
+      "tags": [
+        "compte rendu",
+        "manager",
+        "paraphraser",
+        "réunion"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Comptes rendus"
+      ]
+    },
+    {
+      "id": "CU-078",
+      "source_id": "MG-010",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Résumer une procédure managériale",
+      "outil": "Assistant de synthèse document",
+      "reglage": "Résumé moyen",
+      "entree": "Procédure ou note managériale",
+      "sortie": "Étapes, règles et points de vigilance",
+      "utilisation": "Comprendre rapidement avant application",
+      "verification": [
+        "cadre RH",
+        "exceptions",
+        "périmètre",
+        "validation"
+      ],
+      "gain_minutes": 10,
+      "temps_avant_minutes": 18,
+      "temps_apres_minutes": 6,
+      "frequence": 3,
+      "tags": [
+        "procédure",
+        "manager",
+        "RH",
+        "résumé"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Procédures"
+      ]
+    },
+    {
+      "id": "CU-079",
+      "source_id": "MG-011",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Dicter une note d’arbitrage",
+      "outil": "Dictée augmentée",
+      "reglage": "Aucun",
+      "entree": "Résumé oral de la décision à préparer",
+      "sortie": "Note d’arbitrage écrite",
+      "utilisation": "Corriger puis compléter avec les éléments factuels",
+      "verification": [
+        "contexte",
+        "options",
+        "risques",
+        "décision attendue"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 3,
+      "tags": [
+        "arbitrage",
+        "manager",
+        "dictée",
+        "décision"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Décision"
+      ]
+    },
+    {
+      "id": "CU-080",
+      "source_id": "MG-012",
+      "categorie": "Management",
+      "domaine": "Management",
+      "profil": "Manager",
+      "tache": "Reformuler une communication de changement",
+      "outil": "Assistant de reformulation",
+      "reglage": "Adoucir",
+      "entree": "Brouillon de communication de changement",
+      "sortie": "Message plus clair, rassurant et orienté action",
+      "utilisation": "Relire puis adapter au contexte de l’équipe",
+      "verification": [
+        "impact",
+        "calendrier",
+        "message clé",
+        "actions attendues"
+      ],
+      "gain_minutes": 8,
+      "temps_avant_minutes": 16,
+      "temps_apres_minutes": 5,
+      "frequence": 3,
+      "tags": [
+        "changement",
+        "manager",
+        "communication",
+        "adoucir"
+      ],
+      "chemin": [
+        "Management",
+        "Management",
+        "Changement"
+      ]
+    }
+  ]
+}
