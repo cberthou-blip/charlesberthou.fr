@@ -1,50 +1,32 @@
 # charlesberthou.fr
 
-Site statique publié avec Firebase Hosting.
+Site personnel statique publie avec GitHub Pages.
 
 ## Structure
 
-- `/` : accueil vitrine autour de l'IA appliquée.
-- `/outils-ia/` : hub Outils IA.
-- `/outils-ia/mon-profil-ia/` : test de maturité IA pour particulier.
-- `/outils-ia/diagnostic-ia-entreprise/` : diagnostic de maturité IA pour organisation.
-- `/outils-ia/les-bases-de-l-ia/` : page de présentation vers IA Learning.
-- `/outils-ia/ia-pour-les-enfants/` : page de présentation vers Kleo.
-- `/outils-ia/trouver-un-usage-ia/` : outil de recherche de cas d'usage IA.
-- `/outils-ia/suivre-mes-usages-ia/` : registre local des usages IA.
-- `/blog/` : index des articles, visible sous le nom Articles.
-- `/services/` : page Solutions.
-- `/a-propos/` : profil court et positionnement.
+- `/` : accueil éditorial, blog, outils IA et contact.
+- `/blog/` : index des articles.
+- `/blog/*/` : articles publics.
+- `/llms.txt` : contexte synthetique technique pour moteurs IA et LLM, non mis en avant dans l'interface.
+- `/a-propos/` : positionnement éditorial.
 - `/confidentialite/` : politique de confidentialité.
-- `/ialearning/` : application IA Learning, conservée à sa route d'origine.
-- `/llms.txt` : contexte synthétique pour moteurs IA et LLM.
+- `/wero/` : module e-learning statique.
+- `/ialearning/` : application IA Learning. Cette page utilise Firebase pour l'authentification, les données de progression, les classements et les équipes.
 
-## Hébergement
+## Hebergement
 
-Le domaine `charlesberthou.fr` est servi par Firebase Hosting. Le dépôt ne contient pas de build : les fichiers HTML, CSS et JavaScript sont déployés tels quels.
+Le domaine `charlesberthou.fr` est servi par GitHub Pages via `CNAME`.
 
-Le fichier `CNAME` conserve le domaine public attendu.
+Firebase n'est pas utilise pour l'hébergement du site principal. Le fichier `firebase.json` ne conserve donc que la configuration Firestore nécessaire a `/ialearning/`.
 
-## Redirections et archives
+## Redirections
 
-Les anciennes routes publiques sont conservées sous forme de pages statiques `noindex` avec canonical et redirection HTML/JavaScript lorsque nécessaire.
+GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot. Les anciennes routes publiques sont conservees sous forme de pages statiques `noindex` avec canonical et redirection HTML/JavaScript:
 
-## IA Learning
-
-La route `/ialearning/` reste indépendante. Elle utilise Firebase pour l'authentification, la progression, les classements et les équipes.
-
-## Déploiement
-
-Déploiement complet :
-
-```bash
-firebase deploy
-```
-
-Déploiement de l'hébergement uniquement :
-
-```bash
-firebase deploy --only hosting
-```
-
-Pousser sur `main` ne déclenche pas nécessairement la publication. Un déploiement Firebase reste requis si aucune chaîne d'intégration continue n'est configurée.
+- `/articles/` vers `/blog/`
+- `/articles/actumars2026/` vers `/blog/`
+- `/articles/ia-entreprise/` vers `/blog/ia-entreprise/`
+- `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
+- `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`
+- `/resume-llm/` vers `/`
+- `/gpts/`, `/contact/`, `/e-learning/`, `/elearning/` vers les ancres utiles de l'accueil.

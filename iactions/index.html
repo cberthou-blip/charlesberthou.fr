@@ -1,18 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests" />
-  <meta name="robots" content="noindex, follow" />
-  <meta http-equiv="refresh" content="0; url=/outils-ia/trouver-un-usage-ia/" />
-  <link rel="canonical" href="https://charlesberthou.fr/outils-ia/trouver-un-usage-ia/" />
-  <title>Archive redirigée</title>
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260513-editorial" />
-  <script>window.location.replace("/outils-ia/trouver-un-usage-ia/");</script>
-</head>
-<body>
-  <main class="section redirect-page"><div class="container"><p class="eyebrow">Archive</p><h1>Cette page a été déplacée.</h1><p class="lead">Redirection vers Trouver un usage IA.</p><div class="actions"><a class="button" href="/outils-ia/trouver-un-usage-ia/">Continuer</a></div></div></main>
-</body>
-</html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests">
+    <title>IA’ctions</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">IA’ctions</p>
+          <h1>Simplifiez une tâche avec l'IA</h1>
+          <p class="hero-subtitle">Trouvez une tâche concrète à alléger, même si vous ne savez pas encore quoi chercher.</p>
+        </div>
 
+        <section class="search-panel" aria-label="Recherche IA’ctions">
+          <label for="searchInput">Décrivez votre tâche</label>
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.8 5.2a5.6 5.6 0 1 1 0 11.2 5.6 5.6 0 0 1 0-11.2m0-2a7.6 7.6 0 1 0 4.7 13.6l3.2 3.2a1 1 0 0 0 1.4-1.4l-3.2-3.2a7.6 7.6 0 0 0-6.1-12.2Z"></path>
+            </svg>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="Ex. transcrire et résumer une réunion projet">
+          </div>
+          <div class="search-results-panel" aria-live="polite">
+            <div class="results-head">
+              <span class="results-title" id="searchStatus">Idées de tâches à simplifier</span>
+              <span class="results-help" id="searchHelp">Cliquez une fiche pour voir comment l’utiliser.</span>
+            </div>
+            <div class="results" id="searchResults"></div>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="column explorer-column" aria-labelledby="explorerTitle">
+        <div class="column-head">
+          <p>1</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6.5h16M4 12h16M4 17.5h16"></path>
+            <path d="M7 4.5v4M12 10v4M17 15.5v4"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="explorerTitle">Explorateur de tâches et cas d’usage</h2>
+            <span>Explorez par métier ou domaine.</span>
+          </div>
+        </div>
+        <div class="explorer-card">
+          <div class="filter-block">
+            <span class="filter-label">Métiers</span>
+            <div class="category-chooser" id="categoryChooser"></div>
+          </div>
+          <div class="library" id="library"></div>
+        </div>
+      </section>
+
+      <section class="column assistant-column" aria-labelledby="assistantTitle">
+        <div class="column-head">
+          <p>2</p>
+          <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4.5a4 4 0 0 1 4 4c0 2.5-2 3.4-2 5.5h-4c0-2.1-2-3-2-5.5a4 4 0 0 1 4-4z"></path>
+            <path d="M10 17h4M10.7 20h2.6"></path>
+          </svg>
+          <div class="column-title">
+            <h2 id="assistantTitle">Mode d’emploi</h2>
+            <span>Ouvrez, ajoutez, choisissez, vérifiez.</span>
+          </div>
+        </div>
+        <div class="assistant-card" id="assistantCard">
+          <p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>
+        </div>
+      </section>
+    </main>
+
+    <section class="calculator-section" aria-labelledby="calculatorTitle">
+      <div class="calculator-inner">
+        <div class="calculator-title">
+          <h2 id="calculatorTitle">
+            <svg class="head-picto" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 4.5h12v15H6z"></path>
+              <path d="M9 8h6M9 12h1.5M13.5 12H15M9 16h1.5M13.5 16H15"></path>
+            </svg>
+            Calculateur de gain
+          </h2>
+          <p>Estimation simple à partir de la fiche sélectionnée.</p>
+        </div>
+        <form class="calculator" id="gainForm">
+          <label class="calc-task-field">
+            Tâche
+            <input id="calcTask" type="text" value="Comprendre rapidement une procédure interne">
+          </label>
+          <label>
+            Fréquence / mois
+            <input id="calcFrequency" type="number" min="0" step="1" value="5">
+          </label>
+          <label>
+            Avant IA (min)
+            <input id="calcBefore" type="number" min="0" step="1" value="20">
+          </label>
+          <label>
+            Après IA (min)
+            <input id="calcAfter" type="number" min="0" step="1" value="10">
+          </label>
+          <div class="gain-box" aria-label="Résultats du calcul">
+            <div>
+              <span>Gain mensuel</span>
+              <strong id="monthlyGain">50 min</strong>
+            </div>
+            <div>
+              <span>Gain annuel</span>
+              <strong id="annualGain">10 h</strong>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="suggest-task-section" aria-label="Proposer une tâche">
+      <button class="suggest-task-button" id="suggestTaskButton" type="button">Proposer une tâche</button>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>

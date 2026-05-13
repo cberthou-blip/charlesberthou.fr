@@ -1,20 +1,20 @@
 {
   "posts": [
     {
-      "title": "Le token, prochaine unité de mesure de l'IA",
-      "description": "Une lecture économique du token comme unité de calcul, de coût et de discipline d'usage dans les organisations.",
+      "title": "Le token, prochaine monnaie de l’IA",
+      "description": "Une lecture économique du token comme nouvelle unité comptable de l’IA : coût du calcul, infrastructures, dépendance d’usage et discipline de consommation.",
       "date": "2026-05-11",
       "readingTime": "9 min",
       "url": "/blog/le-token-prochaine-monnaie-ia/",
-      "tags": ["IA appliquée", "Usages numériques", "Transformation des organisations"]
+      "tags": ["IA", "Économie", "Tokens"]
     },
     {
       "title": "IA en entreprise : hâtez-vous lentement",
-      "description": "Une lecture opérationnelle de l'adoption de l'IA : usages réels, cadre d'usage et transformation progressive des pratiques.",
+      "description": "Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.",
       "date": "2026-04-04",
       "readingTime": "5 min",
       "url": "/blog/ia-entreprise/",
-      "tags": ["IA appliquée", "Transformation des organisations"]
+      "tags": ["IA", "Entreprise", "Transformation"]
     },
     {
       "title": "L'humanité a toujours tremblé devant sa propre lumière",
@@ -22,7 +22,7 @@
       "date": "2026-04-01",
       "readingTime": "9 min",
       "url": "/blog/humanite-lumiere/",
-      "tags": ["Société et intelligence artificielle", "Culture numérique"]
+      "tags": ["IA", "Progrès", "Société"]
     }
   ]
 }

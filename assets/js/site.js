@@ -1,5 +1,47 @@
 const BLOG_DATA_URL = "/data/blog.json";
 
+function ensureIconSprite() {
+  if (document.querySelector(".icon-sprite")) return;
+  document.body.insertAdjacentHTML("afterbegin", `
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-blog" viewBox="0 0 24 24">
+        <path d="M6 4h9l3 3v13H6z" />
+        <path d="M14 4v4h4" />
+        <path d="M9 11h6M9 15h6M9 18h4" />
+      </symbol>
+      <symbol id="icon-tools" viewBox="0 0 24 24">
+        <path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z" />
+      </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24">
+        <circle cx="7" cy="12" r="2.5" />
+        <circle cx="17" cy="6" r="2.5" />
+        <circle cx="17" cy="18" r="2.5" />
+        <path d="M9.2 10.8l5.6-3.4M9.2 13.2l5.6 3.4" />
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 3l7 3v5c0 4.7-2.9 7.9-7 10-4.1-2.1-7-5.3-7-10V6z" />
+        <path d="M9 12l2 2 4-4" />
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path d="M4 19h16" />
+        <path d="M7 16v-5M12 16V7M17 16v-8" />
+      </symbol>
+      <symbol id="icon-prompt" viewBox="0 0 24 24">
+        <path d="M5 6h14v12H5z" />
+        <path d="M8 10l2 2-2 2M12 14h4" />
+      </symbol>
+      <symbol id="icon-learning" viewBox="0 0 24 24">
+        <path d="M4 7l8-4 8 4-8 4z" />
+        <path d="M7 10v5c0 1.6 2.2 3 5 3s5-1.4 5-3v-5" />
+      </symbol>
+      <symbol id="icon-contact" viewBox="0 0 24 24">
+        <path d="M4 6h16v12H4z" />
+        <path d="M4 7l8 6 8-6" />
+      </symbol>
+    </svg>
+  `);
+}
+
 function formatPostDate(value) {
   return new Intl.DateTimeFormat("fr-FR", {
     day: "numeric",
@@ -9,7 +51,21 @@ function formatPostDate(value) {
 }
 
 function renderTags(tags) {
-  return (tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("");
+  return tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+}
+
+function articleCard(post, heading = "h3") {
+  return `
+    <a class="article-card" href="${post.url}">
+      <div>
+        <p class="meta">${formatPostDate(post.date)} · ${post.readingTime}</p>
+        <${heading}>${post.title}</${heading}>
+        <p>${post.description}</p>
+        <div class="tag-row">${renderTags(post.tags)}</div>
+      </div>
+      <span class="text-link">Lire</span>
+    </a>
+  `;
 }
 
 function homeBlogShowcase(posts) {
@@ -89,9 +145,14 @@ async function renderBlogAreas() {
 
   try {
     const posts = await loadBlogData();
-    if (homeTarget) homeTarget.innerHTML = homeBlogShowcase(posts);
-    if (blogTarget) blogTarget.innerHTML = blogDirectory(posts);
+    if (homeTarget) {
+      homeTarget.innerHTML = homeBlogShowcase(posts);
+    }
+    if (blogTarget) {
+      blogTarget.innerHTML = blogDirectory(posts);
+    }
   } catch (error) {
+    // Keep the static article cards already present in the page.
     return;
   }
 }
@@ -135,32 +196,14 @@ function hydrateShareButtons() {
     }
 
     const href = shareUrl(service, url, title);
-    if (href && button.tagName === "A") button.href = href;
-  });
-}
-
-function hydrateProfileFilters() {
-  const root = document.querySelector("[data-tool-filter-root]");
-  if (!root) return;
-
-  const buttons = root.querySelectorAll("[data-profile-filter]");
-  const cards = document.querySelectorAll("[data-profiles]");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const profile = button.dataset.profileFilter;
-      buttons.forEach((item) => item.classList.toggle("is-active", item === button));
-      buttons.forEach((item) => item.setAttribute("aria-pressed", item === button ? "true" : "false"));
-      cards.forEach((card) => {
-        const values = card.dataset.profiles.split(",").map((value) => value.trim());
-        card.dataset.hidden = profile !== "Tous" && !values.includes(profile) ? "true" : "false";
-      });
-    });
+    if (href && button.tagName === "A") {
+      button.href = href;
+    }
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  ensureIconSprite();
   renderBlogAreas();
   hydrateShareButtons();
-  hydrateProfileFilters();
 });

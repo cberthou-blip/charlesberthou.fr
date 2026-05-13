@@ -1,42 +1,44 @@
 # charlesberthou.fr
 
-> Site francophone de Charles Berthou, passeur de l'intelligence artificielle appliquée, consacré aux usages numériques, à la pédagogie IA et à la transformation progressive des organisations.
+> Site personnel francophone consacré à l'intelligence artificielle, aux usages numériques, à la banque, aux prompts, aux GPTs et aux parcours pédagogiques.
 
 ## Résumé du site
 
-charlesberthou.fr publie des analyses, outils gratuits et ressources pratiques pour comprendre l'IA, identifier des usages pertinents, apprendre les bases et suivre ses pratiques. Le site privilégie une approche concrète : éclairage, usage, méthode, transmission, précautions et suivi.
+charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la banque, les paiements, la fraude, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils, prompts, assistants specialises et parcours d'apprentissage.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
-- Outils IA: https://charlesberthou.fr/outils-ia/
-- Mon profil IA: https://charlesberthou.fr/outils-ia/mon-profil-ia/
-- Diagnostic IA entreprise: https://charlesberthou.fr/outils-ia/diagnostic-ia-entreprise/
-- Les bases de l'IA: https://charlesberthou.fr/outils-ia/les-bases-de-l-ia/
-- L'IA pour les enfants: https://charlesberthou.fr/outils-ia/ia-pour-les-enfants/
-- Trouver un usage IA: https://charlesberthou.fr/outils-ia/trouver-un-usage-ia/
-- Suivre mes usages IA: https://charlesberthou.fr/outils-ia/suivre-mes-usages-ia/
-- Articles: https://charlesberthou.fr/blog/
-- Solutions: https://charlesberthou.fr/services/
+- Blog: https://charlesberthou.fr/blog/
+- Services: https://charlesberthou.fr/services/
+- Outils IA: https://charlesberthou.fr/#outils
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
+- Résumé LLM: https://charlesberthou.fr/resume-llm/
 - Sitemap XML: https://charlesberthou.fr/sitemap.xml
+- E-learning Wero: https://charlesberthou.fr/wero/
 - IA Learning: https://charlesberthou.fr/ialearning/
 
 ## Articles
 
-- Le token, prochaine unité de mesure de l'IA: https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/
-- IA en entreprise : hâtez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
-- L'humanité a toujours tremblé devant sa propre lumière: https://charlesberthou.fr/blog/humanite-lumiere/
+- Le token, prochaine monnaie de l'IA: https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/
+- IA en entreprise : hatez-vous lentement: https://charlesberthou.fr/blog/ia-entreprise/
+- L'humanite a toujours tremble devant sa propre lumiere: https://charlesberthou.fr/blog/humanite-lumiere/
 
-## Entités et thèmes
+## Ressources externes
+
+- Prompts GitHub Gist: https://gist.github.com/cberthou-blip
+- Kleo, apprendre l'IA aux enfants: https://kleoia.fr/
+- LinkedIn: https://www.linkedin.com/in/charlesberthou
+
+## Entites et themes
 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
-- Thèmes: IA appliquée, intelligence artificielle générative, usages numériques, culture numérique, pédagogie IA, transformation des organisations, adoption de l'IA, outils pratiques gratuits, solutions IA à venir.
+- Themes: intelligence artificielle, IA générative, agents IA, banque, paiement, fraude, adoption en entreprise, shadow AI, prompts, GPTs, e-learning, culture numérique.
 
 ## Ligne éditoriale
 
-Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et précis.
+Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
 
-Dernière mise à jour: 2026-05-13
+Dernière mise à jour: 2026-05-11
