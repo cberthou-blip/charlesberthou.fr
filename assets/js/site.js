@@ -202,8 +202,53 @@ function hydrateShareButtons() {
   });
 }
 
+function enhanceMobileNavigation() {
+  const header = document.querySelector(".site-header");
+  const nav = header?.querySelector(".main-nav");
+  const navBar = header?.querySelector(".nav-bar");
+  if (!header || !nav || !navBar || header.querySelector(".menu-toggle")) return;
+
+  const navId = nav.id || "navigation-principale";
+  nav.id = navId;
+
+  const button = document.createElement("button");
+  button.className = "menu-toggle";
+  button.type = "button";
+  button.setAttribute("aria-label", "Ouvrir le menu");
+  button.setAttribute("aria-expanded", "false");
+  button.setAttribute("aria-controls", navId);
+  button.innerHTML = "<span></span><span></span><span></span>";
+  navBar.insertBefore(button, nav);
+  document.body.classList.add("nav-enhanced");
+
+  const setOpen = (isOpen) => {
+    header.classList.toggle("menu-open", isOpen);
+    document.body.classList.toggle("nav-open", isOpen);
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+  };
+
+  button.addEventListener("click", () => {
+    setOpen(!header.classList.contains("menu-open"));
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!header.classList.contains("menu-open")) return;
+    if (!header.contains(event.target)) setOpen(false);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   ensureIconSprite();
+  enhanceMobileNavigation();
   renderBlogAreas();
   hydrateShareButtons();
 });

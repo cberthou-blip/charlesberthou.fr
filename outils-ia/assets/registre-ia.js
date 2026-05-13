@@ -33,17 +33,20 @@ initRegisterTool();
 async function initRegisterTool() {
   if (!document.querySelector("[data-register-tool]")) return;
 
+  registerState.register = loadRegister();
+  bindRegisterEvents();
+  renderRegister();
+
   try {
     const response = await fetch(REGISTER_DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error("registre source introuvable");
     const payload = await response.json();
     registerState.sourceCases = payload.useCases || [];
-    registerState.register = loadRegister();
-    bindRegisterEvents();
     renderRegisterFilters();
     renderSourceCases();
-    renderRegister();
   } catch (error) {
+    registerNodes.sourceCount.textContent = "0 cas";
+    registerNodes.seedButton.disabled = true;
     registerNodes.sourceList.innerHTML = `<p class="empty-state">La bibliothèque de départ n'a pas pu être chargée.</p>`;
   }
 }
@@ -65,6 +68,7 @@ function renderRegisterFilters() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `filter-chip ${department === registerState.department ? "active" : ""}`;
+    button.setAttribute("aria-pressed", String(department === registerState.department));
     button.textContent = department;
     button.addEventListener("click", () => {
       registerState.department = department;
@@ -95,7 +99,7 @@ function renderSourceCases() {
         <strong>${escapeHtml(item.title)}</strong>
         <p>${escapeHtml(item.summary)}</p>
       </div>
-      <button class="button ${inRegister ? "secondary" : ""}" type="button" ${inRegister ? "disabled" : ""}>
+      <button class="button ${inRegister ? "secondary" : ""}" type="button" aria-label="${inRegister ? "Cas déjà ajouté" : `Ajouter ${escapeHtml(item.title)} au registre`}" ${inRegister ? "disabled" : ""}>
         ${inRegister ? "Ajouté" : "Ajouter"}
       </button>
     `;
@@ -130,12 +134,12 @@ function renderRegister() {
           <span>${escapeHtml(item.department)}</span>
           <strong>${escapeHtml(item.title)}</strong>
         </div>
-        <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}">Supprimer</button>
+        <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
       </div>
       <div class="register-item-metrics">
         <span><strong>${formatMinutes(item.gainMin)}</strong> gain / usage</span>
-        <span><strong>${escapeHtml(item.riskLevel)}</strong> risque</span>
-        <span><strong>${escapeHtml(getNextAction(item))}</strong> prochaine action</span>
+        <span><strong data-risk-display="${escapeHtml(item.id)}">${escapeHtml(item.riskLevel)}</strong> risque</span>
+        <span><strong data-next-action="${escapeHtml(item.id)}">${escapeHtml(getNextAction(item))}</strong> prochaine action</span>
       </div>
       <div class="register-form-grid">
         ${selectField(item, "status", "Avancement", statusOptions)}
@@ -231,6 +235,7 @@ function updateRegisterItem(id, updates) {
   renderReadiness();
   registerNodes.highRiskCount.textContent = registerState.register.filter((item) => item.riskLevel === "élevé").length;
   registerNodes.reviewCount.textContent = registerState.register.filter((item) => item.reviewDate).length;
+  updateInlineMetrics(id);
 }
 
 function createRegisterEntry(item) {
@@ -307,21 +312,51 @@ function saveRegister() {
 }
 
 function exportRegisterCsv() {
-  const headers = ["titre", "domaine", "outil", "risque", "avancement", "finalite", "donnees", "responsable", "revue", "date_revue", "note"];
+  const headers = [
+    "id",
+    "titre",
+    "domaine",
+    "categorie",
+    "outil",
+    "risque",
+    "avancement",
+    "finalite",
+    "personnes_impactees",
+    "donnees",
+    "responsable",
+    "revue",
+    "date_revue",
+    "note",
+    "kpi",
+    "gain_min_par_usage",
+    "temps_avant_min",
+    "temps_apres_min",
+    "frequence_mensuelle",
+    "date_ajout",
+  ];
   const rows = registerState.register.map((item) => [
+    item.id,
     item.title,
     item.department,
+    item.category,
     item.recommendedTool,
     item.riskLevel,
     item.status,
     item.purpose,
+    item.impactedPeople,
     item.dataType,
     item.businessOwner,
     item.validationStatus,
     item.reviewDate,
     item.comment,
+    item.kpi,
+    item.gainMin,
+    item.timeBeforeMin,
+    item.timeAfterMin,
+    item.monthlyFrequency,
+    item.addedAt,
   ]);
-  const csv = [headers, ...rows].map((row) => row.map(csvCell).join(";")).join("\n");
+  const csv = [headers, ...rows].map((row) => row.map(csvCell).join(";")).join("\r\n");
   const blob = new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -335,6 +370,17 @@ function exportRegisterCsv() {
 
 function csvCell(value) {
   return `"${String(value ?? "").replace(/"/g, '""')}"`;
+}
+
+function updateInlineMetrics(id) {
+  const item = registerState.register.find((entry) => entry.id === id);
+  if (!item) return;
+  registerNodes.registerList.querySelectorAll("[data-risk-display]").forEach((node) => {
+    if (node.dataset.riskDisplay === id) node.textContent = item.riskLevel;
+  });
+  registerNodes.registerList.querySelectorAll("[data-next-action]").forEach((node) => {
+    if (node.dataset.nextAction === id) node.textContent = getNextAction(item);
+  });
 }
 
 function normalize(value) {
