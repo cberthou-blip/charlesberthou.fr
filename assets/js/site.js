@@ -150,6 +150,7 @@ function hydrateProfileFilters() {
     button.addEventListener("click", () => {
       const profile = button.dataset.profileFilter;
       buttons.forEach((item) => item.classList.toggle("is-active", item === button));
+      buttons.forEach((item) => item.setAttribute("aria-pressed", item === button ? "true" : "false"));
       cards.forEach((card) => {
         const values = card.dataset.profiles.split(",").map((value) => value.trim());
         card.dataset.hidden = profile !== "Tous" && !values.includes(profile) ? "true" : "false";

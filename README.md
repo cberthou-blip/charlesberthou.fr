@@ -5,7 +5,7 @@ Site statique publié avec Firebase Hosting.
 ## Structure
 
 - `/` : accueil vitrine autour de l'IA appliquée.
-- `/outils-ia/` : hub L'Atelier IA.
+- `/outils-ia/` : hub Outils IA.
 - `/outils-ia/mon-profil-ia/` : test de maturité IA pour particulier.
 - `/outils-ia/diagnostic-ia-entreprise/` : diagnostic de maturité IA pour organisation.
 - `/outils-ia/les-bases-de-l-ia/` : page de présentation vers IA Learning.
@@ -13,7 +13,7 @@ Site statique publié avec Firebase Hosting.
 - `/outils-ia/trouver-un-usage-ia/` : outil de recherche de cas d'usage IA.
 - `/outils-ia/suivre-mes-usages-ia/` : registre local des usages IA.
 - `/blog/` : index des articles, visible sous le nom Articles.
-- `/services/` : page Accompagnements.
+- `/services/` : page Solutions.
 - `/a-propos/` : profil court et positionnement.
 - `/confidentialite/` : politique de confidentialité.
 - `/ialearning/` : application IA Learning, conservée à sa route d'origine.

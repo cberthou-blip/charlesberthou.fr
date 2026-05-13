@@ -35,27 +35,45 @@ const RECOMMENDATIONS = {
   "Pilotage avancé": ["Industrialiser seulement les usages éprouvés.", "Suivre les risques et les gains dans la durée.", "Organiser un retour d'expérience régulier."]
 };
 
+const SCALE_LABELS = ["Absent", "Émergent", "Partiel", "Installé", "Maîtrisé"];
+
 const form = document.getElementById("quizForm");
 const resultPanel = document.getElementById("resultPanel");
 
 function renderQuestions() {
   form.innerHTML = QUESTIONS.map((question, index) => `
-    <article class="question-card">
-      <fieldset>
-        <legend>${index + 1}. ${question.text}</legend>
-        <p class="meta">${question.axis}</p>
-        <div class="scale" aria-label="Échelle de 0 à 4">
-          ${[0, 1, 2, 3, 4].map((value) => `<label><input type="radio" name="q${index}" value="${value}" required><span>${value}</span></label>`).join("")}
-        </div>
-      </fieldset>
+    <article class="question-card gauge-card">
+      <label class="gauge-question" for="q${index}">
+        <span class="question-number">${String(index + 1).padStart(2, "0")}</span>
+        <span><strong>${question.text}</strong><em>${question.axis}</em></span>
+      </label>
+      <div class="gauge-control">
+        <input id="q${index}" type="range" name="q${index}" min="0" max="4" step="1" value="2" data-value-label="q${index}Label">
+        <output id="q${index}Label" for="q${index}">${SCALE_LABELS[2]}</output>
+      </div>
+      <div class="gauge-scale" aria-hidden="true">
+        <span>Absent</span>
+        <span>Maîtrisé</span>
+      </div>
     </article>
   `).join("");
+  hydrateGauges();
 }
 
 function getAnswers() {
-  return QUESTIONS.map((_, index) => {
-    const selected = form.querySelector(`input[name="q${index}"]:checked`);
-    return selected ? Number(selected.value) : null;
+  return QUESTIONS.map((_, index) => Number(form.querySelector(`input[name="q${index}"]`).value));
+}
+
+function hydrateGauges() {
+  form.querySelectorAll('input[type="range"]').forEach((input) => {
+    const output = document.getElementById(input.dataset.valueLabel);
+    const update = () => {
+      const value = Number(input.value);
+      output.textContent = SCALE_LABELS[value];
+      input.style.setProperty("--value", `${value * 25}%`);
+    };
+    input.addEventListener("input", update);
+    update();
   });
 }
 
@@ -65,13 +83,6 @@ function getLevel(score) {
 
 function calculate() {
   const answers = getAnswers();
-  if (answers.some((value) => value === null)) {
-    resultPanel.className = "result-panel is-visible";
-    resultPanel.innerHTML = '<p class="notice">Veuillez répondre à toutes les questions pour obtenir un résultat complet.</p>';
-    resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
-
   const axes = {};
   QUESTIONS.forEach((question, index) => {
     axes[question.axis] ||= [];
@@ -86,6 +97,8 @@ function calculate() {
     return { axis, score: Math.round((values.reduce((sum, value) => sum + value, 0) / (values.length * 4)) * 100) };
   });
   const priorities = axisScores.slice().sort((a, b) => a.score - b.score).slice(0, 3);
+  const hasSpread = Math.max(...axisScores.map((item) => item.score)) !== Math.min(...axisScores.map((item) => item.score));
+  const prioritiesTitle = hasSpread ? "Priorités d'action" : "Lecture d'ensemble";
 
   resultPanel.className = "result-panel is-visible";
   resultPanel.innerHTML = `
@@ -97,7 +110,7 @@ function calculate() {
       ${axisScores.map((item) => `<div class="axis-row"><div><span>${item.axis}</span><strong>${item.score}/100</strong></div><div class="bar-track"><div class="bar-fill" style="--value:${item.score}%"></div></div></div>`).join("")}
     </div>
     <div class="result-lists">
-      <div><h3>Priorités d'action</h3><ul>${priorities.map((item) => `<li>${item.axis}</li>`).join("")}</ul></div>
+      <div><h3>${prioritiesTitle}</h3><ul>${hasSpread ? priorities.map((item) => `<li>${item.axis}</li>`).join("") : "<li>Aucun axe ne se détache nettement. Affinez les jauges pour faire apparaître vos priorités.</li>"}</ul></div>
       <div><h3>Recommandations</h3><ul>${RECOMMENDATIONS[level.label].map((item) => `<li>${item}</li>`).join("")}</ul></div>
       <div><h3>Prochaine étape</h3><p>Choisir un usage simple, le documenter, puis mesurer son utilité réelle avant de l'élargir.</p></div>
     </div>
@@ -108,6 +121,7 @@ function calculate() {
 document.getElementById("calculateScore").addEventListener("click", calculate);
 document.getElementById("resetQuiz").addEventListener("click", () => {
   form.reset();
+  hydrateGauges();
   resultPanel.className = "result-panel";
   resultPanel.innerHTML = "";
 });

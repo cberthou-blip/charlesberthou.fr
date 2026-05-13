@@ -1,15 +1,15 @@
 # charlesberthou.fr
 
-> Site francophone consacré à l'intelligence artificielle appliquée, aux usages numériques, à la pédagogie IA et à la transformation progressive des organisations.
+> Site francophone de Charles Berthou, passeur de l'intelligence artificielle appliquée, consacré aux usages numériques, à la pédagogie IA et à la transformation progressive des organisations.
 
 ## Résumé du site
 
-charlesberthou.fr publie des analyses, outils et ressources pratiques pour comprendre l'IA, identifier des usages pertinents, apprendre les bases et structurer une adoption progressive. Le site privilégie une approche concrète : usage, méthode, transmission, précautions et suivi.
+charlesberthou.fr publie des analyses, outils gratuits et ressources pratiques pour comprendre l'IA, identifier des usages pertinents, apprendre les bases et suivre ses pratiques. Le site privilégie une approche concrète : éclairage, usage, méthode, transmission, précautions et suivi.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
-- L'Atelier IA: https://charlesberthou.fr/outils-ia/
+- Outils IA: https://charlesberthou.fr/outils-ia/
 - Mon profil IA: https://charlesberthou.fr/outils-ia/mon-profil-ia/
 - Diagnostic IA entreprise: https://charlesberthou.fr/outils-ia/diagnostic-ia-entreprise/
 - Les bases de l'IA: https://charlesberthou.fr/outils-ia/les-bases-de-l-ia/
@@ -17,7 +17,7 @@ charlesberthou.fr publie des analyses, outils et ressources pratiques pour compr
 - Trouver un usage IA: https://charlesberthou.fr/outils-ia/trouver-un-usage-ia/
 - Suivre mes usages IA: https://charlesberthou.fr/outils-ia/suivre-mes-usages-ia/
 - Articles: https://charlesberthou.fr/blog/
-- Accompagnements: https://charlesberthou.fr/services/
+- Solutions: https://charlesberthou.fr/services/
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
 - Sitemap XML: https://charlesberthou.fr/sitemap.xml
@@ -33,7 +33,7 @@ charlesberthou.fr publie des analyses, outils et ressources pratiques pour compr
 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
-- Thèmes: IA appliquée, intelligence artificielle générative, usages numériques, culture numérique, pédagogie IA, transformation des organisations, adoption de l'IA, outils pratiques, accompagnements IA.
+- Thèmes: IA appliquée, intelligence artificielle générative, usages numériques, culture numérique, pédagogie IA, transformation des organisations, adoption de l'IA, outils pratiques gratuits, solutions IA à venir.
 
 ## Ligne éditoriale
 
