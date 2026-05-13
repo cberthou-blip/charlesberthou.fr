@@ -7,6 +7,7 @@ Site personnel statique publie avec GitHub Pages.
 - `/` : accueil éditorial, blog, outils IA et contact.
 - `/blog/` : index des articles.
 - `/blog/*/` : articles publics.
+- `/outils-ia/` : parcours d'outils IA pour diagnostiquer, former, prioriser, mesurer et gouverner.
 - `/llms.txt` : contexte synthetique technique pour moteurs IA et LLM, non mis en avant dans l'interface.
 - `/a-propos/` : positionnement éditorial.
 - `/confidentialite/` : politique de confidentialité.

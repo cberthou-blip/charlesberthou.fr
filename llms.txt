@@ -4,7 +4,7 @@
 
 ## Résumé du site
 
-charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la pédagogie et la culture numérique. Le site privilegie une approche concrète: usages, risques, adoption, outils gratuits, registre IA, maturité IA et parcours d'apprentissage.
+charlesberthou.fr publie des analyses, repères et ressources pratiques pour comprendre l'IA générative, ses effets sur les organisations, la pédagogie et la culture numérique. Le site privilégie une approche concrète: transformation IA, usages, risques, adoption, ROI, registre IA, maturité IA et parcours d'apprentissage.
 
 ## Pages principales
 
@@ -12,9 +12,10 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 - Articles: https://charlesberthou.fr/blog/
 - Services: https://charlesberthou.fr/services/
 - Outils IA: https://charlesberthou.fr/outils-ia/
-- Explorateur de cas d'usage IA: https://charlesberthou.fr/outils-ia/cas-usage/
-- Registre IA: https://charlesberthou.fr/outils-ia/registre-ia/
 - Test de maturité IA: https://charlesberthou.fr/outils-ia/maturite-ia/
+- Explorateur de cas d'usage IA: https://charlesberthou.fr/outils-ia/cas-usage/
+- Simulation de ROI IA: https://charlesberthou.fr/outils-ia/roi-ia/
+- Registre IA: https://charlesberthou.fr/outils-ia/registre-ia/
 - À propos: https://charlesberthou.fr/a-propos/
 - Confidentialité: https://charlesberthou.fr/confidentialite/
 - Résumé LLM: https://charlesberthou.fr/resume-llm/
@@ -36,7 +37,7 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
-- Themes: intelligence artificielle, IA générative, agents IA, adoption en entreprise, shadow AI, cas d'usage IA, registre IA, maturité IA, e-learning, culture numérique.
+- Themes: intelligence artificielle, IA générative, transformation IA, adoption en entreprise, shadow AI, cas d'usage IA, ROI IA, registre IA, maturité IA, formation IA, culture numérique.
 
 ## Ligne éditoriale
 

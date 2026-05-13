@@ -168,32 +168,32 @@ function getTotalScore() {
 function getLevel(total) {
   if (total <= 5) {
     return {
-      label: "Très loin du train",
+      label: "Fondations insuffisantes",
       title: "Fondations à poser",
-      summary: "L'IA existe probablement déjà dans les pratiques, mais sans cadre commun. Commencez petit : règles simples, formation courte, deux cas utiles.",
+      summary: "L'IA existe probablement déjà dans les pratiques, mais sans cadre commun. Commencez par des règles lisibles, une formation courte et deux cas d'usage limités.",
     };
   }
 
   if (total <= 11) {
     return {
-      label: "En gare",
+      label: "Exploration dispersée",
       title: "Exploration à structurer",
-      summary: "Les idées sont là, mais le pilotage manque encore. Le bon mouvement : passer des tests dispersés à un portefeuille de cas priorisés.",
+      summary: "Les idées sont présentes, mais le pilotage demeure fragile. L'enjeu consiste à convertir les essais dispersés en portefeuille de cas priorisés.",
     };
   }
 
   if (total <= 17) {
     return {
-      label: "Dans le bon train",
+      label: "Structuration engagée",
       title: "Adoption structurée",
-      summary: "Les fondations sont solides. L'enjeu devient la mesure réelle des gains, la sécurité des usages sensibles et la montée en compétence.",
+      summary: "Les fondations sont en place. L'effort doit désormais porter sur la mesure réelle des gains, la maîtrise des risques et la montée en compétence.",
     };
   }
 
   return {
-    label: "À bonne vitesse",
+    label: "Maturité avancée",
     title: "Maturité avancée",
-    summary: "L'organisation peut travailler le passage à l'échelle : standards communs, revue régulière des usages et industrialisation sobre.",
+    summary: "L'organisation peut préparer le passage à l'échelle : standards communs, revue régulière des usages et industrialisation maîtrisée.",
   };
 }
 
