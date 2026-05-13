@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests" />
+  <title>Suivre ses usages IA | Registre IA simple</title>
+  <meta name="description" content="Un registre IA simple pour documenter vos usages, les outils employés, les risques et les précautions à prévoir." />
+  <link rel="canonical" href="https://charlesberthou.fr/outils-ia/suivre-mes-usages-ia/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Suivre ses usages IA" />
+  <meta property="og:description" content="Un registre IA simple pour documenter vos usages, les outils employés, les risques et les précautions à prévoir." />
+  <meta property="og:url" content="https://charlesberthou.fr/outils-ia/suivre-mes-usages-ia/" />
+  <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260513-atelier-ia" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Suivre mes usages IA","applicationCategory":"ProductivityApplication","operatingSystem":"Web","url":"https://charlesberthou.fr/outils-ia/suivre-mes-usages-ia/","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"À quoi sert ce registre ?","acceptedAnswer":{"@type":"Answer","text":"Il aide à garder une trace des usages IA, des outils employés, des risques et des précautions."}},{"@type":"Question","name":"Les données sont-elles envoyées quelque part ?","acceptedAnswer":{"@type":"Answer","text":"Non. Les données sont conservées dans le stockage local de votre navigateur."}},{"@type":"Question","name":"Puis-je exporter mes usages ?","acceptedAnswer":{"@type":"Answer","text":"Oui. L'export CSV est généré directement dans le navigateur."}},{"@type":"Question","name":"Est-ce un outil de conformité ?","acceptedAnswer":{"@type":"Answer","text":"Non. Il aide à structurer une réflexion mais ne constitue pas une validation juridique."}},{"@type":"Question","name":"À qui s'adresse cet outil ?","acceptedAnswer":{"@type":"Answer","text":"Aux professionnels, indépendants et organisations qui veulent suivre leurs usages IA simplement."}}]}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-JH2SZFYEHR");</script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header"><div class="container nav-bar"><a class="brand" href="/">charlesberthou.fr</a><nav class="main-nav" aria-label="Navigation principale"><a href="/">Accueil</a><a href="/outils-ia/" aria-current="page">L'Atelier IA</a><a href="/blog/">Articles</a><a href="/services/">Accompagnements</a><a href="/a-propos/">À propos</a></nav><a class="nav-cta" href="/services/#contact">Me contacter</a></div></header>
+  <main id="contenu">
+    <section class="page-hero"><div class="container"><p class="breadcrumb"><a href="/outils-ia/">L'Atelier IA</a> / Suivre mes usages IA</p><p class="eyebrow">Suivre</p><h1>Suivre mes usages IA</h1><p class="lead">Un registre simple pour documenter vos usages de l'intelligence artificielle, garder une trace des outils utilisés et identifier les précautions à prévoir.</p><p class="notice" style="margin-top:18px">Cet outil aide à structurer une réflexion. Il ne constitue pas un conseil juridique ni une validation de conformité.</p></div></section>
+    <section class="section">
+      <div class="container register-app">
+        <div class="summary-grid" id="registerSummary"></div>
+        <form class="register-form" id="usageForm">
+          <input type="hidden" id="usageId">
+          <h2>Ajouter un usage IA</h2>
+          <div class="form-grid">
+            <label class="form-row">Usage<input id="usageTitle" required></label>
+            <label class="form-row">Outil utilisé<input id="toolName"></label>
+            <label class="form-row">Objectif<textarea id="purpose"></textarea></label>
+            <label class="form-row">Type de données utilisées<input id="dataType"></label>
+            <label class="form-row">Niveau de risque<select id="riskLevel"><option>faible</option><option>moyen</option><option>élevé</option></select></label>
+            <label class="form-row">Statut<select id="status"><option>idée</option><option>test</option><option>utilisé</option><option>abandonné</option></select></label>
+            <label class="form-row">Précaution à prévoir<textarea id="precaution"></textarea></label>
+            <label class="form-row">Responsable ou utilisateur<input id="owner"></label>
+          </div>
+          <div class="actions"><button class="button" type="submit" id="saveUsage">Ajouter l'usage</button><button class="button secondary" type="button" id="cancelEdit">Annuler</button></div>
+        </form>
+        <div class="filters" aria-label="Filtres">
+          <label class="form-row">Statut<select id="statusFilter"><option>Tous</option><option>idée</option><option>test</option><option>utilisé</option><option>abandonné</option></select></label>
+          <label class="form-row">Niveau de risque<select id="riskFilter"><option>Tous</option><option>faible</option><option>moyen</option><option>élevé</option></select></label>
+          <button class="button secondary" type="button" id="exportCsv">Exporter en CSV</button>
+        </div>
+        <div class="table-scroll"><table><thead><tr><th>Usage</th><th>Outil</th><th>Objectif</th><th>Risque</th><th>Statut</th><th>Précaution</th><th>Responsable</th><th>Dates</th><th>Actions</th></tr></thead><tbody id="registerRows"></tbody></table></div>
+      </div>
+    </section>
+    <section class="section soft"><div class="container geo-grid"><article class="content-card"><h2>Ce que fait cet outil</h2><p>Il conserve localement une liste structurée de vos usages IA.</p></article><article class="content-card"><h2>Pour qui</h2><p>Pour les professionnels, indépendants et organisations qui veulent suivre leurs pratiques.</p></article><article class="content-card"><h2>Ce que vous obtenez</h2><p>Une synthèse, des filtres, un tableau modifiable et un export CSV.</p></article><article class="content-card"><h2>Ce que l'outil ne fait pas</h2><p>Il ne remplace pas une analyse juridique, une décision d'organisation ou une revue spécialisée.</p></article></div></section>
+    <section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">FAQ</p><h2>Questions fréquentes.</h2></div><div class="faq-list"><details><summary>À quoi sert ce registre ?</summary><p>Il aide à garder une trace des usages IA, des outils employés, des risques et des précautions.</p></details><details><summary>Les données sont-elles envoyées quelque part ?</summary><p>Non. Les données sont conservées dans le stockage local de votre navigateur.</p></details><details><summary>Puis-je exporter mes usages ?</summary><p>Oui. L'export CSV est généré directement dans le navigateur.</p></details><details><summary>Est-ce un outil de conformité ?</summary><p>Non. Il aide à structurer une réflexion mais ne constitue pas une validation juridique.</p></details><details><summary>À qui s'adresse cet outil ?</summary><p>Aux professionnels, indépendants et organisations qui veulent suivre leurs usages IA simplement.</p></details></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><p>© Charles Berthou</p><div class="footer-links"><a href="/">Accueil</a><a href="/outils-ia/">L'Atelier IA</a><a href="/blog/">Articles</a><a href="/services/">Accompagnements</a><a href="/a-propos/">À propos</a><a href="/confidentialite/">Confidentialité</a><a href="/resume-llm/">Résumé IA</a><a href="/sitemap.xml">Sitemap</a></div></div></footer>
+  <script src="/outils-ia/suivre-mes-usages-ia/app.js" defer></script>
+</body>
+</html>

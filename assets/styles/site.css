@@ -1011,6 +1011,504 @@ section,
   }
 }
 
+/* Atelier IA revision */
+.nav-cta {
+  border-radius: 6px;
+}
+
+.hero-visual-panel svg,
+.hero-visual-panel img {
+  width: 100%;
+  height: auto;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pill-list li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.flow-steps {
+  display: grid;
+  gap: 12px;
+  counter-reset: step;
+}
+
+.flow-step {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.flow-step::before {
+  counter-increment: step;
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--deep);
+  color: #fff;
+  font-weight: 800;
+}
+
+.breadcrumb {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.profile-selector,
+.domain-tabs,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.profile-selector button,
+.domain-tabs button,
+.filters button,
+.icon-button {
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 13px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.profile-selector button.is-active,
+.domain-tabs button.is-active {
+  border-color: var(--blue);
+  background: #eef2ff;
+  color: var(--ink);
+}
+
+.tool-card[data-hidden="true"] {
+  display: none;
+}
+
+.geo-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px 18px;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+details p {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.notice {
+  border-left: 4px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  background: rgba(6, 182, 212, 0.08);
+  color: #243247;
+  padding: 16px 18px;
+}
+
+.quiz-form,
+.axis-bars,
+.register-app,
+.result-list,
+.case-list,
+.tool-workspace {
+  display: grid;
+  gap: 16px;
+}
+
+.question-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.question-card fieldset {
+  display: grid;
+  gap: 12px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.question-card legend {
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.scale label {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.scale input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scale label:has(input:checked) {
+  border-color: var(--blue);
+  background: #eef2ff;
+  color: var(--ink);
+}
+
+.result-panel {
+  display: none;
+  margin-top: 26px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.result-panel.is-visible {
+  display: grid;
+  gap: 20px;
+}
+
+.score-summary {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+}
+
+.score-ring {
+  display: grid;
+  place-items: center;
+  width: 116px;
+  height: 116px;
+  border-radius: 999px;
+  background: conic-gradient(var(--teal) var(--score, 0%), #e5edf7 0);
+  color: var(--deep);
+  font-size: 1.7rem;
+  font-weight: 850;
+}
+
+.score-ring span {
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.axis-row {
+  display: grid;
+  gap: 6px;
+}
+
+.axis-row > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.bar-track {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5edf7;
+}
+
+.bar-fill {
+  width: var(--value, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--grad-cyan);
+}
+
+.result-lists {
+  display: grid;
+  gap: 18px;
+}
+
+.tool-layout {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+
+.search-panel-tool,
+.usage-detail,
+.calculator,
+.suggest-box,
+.register-form {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.search-box,
+.form-row {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.search-box input,
+.register-form input,
+.register-form textarea,
+.register-form select,
+.calculator input,
+.suggest-box textarea,
+.filters select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 11px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.register-form textarea,
+.suggest-box textarea {
+  min-height: 86px;
+  resize: vertical;
+}
+
+.result-card,
+.case-card {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.result-card.is-selected,
+.case-card.is-selected {
+  border-color: var(--blue);
+  box-shadow: inset 4px 0 0 var(--blue);
+}
+
+.usage-detail dl {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.usage-detail dt {
+  color: var(--blue);
+  font-weight: 850;
+}
+
+.usage-detail dd {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.gain-box,
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.gain-box div {
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--deep);
+  color: #fff;
+}
+
+.gain-box span {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+}
+
+.gain-box strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.summary-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f8fafc;
+  color: var(--deep);
+  font-size: 0.84rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--muted);
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.icon-button {
+  border-radius: 6px;
+}
+
+.icon-button.danger {
+  color: #b42318;
+}
+
+.risk-low {
+  color: #0f766e;
+  font-weight: 850;
+}
+
+.risk-medium {
+  color: #b7791f;
+  font-weight: 850;
+}
+
+.risk-high {
+  color: #b42318;
+  font-weight: 850;
+}
+
+.redirect-page {
+  display: grid;
+  min-height: 58vh;
+  align-items: center;
+}
+
+@media (min-width: 720px) {
+  .flow-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .geo-grid,
+  .score-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-lists {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tool-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.7fr);
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .summary-grid,
+  .gain-box {
+    grid-template-columns: 1fr;
+  }
+}
+
 .share-btn:hover,
 .share-btn.copied {
   background: #fff;
@@ -1328,17 +1826,17 @@ section,
   }
 }
 
-/* Wero e-learning */
-.wero-page .page-hero {
+/* Legacy learning */
+.archive-learning-page .page-hero {
   border-bottom: 1px solid var(--line);
   padding: 46px 0 42px;
 }
 
-.wero-page .page-hero h1 {
+.archive-learning-page .page-hero h1 {
   max-width: 900px;
 }
 
-.wero-shell {
+.archive-learning-shell {
   padding: 34px 0 76px;
 }
 
@@ -1893,7 +2391,7 @@ section,
 }
 
 @media (max-width: 719px) {
-  .wero-page .page-hero h1,
+  .archive-learning-page .page-hero h1,
   .module-title,
   .quiz-title,
   .result-title,
@@ -1901,7 +2399,7 @@ section,
     max-width: 15ch;
   }
 
-  .wero-page .page-hero .lead {
+  .archive-learning-page .page-hero .lead {
     max-width: 32ch;
   }
 

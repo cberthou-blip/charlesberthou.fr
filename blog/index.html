@@ -4,195 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; frame-ancestors 'self'; upgrade-insecure-requests" />
-  <title>Blog IA, banque et transformations numériques | Charles Berthou</title>
-  <meta name="description" content="Articles de fond sur l'IA, la banque et les transformations numériques: signaux faibles, usages réels, risques, adoption et culture technique." />
+  <title>Articles IA appliquée et usages numériques | Charles Berthou</title>
+  <meta name="description" content="Articles sur l'IA appliquée, les usages numériques, l'éducation, la transmission et la transformation des organisations." />
   <link rel="canonical" href="https://charlesberthou.fr/blog/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Blog IA, banque et transformations numériques" />
-  <meta property="og:description" content="Articles de fond sur l'IA, la banque et les transformations numériques: signaux faibles, usages réels, risques, adoption et culture technique." />
+  <meta property="og:title" content="Articles IA appliquée et usages numériques" />
+  <meta property="og:description" content="Articles sur l'IA appliquée, les usages numériques, l'éducation, la transmission et la transformation des organisations." />
   <meta property="og:url" content="https://charlesberthou.fr/blog/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
-  <meta property="og:image:secure_url" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Aperçu charlesberthou.fr - Comprendre l'IA, usages, repères, outils." />
+  <meta property="og:image:alt" content="Aperçu du site charlesberthou.fr consacré à l'IA appliquée et aux usages numériques." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Blog IA, banque et transformations numériques" />
-  <meta name="twitter:description" content="Articles de fond sur l'IA, la banque et les transformations numériques: signaux faibles, usages réels, risques, adoption et culture technique." />
-  <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260513-atelier-ia" />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Blog charlesberthou.fr",
-    "url": "https://charlesberthou.fr/blog/",
-    "image": "https://charlesberthou.fr/assets/social/charlesberthou-og.png",
-    "inLanguage": "fr-FR",
-    "description": "Articles de fond sur l'IA, la banque et les transformations numériques: signaux faibles, usages réels, risques, adoption et culture technique.",
-    "author": {
-      "@type": "Person",
-      "name": "Charles Berthou",
-      "sameAs": "https://www.linkedin.com/in/charlesberthou"
-    },
-    "blogPost": [
-      {
-        "@type": "BlogPosting",
-        "headline": "Le token, prochaine monnaie de l’IA",
-        "url": "https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/",
-        "datePublished": "2026-05-11",
-        "inLanguage": "fr-FR"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "IA en entreprise : hâtez-vous lentement",
-        "url": "https://charlesberthou.fr/blog/ia-entreprise/",
-        "datePublished": "2026-04-04",
-        "inLanguage": "fr-FR"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "L'humanité a toujours tremblé devant sa propre lumière",
-        "url": "https://charlesberthou.fr/blog/humanite-lumiere/",
-        "datePublished": "2026-04-01",
-        "inLanguage": "fr-FR"
-      }
-    ]
-  }
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"Articles Charles Berthou","url":"https://charlesberthou.fr/blog/","inLanguage":"fr-FR","description":"Analyses sur l'IA appliquée et les usages numériques.","author":{"@type":"Person","name":"Charles Berthou"}}
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-JH2SZFYEHR");
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-JH2SZFYEHR");</script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <a class="brand" href="/">charlesberthou.fr</a>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/#blog">Blog</a>
-        <a href="/services/">Services</a>
-        <a href="/#outils">Outils IA</a>
-        <a href="/a-propos/">À propos</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
+  <header class="site-header"><div class="container nav-bar"><a class="brand" href="/">charlesberthou.fr</a><nav class="main-nav" aria-label="Navigation principale"><a href="/">Accueil</a><a href="/outils-ia/">L'Atelier IA</a><a href="/blog/" aria-current="page">Articles</a><a href="/services/">Accompagnements</a><a href="/a-propos/">À propos</a></nav><a class="nav-cta" href="/services/#contact">Me contacter</a></div></header>
   <main id="contenu">
-    <section class="page-hero blog-page-hero">
+    <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Blog</p>
-        <h1>Mes analyses longues sur l'IA, la banque et les usages numériques.</h1>
-        <p class="lead">
-          J'y rassemble mes prises de recul, mes synthèses de veille et mes réflexions sur les transformations en cours : ce que l'IA rend possible, ce qu'elle déplace et ce qu'elle oblige à clarifier.
-        </p>
-        <div class="hero-card-grid blog-topic-grid" aria-label="Thématiques du blog">
-          <div class="mini-card">
-            <span class="icon-mark"><svg><use href="#icon-blog"></use></svg></span>
-            <p class="meta">Analyse</p>
-            <h2>Comprendre</h2>
-            <p>Mettre de l'ordre dans les signaux, les promesses et les limites des technologies d'IA.</p>
-          </div>
-          <div class="mini-card">
-            <span class="icon-mark"><svg><use href="#icon-chart"></use></svg></span>
-            <p class="meta">Banque</p>
-            <h2>Relier</h2>
-            <p>Observer les effets sur les services financiers, les parcours clients et les pratiques internes.</p>
-          </div>
-          <div class="mini-card">
-            <span class="icon-mark"><svg><use href="#icon-learning"></use></svg></span>
-            <p class="meta">Transmission</p>
-            <h2>Partager</h2>
-            <p>Rendre les notions plus accessibles sans perdre la rigueur nécessaire à leur compréhension.</p>
-          </div>
-        </div>
+        <p class="eyebrow">Articles</p>
+        <h1>Articles</h1>
+        <p class="lead">Des analyses pour comprendre les effets de l'IA sur les usages, les organisations et la culture numérique.</p>
+        <ul class="pill-list" style="margin-top:20px"><li>IA appliquée</li><li>Usages numériques</li><li>Éducation et transmission</li><li>Transformation des organisations</li><li>Société et intelligence artificielle</li></ul>
       </div>
     </section>
-
-    <section class="section blog-section blog-page-listing">
-      <div class="container">
-        <div class="section-heading editorial-heading">
-          <div>
-            <p class="eyebrow">Publications</p>
-            <h2>Les derniers articles publiés.</h2>
-            <p>Trois articles de fond pour poser des repères : comprendre l'économie de l'IA, qualifier les usages réellement transformants et garder une distance critique.</p>
-          </div>
-          <div class="share" data-share-root data-share-url="https://charlesberthou.fr/blog/" data-share-title="Blog IA, banque et culture numérique">
-            <span class="share-label">Partager le blog</span>
-            <a class="share-btn" data-share="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Partager sur LinkedIn">in</a>
-            <a class="share-btn" data-share="x" target="_blank" rel="noopener noreferrer" aria-label="Partager sur X">X</a>
-            <a class="share-btn" data-share="facebook" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">f</a>
-            <a class="share-btn" data-share="mail" aria-label="Partager par mail">@</a>
-            <button class="share-btn" type="button" data-share="copy" aria-label="Copier l'URL">URL</button>
-          </div>
-        </div>
-        <div class="blog-list" data-blog-list>
-          <div class="blog-showcase blog-directory">
-            <a class="blog-feature" href="/blog/le-token-prochaine-monnaie-ia/">
-              <div>
-                <p class="meta">11 mai 2026 · 9 min</p>
-                <h2>Le token, prochaine monnaie de l’IA</h2>
-                <p>Une lecture économique du token comme nouvelle unité comptable de l’IA : coût du calcul, infrastructures, dépendance d’usage et discipline de consommation.</p>
-                <div class="tag-row">
-                  <span class="tag">IA</span>
-                  <span class="tag">Économie</span>
-                  <span class="tag">Tokens</span>
-                </div>
-              </div>
-              <span class="text-link">Lire l'article</span>
-            </a>
-            <div class="blog-side-list">
-              <a class="article-card compact" href="/blog/ia-entreprise/">
-                <div>
-                  <p class="meta">4 avril 2026 · 5 min</p>
-                  <h2>IA en entreprise : hâtez-vous lentement</h2>
-                  <p>Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.</p>
-                </div>
-                <span class="text-link">Lire</span>
-              </a>
-              <a class="article-card compact" href="/blog/humanite-lumiere/">
-                <div>
-                  <p class="meta">1 avril 2026 · 9 min</p>
-                  <h2>L'humanité a toujours tremblé devant sa propre lumière</h2>
-                  <p>Une réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique majeure.</p>
-                </div>
-                <span class="text-link">Lire</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">À la une</p><h2>Articles à la une.</h2></div><div class="blog-list" data-blog-list></div></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <p>© Charles Berthou</p>
-      <div class="footer-links">
-        <a href="/">Accueil</a>
-        <a href="/blog/">Blog</a>
-        <a href="/services/">Services</a>
-        <a href="/#outils">Outils IA</a>
-        <a href="/a-propos/">À propos</a>
-        <a href="/confidentialite/">Confidentialité</a>
-        <a href="/resume-llm/">Résumé LLM</a>
-        <a href="/sitemap.xml">Sitemap</a>
-        <a href="/#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
-  <script src="/assets/js/site.js" defer></script>
+  <footer class="site-footer"><div class="container footer-grid"><p>© Charles Berthou</p><div class="footer-links"><a href="/">Accueil</a><a href="/outils-ia/">L'Atelier IA</a><a href="/blog/">Articles</a><a href="/services/">Accompagnements</a><a href="/a-propos/">À propos</a><a href="/confidentialite/">Confidentialité</a><a href="/resume-llm/">Résumé IA</a><a href="/sitemap.xml">Sitemap</a></div></div></footer>
+  <script src="/assets/js/site.js?v=20260513-atelier-ia" defer></script>
 </body>
 </html>
