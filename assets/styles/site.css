@@ -2545,6 +2545,52 @@ section,
   margin: 0 auto;
 }
 
+.case-workspace {
+  align-items: start;
+}
+
+.case-explorer-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.case-explorer-heading {
+  margin-bottom: 0;
+}
+
+.panel-lead {
+  max-width: 760px;
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.case-filter-groups {
+  display: grid;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.case-filter-groups .tool-filter-block {
+  margin-top: 0;
+}
+
+.case-results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.case-results-bar h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.18rem;
+  line-height: 1.2;
+}
+
 @media (min-width: 720px) {
   .tool-hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(280px, 0.58fr);
@@ -2554,6 +2600,10 @@ section,
   .tool-workspace {
     grid-template-columns: 260px minmax(0, 1fr) minmax(300px, 0.72fr);
     align-items: start;
+  }
+
+  .case-workspace {
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
   }
 
   .register-layout {
@@ -2585,6 +2635,10 @@ section,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .case-filter-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .mini-gain-output {
     grid-column: 1 / -1;
   }
@@ -2593,6 +2647,10 @@ section,
 @media (min-width: 1040px) {
   .case-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-workspace {
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 0.82fr);
   }
 
   .source-case-list {

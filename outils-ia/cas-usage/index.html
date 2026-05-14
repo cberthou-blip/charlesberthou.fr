@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-tools-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-ux-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -83,39 +83,47 @@
     </section>
 
     <section class="section tool-workspace-section">
-      <div class="container tool-workspace">
-        <aside class="tool-sidebar" aria-label="Filtres">
+      <div class="container tool-workspace case-workspace">
+        <section class="tool-library-panel case-explorer-panel" aria-labelledby="caseLibraryTitle">
+          <div class="panel-heading compact-heading case-explorer-heading">
+            <div>
+              <p class="eyebrow">Explorer</p>
+              <h2 id="caseLibraryTitle">Décrivez une tâche, puis affinez par critères.</h2>
+              <p class="panel-lead">Commencez par une intention ou un domaine. Les résultats s'affichent ensuite sous les filtres, par ordre de gain potentiel.</p>
+            </div>
+          </div>
+
           <label class="tool-search">
             <span>Décrivez une tâche</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion, reformuler un mail, préparer une checklist" autocomplete="off" />
           </label>
 
-          <div class="tool-filter-block">
-            <span class="filter-label">Intentions</span>
-            <div class="chip-list" id="intentFilters"></div>
+          <div class="case-filter-groups">
+            <div class="tool-filter-block">
+              <span class="filter-label">Intentions</span>
+              <div class="chip-list" id="intentFilters"></div>
+            </div>
+
+            <div class="tool-filter-block">
+              <span class="filter-label">Domaines métier</span>
+              <div class="chip-list" id="domainFilters"></div>
+            </div>
+
+            <div class="tool-filter-block">
+              <span class="filter-label">Familles</span>
+              <div class="chip-list" id="categoryFilters"></div>
+            </div>
+
+            <div class="tool-filter-block">
+              <span class="filter-label">Outils</span>
+              <div class="chip-list" id="toolFilters"></div>
+            </div>
           </div>
 
-          <div class="tool-filter-block">
-            <span class="filter-label">Domaines métier</span>
-            <div class="chip-list" id="domainFilters"></div>
-          </div>
-
-          <div class="tool-filter-block">
-            <span class="filter-label">Familles</span>
-            <div class="chip-list" id="categoryFilters"></div>
-          </div>
-
-          <div class="tool-filter-block">
-            <span class="filter-label">Outils</span>
-            <div class="chip-list" id="toolFilters"></div>
-          </div>
-        </aside>
-
-        <section class="tool-library-panel" aria-labelledby="caseLibraryTitle">
-          <div class="panel-heading compact-heading">
+          <div class="case-results-bar">
             <div>
-              <p class="eyebrow">Explorer</p>
-              <h2 id="caseLibraryTitle">Cas d'usage filtrés</h2>
+              <p class="eyebrow">Résultats</p>
+              <h3>Cas d'usage proposés</h3>
             </div>
             <span class="result-count" id="caseResultCount">0 cas</span>
           </div>
