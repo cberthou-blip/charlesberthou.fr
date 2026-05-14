@@ -1,7 +1,62 @@
 const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
+const CASE_METIER_DATA_URL = "/outils-ia/data/cas-usage-metiers.json";
 const ALL = "Tous";
 const NO_SELECTION = "";
 const CASE_PAGE_SIZE = 12;
+
+const METIER_ORDER = [
+  "Conseil",
+  "Finance",
+  "Comptabilité",
+  "Droit / Avocat",
+  "Santé",
+  "Ressources humaines",
+  "Vente / Commercial",
+  "Conformité / Risques",
+  "Marketing / Communication",
+  "Management",
+  "Service client",
+  "Projet / Opérations",
+  "DSI / Informatique",
+  "Achats / Logistique",
+  "Éducation / Formation",
+];
+
+const METIER_DESCRIPTIONS = {
+  "Conseil": "Cadrage, diagnostic, benchmark",
+  "Finance": "Analyse, cash, reporting",
+  "Comptabilité": "Clôture, TVA, justificatifs",
+  "Droit / Avocat": "Contrats, jurisprudence, contentieux",
+  "Santé": "Dossier, qualité, pédagogie patient",
+  "Ressources humaines": "Recrutement, compétences, onboarding",
+  "Vente / Commercial": "Prospection, CRM, appels d'offres",
+  "Conformité / Risques": "KYC, contrôle interne, veille",
+  "Marketing / Communication": "Contenu, voix client, campagnes",
+  "Management": "Rituels, arbitrage, communication",
+  "Service client": "Procédures, demandes, réclamations",
+  "Projet / Opérations": "Suivi, organisation, plan d'action",
+  "DSI / Informatique": "Tickets, produit, tests",
+  "Achats / Logistique": "Fournisseurs, stock, transport",
+  "Éducation / Formation": "Cours, quiz, individualisation",
+};
+
+const DEFAULT_MODEL_BY_METIER = {
+  "Conseil": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Cadrage, diagnostic et arbitrage avec plusieurs contraintes." },
+  "Finance": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Analyse chiffrée, lecture documentaire et synthèse prudente." },
+  "Comptabilité": { principal: "GPT-5.4 mini", alternative: "Mistral Medium 3.5", usage: "Contrôles répétables, documentation et extraction de pièces." },
+  "Droit / Avocat": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Raisonnement juridique assisté, rédaction argumentée et revue de contrats." },
+  "Santé": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Synthèse documentaire prudente sous contrôle professionnel." },
+  "Ressources humaines": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Rédaction nuancée, structuration d'entretiens et parcours RH." },
+  "Vente / Commercial": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Préparation de rendez-vous, synthèse CRM et réponse client." },
+  "Conformité / Risques": { principal: "GPT-5.5", alternative: "Mistral Large 3", usage: "Analyse de règles, contrôles et dossiers sensibles." },
+  "Marketing / Communication": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Rédaction longue, adaptation du ton et analyse de verbatims." },
+  "Management": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Communication, synthèse de réunion et plan d'action." },
+  "Service client": { principal: "GPT-5.4 mini", alternative: "Claude Haiku 4.5", usage: "Réponses fréquentes, procédures et résumés courts." },
+  "Projet / Opérations": { principal: "GPT-5.5", alternative: "Mistral Medium 3.5", usage: "Plans d'action, suivi projet et clarification des dépendances." },
+  "DSI / Informatique": { principal: "GPT-5.5", alternative: "Mistral Medium 3.5", usage: "Diagnostic, spécifications, tests et documentation technique." },
+  "Achats / Logistique": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Comparaison documentaire, fournisseurs, risques et pièces." },
+  "Éducation / Formation": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Conception pédagogique, reformulation et feedback." },
+};
 
 const intentOptions = [
   { label: ALL, terms: [] },
@@ -42,6 +97,7 @@ const nodes = {
   detail: document.querySelector("#caseDetail"),
   count: document.querySelector("#caseResultCount"),
   total: document.querySelector("[data-total-cases]"),
+  metiers: document.querySelector("[data-total-metiers]"),
   visible: document.querySelector("[data-visible-count]"),
   loadMoreRow: document.querySelector("#caseLoadMoreRow"),
   loadMore: document.querySelector("#caseLoadMore"),
@@ -53,17 +109,24 @@ async function initCaseExplorer() {
   if (!document.querySelector("[data-case-explorer]")) return;
 
   try {
-    const response = await fetch(CASE_DATA_URL, { cache: "no-store" });
-    if (!response.ok) throw new Error("cas-usage introuvable");
-    const payload = await response.json();
-    state.cases = payload.fiches || [];
+    const payloads = await loadCasePayloads();
+    state.cases = payloads.flatMap((payload) => payload.fiches || []);
 
     nodes.total.textContent = state.cases.length;
+    if (nodes.metiers) nodes.metiers.textContent = unique(state.cases.map(getMetier)).length;
     bindCaseEvents();
     renderCaseExplorer();
   } catch (error) {
     nodes.grid.innerHTML = `<p class="empty-state">La bibliothèque n'a pas pu être chargée.</p>`;
   }
+}
+
+async function loadCasePayloads() {
+  return Promise.all([CASE_DATA_URL, CASE_METIER_DATA_URL].map(async (url) => {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(`${url} introuvable`);
+    return response.json();
+  }));
 }
 
 function bindCaseEvents() {
@@ -91,22 +154,28 @@ function renderCaseExplorer() {
 }
 
 function renderFilters() {
-  renderChipGroup(nodes.categoryFilters, unique(state.cases.map((item) => item.categorie)), state.category, (value) => {
-    state.category = value === state.category ? NO_SELECTION : value;
-    state.domain = NO_SELECTION;
-    state.topic = NO_SELECTION;
-    state.intent = ALL;
-    state.tool = ALL;
-    resetCaseSelection();
-    renderCaseExplorer();
-  });
+  renderChipGroup(
+    nodes.categoryFilters,
+    buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS),
+    state.category,
+    (value) => {
+      state.category = value === state.category ? NO_SELECTION : value;
+      state.domain = NO_SELECTION;
+      state.topic = NO_SELECTION;
+      state.intent = ALL;
+      state.tool = ALL;
+      resetCaseSelection();
+      renderCaseExplorer();
+    },
+    { variant: "role" }
+  );
 
   const domainCases = state.category
-    ? state.cases.filter((item) => item.categorie === state.category)
+    ? state.cases.filter((item) => getMetier(item) === state.category)
     : [];
 
   nodes.domainBlock?.toggleAttribute("hidden", !state.category);
-  renderChipGroup(nodes.domainFilters, unique(domainCases.map((item) => item.domaine)), state.domain, (value) => {
+  renderChipGroup(nodes.domainFilters, buildFilterOptions(domainCases, getActivity), state.domain, (value) => {
     state.domain = value === state.domain ? NO_SELECTION : value;
     state.topic = NO_SELECTION;
     state.intent = ALL;
@@ -116,11 +185,11 @@ function renderFilters() {
   });
 
   const topicCases = state.domain
-    ? domainCases.filter((item) => item.domaine === state.domain)
+    ? domainCases.filter((item) => getActivity(item) === state.domain)
     : [];
 
   nodes.topicBlock?.toggleAttribute("hidden", !state.domain);
-  renderChipGroup(nodes.topicFilters, unique(topicCases.map(getTopic)), state.topic, (value) => {
+  renderChipGroup(nodes.topicFilters, buildFilterOptions(topicCases, getTopic), state.topic, (value) => {
     state.topic = value === state.topic ? NO_SELECTION : value;
     resetCaseSelection();
     renderCaseExplorer();
@@ -144,16 +213,21 @@ function renderFilters() {
   renderFilterHint();
 }
 
-function renderChipGroup(root, values, currentValue, onSelect) {
+function renderChipGroup(root, values, currentValue, onSelect, options = {}) {
   if (!root) return;
   root.innerHTML = "";
-  values.forEach((value) => {
+  values.forEach((entry) => {
+    const option = typeof entry === "string" ? { value: entry, label: entry } : entry;
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `filter-chip ${value === currentValue ? "active" : ""}`;
-    button.setAttribute("aria-pressed", String(value === currentValue));
-    button.textContent = value;
-    button.addEventListener("click", () => onSelect(value));
+    button.className = `filter-chip ${options.variant === "role" ? "role-chip" : ""} ${option.value === currentValue ? "active" : ""}`;
+    button.setAttribute("aria-pressed", String(option.value === currentValue));
+    button.innerHTML = `
+      <span>${escapeHtml(option.label || option.value)}</span>
+      ${option.count ? `<small>${option.count} cas</small>` : ""}
+      ${option.description ? `<em>${escapeHtml(option.description)}</em>` : ""}
+    `;
+    button.addEventListener("click", () => onSelect(option.value));
     root.appendChild(button);
   });
 }
@@ -167,7 +241,7 @@ function renderCases() {
     nodes.count.textContent = "Choisissez un filtre";
     nodes.grid.innerHTML = `
       <p class="empty-state">
-        Choisissez une grande famille, lancez une recherche ou affinez l'arborescence pour afficher les cas d'usage.
+        Choisissez un métier, lancez une recherche ou affinez l'arborescence pour afficher les cas d'usage.
       </p>
     `;
     toggleLoadMore(0, 0);
@@ -191,14 +265,20 @@ function renderCases() {
   }
 
   displayedCases.forEach((item) => {
+    const model = getModelAdvice(item);
+    const risk = getRiskLevel(item);
     const card = document.createElement("button");
     card.type = "button";
     card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
     card.innerHTML = `
-      <span>${escapeHtml(item.domaine)} · ${escapeHtml(item.categorie)}</span>
+      <span>${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</span>
       <strong>${escapeHtml(item.tache)}</strong>
       <p>${escapeHtml(item.sortie)}</p>
-      <em>${escapeHtml(item.outil)} · ${getMonthlyGainLabel(item)}</em>
+      <div class="case-card-meta">
+        <small class="risk-${normalizeRisk(risk)}">Risque ${escapeHtml(risk)}</small>
+        <small>${escapeHtml(model.principal)}</small>
+        <small>${getMonthlyGainLabel(item)}</small>
+      </div>
     `;
     card.addEventListener("click", () => {
       state.selectedId = item.id;
@@ -214,15 +294,30 @@ function renderCases() {
 function renderDetail() {
   const item = state.cases.find((entry) => entry.id === state.selectedId);
   if (!item) {
-    nodes.detail.innerHTML = `<p class="empty-state">Sélectionnez un cas affiché pour voir les étapes.</p>`;
+    nodes.detail.innerHTML = `
+      <div class="case-start-guide">
+        <strong>Sélectionnez un cas pour ouvrir la fiche.</strong>
+        <p>Chaque fiche indique le modèle conseillé, le niveau de vigilance, les contrôles à faire et le gain estimé.</p>
+        <dl>
+          <div><dt>Raisonnement complexe</dt><dd>GPT-5.5</dd></div>
+          <div><dt>Rédaction longue</dt><dd>Claude Opus 4.7</dd></div>
+          <div><dt>PDF et corpus longs</dt><dd>Gemini 3.1 Pro</dd></div>
+          <div><dt>Déploiement maîtrisé</dt><dd>Mistral Large 3</dd></div>
+        </dl>
+      </div>
+    `;
     return;
   }
+
+  const model = getModelAdvice(item);
+  const risk = getRiskLevel(item);
+  const references = getReferences(item);
 
   nodes.detail.innerHTML = `
     <div class="detail-heading">
       <span class="icon-mark compact"><svg><use href="#icon-tools"></use></svg></span>
       <div>
-        <p class="meta">${escapeHtml(item.categorie)} · ${escapeHtml(item.domaine)}</p>
+        <p class="meta">${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</p>
         <h2>${escapeHtml(item.tache)}</h2>
       </div>
     </div>
@@ -231,7 +326,12 @@ function renderDetail() {
     <div class="tool-detail-metrics">
       <span><strong>${formatMinutes(item.gain_minutes)}</strong> gagnées par usage</span>
       <span><strong>${formatMinutes(getMonthlyGain(item))}</strong> par mois estimé</span>
-      <span><strong>${item.frequence}</strong> fois/mois</span>
+      <span><strong>${escapeHtml(risk)}</strong> niveau de vigilance</span>
+    </div>
+    <div class="case-guidance-block model-guidance">
+      <h3>Modèle conseillé</h3>
+      <p><strong>${escapeHtml(model.principal)}</strong> en premier choix, ${escapeHtml(model.alternative)} en alternative.</p>
+      <p>${escapeHtml(model.usage)}</p>
     </div>
     <dl class="usage-list">
       <div class="usage-row">
@@ -252,6 +352,14 @@ function renderDetail() {
           <span>${escapeHtml(item.utilisation)}</span>
           <span class="checks">${item.verification.map((check) => `<span class="check-item">${escapeHtml(check)}</span>`).join("")}</span>
         </dd>
+      </div>
+      <div class="usage-row">
+        <dt>Garde-fou</dt>
+        <dd>${escapeHtml(getGuardrail(item))}</dd>
+      </div>
+      <div class="usage-row">
+        <dt>Références métier</dt>
+        <dd><span class="checks">${references.map((reference) => `<span class="check-item">${escapeHtml(reference)}</span>`).join("")}</span></dd>
       </div>
     </dl>
     <form class="mini-gain-form" id="miniGainForm">
@@ -290,8 +398,8 @@ function updateMiniGain() {
 function getVisibleCases() {
   const query = normalize(state.query);
   return state.cases
-    .filter((item) => !state.category || item.categorie === state.category)
-    .filter((item) => !state.domain || item.domaine === state.domain)
+    .filter((item) => !state.category || getMetier(item) === state.category)
+    .filter((item) => !state.domain || getActivity(item) === state.domain)
     .filter((item) => !state.topic || getTopic(item) === state.topic)
     .filter((item) => state.tool === ALL || item.outil === state.tool)
     .filter((item) => matchesIntent(item))
@@ -315,11 +423,16 @@ function caseText(item) {
   return [
     item.tache,
     item.outil,
+    item.metier,
+    item.activite,
+    item.situation,
     item.categorie,
     item.domaine,
     item.entree,
     item.sortie,
     item.utilisation,
+    item.modele_recommande?.principal,
+    item.modele_recommande?.alternative,
     ...(item.tags || []),
   ].join(" ");
 }
@@ -360,6 +473,35 @@ function toggleLoadMore(visibleCount, totalCount) {
   }
 }
 
+function buildFilterOptions(items, getter, orderedValues = [], descriptions = {}) {
+  const counts = new Map();
+  items.forEach((item) => {
+    const value = getter(item);
+    if (!value) return;
+    counts.set(value, (counts.get(value) || 0) + 1);
+  });
+
+  return Array.from(counts.entries())
+    .sort(([a], [b]) => compareByOrder(a, b, orderedValues))
+    .map(([value, count]) => ({
+      value,
+      label: value,
+      count,
+      description: descriptions[value] || "",
+    }));
+}
+
+function compareByOrder(a, b, orderedValues = []) {
+  const indexA = orderedValues.indexOf(a);
+  const indexB = orderedValues.indexOf(b);
+  if (indexA !== -1 || indexB !== -1) {
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
+  }
+  return a.localeCompare(b, "fr");
+}
+
 function normalize(value) {
   return String(value || "")
     .toLowerCase()
@@ -373,15 +515,85 @@ function unique(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b, "fr"));
 }
 
+function getMetier(item) {
+  if (item.metier) return item.metier;
+
+  const domain = normalize(item.domaine);
+  const category = normalize(item.categorie);
+  const profile = normalize(item.profil);
+  const text = normalize(caseText(item));
+
+  if (category === normalize("Management") || domain.includes("management")) return "Management";
+  if (domain.includes("rh") || profile.includes("rh") || text.includes("candidat") || text.includes("formation")) return "Ressources humaines";
+  if (domain.includes("vente") || domain.includes("commercial")) return "Vente / Commercial";
+  if (domain.includes("marketing") || domain.includes("communication")) return "Marketing / Communication";
+  if (domain.includes("finance") || domain.includes("pilotage") || text.includes("budget") || text.includes("tresorerie")) return "Finance";
+  if (domain.includes("compt") || text.includes("facture") || text.includes("tva")) return "Comptabilité";
+  if (domain.includes("juridique") || text.includes("contrat") || text.includes("recouvrement")) return "Droit / Avocat";
+  if (domain.includes("service client") || category.includes("relation client")) return "Service client";
+  if (domain.includes("conformite") || domain.includes("risque") || domain.includes("audit") || text.includes("controle")) return "Conformité / Risques";
+  if (domain.includes("support interne") || domain.includes("projet") || domain.includes("organisation")) return "Projet / Opérations";
+  if (domain.includes("conseil")) return "Conseil";
+
+  return item.categorie || "Projet / Opérations";
+}
+
+function getActivity(item) {
+  return item.activite || item.domaine || item.categorie || "Activité";
+}
+
 function getTopic(item) {
-  return Array.isArray(item.chemin) && item.chemin[2] ? item.chemin[2] : item.domaine;
+  return item.situation || (Array.isArray(item.chemin) && item.chemin[2] ? item.chemin[2] : getActivity(item));
+}
+
+function getRiskLevel(item) {
+  if (item.niveau_risque) return item.niveau_risque;
+  const metier = getMetier(item);
+  const text = normalize(caseText(item));
+  if (["Droit / Avocat", "Santé", "Conformité / Risques"].includes(metier)) return "Élevé";
+  if (metier === "Finance" && (text.includes("risque") || text.includes("budget") || text.includes("juridique"))) return "Élevé";
+  if (text.includes("conformite") || text.includes("contrat") || text.includes("donnees sensibles")) return "Élevé";
+  return metier === "Service client" || metier === "Marketing / Communication" ? "Faible" : "Moyen";
+}
+
+function normalizeRisk(value) {
+  const normalized = normalize(value);
+  if (normalized.includes("eleve")) return "high";
+  if (normalized.includes("faible")) return "low";
+  return "medium";
+}
+
+function getModelAdvice(item) {
+  if (item.modele_recommande) return item.modele_recommande;
+  return DEFAULT_MODEL_BY_METIER[getMetier(item)] || {
+    principal: "GPT-5.5",
+    alternative: "Claude Opus 4.7",
+    usage: "Analyse et rédaction généraliste avec validation humaine.",
+  };
+}
+
+function getGuardrail(item) {
+  if (item.garde_fou) return item.garde_fou;
+  const risk = getRiskLevel(item);
+  if (risk === "Élevé") return "Utiliser comme aide à la préparation uniquement, avec validation d'un professionnel responsable.";
+  if (risk === "Moyen") return "Vérifier les faits, les sources et les données avant partage ou décision.";
+  return "Relire, adapter au contexte et conserver une trace de la source.";
+}
+
+function getReferences(item) {
+  if (Array.isArray(item.references_metier) && item.references_metier.length) return item.references_metier;
+  const metier = getMetier(item);
+  if (["Finance", "Comptabilité", "Santé", "Droit / Avocat", "Conformité / Risques"].includes(metier)) {
+    return ["ESCO/ISCO-08", "ROME", "Référentiel interne ou source officielle"];
+  }
+  return ["ESCO/ISCO-08", "ROME"];
 }
 
 function renderFilterHint() {
   if (!nodes.filterHint) return;
 
   if (!hasActiveExploration()) {
-    nodes.filterHint.textContent = "Choisissez une grande famille ou utilisez la recherche pour afficher les cas d'usage.";
+    nodes.filterHint.textContent = "Choisissez un métier ou utilisez la recherche pour afficher les cas d'usage.";
     return;
   }
 

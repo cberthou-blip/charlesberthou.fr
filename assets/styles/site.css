@@ -1872,6 +1872,10 @@ section,
 }
 
 .filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   min-height: 34px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1882,6 +1886,20 @@ section,
   font-size: 0.86rem;
   font-weight: 800;
   cursor: pointer;
+}
+
+.filter-chip small {
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.filter-chip em {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .filter-chip:hover,
@@ -2965,6 +2983,38 @@ section,
   background: #fff;
 }
 
+.case-filter-step:first-child .chip-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+}
+
+.filter-chip.role-chip {
+  display: grid;
+  justify-content: stretch;
+  gap: 5px;
+  min-height: 82px;
+  border-radius: 8px;
+  padding: 12px 13px;
+  text-align: left;
+}
+
+.filter-chip.role-chip span {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.filter-chip.role-chip small {
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(6, 182, 212, 0.1);
+  padding: 3px 8px;
+}
+
+.filter-chip.role-chip.active {
+  box-shadow: 0 12px 24px rgba(6, 182, 212, 0.12);
+}
+
 .case-filter-step[hidden],
 .case-advanced-filters[hidden],
 .case-reset-button[hidden] {
@@ -3039,8 +3089,111 @@ section,
   font-weight: 850;
 }
 
+.case-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.case-card-meta small {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  padding: 0 9px;
+  font-size: 0.74rem;
+  font-weight: 850;
+}
+
+.case-card-meta .risk-high {
+  border-color: rgba(239, 68, 68, 0.24);
+  background: rgba(239, 68, 68, 0.08);
+  color: #991b1b;
+}
+
+.case-card-meta .risk-medium {
+  border-color: rgba(217, 119, 6, 0.22);
+  background: rgba(245, 158, 11, 0.09);
+  color: #92400e;
+}
+
+.case-card-meta .risk-low {
+  border-color: rgba(34, 197, 94, 0.22);
+  background: rgba(34, 197, 94, 0.08);
+  color: #166534;
+}
+
 .case-detail-tags {
   margin-top: 14px;
+}
+
+.case-guidance-block {
+  display: grid;
+  gap: 7px;
+  margin: 18px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #fbfcff;
+  padding: 14px 0;
+}
+
+.case-guidance-block h3 {
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+
+.case-guidance-block p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.case-guidance-block strong {
+  color: var(--ink);
+}
+
+.case-start-guide {
+  display: grid;
+  gap: 14px;
+}
+
+.case-start-guide strong {
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+
+.case-start-guide p,
+.case-start-guide dd {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.case-start-guide dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.case-start-guide dl div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.case-start-guide dt {
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.case-start-guide dd {
+  margin: 0;
+  font-weight: 800;
+  text-align: right;
 }
 
 .case-detail-panel {

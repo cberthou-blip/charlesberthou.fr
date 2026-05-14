@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-flow-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-metiers-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,7 +33,7 @@
     "operatingSystem": "Web",
     "inLanguage": "fr-FR",
     "isAccessibleForFree": true,
-    "description": "Bibliothèque gratuite de cas d'usage IA pour identifier des tâches, filtrer par domaine, qualifier le gain attendu et préparer un portefeuille de pilotes.",
+    "description": "Bibliothèque gratuite de cas d'usage IA pour identifier des tâches, filtrer par métier, qualifier le gain attendu et préparer un portefeuille de pilotes.",
     "featureList": [
       "Recherche de cas d'usage IA",
       "Filtres par domaine et famille d'outils",
@@ -74,8 +74,8 @@
             Partez d'un besoin métier, d'un domaine ou d'un cas courant. Chaque fiche aide à qualifier le gain, l'effort et les points de vigilance avant de lancer un pilote.
           </p>
           <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
-            <span><strong data-total-cases>80</strong> cas référencés</span>
-            <span><strong>6</strong> familles d'outils</span>
+            <span><strong data-total-cases>116</strong> cas référencés</span>
+            <span><strong data-total-metiers>15</strong> métiers</span>
             <span><strong data-visible-count>0</strong> affichés</span>
           </div>
         </div>
@@ -85,7 +85,7 @@
             <span>Décrivez votre besoin métier</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
           </label>
-          <p>Les cas s'affichent après une recherche ou un premier choix métier, pour éviter de partir d'une longue liste indistincte.</p>
+          <p>Les cas s'affichent après une recherche ou un premier choix métier, avec un parcours en trois niveaux maximum.</p>
         </div>
       </div>
     </section>
@@ -96,8 +96,8 @@
           <div class="case-step-heading">
             <span class="case-step-number">1</span>
             <div>
-              <h2 id="caseLibraryTitle">Choisir un point d'entrée</h2>
-              <p>Commencez par une famille métier, puis affinez si nécessaire.</p>
+              <h2 id="caseLibraryTitle">Choisir votre métier</h2>
+              <p>Commencez par le contexte de travail, puis affinez par activité et situation.</p>
             </div>
           </div>
 
@@ -105,19 +105,19 @@
             <div class="case-filter-intro">
               <div>
                 <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
-                <p>Choisissez une entrée simple. Les cas apparaîtront ensuite sous les filtres.</p>
+                <p>Le parcours suit une logique métier inspirée d'ESCO/ISCO, du ROME et de la NAF : métier, activité, situation.</p>
               </div>
               <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
             </div>
 
             <div class="case-filter-branch" aria-label="Filtres principaux">
               <div class="tool-filter-block case-filter-step">
-                <span class="filter-label">1. Grande famille</span>
+                <span class="filter-label">1. Métier</span>
                 <div class="chip-list" id="categoryFilters"></div>
               </div>
 
               <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
-                <span class="filter-label">2. Domaine métier</span>
+                <span class="filter-label">2. Activité</span>
                 <div class="chip-list" id="domainFilters"></div>
               </div>
 
@@ -127,7 +127,7 @@
               </div>
             </div>
 
-            <p class="case-filter-hint" id="caseFilterHint">Choisissez une grande famille ou utilisez la recherche pour afficher les cas d'usage.</p>
+            <p class="case-filter-hint" id="caseFilterHint">Choisissez un métier ou utilisez la recherche pour afficher les cas d'usage.</p>
 
             <details class="case-advanced-filters" id="caseAdvancedFilters" hidden>
               <summary>Affiner par intention ou famille d'outil</summary>
@@ -163,12 +163,12 @@
             <span class="case-step-number">2</span>
             <div>
               <h2 id="caseGuideTitle">Mode d'emploi</h2>
-              <p>Ouvrez, ajustez, vérifiez, puis arbitrez.</p>
+              <p>Modèle conseillé, garde-fou, sources et gain estimé.</p>
             </div>
           </div>
 
           <div class="tool-detail-panel case-detail-panel" id="caseDetail" aria-live="polite">
-            <p class="empty-state">Sélectionnez un cas affiché pour voir les étapes.</p>
+            <p class="empty-state">Sélectionnez un cas affiché pour voir le modèle conseillé, les garde-fous et les vérifications.</p>
           </div>
         </aside>
       </div>
@@ -191,11 +191,19 @@
         </article>
         <article class="content-card">
           <h2>Exemples de domaines</h2>
-          <p>Les cas peuvent concerner le support client, la relation commerciale, les ressources humaines, la finance, le juridique, la documentation interne, la veille, la communication, l'organisation personnelle ou l'automatisation de tâches répétitives.</p>
+          <p>Le parcours couvre désormais conseil, finance, comptabilité, droit, santé, RH, vente, conformité, marketing, management, DSI, achats, formation, service client et opérations.</p>
         </article>
         <article class="content-card">
           <h2>Après l'exploration</h2>
           <p>Un cas intéressant n'est pas encore un projet. Il doit être comparé aux autres pistes, chiffré avec le <a class="text-link" href="/outils-ia/roi-ia/">calculateur de ROI IA</a>, puis documenté dans le <a class="text-link" href="/outils-ia/registre-ia/">registre IA</a>.</p>
+        </article>
+        <article class="content-card">
+          <h2>Référentiels utilisés</h2>
+          <p>L'arborescence métier s'inspire d'<a class="text-link" href="https://esco.ec.europa.eu/en/classification/occupation_main" target="_blank" rel="noopener noreferrer">ESCO / ISCO-08</a>, du <a class="text-link" href="https://www.francetravail.fr/employeur/vos-recrutements/le-rome-et-les-fiches-metiers.html" target="_blank" rel="noopener noreferrer">ROME</a> et de la <a class="text-link" href="https://www.insee.fr/fr/information/2406147" target="_blank" rel="noopener noreferrer">NAF</a>.</p>
+        </article>
+        <article class="content-card">
+          <h2>Modèles IA</h2>
+          <p>Les recommandations privilégient GPT-5.5 pour le raisonnement complexe, Claude Opus 4.7 pour la rédaction longue, Gemini 3.1 Pro pour les corpus multimodaux et Mistral Large 3 lorsque le contrôle de déploiement compte.</p>
         </article>
       </div>
     </section>
@@ -216,6 +224,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-flow-v1" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-metiers-v1" defer></script>
 </body>
 </html>
