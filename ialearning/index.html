@@ -873,14 +873,246 @@ body::before {
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 ::-webkit-scrollbar-thumb:hover { background:var(--indigo-mid); }
 
+/* HEADER SITE */
+:root {
+  --line: var(--border);
+  --line-strong: #c6cde4;
+  --ink: var(--navy);
+  --muted: var(--text3);
+  --shadow-soft: var(--shadow);
+}
+
+.container {
+  width: min(calc(100% - 28px), 1160px);
+  margin: 0 auto;
+}
+
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247, 249, 255, 0.9);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.nav-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+}
+
+.brand {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.main-nav {
+  display: flex;
+  flex: 1 1 100%;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 750;
+  scrollbar-width: none;
+}
+
+.main-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.main-nav a {
+  color: inherit;
+  border-radius: 999px;
+  padding: 7px 9px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--ink);
+}
+
+.menu-toggle {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  margin-left: auto;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.menu-toggle span + span {
+  margin-top: 4px;
+}
+
+.menu-open .menu-toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-open .menu-toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.learning-login-button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (min-width: 720px) {
+  .container {
+    width: min(calc(100% - 48px), 1160px);
+  }
+
+  .nav-bar {
+    flex-wrap: nowrap;
+    min-height: 68px;
+    padding: 0;
+  }
+
+  .main-nav {
+    flex: 0 1 auto;
+    gap: 26px;
+    align-items: center;
+    overflow: visible;
+    padding-bottom: 0;
+    font-size: 0.94rem;
+  }
+
+  .main-nav a {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 719px) {
+  .nav-bar {
+    min-height: 60px;
+    padding: 9px 0;
+  }
+
+  .brand {
+    max-width: calc(100% - 190px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-open {
+    overflow: hidden;
+  }
+
+  .learning-login-button {
+    position: fixed;
+    top: 10px;
+    right: 64px;
+    z-index: 3;
+    min-height: 40px;
+    padding: 0 12px;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 9px;
+    right: 14px;
+    display: grid;
+    border-color: var(--line-strong);
+    background: #eef2ff;
+  }
+
+  .menu-toggle::before {
+    content: "\2630";
+    color: var(--ink);
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .menu-open .menu-toggle::before {
+    content: "\00d7";
+    font-size: 1.65rem;
+  }
+
+  .menu-toggle span {
+    display: none;
+  }
+
+  .nav-enhanced .main-nav {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: 66px;
+    display: grid;
+    gap: 6px;
+    max-height: min(72vh, 360px);
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 8px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .nav-enhanced .menu-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-enhanced .main-nav a {
+    display: block;
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: var(--ink);
+    font-size: 0.98rem;
+  }
+}
+
 /* LANDING PAGE */
-.landing-nav{position:sticky;top:0;z-index:100;background:rgba(247,249,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(13,27,62,0.1);padding:0 clamp(20px,5vw,72px);height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
-.landing-nav-links{display:flex;align-items:center;gap:4px;}
-.landing-nav-link{display:inline-flex;align-items:center;min-height:38px;padding:0 13px;border-radius:999px;font-size:0.84rem;font-weight:700;color:#516073;background:transparent;border:none;text-decoration:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
-.landing-nav-link:hover{color:#0d1b3e;background:rgba(6,182,212,0.09);}
-.landing-nav .nav-logo-text{color:#0d1b3e;font-size:0.96rem;letter-spacing:0;}
-.landing-product-pill{display:inline-flex;align-items:center;min-height:28px;border:1px solid rgba(6,182,212,0.22);border-radius:999px;background:#fff;color:#0d1b3e;padding:0 10px;font-size:0.78rem;font-weight:800;white-space:nowrap;}
-.landing-nav-main{display:flex;align-items:center;gap:10px;min-width:0;}
 
 /* HERO */
 .landing-hero{background:var(--grad-hero);padding:100px 40px 120px;text-align:center;position:relative;overflow:hidden;}
@@ -970,8 +1202,6 @@ body::before {
 
 /* MOBILE */
 @media(max-width:768px){
-  .landing-nav{padding:0 20px;height:60px;}
-  .landing-nav-links{display:none;}
   .landing-hero{padding:60px 20px 80px;}
   .landing-hero h1{font-size:2.2rem;}
   .landing-hero-sub{font-size:0.95rem;}
@@ -1004,7 +1234,7 @@ body::before {
   .landing-modules-grid{grid-template-columns:1fr;}
   .cb-heading{font-size:1rem;} .cb-text{font-size:0.88rem;} .quiz-q{font-size:0.92rem;}
   .admin-wrap{overflow-x:auto;}
-  .landing-nav,.landing-hero,.landing-features,.landing-how,.landing-modules-section,.landing-cta,.landing-footer { padding-left:20px; padding-right:20px; }
+  .landing-hero,.landing-features,.landing-how,.landing-modules-section,.landing-cta,.landing-footer { padding-left:20px; padding-right:20px; }
 }
 
 /* Custom confirm modal */
@@ -1056,6 +1286,7 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="/assets/js/site.js?v=20260514-ialearning-nav-v1" defer></script>
 </head>
 <body>
 
@@ -1063,22 +1294,18 @@ body::before {
 <div class="view active" id="view-landing">
 
   <!-- NAV -->
-  <nav class="landing-nav">
-    <div class="landing-nav-main">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
-        <span class="nav-logo-text">charlesberthou.fr</span>
-      </a>
-      <button class="landing-product-pill" type="button" onclick="showView('view-landing')">IA Learning</button>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="/">charlesberthou.fr</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/#outils-ia">Outils IA</a>
+        <a href="/#articles">Articles</a>
+        <a href="/#services">Services</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button class="btn btn-primary btn-sm learning-login-button" id="btn-landing-login" type="button">Se connecter</button>
     </div>
-    <div class="landing-nav-links">
-      <a class="landing-nav-link" href="/#outils-ia">Outils IA</a>
-      <a class="landing-nav-link" href="/#articles">Articles</a>
-      <a class="landing-nav-link" href="/#services">Services</a>
-      <button class="landing-nav-link" onclick="document.getElementById('landing-modules').scrollIntoView({behavior:'smooth'})">Modules</button>
-    </div>
-    <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
-  </nav>
+  </header>
 
   <!-- HERO -->
   <div class="landing-hero">
@@ -2019,7 +2246,7 @@ function showView(id){
   window.scrollTo(0,0);
   if(id==='view-landing'){
     const _btn=document.getElementById('btn-landing-login');
-    if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace →':'Se connecter →'; }
+    if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace':'Se connecter'; }
   }
 }
 
