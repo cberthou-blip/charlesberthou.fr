@@ -3013,6 +3013,15 @@ section,
   outline: 3px solid rgba(6, 182, 212, 0.14);
 }
 
+.case-select-field.compact {
+  max-width: none;
+}
+
+.case-select-field.compact select {
+  min-height: 44px;
+  font-size: 0.94rem;
+}
+
 .case-filter-step[hidden],
 .case-advanced-filters[hidden],
 .case-reset-button[hidden] {
@@ -3050,6 +3059,7 @@ section,
 
 .case-filter-groups {
   border-top: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding-top: 0;
 }
 

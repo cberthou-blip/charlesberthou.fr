@@ -1,6 +1,5 @@
 const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
 const CASE_METIER_DATA_URL = "/outils-ia/data/cas-usage-metiers.json";
-const ALL = "Tous";
 const NO_SELECTION = "";
 const CASE_PAGE_SIZE = 12;
 
@@ -40,6 +39,34 @@ const METIER_DESCRIPTIONS = {
   "Éducation / Formation": "Cours, quiz, individualisation",
 };
 
+const SECTOR_ORDER = [
+  "Tous secteurs",
+  "Services professionnels",
+  "Finance / Assurance",
+  "Santé / Médico-social",
+  "Secteur public / Collectivités",
+  "Industrie",
+  "Commerce / Retail",
+  "Technologie / Télécoms",
+  "Transport / Logistique",
+  "Éducation / Formation",
+  "Énergie / Utilities",
+];
+
+const TASK_TYPE_ORDER = [
+  "Synthétiser",
+  "Rédiger",
+  "Analyser",
+  "Contrôler",
+  "Préparer",
+  "Rechercher",
+  "Classer",
+  "Automatiser",
+  "Décider / arbitrer",
+];
+
+const RISK_ORDER = ["Faible", "Moyen", "Élevé"];
+
 const DEFAULT_MODEL_BY_METIER = {
   "Conseil": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Cadrage, diagnostic et arbitrage avec plusieurs contraintes." },
   "Finance": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Analyse chiffrée, lecture documentaire et synthèse prudente." },
@@ -58,36 +85,27 @@ const DEFAULT_MODEL_BY_METIER = {
   "Éducation / Formation": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Conception pédagogique, reformulation et feedback." },
 };
 
-const intentOptions = [
-  { label: ALL, terms: [] },
-  { label: "Résumer", terms: ["résumer", "résumé", "synthèse", "compte rendu"] },
-  { label: "Rédiger", terms: ["rédiger", "écrire", "mail", "document", "contenu"] },
-  { label: "Préparer", terms: ["préparer", "plan", "checklist", "cadrage", "ordre du jour"] },
-  { label: "Contrôler", terms: ["contrôler", "vérifier", "audit", "conformité", "risque"] },
-  { label: "Client", terms: ["client", "support", "vente", "commercial", "réclamation"] },
-  { label: "RH", terms: ["rh", "candidat", "entretien", "formation", "collaborateur"] },
-  { label: "Finance", terms: ["finance", "facture", "budget", "trésorerie", "comptable"] },
-];
-
 const state = {
   cases: [],
   query: "",
   category: NO_SELECTION,
   domain: NO_SELECTION,
   topic: NO_SELECTION,
-  tool: ALL,
-  intent: ALL,
+  sector: NO_SELECTION,
+  taskType: NO_SELECTION,
+  risk: NO_SELECTION,
   selectedId: null,
   visibleLimit: CASE_PAGE_SIZE,
 };
 
 const nodes = {
   search: document.querySelector("#caseSearch"),
-  intentFilters: document.querySelector("#intentFilters"),
-  domainFilters: document.querySelector("#domainFilters"),
-  metierSelect: document.querySelector("#metierSelect"),
-  topicFilters: document.querySelector("#topicFilters"),
-  toolFilters: document.querySelector("#toolFilters"),
+  functionSelect: document.querySelector("#functionSelect"),
+  activitySelect: document.querySelector("#activitySelect"),
+  situationSelect: document.querySelector("#situationSelect"),
+  sectorSelect: document.querySelector("#sectorSelect"),
+  taskTypeSelect: document.querySelector("#taskTypeSelect"),
+  riskSelect: document.querySelector("#riskSelect"),
   domainBlock: document.querySelector("#domainFilterBlock"),
   topicBlock: document.querySelector("#topicFilterBlock"),
   advancedFilters: document.querySelector("#caseAdvancedFilters"),
@@ -97,7 +115,7 @@ const nodes = {
   detail: document.querySelector("#caseDetail"),
   count: document.querySelector("#caseResultCount"),
   total: document.querySelector("[data-total-cases]"),
-  metiers: document.querySelector("[data-total-metiers]"),
+  functions: document.querySelector("[data-total-functions]"),
   visible: document.querySelector("[data-visible-count]"),
   loadMoreRow: document.querySelector("#caseLoadMoreRow"),
   loadMore: document.querySelector("#caseLoadMore"),
@@ -113,7 +131,7 @@ async function initCaseExplorer() {
     state.cases = payloads.flatMap((payload) => payload.fiches || []);
 
     nodes.total.textContent = state.cases.length;
-    if (nodes.metiers) nodes.metiers.textContent = unique(state.cases.map(getMetier)).length;
+    if (nodes.functions) nodes.functions.textContent = unique(state.cases.map(getMetier)).length;
     bindCaseEvents();
     renderCaseExplorer();
   } catch (error) {
@@ -146,12 +164,41 @@ function bindCaseEvents() {
     renderCaseExplorer();
   });
 
-  nodes.metierSelect?.addEventListener("change", () => {
-    state.category = nodes.metierSelect.value;
+  nodes.functionSelect?.addEventListener("change", () => {
+    state.category = nodes.functionSelect.value;
     state.domain = NO_SELECTION;
     state.topic = NO_SELECTION;
-    state.intent = ALL;
-    state.tool = ALL;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.activitySelect?.addEventListener("change", () => {
+    state.domain = nodes.activitySelect.value;
+    state.topic = NO_SELECTION;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.situationSelect?.addEventListener("change", () => {
+    state.topic = nodes.situationSelect.value;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.sectorSelect?.addEventListener("change", () => {
+    state.sector = nodes.sectorSelect.value;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.taskTypeSelect?.addEventListener("change", () => {
+    state.taskType = nodes.taskTypeSelect.value;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.riskSelect?.addEventListener("change", () => {
+    state.risk = nodes.riskSelect.value;
     resetCaseSelection();
     renderCaseExplorer();
   });
@@ -164,82 +211,72 @@ function renderCaseExplorer() {
 }
 
 function renderFilters() {
-  renderMetierSelect();
+  renderSelectOptions(
+    nodes.functionSelect,
+    buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS),
+    state.category,
+    "Sélectionner une fonction"
+  );
 
   const domainCases = state.category
     ? state.cases.filter((item) => getMetier(item) === state.category)
     : [];
 
   nodes.domainBlock?.toggleAttribute("hidden", !state.category);
-  renderChipGroup(nodes.domainFilters, buildFilterOptions(domainCases, getActivity), state.domain, (value) => {
-    state.domain = value === state.domain ? NO_SELECTION : value;
-    state.topic = NO_SELECTION;
-    state.intent = ALL;
-    state.tool = ALL;
-    resetCaseSelection();
-    renderCaseExplorer();
-  });
+  renderSelectOptions(
+    nodes.activitySelect,
+    buildFilterOptions(domainCases, getActivity),
+    state.domain,
+    "Toutes les activités"
+  );
 
   const topicCases = state.domain
     ? domainCases.filter((item) => getActivity(item) === state.domain)
     : [];
 
   nodes.topicBlock?.toggleAttribute("hidden", !state.domain);
-  renderChipGroup(nodes.topicFilters, buildFilterOptions(topicCases, getTopic), state.topic, (value) => {
-    state.topic = value === state.topic ? NO_SELECTION : value;
-    resetCaseSelection();
-    renderCaseExplorer();
-  });
+  renderSelectOptions(
+    nodes.situationSelect,
+    buildFilterOptions(topicCases, getTopic),
+    state.topic,
+    "Toutes les situations"
+  );
 
-  nodes.advancedFilters?.toggleAttribute("hidden", !hasActiveExploration());
+  nodes.advancedFilters?.removeAttribute("hidden");
 
-  renderChipGroup(nodes.intentFilters, intentOptions.map((item) => item.label), state.intent, (value) => {
-    state.intent = value;
-    resetCaseSelection();
-    renderCaseExplorer();
-  });
-
-  renderChipGroup(nodes.toolFilters, [ALL, ...unique(state.cases.map((item) => item.outil))], state.tool, (value) => {
-    state.tool = value;
-    resetCaseSelection();
-    renderCaseExplorer();
-  });
+  renderSelectOptions(
+    nodes.sectorSelect,
+    buildFacetOptions(state.cases, getSectors, SECTOR_ORDER),
+    state.sector,
+    "Tous les secteurs"
+  );
+  renderSelectOptions(
+    nodes.taskTypeSelect,
+    buildFilterOptions(state.cases, getTaskType, TASK_TYPE_ORDER),
+    state.taskType,
+    "Tous les types"
+  );
+  renderSelectOptions(
+    nodes.riskSelect,
+    buildFilterOptions(state.cases, getRiskLevel, RISK_ORDER),
+    state.risk,
+    "Tous les niveaux"
+  );
 
   nodes.reset?.toggleAttribute("hidden", !hasActiveExploration());
   renderFilterHint();
 }
 
-function renderMetierSelect() {
-  if (!nodes.metierSelect) return;
-  const currentValue = state.category;
-  const options = buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS);
-
-  nodes.metierSelect.innerHTML = `
-    <option value="">Sélectionner un métier</option>
-    ${options.map((option) => (
-      `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)} (${option.count})</option>`
-    )).join("")}
+function renderSelectOptions(select, options, currentValue, placeholder) {
+  if (!select) return;
+  select.innerHTML = `
+    <option value="">${escapeHtml(placeholder)}</option>
+    ${options.map((option) => {
+      const count = option.count ? ` (${option.count})` : "";
+      return `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label || option.value)}${count}</option>`;
+    }).join("")}
   `;
-  nodes.metierSelect.value = currentValue;
-}
-
-function renderChipGroup(root, values, currentValue, onSelect) {
-  if (!root) return;
-  root.innerHTML = "";
-  values.forEach((entry) => {
-    const option = typeof entry === "string" ? { value: entry, label: entry } : entry;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `filter-chip ${option.value === currentValue ? "active" : ""}`;
-    button.setAttribute("aria-pressed", String(option.value === currentValue));
-    button.innerHTML = `
-      <span>${escapeHtml(option.label || option.value)}</span>
-      ${option.count ? `<small>${option.count} cas</small>` : ""}
-      ${option.description ? `<em>${escapeHtml(option.description)}</em>` : ""}
-    `;
-    button.addEventListener("click", () => onSelect(option.value));
-    root.appendChild(button);
-  });
+  select.value = currentValue;
 }
 
 function renderCases() {
@@ -251,7 +288,7 @@ function renderCases() {
     nodes.count.textContent = "Choisissez un filtre";
     nodes.grid.innerHTML = `
       <p class="empty-state">
-        Choisissez un métier, lancez une recherche ou affinez l'arborescence pour afficher les cas d'usage.
+        Choisissez une fonction, un secteur ou lancez une recherche pour afficher les cas d'usage.
       </p>
     `;
     toggleLoadMore(0, 0);
@@ -277,6 +314,8 @@ function renderCases() {
   displayedCases.forEach((item) => {
     const model = getModelAdvice(item);
     const risk = getRiskLevel(item);
+    const sector = getPrimarySector(item);
+    const taskType = getTaskType(item);
     const card = document.createElement("button");
     card.type = "button";
     card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
@@ -286,6 +325,8 @@ function renderCases() {
       <p>${escapeHtml(item.sortie)}</p>
       <div class="case-card-meta">
         <small class="risk-${normalizeRisk(risk)}">Risque ${escapeHtml(risk)}</small>
+        <small>${escapeHtml(taskType)}</small>
+        <small>${escapeHtml(sector)}</small>
         <small>${escapeHtml(model.principal)}</small>
         <small>${getMonthlyGainLabel(item)}</small>
       </div>
@@ -322,6 +363,8 @@ function renderDetail() {
   const model = getModelAdvice(item);
   const risk = getRiskLevel(item);
   const references = getReferences(item);
+  const sectors = getSectors(item);
+  const taskType = getTaskType(item);
 
   nodes.detail.innerHTML = `
     <div class="detail-heading">
@@ -344,6 +387,14 @@ function renderDetail() {
       <p>${escapeHtml(model.usage)}</p>
     </div>
     <dl class="usage-list">
+      <div class="usage-row">
+        <dt>Secteur</dt>
+        <dd><span class="checks">${sectors.map((sector) => `<span class="check-item">${escapeHtml(sector)}</span>`).join("")}</span></dd>
+      </div>
+      <div class="usage-row">
+        <dt>Type d'usage</dt>
+        <dd>${escapeHtml(taskType)}</dd>
+      </div>
       <div class="usage-row">
         <dt>Outil</dt>
         <dd>${escapeHtml(item.outil)}</dd>
@@ -411,22 +462,15 @@ function getVisibleCases() {
     .filter((item) => !state.category || getMetier(item) === state.category)
     .filter((item) => !state.domain || getActivity(item) === state.domain)
     .filter((item) => !state.topic || getTopic(item) === state.topic)
-    .filter((item) => state.tool === ALL || item.outil === state.tool)
-    .filter((item) => matchesIntent(item))
+    .filter((item) => !state.sector || getSectors(item).includes(state.sector))
+    .filter((item) => !state.taskType || getTaskType(item) === state.taskType)
+    .filter((item) => !state.risk || getRiskLevel(item) === state.risk)
     .filter((item) => {
       if (!query) return true;
       const haystack = normalize(caseText(item));
       return query.split(/\s+/).every((term) => haystack.includes(term));
     })
     .sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
-}
-
-function matchesIntent(item) {
-  if (state.intent === ALL) return true;
-  const option = intentOptions.find((entry) => entry.label === state.intent);
-  if (!option) return true;
-  const haystack = normalize(caseText(item));
-  return option.terms.some((term) => haystack.includes(normalize(term)));
 }
 
 function caseText(item) {
@@ -441,6 +485,9 @@ function caseText(item) {
     item.entree,
     item.sortie,
     item.utilisation,
+    item.secteur,
+    item.niveau_risque,
+    ...(item.secteurs || []),
     item.modele_recommande?.principal,
     item.modele_recommande?.alternative,
     ...(item.tags || []),
@@ -453,8 +500,9 @@ function hasActiveExploration() {
     || state.category
     || state.domain
     || state.topic
-    || state.tool !== ALL
-    || state.intent !== ALL
+    || state.sector
+    || state.taskType
+    || state.risk
   );
 }
 
@@ -468,8 +516,9 @@ function resetFilters() {
   state.category = NO_SELECTION;
   state.domain = NO_SELECTION;
   state.topic = NO_SELECTION;
-  state.tool = ALL;
-  state.intent = ALL;
+  state.sector = NO_SELECTION;
+  state.taskType = NO_SELECTION;
+  state.risk = NO_SELECTION;
   resetCaseSelection();
   if (nodes.search) nodes.search.value = "";
 }
@@ -499,6 +548,21 @@ function buildFilterOptions(items, getter, orderedValues = [], descriptions = {}
       count,
       description: descriptions[value] || "",
     }));
+}
+
+function buildFacetOptions(items, getter, orderedValues = []) {
+  const counts = new Map();
+  items.forEach((item) => {
+    const rawValues = getter(item);
+    const values = Array.isArray(rawValues) ? rawValues : [rawValues];
+    values.filter(Boolean).forEach((value) => {
+      counts.set(value, (counts.get(value) || 0) + 1);
+    });
+  });
+
+  return Array.from(counts.entries())
+    .sort(([a], [b]) => compareByOrder(a, b, orderedValues))
+    .map(([value, count]) => ({ value, label: value, count }));
 }
 
 function compareByOrder(a, b, orderedValues = []) {
@@ -556,6 +620,57 @@ function getTopic(item) {
   return item.situation || (Array.isArray(item.chemin) && item.chemin[2] ? item.chemin[2] : getActivity(item));
 }
 
+function getSectors(item) {
+  if (Array.isArray(item.secteurs) && item.secteurs.length) return item.secteurs;
+  if (item.secteur) return [item.secteur];
+
+  const metier = getMetier(item);
+  const text = normalize(caseText(item));
+
+  if (metier === "Finance") return ["Finance / Assurance"];
+  if (metier === "Droit / Avocat") return ["Services professionnels", "Secteur public / Collectivités"];
+  if (metier === "Santé") return ["Santé / Médico-social"];
+  if (metier === "Conformité / Risques") return ["Finance / Assurance", "Secteur public / Collectivités"];
+  if (metier === "DSI / Informatique") return ["Technologie / Télécoms"];
+  if (metier === "Achats / Logistique") return ["Transport / Logistique", "Industrie"];
+  if (metier === "Éducation / Formation") return ["Éducation / Formation"];
+  if (metier === "Vente / Commercial") return ["Commerce / Retail", "Services professionnels"];
+  if (metier === "Marketing / Communication") return ["Commerce / Retail", "Services professionnels"];
+  if (metier === "Conseil") return ["Services professionnels"];
+
+  if (text.includes("banque") || text.includes("assurance")) return ["Finance / Assurance"];
+  if (text.includes("hopital") || text.includes("patient") || text.includes("soin")) return ["Santé / Médico-social"];
+  if (text.includes("collectivite") || text.includes("public")) return ["Secteur public / Collectivités"];
+  if (text.includes("industrie") || text.includes("usine")) return ["Industrie"];
+  if (text.includes("retail") || text.includes("commerce")) return ["Commerce / Retail"];
+  if (text.includes("transport") || text.includes("stock")) return ["Transport / Logistique"];
+  if (text.includes("energie") || text.includes("utilities")) return ["Énergie / Utilities"];
+
+  return ["Tous secteurs"];
+}
+
+function getPrimarySector(item) {
+  const sectors = getSectors(item);
+  return sectors.find((sector) => sector !== "Tous secteurs") || sectors[0] || "Tous secteurs";
+}
+
+function getTaskType(item) {
+  if (item.type_usage) return item.type_usage;
+
+  const text = normalize(caseText(item));
+
+  if (text.includes("automatis")) return "Automatiser";
+  if (text.includes("control") || text.includes("audit") || text.includes("verifier") || text.includes("conformite") || text.includes("kyc") || text.includes("risque")) return "Contrôler";
+  if (text.includes("rediger") || text.includes("ecrire") || text.includes("article") || text.includes("mail") || text.includes("courrier") || text.includes("contenu")) return "Rédiger";
+  if (text.includes("synthese") || text.includes("resumer") || text.includes("resume") || text.includes("compte rendu")) return "Synthétiser";
+  if (text.includes("analyser") || text.includes("analyse") || text.includes("ecart") || text.includes("bilan") || text.includes("benchmark") || text.includes("ratio")) return "Analyser";
+  if (text.includes("recherche") || text.includes("chercher") || text.includes("veille") || text.includes("jurisprudence")) return "Rechercher";
+  if (text.includes("classer") || text.includes("categoriser") || text.includes("prioriser")) return "Classer";
+  if (text.includes("decider") || text.includes("arbitrer") || text.includes("decision") || text.includes("comite")) return "Décider / arbitrer";
+
+  return "Préparer";
+}
+
 function getRiskLevel(item) {
   if (item.niveau_risque) return item.niveau_risque;
   const metier = getMetier(item);
@@ -603,7 +718,7 @@ function renderFilterHint() {
   if (!nodes.filterHint) return;
 
   if (!hasActiveExploration()) {
-    nodes.filterHint.textContent = "Choisissez un métier ou utilisez la recherche pour afficher les cas d'usage.";
+    nodes.filterHint.textContent = "Choisissez une fonction, un secteur ou utilisez la recherche pour afficher les cas d'usage.";
     return;
   }
 
@@ -611,8 +726,9 @@ function renderFilterHint() {
     state.category,
     state.domain,
     state.topic,
-    state.intent !== ALL ? state.intent : "",
-    state.tool !== ALL ? state.tool : "",
+    state.sector,
+    state.taskType,
+    state.risk,
   ].filter(Boolean);
 
   if (state.query.trim()) {

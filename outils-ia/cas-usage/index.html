@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-metiers-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-taxonomy-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,10 +33,10 @@
     "operatingSystem": "Web",
     "inLanguage": "fr-FR",
     "isAccessibleForFree": true,
-    "description": "Bibliothèque gratuite de cas d'usage IA pour identifier des tâches, filtrer par métier, qualifier le gain attendu et préparer un portefeuille de pilotes.",
+    "description": "Bibliothèque gratuite de cas d'usage IA pour identifier des tâches, filtrer par fonction, secteur et type d'usage, qualifier le gain attendu et préparer un portefeuille de pilotes.",
     "featureList": [
       "Recherche de cas d'usage IA",
-      "Filtres par domaine et famille d'outils",
+      "Filtres par fonction, secteur, type d'usage et vigilance",
       "Fiches de cadrage",
       "Estimation de gain et vigilance"
     ],
@@ -75,7 +75,7 @@
           </p>
           <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
             <span><strong data-total-cases>116</strong> cas référencés</span>
-            <span><strong data-total-metiers>15</strong> métiers</span>
+            <span><strong data-total-functions>15</strong> fonctions</span>
             <span><strong data-visible-count>0</strong> affichés</span>
           </div>
         </div>
@@ -85,7 +85,7 @@
             <span>Décrivez votre besoin métier</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
           </label>
-          <p>Les cas s'affichent après une recherche ou un premier choix métier, avec un parcours en trois niveaux maximum.</p>
+          <p>Les cas s'affichent après une recherche ou un premier choix. Le parcours principal suit la fonction de travail ; les secteurs restent en filtres secondaires.</p>
         </div>
       </div>
     </section>
@@ -96,8 +96,8 @@
           <div class="case-step-heading">
             <span class="case-step-number">1</span>
             <div>
-              <h2 id="caseLibraryTitle">Choisir votre métier</h2>
-              <p>Commencez par le contexte de travail, puis affinez par activité et situation.</p>
+              <h2 id="caseLibraryTitle">Trouver le bon contexte</h2>
+              <p>Choisissez une fonction, une activité, puis ouvrez le cas le plus proche.</p>
             </div>
           </div>
 
@@ -105,44 +105,64 @@
             <div class="case-filter-intro">
               <div>
                 <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
-                <p>Le parcours suit une logique métier inspirée d'ESCO/ISCO, du ROME et de la NAF : métier, activité, situation.</p>
+                <p>Le parcours reprend la logique observée dans les bibliothèques IA : fonction de travail d'abord, puis activité, avec secteur et risque en facettes.</p>
               </div>
               <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
             </div>
 
             <div class="case-filter-branch" aria-label="Filtres principaux">
               <div class="tool-filter-block case-filter-step">
-                <span class="filter-label">1. Métier</span>
+                <span class="filter-label">1. Fonction</span>
                 <label class="case-select-field">
-                  <span>Choisir dans la liste</span>
-                  <select id="metierSelect" aria-label="Choisir un métier"></select>
+                  <span>Fonction / domaine de travail</span>
+                  <select id="functionSelect" aria-label="Choisir une fonction de travail"></select>
                 </label>
               </div>
 
               <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
                 <span class="filter-label">2. Activité</span>
-                <div class="chip-list" id="domainFilters"></div>
+                <label class="case-select-field">
+                  <span>Activité ou sous-domaine</span>
+                  <select id="activitySelect" aria-label="Choisir une activité"></select>
+                </label>
               </div>
 
               <div class="tool-filter-block case-filter-step" id="topicFilterBlock" hidden>
                 <span class="filter-label">3. Situation</span>
-                <div class="chip-list" id="topicFilters"></div>
+                <label class="case-select-field">
+                  <span>Situation de travail</span>
+                  <select id="situationSelect" aria-label="Choisir une situation"></select>
+                </label>
               </div>
             </div>
 
-            <p class="case-filter-hint" id="caseFilterHint">Choisissez un métier ou utilisez la recherche pour afficher les cas d'usage.</p>
+            <p class="case-filter-hint" id="caseFilterHint">Choisissez une fonction, un secteur ou utilisez la recherche pour afficher les cas d'usage.</p>
 
             <details class="case-advanced-filters" id="caseAdvancedFilters" hidden>
-              <summary>Affiner par intention ou famille d'outil</summary>
+              <summary>Affiner par secteur, type d'usage ou vigilance</summary>
               <div class="case-filter-groups">
                 <div class="tool-filter-block">
-                  <span class="filter-label">Intentions</span>
-                  <div class="chip-list" id="intentFilters"></div>
+                  <span class="filter-label">Secteur</span>
+                  <label class="case-select-field compact">
+                    <span>Contexte sectoriel</span>
+                    <select id="sectorSelect" aria-label="Filtrer par secteur"></select>
+                  </label>
                 </div>
 
                 <div class="tool-filter-block">
-                  <span class="filter-label">Outils</span>
-                  <div class="chip-list" id="toolFilters"></div>
+                  <span class="filter-label">Type d'usage</span>
+                  <label class="case-select-field compact">
+                    <span>Nature de la tâche</span>
+                    <select id="taskTypeSelect" aria-label="Filtrer par type d'usage"></select>
+                  </label>
+                </div>
+
+                <div class="tool-filter-block">
+                  <span class="filter-label">Vigilance</span>
+                  <label class="case-select-field compact">
+                    <span>Niveau de risque</span>
+                    <select id="riskSelect" aria-label="Filtrer par niveau de vigilance"></select>
+                  </label>
                 </div>
               </div>
             </details>
@@ -194,7 +214,7 @@
         </article>
         <article class="content-card">
           <h2>Exemples de domaines</h2>
-          <p>Le parcours couvre désormais conseil, finance, comptabilité, droit, santé, RH, vente, conformité, marketing, management, DSI, achats, formation, service client et opérations.</p>
+          <p>Le parcours principal couvre les fonctions de travail : conseil, finance, comptabilité, droit, santé, RH, vente, conformité, marketing, management, DSI, achats, formation, service client et opérations. Le secteur reste un filtre transversal.</p>
         </article>
         <article class="content-card">
           <h2>Après l'exploration</h2>
@@ -202,7 +222,7 @@
         </article>
         <article class="content-card">
           <h2>Référentiels utilisés</h2>
-          <p>L'arborescence métier s'inspire d'<a class="text-link" href="https://esco.ec.europa.eu/en/classification/occupation_main" target="_blank" rel="noopener noreferrer">ESCO / ISCO-08</a>, du <a class="text-link" href="https://www.francetravail.fr/employeur/vos-recrutements/le-rome-et-les-fiches-metiers.html" target="_blank" rel="noopener noreferrer">ROME</a> et de la <a class="text-link" href="https://www.insee.fr/fr/information/2406147" target="_blank" rel="noopener noreferrer">NAF</a>.</p>
+          <p>L'arborescence s'inspire d'<a class="text-link" href="https://esco.ec.europa.eu/en/classification/occupation_main" target="_blank" rel="noopener noreferrer">ESCO / ISCO-08</a>, du <a class="text-link" href="https://www.francetravail.fr/employeur/vos-recrutements/le-rome-et-les-fiches-metiers.html" target="_blank" rel="noopener noreferrer">ROME</a>, des familles professionnelles FAP, de la PCS et de la <a class="text-link" href="https://www.insee.fr/fr/information/2406147" target="_blank" rel="noopener noreferrer">NAF</a>.</p>
         </article>
         <article class="content-card">
           <h2>Modèles IA</h2>
@@ -227,6 +247,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-metiers-v2" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-taxonomy-v1" defer></script>
 </body>
 </html>
