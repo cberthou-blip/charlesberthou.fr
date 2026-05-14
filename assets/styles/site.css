@@ -357,6 +357,10 @@ section,
   pointer-events: none;
 }
 
+.hero-visual-panel picture {
+  display: block;
+}
+
 .hero-visual-panel img {
   display: block;
   width: 100%;

@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA Learning — Intelligence Artificielle</title>
+<title>IA Learning — formation IA gratuite</title>
+<meta name="description" content="Formation IA gratuite et gamifiée pour comprendre les bases de l'intelligence artificielle, progresser par modules, quiz, défis et mode équipe." />
+<link rel="canonical" href="https://charlesberthou.fr/ialearning/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -1014,7 +1016,40 @@ body::before {
 <meta property="og:title" content="IA Learning — Montez en compétences, et en niveau">
 <meta property="og:description" content="Formation IA gamifiée : 10 modules, quiz chronométrés, classement, défis entre collègues et mode équipe. 100% gratuit.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://charlesberthou.fr/ialearning">
+<meta property="og:url" content="https://charlesberthou.fr/ialearning/">
+<meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IA Learning — formation IA gratuite">
+<meta name="twitter:description" content="Modules, quiz, défis et mode équipe pour installer les bases de l'IA.">
+<meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IA Learning",
+  "url": "https://charlesberthou.fr/ialearning/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "fr-FR",
+  "isAccessibleForFree": true,
+  "description": "Formation IA gratuite et gamifiée pour comprendre les bases de l'intelligence artificielle, progresser par modules, quiz, défis et mode équipe.",
+  "featureList": [
+    "Modules d'apprentissage IA",
+    "Quiz chronométrés",
+    "Progression individuelle",
+    "Classement",
+    "Défis entre collègues",
+    "Mode équipe"
+  ],
+  "about": [
+    "formation IA",
+    "intelligence artificielle",
+    "culture numérique",
+    "IA générative",
+    "apprentissage IA"
+  ]
+}
+</script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
@@ -1027,7 +1062,7 @@ body::before {
   <!-- NAV -->
   <nav class="landing-nav">
     <a onclick="showView('view-landing')" class="nav-logo" style="cursor:pointer">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
       <span class="nav-logo-text">IA Learning</span>
     </a>
     <div class="landing-nav-links">
@@ -1175,7 +1210,7 @@ body::before {
   <!-- FOOTER -->
   <div class="landing-footer">
     <a onclick="showView('view-landing')" class="nav-logo" style="cursor:pointer">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;width:28px;height:28px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;width:28px;height:28px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
       <span class="nav-logo-text" style="color:rgba(255,255,255,0.5);font-size:0.9rem">IA Learning</span>
     </a>
     <div class="landing-footer-text">2026 Charles Berthou</div>
@@ -1243,7 +1278,7 @@ body::before {
 <div class="view" id="view-profile">
   <nav class="navbar">
     <a class="nav-logo" onclick="showView('view-landing')">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
       <span class="nav-logo-text">IA Learning</span>
     </a>
     <div class="nav-right">
@@ -1302,7 +1337,7 @@ body::before {
       <div class="login-hero-grid"></div>
       <div class="login-hero-content">
         <div class="login-logo">
-          <div class="login-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+          <div class="login-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
           <span class="login-logo-text">IA Learning</span>
         </div>
         <h2>Maîtrisez l'Intelligence Artificielle</h2>
@@ -1353,7 +1388,7 @@ body::before {
 <div class="view" id="view-dashboard">
   <nav class="navbar">
     <a class="nav-logo" onclick="showView('view-landing')" title="Page d'accueil">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
       <span class="nav-logo-text">IA Learning</span>
     </a>
     <div class="nav-center">
@@ -1497,7 +1532,7 @@ body::before {
 <div class="view" id="view-module">
   <nav class="navbar">
     <a class="nav-logo" onclick="confirmLeaveModule()" title="Retour au tableau de bord">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" style="width:100%;height:100%;object-fit:contain;"/></div>
+      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
       <span class="nav-logo-text">IA Learning</span>
     </a>
     <div class="nav-right">
