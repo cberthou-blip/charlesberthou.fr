@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-ux-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-layout-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,82 +64,102 @@
     </div>
   </header>
 
-  <main id="contenu" class="tool-page" data-case-explorer>
-    <section class="page-hero tool-hero">
-      <div class="container tool-hero-grid">
-        <div>
-          <p class="eyebrow">Bibliothèque de cas d'usage</p>
-          <h1>Identifier les cas d'usage IA qui méritent un pilote.</h1>
-          <p class="lead">
-            Recherchez une tâche, filtrez par domaine, ouvrez une fiche et estimez le gain attendu. L'objectif n'est pas de tout automatiser, mais de retenir les usages utiles, mesurables et gouvernables.
+  <main id="contenu" class="tool-page case-page" data-case-explorer>
+    <section class="case-action-hero">
+      <div class="container case-action-hero-grid">
+        <div class="case-hero-copy">
+          <p class="case-kicker">Bibliothèque de cas d'usage</p>
+          <h1>Trouvez un cas<br />d'usage IA à piloter.</h1>
+          <p>
+            Partez d'un besoin métier, d'un domaine ou d'un cas courant. Chaque fiche aide à qualifier le gain, l'effort et les points de vigilance avant de lancer un pilote.
           </p>
+          <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
+            <span><strong data-total-cases>80</strong> cas référencés</span>
+            <span><strong>6</strong> familles d'outils</span>
+            <span><strong data-visible-count>0</strong> affichés</span>
+          </div>
         </div>
-        <div class="tool-stat-strip" aria-label="Statistiques de la bibliothèque">
-          <span><strong data-total-cases>80</strong> cas</span>
-          <span><strong>6</strong> familles d'outils</span>
-          <span><strong data-visible-count>0</strong> affichés</span>
+
+        <div class="case-hero-search-card">
+          <label class="case-hero-search">
+            <span>Décrivez votre besoin métier</span>
+            <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
+          </label>
+          <p>Les cas sont classés par gain potentiel. Vous pouvez ensuite affiner par intention, domaine ou famille d'outil.</p>
         </div>
       </div>
     </section>
 
-    <section class="section tool-workspace-section">
-      <div class="container tool-workspace case-workspace">
-        <section class="tool-library-panel case-explorer-panel" aria-labelledby="caseLibraryTitle">
-          <div class="panel-heading compact-heading case-explorer-heading">
+    <section class="case-action-workspace">
+      <div class="container case-action-layout">
+        <section class="case-flow-section" aria-labelledby="caseLibraryTitle">
+          <div class="case-step-heading">
+            <span class="case-step-number">1</span>
             <div>
-              <p class="eyebrow">Explorer</p>
-              <h2 id="caseLibraryTitle">Décrivez une tâche, puis affinez par critères.</h2>
-              <p class="panel-lead">Commencez par une intention ou un domaine. Les résultats s'affichent ensuite sous les filtres, par ordre de gain potentiel.</p>
+              <h2 id="caseLibraryTitle">Explorateur de cas d'usage</h2>
+              <p>Explorez par besoin, métier, objectif ou outil.</p>
             </div>
           </div>
 
-          <label class="tool-search">
-            <span>Décrivez une tâche</span>
-            <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion, reformuler un mail, préparer une checklist" autocomplete="off" />
-          </label>
-
-          <div class="case-filter-groups">
-            <div class="tool-filter-block">
-              <span class="filter-label">Intentions</span>
-              <div class="chip-list" id="intentFilters"></div>
+          <div class="tool-library-panel case-explorer-panel">
+            <div class="case-filter-intro">
+              <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
+              <p>Filtrez la bibliothèque, ouvrez une fiche, puis qualifiez le gain, les données à fournir et les vérifications nécessaires.</p>
             </div>
 
-            <div class="tool-filter-block">
-              <span class="filter-label">Domaines métier</span>
-              <div class="chip-list" id="domainFilters"></div>
+            <div class="case-filter-groups">
+              <div class="tool-filter-block">
+                <span class="filter-label">Intentions</span>
+                <div class="chip-list" id="intentFilters"></div>
+              </div>
+
+              <div class="tool-filter-block">
+                <span class="filter-label">Domaines métier</span>
+                <div class="chip-list" id="domainFilters"></div>
+              </div>
+
+              <div class="tool-filter-block">
+                <span class="filter-label">Familles</span>
+                <div class="chip-list" id="categoryFilters"></div>
+              </div>
+
+              <div class="tool-filter-block">
+                <span class="filter-label">Outils</span>
+                <div class="chip-list" id="toolFilters"></div>
+              </div>
             </div>
 
-            <div class="tool-filter-block">
-              <span class="filter-label">Familles</span>
-              <div class="chip-list" id="categoryFilters"></div>
+            <div class="case-results-bar">
+              <div>
+                <p class="eyebrow">Résultats</p>
+                <h3>Cas d'usage proposés</h3>
+              </div>
+              <span class="result-count" id="caseResultCount">0 cas</span>
             </div>
-
-            <div class="tool-filter-block">
-              <span class="filter-label">Outils</span>
-              <div class="chip-list" id="toolFilters"></div>
+            <div class="case-grid" id="caseGrid" aria-live="polite"></div>
+            <div class="load-more-row" id="caseLoadMoreRow" hidden>
+              <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
             </div>
-          </div>
-
-          <div class="case-results-bar">
-            <div>
-              <p class="eyebrow">Résultats</p>
-              <h3>Cas d'usage proposés</h3>
-            </div>
-            <span class="result-count" id="caseResultCount">0 cas</span>
-          </div>
-          <div class="case-grid" id="caseGrid" aria-live="polite"></div>
-          <div class="load-more-row" id="caseLoadMoreRow" hidden>
-            <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
           </div>
         </section>
 
-        <aside class="tool-detail-panel" id="caseDetail" aria-live="polite">
-          <p class="empty-state">Lancez une recherche ou choisissez un filtre pour afficher les cas pertinents.</p>
+        <aside class="case-flow-section case-flow-side" aria-labelledby="caseGuideTitle">
+          <div class="case-step-heading">
+            <span class="case-step-number">2</span>
+            <div>
+              <h2 id="caseGuideTitle">Mode d'emploi</h2>
+              <p>Ouvrez, ajustez, vérifiez, puis arbitrez.</p>
+            </div>
+          </div>
+
+          <div class="tool-detail-panel case-detail-panel" id="caseDetail" aria-live="polite">
+            <p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section case-method-section">
       <div class="container content-grid two">
         <article class="content-card">
           <h2>À quoi sert un cas d'usage IA</h2>
@@ -181,6 +201,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260514-tools-v1" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-layout-v2" defer></script>
 </body>
 </html>

@@ -125,23 +125,10 @@ function renderChipGroup(root, values, currentValue, onSelect) {
 function renderCases() {
   nodes.grid.innerHTML = "";
 
-  if (!hasActiveExploration()) {
-    nodes.visible.textContent = "0";
-    nodes.count.textContent = "Choisissez un filtre";
-    nodes.grid.innerHTML = `
-      <div class="explorer-start">
-        <strong>Commencez par une intention, un domaine ou une recherche.</strong>
-        <p>Les cas s'afficheront ensuite par priorité, avec un gain estimé et une fiche d'usage.</p>
-      </div>
-    `;
-    toggleLoadMore(0, 0);
-    return;
-  }
-
   const cases = getVisibleCases();
   const displayedCases = cases.slice(0, state.visibleLimit);
   nodes.visible.textContent = displayedCases.length;
-  nodes.count.textContent = `${cases.length} cas`;
+  nodes.count.textContent = hasActiveExploration() ? `${cases.length} cas` : `${cases.length} cas prioritaires`;
 
   if (cases.length === 0) {
     nodes.grid.innerHTML = `<p class="empty-state">Aucun cas ne correspond aux filtres. Essayez un mot plus simple : réunion, document, client, RH.</p>`;
@@ -178,8 +165,8 @@ function renderCases() {
 
 function renderDetail() {
   const item = state.cases.find((entry) => entry.id === state.selectedId);
-  if (!item || !hasActiveExploration()) {
-    nodes.detail.innerHTML = `<p class="empty-state">Lancez une recherche ou choisissez un filtre pour afficher une fiche d'usage.</p>`;
+  if (!item) {
+    nodes.detail.innerHTML = `<p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>`;
     return;
   }
 

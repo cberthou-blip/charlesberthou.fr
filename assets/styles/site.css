@@ -2723,3 +2723,349 @@ section,
     background: linear-gradient(180deg, rgba(6, 182, 212, 0.34), rgba(67, 56, 202, 0.28), rgba(124, 58, 237, 0.22));
   }
 }
+
+/* Cas d'usage IA */
+.case-page {
+  background: #f4f5f8;
+}
+
+.case-action-hero {
+  background:
+    linear-gradient(135deg, rgba(13, 27, 62, 0.08), transparent 48%),
+    linear-gradient(180deg, #f7f9ff 0%, #eef3fb 100%);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  padding: clamp(36px, 5vw, 56px) 0 clamp(54px, 6vw, 82px);
+}
+
+.case-action-hero-grid,
+.case-action-layout {
+  display: grid;
+  gap: 32px;
+}
+
+.case-hero-copy {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.case-kicker {
+  color: var(--teal);
+  font-size: 0.86rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-hero-copy h1 {
+  max-width: 520px;
+  color: var(--ink);
+  font-size: clamp(2rem, 3.7vw, 3.05rem);
+  line-height: 1.08;
+}
+
+.case-hero-copy p:not(.case-kicker) {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.case-hero-stats {
+  width: min(100%, 520px);
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.case-hero-stats span {
+  min-height: 56px;
+  border-color: var(--line);
+  background: #fff;
+  color: var(--muted);
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  box-shadow: var(--shadow-soft);
+}
+
+.case-hero-stats strong {
+  color: var(--ink);
+  font-size: 1.28rem;
+}
+
+.case-hero-search-card {
+  display: grid;
+  gap: 16px;
+  align-self: center;
+  min-width: 0;
+}
+
+.case-hero-search {
+  display: grid;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.case-hero-search input {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  padding: 0 18px;
+  box-shadow: 0 18px 38px rgba(13, 27, 62, 0.16);
+}
+
+.case-hero-search input::placeholder {
+  color: #707789;
+}
+
+.case-hero-search input:focus {
+  border-color: #7dd3fc;
+  outline: 3px solid rgba(125, 211, 252, 0.24);
+}
+
+.case-hero-search-card > p {
+  max-width: 780px;
+  border: 1px dashed rgba(6, 182, 212, 0.34);
+  border-radius: 8px;
+  background: rgba(6, 182, 212, 0.08);
+  color: var(--muted);
+  padding: 16px 18px;
+}
+
+.case-action-workspace {
+  background: #f4f4f3;
+  border-bottom: 1px solid #dedfe5;
+  padding: 32px 0 56px;
+}
+
+.case-flow-section {
+  min-width: 0;
+}
+
+.case-flow-side {
+  align-self: start;
+}
+
+.case-step-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+  border-bottom: 1px solid #dedfe5;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+.case-step-number {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.34);
+  color: var(--teal);
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.case-step-heading h2 {
+  color: var(--ink);
+  font-size: clamp(1.25rem, 3vw, 1.58rem);
+  line-height: 1.16;
+}
+
+.case-step-heading p {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.case-step-heading > div {
+  min-width: 0;
+}
+
+.case-explorer-panel,
+.case-detail-panel {
+  border-color: #dedfe5;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(13, 27, 62, 0.06);
+}
+
+.case-filter-intro {
+  display: grid;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.case-filter-intro strong {
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.case-filter-intro p {
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.52;
+}
+
+.case-filter-groups {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.case-filter-groups .tool-filter-block {
+  align-content: start;
+}
+
+.case-filter-groups .chip-list {
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.case-filter-groups .filter-chip {
+  align-self: flex-start;
+}
+
+.case-tool-card {
+  min-height: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+}
+
+.case-tool-card.selected {
+  border-color: rgba(6, 182, 212, 0.48);
+  background: linear-gradient(180deg, #f7fdff 0%, #ffffff 100%);
+}
+
+.case-tool-card.selected::before {
+  content: "Fiche ouverte";
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(6, 182, 212, 0.12);
+  color: var(--ink);
+  padding: 4px 9px;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.case-detail-panel {
+  position: sticky;
+  top: 92px;
+}
+
+.case-method-section {
+  background: #f7f9ff;
+  padding-top: 42px;
+}
+
+@media (min-width: 720px) {
+  .case-action-hero-grid {
+    grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+    align-items: center;
+  }
+
+  .case-action-layout {
+    grid-template-columns: minmax(0, 1.85fr) minmax(320px, 0.95fr);
+    align-items: start;
+  }
+}
+
+@media (min-width: 1040px) {
+  .case-action-layout {
+    grid-template-columns: minmax(0, 1.95fr) minmax(360px, 0.85fr);
+  }
+}
+
+@media (max-width: 719px) {
+  .case-page .container {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .case-action-hero {
+    padding-bottom: 54px;
+  }
+
+  .case-action-hero-grid,
+  .case-action-layout,
+  .case-hero-copy,
+  .case-hero-search-card,
+  .case-flow-section,
+  .case-explorer-panel,
+  .case-detail-panel {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .case-action-hero-grid,
+  .case-action-layout,
+  .case-filter-groups,
+  .case-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-hero-copy h1 {
+    width: calc(100vw - 28px);
+    max-width: 100%;
+    font-size: clamp(1.82rem, 8.2vw, 2.12rem);
+  }
+
+  .case-hero-copy p:not(.case-kicker),
+  .case-hero-search-card > p {
+    width: calc(100vw - 28px);
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.48;
+    overflow-wrap: anywhere;
+  }
+
+  .case-filter-intro p {
+    width: calc(100vw - 72px);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .case-hero-stats {
+    width: 100%;
+  }
+
+  .case-hero-search input {
+    max-width: calc(100vw - 28px);
+    font-size: 1rem;
+    padding: 0 16px;
+  }
+
+  .case-action-workspace {
+    padding-top: 26px;
+  }
+
+  .case-step-heading {
+    align-items: flex-start;
+  }
+
+  .case-step-heading h2 {
+    font-size: 1.26rem;
+  }
+
+  .case-results-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-detail-panel {
+    position: static;
+  }
+}
