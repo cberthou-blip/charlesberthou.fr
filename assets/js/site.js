@@ -80,7 +80,7 @@ function homeBlogShowcase(posts) {
         <p>${featured.description}</p>
         <div class="tag-row">${renderTags(featured.tags)}</div>
       </div>
-      <span class="text-link">Lire l'article</span>
+      <span class="text-link">Lire l'analyse</span>
     </a>
     <div class="blog-side-list">
       ${secondary.map((post) => `
@@ -90,7 +90,7 @@ function homeBlogShowcase(posts) {
             <h3>${post.title}</h3>
             <p>${post.description}</p>
           </div>
-          <span class="text-link">Lire</span>
+          <span class="text-link">Ouvrir</span>
         </a>
       `).join("")}
     </div>

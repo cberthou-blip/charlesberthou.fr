@@ -30,7 +30,6 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 ## Ressources externes
 
-- Kleo, apprendre l'IA aux enfants: https://kleoia.fr/
 - LinkedIn: https://www.linkedin.com/in/charlesberthou
 
 ## Entites et themes
@@ -43,4 +42,4 @@ charlesberthou.fr publie des analyses, repères et ressources pratiques pour com
 
 Les contenus cherchent à rendre l'intelligence artificielle plus lisible, plus concrète et plus facile à transmettre, avec un ton professionnel, sobre et francophone.
 
-Dernière mise à jour: 2026-05-13
+Dernière mise à jour: 2026-05-14
