@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-seo-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-tools-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -91,12 +91,22 @@
           </label>
 
           <div class="tool-filter-block">
-            <span class="filter-label">Domaines</span>
+            <span class="filter-label">Intentions</span>
+            <div class="chip-list" id="intentFilters"></div>
+          </div>
+
+          <div class="tool-filter-block">
+            <span class="filter-label">Domaines métier</span>
+            <div class="chip-list" id="domainFilters"></div>
+          </div>
+
+          <div class="tool-filter-block">
+            <span class="filter-label">Familles</span>
             <div class="chip-list" id="categoryFilters"></div>
           </div>
 
           <div class="tool-filter-block">
-            <span class="filter-label">Familles d'outils</span>
+            <span class="filter-label">Outils</span>
             <div class="chip-list" id="toolFilters"></div>
           </div>
         </aside>
@@ -105,15 +115,18 @@
           <div class="panel-heading compact-heading">
             <div>
               <p class="eyebrow">Explorer</p>
-              <h2 id="caseLibraryTitle">Cas d'usage disponibles</h2>
+              <h2 id="caseLibraryTitle">Cas d'usage filtrés</h2>
             </div>
             <span class="result-count" id="caseResultCount">0 cas</span>
           </div>
           <div class="case-grid" id="caseGrid" aria-live="polite"></div>
+          <div class="load-more-row" id="caseLoadMoreRow" hidden>
+            <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
+          </div>
         </section>
 
         <aside class="tool-detail-panel" id="caseDetail" aria-live="polite">
-          <p class="empty-state">Sélectionnez un cas d'usage pour voir le mode d'emploi.</p>
+          <p class="empty-state">Lancez une recherche ou choisissez un filtre pour afficher les cas pertinents.</p>
         </aside>
       </div>
     </section>
@@ -159,7 +172,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js" defer></script>
+  <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-tools-v1" defer></script>
 </body>
 </html>

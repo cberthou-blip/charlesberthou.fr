@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-seo-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-tools-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -68,10 +68,10 @@
     <section class="page-hero tool-hero">
       <div class="container tool-hero-grid">
         <div>
-          <p class="eyebrow">Simulation de ROI IA</p>
-          <h1>Chiffrer un cas d'usage avant d'en faire un projet.</h1>
+          <p class="eyebrow">Calculateur de ROI IA</p>
+          <h1>Tester la valeur d'un usage IA avant d'investir.</h1>
           <p class="lead">
-            Estimez le gain annuel, le coût du dispositif et le délai de retour. Le résultat sert d'arbitrage initial, avant toute décision d'investissement.
+            Estimez le gain annuel, ajoutez une marge de prudence et comparez le résultat au coût complet du dispositif. L'objectif est de décider si un pilote mérite d'être lancé.
           </p>
         </div>
         <div class="tool-stat-strip roi-stats" aria-label="Résultats principaux">
@@ -118,11 +118,19 @@
               <span>Coût mensuel du dispositif</span>
               <input id="monthlyCost" type="number" min="0" max="1000000" step="50" value="1500" />
             </label>
+            <label class="tool-search">
+              <span>Coût de cadrage et de mise en place</span>
+              <input id="setupCost" type="number" min="0" max="1000000" step="100" value="6000" />
+            </label>
+            <label class="tool-search">
+              <span>Marge de prudence sur le gain</span>
+              <input id="confidenceBuffer" type="number" min="0" max="80" step="5" value="20" />
+            </label>
           </div>
         </section>
 
         <aside class="roi-results" aria-live="polite">
-          <section class="maturity-panel roi-summary-card">
+          <section class="maturity-panel roi-summary-card premium-panel">
             <p class="eyebrow">Lecture</p>
             <h2 id="roiTitle">Projet à qualifier</h2>
             <p id="roiSummary">Ajustez les hypothèses pour obtenir une première lecture économique.</p>
@@ -132,13 +140,14 @@
             <div class="roi-metric-list">
               <div><span>Heures récupérées par an</span><strong id="roiHours">0 h</strong></div>
               <div><span>Gain brut annuel</span><strong id="roiGrossGain">0 €</strong></div>
-              <div><span>Coût annuel estimé</span><strong id="roiAnnualCost">0 €</strong></div>
-              <div><span>Gain net mensuel</span><strong id="roiMonthlyNet">0 €</strong></div>
+              <div><span>Gain prudent après marge</span><strong id="roiPrudentGain">0 €</strong></div>
+              <div><span>Coût annuel complet</span><strong id="roiAnnualCost">0 €</strong></div>
+              <div><span>Gain net mensuel prudent</span><strong id="roiMonthlyNet">0 €</strong></div>
             </div>
           </section>
-          <section class="maturity-panel">
+          <section class="maturity-panel premium-guidance">
             <p class="eyebrow">Prochaine étape</p>
-            <p>Validez l'hypothèse sur un échantillon restreint, mesurez le temps réellement économisé, puis inscrivez le cas dans le registre IA.</p>
+            <p>Validez l'hypothèse sur un échantillon restreint, mesurez le temps réellement économisé, puis inscrivez le cas dans le registre IA avec ses données, risques et responsables.</p>
             <a class="text-link" href="/outils-ia/registre-ia/">Ouvrir le registre IA</a>
           </section>
         </aside>
@@ -149,7 +158,7 @@
       <div class="container content-grid two">
         <article class="content-card">
           <h2>Ce que mesure le ROI IA</h2>
-          <p>Le calculateur donne un ordre de grandeur, pas une vérité financière. Il transforme une hypothèse de temps gagné en estimation annuelle, puis la compare au coût du dispositif et au niveau d'adoption réaliste.</p>
+          <p>Le calculateur donne un ordre de grandeur prudent, pas une vérité financière. Il transforme une hypothèse de temps gagné en estimation annuelle, applique une marge, puis compare le résultat au coût complet du dispositif.</p>
         </article>
         <article class="content-card">
           <h2>Les variables importantes</h2>
@@ -158,7 +167,8 @@
             <li>Le temps gagné par semaine, mesuré prudemment.</li>
             <li>Le coût chargé horaire moyen, pour éviter une lecture trop abstraite.</li>
             <li>Le taux d'adoption, souvent plus décisif que la qualité technique de l'outil.</li>
-            <li>Le coût complet : licences, intégration, formation, maintenance et accompagnement.</li>
+            <li>Le coût complet : licences, cadrage, intégration, formation, maintenance et accompagnement.</li>
+            <li>La marge de prudence, utile lorsque l'adoption ou la qualité des données restent incertaines.</li>
           </ul>
         </article>
         <article class="content-card">
@@ -187,7 +197,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
-  <script src="/outils-ia/assets/roi-ia.js" defer></script>
+  <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
+  <script src="/outils-ia/assets/roi-ia.js?v=20260514-tools-v1" defer></script>
 </body>
 </html>

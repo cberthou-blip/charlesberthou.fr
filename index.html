@@ -35,7 +35,7 @@
     type="image/webp"
   />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-seo-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-tools-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -298,18 +298,34 @@
       <div class="container service-focus">
         <div class="section-heading">
           <p class="eyebrow">Services</p>
-          <h2>En construction.</h2>
+          <h2>Parlons-en.</h2>
           <p>
             Pour un besoin d'automatisation, d'agentisation ou de transformation IA, vous pouvez me contacter pour échanger.
           </p>
         </div>
-        <div class="service-focus-panel">
+        <div class="service-focus-panel" data-contact-panel>
           <span class="service-status">Ouvert aux échanges</span>
           <p>Professionnels, entreprises ou particuliers : un court message avec le contexte suffit.</p>
           <div class="actions">
-            <a class="button" href="#contact">Prendre contact</a>
+            <button class="button" type="button" data-contact-form-toggle aria-expanded="false" aria-controls="homeContactForm">Prendre contact</button>
             <a class="button secondary" href="#outils-ia">Voir les outils</a>
           </div>
+          <form class="inline-mail-form" id="homeContactForm" data-home-contact-form hidden>
+            <label>
+              Votre email
+              <input id="homeContactEmail" type="email" name="email" placeholder="vous@exemple.fr" required />
+            </label>
+            <label>
+              Sujet
+              <input id="homeContactSubject" type="text" name="subject" value="Échange autour d'un usage IA" required />
+            </label>
+            <label>
+              Message
+              <textarea id="homeContactMessage" name="message" rows="4" placeholder="Quelques lignes sur le contexte, l'objectif ou l'usage à explorer." required></textarea>
+            </label>
+            <button class="button" type="submit">Préparer l'email</button>
+            <p>Le message s'ouvrira dans votre application mail, adressé à cberthou@gmail.com.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -348,6 +364,6 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
 </body>
 </html>

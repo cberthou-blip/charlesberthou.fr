@@ -246,9 +246,41 @@ function enhanceMobileNavigation() {
   });
 }
 
+function hydrateHomeContactForm() {
+  const toggle = document.querySelector("[data-contact-form-toggle]");
+  const form = document.querySelector("[data-home-contact-form]");
+  const panel = document.querySelector("[data-contact-panel]");
+  if (!toggle || !form) return;
+
+  toggle.addEventListener("click", () => {
+    const willOpen = form.hasAttribute("hidden");
+    form.toggleAttribute("hidden", !willOpen);
+    panel?.classList.toggle("is-form-open", willOpen);
+    toggle.setAttribute("aria-expanded", String(willOpen));
+    if (willOpen) {
+      form.querySelector("input, textarea")?.focus();
+    }
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const email = form.querySelector("#homeContactEmail")?.value.trim() || "";
+    const subject = form.querySelector("#homeContactSubject")?.value.trim() || "Échange autour d'un usage IA";
+    const message = form.querySelector("#homeContactMessage")?.value.trim() || "";
+    const body = [
+      message,
+      "",
+      email ? `Adresse de réponse : ${email}` : "",
+      `Page : ${window.location.href}`,
+    ].filter(Boolean).join("\n");
+    window.location.href = `mailto:cberthou@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   ensureIconSprite();
   enhanceMobileNavigation();
   renderBlogAreas();
   hydrateShareButtons();
+  hydrateHomeContactForm();
 });

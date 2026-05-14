@@ -874,10 +874,13 @@ body::before {
 ::-webkit-scrollbar-thumb:hover { background:var(--indigo-mid); }
 
 /* LANDING PAGE */
-.landing-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;}
-.landing-nav-links{display:flex;align-items:center;gap:6px;}
-.landing-nav-link{padding:7px 14px;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;color:var(--text3);background:transparent;border:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
-.landing-nav-link:hover{color:var(--indigo);background:rgba(99,102,241,0.07);}
+.landing-nav{position:sticky;top:0;z-index:100;background:rgba(247,249,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(13,27,62,0.1);padding:0 clamp(20px,5vw,72px);height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
+.landing-nav-links{display:flex;align-items:center;gap:4px;}
+.landing-nav-link{display:inline-flex;align-items:center;min-height:38px;padding:0 13px;border-radius:999px;font-size:0.84rem;font-weight:700;color:#516073;background:transparent;border:none;text-decoration:none;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.landing-nav-link:hover{color:#0d1b3e;background:rgba(6,182,212,0.09);}
+.landing-nav .nav-logo-text{color:#0d1b3e;font-size:0.96rem;letter-spacing:0;}
+.landing-product-pill{display:inline-flex;align-items:center;min-height:28px;border:1px solid rgba(6,182,212,0.22);border-radius:999px;background:#fff;color:#0d1b3e;padding:0 10px;font-size:0.78rem;font-weight:800;white-space:nowrap;}
+.landing-nav-main{display:flex;align-items:center;gap:10px;min-width:0;}
 
 /* HERO */
 .landing-hero{background:var(--grad-hero);padding:100px 40px 120px;text-align:center;position:relative;overflow:hidden;}
@@ -1061,14 +1064,18 @@ body::before {
 
   <!-- NAV -->
   <nav class="landing-nav">
-    <a onclick="showView('view-landing')" class="nav-logo" style="cursor:pointer">
-      <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
-      <span class="nav-logo-text">IA Learning</span>
-    </a>
+    <div class="landing-nav-main">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-icon" style="background:transparent;border:none;box-shadow:none;padding:2px;"><img src="../favicon.svg" alt="" style="width:100%;height:100%;object-fit:contain;"/></div>
+        <span class="nav-logo-text">charlesberthou.fr</span>
+      </a>
+      <button class="landing-product-pill" type="button" onclick="showView('view-landing')">IA Learning</button>
+    </div>
     <div class="landing-nav-links">
+      <a class="landing-nav-link" href="/#outils-ia">Outils IA</a>
+      <a class="landing-nav-link" href="/#articles">Articles</a>
+      <a class="landing-nav-link" href="/#services">Services</a>
       <button class="landing-nav-link" onclick="document.getElementById('landing-modules').scrollIntoView({behavior:'smooth'})">Modules</button>
-      <button class="landing-nav-link" onclick="document.getElementById('landing-features').scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
-      <button class="landing-nav-link" onclick="document.getElementById('landing-garanties').scrollIntoView({behavior:'smooth'})">Garanties</button>
     </div>
     <button class="btn btn-primary btn-sm" id="btn-landing-login">Se connecter →</button>
   </nav>

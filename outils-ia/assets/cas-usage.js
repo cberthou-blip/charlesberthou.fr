@@ -1,16 +1,33 @@
 const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
 const ALL = "Tous";
+const CASE_PAGE_SIZE = 12;
+
+const intentOptions = [
+  { label: ALL, terms: [] },
+  { label: "Résumer", terms: ["résumer", "résumé", "synthèse", "compte rendu"] },
+  { label: "Rédiger", terms: ["rédiger", "écrire", "mail", "document", "contenu"] },
+  { label: "Préparer", terms: ["préparer", "plan", "checklist", "cadrage", "ordre du jour"] },
+  { label: "Contrôler", terms: ["contrôler", "vérifier", "audit", "conformité", "risque"] },
+  { label: "Client", terms: ["client", "support", "vente", "commercial", "réclamation"] },
+  { label: "RH", terms: ["rh", "candidat", "entretien", "formation", "collaborateur"] },
+  { label: "Finance", terms: ["finance", "facture", "budget", "trésorerie", "comptable"] },
+];
 
 const state = {
   cases: [],
   query: "",
   category: ALL,
+  domain: ALL,
   tool: ALL,
+  intent: ALL,
   selectedId: null,
+  visibleLimit: CASE_PAGE_SIZE,
 };
 
 const nodes = {
   search: document.querySelector("#caseSearch"),
+  intentFilters: document.querySelector("#intentFilters"),
+  domainFilters: document.querySelector("#domainFilters"),
   categoryFilters: document.querySelector("#categoryFilters"),
   toolFilters: document.querySelector("#toolFilters"),
   grid: document.querySelector("#caseGrid"),
@@ -18,6 +35,8 @@ const nodes = {
   count: document.querySelector("#caseResultCount"),
   total: document.querySelector("[data-total-cases]"),
   visible: document.querySelector("[data-visible-count]"),
+  loadMoreRow: document.querySelector("#caseLoadMoreRow"),
+  loadMore: document.querySelector("#caseLoadMore"),
 };
 
 initCaseExplorer();
@@ -30,7 +49,6 @@ async function initCaseExplorer() {
     if (!response.ok) throw new Error("cas-usage introuvable");
     const payload = await response.json();
     state.cases = payload.fiches || [];
-    state.selectedId = state.cases[0]?.id || null;
 
     nodes.total.textContent = state.cases.length;
     bindCaseEvents();
@@ -45,14 +63,37 @@ async function initCaseExplorer() {
 function bindCaseEvents() {
   nodes.search.addEventListener("input", () => {
     state.query = nodes.search.value;
+    resetCaseSelection();
+    renderCases();
+    renderDetail();
+  });
+
+  nodes.loadMore?.addEventListener("click", () => {
+    state.visibleLimit += CASE_PAGE_SIZE;
     renderCases();
   });
 }
 
 function renderFilters() {
+  renderChipGroup(nodes.intentFilters, intentOptions.map((item) => item.label), state.intent, (value) => {
+    state.intent = value;
+    resetCaseSelection();
+    renderFilters();
+    renderCases();
+    renderDetail();
+  });
+
+  renderChipGroup(nodes.domainFilters, [ALL, ...unique(state.cases.map((item) => item.domaine))], state.domain, (value) => {
+    state.domain = value;
+    resetCaseSelection();
+    renderFilters();
+    renderCases();
+    renderDetail();
+  });
+
   renderChipGroup(nodes.categoryFilters, [ALL, ...unique(state.cases.map((item) => item.categorie))], state.category, (value) => {
     state.category = value;
-    state.selectedId = getVisibleCases()[0]?.id || state.selectedId;
+    resetCaseSelection();
     renderFilters();
     renderCases();
     renderDetail();
@@ -60,7 +101,7 @@ function renderFilters() {
 
   renderChipGroup(nodes.toolFilters, [ALL, ...unique(state.cases.map((item) => item.outil))], state.tool, (value) => {
     state.tool = value;
-    state.selectedId = getVisibleCases()[0]?.id || state.selectedId;
+    resetCaseSelection();
     renderFilters();
     renderCases();
     renderDetail();
@@ -68,11 +109,13 @@ function renderFilters() {
 }
 
 function renderChipGroup(root, values, currentValue, onSelect) {
+  if (!root) return;
   root.innerHTML = "";
   values.forEach((value) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `filter-chip ${value === currentValue ? "active" : ""}`;
+    button.setAttribute("aria-pressed", String(value === currentValue));
     button.textContent = value;
     button.addEventListener("click", () => onSelect(value));
     root.appendChild(button);
@@ -80,29 +123,46 @@ function renderChipGroup(root, values, currentValue, onSelect) {
 }
 
 function renderCases() {
-  const cases = getVisibleCases();
-  nodes.visible.textContent = cases.length;
-  nodes.count.textContent = `${cases.length} cas`;
   nodes.grid.innerHTML = "";
+
+  if (!hasActiveExploration()) {
+    nodes.visible.textContent = "0";
+    nodes.count.textContent = "Choisissez un filtre";
+    nodes.grid.innerHTML = `
+      <div class="explorer-start">
+        <strong>Commencez par une intention, un domaine ou une recherche.</strong>
+        <p>Les cas s'afficheront ensuite par priorité, avec un gain estimé et une fiche d'usage.</p>
+      </div>
+    `;
+    toggleLoadMore(0, 0);
+    return;
+  }
+
+  const cases = getVisibleCases();
+  const displayedCases = cases.slice(0, state.visibleLimit);
+  nodes.visible.textContent = displayedCases.length;
+  nodes.count.textContent = `${cases.length} cas`;
 
   if (cases.length === 0) {
     nodes.grid.innerHTML = `<p class="empty-state">Aucun cas ne correspond aux filtres. Essayez un mot plus simple : réunion, document, client, RH.</p>`;
     nodes.detail.innerHTML = `<p class="empty-state">Aucun cas à afficher pour le moment.</p>`;
+    toggleLoadMore(0, 0);
     return;
   }
 
-  if (!cases.some((item) => item.id === state.selectedId)) {
-    state.selectedId = cases[0].id;
+  if (!displayedCases.some((item) => item.id === state.selectedId)) {
+    state.selectedId = displayedCases[0].id;
   }
 
-  cases.forEach((item) => {
+  displayedCases.forEach((item) => {
     const card = document.createElement("button");
     card.type = "button";
     card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
     card.innerHTML = `
-      <span>${escapeHtml(item.domaine)}</span>
+      <span>${escapeHtml(item.domaine)} · ${escapeHtml(item.categorie)}</span>
       <strong>${escapeHtml(item.tache)}</strong>
       <p>${escapeHtml(item.sortie)}</p>
+      <div class="tag-row compact-tags">${(item.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
       <em>${escapeHtml(item.outil)} · ${getMonthlyGainLabel(item)}</em>
     `;
     card.addEventListener("click", () => {
@@ -112,12 +172,14 @@ function renderCases() {
     });
     nodes.grid.appendChild(card);
   });
+
+  toggleLoadMore(displayedCases.length, cases.length);
 }
 
 function renderDetail() {
   const item = state.cases.find((entry) => entry.id === state.selectedId);
-  if (!item) {
-    nodes.detail.innerHTML = `<p class="empty-state">Sélectionnez un cas d'usage pour voir le mode d'emploi.</p>`;
+  if (!item || !hasActiveExploration()) {
+    nodes.detail.innerHTML = `<p class="empty-state">Lancez une recherche ou choisissez un filtre pour afficher une fiche d'usage.</p>`;
     return;
   }
 
@@ -171,6 +233,10 @@ function renderDetail() {
       </label>
       <output class="mini-gain-output" id="gainOutput">${getMonthlyGainLabel(item)}</output>
     </form>
+    <div class="detail-actions">
+      <a class="button secondary" href="/outils-ia/roi-ia/">Chiffrer ce cas</a>
+      <a class="text-link" href="/outils-ia/registre-ia/">L'inscrire dans le registre IA</a>
+    </div>
   `;
 
   const form = document.querySelector("#miniGainForm");
@@ -189,22 +255,60 @@ function getVisibleCases() {
   const query = normalize(state.query);
   return state.cases
     .filter((item) => state.category === ALL || item.categorie === state.category)
+    .filter((item) => state.domain === ALL || item.domaine === state.domain)
     .filter((item) => state.tool === ALL || item.outil === state.tool)
+    .filter((item) => matchesIntent(item))
     .filter((item) => {
       if (!query) return true;
-      const haystack = normalize([
-        item.tache,
-        item.outil,
-        item.categorie,
-        item.domaine,
-        item.entree,
-        item.sortie,
-        item.utilisation,
-        ...(item.tags || []),
-      ].join(" "));
+      const haystack = normalize(caseText(item));
       return query.split(/\s+/).every((term) => haystack.includes(term));
     })
     .sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
+}
+
+function matchesIntent(item) {
+  if (state.intent === ALL) return true;
+  const option = intentOptions.find((entry) => entry.label === state.intent);
+  if (!option) return true;
+  const haystack = normalize(caseText(item));
+  return option.terms.some((term) => haystack.includes(normalize(term)));
+}
+
+function caseText(item) {
+  return [
+    item.tache,
+    item.outil,
+    item.categorie,
+    item.domaine,
+    item.entree,
+    item.sortie,
+    item.utilisation,
+    ...(item.tags || []),
+  ].join(" ");
+}
+
+function hasActiveExploration() {
+  return Boolean(
+    state.query.trim()
+    || state.category !== ALL
+    || state.domain !== ALL
+    || state.tool !== ALL
+    || state.intent !== ALL
+  );
+}
+
+function resetCaseSelection() {
+  state.selectedId = null;
+  state.visibleLimit = CASE_PAGE_SIZE;
+}
+
+function toggleLoadMore(visibleCount, totalCount) {
+  if (!nodes.loadMoreRow || !nodes.loadMore) return;
+  const remaining = totalCount - visibleCount;
+  nodes.loadMoreRow.toggleAttribute("hidden", remaining <= 0);
+  if (remaining > 0) {
+    nodes.loadMore.textContent = `Afficher ${Math.min(CASE_PAGE_SIZE, remaining)} cas de plus`;
+  }
 }
 
 function normalize(value) {
@@ -217,7 +321,7 @@ function normalize(value) {
 }
 
 function unique(values) {
-  return Array.from(new Set(values.filter(Boolean)));
+  return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b, "fr"));
 }
 
 function getMonthlyGain(item) {

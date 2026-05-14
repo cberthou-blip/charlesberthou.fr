@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-seo-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-tools-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -72,7 +72,7 @@
           <p class="eyebrow">Registre IA</p>
           <h1>Un registre local pour gouverner les usages IA.</h1>
           <p class="lead">
-            Ajoutez les cas d'usage retenus, qualifiez les données mobilisées, le niveau de risque, le responsable et la prochaine revue. Les informations restent dans votre navigateur, avec export CSV.
+            Dans le contexte de l'AI Act et des obligations de gouvernance IA, documenter les usages, les données, les risques et les responsables devient un réflexe essentiel. Ajoutez les cas retenus, qualifiez-les puis exportez le registre en CSV.
           </p>
         </div>
         <div class="tool-stat-strip register-stats" aria-label="État du registre">
@@ -89,7 +89,7 @@
           <div class="panel-heading compact-heading">
             <div>
               <p class="eyebrow">Bibliothèque</p>
-              <h2 id="sourceTitle">Cas à ajouter</h2>
+              <h2 id="sourceTitle">Explorer les usages à inscrire</h2>
             </div>
             <span class="result-count" id="sourceCount">0 cas</span>
           </div>
@@ -97,15 +97,35 @@
             <span>Rechercher</span>
             <input id="registerSearch" type="search" placeholder="Ex. RH, support, juridique, facture" autocomplete="off" />
           </label>
-          <div class="chip-list" id="registerDepartmentFilters"></div>
+          <div class="register-filter-grid">
+            <div class="tool-filter-block">
+              <span class="filter-label">Domaine</span>
+              <div class="chip-list" id="registerDepartmentFilters"></div>
+            </div>
+            <div class="tool-filter-block">
+              <span class="filter-label">Risque</span>
+              <div class="chip-list" id="registerRiskFilters"></div>
+            </div>
+            <div class="tool-filter-block">
+              <span class="filter-label">Maturité</span>
+              <div class="chip-list" id="registerMaturityFilters"></div>
+            </div>
+            <div class="tool-filter-block">
+              <span class="filter-label">Impact</span>
+              <div class="chip-list" id="registerImpactFilters"></div>
+            </div>
+          </div>
           <div class="source-case-list" id="sourceCaseList" aria-live="polite"></div>
+          <div class="load-more-row" id="registerLoadMoreRow" hidden>
+            <button class="button secondary" type="button" id="registerLoadMore">Afficher plus</button>
+          </div>
         </section>
 
         <section class="register-board" aria-labelledby="registerTitle">
           <div class="panel-heading register-board-heading">
             <div>
               <p class="eyebrow">Suivi</p>
-              <h2 id="registerTitle">Mon registre</h2>
+              <h2 id="registerTitle">Registre de travail</h2>
             </div>
             <div class="actions register-actions">
               <button class="button secondary" type="button" id="seedRegister">Charger un exemple</button>
@@ -159,7 +179,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
-  <script src="/outils-ia/assets/registre-ia.js" defer></script>
+  <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
+  <script src="/outils-ia/assets/registre-ia.js?v=20260514-tools-v1" defer></script>
 </body>
 </html>

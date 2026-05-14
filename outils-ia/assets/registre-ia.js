@@ -1,19 +1,29 @@
 const REGISTER_DATA_URL = "/outils-ia/data/registre-use-cases.json";
 const REGISTER_STORAGE_KEY = "charlesberthou-ai-register-v1";
 const ALL_DEPARTMENTS = "Tous";
+const REGISTER_PAGE_SIZE = 8;
 
 const registerState = {
   sourceCases: [],
   register: [],
   query: "",
   department: ALL_DEPARTMENTS,
+  risk: ALL_DEPARTMENTS,
+  maturity: ALL_DEPARTMENTS,
+  impact: ALL_DEPARTMENTS,
+  visibleLimit: REGISTER_PAGE_SIZE,
 };
 
 const registerNodes = {
   search: document.querySelector("#registerSearch"),
-  filters: document.querySelector("#registerDepartmentFilters"),
+  departmentFilters: document.querySelector("#registerDepartmentFilters"),
+  riskFilters: document.querySelector("#registerRiskFilters"),
+  maturityFilters: document.querySelector("#registerMaturityFilters"),
+  impactFilters: document.querySelector("#registerImpactFilters"),
   sourceList: document.querySelector("#sourceCaseList"),
   sourceCount: document.querySelector("#sourceCount"),
+  loadMoreRow: document.querySelector("#registerLoadMoreRow"),
+  loadMore: document.querySelector("#registerLoadMore"),
   registerList: document.querySelector("#registerList"),
   registerCount: document.querySelector("#registerCount"),
   highRiskCount: document.querySelector("#highRiskCount"),
@@ -54,6 +64,12 @@ async function initRegisterTool() {
 function bindRegisterEvents() {
   registerNodes.search.addEventListener("input", () => {
     registerState.query = registerNodes.search.value;
+    resetSourceExplorer();
+    renderSourceCases();
+  });
+
+  registerNodes.loadMore?.addEventListener("click", () => {
+    registerState.visibleLimit += REGISTER_PAGE_SIZE;
     renderSourceCases();
   });
 
@@ -62,34 +78,95 @@ function bindRegisterEvents() {
 }
 
 function renderRegisterFilters() {
-  const departments = [ALL_DEPARTMENTS, ...unique(registerState.sourceCases.map((item) => item.department))];
-  registerNodes.filters.innerHTML = "";
-  departments.forEach((department) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `filter-chip ${department === registerState.department ? "active" : ""}`;
-    button.setAttribute("aria-pressed", String(department === registerState.department));
-    button.textContent = department;
-    button.addEventListener("click", () => {
-      registerState.department = department;
+  renderChipGroup(
+    registerNodes.departmentFilters,
+    [ALL_DEPARTMENTS, ...unique(registerState.sourceCases.map((item) => item.department))],
+    registerState.department,
+    (value) => {
+      registerState.department = value;
+      resetSourceExplorer();
       renderRegisterFilters();
       renderSourceCases();
-    });
-    registerNodes.filters.appendChild(button);
+    }
+  );
+
+  renderChipGroup(
+    registerNodes.riskFilters,
+    [ALL_DEPARTMENTS, ...sortRiskValues(unique(registerState.sourceCases.map((item) => item.riskLevel)))],
+    registerState.risk,
+    (value) => {
+      registerState.risk = value;
+      resetSourceExplorer();
+      renderRegisterFilters();
+      renderSourceCases();
+    }
+  );
+
+  renderChipGroup(
+    registerNodes.maturityFilters,
+    [ALL_DEPARTMENTS, ...unique(registerState.sourceCases.map((item) => item.maturity))],
+    registerState.maturity,
+    (value) => {
+      registerState.maturity = value;
+      resetSourceExplorer();
+      renderRegisterFilters();
+      renderSourceCases();
+    }
+  );
+
+  renderChipGroup(
+    registerNodes.impactFilters,
+    [ALL_DEPARTMENTS, ...unique(registerState.sourceCases.map((item) => item.impact))],
+    registerState.impact,
+    (value) => {
+      registerState.impact = value;
+      resetSourceExplorer();
+      renderRegisterFilters();
+      renderSourceCases();
+    }
+  );
+}
+
+function renderChipGroup(root, values, currentValue, onSelect) {
+  if (!root) return;
+  root.innerHTML = "";
+  values.forEach((value) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `filter-chip ${value === currentValue ? "active" : ""}`;
+    button.setAttribute("aria-pressed", String(value === currentValue));
+    button.textContent = value;
+    button.addEventListener("click", () => onSelect(value));
+    root.appendChild(button);
   });
 }
 
 function renderSourceCases() {
-  const cases = getFilteredSourceCases();
-  registerNodes.sourceCount.textContent = `${cases.length} cas`;
   registerNodes.sourceList.innerHTML = "";
 
-  if (cases.length === 0) {
-    registerNodes.sourceList.innerHTML = `<p class="empty-state">Aucun cas ne correspond à cette recherche.</p>`;
+  if (!hasActiveSourceFilters()) {
+    registerNodes.sourceCount.textContent = "Choisissez un filtre";
+    registerNodes.sourceList.innerHTML = `
+      <div class="explorer-start">
+        <strong>Filtrez avant d'ajouter.</strong>
+        <p>Commencez par un domaine, un niveau de risque ou un mot-clé pour afficher uniquement les usages à documenter.</p>
+      </div>
+    `;
+    toggleRegisterLoadMore(0, 0);
     return;
   }
 
-  cases.forEach((item) => {
+  const cases = getFilteredSourceCases();
+  const displayedCases = cases.slice(0, registerState.visibleLimit);
+  registerNodes.sourceCount.textContent = `${cases.length} cas`;
+
+  if (cases.length === 0) {
+    registerNodes.sourceList.innerHTML = `<p class="empty-state">Aucun cas ne correspond à cette recherche.</p>`;
+    toggleRegisterLoadMore(0, 0);
+    return;
+  }
+
+  displayedCases.forEach((item) => {
     const inRegister = registerState.register.some((entry) => entry.id === item.id);
     const card = document.createElement("article");
     card.className = "source-case-card";
@@ -98,6 +175,11 @@ function renderSourceCases() {
         <span>${escapeHtml(item.department)} · ${escapeHtml(item.category)}</span>
         <strong>${escapeHtml(item.title)}</strong>
         <p>${escapeHtml(item.summary)}</p>
+        <div class="tag-row compact-tags">
+          <span class="tag">Risque ${escapeHtml(item.riskLevel)}</span>
+          <span class="tag">${escapeHtml(item.maturity)}</span>
+          <span class="tag">Impact ${escapeHtml(item.impact)}</span>
+        </div>
       </div>
       <button class="button ${inRegister ? "secondary" : ""}" type="button" aria-label="${inRegister ? "Cas déjà ajouté" : `Ajouter ${escapeHtml(item.title)} au registre`}" ${inRegister ? "disabled" : ""}>
         ${inRegister ? "Ajouté" : "Ajouter"}
@@ -106,12 +188,14 @@ function renderSourceCases() {
     card.querySelector("button").addEventListener("click", () => addToRegister(item));
     registerNodes.sourceList.appendChild(card);
   });
+
+  toggleRegisterLoadMore(displayedCases.length, cases.length);
 }
 
 function renderRegister() {
   const items = registerState.register;
   registerNodes.registerCount.textContent = items.length;
-  registerNodes.highRiskCount.textContent = items.filter((item) => item.riskLevel === "élevé").length;
+  registerNodes.highRiskCount.textContent = items.filter((item) => isHighRisk(item.riskLevel)).length;
   registerNodes.reviewCount.textContent = items.filter((item) => item.reviewDate).length;
   registerNodes.exportButton.disabled = items.length === 0;
 
@@ -120,7 +204,7 @@ function renderRegister() {
 
   if (items.length === 0) {
     registerNodes.registerList.innerHTML = `
-      <p class="empty-state">Le registre est vide. Ajoutez un cas depuis la bibliothèque ou chargez un exemple pour voir la structure.</p>
+      <p class="empty-state">Le registre est vide. Ajoutez un cas filtré depuis l'explorateur ou chargez un exemple pour voir la structure.</p>
     `;
     return;
   }
@@ -131,10 +215,15 @@ function renderRegister() {
     card.innerHTML = `
       <div class="register-card-head">
         <div>
-          <span>${escapeHtml(item.department)}</span>
+          <span>${escapeHtml(item.department)} · ${escapeHtml(item.category || "usage IA")}</span>
           <strong>${escapeHtml(item.title)}</strong>
         </div>
         <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
+      </div>
+      <div class="tag-row compact-tags">
+        ${item.maturity ? `<span class="tag">${escapeHtml(item.maturity)}</span>` : ""}
+        ${item.impact ? `<span class="tag">Impact ${escapeHtml(item.impact)}</span>` : ""}
+        ${item.recommendedTool ? `<span class="tag">${escapeHtml(item.recommendedTool)}</span>` : ""}
       </div>
       <div class="register-item-metrics">
         <span><strong>${formatMinutes(item.gainMin)}</strong> gain / usage</span>
@@ -162,7 +251,7 @@ function renderRegister() {
 
 function renderReadiness() {
   const count = registerState.register.length;
-  const highRisk = registerState.register.filter((item) => item.riskLevel === "élevé").length;
+  const highRisk = registerState.register.filter((item) => isHighRisk(item.riskLevel)).length;
 
   if (count === 0) {
     registerNodes.readiness.innerHTML = `<strong>Premier pas</strong><span>Ajoutez deux ou trois usages pour commencer à voir les risques, gains et revues à organiser.</span>`;
@@ -233,7 +322,7 @@ function updateRegisterItem(id, updates) {
   registerState.register = registerState.register.map((item) => item.id === id ? { ...item, ...updates } : item);
   saveRegister();
   renderReadiness();
-  registerNodes.highRiskCount.textContent = registerState.register.filter((item) => item.riskLevel === "élevé").length;
+  registerNodes.highRiskCount.textContent = registerState.register.filter((item) => isHighRisk(item.riskLevel)).length;
   registerNodes.reviewCount.textContent = registerState.register.filter((item) => item.reviewDate).length;
   updateInlineMetrics(id);
 }
@@ -244,6 +333,9 @@ function createRegisterEntry(item) {
     title: item.title,
     department: item.department,
     category: item.category,
+    maturity: item.maturity,
+    impact: item.impact,
+    difficulty: item.difficulty,
     recommendedTool: item.recommendedTool,
     riskLevel: item.riskLevel || "moyen",
     status: "idée",
@@ -282,11 +374,52 @@ function getFilteredSourceCases() {
   const query = normalize(registerState.query);
   return registerState.sourceCases
     .filter((item) => registerState.department === ALL_DEPARTMENTS || item.department === registerState.department)
+    .filter((item) => registerState.risk === ALL_DEPARTMENTS || item.riskLevel === registerState.risk)
+    .filter((item) => registerState.maturity === ALL_DEPARTMENTS || item.maturity === registerState.maturity)
+    .filter((item) => registerState.impact === ALL_DEPARTMENTS || item.impact === registerState.impact)
     .filter((item) => {
       if (!query) return true;
-      const haystack = normalize([item.title, item.department, item.category, item.summary, item.kpi].join(" "));
+      const haystack = normalize([
+        item.title,
+        item.department,
+        item.category,
+        item.maturity,
+        item.impact,
+        item.riskLevel,
+        item.summary,
+        item.kpi,
+        item.recommendedTool,
+      ].join(" "));
       return query.split(/\s+/).every((term) => haystack.includes(term));
-    });
+    })
+    .sort((a, b) => sourcePriority(b) - sourcePriority(a));
+}
+
+function sourcePriority(item) {
+  return (riskWeight(item.riskLevel) * 100000) + (impactWeight(item.impact) * 10000) + ((Number(item.monthlyFrequency) || 0) * (Number(item.gainMin) || 0));
+}
+
+function hasActiveSourceFilters() {
+  return Boolean(
+    registerState.query.trim()
+    || registerState.department !== ALL_DEPARTMENTS
+    || registerState.risk !== ALL_DEPARTMENTS
+    || registerState.maturity !== ALL_DEPARTMENTS
+    || registerState.impact !== ALL_DEPARTMENTS
+  );
+}
+
+function resetSourceExplorer() {
+  registerState.visibleLimit = REGISTER_PAGE_SIZE;
+}
+
+function toggleRegisterLoadMore(visibleCount, totalCount) {
+  if (!registerNodes.loadMoreRow || !registerNodes.loadMore) return;
+  const remaining = totalCount - visibleCount;
+  registerNodes.loadMoreRow.toggleAttribute("hidden", remaining <= 0);
+  if (remaining > 0) {
+    registerNodes.loadMore.textContent = `Afficher ${Math.min(REGISTER_PAGE_SIZE, remaining)} cas de plus`;
+  }
 }
 
 function getNextAction(item) {
@@ -317,6 +450,8 @@ function exportRegisterCsv() {
     "titre",
     "domaine",
     "categorie",
+    "maturite",
+    "impact",
     "outil",
     "risque",
     "avancement",
@@ -339,6 +474,8 @@ function exportRegisterCsv() {
     item.title,
     item.department,
     item.category,
+    item.maturity,
+    item.impact,
     item.recommendedTool,
     item.riskLevel,
     item.status,
@@ -381,6 +518,28 @@ function updateInlineMetrics(id) {
   registerNodes.registerList.querySelectorAll("[data-next-action]").forEach((node) => {
     if (node.dataset.nextAction === id) node.textContent = getNextAction(item);
   });
+}
+
+function riskWeight(value) {
+  const normalized = normalize(value);
+  if (normalized.includes("eleve")) return 3;
+  if (normalized.includes("moyen")) return 2;
+  return 1;
+}
+
+function impactWeight(value) {
+  const normalized = normalize(value);
+  if (normalized.includes("eleve")) return 3;
+  if (normalized.includes("moyen")) return 2;
+  return 1;
+}
+
+function isHighRisk(value) {
+  return riskWeight(value) >= 3;
+}
+
+function sortRiskValues(values) {
+  return values.sort((a, b) => riskWeight(a) - riskWeight(b));
 }
 
 function normalize(value) {

@@ -2422,6 +2422,129 @@ section,
   white-space: nowrap;
 }
 
+.inline-mail-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.inline-mail-form[hidden],
+.load-more-row[hidden] {
+  display: none;
+}
+
+.inline-mail-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.inline-mail-form input,
+.inline-mail-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.inline-mail-form textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+.inline-mail-form input:focus,
+.inline-mail-form textarea:focus {
+  border-color: var(--teal);
+  outline: 3px solid rgba(6, 182, 212, 0.14);
+}
+
+.inline-mail-form p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.service-focus-panel.is-form-open {
+  align-self: stretch;
+}
+
+.explorer-start {
+  display: grid;
+  gap: 8px;
+  border: 1px dashed rgba(6, 182, 212, 0.34);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f8fcff 0%, #ffffff 100%);
+  padding: 18px;
+  color: var(--muted);
+}
+
+.explorer-start strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.compact-tags {
+  gap: 6px;
+}
+
+.compact-tags .tag {
+  min-height: 24px;
+  border-radius: 999px;
+  background: #f7f9ff;
+  font-size: 0.76rem;
+}
+
+.load-more-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.register-filter-grid {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.register-filter-grid .tool-filter-block {
+  margin-top: 14px;
+}
+
+.premium-panel {
+  border-color: rgba(6, 182, 212, 0.28);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f6fcff 100%),
+    #ffffff;
+}
+
+.premium-guidance {
+  border-color: rgba(34, 197, 94, 0.22);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f7fff9 100%),
+    #ffffff;
+}
+
+.maturity-next-card {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
 @media (min-width: 720px) {
   .tool-hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(280px, 0.58fr);
