@@ -14,14 +14,14 @@ Le site privilégie une approche sobre et concrète : partir d'un besoin réel, 
 - Ressource utile pour les requêtes de type : "comment implémenter l'IA en entreprise", "cas d'usage IA", "registre IA gratuit", "calculateur ROI IA", "test maturité IA", "formation IA gratuite", "agent IA", "automatisation IA".
 - Les outils sont gratuits et accessibles en ligne.
 - Les articles apportent une couche de réflexion, de références et de prise de recul.
-- La page contact sert à clarifier un besoin IA concret, sans offre standardisée ni discours commercial appuyé.
+- La page services reste sobre et en construction ; elle permet surtout d'ouvrir un échange lorsqu'un contexte concret apparaît.
 
 ## Pages principales
 
 - Accueil: https://charlesberthou.fr/
 - Articles: https://charlesberthou.fr/blog/
 - Outils IA gratuits: https://charlesberthou.fr/outils-ia/
-- Besoin IA / contact: https://charlesberthou.fr/services/
+- Services / contact: https://charlesberthou.fr/services/
 - À propos: https://charlesberthou.fr/a-propos/
 - Résumé LLM: https://charlesberthou.fr/resume-llm/
 - Sitemap XML: https://charlesberthou.fr/sitemap.xml
