@@ -3163,6 +3163,38 @@ section,
   color: var(--ink);
 }
 
+.model-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.model-choice {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+
+.model-choice span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.model-choice.primary {
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.model-reason {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
 .case-start-guide {
   display: grid;
   gap: 14px;
@@ -3257,7 +3289,8 @@ section,
   .case-action-hero-grid,
   .case-action-layout,
   .case-filter-groups,
-  .case-grid {
+  .case-grid,
+  .model-choice-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 

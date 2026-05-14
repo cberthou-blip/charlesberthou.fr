@@ -67,22 +67,95 @@ const TASK_TYPE_ORDER = [
 
 const RISK_ORDER = ["Faible", "Moyen", "Élevé"];
 
-const DEFAULT_MODEL_BY_METIER = {
-  "Conseil": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Cadrage, diagnostic et arbitrage avec plusieurs contraintes." },
-  "Finance": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Analyse chiffrée, lecture documentaire et synthèse prudente." },
-  "Comptabilité": { principal: "GPT-5.4 mini", alternative: "Mistral Medium 3.5", usage: "Contrôles répétables, documentation et extraction de pièces." },
-  "Droit / Avocat": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Raisonnement juridique assisté, rédaction argumentée et revue de contrats." },
-  "Santé": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Synthèse documentaire prudente sous contrôle professionnel." },
-  "Ressources humaines": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Rédaction nuancée, structuration d'entretiens et parcours RH." },
-  "Vente / Commercial": { principal: "GPT-5.5", alternative: "Claude Opus 4.7", usage: "Préparation de rendez-vous, synthèse CRM et réponse client." },
-  "Conformité / Risques": { principal: "GPT-5.5", alternative: "Mistral Large 3", usage: "Analyse de règles, contrôles et dossiers sensibles." },
-  "Marketing / Communication": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Rédaction longue, adaptation du ton et analyse de verbatims." },
-  "Management": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Communication, synthèse de réunion et plan d'action." },
-  "Service client": { principal: "GPT-5.4 mini", alternative: "Claude Haiku 4.5", usage: "Réponses fréquentes, procédures et résumés courts." },
-  "Projet / Opérations": { principal: "GPT-5.5", alternative: "Mistral Medium 3.5", usage: "Plans d'action, suivi projet et clarification des dépendances." },
-  "DSI / Informatique": { principal: "GPT-5.5", alternative: "Mistral Medium 3.5", usage: "Diagnostic, spécifications, tests et documentation technique." },
-  "Achats / Logistique": { principal: "GPT-5.5", alternative: "Gemini 3.1 Pro", usage: "Comparaison documentaire, fournisseurs, risques et pièces." },
-  "Éducation / Formation": { principal: "Claude Opus 4.7", alternative: "GPT-5.5", usage: "Conception pédagogique, reformulation et feedback." },
+const MODEL_PROFILES = {
+  general: {
+    principal: "GPT-5.5",
+    alternative: "Claude Opus 4.7",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Cas généraliste nécessitant un bon équilibre entre raisonnement, synthèse et clarté.",
+    raison: "Le cas demande de structurer une réponse fiable sans spécialisation dominante.",
+  },
+  reasoning: {
+    principal: "GPT-5.5",
+    alternative: "Claude Opus 4.7",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Analyse multi-contraintes, arbitrage, diagnostic ou décision préparatoire.",
+    raison: "Le besoin principal est la qualité du raisonnement et la capacité à tenir plusieurs hypothèses.",
+  },
+  writing: {
+    principal: "Claude Opus 4.7",
+    alternative: "GPT-5.5",
+    economique: "Claude Haiku 4.5",
+    souverain: "Mistral Medium 3.5",
+    usage: "Rédaction longue, reformulation sensible, argumentation ou adaptation du ton.",
+    raison: "La valeur se joue surtout sur la nuance, le style et la qualité éditoriale.",
+  },
+  "long-document": {
+    principal: "Gemini 3.1 Pro",
+    alternative: "GPT-5.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Lecture de PDF, corpus longs, pièces multiples, tableaux ou documents multimodaux.",
+    raison: "Le cas dépend d'abord de l'ingestion documentaire et de la robustesse sur contexte long.",
+  },
+  "customer-volume": {
+    principal: "GPT-5.4 mini",
+    alternative: "Claude Haiku 4.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Small 4",
+    usage: "Tâches fréquentes, bien cadrées, à faible risque et besoin de réponse rapide.",
+    raison: "Le gain vient du volume, de la latence basse et d'un coût maîtrisé par interaction.",
+  },
+  finance: {
+    principal: "GPT-5.5",
+    alternative: "Gemini 3.1 Pro",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Analyse chiffrée, synthèse financière, scénarios et explication de variations.",
+    raison: "Le cas exige un raisonnement prudent sur chiffres, hypothèses et limites d'interprétation.",
+  },
+  legal: {
+    principal: "Claude Opus 4.7",
+    alternative: "GPT-5.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Préparation juridique, revue de clauses, rédaction argumentée ou analyse de dossier.",
+    raison: "La nuance rédactionnelle et la prudence de formulation comptent autant que le raisonnement.",
+  },
+  health: {
+    principal: "Gemini 3.1 Pro",
+    alternative: "GPT-5.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Synthèse de dossier, vulgarisation, qualité ou documentation santé sous validation humaine.",
+    raison: "Les cas santé sont documentaires et sensibles : priorité au contexte long et au contrôle humain.",
+  },
+  compliance: {
+    principal: "GPT-5.5",
+    alternative: "Mistral Medium 3.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Large 3",
+    usage: "Contrôle, conformité, audit, KYC, risques ou dossiers sensibles.",
+    raison: "Le cas demande traçabilité, prudence et option de déploiement maîtrisé.",
+  },
+  coding: {
+    principal: "Mistral Medium 3.5",
+    alternative: "GPT-5.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5 self-hosted",
+    usage: "Spécification, tests, tickets, diagnostic technique, code ou workflows agentiques.",
+    raison: "Le cas bénéficie d'un modèle robuste en code, outils et exécution de tâches longues.",
+  },
+  workflow: {
+    principal: "Mistral Medium 3.5",
+    alternative: "GPT-5.5",
+    economique: "GPT-5.4 mini",
+    souverain: "Mistral Medium 3.5",
+    usage: "Plan d'action, coordination, classement, automatisation légère ou suivi opérationnel.",
+    raison: "Le besoin porte sur des sorties structurées et des enchaînements opérationnels.",
+  },
 };
 
 const state = {
@@ -348,12 +421,13 @@ function renderDetail() {
     nodes.detail.innerHTML = `
       <div class="case-start-guide">
         <strong>Sélectionnez un cas pour ouvrir la fiche.</strong>
-        <p>Chaque fiche indique le modèle conseillé, le niveau de vigilance, les contrôles à faire et le gain estimé.</p>
+        <p>Chaque fiche indique le modèle conseillé, l'option économique, l'option entreprise, le niveau de vigilance et le gain estimé.</p>
         <dl>
           <div><dt>Raisonnement complexe</dt><dd>GPT-5.5</dd></div>
           <div><dt>Rédaction longue</dt><dd>Claude Opus 4.7</dd></div>
           <div><dt>PDF et corpus longs</dt><dd>Gemini 3.1 Pro</dd></div>
-          <div><dt>Déploiement maîtrisé</dt><dd>Mistral Large 3</dd></div>
+          <div><dt>Volume / coût</dt><dd>GPT-5.4 mini</dd></div>
+          <div><dt>Entreprise / souverain</dt><dd>Mistral Medium 3.5</dd></div>
         </dl>
       </div>
     `;
@@ -383,8 +457,26 @@ function renderDetail() {
     </div>
     <div class="case-guidance-block model-guidance">
       <h3>Modèle conseillé</h3>
-      <p><strong>${escapeHtml(model.principal)}</strong> en premier choix, ${escapeHtml(model.alternative)} en alternative.</p>
+      <div class="model-choice-grid">
+        <div class="model-choice primary">
+          <span>Premier choix</span>
+          <strong>${escapeHtml(model.principal)}</strong>
+        </div>
+        <div class="model-choice">
+          <span>Alternative premium</span>
+          <strong>${escapeHtml(model.alternative)}</strong>
+        </div>
+        <div class="model-choice">
+          <span>Option économique</span>
+          <strong>${escapeHtml(model.economique)}</strong>
+        </div>
+        <div class="model-choice">
+          <span>Entreprise / souverain</span>
+          <strong>${escapeHtml(model.souverain)}</strong>
+        </div>
+      </div>
       <p>${escapeHtml(model.usage)}</p>
+      <p class="model-reason"><strong>Pourquoi :</strong> ${escapeHtml(model.raison)}</p>
     </div>
     <dl class="usage-list">
       <div class="usage-row">
@@ -689,12 +781,39 @@ function normalizeRisk(value) {
 }
 
 function getModelAdvice(item) {
-  if (item.modele_recommande) return item.modele_recommande;
-  return DEFAULT_MODEL_BY_METIER[getMetier(item)] || {
-    principal: "GPT-5.5",
-    alternative: "Claude Opus 4.7",
-    usage: "Analyse et rédaction généraliste avec validation humaine.",
+  const profile = MODEL_PROFILES[getModelProfileKey(item)] || MODEL_PROFILES.general;
+  const existing = item.modele_recommande || {};
+
+  return {
+    principal: profile.principal || existing.principal,
+    alternative: profile.alternative || existing.alternative,
+    economique: existing.economique || profile.economique,
+    souverain: existing.souverain || profile.souverain,
+    usage: profile.usage || existing.usage,
+    raison: existing.raison || profile.raison,
   };
+}
+
+function getModelProfileKey(item) {
+  const metier = getMetier(item);
+  const taskType = getTaskType(item);
+  const risk = getRiskLevel(item);
+  const text = normalize(caseText(item));
+
+  if (metier === "DSI / Informatique" || text.includes("code") || text.includes("ticket") || text.includes("api") || text.includes("test")) return "coding";
+  if (metier === "Droit / Avocat" || text.includes("jurisprudence") || text.includes("clause")) return "legal";
+  if (metier === "Santé") return "health";
+  if (metier === "Conformité / Risques" || text.includes("kyc") || text.includes("audit")) return "compliance";
+  if (metier === "Finance" || metier === "Comptabilité") return "finance";
+  if (text.includes("pdf") || text.includes("corpus") || text.includes("piece") || text.includes("document") || text.includes("appel d offres") || text.includes("benchmark")) return "long-document";
+  if (metier === "Service client" && risk !== "Élevé") return "customer-volume";
+  if (taskType === "Rédiger") return "writing";
+  if (taskType === "Analyser" || taskType === "Décider / arbitrer") return "reasoning";
+  if (taskType === "Contrôler" && risk === "Élevé") return "compliance";
+  if (taskType === "Classer" || taskType === "Automatiser" || taskType === "Préparer") return "workflow";
+  if (taskType === "Synthétiser" && risk === "Faible") return "customer-volume";
+
+  return "general";
 }
 
 function getGuardrail(item) {
