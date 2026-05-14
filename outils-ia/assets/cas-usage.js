@@ -85,7 +85,7 @@ const nodes = {
   search: document.querySelector("#caseSearch"),
   intentFilters: document.querySelector("#intentFilters"),
   domainFilters: document.querySelector("#domainFilters"),
-  categoryFilters: document.querySelector("#categoryFilters"),
+  metierSelect: document.querySelector("#metierSelect"),
   topicFilters: document.querySelector("#topicFilters"),
   toolFilters: document.querySelector("#toolFilters"),
   domainBlock: document.querySelector("#domainFilterBlock"),
@@ -145,6 +145,16 @@ function bindCaseEvents() {
     resetFilters();
     renderCaseExplorer();
   });
+
+  nodes.metierSelect?.addEventListener("change", () => {
+    state.category = nodes.metierSelect.value;
+    state.domain = NO_SELECTION;
+    state.topic = NO_SELECTION;
+    state.intent = ALL;
+    state.tool = ALL;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
 }
 
 function renderCaseExplorer() {
@@ -154,21 +164,7 @@ function renderCaseExplorer() {
 }
 
 function renderFilters() {
-  renderChipGroup(
-    nodes.categoryFilters,
-    buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS),
-    state.category,
-    (value) => {
-      state.category = value === state.category ? NO_SELECTION : value;
-      state.domain = NO_SELECTION;
-      state.topic = NO_SELECTION;
-      state.intent = ALL;
-      state.tool = ALL;
-      resetCaseSelection();
-      renderCaseExplorer();
-    },
-    { variant: "role" }
-  );
+  renderMetierSelect();
 
   const domainCases = state.category
     ? state.cases.filter((item) => getMetier(item) === state.category)
@@ -213,14 +209,28 @@ function renderFilters() {
   renderFilterHint();
 }
 
-function renderChipGroup(root, values, currentValue, onSelect, options = {}) {
+function renderMetierSelect() {
+  if (!nodes.metierSelect) return;
+  const currentValue = state.category;
+  const options = buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS);
+
+  nodes.metierSelect.innerHTML = `
+    <option value="">Sélectionner un métier</option>
+    ${options.map((option) => (
+      `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)} (${option.count})</option>`
+    )).join("")}
+  `;
+  nodes.metierSelect.value = currentValue;
+}
+
+function renderChipGroup(root, values, currentValue, onSelect) {
   if (!root) return;
   root.innerHTML = "";
   values.forEach((entry) => {
     const option = typeof entry === "string" ? { value: entry, label: entry } : entry;
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `filter-chip ${options.variant === "role" ? "role-chip" : ""} ${option.value === currentValue ? "active" : ""}`;
+    button.className = `filter-chip ${option.value === currentValue ? "active" : ""}`;
     button.setAttribute("aria-pressed", String(option.value === currentValue));
     button.innerHTML = `
       <span>${escapeHtml(option.label || option.value)}</span>

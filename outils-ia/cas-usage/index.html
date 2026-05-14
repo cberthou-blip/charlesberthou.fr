@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-metiers-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-metiers-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -113,7 +113,10 @@
             <div class="case-filter-branch" aria-label="Filtres principaux">
               <div class="tool-filter-block case-filter-step">
                 <span class="filter-label">1. Métier</span>
-                <div class="chip-list" id="categoryFilters"></div>
+                <label class="case-select-field">
+                  <span>Choisir dans la liste</span>
+                  <select id="metierSelect" aria-label="Choisir un métier"></select>
+                </label>
               </div>
 
               <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
@@ -224,6 +227,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-metiers-v1" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-metiers-v2" defer></script>
 </body>
 </html>

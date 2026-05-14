@@ -2983,36 +2983,34 @@ section,
   background: #fff;
 }
 
-.case-filter-step:first-child .chip-list {
+.case-select-field {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 8px;
+  max-width: 520px;
 }
 
-.filter-chip.role-chip {
-  display: grid;
-  justify-content: stretch;
-  gap: 5px;
-  min-height: 82px;
-  border-radius: 8px;
-  padding: 12px 13px;
-  text-align: left;
-}
-
-.filter-chip.role-chip span {
+.case-select-field span {
   color: var(--ink);
   font-size: 0.94rem;
-  line-height: 1.18;
+  font-weight: 850;
 }
 
-.filter-chip.role-chip small {
-  width: fit-content;
-  border-radius: 999px;
-  background: rgba(6, 182, 212, 0.1);
-  padding: 3px 8px;
+.case-select-field select {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  padding: 0 42px 0 14px;
+  cursor: pointer;
 }
 
-.filter-chip.role-chip.active {
-  box-shadow: 0 12px 24px rgba(6, 182, 212, 0.12);
+.case-select-field select:focus {
+  border-color: var(--teal);
+  outline: 3px solid rgba(6, 182, 212, 0.14);
 }
 
 .case-filter-step[hidden],
