@@ -1,5 +1,6 @@
 const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
 const ALL = "Tous";
+const NO_SELECTION = "";
 const CASE_PAGE_SIZE = 12;
 
 const intentOptions = [
@@ -16,8 +17,9 @@ const intentOptions = [
 const state = {
   cases: [],
   query: "",
-  category: ALL,
-  domain: ALL,
+  category: NO_SELECTION,
+  domain: NO_SELECTION,
+  topic: NO_SELECTION,
   tool: ALL,
   intent: ALL,
   selectedId: null,
@@ -29,7 +31,13 @@ const nodes = {
   intentFilters: document.querySelector("#intentFilters"),
   domainFilters: document.querySelector("#domainFilters"),
   categoryFilters: document.querySelector("#categoryFilters"),
+  topicFilters: document.querySelector("#topicFilters"),
   toolFilters: document.querySelector("#toolFilters"),
+  domainBlock: document.querySelector("#domainFilterBlock"),
+  topicBlock: document.querySelector("#topicFilterBlock"),
+  advancedFilters: document.querySelector("#caseAdvancedFilters"),
+  filterHint: document.querySelector("#caseFilterHint"),
+  reset: document.querySelector("#caseResetFilters"),
   grid: document.querySelector("#caseGrid"),
   detail: document.querySelector("#caseDetail"),
   count: document.querySelector("#caseResultCount"),
@@ -52,9 +60,7 @@ async function initCaseExplorer() {
 
     nodes.total.textContent = state.cases.length;
     bindCaseEvents();
-    renderFilters();
-    renderCases();
-    renderDetail();
+    renderCaseExplorer();
   } catch (error) {
     nodes.grid.innerHTML = `<p class="empty-state">La bibliothèque n'a pas pu être chargée.</p>`;
   }
@@ -64,48 +70,78 @@ function bindCaseEvents() {
   nodes.search.addEventListener("input", () => {
     state.query = nodes.search.value;
     resetCaseSelection();
-    renderCases();
-    renderDetail();
+    renderCaseExplorer();
   });
 
   nodes.loadMore?.addEventListener("click", () => {
     state.visibleLimit += CASE_PAGE_SIZE;
     renderCases();
   });
+
+  nodes.reset?.addEventListener("click", () => {
+    resetFilters();
+    renderCaseExplorer();
+  });
+}
+
+function renderCaseExplorer() {
+  renderFilters();
+  renderCases();
+  renderDetail();
 }
 
 function renderFilters() {
+  renderChipGroup(nodes.categoryFilters, unique(state.cases.map((item) => item.categorie)), state.category, (value) => {
+    state.category = value === state.category ? NO_SELECTION : value;
+    state.domain = NO_SELECTION;
+    state.topic = NO_SELECTION;
+    state.intent = ALL;
+    state.tool = ALL;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  const domainCases = state.category
+    ? state.cases.filter((item) => item.categorie === state.category)
+    : [];
+
+  nodes.domainBlock?.toggleAttribute("hidden", !state.category);
+  renderChipGroup(nodes.domainFilters, unique(domainCases.map((item) => item.domaine)), state.domain, (value) => {
+    state.domain = value === state.domain ? NO_SELECTION : value;
+    state.topic = NO_SELECTION;
+    state.intent = ALL;
+    state.tool = ALL;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  const topicCases = state.domain
+    ? domainCases.filter((item) => item.domaine === state.domain)
+    : [];
+
+  nodes.topicBlock?.toggleAttribute("hidden", !state.domain);
+  renderChipGroup(nodes.topicFilters, unique(topicCases.map(getTopic)), state.topic, (value) => {
+    state.topic = value === state.topic ? NO_SELECTION : value;
+    resetCaseSelection();
+    renderCaseExplorer();
+  });
+
+  nodes.advancedFilters?.toggleAttribute("hidden", !hasActiveExploration());
+
   renderChipGroup(nodes.intentFilters, intentOptions.map((item) => item.label), state.intent, (value) => {
     state.intent = value;
     resetCaseSelection();
-    renderFilters();
-    renderCases();
-    renderDetail();
-  });
-
-  renderChipGroup(nodes.domainFilters, [ALL, ...unique(state.cases.map((item) => item.domaine))], state.domain, (value) => {
-    state.domain = value;
-    resetCaseSelection();
-    renderFilters();
-    renderCases();
-    renderDetail();
-  });
-
-  renderChipGroup(nodes.categoryFilters, [ALL, ...unique(state.cases.map((item) => item.categorie))], state.category, (value) => {
-    state.category = value;
-    resetCaseSelection();
-    renderFilters();
-    renderCases();
-    renderDetail();
+    renderCaseExplorer();
   });
 
   renderChipGroup(nodes.toolFilters, [ALL, ...unique(state.cases.map((item) => item.outil))], state.tool, (value) => {
     state.tool = value;
     resetCaseSelection();
-    renderFilters();
-    renderCases();
-    renderDetail();
+    renderCaseExplorer();
   });
+
+  nodes.reset?.toggleAttribute("hidden", !hasActiveExploration());
+  renderFilterHint();
 }
 
 function renderChipGroup(root, values, currentValue, onSelect) {
@@ -125,20 +161,33 @@ function renderChipGroup(root, values, currentValue, onSelect) {
 function renderCases() {
   nodes.grid.innerHTML = "";
 
-  const cases = getVisibleCases();
-  const displayedCases = cases.slice(0, state.visibleLimit);
-  nodes.visible.textContent = displayedCases.length;
-  nodes.count.textContent = hasActiveExploration() ? `${cases.length} cas` : `${cases.length} cas prioritaires`;
-
-  if (cases.length === 0) {
-    nodes.grid.innerHTML = `<p class="empty-state">Aucun cas ne correspond aux filtres. Essayez un mot plus simple : réunion, document, client, RH.</p>`;
-    nodes.detail.innerHTML = `<p class="empty-state">Aucun cas à afficher pour le moment.</p>`;
+  if (!hasActiveExploration()) {
+    state.selectedId = null;
+    nodes.visible.textContent = "0";
+    nodes.count.textContent = "Choisissez un filtre";
+    nodes.grid.innerHTML = `
+      <p class="empty-state">
+        Choisissez une grande famille, lancez une recherche ou affinez l'arborescence pour afficher les cas d'usage.
+      </p>
+    `;
     toggleLoadMore(0, 0);
     return;
   }
 
-  if (!displayedCases.some((item) => item.id === state.selectedId)) {
-    state.selectedId = displayedCases[0].id;
+  const cases = getVisibleCases();
+  const displayedCases = cases.slice(0, state.visibleLimit);
+  nodes.visible.textContent = displayedCases.length;
+  nodes.count.textContent = `${cases.length} cas`;
+
+  if (cases.length === 0) {
+    nodes.grid.innerHTML = `<p class="empty-state">Aucun cas ne correspond aux filtres. Essayez un mot plus simple : réunion, document, client, RH.</p>`;
+    state.selectedId = null;
+    toggleLoadMore(0, 0);
+    return;
+  }
+
+  if (state.selectedId && !cases.some((item) => item.id === state.selectedId)) {
+    state.selectedId = null;
   }
 
   displayedCases.forEach((item) => {
@@ -149,7 +198,6 @@ function renderCases() {
       <span>${escapeHtml(item.domaine)} · ${escapeHtml(item.categorie)}</span>
       <strong>${escapeHtml(item.tache)}</strong>
       <p>${escapeHtml(item.sortie)}</p>
-      <div class="tag-row compact-tags">${(item.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
       <em>${escapeHtml(item.outil)} · ${getMonthlyGainLabel(item)}</em>
     `;
     card.addEventListener("click", () => {
@@ -166,7 +214,7 @@ function renderCases() {
 function renderDetail() {
   const item = state.cases.find((entry) => entry.id === state.selectedId);
   if (!item) {
-    nodes.detail.innerHTML = `<p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>`;
+    nodes.detail.innerHTML = `<p class="empty-state">Sélectionnez un cas affiché pour voir les étapes.</p>`;
     return;
   }
 
@@ -179,6 +227,7 @@ function renderDetail() {
       </div>
     </div>
     <p class="detail-summary">${escapeHtml(item.sortie)}</p>
+    <div class="tag-row compact-tags case-detail-tags">${(item.tags || []).slice(0, 5).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
     <div class="tool-detail-metrics">
       <span><strong>${formatMinutes(item.gain_minutes)}</strong> gagnées par usage</span>
       <span><strong>${formatMinutes(getMonthlyGain(item))}</strong> par mois estimé</span>
@@ -241,8 +290,9 @@ function updateMiniGain() {
 function getVisibleCases() {
   const query = normalize(state.query);
   return state.cases
-    .filter((item) => state.category === ALL || item.categorie === state.category)
-    .filter((item) => state.domain === ALL || item.domaine === state.domain)
+    .filter((item) => !state.category || item.categorie === state.category)
+    .filter((item) => !state.domain || item.domaine === state.domain)
+    .filter((item) => !state.topic || getTopic(item) === state.topic)
     .filter((item) => state.tool === ALL || item.outil === state.tool)
     .filter((item) => matchesIntent(item))
     .filter((item) => {
@@ -277,8 +327,9 @@ function caseText(item) {
 function hasActiveExploration() {
   return Boolean(
     state.query.trim()
-    || state.category !== ALL
-    || state.domain !== ALL
+    || state.category
+    || state.domain
+    || state.topic
     || state.tool !== ALL
     || state.intent !== ALL
   );
@@ -287,6 +338,17 @@ function hasActiveExploration() {
 function resetCaseSelection() {
   state.selectedId = null;
   state.visibleLimit = CASE_PAGE_SIZE;
+}
+
+function resetFilters() {
+  state.query = "";
+  state.category = NO_SELECTION;
+  state.domain = NO_SELECTION;
+  state.topic = NO_SELECTION;
+  state.tool = ALL;
+  state.intent = ALL;
+  resetCaseSelection();
+  if (nodes.search) nodes.search.value = "";
 }
 
 function toggleLoadMore(visibleCount, totalCount) {
@@ -309,6 +371,35 @@ function normalize(value) {
 
 function unique(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b, "fr"));
+}
+
+function getTopic(item) {
+  return Array.isArray(item.chemin) && item.chemin[2] ? item.chemin[2] : item.domaine;
+}
+
+function renderFilterHint() {
+  if (!nodes.filterHint) return;
+
+  if (!hasActiveExploration()) {
+    nodes.filterHint.textContent = "Choisissez une grande famille ou utilisez la recherche pour afficher les cas d'usage.";
+    return;
+  }
+
+  const parts = [
+    state.category,
+    state.domain,
+    state.topic,
+    state.intent !== ALL ? state.intent : "",
+    state.tool !== ALL ? state.tool : "",
+  ].filter(Boolean);
+
+  if (state.query.trim()) {
+    parts.unshift(`Recherche : ${state.query.trim()}`);
+  }
+
+  nodes.filterHint.textContent = parts.length
+    ? `Sélection active : ${parts.join(" > ")}.`
+    : "Les cas filtrés s'affichent ci-dessous.";
 }
 
 function getMonthlyGain(item) {

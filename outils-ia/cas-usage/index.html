@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-layout-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-case-flow-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,7 +85,7 @@
             <span>Décrivez votre besoin métier</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
           </label>
-          <p>Les cas sont classés par gain potentiel. Vous pouvez ensuite affiner par intention, domaine ou famille d'outil.</p>
+          <p>Les cas s'affichent après une recherche ou un premier choix métier, pour éviter de partir d'une longue liste indistincte.</p>
         </div>
       </div>
     </section>
@@ -96,38 +96,53 @@
           <div class="case-step-heading">
             <span class="case-step-number">1</span>
             <div>
-              <h2 id="caseLibraryTitle">Explorateur de cas d'usage</h2>
-              <p>Explorez par besoin, métier, objectif ou outil.</p>
+              <h2 id="caseLibraryTitle">Choisir un point d'entrée</h2>
+              <p>Commencez par une famille métier, puis affinez si nécessaire.</p>
             </div>
           </div>
 
           <div class="tool-library-panel case-explorer-panel">
             <div class="case-filter-intro">
-              <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
-              <p>Filtrez la bibliothèque, ouvrez une fiche, puis qualifiez le gain, les données à fournir et les vérifications nécessaires.</p>
+              <div>
+                <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
+                <p>Choisissez une entrée simple. Les cas apparaîtront ensuite sous les filtres.</p>
+              </div>
+              <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
             </div>
 
-            <div class="case-filter-groups">
-              <div class="tool-filter-block">
-                <span class="filter-label">Intentions</span>
-                <div class="chip-list" id="intentFilters"></div>
-              </div>
-
-              <div class="tool-filter-block">
-                <span class="filter-label">Domaines métier</span>
-                <div class="chip-list" id="domainFilters"></div>
-              </div>
-
-              <div class="tool-filter-block">
-                <span class="filter-label">Familles</span>
+            <div class="case-filter-branch" aria-label="Filtres principaux">
+              <div class="tool-filter-block case-filter-step">
+                <span class="filter-label">1. Grande famille</span>
                 <div class="chip-list" id="categoryFilters"></div>
               </div>
 
-              <div class="tool-filter-block">
-                <span class="filter-label">Outils</span>
-                <div class="chip-list" id="toolFilters"></div>
+              <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
+                <span class="filter-label">2. Domaine métier</span>
+                <div class="chip-list" id="domainFilters"></div>
+              </div>
+
+              <div class="tool-filter-block case-filter-step" id="topicFilterBlock" hidden>
+                <span class="filter-label">3. Situation</span>
+                <div class="chip-list" id="topicFilters"></div>
               </div>
             </div>
+
+            <p class="case-filter-hint" id="caseFilterHint">Choisissez une grande famille ou utilisez la recherche pour afficher les cas d'usage.</p>
+
+            <details class="case-advanced-filters" id="caseAdvancedFilters" hidden>
+              <summary>Affiner par intention ou famille d'outil</summary>
+              <div class="case-filter-groups">
+                <div class="tool-filter-block">
+                  <span class="filter-label">Intentions</span>
+                  <div class="chip-list" id="intentFilters"></div>
+                </div>
+
+                <div class="tool-filter-block">
+                  <span class="filter-label">Outils</span>
+                  <div class="chip-list" id="toolFilters"></div>
+                </div>
+              </div>
+            </details>
 
             <div class="case-results-bar">
               <div>
@@ -153,7 +168,7 @@
           </div>
 
           <div class="tool-detail-panel case-detail-panel" id="caseDetail" aria-live="polite">
-            <p class="empty-state">Sélectionnez une fiche pour voir les étapes.</p>
+            <p class="empty-state">Sélectionnez un cas affiché pour voir les étapes.</p>
           </div>
         </aside>
       </div>
@@ -201,6 +216,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260514-tools-v1" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-layout-v2" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260514-case-flow-v1" defer></script>
 </body>
 </html>

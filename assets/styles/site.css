@@ -2904,6 +2904,8 @@ section,
 
 .case-filter-intro {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   gap: 6px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 18px;
@@ -2919,6 +2921,83 @@ section,
   max-width: 760px;
   color: var(--muted);
   line-height: 1.52;
+}
+
+.case-reset-button {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  padding: 0 12px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.case-reset-button:hover {
+  border-color: rgba(6, 182, 212, 0.35);
+  color: var(--ink);
+}
+
+.case-filter-branch {
+  display: grid;
+  gap: 14px;
+}
+
+.case-filter-step {
+  position: relative;
+  margin-top: 0;
+  border-left: 2px solid rgba(6, 182, 212, 0.18);
+  padding-left: 16px;
+}
+
+.case-filter-step::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(6, 182, 212, 0.45);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.case-filter-step[hidden],
+.case-advanced-filters[hidden],
+.case-reset-button[hidden] {
+  display: none;
+}
+
+.case-filter-hint {
+  border: 1px dashed rgba(6, 182, 212, 0.28);
+  border-radius: 8px;
+  background: rgba(6, 182, 212, 0.07);
+  color: var(--muted);
+  padding: 12px 14px;
+  line-height: 1.45;
+}
+
+.case-advanced-filters {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.case-advanced-filters summary {
+  width: fit-content;
+  color: var(--ink);
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.case-advanced-filters summary::marker {
+  color: var(--teal);
+}
+
+.case-advanced-filters:not([open]) .case-filter-groups {
+  display: none;
 }
 
 .case-filter-groups {
@@ -2958,6 +3037,10 @@ section,
   padding: 4px 9px;
   font-size: 0.72rem;
   font-weight: 850;
+}
+
+.case-detail-tags {
+  margin-top: 14px;
 }
 
 .case-detail-panel {
@@ -3036,6 +3119,14 @@ section,
     width: calc(100vw - 72px);
     max-width: 100%;
     overflow-wrap: anywhere;
+  }
+
+  .case-filter-intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-reset-button {
+    justify-self: start;
   }
 
   .case-hero-stats {
