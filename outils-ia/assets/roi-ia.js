@@ -1,6 +1,18 @@
-const ROI_STORAGE_KEY = "charlesberthou-ai-roi-v2";
-
 const roiDefaults = {
+  peopleCount: 0,
+  hoursSaved: 0,
+  hourlyCost: 0,
+  activeWeeks: 0,
+  adoptionRate: 0,
+  monthlyCost: 0,
+  setupCost: 0,
+  confidenceBuffer: 0,
+  qualityGainMonthly: 0,
+  reviewMonthlyCost: 0,
+  riskReserveRate: 0,
+};
+
+const roiExampleValues = {
   peopleCount: 25,
   hoursSaved: 1.5,
   hourlyCost: 45,
@@ -27,6 +39,7 @@ const roiNodes = {
   reviewMonthlyCost: document.querySelector("#reviewMonthlyCost"),
   riskReserveRate: document.querySelector("#riskReserveRate"),
   reset: document.querySelector("#resetRoi"),
+  example: document.querySelector("#loadRoiExample"),
   netGain: document.querySelector("#roiNetGain"),
   ratio: document.querySelector("#roiRatio"),
   payback: document.querySelector("#roiPayback"),
@@ -45,7 +58,7 @@ initRoiTool();
 
 function initRoiTool() {
   if (!document.querySelector("[data-roi-tool]")) return;
-  const values = loadRoiValues();
+  const values = { ...roiDefaults };
 
   Object.entries(roiDefaults).forEach(([key]) => {
     if (roiNodes[key]) roiNodes[key].value = values[key];
@@ -53,20 +66,27 @@ function initRoiTool() {
 
   Object.keys(roiDefaults).forEach((key) => {
     roiNodes[key]?.addEventListener("input", () => {
-      saveRoiValues(readRoiValues());
       renderRoi();
     });
   });
 
   roiNodes.reset.addEventListener("click", () => {
-    saveRoiValues(roiDefaults);
-    Object.entries(roiDefaults).forEach(([key, value]) => {
-      roiNodes[key].value = value;
-    });
+    applyRoiValues(roiDefaults);
+    renderRoi();
+  });
+
+  roiNodes.example?.addEventListener("click", () => {
+    applyRoiValues(roiExampleValues);
     renderRoi();
   });
 
   renderRoi();
+}
+
+function applyRoiValues(values) {
+  Object.entries(roiDefaults).forEach(([key]) => {
+    roiNodes[key].value = values[key] ?? 0;
+  });
 }
 
 function renderRoi() {
@@ -85,7 +105,12 @@ function renderRoi() {
   const monthlyNet = netGain / 12;
   const paybackMonths = prudentGain > 0 ? annualCost / (prudentGain / 12) : Infinity;
   const pilotBudget = Math.max(values.setupCost, Math.min(annualCost * 0.25, Math.max(0, prudentGain) * 0.18));
-  const reading = getRoiReading(netGain, roiRatio, paybackMonths);
+  const reading = grossGain === 0 && annualCost === 0
+    ? {
+      title: "Hypothèses à renseigner",
+      summary: "Renseignez un cas réel ou chargez l'exemple pour voir comment le simulateur interprète les gains, les coûts et la prudence.",
+    }
+    : getRoiReading(netGain, roiRatio, paybackMonths);
 
   roiNodes.netGain.textContent = formatCurrency(netGain);
   roiNodes.ratio.textContent = `${Math.round(roiRatio)} %`;
@@ -131,19 +156,6 @@ function readRoiValues() {
     key,
     Math.max(0, Number(roiNodes[key].value) || 0),
   ]));
-}
-
-function loadRoiValues() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(ROI_STORAGE_KEY) || "null");
-    return parsed && typeof parsed === "object" ? { ...roiDefaults, ...parsed } : roiDefaults;
-  } catch (error) {
-    return roiDefaults;
-  }
-}
-
-function saveRoiValues(values) {
-  localStorage.setItem(ROI_STORAGE_KEY, JSON.stringify(values));
 }
 
 function formatCurrency(value) {

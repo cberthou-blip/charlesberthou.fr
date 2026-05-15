@@ -1,6 +1,3 @@
-const MATURITY_STORAGE_KEY = "charlesberthou-ai-maturity-v1";
-const REGISTER_STORAGE_KEY = "charlesberthou-ai-register-v1";
-
 const maturityAxes = [
   {
     id: "usage",
@@ -64,7 +61,7 @@ const maturityNodes = {
   registerSignal: document.querySelector("#registerSignal"),
 };
 
-let scores = loadScores();
+let scores = getDefaultScores();
 
 initMaturityTool();
 
@@ -73,8 +70,7 @@ function initMaturityTool() {
   renderQuestions();
   renderMaturity();
   maturityNodes.reset.addEventListener("click", () => {
-    scores = Object.fromEntries(maturityAxes.map((axis) => [axis.id, 0]));
-    saveScores();
+    scores = getDefaultScores();
     renderQuestions();
     renderMaturity();
   });
@@ -101,7 +97,6 @@ function renderQuestions() {
     `;
     section.querySelector("input").addEventListener("input", (event) => {
       scores[axis.id] = Number(event.target.value);
-      saveScores();
       renderQuestions();
       renderMaturity();
     });
@@ -155,20 +150,7 @@ function renderMaturity() {
 }
 
 function renderRegisterSignal() {
-  let register = [];
-  try {
-    register = JSON.parse(localStorage.getItem(REGISTER_STORAGE_KEY) || "[]");
-  } catch (error) {
-    register = [];
-  }
-
-  if (!Array.isArray(register) || register.length === 0) {
-    maturityNodes.registerSignal.textContent = "Aucun usage n'est encore inscrit dans le registre local. Le diagnostic reste donc centré sur la perception de maturité.";
-    return;
-  }
-
-  const highRisk = register.filter((item) => item.riskLevel === "élevé").length;
-  maturityNodes.registerSignal.textContent = `${register.length} usage${register.length > 1 ? "s" : ""} dans le registre local, dont ${highRisk} à risque élevé. Reliez les priorités du test aux cas déjà suivis.`;
+  maturityNodes.registerSignal.textContent = "Le diagnostic démarre sans reprendre automatiquement le registre local. Ouvrez le registre IA pour documenter les usages retenus.";
 }
 
 function getTotalScore() {
@@ -223,18 +205,8 @@ function getScoreLabel(value) {
   return ["Absent", "Initial", "En cours", "Installé", "Maîtrisé"][value] || "Absent";
 }
 
-function loadScores() {
-  const fallback = Object.fromEntries(maturityAxes.map((axis) => [axis.id, 0]));
-  try {
-    const parsed = JSON.parse(localStorage.getItem(MATURITY_STORAGE_KEY) || "null");
-    return parsed && typeof parsed === "object" ? { ...fallback, ...parsed } : fallback;
-  } catch (error) {
-    return fallback;
-  }
-}
-
-function saveScores() {
-  localStorage.setItem(MATURITY_STORAGE_KEY, JSON.stringify(scores));
+function getDefaultScores() {
+  return Object.fromEntries(maturityAxes.map((axis) => [axis.id, 0]));
 }
 
 function escapeHtml(value) {

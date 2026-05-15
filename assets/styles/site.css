@@ -2979,6 +2979,17 @@ section,
   min-width: 0;
 }
 
+.compact-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.compact-actions .button {
+  min-height: 38px;
+  padding-inline: 13px;
+  font-size: 0.88rem;
+}
+
 .case-kicker {
   color: var(--teal);
   font-size: 0.86rem;
