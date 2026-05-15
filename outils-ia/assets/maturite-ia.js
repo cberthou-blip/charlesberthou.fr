@@ -51,8 +51,13 @@ const maturityNodes = {
   scoreCard: document.querySelector("#maturityScoreCard"),
   score: document.querySelector("#maturityScore"),
   level: document.querySelector("#maturityLevel"),
+  insight: document.querySelector("#maturityScoreInsight"),
+  percent: document.querySelector("#maturityScorePercent"),
+  blocker: document.querySelector("#maturityScoreBlocker"),
   title: document.querySelector("#maturityTitle"),
   summary: document.querySelector("#maturitySummary"),
+  profile: document.querySelector("#maturityProfile"),
+  nextStep: document.querySelector("#maturityNextStep"),
   bars: document.querySelector("#axisBars"),
   priorities: document.querySelector("#maturityPriorities"),
   reset: document.querySelector("#resetMaturity"),
@@ -116,8 +121,13 @@ function renderMaturity() {
 
   maturityNodes.score.textContent = `${total}/${max}`;
   maturityNodes.level.textContent = level.label;
+  maturityNodes.insight.textContent = level.insight;
+  maturityNodes.percent.textContent = `${percent} %`;
+  maturityNodes.blocker.textContent = weakAxes[0]?.title || "-";
   maturityNodes.title.textContent = level.title;
   maturityNodes.summary.textContent = level.summary;
+  maturityNodes.profile.textContent = level.profile;
+  maturityNodes.nextStep.textContent = level.nextStep;
   maturityNodes.scoreCard.style.setProperty("--score-angle", `${percent * 3.6}deg`);
 
   maturityNodes.bars.innerHTML = maturityAxes.map((axis) => {
@@ -170,6 +180,9 @@ function getLevel(total) {
     return {
       label: "Fondations insuffisantes",
       title: "Fondations à poser",
+      profile: "Risque d'usage invisible",
+      nextStep: "Cadrer",
+      insight: "Le sujet doit d'abord devenir visible, gouverné et compréhensible.",
       summary: "L'IA existe probablement déjà dans les pratiques, mais sans cadre commun. Commencez par des règles lisibles, une formation courte et deux cas d'usage limités.",
     };
   }
@@ -178,6 +191,9 @@ function getLevel(total) {
     return {
       label: "Exploration dispersée",
       title: "Exploration à structurer",
+      profile: "Potentiel non orchestré",
+      nextStep: "Prioriser",
+      insight: "La valeur vient maintenant du choix des bons usages et d'une mesure simple.",
       summary: "Les idées sont présentes, mais le pilotage demeure fragile. L'enjeu consiste à convertir les essais dispersés en portefeuille de cas priorisés.",
     };
   }
@@ -186,6 +202,9 @@ function getLevel(total) {
     return {
       label: "Structuration engagée",
       title: "Adoption structurée",
+      profile: "Passage au pilotage",
+      nextStep: "Mesurer",
+      insight: "Les fondations existent ; il faut objectiver les gains et fermer les angles morts.",
       summary: "Les fondations sont en place. L'effort doit désormais porter sur la mesure réelle des gains, la maîtrise des risques et la montée en compétence.",
     };
   }
@@ -193,6 +212,9 @@ function getLevel(total) {
   return {
     label: "Maturité avancée",
     title: "Maturité avancée",
+    profile: "Organisation scalable",
+    nextStep: "Industrialiser",
+    insight: "Le sujet peut passer d'un portefeuille de pilotes à un système de déploiement.",
     summary: "L'organisation peut préparer le passage à l'échelle : standards communs, revue régulière des usages et industrialisation maîtrisée.",
   };
 }

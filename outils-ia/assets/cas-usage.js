@@ -192,6 +192,7 @@ const nodes = {
   visible: document.querySelector("[data-visible-count]"),
   loadMoreRow: document.querySelector("#caseLoadMoreRow"),
   loadMore: document.querySelector("#caseLoadMore"),
+  quickStarts: document.querySelectorAll("[data-case-quick-field]"),
 };
 
 initCaseExplorer();
@@ -274,6 +275,22 @@ function bindCaseEvents() {
     state.risk = nodes.riskSelect.value;
     resetCaseSelection();
     renderCaseExplorer();
+  });
+
+  nodes.quickStarts?.forEach((button) => {
+    button.addEventListener("click", () => {
+      const field = button.dataset.caseQuickField;
+      const value = button.dataset.caseQuickValue;
+      if (!field || !(field in state)) return;
+      state[field] = value;
+      if (field === "category") {
+        state.domain = NO_SELECTION;
+        state.topic = NO_SELECTION;
+      }
+      resetCaseSelection();
+      renderCaseExplorer();
+      document.querySelector("#caseLibraryTitle")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
 }
 

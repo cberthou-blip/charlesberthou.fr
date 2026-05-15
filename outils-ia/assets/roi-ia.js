@@ -9,6 +9,9 @@ const roiDefaults = {
   monthlyCost: 1500,
   setupCost: 6000,
   confidenceBuffer: 20,
+  qualityGainMonthly: 0,
+  reviewMonthlyCost: 400,
+  riskReserveRate: 10,
 };
 
 const roiNodes = {
@@ -20,6 +23,9 @@ const roiNodes = {
   monthlyCost: document.querySelector("#monthlyCost"),
   setupCost: document.querySelector("#setupCost"),
   confidenceBuffer: document.querySelector("#confidenceBuffer"),
+  qualityGainMonthly: document.querySelector("#qualityGainMonthly"),
+  reviewMonthlyCost: document.querySelector("#reviewMonthlyCost"),
+  riskReserveRate: document.querySelector("#riskReserveRate"),
   reset: document.querySelector("#resetRoi"),
   netGain: document.querySelector("#roiNetGain"),
   ratio: document.querySelector("#roiRatio"),
@@ -28,9 +34,11 @@ const roiNodes = {
   summary: document.querySelector("#roiSummary"),
   hours: document.querySelector("#roiHours"),
   grossGain: document.querySelector("#roiGrossGain"),
+  qualityGain: document.querySelector("#roiQualityGain"),
   prudentGain: document.querySelector("#roiPrudentGain"),
   annualCost: document.querySelector("#roiAnnualCost"),
   monthlyNet: document.querySelector("#roiMonthlyNet"),
+  pilotBudget: document.querySelector("#roiPilotBudget"),
 };
 
 initRoiTool();
@@ -65,14 +73,18 @@ function renderRoi() {
   const values = readRoiValues();
   const adoption = values.adoptionRate / 100;
   const prudence = Math.min(values.confidenceBuffer, 80) / 100;
+  const riskReserve = Math.min(values.riskReserveRate, 80) / 100;
   const annualHours = values.peopleCount * values.hoursSaved * values.activeWeeks * adoption;
-  const grossGain = annualHours * values.hourlyCost;
-  const prudentGain = grossGain * (1 - prudence);
-  const annualCost = (values.monthlyCost * 12) + values.setupCost;
+  const timeGain = annualHours * values.hourlyCost;
+  const qualityGain = values.qualityGainMonthly * 12;
+  const grossGain = timeGain + qualityGain;
+  const prudentGain = grossGain * (1 - prudence) * (1 - riskReserve);
+  const annualCost = (values.monthlyCost * 12) + values.setupCost + (values.reviewMonthlyCost * 12);
   const netGain = prudentGain - annualCost;
   const roiRatio = annualCost > 0 ? (netGain / annualCost) * 100 : 0;
   const monthlyNet = netGain / 12;
   const paybackMonths = prudentGain > 0 ? annualCost / (prudentGain / 12) : Infinity;
+  const pilotBudget = Math.max(values.setupCost, Math.min(annualCost * 0.25, Math.max(0, prudentGain) * 0.18));
   const reading = getRoiReading(netGain, roiRatio, paybackMonths);
 
   roiNodes.netGain.textContent = formatCurrency(netGain);
@@ -82,9 +94,11 @@ function renderRoi() {
   roiNodes.summary.textContent = reading.summary;
   roiNodes.hours.textContent = `${Math.round(annualHours).toLocaleString("fr-FR")} h`;
   roiNodes.grossGain.textContent = formatCurrency(grossGain);
+  roiNodes.qualityGain.textContent = formatCurrency(qualityGain);
   roiNodes.prudentGain.textContent = formatCurrency(prudentGain);
   roiNodes.annualCost.textContent = formatCurrency(annualCost);
   roiNodes.monthlyNet.textContent = formatCurrency(monthlyNet);
+  roiNodes.pilotBudget.textContent = formatCurrency(pilotBudget);
 }
 
 function getRoiReading(netGain, roiRatio, paybackMonths) {

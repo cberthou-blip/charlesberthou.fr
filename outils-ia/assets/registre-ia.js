@@ -129,6 +129,15 @@ function renderRegisterFilters() {
 
 function renderChipGroup(root, values, currentValue, onSelect) {
   if (!root) return;
+
+  if (root.tagName === "SELECT") {
+    root.innerHTML = values.map((value) => (
+      `<option value="${escapeHtml(value)}" ${value === currentValue ? "selected" : ""}>${escapeHtml(value)}</option>`
+    )).join("");
+    root.onchange = () => onSelect(root.value);
+    return;
+  }
+
   root.innerHTML = "";
   values.forEach((value) => {
     const button = document.createElement("button");

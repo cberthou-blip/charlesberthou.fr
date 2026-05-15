@@ -100,19 +100,31 @@
           <div class="register-filter-grid">
             <div class="tool-filter-block">
               <span class="filter-label">Domaine</span>
-              <div class="chip-list" id="registerDepartmentFilters"></div>
+              <label class="case-select-field compact">
+                <span>Fonction concern&eacute;e</span>
+                <select id="registerDepartmentFilters" aria-label="Filtrer par domaine"></select>
+              </label>
             </div>
             <div class="tool-filter-block">
               <span class="filter-label">Risque</span>
-              <div class="chip-list" id="registerRiskFilters"></div>
+              <label class="case-select-field compact">
+                <span>Niveau de risque</span>
+                <select id="registerRiskFilters" aria-label="Filtrer par risque"></select>
+              </label>
             </div>
             <div class="tool-filter-block">
               <span class="filter-label">Maturité</span>
-              <div class="chip-list" id="registerMaturityFilters"></div>
+              <label class="case-select-field compact">
+                <span>&Eacute;tat de maturit&eacute;</span>
+                <select id="registerMaturityFilters" aria-label="Filtrer par maturit&eacute;"></select>
+              </label>
             </div>
             <div class="tool-filter-block">
               <span class="filter-label">Impact</span>
-              <div class="chip-list" id="registerImpactFilters"></div>
+              <label class="case-select-field compact">
+                <span>Impact attendu</span>
+                <select id="registerImpactFilters" aria-label="Filtrer par impact"></select>
+              </label>
             </div>
           </div>
           <div class="source-case-list" id="sourceCaseList" aria-live="polite"></div>
@@ -160,6 +172,15 @@
         <article class="content-card">
           <h2>Avant le registre</h2>
           <p>Pour alimenter le registre, il est utile de partir d'un <a class="text-link" href="/outils-ia/cas-usage/">cas d'usage IA</a> suffisamment clair et d'avoir estimé son ordre de grandeur économique avec le <a class="text-link" href="/outils-ia/roi-ia/">calculateur de ROI IA</a>.</p>
+        </article>
+        <article class="content-card">
+          <h2>Point de vigilance AI Act</h2>
+          <p>Le registre n'est pas seulement un inventaire. Il aide &agrave; rep&eacute;rer les usages sensibles, les donn&eacute;es mobilis&eacute;es, les responsables et les revues &agrave; pr&eacute;voir. Pour les syst&egrave;mes &agrave; haut risque, l'AI Act pr&eacute;voit notamment des obligations pour les d&eacute;ployeurs et des logiques d'enregistrement selon les cas.</p>
+          <p><a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-26" target="_blank" rel="noopener noreferrer">Voir l'article 26</a> et <a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-49" target="_blank" rel="noopener noreferrer">l'article 49</a>.</p>
+        </article>
+        <article class="content-card">
+          <h2>Rythme de pilotage</h2>
+          <p>Une revue trimestrielle suffit souvent pour commencer : supprimer les usages non pertinents, renforcer les garde-fous des usages sensibles et transformer les cas utiles en standards partag&eacute;s.</p>
         </article>
       </div>
     </section>

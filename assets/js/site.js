@@ -38,6 +38,10 @@ function ensureIconSprite() {
         <path d="M4 6h16v12H4z" />
         <path d="M4 7l8 6 8-6" />
       </symbol>
+      <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+        <path d="M12 19V5" />
+        <path d="M6 11l6-6 6 6" />
+      </symbol>
     </svg>
   `);
 }
@@ -277,9 +281,67 @@ function hydrateHomeContactForm() {
   });
 }
 
+function hydrateBackToTop() {
+  if (document.querySelector("[data-back-to-top]")) return;
+
+  const button = document.createElement("button");
+  button.className = "back-to-top";
+  button.type = "button";
+  button.setAttribute("data-back-to-top", "");
+  button.setAttribute("aria-label", "Remonter en haut de la page");
+  button.innerHTML = `<svg aria-hidden="true"><use href="#icon-arrow-up"></use></svg>`;
+  document.body.appendChild(button);
+
+  const mobileQuery = window.matchMedia("(max-width: 719px)");
+  const updateVisibility = () => {
+    const shouldShow = mobileQuery.matches && window.scrollY > 520;
+    button.classList.toggle("is-visible", shouldShow);
+  };
+
+  button.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  mobileQuery.addEventListener?.("change", updateVisibility);
+  updateVisibility();
+}
+
+function hydrateToolSwitcher() {
+  const main = document.querySelector("main.tool-page");
+  const hero = main?.querySelector(".tool-hero, .case-action-hero");
+  if (!main || !hero || main.querySelector(".tool-switcher")) return;
+
+  const tools = [
+    { href: "/outils-ia/maturite-ia/", label: "Maturit\u00e9" },
+    { href: "/outils-ia/cas-usage/", label: "Cas d'usage" },
+    { href: "/outils-ia/roi-ia/", label: "ROI" },
+    { href: "/outils-ia/registre-ia/", label: "Registre" },
+  ];
+  const currentPath = `${window.location.pathname.replace(/\/index\.html$/, "/").replace(/\/?$/, "/")}`;
+
+  const switcher = document.createElement("nav");
+  switcher.className = "tool-switcher";
+  switcher.setAttribute("aria-label", "Acc\u00e8s rapide aux outils IA");
+  switcher.innerHTML = `
+    <div class="container tool-switcher-inner">
+      <span>Outils IA</span>
+      <div>
+        ${tools.map((tool) => {
+          const isCurrent = currentPath === tool.href;
+          return `<a href="${tool.href}" ${isCurrent ? 'aria-current="page"' : ""}>${tool.label}</a>`;
+        }).join("")}
+      </div>
+    </div>
+  `;
+  hero.insertAdjacentElement("afterend", switcher);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   ensureIconSprite();
   enhanceMobileNavigation();
+  hydrateBackToTop();
+  hydrateToolSwitcher();
   renderBlogAreas();
   hydrateShareButtons();
   hydrateHomeContactForm();
