@@ -1,8 +1,48 @@
 {
   "posts": [
     {
-      "title": "Le token, prochaine monnaie de l’IA",
-      "description": "Une lecture économique du token comme nouvelle unité comptable de l’IA : coût du calcul, infrastructures, dépendance d’usage et discipline de consommation.",
+      "title": "Registre IA : modèle gratuit et méthode simple",
+      "description": "Pourquoi tenir un registre IA, quelles informations conserver et comment démarrer avec un modèle gratuit avant de structurer une gouvernance plus complète.",
+      "date": "2026-05-20",
+      "readingTime": "8 min",
+      "url": "/blog/registre-ia-modele-gratuit/",
+      "tags": ["IA", "Gouvernance", "Registre"]
+    },
+    {
+      "title": "Cas d'usage IA en entreprise : comment prioriser",
+      "description": "Une méthode simple pour choisir les bons pilotes IA selon la valeur, l'effort, les données, le risque et l'adoption.",
+      "date": "2026-05-19",
+      "readingTime": "7 min",
+      "url": "/blog/cas-usage-ia-entreprise-prioriser/",
+      "tags": ["IA", "Entreprise", "Cas d'usage"]
+    },
+    {
+      "title": "Shadow AI : cadrer les usages sans bloquer",
+      "description": "Comment rendre visibles les usages IA non encadrés avec des règles simples, de la formation et un registre partagé.",
+      "date": "2026-05-18",
+      "readingTime": "7 min",
+      "url": "/blog/shadow-ai-cadrer-sans-bloquer/",
+      "tags": ["IA", "Shadow AI", "Gouvernance"]
+    },
+    {
+      "title": "ROI IA : exemple de calcul avant un pilote",
+      "description": "Un exemple de calcul de ROI IA avec temps gagné, adoption, coût complet, validation humaine et marge de prudence.",
+      "date": "2026-05-17",
+      "readingTime": "7 min",
+      "url": "/blog/roi-ia-exemple-calcul-pilote/",
+      "tags": ["IA", "ROI", "Pilotage"]
+    },
+    {
+      "title": "AI Act et registre IA : ce qu'une PME peut documenter",
+      "description": "Repères pratiques pour documenter finalités, données, responsables, validation humaine et revues dans une PME.",
+      "date": "2026-05-16",
+      "readingTime": "8 min",
+      "url": "/blog/ai-act-registre-ia-pme/",
+      "tags": ["IA", "AI Act", "PME"]
+    },
+    {
+      "title": "Le token, prochaine monnaie de l'IA",
+      "description": "Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.",
       "date": "2026-05-11",
       "readingTime": "9 min",
       "url": "/blog/le-token-prochaine-monnaie-ia/",

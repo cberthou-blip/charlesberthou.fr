@@ -4,5 +4,6 @@ Allow: /services/
 Allow: /outils-ia/
 Allow: /resume-llm/
 Allow: /llms.txt
+Allow: /llms-full.txt
 
 Sitemap: https://charlesberthou.fr/sitemap.xml

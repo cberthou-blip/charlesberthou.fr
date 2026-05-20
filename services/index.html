@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -59,11 +59,23 @@
         "@id": "https://charlesberthou.fr/services/#offer-catalog",
         "name": "Services d'accompagnement numérique",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aide au cadrage IA" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lecture de l'existant numérique et logiciel" } },
+          {
+            "@type": "Offer",
+            "url": "https://charlesberthou.fr/services/conseil-ia/",
+            "itemOffered": { "@type": "Service", "name": "Conseil IA entreprise" }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://charlesberthou.fr/services/audit-numerique/",
+            "itemOffered": { "@type": "Service", "name": "Audit numérique et outils métier" }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://charlesberthou.fr/services/automatisation-agents-ia/",
+            "itemOffered": { "@type": "Service", "name": "Automatisation et agents IA" }
+          },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conception et réalisation de solutions web, logiciels et SaaS" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement transformation numérique" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cadrage d'automatisation" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement transformation numérique" } }
         ]
       },
       {
@@ -151,6 +163,36 @@
     </section>
 
     <section class="section soft">
+      <div class="container">
+        <div class="section-heading wide">
+          <p class="eyebrow">Services ciblés</p>
+          <h2>Trois portes d'entrée pour des besoins déjà identifiables.</h2>
+          <p>Ces pages détaillent les demandes les plus fréquentes : cadrer l'IA, relire l'existant numérique ou sécuriser une automatisation avant un pilote.</p>
+        </div>
+        <div class="grid three">
+          <a class="card" href="/services/conseil-ia/">
+            <p class="meta">IA en entreprise</p>
+            <h3>Conseil IA et cadrage d'usages</h3>
+            <p>Prioriser les cas d'usage, estimer la valeur, qualifier les données et documenter les risques avant un déploiement.</p>
+            <span class="text-link">Voir le service</span>
+          </a>
+          <a class="card" href="/services/audit-numerique/">
+            <p class="meta">Existant numérique</p>
+            <h3>Audit numérique et outils métier</h3>
+            <p>Relire les outils, processus, fichiers critiques et irritants pour choisir les chantiers utiles.</p>
+            <span class="text-link">Voir le service</span>
+          </a>
+          <a class="card" href="/services/automatisation-agents-ia/">
+            <p class="meta">Pilotes opérationnels</p>
+            <h3>Automatisation et agents IA</h3>
+            <p>Cadrer les tâches, les données, les validations humaines et les conditions de réussite d'un pilote.</p>
+            <span class="text-link">Voir le service</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container">
         <div class="section-heading wide">
           <p class="eyebrow">Domaines d'intervention</p>
@@ -311,13 +353,48 @@
     <div class="container footer-grid">
       <div class="footer-brandline">
         <strong>charlesberthou.fr</strong>
-        <span>&copy; Charles Berthou &middot; Analyses et outils pour comprendre, apprendre et transformer avec&nbsp;l'IA.</span>
+        <p>Ressource francophone sur l'IA appliquée : outils gratuits, articles de fond et accompagnement pour cadrer les usages IA, mesurer le ROI, tenir un registre et avancer avec méthode.</p>
       </div>
-      <div class="footer-links" aria-label="Liens utiles">
-        <a href="/confidentialite/">Confidentialit&eacute;</a>
-        <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
-        <a href="/sitemap.xml">Sitemap</a>
-        <a href="/#contact">Contact</a>
+      <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-tools-title">
+          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
+          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
+          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <a href="/ialearning/">IA Learning</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-services-title">
+          <p class="footer-heading" id="footer-services-title">Services</p>
+          <a href="/services/">Vue d'ensemble</a>
+          <a href="/services/conseil-ia/">Conseil IA entreprise</a>
+          <a href="/services/audit-numerique/">Audit numérique</a>
+          <a href="/services/automatisation-agents-ia/">Automatisation et agents IA</a>
+          <a href="/#contact">Contact</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-articles-title">
+          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
+          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
+          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
+          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
+          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
+          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-llm-title">
+          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
+          <a href="/resume-llm/">Résumé LLM</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/llms-full.txt">llms-full.txt</a>
+          <a href="/sitemap.xml">Sitemap XML</a>
+          <a href="/a-propos/">À propos</a>
+        </section>
+      </nav>
+      <div class="footer-bottom">
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits, conseil IA et culture numérique.</p>
+        <div class="footer-links" aria-label="Liens secondaires">
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/#contact">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
