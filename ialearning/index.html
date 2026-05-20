@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA Learning — formation IA gratuite</title>
-<meta name="description" content="Formation IA gratuite et gamifiée pour comprendre les bases de l'intelligence artificielle, progresser par modules, quiz, défis et mode équipe." />
+<title>IA Learning | Formation IA gratuite avec quiz</title>
+<meta name="description" content="Formation IA gratuite pour comprendre l'intelligence artificielle, progresser par modules, quiz, défis et installer une culture IA commune." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://charlesberthou.fr/ialearning/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1301,8 +1302,10 @@ body::before {
 .confirm-box-btns{display:flex;gap:10px;justify-content:center;}
 
 </style>
-<meta property="og:title" content="IA Learning — Montez en compétences, et en niveau">
-<meta property="og:description" content="Formation IA gamifiée : 10 modules, quiz chronométrés, classement, défis entre collègues et mode équipe. 100% gratuit.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="charlesberthou.fr">
+<meta property="og:title" content="IA Learning | Formation IA gratuite">
+<meta property="og:description" content="Formation IA gratuite avec modules, quiz, progression, défis et mode équipe pour installer les bases de l'IA.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charlesberthou.fr/ialearning/">
 <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png">
@@ -1320,6 +1323,12 @@ body::before {
   "operatingSystem": "Web",
   "inLanguage": "fr-FR",
   "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
   "description": "Formation IA gratuite et gamifiée pour comprendre les bases de l'intelligence artificielle, progresser par modules, quiz, défis et mode équipe.",
   "featureList": [
     "Modules d'apprentissage IA",
@@ -1338,10 +1347,21 @@ body::before {
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils IA gratuits", "item": "https://charlesberthou.fr/outils-ia/" },
+    { "@type": "ListItem", "position": 3, "name": "IA Learning", "item": "https://charlesberthou.fr/ialearning/" }
+  ]
+}
+</script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="/assets/js/site.js?v=20260514-ialearning-nav-v1" defer></script>
+<script src="/assets/js/site.js?v=20260515-seo-v4" defer></script>
 </head>
 <body>
 
@@ -1355,7 +1375,7 @@ body::before {
       <nav class="main-nav" aria-label="Navigation principale">
         <a href="/#outils-ia">Outils IA</a>
         <a href="/#articles">Articles</a>
-        <a href="/#services">Services</a>
+        <a href="/services/">Services</a>
         <a href="/#contact">Contact</a>
       </nav>
       <button class="btn btn-primary btn-sm learning-login-button" id="btn-landing-login" type="button">Se connecter</button>

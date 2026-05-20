@@ -4,58 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests" />
-  <title>Services | Charles Berthou</title>
-  <meta name="description" content="Services de Charles Berthou. Page en construction, avec contact possible pour échanger autour d'un besoin d'automatisation, d'agentisation ou de transformation IA." />
+  <title>Services IA, audit et transformation numérique | Charles Berthou</title>
+  <meta name="description" content="Conseil, audit, accompagnement et cadrage autour des systèmes d'information, logiciels, IA, automatisation et transformation numérique." />
   <link rel="canonical" href="https://charlesberthou.fr/services/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Services | Charles Berthou" />
-  <meta property="og:description" content="Page services en construction, avec contact possible autour d'un besoin d'automatisation, d'agentisation ou de transformation IA." />
+  <meta property="og:title" content="Services IA, audit et transformation numérique" />
+  <meta property="og:description" content="Conseil, audit, accompagnement et cadrage pour transformer les usages numériques, logiciels et IA avec méthode." />
   <meta property="og:url" content="https://charlesberthou.fr/services/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Services | Charles Berthou" />
-  <meta name="twitter:description" content="Page services en construction, contact possible autour de l'automatisation, des agents IA et de la transformation IA." />
+  <meta name="twitter:title" content="Services IA, audit et transformation numérique" />
+  <meta name="twitter:description" content="Conseil, audit, accompagnement, cadrage SI, logiciels, IA et transformation numérique." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-footer-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260520-services-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Services",
-    "url": "https://charlesberthou.fr/services/",
-    "inLanguage": "fr-FR",
-    "description": "Page services en construction, avec contact possible autour d'un besoin d'automatisation, d'agentisation, de cadrage d'usage IA, de registre IA, de ROI IA ou de formation.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "charlesberthou.fr",
-      "url": "https://charlesberthou.fr/"
-    },
-    "about": [
-      "intelligence artificielle",
-      "transformation IA",
-      "cas d'usage IA",
-      "registre IA",
-      "ROI IA",
-      "automatisation",
-      "agents IA"
-    ],
-    "mainEntity": {
-      "@type": "ItemList",
-      "name": "Sujets pouvant être clarifiés",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Cadrer un cas d'usage IA" },
-        { "@type": "ListItem", "position": 2, "name": "Estimer le ROI d'un usage IA" },
-        { "@type": "ListItem", "position": 3, "name": "Mettre en place un registre IA" },
-        { "@type": "ListItem", "position": 4, "name": "Explorer des automatisations et agents IA" }
-      ]
-    }
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://charlesberthou.fr/services/#webpage",
+        "name": "Services IA, audit et transformation numérique",
+        "url": "https://charlesberthou.fr/services/",
+        "inLanguage": "fr-FR",
+        "description": "Conseil, audit, accompagnement et cadrage autour des systèmes d'information, logiciels, IA, automatisation et transformation numérique.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "charlesberthou.fr",
+          "url": "https://charlesberthou.fr/"
+        },
+        "about": [
+          "conseil IA",
+          "audit numérique",
+          "accompagnement transformation numérique",
+          "systèmes d'information",
+          "logiciels",
+          "automatisation",
+          "cadrage de projet IA"
+        ],
+        "mainEntity": { "@id": "https://charlesberthou.fr/services/#offer-catalog" }
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": "https://charlesberthou.fr/services/#offer-catalog",
+        "name": "Services de conseil, audit et accompagnement numérique",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conseil et cadrage IA" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audit de systèmes d'information et logiciels" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement transformation numérique" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cadrage d'automatisation et agents IA" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://charlesberthou.fr/services/" }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -67,7 +81,7 @@
       <nav class="main-nav" aria-label="Navigation principale">
         <a href="/#outils-ia">Outils IA</a>
         <a href="/#articles">Articles</a>
-        <a href="/#services">Services</a>
+        <a href="/services/" aria-current="page">Services</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
@@ -77,24 +91,123 @@
     <section class="page-hero services-page-hero">
       <div class="container">
         <p class="eyebrow">Services</p>
-        <h1>Services en construction.</h1>
-        <p class="lead">Pour un besoin d'automatisation, d'agentisation ou de transformation IA, vous pouvez me contacter pour échanger.</p>
+        <h1>Conseil, audit et accompagnement pour vos usages numériques et IA.</h1>
+        <p class="lead">J'aide à clarifier les besoins, cadrer les décisions et transformer des idées numériques, logicielles ou IA en trajectoires concrètes, compréhensibles et mesurables.</p>
+        <div class="actions">
+          <a class="button" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">Parler d'un besoin</a>
+          <a class="button secondary" href="/outils-ia/">Voir les outils IA</a>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
+        <div class="section-heading wide">
+          <p class="eyebrow">Domaines d'intervention</p>
+          <h2>Faire le tri entre besoin réel, outil pertinent et trajectoire soutenable.</h2>
+          <p>Le fil conducteur reste le même : partir du contexte, qualifier les usages, mesurer l'intérêt, sécuriser les décisions et éviter les projets numériques qui ajoutent de la complexité sans valeur claire.</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <p class="meta">Conseil & cadrage</p>
+            <h3>Passer d'une intuition à une décision</h3>
+            <p>Clarifier l'objectif, les contraintes, les parties prenantes, les risques, le niveau d'ambition et les critères de réussite avant de lancer un chantier.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Audit</p>
+            <h3>Relire l'existant sans repartir de zéro</h3>
+            <p>Analyser des processus, outils, systèmes d'information ou usages IA déjà en place pour repérer les points de friction, les doublons et les priorités.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Accompagnement</p>
+            <h3>Installer une méthode dans la durée</h3>
+            <p>Aider une équipe à structurer ses usages, suivre les décisions, documenter les pratiques et progresser sans dépendre d'une solution unique.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container content-grid two">
         <article class="content-card">
+          <h2>Sujets possibles</h2>
+          <ul>
+            <li>Audit de maturité numérique ou IA.</li>
+            <li>Cadrage de cas d'usage IA, agent ou automatisation.</li>
+            <li>Cartographie d'outils, logiciels, données et irritants métier.</li>
+            <li>Priorisation d'un portefeuille de projets numériques.</li>
+            <li>Formalisation d'un registre IA, de règles d'usage ou d'un cadre de gouvernance.</li>
+          </ul>
+        </article>
+        <article class="content-card">
+          <h2>Ce que l'échange doit produire</h2>
+          <ul>
+            <li>Une formulation claire du problème à résoudre.</li>
+            <li>Des options réalistes, avec leurs bénéfices et leurs limites.</li>
+            <li>Un premier ordre de grandeur sur l'effort, la valeur et les risques.</li>
+            <li>Une suite lisible : audit court, atelier de cadrage, feuille de route ou expérimentation.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading wide">
+          <p class="eyebrow">Méthode</p>
+          <h2>Une approche légère, structurée et compatible avec l'existant.</h2>
+          <p>Le but n'est pas de vendre une refonte totale. Il s'agit d'améliorer la compréhension, la décision et l'exécution à partir de ce qui existe déjà.</p>
+        </div>
+        <ol class="tool-path-list service-method-list" aria-label="Méthode d'accompagnement">
+          <li class="tool-path-card is-primary">
+            <span class="tool-step">01</span>
+            <div>
+              <p class="meta">Écouter</p>
+              <h3>Contexte et contraintes</h3>
+              <p>Comprendre les objectifs, les usages actuels, les irritants, les risques et les limites opérationnelles.</p>
+            </div>
+          </li>
+          <li class="tool-path-card">
+            <span class="tool-step">02</span>
+            <div>
+              <p class="meta">Auditer</p>
+              <h3>Existant et maturité</h3>
+              <p>Qualifier les outils, processus, données, compétences et décisions déjà disponibles.</p>
+            </div>
+          </li>
+          <li class="tool-path-card">
+            <span class="tool-step">03</span>
+            <div>
+              <p class="meta">Cadrer</p>
+              <h3>Scénarios et arbitrages</h3>
+              <p>Transformer les pistes en options comparables : valeur, effort, risque, dépendances et conditions de réussite.</p>
+            </div>
+          </li>
+          <li class="tool-path-card">
+            <span class="tool-step">04</span>
+            <div>
+              <p class="meta">Accompagner</p>
+              <h3>Passage à l'action</h3>
+              <p>Structurer une feuille de route, un pilote, une gouvernance ou un dispositif d'adoption adapté au terrain.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container contact-panel">
+        <div class="section-heading">
           <p class="eyebrow">Contact</p>
           <h2>Un besoin, un contexte, un échange.</h2>
-          <p>
-            Professionnels, entreprises ou particuliers : envoyez simplement quelques lignes sur votre situation et ce que vous cherchez à faire.
-          </p>
+          <p>Professionnels, entreprises, indépendants ou particuliers : quelques lignes sur la situation suffisent pour ouvrir la discussion.</p>
+        </div>
+        <div class="contact-actions">
           <div class="actions">
             <a class="button" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">Me contacter sur LinkedIn</a>
-            <a class="button secondary" href="/#outils-ia">Voir les outils</a>
+            <a class="button secondary" href="/resume-llm/">Lire le résumé LLM</a>
           </div>
-        </article>
+        </div>
       </div>
     </section>
   </main>
@@ -113,6 +226,6 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/site.js?v=20260520-services-v1" defer></script>
 </body>
 </html>
