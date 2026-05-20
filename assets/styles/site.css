@@ -4032,6 +4032,13 @@ body {
   border-color: var(--line);
   background: #ffffff;
   box-shadow: var(--shadow-soft);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: stretch;
+}
+
+.tool-path-card > div {
+  min-width: 0;
+  align-self: start;
 }
 
 .tool-path-card::before {
@@ -4059,6 +4066,13 @@ body {
 .tool-path-card .button.secondary:hover {
   border-color: var(--teal);
   color: var(--teal);
+}
+
+.tool-path-card .button,
+.tool-path-card .tool-card-cta,
+.tool-path-card .tool-link-row {
+  align-self: end;
+  margin-top: 0;
 }
 
 .blog-feature {
@@ -4111,6 +4125,16 @@ body {
 .case-select-field select {
   border-color: var(--line);
   background: #ffffff;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.inline-mail-form input::placeholder,
+.inline-mail-form textarea::placeholder,
+.site-contact-form input::placeholder,
+.site-contact-form textarea::placeholder {
+  color: rgba(91, 98, 112, 0.52);
+  font-weight: 400;
 }
 
 .inline-mail-form input:focus,
