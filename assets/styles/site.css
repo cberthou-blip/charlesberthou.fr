@@ -1669,8 +1669,7 @@ section,
 }
 
 .footer-links a {
-  border-bottom: 1px solid rgba(248, 251, 255, 0.18);
-  padding-bottom: 2px;
+  padding-bottom: 0;
 }
 
 .footer-bottom {
