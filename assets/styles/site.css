@@ -1594,14 +1594,14 @@ section,
 .site-footer {
   border-top: 1px solid var(--line);
   background: #0d1b3e;
-  padding: 42px 0 28px;
+  padding: 34px 0 46px;
   color: rgba(248, 251, 255, 0.7);
   font-size: 0.9rem;
 }
 
 .footer-grid {
   display: grid;
-  gap: 30px;
+  gap: 24px;
 }
 
 .footer-brandline {
