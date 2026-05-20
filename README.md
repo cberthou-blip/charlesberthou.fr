@@ -19,6 +19,10 @@ Le domaine `charlesberthou.fr` est servi par GitHub Pages via `CNAME`.
 
 Firebase n'est pas utilise pour l'hébergement du site principal. Le fichier `firebase.json` ne conserve donc que la configuration Firestore nécessaire a `/ialearning/`.
 
+## Formulaire de contact
+
+Le formulaire de contact est servi depuis les pages statiques et transmet les messages via Web3Forms. La cle publique Web3Forms est declaree dans `/assets/js/site.js`; elle est concue pour etre exposee cote client.
+
 ## Redirections
 
 GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot. Les anciennes routes publiques sont conservees sous forme de pages statiques `noindex` avec canonical et redirection HTML/JavaScript:

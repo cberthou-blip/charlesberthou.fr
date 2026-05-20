@@ -1,6 +1,8 @@
 const BLOG_DATA_URL = "/data/blog.json";
 const ANALYTICS_ID = "G-JH2SZFYEHR";
 const ANALYTICS_CONSENT_KEY = "cb-analytics-consent";
+const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
+const CONTACT_ACCESS_KEY = "17656ba1-b511-4eed-b0b7-a34bc7716102";
 const CONTACT_RECIPIENT_CODES = [99, 98, 101, 114, 116, 104, 111, 117, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109];
 
 function ensureIconSprite() {
@@ -272,8 +274,16 @@ function hydrateHomeContactForm() {
 }
 
 function getContactEndpoint() {
-  const recipient = CONTACT_RECIPIENT_CODES.map((code) => String.fromCharCode(code)).join("");
-  return `https://formsubmit.co/${recipient}`;
+  return CONTACT_ENDPOINT;
+}
+
+function getContactRecipient() {
+  return CONTACT_RECIPIENT_CODES.map((code) => String.fromCharCode(code)).join("");
+}
+
+function getContactFallbackUrl(subject = "Message depuis charlesberthou.fr", message = "") {
+  const body = message || "Bonjour,\n\n";
+  return `mailto:${getContactRecipient()}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function getContactReturnUrl() {
@@ -286,8 +296,10 @@ function getContactReturnUrl() {
 }
 
 function contactFormTemplate(context = "Site") {
+  const currentUrl = window.location.href;
+
   return `
-    <form class="site-contact-form" action="https://formsubmit.co/" method="POST" data-contact-form data-contact-context="${escapeAttribute(context)}">
+    <form class="site-contact-form" action="${escapeAttribute(getContactEndpoint())}" method="POST" accept-charset="UTF-8" data-contact-form data-contact-context="${escapeAttribute(context)}">
       <label>
         Nom
         <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
@@ -298,19 +310,20 @@ function contactFormTemplate(context = "Site") {
       </label>
       <label>
         Sujet
-        <input type="text" name="subject" placeholder="Sujet de votre message" required />
+        <input type="text" name="sujet" placeholder="Sujet de votre message" required />
       </label>
       <label>
         Message
         <textarea name="message" rows="5" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
       </label>
-      <input class="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_subject" value="[charlesberthou.fr] Nouveau message" data-contact-subject />
-      <input type="hidden" name="_replyto" value="" data-contact-replyto />
-      <input type="hidden" name="_next" value="" data-contact-next />
-      <input type="hidden" name="_url" value="" data-contact-url />
-      <input type="hidden" name="page" value="" data-contact-page />
+      <input type="hidden" name="access_key" value="${escapeAttribute(CONTACT_ACCESS_KEY)}" />
+      <input class="contact-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="hidden" name="subject" value="[charlesberthou.fr] Nouveau message" data-contact-subject />
+      <input type="hidden" name="from_name" value="charlesberthou.fr" />
+      <input type="hidden" name="replyto" value="" data-contact-replyto />
+      <input type="hidden" name="redirect" value="${escapeAttribute(getContactReturnUrl())}" data-contact-next />
+      <input type="hidden" name="form_url" value="${escapeAttribute(currentUrl)}" data-contact-url />
+      <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
       <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
       <button class="button" type="submit">Envoyer le message</button>
       <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site.</p>
@@ -337,20 +350,57 @@ function hydrateContactForms() {
   }
 }
 
-function submitContactForm(event) {
+async function submitContactForm(event) {
+  event.preventDefault();
+
   const form = event.currentTarget;
   const status = form.querySelector("[data-contact-status]");
+  const button = form.querySelector("button[type='submit']");
   const data = new FormData(form);
-  const subject = data.get("subject") || "Message depuis charlesberthou.fr";
+  const subject = data.get("sujet") || "Message depuis charlesberthou.fr";
   const replyTo = data.get("email") || "";
+  const pageUrl = window.location.href;
+  const fullSubject = `[charlesberthou.fr] ${subject}`;
 
   form.action = getContactEndpoint();
-  form.querySelector("[data-contact-subject]").value = `[charlesberthou.fr] ${subject}`;
+  form.querySelector("[data-contact-subject]").value = fullSubject;
   form.querySelector("[data-contact-replyto]").value = replyTo;
   form.querySelector("[data-contact-next]").value = getContactReturnUrl();
-  form.querySelector("[data-contact-url]").value = window.location.href;
-  form.querySelector("[data-contact-page]").value = window.location.href;
+  form.querySelector("[data-contact-url]").value = pageUrl;
+  form.querySelector("[data-contact-page]").value = pageUrl;
+
+  data.set("subject", fullSubject);
+  data.set("replyto", replyTo);
+  data.set("redirect", getContactReturnUrl());
+  data.set("form_url", pageUrl);
+  data.set("page", pageUrl);
+
+  button.disabled = true;
   status.textContent = "Envoi en cours...";
+
+  try {
+    const response = await fetch(getContactEndpoint(), {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(Object.fromEntries(data))
+    });
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || "L'envoi n'a pas abouti.");
+    }
+
+    form.reset();
+    status.textContent = "Merci, le message a bien été transmis.";
+  } catch (error) {
+    const fallbackUrl = getContactFallbackUrl(fullSubject, data.get("message"));
+    status.innerHTML = `L'envoi automatique n'a pas abouti. <a href="${escapeAttribute(fallbackUrl)}">Ouvrir un email prérempli</a>.`;
+  } finally {
+    button.disabled = false;
+  }
 }
 
 function hydrateAnalyticsConsent() {
