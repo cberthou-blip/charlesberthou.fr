@@ -273,12 +273,21 @@ function hydrateHomeContactForm() {
 
 function getContactEndpoint() {
   const recipient = CONTACT_RECIPIENT_CODES.map((code) => String.fromCharCode(code)).join("");
-  return `https://formsubmit.co/ajax/${recipient}`;
+  return `https://formsubmit.co/${recipient}`;
+}
+
+function getContactReturnUrl() {
+  const url = new URL(window.location.href);
+  url.searchParams.set("contact", "envoye");
+  if (document.querySelector("#contact")) {
+    url.hash = "contact";
+  }
+  return url.toString();
 }
 
 function contactFormTemplate(context = "Site") {
   return `
-    <form class="site-contact-form" data-contact-form data-contact-context="${escapeAttribute(context)}">
+    <form class="site-contact-form" action="https://formsubmit.co/" method="POST" data-contact-form data-contact-context="${escapeAttribute(context)}">
       <label>
         Nom
         <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
@@ -296,8 +305,15 @@ function contactFormTemplate(context = "Site") {
         <textarea name="message" rows="5" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
       </label>
       <input class="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_subject" value="[charlesberthou.fr] Nouveau message" data-contact-subject />
+      <input type="hidden" name="_replyto" value="" data-contact-replyto />
+      <input type="hidden" name="_next" value="" data-contact-next />
+      <input type="hidden" name="_url" value="" data-contact-url />
+      <input type="hidden" name="page" value="" data-contact-page />
+      <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
       <button class="button" type="submit">Envoyer le message</button>
-      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site. L'adresse de destination n'est pas affichée publiquement.</p>
+      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site.</p>
     </form>
   `;
 }
@@ -313,42 +329,28 @@ function hydrateContactForms() {
     form.dataset.bound = "true";
     form.addEventListener("submit", submitContactForm);
   });
+
+  if (new URLSearchParams(window.location.search).get("contact") === "envoye") {
+    document.querySelectorAll("[data-contact-status]").forEach((status) => {
+      status.textContent = "Merci, le message a bien été transmis.";
+    });
+  }
 }
 
-async function submitContactForm(event) {
-  event.preventDefault();
+function submitContactForm(event) {
   const form = event.currentTarget;
   const status = form.querySelector("[data-contact-status]");
-  const button = form.querySelector("button[type='submit']");
   const data = new FormData(form);
   const subject = data.get("subject") || "Message depuis charlesberthou.fr";
   const replyTo = data.get("email") || "";
-  data.append("_captcha", "false");
-  data.append("_template", "table");
-  data.append("_subject", `[charlesberthou.fr] ${subject}`);
-  data.append("_replyto", replyTo);
-  data.append("page", window.location.href);
-  data.append("contexte", form.dataset.contactContext || document.title);
 
+  form.action = getContactEndpoint();
+  form.querySelector("[data-contact-subject]").value = `[charlesberthou.fr] ${subject}`;
+  form.querySelector("[data-contact-replyto]").value = replyTo;
+  form.querySelector("[data-contact-next]").value = getContactReturnUrl();
+  form.querySelector("[data-contact-url]").value = window.location.href;
+  form.querySelector("[data-contact-page]").value = window.location.href;
   status.textContent = "Envoi en cours...";
-  button.disabled = true;
-
-  try {
-    const response = await fetch(getContactEndpoint(), {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: data,
-    });
-
-    if (!response.ok) throw new Error("Envoi indisponible");
-
-    form.reset();
-    status.textContent = "Merci, le message a bien été envoyé.";
-  } catch (error) {
-    status.textContent = "L'envoi automatique est momentanément indisponible. Réessayez dans quelques instants.";
-  } finally {
-    button.disabled = false;
-  }
 }
 
 function hydrateAnalyticsConsent() {
