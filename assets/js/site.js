@@ -1,4 +1,7 @@
 const BLOG_DATA_URL = "/data/blog.json";
+const ANALYTICS_ID = "G-JH2SZFYEHR";
+const ANALYTICS_CONSENT_KEY = "cb-analytics-consent";
+const CONTACT_RECIPIENT_CODES = [99, 98, 101, 114, 116, 104, 111, 117, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109];
 
 function ensureIconSprite() {
   if (document.querySelector(".icon-sprite")) return;
@@ -266,19 +269,145 @@ function hydrateHomeContactForm() {
     }
   });
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = form.querySelector("#homeContactEmail")?.value.trim() || "";
-    const subject = form.querySelector("#homeContactSubject")?.value.trim() || "Échange autour d'un usage IA";
-    const message = form.querySelector("#homeContactMessage")?.value.trim() || "";
-    const body = [
-      message,
-      "",
-      email ? `Adresse de réponse : ${email}` : "",
-      `Page : ${window.location.href}`,
-    ].filter(Boolean).join("\n");
-    window.location.href = `mailto:cberthou@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function getContactEndpoint() {
+  const recipient = CONTACT_RECIPIENT_CODES.map((code) => String.fromCharCode(code)).join("");
+  return `https://formsubmit.co/ajax/${recipient}`;
+}
+
+function contactFormTemplate(context = "Site") {
+  return `
+    <form class="site-contact-form" data-contact-form data-contact-context="${escapeAttribute(context)}">
+      <label>
+        Nom
+        <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
+      </label>
+      <label>
+        Email de réponse
+        <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required />
+      </label>
+      <label>
+        Sujet
+        <input type="text" name="subject" placeholder="Sujet de votre message" required />
+      </label>
+      <label>
+        Message
+        <textarea name="message" rows="5" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
+      </label>
+      <input class="contact-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <button class="button" type="submit">Envoyer le message</button>
+      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site. L'adresse de destination n'est pas affichée publiquement.</p>
+    </form>
+  `;
+}
+
+function hydrateContactForms() {
+  document.querySelectorAll("[data-contact-form-mount]").forEach((mount) => {
+    if (mount.querySelector("[data-contact-form]")) return;
+    mount.innerHTML = contactFormTemplate(mount.dataset.contactContext || document.title);
   });
+
+  document.querySelectorAll("[data-contact-form]").forEach((form) => {
+    if (form.dataset.bound === "true") return;
+    form.dataset.bound = "true";
+    form.addEventListener("submit", submitContactForm);
+  });
+}
+
+async function submitContactForm(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const status = form.querySelector("[data-contact-status]");
+  const button = form.querySelector("button[type='submit']");
+  const data = new FormData(form);
+  const subject = data.get("subject") || "Message depuis charlesberthou.fr";
+  const replyTo = data.get("email") || "";
+  data.append("_captcha", "false");
+  data.append("_template", "table");
+  data.append("_subject", `[charlesberthou.fr] ${subject}`);
+  data.append("_replyto", replyTo);
+  data.append("page", window.location.href);
+  data.append("contexte", form.dataset.contactContext || document.title);
+
+  status.textContent = "Envoi en cours...";
+  button.disabled = true;
+
+  try {
+    const response = await fetch(getContactEndpoint(), {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: data,
+    });
+
+    if (!response.ok) throw new Error("Envoi indisponible");
+
+    form.reset();
+    status.textContent = "Merci, le message a bien été envoyé.";
+  } catch (error) {
+    status.textContent = "L'envoi automatique est momentanément indisponible. Réessayez dans quelques instants.";
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function hydrateAnalyticsConsent() {
+  if (!ANALYTICS_ID) return;
+
+  let storedChoice = null;
+  try {
+    storedChoice = localStorage.getItem(ANALYTICS_CONSENT_KEY);
+  } catch (error) {
+    return;
+  }
+  if (storedChoice === "accepted") {
+    loadAnalytics();
+    return;
+  }
+  if (storedChoice === "rejected" || document.querySelector("[data-analytics-consent]")) return;
+
+  const banner = document.createElement("section");
+  banner.className = "privacy-consent";
+  banner.setAttribute("data-analytics-consent", "");
+  banner.setAttribute("aria-label", "Préférences de mesure d'audience");
+  banner.innerHTML = `
+    <div>
+      <strong>Mesure d'audience</strong>
+      <p>Le site peut utiliser une mesure d'audience pour comprendre les pages consultées et améliorer les contenus. Vous pouvez refuser sans perdre de fonctionnalité.</p>
+    </div>
+    <div class="privacy-consent-actions">
+      <button class="button secondary" type="button" data-analytics-choice="rejected">Refuser</button>
+      <button class="button" type="button" data-analytics-choice="accepted">Autoriser</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  banner.querySelectorAll("[data-analytics-choice]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const choice = button.dataset.analyticsChoice;
+      try {
+        localStorage.setItem(ANALYTICS_CONSENT_KEY, choice);
+      } catch (error) {
+        // Consent cannot be persisted; apply only for the current page view.
+      }
+      banner.remove();
+      if (choice === "accepted") loadAnalytics();
+    });
+  });
+}
+
+function loadAnalytics() {
+  if (window.__cbAnalyticsLoaded) return;
+  window.__cbAnalyticsLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", ANALYTICS_ID, { anonymize_ip: true });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ANALYTICS_ID)}`;
+  document.head.appendChild(script);
 }
 
 function hydrateBackToTop() {
@@ -337,6 +466,16 @@ function hydrateToolSwitcher() {
   hero.insertAdjacentElement("afterend", switcher);
 }
 
+function escapeAttribute(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+    .replace(/`/g, "&#096;");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   ensureIconSprite();
   enhanceMobileNavigation();
@@ -344,5 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateToolSwitcher();
   renderBlogAreas();
   hydrateShareButtons();
+  hydrateContactForms();
   hydrateHomeContactForm();
+  hydrateAnalyticsConsent();
 });

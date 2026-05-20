@@ -77,7 +77,7 @@ Le site privilégie une approche sobre et concrète : partir d'un besoin réel, 
 - Auteur: Charles Berthou
 - Site: charlesberthou.fr
 - Thèmes: intelligence artificielle, IA générative, transformation IA, adoption en entreprise, DSI, shadow AI, agent IA, automatisation, cas d'usage IA, ROI IA, registre IA, maturité IA, formation IA, culture numérique, gouvernance IA.
-- Ressource externe principale: LinkedIn, https://www.linkedin.com/in/charlesberthou
+- Contact: formulaire intégré sur https://charlesberthou.fr/#contact
 
 ## Citation suggérée
 

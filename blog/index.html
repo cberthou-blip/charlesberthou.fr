@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests" />
   <title>Articles IA et transformations numériques | Charles Berthou</title>
   <meta name="description" content="Articles de fond sur l'IA et les transformations numériques: signaux faibles, usages réels, risques, adoption et culture technique." />
   <link rel="canonical" href="https://charlesberthou.fr/blog/" />
@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260514-footer-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260520-contact-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -67,13 +67,7 @@
     ]
   }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-JH2SZFYEHR");
-  </script>
+
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -97,6 +91,12 @@
         <p class="lead">
           J'y rassemble mes prises de recul, mes synthèses de veille et mes réflexions sur les transformations en cours : ce que l'IA rend possible, ce qu'elle déplace et ce qu'elle oblige à clarifier.
         </p>
+        <div class="tag-row blog-discovery-tags" aria-label="Angles de lecture">
+          <a class="tag" href="#articles-ia">IA appliquée</a>
+          <a class="tag" href="#articles-ia">Entreprise</a>
+          <a class="tag" href="#articles-ia">Économie des tokens</a>
+          <a class="tag" href="#articles-ia">Culture numérique</a>
+        </div>
         <div class="hero-card-grid blog-topic-grid" aria-label="Thématiques du blog">
           <div class="mini-card">
             <span class="icon-mark"><svg><use href="#icon-blog"></use></svg></span>
@@ -120,7 +120,7 @@
       </div>
     </section>
 
-    <section class="section blog-section blog-page-listing">
+    <section class="section blog-section blog-page-listing" id="articles-ia">
       <div class="container">
         <div class="section-heading editorial-heading">
           <div>
@@ -186,10 +186,10 @@
         <a href="/confidentialite/">Confidentialit&eacute;</a>
         <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
         <a href="/sitemap.xml">Sitemap</a>
-        <a href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/#contact">Contact</a>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js" defer></script>
+  <script src="/assets/js/site.js?v=20260520-contact-v1" defer></script>
 </body>
 </html>

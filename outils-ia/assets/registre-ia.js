@@ -450,7 +450,11 @@ function loadRegister() {
 }
 
 function saveRegister() {
-  localStorage.setItem(REGISTER_STORAGE_KEY, JSON.stringify(registerState.register));
+  try {
+    localStorage.setItem(REGISTER_STORAGE_KEY, JSON.stringify(registerState.register));
+  } catch (error) {
+    registerNodes.readiness.innerHTML = `<strong>Stockage local indisponible</strong><span>Le navigateur bloque l'enregistrement local. Exportez le registre avant de quitter la page.</span>`;
+  }
 }
 
 function exportRegisterCsv() {

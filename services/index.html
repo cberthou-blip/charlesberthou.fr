@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests" />
   <title>Services IA, audit et transformation numérique | Charles Berthou</title>
   <meta name="description" content="Conseil, audit, accompagnement et cadrage autour des systèmes d'information, logiciels, IA, automatisation et transformation numérique." />
   <link rel="canonical" href="https://charlesberthou.fr/services/" />
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260520-services-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260520-contact-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -68,6 +68,35 @@
           { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
           { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://charlesberthou.fr/services/" }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quels services sont proposés autour de l'IA ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charles Berthou accompagne le cadrage IA, l'audit numérique, la priorisation de cas d'usage, la gouvernance, l'automatisation et la transformation numérique progressive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment démarre un accompagnement ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'accompagnement démarre par une clarification du contexte, des irritants, des contraintes, des parties prenantes et des critères de réussite avant de proposer un audit, un atelier ou une feuille de route."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le travail peut-il se faire sans refonte complète ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. L'approche privilégie les améliorations compatibles avec l'existant : cadrage, priorisation, registre, pilote court et décisions documentées."
+            }
+          }
+        ]
       }
     ]
   }
@@ -94,13 +123,30 @@
         <h1>Conseil, audit et accompagnement pour vos usages numériques et IA.</h1>
         <p class="lead">J'aide à clarifier les besoins, cadrer les décisions et transformer des idées numériques, logicielles ou IA en trajectoires concrètes, compréhensibles et mesurables.</p>
         <div class="actions">
-          <a class="button" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">Parler d'un besoin</a>
+          <a class="button" href="#contact">Décrire mon besoin</a>
           <a class="button secondary" href="/outils-ia/">Voir les outils IA</a>
         </div>
       </div>
     </section>
 
     <section class="section">
+      <div class="container content-grid two">
+        <article class="content-card answer-card">
+          <h2>Réponse courte</h2>
+          <p>J'interviens pour transformer un sujet IA ou numérique flou en décision exploitable : diagnostic, audit de l'existant, priorisation des cas d'usage, estimation de valeur, gouvernance et feuille de route compatible avec vos contraintes.</p>
+        </article>
+        <article class="content-card">
+          <h2>Ce que vous obtenez</h2>
+          <ul>
+            <li>Une lecture claire du problème à résoudre.</li>
+            <li>Des options comparables : valeur, effort, risques et dépendances.</li>
+            <li>Des livrables utilisables : note de cadrage, registre IA, matrice de priorisation ou plan 90 jours.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft">
       <div class="container">
         <div class="section-heading wide">
           <p class="eyebrow">Domaines d'intervention</p>
@@ -127,7 +173,7 @@
       </div>
     </section>
 
-    <section class="section soft">
+    <section class="section">
       <div class="container content-grid two">
         <article class="content-card">
           <h2>Sujets possibles</h2>
@@ -146,6 +192,24 @@
             <li>Des options réalistes, avec leurs bénéfices et leurs limites.</li>
             <li>Un premier ordre de grandeur sur l'effort, la valeur et les risques.</li>
             <li>Une suite lisible : audit court, atelier de cadrage, feuille de route ou expérimentation.</li>
+          </ul>
+        </article>
+        <article class="content-card">
+          <h2>Formats possibles</h2>
+          <ul>
+            <li>Audit court pour objectiver une situation.</li>
+            <li>Atelier de cadrage pour transformer une intuition en options.</li>
+            <li>Accompagnement de pilote pour sécuriser l'usage, la mesure et l'adoption.</li>
+            <li>Relecture d'un dispositif IA, outil interne ou processus métier.</li>
+          </ul>
+        </article>
+        <article class="content-card">
+          <h2>Exemples de livrables</h2>
+          <ul>
+            <li>Cartographie des irritants, outils, données et responsabilités.</li>
+            <li>Portefeuille de cas d'usage IA priorisés.</li>
+            <li>Registre IA et règles d'usage adaptées au terrain.</li>
+            <li>Feuille de route progressive avec jalons et critères de réussite.</li>
           </ul>
         </article>
       </div>
@@ -196,17 +260,32 @@
     </section>
 
     <section class="section soft">
+      <div class="container content-grid three">
+        <article class="content-card">
+          <h3>Quels services IA ?</h3>
+          <p>Conseil IA, audit numérique, cadrage de cas d'usage, automatisation, registre IA, gouvernance et transformation progressive.</p>
+        </article>
+        <article class="content-card">
+          <h3>Par où commencer ?</h3>
+          <p>Un échange court permet de qualifier le contexte, puis de choisir entre audit, atelier de cadrage, pilote ou feuille de route.</p>
+        </article>
+        <article class="content-card">
+          <h3>Faut-il refondre l'existant ?</h3>
+          <p>Non. L'approche part de l'existant et cherche les améliorations utiles avant toute refonte lourde.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
       <div class="container contact-panel">
         <div class="section-heading">
           <p class="eyebrow">Contact</p>
           <h2>Un besoin, un contexte, un échange.</h2>
-          <p>Professionnels, entreprises, indépendants ou particuliers : quelques lignes sur la situation suffisent pour ouvrir la discussion.</p>
+          <p>Professionnels, entreprises, indépendants ou particuliers : quelques lignes sur la situation suffisent pour ouvrir la discussion depuis le formulaire du site.</p>
         </div>
         <div class="contact-actions">
-          <div class="actions">
-            <a class="button" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">Me contacter sur LinkedIn</a>
-            <a class="button secondary" href="/outils-ia/">Voir les outils IA</a>
-          </div>
+          <div data-contact-form-mount data-contact-context="Services"></div>
+          <a class="button secondary" href="/outils-ia/">Voir les outils IA</a>
         </div>
       </div>
     </section>
@@ -222,10 +301,10 @@
         <a href="/confidentialite/">Confidentialit&eacute;</a>
         <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
         <a href="/sitemap.xml">Sitemap</a>
-        <a href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/#contact">Contact</a>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260520-services-v1" defer></script>
+  <script src="/assets/js/site.js?v=20260520-contact-v1" defer></script>
 </body>
 </html>

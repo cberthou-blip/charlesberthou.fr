@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formsubmit.co; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests" />
   <title>Outils IA gratuits, cas d'usage et ROI | Charles Berthou</title>
   <meta name="description" content="Outils IA gratuits et articles pour diagnostiquer la maturité, explorer des cas d'usage, calculer le ROI, tenir un registre IA et apprendre avec méthode." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -36,7 +36,7 @@
     type="image/webp"
   />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260515-seo-v4" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260520-contact-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -98,13 +98,6 @@
       }
     ]
   }
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH2SZFYEHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-JH2SZFYEHR");
   </script>
 </head>
 <body>
@@ -178,7 +171,7 @@
               srcset="/assets/images/hero-ia-profile-reflection-640.webp 640w, /assets/images/hero-ia-profile-reflection-960.webp 960w, /assets/images/hero-ia-profile-reflection-1254.webp 1254w"
               sizes="(min-width: 960px) 34vw, 88vw"
             />
-            <img src="/assets/images/hero-ia-profile-reflection.png" alt="Illustration abstraite d'un profil en réflexion traversé par un réseau neuronal lumineux." width="1254" height="1254" decoding="async" fetchpriority="high" />
+            <img src="/assets/images/hero-ia-profile-reflection-960.jpg" alt="Illustration abstraite d'un profil en réflexion traversé par un réseau neuronal lumineux." width="960" height="960" decoding="async" fetchpriority="high" />
           </picture>
         </figure>
       </div>
@@ -311,22 +304,7 @@
             <a class="button" href="/services/">Voir les services</a>
             <button class="button secondary" type="button" data-contact-form-toggle aria-expanded="false" aria-controls="homeContactForm">Prendre contact</button>
           </div>
-          <form class="inline-mail-form" id="homeContactForm" data-home-contact-form hidden>
-            <label>
-              Votre email
-              <input id="homeContactEmail" type="email" name="email" placeholder="vous@exemple.fr" required />
-            </label>
-            <label>
-              Sujet
-              <input id="homeContactSubject" type="text" name="subject" value="Échange autour d'un usage IA" required />
-            </label>
-            <label>
-              Message
-              <textarea id="homeContactMessage" name="message" rows="4" placeholder="Quelques lignes sur le contexte, l'objectif ou l'usage à explorer." required></textarea>
-            </label>
-            <button class="button" type="submit">Préparer l'email</button>
-            <p>Le message s'ouvrira dans votre application mail, adressé à cberthou@gmail.com.</p>
-          </form>
+          <div class="contact-form-shell" id="homeContactForm" data-home-contact-form data-contact-form-mount data-contact-context="Accueil - services" hidden></div>
         </div>
       </div>
     </section>
@@ -338,14 +316,12 @@
           <p class="eyebrow">Contact</p>
           <h2>Continuer la conversation.</h2>
           <p>
-            Je publie les nouveaux contenus sur LinkedIn et j'y poursuis ces sujets : usages prometteurs, limites, apprentissage, responsabilité et impact de l'IA sur la vie quotidienne.
+            Un besoin, une question ou une piste à cadrer : le formulaire ci-dessous permet d'envoyer un message depuis le site, sans exposer l'adresse de destination.
           </p>
         </div>
         <div class="contact-actions">
-          <div class="actions">
-            <a class="button" href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="button secondary" href="#articles">Consulter les articles</a>
-          </div>
+          <div data-contact-form-mount data-contact-context="Accueil - contact"></div>
+          <a class="button secondary" href="#articles">Consulter les articles</a>
         </div>
       </div>
     </section>
@@ -361,10 +337,10 @@
         <a href="/confidentialite/">Confidentialit&eacute;</a>
         <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
         <a href="/sitemap.xml">Sitemap</a>
-        <a href="https://www.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/#contact">Contact</a>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260515-seo-v4" defer></script>
+  <script src="/assets/js/site.js?v=20260520-contact-v1" defer></script>
 </body>
 </html>
