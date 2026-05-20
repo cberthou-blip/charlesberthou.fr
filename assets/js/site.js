@@ -300,21 +300,21 @@ function contactFormTemplate(context = "Site") {
 
   return `
     <form class="site-contact-form" action="${escapeAttribute(getContactEndpoint())}" method="POST" accept-charset="UTF-8" data-contact-form data-contact-context="${escapeAttribute(context)}">
-      <label>
+      <label class="contact-field">
         Nom
         <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
       </label>
-      <label>
+      <label class="contact-field">
         Email de réponse
         <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required />
       </label>
-      <label>
+      <label class="contact-field contact-field-wide">
         Sujet
         <input type="text" name="sujet" placeholder="Sujet de votre message" required />
       </label>
-      <label>
+      <label class="contact-field contact-field-wide">
         Message
-        <textarea name="message" rows="5" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
+        <textarea name="message" rows="8" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
       </label>
       <input type="hidden" name="access_key" value="${escapeAttribute(CONTACT_ACCESS_KEY)}" />
       <input class="contact-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -341,6 +341,7 @@ function hydrateContactForms() {
     if (form.dataset.bound === "true") return;
     form.dataset.bound = "true";
     form.addEventListener("submit", submitContactForm);
+    form.addEventListener("input", resetContactFormState);
   });
 
   if (new URLSearchParams(window.location.search).get("contact") === "envoye") {
@@ -356,6 +357,7 @@ async function submitContactForm(event) {
   const form = event.currentTarget;
   const status = form.querySelector("[data-contact-status]");
   const button = form.querySelector("button[type='submit']");
+  const initialButtonText = button.dataset.defaultText || button.textContent;
   const data = new FormData(form);
   const subject = data.get("sujet") || "Message depuis charlesberthou.fr";
   const replyTo = data.get("email") || "";
@@ -375,7 +377,10 @@ async function submitContactForm(event) {
   data.set("form_url", pageUrl);
   data.set("page", pageUrl);
 
+  form.classList.remove("is-sent", "has-error");
+  form.classList.add("is-loading");
   button.disabled = true;
+  button.dataset.defaultText = initialButtonText;
   status.textContent = "Envoi en cours...";
 
   try {
@@ -393,13 +398,34 @@ async function submitContactForm(event) {
       throw new Error(result.message || "L'envoi n'a pas abouti.");
     }
 
-    form.reset();
+    form.classList.add("is-sent");
+    button.textContent = "Message envoyé";
+    button.disabled = true;
     status.textContent = "Merci, le message a bien été transmis.";
   } catch (error) {
     const fallbackUrl = getContactFallbackUrl(fullSubject, data.get("message"));
+    form.classList.add("has-error");
     status.innerHTML = `L'envoi automatique n'a pas abouti. <a href="${escapeAttribute(fallbackUrl)}">Ouvrir un email prérempli</a>.`;
-  } finally {
     button.disabled = false;
+  } finally {
+    form.classList.remove("is-loading");
+  }
+}
+
+function resetContactFormState(event) {
+  const form = event.currentTarget;
+  if (!form.classList.contains("is-sent") && !form.classList.contains("has-error")) return;
+
+  const status = form.querySelector("[data-contact-status]");
+  const button = form.querySelector("button[type='submit']");
+
+  form.classList.remove("is-sent", "has-error");
+  if (button) {
+    button.disabled = false;
+    button.textContent = button.dataset.defaultText || "Envoyer le message";
+  }
+  if (status) {
+    status.textContent = "Votre message sera transmis depuis le formulaire du site.";
   }
 }
 
