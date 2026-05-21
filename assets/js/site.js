@@ -520,10 +520,11 @@ function hydrateToolSwitcher() {
   if (!main || !hero || main.querySelector(".tool-switcher")) return;
 
   const tools = [
-    { href: "/outils-ia/maturite-ia/", label: "Maturit\u00e9" },
+    { href: "/outils-ia/", label: "Tous les outils" },
+    { href: "/outils-ia/maturite-ia/", label: "Maturit\u00e9 IA" },
     { href: "/outils-ia/cas-usage/", label: "Cas d'usage" },
-    { href: "/outils-ia/roi-ia/", label: "ROI" },
-    { href: "/outils-ia/registre-ia/", label: "Registre" },
+    { href: "/outils-ia/roi-ia/", label: "ROI IA" },
+    { href: "/outils-ia/registre-ia/", label: "Registre IA" },
   ];
   const currentPath = `${window.location.pathname.replace(/\/index\.html$/, "/").replace(/\/?$/, "/")}`;
 
@@ -532,7 +533,7 @@ function hydrateToolSwitcher() {
   switcher.setAttribute("aria-label", "Acc\u00e8s rapide aux outils IA");
   switcher.innerHTML = `
     <div class="container tool-switcher-inner">
-      <span>Outils IA</span>
+      <span>Navigation outils</span>
       <div>
         ${tools.map((tool) => {
           const isCurrent = currentPath === tool.href;
