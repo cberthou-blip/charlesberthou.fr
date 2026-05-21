@@ -4460,3 +4460,101 @@ body {
     min-height: 40px;
   }
 }
+
+/* Light typography weight pass */
+.brand {
+  font-weight: 760;
+}
+
+.main-nav,
+.button,
+.nav-cta,
+.signal-panel-top,
+.signal-metrics,
+.tool-stat-strip span,
+.roi-metric-list span {
+  font-weight: 650;
+}
+
+.eyebrow,
+.case-kicker,
+.service-status,
+.share-label,
+.tool-card-facts dt,
+.tool-switcher-inner > span,
+.filter-label,
+.result-count,
+.case-tool-card span,
+.source-case-card span,
+.register-card-head span,
+.model-choice span,
+.case-step-number {
+  font-weight: 680;
+}
+
+.tag,
+.tool-switcher a,
+.tools-quick-list strong,
+.tool-card-facts dd,
+.filter-chip,
+.filter-chip em,
+.check-item,
+.mini-gain-form label,
+.form-row,
+.inline-mail-form label,
+.site-contact-form label,
+.case-hero-search,
+.case-quick-starts button,
+.case-reset-button {
+  font-weight: 620;
+}
+
+.text-link,
+.filter-chip small,
+.tool-search,
+.case-tool-card strong,
+.source-case-card strong,
+.register-card-head strong,
+.usage-row dt,
+.mini-gain-output,
+.danger-button,
+.maturity-score-copy span,
+.maturity-score-copy small,
+.score-steps span,
+.axis-bar-row span,
+.priority-item > span,
+.contact-form-status a,
+.case-start-guide dt,
+.case-start-guide dd {
+  font-weight: 700;
+}
+
+.hero h1,
+.page-hero h1,
+.article-header h1,
+.case-hero-copy h1 {
+  font-weight: 700;
+}
+
+.section-heading h2,
+.feature-copy h2,
+.content-card h2,
+.content-card h3,
+.card h3,
+.mini-card h2,
+.mini-card h3,
+.article-card h2,
+.article-card h3,
+.blog-feature h2,
+.blog-feature h3,
+.tool-choice-card h3,
+.tool-path-card h3,
+.tools-hub-summary h2,
+.learning-resource-panel h3,
+.maturity-panel h2,
+.axis-copy h3,
+.case-step-heading h2,
+.case-filter-intro strong,
+.case-start-guide strong {
+  font-weight: 650;
+}
