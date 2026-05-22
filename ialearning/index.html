@@ -1454,149 +1454,6 @@ body::before {
   font-weight: 650;
 }
 
-/* Harmonisation carnet de reperes utiles */
-:root {
-  --bg: #F5F7F3;
-  --bg2: #EEF2EE;
-  --surface: #FFFEF8;
-  --surface2: #F8F8F3;
-  --border: #D8DDD4;
-  --border-glow: rgba(15, 109, 103, 0.22);
-  --navy: #081420;
-  --navy2: #132233;
-  --indigo: #0F6D67;
-  --indigo-mid: #1AA38D;
-  --violet: #0F6D67;
-  --violet-light: #1AA38D;
-  --cyan: #1AA38D;
-  --cyan-light: #8FE2D3;
-  --magenta: #C79A55;
-  --text: #132233;
-  --text2: #39485A;
-  --text3: #66737E;
-  --grad-hero: linear-gradient(135deg, #081420 0%, #092B35 54%, #0F3D43 100%);
-  --grad-card: linear-gradient(135deg, #0F6D67 0%, #1AA38D 100%);
-  --grad-cyan: linear-gradient(135deg, #1AA38D 0%, #0F6D67 100%);
-  --grad-accent: linear-gradient(135deg, #C79A55 0%, #0F6D67 100%);
-  --radius: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-}
-
-body {
-  background: linear-gradient(180deg, #F7F8F4 0%, #EEF2EE 520px, #F8F8F3 100%);
-}
-
-body::before {
-  background-image:
-    linear-gradient(rgba(8, 20, 32, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8, 20, 32, 0.02) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
-.site-header {
-  background: rgba(8, 20, 32, 0.94);
-  border-bottom-color: rgba(199, 154, 85, 0.22);
-}
-
-.brand {
-  color: #FFFEF8;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.main-nav {
-  color: rgba(255, 254, 248, 0.72);
-}
-
-.main-nav a {
-  border-radius: 6px;
-}
-
-.main-nav a:hover,
-.main-nav a[aria-current="page"] {
-  background: rgba(255, 254, 248, 0.08);
-  color: #FFFEF8;
-}
-
-.landing-hero {
-  background:
-    radial-gradient(circle at 80% 24%, rgba(26, 163, 141, 0.26), transparent 32%),
-    radial-gradient(circle at 16% 14%, rgba(199, 154, 85, 0.14), transparent 28%),
-    var(--grad-hero);
-  border-bottom-color: rgba(199, 154, 85, 0.24);
-}
-
-.landing-hero::before,
-.login-hero::before {
-  background-image:
-    linear-gradient(rgba(255, 254, 248, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 254, 248, 0.04) 1px, transparent 1px);
-  background-size: 42px 42px;
-}
-
-.landing-hero-eyebrow {
-  border-radius: 6px;
-  border-color: rgba(199, 154, 85, 0.34);
-  color: #C79A55;
-  text-transform: none;
-}
-
-.landing-hero h1,
-.login-hero h2,
-.landing-features-header h2,
-.landing-how h2,
-.landing-modules-section h2,
-.landing-cta h2 {
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: 0;
-}
-
-.landing-hero h1 span {
-  background: none;
-  color: #8FE2D3;
-  -webkit-text-fill-color: currentColor;
-}
-
-.landing-modules-section,
-.landing-features,
-.landing-how {
-  background: transparent;
-}
-
-.lm-card,
-.feat-card,
-.how-step,
-.content-block,
-.module-card,
-.login-card {
-  border-color: var(--border);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(19, 34, 51, 0.06);
-}
-
-.lm-icon {
-  border-radius: 8px;
-}
-
-.site-footer {
-  padding: 34px 0 24px;
-}
-
-.footer-nav {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.footer-bottom {
-  border-top-color: rgba(255, 254, 248, 0.12);
-}
-
-@media (max-width: 720px) {
-  .footer-nav {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 </style>
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="charlesberthou.fr">
@@ -1657,7 +1514,7 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="/assets/js/site.js?v=20260522-carnet-v1" defer></script>
+<script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
 </head>
 <body>
 
@@ -1668,11 +1525,11 @@ body::before {
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
-                  <nav class="main-nav" aria-label="Navigation principale">
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/">Articles</a>
-        <a href="/outils-ia/" aria-current="page">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/contact/">Contact</a>
+        <a href="/#contact">Contact</a>
       </nav>
       <button class="btn btn-primary btn-sm learning-login-button" id="btn-landing-login" type="button">Se connecter</button>
     </div>
@@ -1682,7 +1539,7 @@ body::before {
   <div class="landing-hero">
     <div class="landing-hero-grid"></div>
     <div class="landing-hero-content">
-      <div class="landing-hero-eyebrow">Formation IA · Quiz progressifs</div>
+      <div class="landing-hero-eyebrow">🎓 Formation IA · Gamifiée</div>
       <h1>Montez en compétences<br>— et en <span>niveau</span></h1>
       <p class="landing-hero-sub">10 modules progressifs sur l'intelligence artificielle. Apprenez, gagnez des XP, débloquez des badges, défiez vos collègues.</p>
       <div class="landing-stats" style="margin-bottom:0">
@@ -1808,21 +1665,47 @@ body::before {
       <h2>Prêt à monter<br>en niveau ?</h2>
       <p>Créez votre compte et commencez votre premier module en moins de 2 minutes.</p>
       <button class="btn btn-primary btn-lg" id="btn-landing-register" style="padding:14px 36px;font-size:1rem">Créer mon compte →</button>
-      <p style="margin-top:20px;margin-bottom:0;font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.5">Espace réservé</p>
+      <p style="margin-top:20px;margin-bottom:0;font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.5">🔒 Espace réservé</p>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-simple">
-      <p>&copy; Charles Berthou</p>
-      <nav aria-label="Liens essentiels">
-        <a href="/blog/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
-        <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/contact/">Contact</a>
-        <a href="/confidentialite/">Confidentialit&eacute;</a>
+    <div class="container footer-grid">
+      <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-tools-title">
+          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
+          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
+          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <a href="/ialearning/">IA Learning</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-articles-title">
+          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
+          <a href="/reperes/">Rep&egrave;res IA</a>
+          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
+          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
+          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
+          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
+          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-llm-title">
+          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
+          <a href="/resume-llm/">Résumé LLM</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/llms-full.txt">llms-full.txt</a>
+          <a href="/sitemap.xml">Sitemap XML</a>
+          <a href="/a-propos/">À propos</a>
+        </section>
       </nav>
+      <div class="footer-bottom">
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <div class="footer-links" aria-label="Liens secondaires">
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/#contact">Contact</a>
+        </div>
+      </div>
     </div>
   </footer>
 

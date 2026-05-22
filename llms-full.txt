@@ -8,8 +8,6 @@ charlesberthou.fr est un site personnel francophone créé par Charles Berthou. 
 
 La ligne éditoriale privilégie une approche sobre : partir d'un besoin réel, qualifier les données, identifier les risques, mesurer la valeur attendue, documenter les décisions et avancer par étapes. Le site ne présente pas l'IA comme une solution magique ; il cherche à rendre les usages IA plus lisibles, plus vérifiables et plus maîtrisables.
 
-La page d'accueil organise désormais le site comme un carnet de repères utiles : analyses, outils IA, expérimentations, repères thématiques et ligne éditoriale personnelle.
-
 ## Publics concernés
 
 - Dirigeants, cadres et responsables métiers qui veulent comprendre où l'IA peut créer une valeur réelle.
@@ -48,20 +46,6 @@ Le registre IA est un outil local pour inventorier les usages IA : finalité, é
 URL : https://charlesberthou.fr/ialearning/
 
 IA Learning est un parcours gratuit pour installer les bases de l'IA avec modules, quiz, progression et mode équipe.
-
-## Pages repères et expérimentations
-
-### Repères IA
-
-URL : https://charlesberthou.fr/reperes/
-
-Page de synthèse qui regroupe les notions utiles pour comprendre l'IA : fondations, usages, impacts, gouvernance, données et méthode. Elle renvoie vers les articles, outils et ressources les plus pertinents.
-
-### Expérimentations IA
-
-URL : https://charlesberthou.fr/experimentations/
-
-Carnet d'expérimentations pour documenter les prototypes, tests, outils publiés et apprentissages en cours autour de l'IA appliquée.
 
 
 ## Articles et thèmes
@@ -128,4 +112,4 @@ Article sur l'adoption IA en entreprise : usages réels, sécurité, gouvernance
 - Site : https://charlesberthou.fr/
 - LinkedIn : https://www.linkedin.com/in/charlesberthou
 - Langue principale : français
-- Dernière mise à jour : 2026-05-22
+- Dernière mise à jour : 2026-05-20

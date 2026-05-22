@@ -9,8 +9,6 @@ charlesberthou.fr publie des articles de fond et des outils gratuits pour aider 
 - [Accueil](https://charlesberthou.fr/) : présentation du site, des outils IA gratuits et des articles.
 - [Outils IA gratuits](https://charlesberthou.fr/outils-ia/) : parcours pour diagnostiquer, apprendre, prioriser, chiffrer et documenter les usages IA.
 - [Articles IA](https://charlesberthou.fr/blog/) : analyses sur l'IA en entreprise, le shadow AI, les registres IA, le ROI, l'économie des tokens et la culture numérique.
-- [Repères IA](https://charlesberthou.fr/reperes/) : notions, risques, gouvernance, données, méthodes et articles à garder sous la main.
-- [Expérimentations IA](https://charlesberthou.fr/experimentations/) : prototypes, tests et apprentissages documentés autour de l'IA appliquée.
 - [À propos](https://charlesberthou.fr/a-propos/) : positionnement, sujets suivis et ligne éditoriale.
 - [Résumé LLM](https://charlesberthou.fr/resume-llm/) : page HTML structurée pour les moteurs de recherche et assistants IA.
 
@@ -55,4 +53,4 @@ charlesberthou.fr publie des articles de fond et des outils gratuits pour aider 
 - [llms-full.txt](https://charlesberthou.fr/llms-full.txt) : version plus complète pour assistants IA.
 - [sitemap.xml](https://charlesberthou.fr/sitemap.xml) : plan technique des URLs indexables.
 
-Dernière mise à jour : 2026-05-22
+Dernière mise à jour : 2026-05-20

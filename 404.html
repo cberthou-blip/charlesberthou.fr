@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-simple-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-articles-clean-v1" />
   <script>
     (function () {
       var path = window.location.pathname.toLowerCase();
@@ -19,7 +19,7 @@
       if (path.indexOf("/articles") === 0) dest = path.replace("/articles", "/blog");
       else if (path.indexOf("/gpts") !== -1) dest = "/outils-ia/";
       else if (path.indexOf("/e-learning") !== -1 || path.indexOf("/elearning") !== -1) dest = "/outils-ia/";
-      else if (path.indexOf("/contact") !== -1) dest = "/contact/";
+      else if (path.indexOf("/contact") !== -1) dest = "/#contact";
       if (dest) window.location.replace(dest);
     })();
   </script>
@@ -28,11 +28,11 @@
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
-                  <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Articles</a>
+      <nav class="main-nav" aria-label="Navigation principale">
         <a href="/outils-ia/">Outils IA</a>
+        <a href="/blog/">Articles</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/contact/">Contact</a>
+        <a href="/#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -48,18 +48,45 @@
       </div>
     </div>
   </main>
+
   <footer class="site-footer">
-    <div class="container footer-simple">
-      <p>&copy; Charles Berthou</p>
-      <nav aria-label="Liens essentiels">
-        <a href="/blog/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
-        <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/contact/">Contact</a>
-        <a href="/confidentialite/">Confidentialit&eacute;</a>
+    <div class="container footer-grid">
+      <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-tools-title">
+          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
+          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
+          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <a href="/ialearning/">IA Learning</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-articles-title">
+          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
+          <a href="/reperes/">Rep&egrave;res IA</a>
+          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
+          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
+          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
+          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
+          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-llm-title">
+          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
+          <a href="/resume-llm/">Résumé LLM</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/llms-full.txt">llms-full.txt</a>
+          <a href="/sitemap.xml">Sitemap XML</a>
+          <a href="/a-propos/">À propos</a>
+        </section>
       </nav>
+      <div class="footer-bottom">
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <div class="footer-links" aria-label="Liens secondaires">
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/#contact">Contact</a>
+        </div>
+      </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-carnet-v1" defer></script>
+  <script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
 </body>
 </html>
