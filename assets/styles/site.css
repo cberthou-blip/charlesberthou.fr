@@ -4466,7 +4466,7 @@ body {
 
 /* Light typography weight pass */
 .brand {
-  font-weight: 760;
+  font-weight: 560;
 }
 
 .main-nav,
@@ -4476,7 +4476,7 @@ body {
 .signal-metrics,
 .tool-stat-strip span,
 .roi-metric-list span {
-  font-weight: 650;
+  font-weight: 500;
 }
 
 .eyebrow,
@@ -4492,7 +4492,7 @@ body {
 .register-card-head span,
 .model-choice span,
 .case-step-number {
-  font-weight: 680;
+  font-weight: 500;
 }
 
 .tag,
@@ -4509,7 +4509,7 @@ body {
 .case-hero-search,
 .case-quick-starts button,
 .case-reset-button {
-  font-weight: 620;
+  font-weight: 500;
 }
 
 .text-link,
@@ -4529,14 +4529,14 @@ body {
 .contact-form-status a,
 .case-start-guide dt,
 .case-start-guide dd {
-  font-weight: 700;
+  font-weight: 520;
 }
 
 .hero h1,
 .page-hero h1,
 .article-header h1,
 .case-hero-copy h1 {
-  font-weight: 700;
+  font-weight: 520;
 }
 
 .section-heading h2,
@@ -4546,18 +4546,68 @@ body {
 .card h3,
 .mini-card h2,
 .mini-card h3,
+.article-content h2,
+.article-content h3,
 .article-card h2,
 .article-card h3,
 .blog-feature h2,
 .blog-feature h3,
+.reference-box h2,
+.note-box h2,
 .tool-choice-card h3,
 .tool-path-card h3,
 .tools-hub-summary h2,
 .learning-resource-panel h3,
+.detail-heading h2,
 .maturity-panel h2,
 .axis-copy h3,
 .case-step-heading h2,
+.case-guidance-block h3,
 .case-filter-intro strong,
 .case-start-guide strong {
-  font-weight: 650;
+  font-weight: 500;
+}
+
+.footer-heading,
+.tool-stat-strip strong,
+.tool-detail-metrics strong,
+.register-item-metrics strong,
+.maturity-score-card strong,
+.maturity-score-meta strong,
+.roi-metric-list strong,
+.axis-bar-row strong,
+.priority-item strong {
+  font-weight: 520;
+}
+
+.tools-hub-hero .button,
+.tools-hub-section .button,
+.tool-card-cta,
+.tool-card-facts dt,
+.tool-card-facts dd,
+.tools-quick-list strong,
+.tool-step {
+  font-weight: 500;
+}
+
+.tools-hub-hero h1 {
+  font-weight: 500;
+}
+
+.tools-hub-section .section-heading h2,
+.tools-hub-section .content-card h2,
+.tools-hub-section .content-card h3,
+.tools-hub-summary h2,
+.tool-choice-card h3,
+.tool-path-card h3,
+.learning-resource-panel h3 {
+  font-weight: 500;
+}
+
+strong,
+b,
+.article-content strong,
+.case-guidance-block strong,
+.case-start-guide strong {
+  font-weight: 560;
 }
