@@ -4539,30 +4539,13 @@ body {
   padding-top: 28px;
 }
 
-.article-directory-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 18px;
-  margin-bottom: 26px;
-  border-bottom: 1px solid rgba(17, 24, 39, 0.12);
-  padding-bottom: 14px;
-}
-
-.article-count {
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
 .article-index {
-  gap: 38px;
+  gap: 36px;
 }
 
 .blog-directory-heading {
-  grid-template-columns: minmax(0, 0.3fr) minmax(0, 0.7fr);
-  align-items: baseline;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   max-width: none;
   padding-bottom: 12px;
 }
@@ -4740,15 +4723,6 @@ body {
 
   .blog-page-listing {
     padding-top: 22px;
-  }
-
-  .article-directory-toolbar {
-    align-items: flex-start;
-    margin-bottom: 22px;
-  }
-
-  .article-directory-toolbar .share-label {
-    flex-basis: auto;
   }
 
   .share {

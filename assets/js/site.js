@@ -129,7 +129,6 @@ function blogDirectory(posts) {
         <section class="blog-directory-group longform-group" aria-labelledby="analyses-longues">
           <div class="blog-directory-heading">
             <h3 id="analyses-longues">Analyses longues</h3>
-            <p>${longformPosts.length} textes de recul pour lire l'IA comme un mouvement économique, culturel et humain.</p>
           </div>
           <div class="article-grid longform-grid">
             ${longformPosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
@@ -140,7 +139,6 @@ function blogDirectory(posts) {
         <section class="blog-directory-group guide-group" aria-labelledby="guides-pratiques">
           <div class="blog-directory-heading">
             <h3 id="guides-pratiques">Guides pratiques</h3>
-            <p>${guidePosts.length} formats ciblés pour répondre vite à une question de méthode, de gouvernance ou de pilotage.</p>
           </div>
           <div class="article-grid guide-grid">
             ${guidePosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
