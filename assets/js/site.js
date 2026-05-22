@@ -383,8 +383,12 @@ function contactFormTemplate(context = "Site") {
         <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required />
       </label>
       <label class="contact-field contact-field-wide">
+        Sujet
+        <input type="text" name="sujet" placeholder="Sujet de votre message" required />
+      </label>
+      <label class="contact-field contact-field-wide">
         Message
-        <textarea name="message" rows="8" placeholder="Votre message" required></textarea>
+        <textarea name="message" rows="8" placeholder="Quelques lignes sur le contexte, l'objectif ou la question à clarifier." required></textarea>
       </label>
       <input type="hidden" name="access_key" value="${escapeAttribute(CONTACT_ACCESS_KEY)}" />
       <input class="contact-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />

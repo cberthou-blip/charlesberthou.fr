@@ -1,38 +1,45 @@
 const maturityAxes = [
   {
-    id: "culture",
-    title: "Culture IA",
-    low: "Repères dispersés",
-    high: "Bases comprises et partagées",
-    recommendation: "Reprendre les notions essentielles : modèle, donnée, contexte, erreur possible et vérification.",
-  },
-  {
     id: "usage",
-    title: "Usages actuels",
-    low: "Essais isolés",
-    high: "Usages réguliers et nommés",
-    recommendation: "Identifier les usages déjà présents et distinguer expérimentation, habitude et dépendance.",
+    title: "Usage réel",
+    low: "Quelques essais individuels",
+    high: "Usages réguliers dans plusieurs équipes",
+    recommendation: "Identifier les usages déjà présents et choisir deux pilotes très concrets.",
   },
   {
-    id: "organization",
-    title: "Organisation",
+    id: "skills",
+    title: "Compétences",
+    low: "Repères dispersés",
+    high: "Socle commun partagé",
+    recommendation: "Créer un tronc commun court : consignes, limites, données, vérification.",
+  },
+  {
+    id: "usecases",
+    title: "Cas d'usage",
+    low: "Idées floues",
+    high: "Portefeuille priorisé",
+    recommendation: "Cartographier les tâches répétitives, puis prioriser par gain, risque et faisabilité.",
+  },
+  {
+    id: "governance",
+    title: "Gouvernance",
     low: "Règles implicites",
-    high: "Responsabilités claires",
-    recommendation: "Clarifier qui décide, qui vérifie, quelles données sont utilisées et ce qui doit rester humain.",
+    high: "Cadre clair et compris",
+    recommendation: "Clarifier les données autorisées, la validation humaine et les usages interdits.",
   },
   {
-    id: "limits",
-    title: "Risques et limites",
-    low: "Peu visibles",
-    high: "Vigilances intégrées",
-    recommendation: "Nommer les risques : erreurs, biais, confidentialité, dépendance outil et validation humaine.",
+    id: "measurement",
+    title: "Mesure des gains",
+    low: "Gains ressentis",
+    high: "KPI suivis",
+    recommendation: "Mesurer avant/après sur quelques usages : temps, qualité, risque, satisfaction.",
   },
   {
-    id: "next",
-    title: "Prochaines étapes",
-    low: "Floues",
-    high: "Progression priorisée",
-    recommendation: "Choisir une prochaine action simple : apprendre, documenter, tester ou réduire un risque.",
+    id: "scale",
+    title: "Passage à l'échelle",
+    low: "Tests isolés",
+    high: "Déploiement piloté",
+    recommendation: "Transformer les pilotes utiles en plan 90 jours avec responsables, formation et revue.",
   },
 ];
 
@@ -151,7 +158,7 @@ function getTotalScore() {
 }
 
 function getLevel(total) {
-  if (total <= 4) {
+  if (total <= 5) {
     return {
       label: "Fondations insuffisantes",
       title: "Fondations à poser",
@@ -162,7 +169,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 9) {
+  if (total <= 11) {
     return {
       label: "Exploration dispersée",
       title: "Exploration à structurer",
@@ -173,7 +180,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 14) {
+  if (total <= 17) {
     return {
       label: "Structuration engagée",
       title: "Adoption structurée",

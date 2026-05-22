@@ -41,7 +41,7 @@ const METIER_DESCRIPTIONS = {
 
 const SECTOR_ORDER = [
   "Tous secteurs",
-  "Activités professionnelles",
+  "Services professionnels",
   "Finance / Assurance",
   "Santé / Médico-social",
   "Secteur public / Collectivités",
@@ -737,15 +737,15 @@ function getSectors(item) {
   const text = normalize(caseText(item));
 
   if (metier === "Finance") return ["Finance / Assurance"];
-  if (metier === "Droit / Avocat") return ["Activités professionnelles", "Secteur public / Collectivités"];
+  if (metier === "Droit / Avocat") return ["Services professionnels", "Secteur public / Collectivités"];
   if (metier === "Santé") return ["Santé / Médico-social"];
   if (metier === "Conformité / Risques") return ["Finance / Assurance", "Secteur public / Collectivités"];
   if (metier === "DSI / Informatique") return ["Technologie / Télécoms"];
   if (metier === "Achats / Logistique") return ["Transport / Logistique", "Industrie"];
   if (metier === "Éducation / Formation") return ["Éducation / Formation"];
-  if (metier === "Vente / Commercial") return ["Commerce / Retail", "Activités professionnelles"];
-  if (metier === "Marketing / Communication") return ["Commerce / Retail", "Activités professionnelles"];
-  if (metier === "Conseil") return ["Activités professionnelles"];
+  if (metier === "Vente / Commercial") return ["Commerce / Retail", "Services professionnels"];
+  if (metier === "Marketing / Communication") return ["Commerce / Retail", "Services professionnels"];
+  if (metier === "Conseil") return ["Services professionnels"];
 
   if (text.includes("banque") || text.includes("assurance")) return ["Finance / Assurance"];
   if (text.includes("hopital") || text.includes("patient") || text.includes("soin")) return ["Santé / Médico-social"];

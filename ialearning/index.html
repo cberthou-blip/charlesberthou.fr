@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA Learning | Outil de formation IA</title>
-<meta name="description" content="Outil pour progresser dans la compréhension et l'usage de l'intelligence artificielle, par étapes et avec distance critique." />
+<title>IA Learning | Formation IA gratuite avec quiz</title>
+<meta name="description" content="Formation IA gratuite pour comprendre l'intelligence artificielle, progresser par modules, quiz, défis et installer une culture IA commune." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://charlesberthou.fr/ialearning/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1457,14 +1457,14 @@ body::before {
 </style>
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="charlesberthou.fr">
-<meta property="og:title" content="IA Learning">
-<meta property="og:description" content="Outil pour progresser dans la compréhension et l'usage de l'intelligence artificielle.">
+<meta property="og:title" content="IA Learning | Formation IA gratuite">
+<meta property="og:description" content="Formation IA gratuite avec modules, quiz, progression, défis et mode équipe pour installer les bases de l'IA.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charlesberthou.fr/ialearning/">
 <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="IA Learning">
-<meta name="twitter:description" content="Outil pour progresser dans la compréhension et l'usage de l'intelligence artificielle.">
+<meta name="twitter:title" content="IA Learning — formation IA gratuite">
+<meta name="twitter:description" content="Modules, quiz, défis et mode équipe pour installer les bases de l'IA.">
 <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png">
 <script type="application/ld+json">
 {
@@ -1482,7 +1482,7 @@ body::before {
     "priceCurrency": "EUR",
     "availability": "https://schema.org/InStock"
   },
-  "description": "Outil de formation pour progresser dans la compréhension et l'usage de l'intelligence artificielle, par étapes et avec distance critique.",
+  "description": "Formation IA gratuite et gamifiée pour comprendre les bases de l'intelligence artificielle, progresser par modules, quiz, défis et mode équipe.",
   "featureList": [
     "Modules d'apprentissage IA",
     "Quiz chronométrés",
@@ -1506,7 +1506,7 @@ body::before {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
-    { "@type": "ListItem", "position": 2, "name": "Outils IA", "item": "https://charlesberthou.fr/outils-ia/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils IA gratuits", "item": "https://charlesberthou.fr/outils-ia/" },
     { "@type": "ListItem", "position": 3, "name": "IA Learning", "item": "https://charlesberthou.fr/ialearning/" }
   ]
 }
@@ -1526,10 +1526,10 @@ body::before {
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/">Articles</a>
-        <a href="/outils-ia/" aria-current="page">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/contact/">Contact</a>
+        <a href="/#contact">Contact</a>
       </nav>
       <button class="btn btn-primary btn-sm learning-login-button" id="btn-landing-login" type="button">Se connecter</button>
     </div>
@@ -1539,9 +1539,9 @@ body::before {
   <div class="landing-hero">
     <div class="landing-hero-grid"></div>
     <div class="landing-hero-content">
-      <div class="landing-hero-eyebrow">Outil de formation IA</div>
-      <h1>IA Learning</h1>
-      <p class="landing-hero-sub">Un outil pour progresser dans la compréhension et l'usage de l'IA : comprendre les bases, identifier les bons usages, avancer par étapes et garder une distance critique.</p>
+      <div class="landing-hero-eyebrow">🎓 Formation IA · Gamifiée</div>
+      <h1>Montez en compétences<br>— et en <span>niveau</span></h1>
+      <p class="landing-hero-sub">10 modules progressifs sur l'intelligence artificielle. Apprenez, gagnez des XP, débloquez des badges, défiez vos collègues.</p>
       <div class="landing-stats" style="margin-bottom:0">
         <div class="ls-item"><span class="ls-val">10</span><span class="ls-lbl">Modules</span></div>
         <div class="ls-item"><span class="ls-val">100+</span><span class="ls-lbl">Questions</span></div>
@@ -1549,7 +1549,7 @@ body::before {
         <div class="ls-item"><span class="ls-val">∞</span><span class="ls-lbl">Défis</span></div>
       </div>
       <div class="landing-hero-btns">
-        <button class="btn btn-primary btn-lg" id="btn-landing-start">Découvrir l'outil</button>
+        <button class="btn btn-primary btn-lg" id="btn-landing-start">Commencer →</button>
         <button class="btn btn-ghost btn-lg" id="btn-landing-login2" style="color:#fff;border-color:rgba(255,255,255,0.25)" onclick="document.getElementById('btn-landing-login').click()">Déjà inscrit ? Se connecter</button>
       </div>
     </div>
@@ -1673,27 +1673,37 @@ body::before {
   <footer class="site-footer">
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
-        <section class="footer-group" aria-labelledby="footer-read-title">
-          <p class="footer-heading" id="footer-read-title">Lire</p>
-          <a href="/blog/">Articles</a>
-          <a href="/reperes/">Rep&egrave;res</a>
-        </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Expérimenter</p>
-          <a href="/outils-ia/">Outils IA</a>
+          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
+          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
+          <a href="/outils-ia/registre-ia/">Registre IA</a>
           <a href="/ialearning/">IA Learning</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-contact-title">
-          <p class="footer-heading" id="footer-contact-title">Échanger</p>
-          <a href="/contact/">Contact</a>
-          <a href="/confidentialite/">Confidentialité</a>
+        <section class="footer-group" aria-labelledby="footer-articles-title">
+          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
+          <a href="/reperes/">Rep&egrave;res IA</a>
+          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
+          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
+          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
+          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
+          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
+        </section>
+        <section class="footer-group" aria-labelledby="footer-llm-title">
+          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
+          <a href="/resume-llm/">Résumé LLM</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/llms-full.txt">llms-full.txt</a>
+          <a href="/sitemap.xml">Sitemap XML</a>
+          <a href="/a-propos/">À propos</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; Articles, repères et outils pour comprendre l'IA.</p>
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/#contact">Contact</a>
         </div>
       </div>
     </div>
@@ -2236,7 +2246,7 @@ const MODULES = [
         {label:"L'IA aide",value:"Optimisation des réseaux électriques, prévision météo pour l'éolien/solaire, découverte de nouveaux matériaux pour les batteries, réduction du gaspillage alimentaire.",cls:"cyan"},
         {label:"Le bilan",value:"Difficile à trancher : l'IA peut aider à lutter contre le changement climatique, à condition que son déploiement soit pensé de façon responsable.",cls:"violet"}
       ]},
-      {type:"text",heading:"Pistes de réponse : vers une Green AI",
+      {type:"text",heading:"Les solutions : vers une Green AI",
        text:"Le secteur prend conscience du problème et explore des pistes :<br><br>• <strong>Modèles plus efficaces</strong> : des recherches montrent qu'on peut obtenir de bonnes performances avec des modèles 10 à 100 fois plus petits<br>• <strong>Énergies renouvelables</strong> : Microsoft, Google et Amazon s'engagent à alimenter leurs centres de données en énergie renouvelable<br>• <strong>Mesurer l'impact</strong> : des outils comme CodeCarbon permettent de calculer l'empreinte CO2 d'un projet IA<br>• <strong>Refroidissement plus sobre</strong> : Microsoft a expérimenté des centres de données sous-marins (Project Natick) pour utiliser la fraîcheur naturelle des fonds marins et réduire la consommation d'eau et d'énergie"},
       {type:"text",heading:"L'IA comme outil contre le changement climatique",
        text:"Paradoxalement, l'IA peut aussi contribuer à <strong>lutter contre</strong> le dérèglement climatique.<br><br>• <strong>Énergie</strong> : DeepMind a réduit la consommation électrique des centres de données de Google grâce à l'IA. Des systèmes similaires améliorent le pilotage de réseaux électriques.<br><br>• <strong>Agriculture</strong> : des capteurs et algorithmes permettent de réduire l'usage des pesticides et de l'eau, en arrosant et traitant uniquement là où c'est nécessaire.<br><br>• <strong>Climat</strong> : les modèles de prévision météo basés sur l'IA (comme GraphCast de Google) sont plus rapides que les méthodes traditionnelles, ce qui aide à anticiper certains événements extrêmes.<br><br>La question n'est donc pas 'l'IA est-elle bonne ou mauvaise pour la planète' mais <strong>'comment la déployer de façon responsable pour en tirer des bénéfices réels ?'</strong>"}
