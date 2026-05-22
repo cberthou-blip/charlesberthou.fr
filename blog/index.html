@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-simple-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -109,17 +109,69 @@
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
-      <nav class="main-nav" aria-label="Navigation principale">
+                  <nav class="main-nav" aria-label="Navigation principale">
         <a href="/blog/" aria-current="page">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
-        <a href="/experimentations/">Expérimentations</a>
-        <a href="/reperes/">Repères</a>
-        <a href="/a-propos/">À propos</a>
+        <a href="/reperes/">Rep&egrave;res</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="contenu">
+    <section class="simple-page-head">
+      <div class="container">
+        <h1>Articles</h1>
+        <p>Analyses et guides pratiques pour comprendre l'IA, ses usages et ses effets concrets.</p>
+      </div>
+    </section>
+
+    <section class="section simple-section">
+      <div class="container simple-list-grid articles-list-simple">
+        <a class="simple-list-card" href="/blog/registre-ia-modele-gratuit/">
+          <span>20 mai 2026 · Guide</span>
+          <h2>Registre IA : modèle gratuit et méthode simple</h2>
+          <p>Pourquoi documenter les usages IA et comment commencer simplement.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/cas-usage-ia-entreprise-prioriser/">
+          <span>19 mai 2026 · Guide</span>
+          <h2>Cas d'usage IA : comment prioriser</h2>
+          <p>Une méthode pour choisir les bons pilotes IA.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/shadow-ai-cadrer-sans-bloquer/">
+          <span>18 mai 2026 · Guide</span>
+          <h2>Shadow AI : cadrer les usages sans bloquer</h2>
+          <p>Rendre visibles les usages IA non encadrés.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/roi-ia-exemple-calcul-pilote/">
+          <span>17 mai 2026 · Guide</span>
+          <h2>ROI IA : exemple de calcul avant un pilote</h2>
+          <p>Chiffrer prudemment un cas d'usage IA.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/ai-act-registre-ia-pme/">
+          <span>16 mai 2026 · Guide</span>
+          <h2>AI Act et registre IA : ce qu'une PME peut documenter</h2>
+          <p>Les premières informations utiles à conserver.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/le-token-prochaine-monnaie-ia/">
+          <span>11 mai 2026 · Analyse</span>
+          <h2>Le token, prochaine monnaie de l'IA</h2>
+          <p>Une lecture économique du coût de l'intelligence calculée.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/ia-entreprise/">
+          <span>4 avril 2026 · Analyse</span>
+          <h2>IA en entreprise : hâtez-vous lentement</h2>
+          <p>Comprendre pourquoi l'adoption demande méthode.</p>
+        </a>
+        <a class="simple-list-card" href="/blog/humanite-lumiere/">
+          <span>1 avril 2026 · Analyse</span>
+          <h2>L'humanité a toujours tremblé devant sa propre lumière</h2>
+          <p>Une réflexion sur le progrès et les peurs technologiques.</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="legacy-page-content" hidden>
     <section class="page-hero blog-page-hero">
       <div class="container editorial-band-inner">
         <div>
@@ -278,40 +330,18 @@
         </div>
       </div>
     </section>
+    </div>
   </main>
-
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <nav class="footer-nav" aria-label="Plan du site">
-        <section class="footer-group" aria-labelledby="footer-publication-title">
-          <p class="footer-heading" id="footer-publication-title">Publication</p>
-          <a href="/blog/">Articles</a>
-          <a href="/reperes/">Rep&egrave;res</a>
-          <a href="/experimentations/">Exp&eacute;rimentations</a>
-          <a href="/a-propos/">&Agrave; propos</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Maturit&eacute;</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage</a>
-          <a href="/outils-ia/roi-ia/">ROI</a>
-          <a href="/outils-ia/registre-ia/">Registre</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-resources-title">
-          <p class="footer-heading" id="footer-resources-title">Ressources</p>
-          <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/sitemap.xml">Sitemap</a>
-          <a href="/confidentialite/">Confidentialit&eacute;</a>
-        </section>
+    <div class="container footer-simple">
+      <p>&copy; Charles Berthou</p>
+      <nav aria-label="Liens essentiels">
+        <a href="/blog/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
+        <a href="/reperes/">Rep&egrave;res</a>
+        <a href="/contact/">Contact</a>
+        <a href="/confidentialite/">Confidentialit&eacute;</a>
       </nav>
-      <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; Comprendre l'IA, &eacute;clairer les usages, partager des rep&egrave;res utiles.</p>
-        <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialit&eacute;</a>
-          <a href="/a-propos/#contact">Contact</a>
-        </div>
-      </div>
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260522-carnet-v1" defer></script>
