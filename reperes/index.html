@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v2" />
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -31,7 +31,7 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Analyses</a>
+        <a href="/blog/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
         <a href="/experimentations/">Expérimentations</a>
         <a href="/reperes/" aria-current="page">Repères</a>
@@ -42,18 +42,67 @@
 
   <main id="contenu">
     <section class="page-hero carnet-page-hero">
-      <div class="container">
-        <p class="eyebrow">Notions utiles</p>
-        <h1>Repères IA.</h1>
-        <p class="lead">
-          Une page pour retrouver les concepts, risques, méthodes et articles à garder sous la main
-          lorsque l'on veut comprendre l'IA sans se perdre dans le bruit.
-        </p>
+      <div class="container editorial-band-inner">
+        <div>
+          <p class="eyebrow">Bibliothèque de repères</p>
+          <h1>Repères IA.</h1>
+          <p class="lead">
+            Concepts, risques, méthodes et articles à garder sous la main
+            lorsque l'on veut comprendre l'IA sans repartir de zéro.
+          </p>
+        </div>
+        <svg class="editorial-sketch compass-sketch" viewBox="0 0 260 220" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="130" cy="110" r="72" />
+            <circle cx="130" cy="110" r="10" />
+            <path d="M130 28v26M130 166v26M48 110h26M186 110h26" />
+            <path d="M130 110l46-34-22 54-24 46-20-52-26-48z" />
+            <path d="M76 56l18 18M184 56l-18 18M76 164l18-18M184 164l-18-18" />
+            <path d="M118 16h24M118 204h24M18 98v24M218 98v24" />
+          </g>
+        </svg>
       </div>
     </section>
 
     <section class="section">
-      <div class="container repere-directory">
+      <div class="container repere-collections">
+        <article class="repere-shelf">
+          <div>
+            <p class="eyebrow">Repères essentiels</p>
+            <h2>À ouvrir quand une décision IA se précise.</h2>
+          </div>
+          <div class="repere-shelf-list">
+            <a href="/outils-ia/registre-ia/"><strong>Registre IA</strong><span>Rendre visibles usages, données, responsables et revues.</span></a>
+            <a href="/outils-ia/roi-ia/"><strong>ROI IA</strong><span>Mettre une promesse de gain face aux coûts complets.</span></a>
+            <a href="/blog/shadow-ai-cadrer-sans-bloquer/"><strong>Shadow AI</strong><span>Cadrer les usages déjà présents sans bloquer l'apprentissage.</span></a>
+          </div>
+        </article>
+
+        <article class="repere-shelf">
+          <div>
+            <p class="eyebrow">Repères récents</p>
+            <h2>Les lectures qui alimentent le carnet.</h2>
+          </div>
+          <div class="repere-shelf-list">
+            <a href="/blog/registre-ia-modele-gratuit/"><strong>Registre IA : modèle et méthode</strong><span>Commencer petit, documenter juste.</span></a>
+            <a href="/blog/cas-usage-ia-entreprise-prioriser/"><strong>Prioriser les cas d'usage</strong><span>Comparer valeur, effort, données, risque et adoption.</span></a>
+            <a href="/blog/le-token-prochaine-monnaie-ia/"><strong>Le token comme monnaie</strong><span>Comprendre le coût réel de l'intelligence calculée.</span></a>
+          </div>
+        </article>
+
+        <article class="repere-shelf">
+          <div>
+            <p class="eyebrow">Repères à conserver</p>
+            <h2>Les questions qui reviennent tout le temps.</h2>
+          </div>
+          <div class="repere-shelf-list">
+            <a href="/outils-ia/maturite-ia/"><strong>Quel est le prochain verrou ?</strong><span>Former, prioriser, mesurer ou gouverner.</span></a>
+            <a href="/outils-ia/cas-usage/"><strong>La tâche est-elle assez précise ?</strong><span>Une bonne expérimentation commence par un geste de travail.</span></a>
+            <a href="/experimentations/"><strong>Qu'apprend le test ?</strong><span>Un prototype utile produit un enseignement, pas seulement une démo.</span></a>
+          </div>
+        </article>
+
+        <div class="repere-directory">
         <article class="repere-block" id="fondations">
           <p class="eyebrow">Fondations</p>
           <h2>Comprendre les bases.</h2>
@@ -108,6 +157,7 @@
             <a href="/experimentations/"><strong>Expérimentations</strong><span>Documenter ce que les prototypes apprennent réellement.</span></a>
           </div>
         </article>
+        </div>
       </div>
     </section>
   </main>
@@ -117,31 +167,31 @@
       <nav class="footer-nav" aria-label="Plan du site">
         <section class="footer-group" aria-labelledby="footer-publication-title">
           <p class="footer-heading" id="footer-publication-title">Publication</p>
-          <a href="/blog/">Analyses</a>
-          <a href="/reperes/">Repères</a>
-          <a href="/experimentations/">Expérimentations</a>
-          <a href="/a-propos/">À propos</a>
+          <a href="/blog/">Articles</a>
+          <a href="/reperes/">Rep&egrave;res</a>
+          <a href="/experimentations/">Exp&eacute;rimentations</a>
+          <a href="/a-propos/">&Agrave; propos</a>
         </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
           <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <a href="/outils-ia/maturite-ia/">Maturit&eacute;</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage</a>
+          <a href="/outils-ia/roi-ia/">ROI</a>
+          <a href="/outils-ia/registre-ia/">Registre</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">Repères techniques</p>
-          <a href="/resume-llm/">Résumé LLM</a>
+        <section class="footer-group" aria-labelledby="footer-resources-title">
+          <p class="footer-heading" id="footer-resources-title">Ressources</p>
+          <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
           <a href="/llms.txt">llms.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; Repères utiles pour comprendre l'IA.</p>
+        <p>&copy; Charles Berthou &middot; Comprendre l'IA, &eacute;clairer les usages, partager des rep&egrave;res utiles.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
+          <a href="/a-propos/#contact">Contact</a>
         </div>
       </div>
     </div>

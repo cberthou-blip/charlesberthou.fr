@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +55,7 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/" aria-current="page">Analyses</a>
+        <a href="/blog/" aria-current="page">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
         <a href="/experimentations/">Expérimentations</a>
         <a href="/reperes/">Repères</a>
@@ -81,34 +81,57 @@
         </div>
       </header>
 
+      <div class="article-intro-grid">
+        <aside class="article-takeaway">
+          <h2>&Agrave; retenir</h2>
+          <p>Un registre IA n'est pas un fichier administratif : c'est une m&eacute;moire des usages, des donn&eacute;es, des risques et des responsables.</p>
+        </aside>
+        <nav class="article-toc" aria-label="Sommaire de l'article">
+          <strong>Sommaire</strong>
+          <ol>
+              <li><a href="#a-quoi-sert-un-registre-ia">À quoi sert un registre IA</a></li>
+              <li><a href="#les-informations-a-conserver">Les informations à conserver</a></li>
+              <li><a href="#commencer-petit">Commencer petit</a></li>
+              <li><a href="#le-lien-avec-l-ai-act">Le lien avec l'AI Act</a></li>
+              <li><a href="#un-modele-gratuit-pour-demarrer">Un modèle gratuit pour démarrer</a></li>
+              <li><a href="#ressources-associees">Ressources associées</a></li>
+          </ol>
+        </nav>
+      </div>
+
       <div class="article-content">
         <p>Un registre IA n'est pas un document administratif de plus. C'est d'abord une manière de rendre visibles les usages qui existent déjà dans une organisation : les outils testés, les tâches assistées, les données mobilisées, les personnes responsables et les risques associés.</p>
         <p>Sans registre, l'IA progresse souvent par petits essais dispersés. Un collaborateur utilise un assistant pour résumer des documents, une équipe teste un outil de rédaction, un manager automatise un compte rendu, un service client expérimente une réponse assistée. Pris séparément, ces usages semblent modestes. Ensemble, ils forment une réalité opérationnelle que personne ne pilote vraiment.</p>
 
-        <h2>À quoi sert un registre IA</h2>
+        <h2 id="a-quoi-sert-un-registre-ia">À quoi sert un registre IA</h2>
         <p>Le registre sert à répondre à des questions simples : qui utilise quoi, pour quoi faire, avec quelles données, sous quelle responsabilité et avec quel contrôle humain. Il ne vise pas à bloquer les usages. Il permet au contraire de distinguer les expérimentations acceptables, les usages à encadrer et les pratiques à arrêter.</p>
         <p>Il devient particulièrement utile lorsque l'organisation veut passer d'une phase de curiosité à une phase de méthode. Tant que les usages ne sont pas nommés, il est difficile de former correctement, de mesurer la valeur, de gérer les risques ou de choisir les bons outils.</p>
 
-        <h2>Les informations à conserver</h2>
+        <h2 id="les-informations-a-conserver">Les informations à conserver</h2>
         <p>Un registre utile reste lisible. Il peut commencer avec quelques colonnes : nom du cas d'usage, équipe concernée, finalité, outil utilisé, données manipulées, niveau de sensibilité, responsable, statut, fréquence de revue et risques principaux. On peut ensuite ajouter le gain attendu, le niveau de validation humaine ou les liens vers une note de cadrage.</p>
         <p>Le plus important est d'éviter les formulations vagues. Une ligne intitulée "ChatGPT" ne dit presque rien. Une ligne intitulée "Préparation de synthèses de réunions internes à partir de comptes rendus validés, avec relecture humaine avant diffusion" donne déjà une base de gouvernance.</p>
 
-        <h2>Commencer petit</h2>
+        <h2 id="commencer-petit">Commencer petit</h2>
         <p>Il n'est pas nécessaire de déployer immédiatement une grande plateforme de gouvernance. Pour démarrer, un registre local ou un tableur propre suffit souvent. L'objectif est de créer une première carte des usages, pas de produire un audit exhaustif dès la première semaine.</p>
         <p>Une méthode simple consiste à recenser les usages connus, les classer par sensibilité, puis choisir trois actions : continuer, encadrer ou arrêter. Cette première revue suffit souvent à révéler les vrais sujets : données sensibles, absence de validation, doublons d'outils, manque de formation ou confusion sur les responsabilités.</p>
 
-        <h2>Le lien avec l'AI Act</h2>
+        <h2 id="le-lien-avec-l-ai-act">Le lien avec l'AI Act</h2>
         <p>Le registre n'est pas un avis juridique et ne remplace pas une analyse de conformité. Mais il prépare un réflexe utile : documenter les finalités, les responsabilités, les données et les revues. Pour certains systèmes à haut risque, l'AI Act impose des obligations spécifiques aux déployeurs et des logiques d'enregistrement selon les cas. Les articles 26 et 49 de l'AI Act Service Desk donnent des repères officiels sur ces sujets.</p>
         <p>Pour beaucoup d'organisations, l'intérêt du registre est plus immédiat encore : éviter de découvrir trop tard qu'un usage non documenté manipule des informations sensibles ou influence une décision importante.</p>
 
-        <h2>Un modèle gratuit pour démarrer</h2>
+        <h2 id="un-modele-gratuit-pour-demarrer">Un modèle gratuit pour démarrer</h2>
         <p>J'ai publié un <a class="text-link" href="/outils-ia/registre-ia/">registre IA gratuit</a> qui fonctionne localement dans le navigateur. Il permet d'ajouter des usages, de qualifier les données, les risques, le statut et les prochaines revues, puis d'exporter le résultat. Il ne prétend pas remplacer un outil de gouvernance complet, mais il donne une première structure pour passer du flou à une liste exploitable.</p>
         <p>La bonne question n'est donc pas "avons-nous un registre complet ?". La bonne question est plus simple : "savons-nous quels usages IA existent déjà, lesquels méritent d'être poursuivis et lesquels doivent être encadrés ?".</p>
       </div>
+
+      <aside class="article-margin-note">
+        <h2>Note carnet</h2>
+        <p>&Agrave; conserver apr&egrave;s lecture : le vocabulaire utile, la d&eacute;cision qu'il &eacute;claire et la limite &agrave; ne pas oublier.</p>
+      </aside>
     </article>
 
     <div class="reference-box">
-      <h2>Ressources associées</h2>
+      <h2 id="ressources-associees">Ressources associées</h2>
       <p><a class="text-link" href="/outils-ia/registre-ia/">Ouvrir le registre IA gratuit</a></p>
       <p>Sources officielles : <a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/fr/ai-act/article-26" target="_blank" rel="noopener noreferrer">Article 26 de l'AI Act</a> et <a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-49" target="_blank" rel="noopener noreferrer">Article 49</a>.</p>
     </div>
@@ -117,36 +140,33 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-publication-title">
+          <p class="footer-heading" id="footer-publication-title">Publication</p>
+          <a href="/blog/">Articles</a>
+          <a href="/reperes/">Rep&egrave;res</a>
+          <a href="/experimentations/">Exp&eacute;rimentations</a>
+          <a href="/a-propos/">&Agrave; propos</a>
+        </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
-          <a href="/ialearning/">IA Learning</a>
+          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
+          <a href="/outils-ia/maturite-ia/">Maturit&eacute;</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage</a>
+          <a href="/outils-ia/roi-ia/">ROI</a>
+          <a href="/outils-ia/registre-ia/">Registre</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
-          <a href="/resume-llm/">Résumé LLM</a>
+        <section class="footer-group" aria-labelledby="footer-resources-title">
+          <p class="footer-heading" id="footer-resources-title">Ressources</p>
+          <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
           <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; Comprendre l'IA, &eacute;clairer les usages, partager des rep&egrave;res utiles.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
+          <a href="/a-propos/#contact">Contact</a>
         </div>
       </div>
     </div>

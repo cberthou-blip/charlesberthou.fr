@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-carnet-v2" />
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -31,7 +31,7 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Analyses</a>
+        <a href="/blog/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
         <a href="/experimentations/" aria-current="page">Expérimentations</a>
         <a href="/reperes/">Repères</a>
@@ -42,13 +42,24 @@
 
   <main id="contenu">
     <section class="page-hero carnet-page-hero">
-      <div class="container">
-        <p class="eyebrow">Carnet d'expériences</p>
-        <h1>Expérimentations IA.</h1>
-        <p class="lead">
-          Des prototypes, tests et observations pour documenter ce qui fonctionne, ce qui coince
-          et ce qu'il faut mesurer avant de passer à l'échelle.
-        </p>
+      <div class="container editorial-band-inner">
+        <div>
+          <p class="eyebrow">Carnet de tests</p>
+          <h1>Expérimentations IA.</h1>
+          <p class="lead">
+            Des prototypes, tests et observations pour documenter ce qui fonctionne, ce qui coince
+            et ce qu'il faut mesurer avant de passer à l'échelle.
+          </p>
+        </div>
+        <svg class="editorial-sketch micro-sketch" viewBox="0 0 260 200" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M58 48h78l34 34v74H58z" />
+            <path d="M136 48v34h34" />
+            <path d="M78 92h58M78 116h78M78 140h52" />
+            <path d="M190 58l22 22-22 22-22-22zM190 72v18M181 81h18" />
+            <path d="M28 164c52 16 112 18 180 6" />
+          </g>
+        </svg>
       </div>
     </section>
 
@@ -56,30 +67,53 @@
       <div class="container">
         <div class="section-heading carnet-heading">
           <div>
-            <p class="eyebrow">En cours et publiés</p>
+            <p class="eyebrow">Journal de tests</p>
             <h2>Des essais utiles, pas des vitrines.</h2>
           </div>
         </div>
 
-        <div class="carnet-feature-grid">
-          <a class="carnet-card carnet-card-large" href="/outils-ia/">
-            <p class="meta">Publié</p>
-            <h3>Outils IA du site</h3>
-            <p>Diagnostic, cas d'usage, ROI et registre: des outils conçus pour cadrer une décision IA sans jargon.</p>
-            <span class="text-link">Explorer les outils</span>
-          </a>
-          <a class="carnet-card" href="/ialearning/">
-            <p class="meta">Publié</p>
-            <h3>IA Learning</h3>
-            <p>Un parcours d'apprentissage pour installer les bases avant de choisir ses usages.</p>
-            <span class="text-link">Voir le parcours</span>
-          </a>
-          <a class="carnet-card" href="/blog/">
-            <p class="meta">Carnet en construction</p>
-            <h3>Veille et signaux IA</h3>
-            <p>Une expérimentation éditoriale pour transformer la veille en repères courts, sourcés et réutilisables.</p>
-            <span class="text-link">Lire les analyses</span>
-          </a>
+        <div class="experiment-log">
+          <article class="experiment-card">
+            <div>
+              <span class="experiment-status">Publié</span>
+              <h2>Outils IA du site</h2>
+              <p>Diagnostic, cas d'usage, ROI et registre pour transformer une intuition IA en décision documentée.</p>
+              <a class="text-link" href="/outils-ia/">Explorer les outils</a>
+            </div>
+            <ul>
+              <li><strong>Objectif :</strong> cadrer sans jargon.</li>
+              <li><strong>Ce que j'apprends :</strong> la décision compte plus que le format de l'outil.</li>
+              <li><strong>Enseignement :</strong> les meilleurs outils réduisent le bruit, pas la responsabilité.</li>
+            </ul>
+          </article>
+
+          <article class="experiment-card">
+            <div>
+              <span class="experiment-status">Publié</span>
+              <h2>IA Learning</h2>
+              <p>Un parcours pour installer les bases avant de parler cas d'usage, ROI ou gouvernance.</p>
+              <a class="text-link" href="/ialearning/">Voir le parcours</a>
+            </div>
+            <ul>
+              <li><strong>Objectif :</strong> créer un langage commun.</li>
+              <li><strong>Ce que j'apprends :</strong> la pédagogie doit précéder le choix d'outil.</li>
+              <li><strong>Enseignement :</strong> moins de concepts, plus de repères réutilisables.</li>
+            </ul>
+          </article>
+
+          <article class="experiment-card">
+            <div>
+              <span class="experiment-status">En construction</span>
+              <h2>Veille et signaux IA</h2>
+              <p>Transformer la veille en notes courtes: ce qui change les usages, les coûts, les risques ou les responsabilités.</p>
+              <a class="text-link" href="/blog/">Lire les analyses</a>
+            </div>
+            <ul>
+              <li><strong>Objectif :</strong> filtrer les annonces sans perdre les signaux faibles.</li>
+              <li><strong>Ce que j'apprends :</strong> une veille utile doit produire une décision possible.</li>
+              <li><strong>Enseignement :</strong> conserver moins d'informations, mais mieux les relier.</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -90,31 +124,31 @@
       <nav class="footer-nav" aria-label="Plan du site">
         <section class="footer-group" aria-labelledby="footer-publication-title">
           <p class="footer-heading" id="footer-publication-title">Publication</p>
-          <a href="/blog/">Analyses</a>
-          <a href="/reperes/">Repères</a>
-          <a href="/experimentations/">Expérimentations</a>
-          <a href="/a-propos/">À propos</a>
+          <a href="/blog/">Articles</a>
+          <a href="/reperes/">Rep&egrave;res</a>
+          <a href="/experimentations/">Exp&eacute;rimentations</a>
+          <a href="/a-propos/">&Agrave; propos</a>
         </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
           <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <a href="/outils-ia/maturite-ia/">Maturit&eacute;</a>
+          <a href="/outils-ia/cas-usage/">Cas d'usage</a>
+          <a href="/outils-ia/roi-ia/">ROI</a>
+          <a href="/outils-ia/registre-ia/">Registre</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">Repères techniques</p>
-          <a href="/resume-llm/">Résumé LLM</a>
+        <section class="footer-group" aria-labelledby="footer-resources-title">
+          <p class="footer-heading" id="footer-resources-title">Ressources</p>
+          <a href="/resume-llm/">R&eacute;sum&eacute; LLM</a>
           <a href="/llms.txt">llms.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/confidentialite/">Confidentialité</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; Expérimenter, documenter, apprendre.</p>
+        <p>&copy; Charles Berthou &middot; Comprendre l'IA, &eacute;clairer les usages, partager des rep&egrave;res utiles.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/confidentialite/">Confidentialit&eacute;</a>
+          <a href="/a-propos/#contact">Contact</a>
         </div>
       </div>
     </div>
