@@ -4,26 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
-  <title>Repères et bonnes pratiques IA | Charles Berthou</title>
-  <meta name="description" content="Repères utiles pour comprendre l'IA : notions, méthodes, bonnes pratiques pour particuliers et entreprises, gouvernance, ROI, registre IA et articles de référence." />
+  <title>Repères | Charles Berthou</title>
+  <meta name="description" content="Quelques clés pour comprendre l'intelligence artificielle, ses modèles, ses usages et ses limites." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/reperes/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Repères et bonnes pratiques IA" />
-  <meta property="og:description" content="Notions, méthodes et bonnes pratiques pour comprendre l'IA, cadrer ses usages et éviter les erreurs courantes." />
+  <meta property="og:title" content="Repères" />
+  <meta property="og:description" content="Quelques clés pour comprendre l'intelligence artificielle, ses modèles, ses usages et ses limites." />
   <meta property="og:url" content="https://charlesberthou.fr/reperes/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Repères et bonnes pratiques IA" />
-  <meta name="twitter:description" content="Notions, méthodes et bonnes pratiques pour comprendre l'IA, cadrer ses usages et éviter les erreurs courantes." />
+  <meta name="twitter:title" content="Repères" />
+  <meta name="twitter:description" content="Quelques clés pour comprendre l'intelligence artificielle, ses modèles, ses usages et ses limites." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-articles-clean-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-editorial-v1" />
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -31,10 +31,10 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
         <a href="/reperes/" aria-current="page">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -42,154 +42,115 @@
   <main id="contenu">
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Repères IA</p>
-        <h1>Retrouver vite les notions, méthodes et articles utiles.</h1>
+        <p class="eyebrow">Repères</p>
+        <h1>Repères</h1>
         <p class="lead">
-          Une page courte pour garder sous la main les repères qui aident à comprendre l'IA,
-          choisir les bons usages, mesurer les gains et documenter les décisions.
+          Quelques clés pour comprendre l'intelligence artificielle, ses modèles, ses usages et ses limites.
         </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="section-heading wide">
-          <p class="eyebrow">À garder sous la main</p>
-          <h2>Les points d'appui les plus utiles.</h2>
-          <p>Pas de mise en scène : seulement des liens et des notes courtes pour retrouver rapidement le bon contenu.</p>
-        </div>
+      <div class="container content-grid two editorial-reference-grid">
+        <article class="content-card reference-block">
+          <h2>Qu'est-ce que l'intelligence artificielle ?</h2>
+          <p>L'intelligence artificielle désigne un ensemble de méthodes qui permettent à des systèmes informatiques d'accomplir des tâches qui demandent habituellement de la perception, du langage, du raisonnement, de la classification ou de la décision assistée.</p>
+          <p>L'IA générative est une famille particulière : elle produit du texte, des images, du son, du code ou des vidéos à partir d'une demande. Les modèles de langage, eux, travaillent principalement sur des suites de mots ou de fragments de mots. Ils ne pensent pas comme une personne ; ils estiment la suite la plus plausible dans un contexte donné.</p>
+          <p>Le fonctionnement tient en quelques repères : des données servent à l'entraînement ; le modèle apprend des régularités ; il calcule ensuite des probabilités ; il génère une réponse à partir du contexte fourni. Cette réponse peut être utile, mais elle peut aussi être incomplète, datée, biaisée ou fausse. Plus le contexte est flou, plus le résultat l'est aussi.</p>
+        </article>
 
-        <div class="content-grid two">
-          <article class="content-card answer-card">
-            <h2>Repères essentiels</h2>
-            <p>Les ressources à ouvrir quand une décision IA se précise.</p>
-            <ul>
-              <li><a href="/outils-ia/registre-ia/">Registre IA</a> : rendre visibles les usages, les données et les responsables.</li>
-              <li><a href="/outils-ia/roi-ia/">Calculateur ROI IA</a> : mettre une promesse de gain face aux coûts.</li>
-              <li><a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a> : cadrer sans bloquer les usages déjà présents.</li>
-            </ul>
-          </article>
-
-          <article class="content-card">
-            <h2>Repères récents</h2>
-            <p>Les lectures qui structurent le mieux le moment actuel.</p>
-            <ul>
-              <li><a href="/blog/registre-ia-modele-gratuit/">Registre IA : modèle et méthode</a></li>
-              <li><a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a></li>
-              <li><a href="/blog/le-token-prochaine-monnaie-ia/">Le token comme monnaie de l'IA</a></li>
-            </ul>
-          </article>
-
-          <article class="content-card">
-            <h2>Repères à conserver</h2>
-            <p>Les questions simples qui évitent beaucoup de flou.</p>
-            <ul>
-              <li>Quel problème concret veut-on résoudre ?</li>
-              <li>Quelles données sont utilisées, et avec quelles limites ?</li>
-              <li>Comment saura-t-on que l'usage produit vraiment de la valeur ?</li>
-            </ul>
-          </article>
-
-          <article class="content-card">
-            <h2>Méthode rapide</h2>
-            <p>Un chemin court pour passer d'une idée à un premier cadrage.</p>
-            <ul>
-              <li><a href="/outils-ia/maturite-ia/">Situer la maturité</a></li>
-              <li><a href="/outils-ia/cas-usage/">Identifier les cas d'usage</a></li>
-              <li><a href="/outils-ia/registre-ia/">Documenter ce qui est testé</a></li>
-            </ul>
-          </article>
-        </div>
+        <article class="content-card reference-block">
+          <h2>Ce que je propose ici</h2>
+          <p>Je propose des articles pour penser les effets de l'IA, des repères pour comprendre, et des outils pour expérimenter sans confondre vitesse et lucidité.</p>
+          <p>L'approche est volontairement sobre : expliquer sans infantiliser, tester sans promettre, structurer sans transformer chaque usage en projet lourd. Ce site porte un regard personnel, non institutionnel et non commercial.</p>
+        </article>
       </div>
     </section>
 
-    <section class="section soft" id="bonnes-pratiques">
+    <section class="section soft">
       <div class="container">
         <div class="section-heading wide">
-          <p class="eyebrow">Bonnes pratiques</p>
-          <h2>Utiliser l'IA sans perdre le contrôle.</h2>
-          <p>
-            L'IA peut accélérer la recherche, l'écriture, l'analyse et l'organisation du travail.
-            Elle reste un outil : il faut savoir ce qu'on lui confie, ce qu'on vérifie et ce qu'on garde comme décision humaine.
-          </p>
+          <p class="eyebrow">Modèles</p>
+          <h2>Les grands acteurs de l'IA générative</h2>
+          <p>Repères vérifiés en mai 2026. Les modèles évoluent vite : cette liste donne une orientation, pas un classement.</p>
         </div>
 
-        <div class="content-grid two">
-          <article class="content-card">
-            <h2>Pour les particuliers</h2>
-            <p>Quelques réflexes simples permettent d'utiliser l'IA au quotidien sans confusion ni dépendance excessive.</p>
-            <ul>
-              <li>Ne pas partager d'informations sensibles : données de santé, documents d'identité, mots de passe, coordonnées bancaires, contenus privés ou données d'un tiers.</li>
-              <li>Formuler une demande précise : contexte, objectif, format attendu, niveau de détail, contraintes et public visé.</li>
-              <li>Vérifier les faits importants avec une source fiable, surtout pour la santé, le droit, l'argent, l'actualité ou les décisions professionnelles.</li>
-              <li>Demander à l'IA d'expliquer ses limites, ses hypothèses et les points à contrôler plutôt que de chercher une réponse définitive.</li>
-              <li>Garder sa voix : utiliser l'IA pour structurer, reformuler ou explorer, mais relire et assumer le résultat final.</li>
-              <li>Se méfier des contenus trop convaincants : une réponse fluide peut être fausse, incomplète ou datée.</li>
-            </ul>
+        <div class="model-reference-list">
+          <article>
+            <h3>OpenAI</h3>
+            <p><strong>Modèles :</strong> GPT-5.5, GPT-5.4, GPT-5.4 mini et nano, GPT Image 2 et modèles temps réel.</p>
+            <p><strong>Forces :</strong> raisonnement général, code, outils, multimodalité, intégration applicative.</p>
+            <p><strong>Limites :</strong> coût des modèles avancés, dépendance à l'écosystème, nécessité de vérifier les faits.</p>
+            <p><strong>Usages adaptés :</strong> analyse complexe, rédaction structurée, assistance au code, agents et recherche documentaire.</p>
           </article>
 
-          <article class="content-card">
-            <h2>Pour les entreprises</h2>
-            <p>L'enjeu n'est pas seulement d'autoriser ou d'interdire : il faut rendre les usages visibles, utiles et maîtrisables.</p>
-            <ul>
-              <li>Clarifier les règles d'usage : outils autorisés, données interdites, cas sensibles, validation humaine et responsabilités.</li>
-              <li>Commencer par des cas d'usage concrets : une tâche, une équipe, un gain attendu, un risque identifié et un critère de réussite.</li>
-              <li>Tenir un registre des usages IA : finalité, outil, données utilisées, responsable, niveau de risque, statut et prochaine revue.</li>
-              <li>Protéger les données : éviter les copier-coller de données confidentielles dans des outils non validés et vérifier les conditions d'hébergement.</li>
-              <li>Mesurer la valeur réelle : temps gagné, qualité, adoption, coût complet, supervision nécessaire et effets secondaires.</li>
-              <li>Former les équipes : bonnes pratiques de prompt, vérification, biais, sécurité, traçabilité et limites de l'automatisation.</li>
-            </ul>
+          <article>
+            <h3>Anthropic</h3>
+            <p><strong>Modèles :</strong> Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5.</p>
+            <p><strong>Forces :</strong> rédaction longue, prudence de formulation, analyse de documents, agents et code.</p>
+            <p><strong>Limites :</strong> performances variables selon le domaine et arbitrage coût/latence selon le modèle.</p>
+            <p><strong>Usages adaptés :</strong> textes longs, synthèses nuancées, dossiers complexes, relecture et assistance métier.</p>
           </article>
 
-          <article class="content-card">
-            <h2>À vérifier avant de publier ou décider</h2>
-            <p>Un contenu généré peut aider à aller plus vite, mais il ne doit pas sortir tel quel quand l'enjeu est réel.</p>
-            <ul>
-              <li>Les chiffres, dates, citations et références sont-ils exacts ?</li>
-              <li>Le contenu respecte-t-il les droits d'auteur, la confidentialité et les règles internes ?</li>
-              <li>Le raisonnement tient-il si l'on change une hypothèse importante ?</li>
-              <li>Une personne compétente a-t-elle relu les passages à risque ?</li>
-            </ul>
+          <article>
+            <h3>Google DeepMind</h3>
+            <p><strong>Modèles :</strong> Gemini 3.1 Pro, Gemini 3 Pro, variantes Flash et modèles multimodaux.</p>
+            <p><strong>Forces :</strong> contexte long, multimodalité, intégration Google, recherche et documents.</p>
+            <p><strong>Limites :</strong> comportement parfois différent entre interface grand public, API et environnements professionnels.</p>
+            <p><strong>Usages adaptés :</strong> corpus longs, documents multimodaux, recherche assistée, analyse d'images et de fichiers.</p>
           </article>
 
-          <article class="content-card answer-card">
-            <h2>À retenir</h2>
-            <p>L'IA est utile quand elle augmente la capacité de jugement, pas quand elle la remplace.</p>
-            <ul>
-              <li>Dire clairement ce que l'on attend.</li>
-              <li>Limiter les données partagées.</li>
-              <li>Vérifier ce qui compte.</li>
-              <li>Documenter les usages récurrents.</li>
-              <li>Garder une décision humaine sur les sujets importants.</li>
-            </ul>
+          <article>
+            <h3>Mistral AI</h3>
+            <p><strong>Modèles :</strong> Mistral Medium 3.5, Mistral Large 3, Mistral Small 4, Magistral, Devstral.</p>
+            <p><strong>Forces :</strong> modèles ouverts ou maîtrisables, contexte européen, bon équilibre entre coût, performance et déploiement.</p>
+            <p><strong>Limites :</strong> selon les cas, écosystème applicatif moins intégré que certains grands concurrents.</p>
+            <p><strong>Usages adaptés :</strong> déploiements contrôlés, code, assistants internes, usages nécessitant une maîtrise plus fine de l'hébergement.</p>
+          </article>
+
+          <article>
+            <h3>Meta</h3>
+            <p><strong>Modèles :</strong> famille Llama 4, notamment Scout, Maverick et Behemoth comme modèle de référence.</p>
+            <p><strong>Forces :</strong> diffusion ouverte, écosystème de recherche, personnalisation et expérimentation locale.</p>
+            <p><strong>Limites :</strong> qualité dépendante du déploiement, de l'inférence, du fine-tuning et des garde-fous ajoutés.</p>
+            <p><strong>Usages adaptés :</strong> prototypes ouverts, recherche, modèles spécialisés, déploiements où le contrôle technique compte.</p>
+          </article>
+
+          <article>
+            <h3>xAI</h3>
+            <p><strong>Modèles :</strong> Grok 4.3 et modèles associés à la recherche, aux outils et aux médias.</p>
+            <p><strong>Forces :</strong> raisonnement, contexte long, connexion aux outils et à l'actualité via recherche lorsqu'elle est activée.</p>
+            <p><strong>Limites :</strong> positionnement éditorial particulier et dépendance à l'écosystème xAI/X selon les usages.</p>
+            <p><strong>Usages adaptés :</strong> agents, recherche outillée, veille et tâches où le contexte externe compte.</p>
+          </article>
+
+          <article>
+            <h3>DeepSeek</h3>
+            <p><strong>Modèles :</strong> DeepSeek-V3.2, DeepSeek-V3.2-Speciale et préversions de nouvelle génération selon les canaux.</p>
+            <p><strong>Forces :</strong> modèles ouverts, raisonnement, coût d'inférence et dynamique de recherche très rapide.</p>
+            <p><strong>Limites :</strong> disponibilité et comportement variables selon l'interface, l'API et le déploiement.</p>
+            <p><strong>Usages adaptés :</strong> expérimentation technique, raisonnement, code, usages sensibles au coût.</p>
+          </article>
+
+          <article>
+            <h3>Qwen / Alibaba</h3>
+            <p><strong>Modèles :</strong> familles Qwen3 et Qwen3.5, variantes multimodales et code selon les plateformes.</p>
+            <p><strong>Forces :</strong> modèles ouverts ou accessibles via Alibaba Cloud, langues multiples, code et multimodalité.</p>
+            <p><strong>Limites :</strong> documentation et disponibilité parfois fragmentées selon les versions et canaux.</p>
+            <p><strong>Usages adaptés :</strong> expérimentation open source, contexte asiatique, code, agents et multimodalité.</p>
           </article>
         </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-heading wide">
-          <p class="eyebrow">Parcourir par besoin</p>
-          <h2>Aller directement au bon endroit.</h2>
-        </div>
-        <div class="grid three">
-          <a class="card" href="/blog/">
-            <p class="meta">Lire</p>
-            <h3>Articles</h3>
-            <p>Analyses longues et guides pratiques pour prendre du recul.</p>
-          </a>
-          <a class="card" href="/outils-ia/">
-            <p class="meta">Tester</p>
-            <h3>Outils IA</h3>
-            <p>Diagnostics, calculs et modèles pour cadrer un usage concret.</p>
-          </a>
-          <a class="card" href="/#contact">
-            <p class="meta">Échanger</p>
-            <h3>Contact</h3>
-            <p>Une question, un retour ou une piste à clarifier.</p>
-          </a>
-        </div>
+        <p class="reference-sources">
+          Sources à jour consultées : <a class="text-link" href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">OpenAI</a>,
+          <a class="text-link" href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">Anthropic</a>,
+          <a class="text-link" href="https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview" target="_blank" rel="noopener noreferrer">Google Gemini</a>,
+          <a class="text-link" href="https://docs.mistral.ai/models" target="_blank" rel="noopener noreferrer">Mistral AI</a>,
+          <a class="text-link" href="https://www.llama.com/models/" target="_blank" rel="noopener noreferrer">Llama</a>,
+          <a class="text-link" href="https://docs.x.ai/developers/models" target="_blank" rel="noopener noreferrer">xAI</a>,
+          <a class="text-link" href="https://api-docs.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a>,
+          <a class="text-link" href="https://www.alibabagroup.com/document-1960233590314762240" target="_blank" rel="noopener noreferrer">Qwen / Alibaba</a>.
+        </p>
       </div>
     </section>
   </main>
@@ -197,40 +158,31 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-read-title">
+          <p class="footer-heading" id="footer-read-title">Lire</p>
+          <a href="/blog/">Articles</a>
+          <a href="/reperes/">Rep&egrave;res</a>
+        </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <p class="footer-heading" id="footer-tools-title">Expérimenter</p>
+          <a href="/outils-ia/">Outils IA</a>
           <a href="/ialearning/">IA Learning</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/reperes/">Rep&egrave;res IA</a>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
-          <a href="/resume-llm/">Résumé LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
+        <section class="footer-group" aria-labelledby="footer-contact-title">
+          <p class="footer-heading" id="footer-contact-title">Échanger</p>
+          <a href="/contact/">Contact</a>
+          <a href="/confidentialite/">Confidentialité</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; Articles, repères et outils pour comprendre l'IA.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/sitemap.xml">Sitemap</a>
         </div>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
+  <script src="/assets/js/site.js?v=20260522-editorial-v1" defer></script>
 </body>
 </html>

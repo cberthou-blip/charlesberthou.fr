@@ -506,7 +506,7 @@
       "aiApproach": "L'IA lit les tickets, détecte le type d'incident, estime la sévérité et propose une affectation.",
       "prerequisites": [
         "Historique incidents",
-        "Catalogue de services IT",
+        "Catalogue IT",
         "Règles de priorisation"
       ],
       "qualitativeGains": [

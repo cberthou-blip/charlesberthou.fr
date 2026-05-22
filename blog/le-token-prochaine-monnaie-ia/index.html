@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -57,10 +57,10 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/" aria-current="page">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -82,7 +82,7 @@
       </header>
 
       <div class="article-content">
-        <p>Un cadre dirigeant rédige son compte-rendu de comité en six minutes, là où il aurait fallu une heure. Plus loin, dans un laboratoire de développement, un ingénieur sort en une matinée le squelette d’une application qui lui aurait pris une semaine. Ailleurs encore, un consultant boucle son audit le vendredi soir au lieu du jeudi suivant. Derrière chacune de ces scènes, un compteur tourne en silence, semblable à celui des taxis d’autrefois, et enregistre une unité de consommation que l’utilisateur n’aperçoit presque jamais. Cette unité s’appelle un token. Encore inconnue du grand public, elle s’apprête à dessiner l’une des grilles économiques les plus structurantes de notre rapport à la technologie.</p>
+        <p>Un cadre dirigeant rédige son compte-rendu de comité en six minutes, là où il aurait fallu une heure. Plus loin, dans un laboratoire de développement, un ingénieur sort en une matinée le squelette d’une application qui lui aurait pris une semaine. Ailleurs encore, une personne indépendante boucle son audit le vendredi soir au lieu du jeudi suivant. Derrière chacune de ces scènes, un compteur tourne en silence, semblable à celui des taxis d’autrefois, et enregistre une unité de consommation que l’utilisateur n’aperçoit presque jamais. Cette unité s’appelle un token. Encore inconnue du grand public, elle s’apprête à dessiner l’une des grilles économiques les plus structurantes de notre rapport à la technologie.</p>
 
         <h2>Une mécanique déjà éprouvée à plus petite échelle</h2>
         <p>Le mouvement a un précédent que beaucoup ont oublié. Il y a vingt ans, le téléphone mobile traversait une transformation comparable, à des proportions plus modestes. Quelques mégaoctets de data suffisaient pour consulter ses courriels, jusqu’à ce que la navigation web, la photographie, la vidéo, la géolocalisation et le travail à distance fassent du gigaoctet la mesure cardinale du quotidien connecté. Les opérateurs ont alors appris à facturer cette dépendance progressive, qui s’est installée presque sans débat public, comme un fond naturel de l’existence moderne.</p>
@@ -91,7 +91,7 @@
         <h2>Le token, en quelques mots</h2>
         <p>Le terme désigne, au sens technique, un fragment de langage que le modèle sait lire et générer, comparable en taille à une syllabe ou à un mot court. Une demande écrite à un assistant conversationnel se trouve d’abord découpée en une série de ces fragments, que la machine traite avant de produire à son tour de nouveaux fragments pour composer sa réponse. Les éditeurs facturent séparément les deux flux, et la sortie coûte systématiquement plus cher que l’entrée, parce que générer du texte mobilise davantage de calcul que d’en lire.</p>
         <p>Quelques ordres de grandeur permettent de cadrer la mesure. Une discussion d’une dizaine de minutes avec un modèle haut de gamme représente quelques milliers de tokens, soit une fraction de centime sur la facture finale. Une journée de travail soutenu, ponctuée de relectures de documents, de génération de code et d’orchestration d’agents, peut grimper à plusieurs centaines de milliers de tokens. Un cabinet de conseil équipant vingt consultants d’un agent capable de relire de longs dossiers approche rapidement les dizaines de milliers d’euros mensuels. Un service client conversationnel à grande clientèle entre dans une autre dimension encore, où l’arbitrage entre la longueur d’une réponse et son coût devient un paramètre opérationnel quotidien.</p>
-        <p>Derrière ces ordres de grandeur, les éditeurs déploient une grille tarifaire de plus en plus lisible. Anthropic positionne Claude Opus 4.7, son modèle haut de gamme, à 5 dollars par million de tokens en entrée et 25 dollars en sortie, contre 3 et 15 pour Sonnet 4.6, et 1 et 5 pour Haiku 4.5. OpenAI propose son GPT-5.2 autour de 1,75 et 14 dollars, Google son Gemini 3.1 Pro autour de 2 et 12 dollars. Les forfaits grand public absorbent une partie de cette mécanique, ce qui maintient le particulier dans une douce illusion de gratuité. Le professionnel, lui, regarde déjà sa facture grimper.</p>
+        <p>Derrière ces ordres de grandeur, les éditeurs déploient une grille tarifaire de plus en plus lisible. Anthropic positionne Claude Opus 4.7, son modèle haut de gamme, à 5 dollars par million de tokens en entrée et 25 dollars en sortie, contre 3 et 15 pour Sonnet 4.6, et 1 et 5 pour Haiku 4.5. OpenAI positionne GPT-5.5 à 5 et 30 dollars, et GPT-5.4 à 2,50 et 15 dollars. Google place Gemini 3.1 Pro dans le même paysage de modèles avancés. Les forfaits grand public absorbent une partie de cette mécanique, ce qui maintient le particulier dans une douce illusion de gratuité. Le professionnel, lui, regarde déjà sa facture grimper.</p>
 
         <h2>Ce que j’observe dans mon laboratoire</h2>
         <p>Dans mon propre laboratoire de développement, où je prototype des outils internes, automatise des tâches répétitives et construis des projets personnels sans ambition industrielle, la même équation se vérifie semaine après semaine. La première séance d’un projet sérieux laisse souvent une impression vertigineuse. Une intention formulée au matin peut donner un prototype fonctionnel le soir, et le gain obtenu sur la revue de code, la génération de squelettes ou la rédaction de tests transforme à lui seul le rythme d’un développeur isolé.</p>
@@ -130,37 +130,27 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
+        <section class="footer-group" aria-labelledby="footer-read-title">
+          <p class="footer-heading" id="footer-read-title">Lire</p>
+          <a href="/blog/">Articles</a>
+          <a href="/reperes/">Rep&egrave;res</a>
+        </section>
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
+          <p class="footer-heading" id="footer-tools-title">Expérimenter</p>
+          <a href="/outils-ia/">Outils IA</a>
           <a href="/ialearning/">IA Learning</a>
         </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/reperes/">Rep&egrave;res IA</a>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">SEO / GEO / LLM</p>
-          <a href="/resume-llm/">Résumé LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
+        <section class="footer-group" aria-labelledby="footer-contact-title">
+          <p class="footer-heading" id="footer-contact-title">Échanger</p>
+          <a href="/contact/">Contact</a>
+          <a href="/confidentialite/">Confidentialité</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; Articles, repères et outils pour comprendre l'IA.</p>
         <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/llms.txt">llms.txt</a>
+          <a href="/sitemap.xml">Sitemap</a>
         </div>
       </div>
     </div>

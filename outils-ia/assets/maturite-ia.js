@@ -1,45 +1,38 @@
 const maturityAxes = [
   {
-    id: "usage",
-    title: "Usage réel",
-    low: "Quelques essais individuels",
-    high: "Usages réguliers dans plusieurs équipes",
-    recommendation: "Identifier les usages déjà présents et choisir deux pilotes très concrets.",
-  },
-  {
-    id: "skills",
-    title: "Compétences",
+    id: "culture",
+    title: "Culture IA",
     low: "Repères dispersés",
-    high: "Socle commun partagé",
-    recommendation: "Créer un tronc commun court : consignes, limites, données, vérification.",
+    high: "Bases comprises et partagées",
+    recommendation: "Reprendre les notions essentielles : modèle, donnée, contexte, erreur possible et vérification.",
   },
   {
-    id: "usecases",
-    title: "Cas d'usage",
-    low: "Idées floues",
-    high: "Portefeuille priorisé",
-    recommendation: "Cartographier les tâches répétitives, puis prioriser par gain, risque et faisabilité.",
+    id: "usage",
+    title: "Usages actuels",
+    low: "Essais isolés",
+    high: "Usages réguliers et nommés",
+    recommendation: "Identifier les usages déjà présents et distinguer expérimentation, habitude et dépendance.",
   },
   {
-    id: "governance",
-    title: "Gouvernance",
+    id: "organization",
+    title: "Organisation",
     low: "Règles implicites",
-    high: "Cadre clair et compris",
-    recommendation: "Clarifier les données autorisées, la validation humaine et les usages interdits.",
+    high: "Responsabilités claires",
+    recommendation: "Clarifier qui décide, qui vérifie, quelles données sont utilisées et ce qui doit rester humain.",
   },
   {
-    id: "measurement",
-    title: "Mesure des gains",
-    low: "Gains ressentis",
-    high: "KPI suivis",
-    recommendation: "Mesurer avant/après sur quelques usages : temps, qualité, risque, satisfaction.",
+    id: "limits",
+    title: "Risques et limites",
+    low: "Peu visibles",
+    high: "Vigilances intégrées",
+    recommendation: "Nommer les risques : erreurs, biais, confidentialité, dépendance outil et validation humaine.",
   },
   {
-    id: "scale",
-    title: "Passage à l'échelle",
-    low: "Tests isolés",
-    high: "Déploiement piloté",
-    recommendation: "Transformer les pilotes utiles en plan 90 jours avec responsables, formation et revue.",
+    id: "next",
+    title: "Prochaines étapes",
+    low: "Floues",
+    high: "Progression priorisée",
+    recommendation: "Choisir une prochaine action simple : apprendre, documenter, tester ou réduire un risque.",
   },
 ];
 
@@ -158,7 +151,7 @@ function getTotalScore() {
 }
 
 function getLevel(total) {
-  if (total <= 5) {
+  if (total <= 4) {
     return {
       label: "Fondations insuffisantes",
       title: "Fondations à poser",
@@ -169,7 +162,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 11) {
+  if (total <= 9) {
     return {
       label: "Exploration dispersée",
       title: "Exploration à structurer",
@@ -180,7 +173,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 17) {
+  if (total <= 14) {
     return {
       label: "Structuration engagée",
       title: "Adoption structurée",

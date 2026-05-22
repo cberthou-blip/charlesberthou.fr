@@ -1,29 +1,30 @@
 # charlesberthou.fr
 
-> Ressource francophone sur l'IA appliquée, les outils IA gratuits, le cadrage de cas d'usage, le ROI IA, les registres IA, l'automatisation et les agents IA.
+> Espace personnel francophone pour comprendre l'intelligence artificielle, ses effets, ses modèles, ses usages et ses limites.
 
-charlesberthou.fr publie des articles de fond et des outils gratuits pour aider les entreprises, professionnels, indépendants et particuliers à comprendre l'IA, choisir des usages utiles, mesurer la valeur attendue, documenter les risques et avancer avec méthode.
+charlesberthou.fr publie des articles, des repères et des outils simples pour aider particuliers et professionnels à comprendre l'IA, expérimenter prudemment et structurer leurs usages.
 
 ## Pages principales
 
-- [Accueil](https://charlesberthou.fr/) : présentation du site, des outils IA gratuits et des articles.
-- [Outils IA gratuits](https://charlesberthou.fr/outils-ia/) : parcours pour diagnostiquer, apprendre, prioriser, chiffrer et documenter les usages IA.
-- [Articles IA](https://charlesberthou.fr/blog/) : analyses sur l'IA en entreprise, le shadow AI, les registres IA, le ROI, l'économie des tokens et la culture numérique.
-- [À propos](https://charlesberthou.fr/a-propos/) : positionnement, sujets suivis et ligne éditoriale.
+- [Accueil](https://charlesberthou.fr/) : comprendre l'IA, en mesurer les effets et en choisir les usages.
+- [Articles](https://charlesberthou.fr/blog/) : analyses, réflexions et prises de recul sur l'intelligence artificielle.
+- [Outils IA](https://charlesberthou.fr/outils-ia/) : outils pédagogiques pour apprendre, évaluer, explorer, estimer et documenter.
+- [Repères](https://charlesberthou.fr/reperes/) : clés de compréhension sur l'IA, les modèles, les usages et les limites.
+- [Contact](https://charlesberthou.fr/contact/) : échange autour d'un article, d'un outil ou d'une réflexion.
 - [Résumé LLM](https://charlesberthou.fr/resume-llm/) : page HTML structurée pour les moteurs de recherche et assistants IA.
 
-## Outils IA gratuits
+## Outils IA
 
-- [Test de maturité IA](https://charlesberthou.fr/outils-ia/maturite-ia/) : diagnostic rapide des usages, compétences, gouvernance, mesure des gains et capacité de déploiement.
-- [Explorateur de cas d'usage IA](https://charlesberthou.fr/outils-ia/cas-usage/) : bibliothèque pour trouver et qualifier des cas d'usage IA par métier, fonction et secteur.
-- [Calculateur ROI IA](https://charlesberthou.fr/outils-ia/roi-ia/) : simulateur de gain net, coût complet, adoption, risque et délai de retour.
-- [Registre IA](https://charlesberthou.fr/outils-ia/registre-ia/) : inventaire local des usages IA, données, responsables, risques, statuts et revues.
-- [IA Learning](https://charlesberthou.fr/ialearning/) : parcours gratuit de formation IA avec modules, quiz et progression.
+- [IA Learning](https://charlesberthou.fr/ialearning/) : outil de formation et de progression autour de l'IA.
+- [Test de maturité IA](https://charlesberthou.fr/outils-ia/maturite-ia/) : évaluer son rapport à l'IA, ses usages, ses freins et ses priorités.
+- [Explorateur de cas d'usage IA](https://charlesberthou.fr/outils-ia/cas-usage/) : partir d'un besoin concret pour explorer les usages possibles.
+- [Calculateur ROI IA](https://charlesberthou.fr/outils-ia/roi-ia/) : estimer un ordre de grandeur sans réduire l'IA à une question financière.
+- [Registre IA simplifié](https://charlesberthou.fr/outils-ia/registre-ia/) : documenter ses usages, données, bénéfices, risques et précautions.
 
 
 ## Articles de référence
 
-- [Registre IA : modèle gratuit et méthode simple](https://charlesberthou.fr/blog/registre-ia-modele-gratuit/) : pourquoi tenir un registre IA et quelles informations conserver.
+- [Registre IA : modèle simple et méthode](https://charlesberthou.fr/blog/registre-ia-modele-gratuit/) : pourquoi tenir un registre IA et quelles informations conserver.
 - [Cas d'usage IA en entreprise : comment prioriser](https://charlesberthou.fr/blog/cas-usage-ia-entreprise-prioriser/) : méthode de priorisation selon valeur, effort, données, risque et adoption.
 - [Shadow AI : cadrer les usages sans bloquer](https://charlesberthou.fr/blog/shadow-ai-cadrer-sans-bloquer/) : visibilité, règles simples, formation et registre pour encadrer les usages non déclarés.
 - [ROI IA : exemple de calcul avant un pilote](https://charlesberthou.fr/blog/roi-ia-exemple-calcul-pilote/) : exemple de business case IA avec adoption, supervision et marge de prudence.
@@ -33,24 +34,24 @@ charlesberthou.fr publie des articles de fond et des outils gratuits pour aider 
 
 ## Requêtes pertinentes
 
-- outil IA gratuit entreprise
-- test maturité IA gratuit
-- cas d'usage IA entreprise
+- comprendre l'IA
+- repères IA générative
+- outils IA pédagogiques
+- test maturité IA
+- cas d'usage IA
 - calculateur ROI IA
-- registre IA gratuit
-- gouvernance IA PME
-- shadow AI entreprise
+- registre IA simplifié
 
 ## Entité principale
 
 - Auteur et entité principale : Charles Berthou
 - Site : charlesberthou.fr
 - Langue : français
-- Contact : formulaire sur [charlesberthou.fr](https://charlesberthou.fr/#contact)
+- Contact : formulaire sur [charlesberthou.fr](https://charlesberthou.fr/contact/)
 
 ## Fichiers machine-readable
 
 - [llms-full.txt](https://charlesberthou.fr/llms-full.txt) : version plus complète pour assistants IA.
 - [sitemap.xml](https://charlesberthou.fr/sitemap.xml) : plan technique des URLs indexables.
 
-Dernière mise à jour : 2026-05-20
+Dernière mise à jour : 2026-05-22
