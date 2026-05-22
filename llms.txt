@@ -1,16 +1,15 @@
 # charlesberthou.fr
 
-> Ressource francophone sur l'IA appliquée, les outils IA gratuits, le cadrage de cas d'usage, le ROI IA, les registres IA, l'automatisation, les agents IA et l'accompagnement numérique.
+> Ressource francophone sur l'IA appliquée, les outils IA gratuits, le cadrage de cas d'usage, le ROI IA, les registres IA, l'automatisation et les agents IA.
 
-charlesberthou.fr publie des articles de fond, des outils gratuits et des pages de services pour aider les entreprises, professionnels, indépendants et particuliers à comprendre l'IA, choisir des usages utiles, mesurer la valeur attendue, documenter les risques et avancer avec méthode.
+charlesberthou.fr publie des articles de fond et des outils gratuits pour aider les entreprises, professionnels, indépendants et particuliers à comprendre l'IA, choisir des usages utiles, mesurer la valeur attendue, documenter les risques et avancer avec méthode.
 
 ## Pages principales
 
-- [Accueil](https://charlesberthou.fr/) : présentation du site, des outils IA gratuits, des articles et des services.
+- [Accueil](https://charlesberthou.fr/) : présentation du site, des outils IA gratuits et des articles.
 - [Outils IA gratuits](https://charlesberthou.fr/outils-ia/) : parcours pour diagnostiquer, apprendre, prioriser, chiffrer et documenter les usages IA.
 - [Articles IA](https://charlesberthou.fr/blog/) : analyses sur l'IA en entreprise, le shadow AI, les registres IA, le ROI, l'économie des tokens et la culture numérique.
-- [Services](https://charlesberthou.fr/services/) : accompagnement numérique, conseil IA, audit, automatisation et cadrage de solutions.
-- [À propos](https://charlesberthou.fr/a-propos/) : positionnement, sujets suivis, approche et cadre d'intervention.
+- [À propos](https://charlesberthou.fr/a-propos/) : positionnement, sujets suivis et ligne éditoriale.
 - [Résumé LLM](https://charlesberthou.fr/resume-llm/) : page HTML structurée pour les moteurs de recherche et assistants IA.
 
 ## Outils IA gratuits
@@ -21,11 +20,6 @@ charlesberthou.fr publie des articles de fond, des outils gratuits et des pages 
 - [Registre IA](https://charlesberthou.fr/outils-ia/registre-ia/) : inventaire local des usages IA, données, responsables, risques, statuts et revues.
 - [IA Learning](https://charlesberthou.fr/ialearning/) : parcours gratuit de formation IA avec modules, quiz et progression.
 
-## Services
-
-- [Conseil IA entreprise](https://charlesberthou.fr/services/conseil-ia/) : cadrage d'usages IA, priorisation de cas d'usage, mesure de valeur, gouvernance et pilotes.
-- [Audit numérique](https://charlesberthou.fr/services/audit-numerique/) : relecture des outils, processus, données, irritants et priorités d'amélioration.
-- [Automatisation et agents IA](https://charlesberthou.fr/services/automatisation-agents-ia/) : cadrage de processus automatisables, agents IA, validations humaines et pilotes opérationnels.
 
 ## Articles de référence
 
@@ -46,9 +40,6 @@ charlesberthou.fr publie des articles de fond, des outils gratuits et des pages 
 - registre IA gratuit
 - gouvernance IA PME
 - shadow AI entreprise
-- conseil IA entreprise
-- audit numérique outils métier
-- automatisation agents IA
 
 ## Entité principale
 
