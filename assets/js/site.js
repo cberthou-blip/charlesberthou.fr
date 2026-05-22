@@ -122,41 +122,28 @@ function homeBlogShowcase(posts) {
 function blogDirectory(posts) {
   const longformPosts = posts.filter(isLongformPost);
   const guidePosts = posts.filter((post) => !isLongformPost(post));
-  const [featured, ...secondaryLongform] = longformPosts.length ? longformPosts : posts.slice(0, 1);
-  const standardPosts = longformPosts.length ? guidePosts : posts.slice(1);
 
   return `
-    <div class="blog-directory-split">
-      ${featured ? `
+    <div class="blog-directory-split article-index">
+      ${longformPosts.length ? `
         <section class="blog-directory-group longform-group" aria-labelledby="analyses-longues">
           <div class="blog-directory-heading">
             <h3 id="analyses-longues">Analyses longues</h3>
-            <p>Des textes de recul, plus personnels, pour lire l'IA comme un mouvement économique, culturel et humain.</p>
+            <p>${longformPosts.length} textes de recul pour lire l'IA comme un mouvement économique, culturel et humain.</p>
           </div>
-          <div class="blog-showcase blog-directory longform-showcase">
-            <a class="blog-feature ${isLongformPost(featured) ? "format-longform" : "format-guide"}" href="${featured.url}">
-              <div>
-                <p class="meta">${postMeta(featured)}</p>
-                <h2>${featured.title}</h2>
-                <p>${featured.description}</p>
-                <div class="tag-row">${renderTags(featured.tags)}</div>
-              </div>
-              <span class="text-link">${postCta(featured)}</span>
-            </a>
-            <div class="blog-side-list">
-              ${secondaryLongform.map((post) => articleCard(post, "h3", "compact")).join("")}
-            </div>
+          <div class="article-grid longform-grid">
+            ${longformPosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
           </div>
         </section>
       ` : ""}
-      ${standardPosts.length ? `
+      ${guidePosts.length ? `
         <section class="blog-directory-group guide-group" aria-labelledby="guides-pratiques">
           <div class="blog-directory-heading">
             <h3 id="guides-pratiques">Guides pratiques</h3>
-            <p>Des formats plus ciblés pour répondre vite à une question de méthode, de gouvernance ou de pilotage.</p>
+            <p>${guidePosts.length} formats ciblés pour répondre vite à une question de méthode, de gouvernance ou de pilotage.</p>
           </div>
           <div class="article-grid guide-grid">
-            ${standardPosts.map((post) => articleCard(post, "h3", "guide-card")).join("")}
+            ${guidePosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
           </div>
         </section>
       ` : ""}
@@ -204,28 +191,91 @@ function shareUrl(service, url, title) {
   return urls[service];
 }
 
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Fall back to the hidden textarea method below.
+    }
+  }
+
+  const helper = document.createElement("textarea");
+  helper.value = text;
+  helper.setAttribute("readonly", "");
+  helper.style.position = "fixed";
+  helper.style.inset = "0 auto auto 0";
+  helper.style.opacity = "0";
+  document.body.appendChild(helper);
+  helper.focus();
+  helper.select();
+  const copied = document.execCommand("copy");
+  helper.remove();
+  if (!copied) {
+    throw new Error("La copie du lien a échoué.");
+  }
+}
+
+function setShareStatus(shareRoot, message) {
+  const status = shareRoot.querySelector?.("[data-share-status]");
+  if (status) status.textContent = message;
+}
+
+function revealShareUrl(shareRoot, url) {
+  let field = shareRoot.querySelector?.("[data-share-copy-field]");
+  if (!field) {
+    field = document.createElement("input");
+    field.className = "share-copy-field";
+    field.type = "text";
+    field.readOnly = true;
+    field.setAttribute("data-share-copy-field", "");
+    field.setAttribute("aria-label", "Lien à copier");
+    shareRoot.appendChild(field);
+  }
+
+  field.value = url;
+  field.hidden = false;
+  field.focus();
+  field.select();
+}
+
 function hydrateShareButtons() {
   document.querySelectorAll("[data-share]").forEach((button) => {
     const shareRoot = button.closest("[data-share-root]") || document;
-    const url = shareRoot.dataset.shareUrl || window.location.href;
-    const title = shareRoot.dataset.shareTitle || document.title;
+    const shareData = shareRoot.dataset || {};
+    const url = shareData.shareUrl || window.location.href;
+    const title = shareData.shareTitle || document.title;
     const service = button.dataset.share;
 
     if (service === "copy") {
       button.addEventListener("click", async () => {
+        const initialText = button.dataset.defaultText || button.textContent;
+        button.dataset.defaultText = initialText;
+        button.disabled = true;
+        let shouldClearStatus = true;
         try {
-          await navigator.clipboard.writeText(url);
+          await copyTextToClipboard(url);
+          button.classList.add("copied");
+          button.textContent = "Copié";
+          button.setAttribute("aria-label", "Lien copié");
+          setShareStatus(shareRoot, "Lien copié.");
+          shareRoot.querySelector?.("[data-share-copy-field]")?.setAttribute("hidden", "");
         } catch (error) {
-          const helper = document.createElement("textarea");
-          helper.value = url;
-          document.body.appendChild(helper);
-          helper.select();
-          document.execCommand("copy");
-          helper.remove();
+          button.classList.add("copy-error");
+          button.textContent = "Lien affiché";
+          revealShareUrl(shareRoot, url);
+          setShareStatus(shareRoot, "Copie bloquée par le navigateur. Le lien est sélectionné ci-dessous.");
+          shouldClearStatus = false;
+        } finally {
+          setTimeout(() => {
+            button.disabled = false;
+            button.classList.remove("copied", "copy-error");
+            button.textContent = button.dataset.defaultText || initialText;
+            button.setAttribute("aria-label", "Copier le lien");
+            if (shouldClearStatus) setShareStatus(shareRoot, "");
+          }, shouldClearStatus ? 1800 : 2600);
         }
-        button.classList.add("copied");
-        button.setAttribute("aria-label", "Lien copié");
-        setTimeout(() => button.classList.remove("copied"), 1600);
       });
       return;
     }
