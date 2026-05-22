@@ -30,9 +30,9 @@
   <link
     rel="preload"
     as="image"
-    href="/assets/images/hero-human-ai-sketch-linework.webp"
-    imagesrcset="/assets/images/hero-human-ai-sketch-linework.webp 1280w"
-    imagesizes="(min-width: 960px) 44vw, 88vw"
+    href="/assets/images/hero-ia-profile-reflection-960.webp"
+    imagesrcset="/assets/images/hero-ia-profile-reflection-640.webp 640w, /assets/images/hero-ia-profile-reflection-960.webp 960w, /assets/images/hero-ia-profile-reflection-1254.webp 1254w"
+    imagesizes="(min-width: 960px) 34vw, 88vw"
     type="image/webp"
   />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -158,32 +158,123 @@
           <picture>
             <source
               type="image/webp"
-              srcset="/assets/images/hero-human-ai-sketch-linework.webp 1280w"
-              sizes="(min-width: 960px) 44vw, 88vw"
+              srcset="/assets/images/hero-ia-profile-reflection-640.webp 640w, /assets/images/hero-ia-profile-reflection-960.webp 960w, /assets/images/hero-ia-profile-reflection-1254.webp 1254w"
+              sizes="(min-width: 960px) 34vw, 88vw"
             />
-            <img src="/assets/images/hero-human-ai-sketch-linework.png" alt="" width="1536" height="1024" decoding="async" fetchpriority="high" />
+            <img src="/assets/images/hero-ia-profile-reflection-960.jpg" alt="Profil humain conceptuel traversé par des réseaux lumineux, entre réflexion et intelligence artificielle." width="960" height="960" decoding="async" fetchpriority="high" />
           </picture>
         </figure>
       </div>
     </section>
 
-    <section class="section editorial-home-section" aria-label="Entrées principales">
-      <div class="container grid three editorial-entry-grid">
-        <a class="card editorial-entry-card" href="/blog/">
-          <p class="meta">Penser</p>
-          <h2>Articles</h2>
-          <p>Analyses, réflexions et recul critique sur l'intelligence artificielle, ses usages et ses effets.</p>
-        </a>
-        <a class="card editorial-entry-card" href="/outils-ia/">
-          <p class="meta">Expérimenter</p>
-          <h2>Outils IA</h2>
-          <p>Des outils simples pour comprendre, tester et structurer ses usages de l'IA.</p>
-        </a>
-        <a class="card editorial-entry-card" href="/contact/">
-          <p class="meta">Échanger</p>
-          <h2>Contact</h2>
-          <p>Une discussion, un retour d'expérience ou une question autour d'un article, d'un outil ou d'une idée.</p>
-        </a>
+    <section class="section home-zone home-zone-thinking" id="articles">
+      <div class="container">
+        <div class="section-heading editorial-heading">
+          <div>
+            <p class="eyebrow">Penser</p>
+            <h2>Articles, analyses et recul critique.</h2>
+            <p>Des textes pour comprendre l'IA autrement que par l'effet d'annonce : économie des modèles, usages réels, limites, risques, gouvernance et effets sur le travail.</p>
+          </div>
+          <a class="button secondary section-action" href="/blog/">Tous les articles</a>
+        </div>
+
+        <div class="blog-showcase" data-home-posts>
+          <a class="blog-feature format-longform" href="/blog/le-token-prochaine-monnaie-ia/">
+            <div>
+              <p class="meta">Analyse longue · 11 mai 2026 · 9 min</p>
+              <h3>Le token, prochaine monnaie de l'IA</h3>
+              <p>Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.</p>
+              <div class="tag-row">
+                <span class="tag">IA</span>
+                <span class="tag">Économie</span>
+                <span class="tag">Tokens</span>
+              </div>
+            </div>
+            <span class="text-link">Lire l'analyse</span>
+          </a>
+
+          <div class="blog-side-list">
+            <a class="article-card format-guide compact" href="/blog/registre-ia-modele-gratuit/">
+              <div>
+                <p class="meta">Guide pratique · 20 mai 2026 · 8 min</p>
+                <h3>Registre IA : modèle simple et méthode</h3>
+                <p>Pourquoi tenir un registre IA, quelles informations conserver et comment démarrer avec un modèle simple.</p>
+              </div>
+              <span class="text-link">Lire le guide</span>
+            </a>
+            <a class="article-card format-guide compact" href="/blog/cas-usage-ia-entreprise-prioriser/">
+              <div>
+                <p class="meta">Guide pratique · 19 mai 2026 · 7 min</p>
+                <h3>Cas d'usage IA en entreprise : comment prioriser</h3>
+                <p>Une méthode pour choisir les bons pilotes IA selon la valeur, l'effort, les données, le risque et l'adoption.</p>
+              </div>
+              <span class="text-link">Lire le guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-zone home-zone-tools" id="outils-ia">
+      <div class="container">
+        <div class="section-heading editorial-heading">
+          <div>
+            <p class="eyebrow">Expérimenter</p>
+            <h2>Des outils pour tester, structurer et apprendre.</h2>
+            <p>Les outils ne remplacent pas le jugement. Ils donnent un cadre pour situer son niveau, explorer des usages, estimer un ordre de grandeur et documenter ce que l'on fait.</p>
+          </div>
+          <a class="button secondary section-action" href="/outils-ia/">Voir tous les outils IA</a>
+        </div>
+
+        <div class="tool-choice-grid compact-tool-grid" aria-label="Outils IA à tester">
+          <article class="tool-choice-card is-primary">
+            <p class="meta">Formation</p>
+            <div>
+              <h3>IA Learning</h3>
+              <p>Comprendre les bases, progresser par étapes et garder une distance critique.</p>
+            </div>
+            <a class="button tool-card-cta" href="/ialearning/">Découvrir l'outil</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Diagnostic</p>
+            <div>
+              <h3>Test de maturité IA</h3>
+              <p>Mesurer son point de départ, ses freins et ses priorités de progression.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/maturite-ia/">Lancer le test</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Exploration</p>
+            <div>
+              <h3>Explorateur de cas d'usage</h3>
+              <p>Partir d'un besoin concret pour identifier des usages possibles.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/cas-usage/">Explorer</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Structuration</p>
+            <div>
+              <h3>ROI et registre IA</h3>
+              <p>Estimer un ordre de grandeur puis garder une trace claire des usages.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/roi-ia/">Comparer les outils</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-zone home-zone-contact" id="contact">
+      <div class="container contact-panel home-contact-panel">
+        <div class="section-heading">
+          <span class="icon-mark section-icon"><svg><use href="#icon-contact"></use></svg></span>
+          <p class="eyebrow">Échanger</p>
+          <h2>Continuer la conversation.</h2>
+          <p>Une question sur un article, un retour d'expérience, une remarque sur un outil ou une idée à discuter : le contact reste simple, direct et sans logique commerciale.</p>
+        </div>
+        <div class="contact-actions">
+          <div data-contact-form-mount data-contact-context="Accueil - contact"></div>
+          <a class="button secondary" href="/contact/">Ouvrir la page contact</a>
+        </div>
       </div>
     </section>
   </main>
