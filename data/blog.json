@@ -5,6 +5,7 @@
       "description": "Pourquoi tenir un registre IA, quelles informations conserver et comment démarrer avec un modèle gratuit avant de structurer une gouvernance plus complète.",
       "date": "2026-05-20",
       "readingTime": "8 min",
+      "format": "guide",
       "url": "/blog/registre-ia-modele-gratuit/",
       "tags": ["IA", "Gouvernance", "Registre"]
     },
@@ -13,6 +14,7 @@
       "description": "Une méthode simple pour choisir les bons pilotes IA selon la valeur, l'effort, les données, le risque et l'adoption.",
       "date": "2026-05-19",
       "readingTime": "7 min",
+      "format": "guide",
       "url": "/blog/cas-usage-ia-entreprise-prioriser/",
       "tags": ["IA", "Entreprise", "Cas d'usage"]
     },
@@ -21,6 +23,7 @@
       "description": "Comment rendre visibles les usages IA non encadrés avec des règles simples, de la formation et un registre partagé.",
       "date": "2026-05-18",
       "readingTime": "7 min",
+      "format": "guide",
       "url": "/blog/shadow-ai-cadrer-sans-bloquer/",
       "tags": ["IA", "Shadow AI", "Gouvernance"]
     },
@@ -29,6 +32,7 @@
       "description": "Un exemple de calcul de ROI IA avec temps gagné, adoption, coût complet, validation humaine et marge de prudence.",
       "date": "2026-05-17",
       "readingTime": "7 min",
+      "format": "guide",
       "url": "/blog/roi-ia-exemple-calcul-pilote/",
       "tags": ["IA", "ROI", "Pilotage"]
     },
@@ -37,6 +41,7 @@
       "description": "Repères pratiques pour documenter finalités, données, responsables, validation humaine et revues dans une PME.",
       "date": "2026-05-16",
       "readingTime": "8 min",
+      "format": "guide",
       "url": "/blog/ai-act-registre-ia-pme/",
       "tags": ["IA", "AI Act", "PME"]
     },
@@ -45,6 +50,7 @@
       "description": "Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.",
       "date": "2026-05-11",
       "readingTime": "9 min",
+      "format": "longform",
       "url": "/blog/le-token-prochaine-monnaie-ia/",
       "tags": ["IA", "Économie", "Tokens"]
     },
@@ -53,6 +59,7 @@
       "description": "Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.",
       "date": "2026-04-04",
       "readingTime": "5 min",
+      "format": "longform",
       "url": "/blog/ia-entreprise/",
       "tags": ["IA", "Entreprise", "Transformation"]
     },
@@ -61,6 +68,7 @@
       "description": "Une réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique majeure.",
       "date": "2026-04-01",
       "readingTime": "9 min",
+      "format": "longform",
       "url": "/blog/humanite-lumiere/",
       "tags": ["IA", "Progrès", "Société"]
     }

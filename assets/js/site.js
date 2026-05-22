@@ -59,81 +59,107 @@ function formatPostDate(value) {
   }).format(new Date(`${value}T12:00:00`));
 }
 
+function isLongformPost(post) {
+  return post.format === "longform";
+}
+
+function postFormatLabel(post) {
+  return isLongformPost(post) ? "Analyse longue" : "Guide pratique";
+}
+
+function postMeta(post) {
+  return `${postFormatLabel(post)} · ${formatPostDate(post.date)} · ${post.readingTime}`;
+}
+
+function postCta(post) {
+  return isLongformPost(post) ? "Lire l'analyse" : "Lire le guide";
+}
+
 function renderTags(tags) {
   return tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
 }
 
-function articleCard(post, heading = "h3") {
+function articleCard(post, heading = "h3", extraClass = "") {
+  const formatClass = isLongformPost(post) ? "format-longform" : "format-guide";
+  const classes = ["article-card", formatClass, extraClass].filter(Boolean).join(" ");
+
   return `
-    <a class="article-card" href="${post.url}">
+    <a class="${classes}" href="${post.url}">
       <div>
-        <p class="meta">${formatPostDate(post.date)} · ${post.readingTime}</p>
+        <p class="meta">${postMeta(post)}</p>
         <${heading}>${post.title}</${heading}>
         <p>${post.description}</p>
         <div class="tag-row">${renderTags(post.tags)}</div>
       </div>
-      <span class="text-link">Lire</span>
+      <span class="text-link">${postCta(post)}</span>
     </a>
   `;
 }
 
 function homeBlogShowcase(posts) {
-  const [featured, ...secondary] = posts.slice(0, 3);
+  const longformPosts = posts.filter(isLongformPost);
+  const guidePosts = posts.filter((post) => !isLongformPost(post));
+  const featured = longformPosts[0] || posts[0];
+  const secondary = (guidePosts.length ? guidePosts : posts.filter((post) => post !== featured)).slice(0, 2);
   if (!featured) return "";
 
   return `
-    <a class="blog-feature" href="${featured.url}">
+    <a class="blog-feature ${isLongformPost(featured) ? "format-longform" : "format-guide"}" href="${featured.url}">
       <div>
-        <p class="meta">${formatPostDate(featured.date)} · ${featured.readingTime}</p>
+        <p class="meta">${postMeta(featured)}</p>
         <h3>${featured.title}</h3>
         <p>${featured.description}</p>
         <div class="tag-row">${renderTags(featured.tags)}</div>
       </div>
-      <span class="text-link">Lire l'analyse</span>
+      <span class="text-link">${postCta(featured)}</span>
     </a>
     <div class="blog-side-list">
-      ${secondary.map((post) => `
-        <a class="article-card compact" href="${post.url}">
-          <div>
-            <p class="meta">${formatPostDate(post.date)} · ${post.readingTime}</p>
-            <h3>${post.title}</h3>
-            <p>${post.description}</p>
-          </div>
-          <span class="text-link">Ouvrir</span>
-        </a>
-      `).join("")}
+      ${secondary.map((post) => articleCard(post, "h3", "compact")).join("")}
     </div>
   `;
 }
 
 function blogDirectory(posts) {
-  const [featured, ...secondary] = posts;
-  if (!featured) return "";
+  const longformPosts = posts.filter(isLongformPost);
+  const guidePosts = posts.filter((post) => !isLongformPost(post));
+  const [featured, ...secondaryLongform] = longformPosts.length ? longformPosts : posts.slice(0, 1);
+  const standardPosts = longformPosts.length ? guidePosts : posts.slice(1);
 
   return `
-    <div class="blog-showcase blog-directory">
-      <a class="blog-feature" href="${featured.url}">
-        <div>
-          <p class="meta">${formatPostDate(featured.date)} · ${featured.readingTime}</p>
-          <h2>${featured.title}</h2>
-          <p>${featured.description}</p>
-          <div class="tag-row">${renderTags(featured.tags)}</div>
-        </div>
-        <span class="text-link">Lire l'article</span>
-      </a>
-      <div class="blog-side-list">
-        ${secondary.map((post) => `
-          <a class="article-card compact" href="${post.url}">
-            <div>
-              <p class="meta">${formatPostDate(post.date)} · ${post.readingTime}</p>
-              <h2>${post.title}</h2>
-              <p>${post.description}</p>
-              <div class="tag-row">${renderTags(post.tags)}</div>
+    <div class="blog-directory-split">
+      ${featured ? `
+        <section class="blog-directory-group longform-group" aria-labelledby="analyses-longues">
+          <div class="blog-directory-heading">
+            <h3 id="analyses-longues">Analyses longues</h3>
+            <p>Des textes de recul, plus personnels, pour lire l'IA comme un mouvement économique, culturel et humain.</p>
+          </div>
+          <div class="blog-showcase blog-directory longform-showcase">
+            <a class="blog-feature ${isLongformPost(featured) ? "format-longform" : "format-guide"}" href="${featured.url}">
+              <div>
+                <p class="meta">${postMeta(featured)}</p>
+                <h2>${featured.title}</h2>
+                <p>${featured.description}</p>
+                <div class="tag-row">${renderTags(featured.tags)}</div>
+              </div>
+              <span class="text-link">${postCta(featured)}</span>
+            </a>
+            <div class="blog-side-list">
+              ${secondaryLongform.map((post) => articleCard(post, "h3", "compact")).join("")}
             </div>
-            <span class="text-link">Lire</span>
-          </a>
-        `).join("")}
-      </div>
+          </div>
+        </section>
+      ` : ""}
+      ${standardPosts.length ? `
+        <section class="blog-directory-group guide-group" aria-labelledby="guides-pratiques">
+          <div class="blog-directory-heading">
+            <h3 id="guides-pratiques">Guides pratiques</h3>
+            <p>Des formats plus ciblés pour répondre vite à une question de méthode, de gouvernance ou de pilotage.</p>
+          </div>
+          <div class="article-grid guide-grid">
+            ${standardPosts.map((post) => articleCard(post, "h3", "guide-card")).join("")}
+          </div>
+        </section>
+      ` : ""}
     </div>
   `;
 }
