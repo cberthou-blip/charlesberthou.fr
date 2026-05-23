@@ -240,15 +240,15 @@ function renderRegister() {
         <span><strong data-next-action="${escapeHtml(item.id)}">${escapeHtml(getNextAction(item))}</strong> prochaine action</span>
       </div>
       <div class="register-form-grid">
-        ${selectField(item, "status", "Avancement", statusOptions)}
-        ${selectField(item, "riskLevel", "Risque", riskOptions)}
-        ${selectField(item, "dataType", "Données", dataTypeOptions, "Non renseigné")}
-        ${selectField(item, "validationStatus", "Revue interne", reviewOptions)}
-        ${inputField(item, "businessOwner", "Responsable", "Nom ou rôle")}
-        ${inputField(item, "reviewDate", "Date de revue", "", "date")}
-        ${textareaField(item, "purpose", "Finalité", "Objectif de l'usage et décision à préparer")}
-        ${textareaField(item, "impactedPeople", "Personnes impactées", "Clients, collaborateurs, candidats...")}
-        ${textareaField(item, "comment", "Note de pilotage", "Point à arbitrer, réserve, prochain test")}
+        ${selectField(item, "status", "Statut de l'usage", statusOptions)}
+        ${selectField(item, "riskLevel", "Niveau de risque", riskOptions)}
+        ${selectField(item, "dataType", "Données utilisées", dataTypeOptions, "À préciser")}
+        ${selectField(item, "validationStatus", "Validation / revue", reviewOptions)}
+        ${inputField(item, "businessOwner", "Responsable métier", "Nom, rôle ou équipe")}
+        ${inputField(item, "reviewDate", "Prochaine revue", "", "date")}
+        ${textareaField(item, "purpose", "Usage et finalité", "Ex. préparer une synthèse de tickets pour aider le support")}
+        ${textareaField(item, "impactedPeople", "Public concerné", "Clients, collaborateurs, candidats, partenaires...")}
+        ${textareaField(item, "comment", "Décision / prochaine action", "Valider, limiter, tester, suspendre ou revoir")}
       </div>
     `;
     card.addEventListener("input", handleRegisterInput);

@@ -125,32 +125,38 @@ function renderMaturity() {
   maturityNodes.nextStep.textContent = level.nextStep;
   maturityNodes.scoreCard.style.setProperty("--score-angle", `${percent * 3.6}deg`);
 
-  maturityNodes.bars.innerHTML = maturityAxes.map((axis) => {
-    const value = scores[axis.id] || 0;
-    return `
-      <div class="axis-bar-row">
-        <span>${escapeHtml(axis.title)}</span>
-        <div class="axis-bar"><i style="width:${value * 25}%"></i></div>
-        <strong>${value}/4</strong>
-      </div>
-    `;
-  }).join("");
+  if (maturityNodes.bars) {
+    maturityNodes.bars.innerHTML = maturityAxes.map((axis) => {
+      const value = scores[axis.id] || 0;
+      return `
+        <div class="axis-bar-row">
+          <span>${escapeHtml(axis.title)}</span>
+          <div class="axis-bar"><i style="width:${value * 25}%"></i></div>
+          <strong>${value}/4</strong>
+        </div>
+      `;
+    }).join("");
+  }
 
-  maturityNodes.priorities.innerHTML = weakAxes.map((axis, index) => `
-    <article class="priority-item">
-      <span>${index + 1}</span>
-      <div>
-        <strong>${escapeHtml(axis.title)}</strong>
-        <p>${escapeHtml(axis.recommendation)}</p>
-      </div>
-    </article>
-  `).join("");
+  if (maturityNodes.priorities) {
+    maturityNodes.priorities.innerHTML = weakAxes.map((axis, index) => `
+      <article class="priority-item">
+        <span>${index + 1}</span>
+        <div>
+          <strong>${escapeHtml(axis.title)}</strong>
+          <p>${escapeHtml(axis.recommendation)}</p>
+        </div>
+      </article>
+    `).join("");
+  }
 
   renderRegisterSignal();
 }
 
 function renderRegisterSignal() {
-  maturityNodes.registerSignal.textContent = "Le diagnostic démarre sans reprendre automatiquement le registre local. Ouvrez le registre IA pour documenter les usages retenus.";
+  if (maturityNodes.registerSignal) {
+    maturityNodes.registerSignal.textContent = "Le diagnostic démarre sans reprendre automatiquement le registre local. Ouvrez le registre IA pour documenter les usages retenus.";
+  }
 }
 
 function getTotalScore() {

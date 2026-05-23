@@ -96,11 +96,28 @@ function articleCard(post, heading = "h3", extraClass = "") {
   `;
 }
 
+function homeSideArticleCard(post) {
+  const formatClass = isLongformPost(post) ? "format-longform" : "format-guide";
+  const metaLabel = isLongformPost(post) ? "Article" : postFormatLabel(post);
+  const cta = isLongformPost(post) ? "Lire l'article" : postCta(post);
+
+  return `
+    <a class="article-card ${formatClass} compact" href="${post.url}">
+      <div>
+        <p class="meta">${metaLabel} · ${formatPostDate(post.date)} · ${post.readingTime}</p>
+        <h3>${post.title}</h3>
+        <p>${post.description}</p>
+      </div>
+      <span class="text-link">${cta}</span>
+    </a>
+  `;
+}
+
 function homeBlogShowcase(posts) {
   const longformPosts = posts.filter(isLongformPost);
-  const guidePosts = posts.filter((post) => !isLongformPost(post));
   const featured = longformPosts[0] || posts[0];
-  const secondary = (guidePosts.length ? guidePosts : posts.filter((post) => post !== featured)).slice(0, 2);
+  const secondary = longformPosts.filter((post) => post !== featured).slice(0, 2);
+  const fallback = posts.filter((post) => post !== featured).slice(0, 2);
   if (!featured) return "";
 
   return `
@@ -114,7 +131,7 @@ function homeBlogShowcase(posts) {
       <span class="text-link">${postCta(featured)}</span>
     </a>
     <div class="blog-side-list">
-      ${secondary.map((post) => articleCard(post, "h3", "compact")).join("")}
+      ${(secondary.length ? secondary : fallback).map((post) => homeSideArticleCard(post)).join("")}
     </div>
   `;
 }
@@ -411,9 +428,8 @@ function contactFormTemplate(context = "Site") {
       <input type="hidden" name="form_url" value="${escapeAttribute(currentUrl)}" data-contact-url />
       <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
       <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
-      <p class="contact-form-note">Les données transmises servent uniquement à répondre à votre message.</p>
       <button class="button" type="submit">Envoyer le message</button>
-      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site.</p>
+      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site. Les données transmises servent uniquement à répondre à votre message.</p>
     </form>
   `;
 }
@@ -512,7 +528,7 @@ function resetContactFormState(event) {
     button.textContent = button.dataset.defaultText || "Envoyer le message";
   }
   if (status) {
-    status.textContent = "Votre message sera transmis depuis le formulaire du site.";
+    status.textContent = "Votre message sera transmis depuis le formulaire du site. Les données transmises servent uniquement à répondre à votre message.";
   }
 }
 

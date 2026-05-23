@@ -107,7 +107,7 @@ function renderRoi() {
   const pilotBudget = Math.max(values.setupCost, Math.min(annualCost * 0.25, Math.max(0, prudentGain) * 0.18));
   const reading = grossGain === 0 && annualCost === 0
     ? {
-      title: "Hypothèses à renseigner",
+      title: "Projet à qualifier",
       summary: "Renseignez un cas réel ou chargez l'exemple pour voir comment le simulateur interprète les gains, les coûts et la prudence.",
     }
     : getRoiReading(netGain, roiRatio, paybackMonths);

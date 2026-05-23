@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-home-bands-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -90,7 +90,7 @@
           <p class="case-kicker">Bibliothèque de cas d'usage</p>
           <h1>Trouvez un cas<br />d'usage IA à piloter.</h1>
           <p>
-            Partez d'un besoin métier, d'un domaine ou d'un cas courant. Chaque fiche aide à qualifier le gain, l'effort et les points de vigilance avant de lancer un pilote.
+            Filtrez par métier ou décrivez un besoin : les cas concrets s'affichent directement avec gain, vigilance et suite possible.
           </p>
           <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
             <span><strong data-total-cases>116</strong> cas référencés</span>
@@ -104,7 +104,7 @@
             <span>Décrivez votre besoin métier</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
           </label>
-          <p>Les cas s'affichent après une recherche ou un premier choix. Le parcours principal suit la fonction de travail ; les secteurs restent en filtres secondaires.</p>
+          <p>Commencez par une recherche ou un premier choix. Les filtres détaillés restent disponibles juste en dessous.</p>
           <div class="case-quick-starts" aria-label="Démarrages rapides">
             <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
             <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
@@ -129,8 +129,8 @@
           <div class="tool-library-panel case-explorer-panel">
             <div class="case-filter-intro">
               <div>
-                <strong>Un bon cas d'usage IA part d'une tâche réelle.</strong>
-                <p>Le parcours reprend la logique observée dans les bibliothèques IA : fonction de travail d'abord, puis activité, avec secteur et risque en facettes.</p>
+                <strong>Filtrez, puis ouvrez une fiche.</strong>
+                <p>Chaque cas indique la tâche, le gain estimé, le modèle conseillé et les garde-fous à prévoir.</p>
               </div>
               <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
             </div>
@@ -225,52 +225,16 @@
     <section class="section case-method-section">
       <div class="container content-grid two">
         <article class="content-card">
-          <h2>À quoi sert un cas d'usage IA</h2>
-          <p>Un cas d'usage IA décrit une tâche précise, un public concerné, une donnée mobilisée, un gain attendu et un niveau de vigilance. Cette formulation évite de partir d'un outil pour chercher ensuite un problème à résoudre.</p>
-        </article>
-        <article class="content-card">
-          <h2>Ce qu'il faut qualifier</h2>
-          <ul>
-            <li>La tâche réelle : produire, résumer, classer, contrôler, assister, rechercher ou automatiser.</li>
-            <li>La valeur attendue : temps gagné, qualité, fiabilité, confort, réduction d'erreurs ou meilleure décision.</li>
-            <li>Les limites : données sensibles, validation humaine, biais, sécurité, dépendance outil et coût récurrent.</li>
-            <li>La suite : test court, mesure du résultat, arbitrage, puis inscription dans un registre IA.</li>
-          </ul>
-        </article>
-        <article class="content-card">
-          <h2>Exemples de domaines</h2>
-          <p>Le parcours principal couvre les fonctions de travail : conseil, finance, comptabilité, droit, santé, RH, relation client, conformité, marketing, management, DSI, achats, formation, service client et opérations. Le secteur reste un filtre transversal.</p>
-        </article>
-        <article class="content-card">
-          <h2>Après l'exploration</h2>
-          <p>Un cas intéressant n'est pas encore un projet. Il doit être comparé aux autres pistes, chiffré avec le <a class="text-link" href="/outils-ia/roi-ia/">calculateur de ROI IA</a>, puis documenté dans le <a class="text-link" href="/outils-ia/registre-ia/">registre IA</a>.</p>
-        </article>
-        <article class="content-card">
-          <h2>Référentiels utilisés</h2>
-          <p>L'arborescence s'inspire d'<a class="text-link" href="https://esco.ec.europa.eu/en/classification/occupation_main" target="_blank" rel="noopener noreferrer">ESCO / ISCO-08</a>, du <a class="text-link" href="https://www.francetravail.fr/employeur/vos-recrutements/le-rome-et-les-fiches-metiers.html" target="_blank" rel="noopener noreferrer">ROME</a>, des familles professionnelles FAP, de la PCS et de la <a class="text-link" href="https://www.insee.fr/fr/information/2406147" target="_blank" rel="noopener noreferrer">NAF</a>.</p>
-        </article>
-        <article class="content-card">
-          <h2>Modèles IA</h2>
-          <p>Dernière revue : mai 2026. Les recommandations croisent la nature du cas d'usage avec les modèles disponibles à cette date : <a class="text-link" href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">GPT-5.5</a> pour le raisonnement professionnel, <a class="text-link" href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">GPT-5.4 mini</a> pour le volume, <a class="text-link" href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">Claude Opus 4.7</a> pour la rédaction longue, <a class="text-link" href="https://ai.google.dev/gemini-api/docs/models?hl=fr" target="_blank" rel="noopener noreferrer">Gemini 3 Pro</a> pour les corpus longs et multimodaux, et <a class="text-link" href="https://docs.mistral.ai/models/overview" target="_blank" rel="noopener noreferrer">Mistral Medium 3.5</a> / <a class="text-link" href="https://docs.mistral.ai/models/overview" target="_blank" rel="noopener noreferrer">Mistral Large 3</a> pour les contextes ouverts ou maîtrisés.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section soft">
-      <div class="container content-grid two">
-        <article class="content-card">
-          <h2>Exemple de bonne formulation</h2>
-          <p>Une formulation exploitable ressemble à ceci : "Aider l'équipe support à préparer une première réponse aux demandes récurrentes, à partir de la base documentaire validée, avec relecture humaine obligatoire avant envoi, pour réduire le délai de traitement sans dégrader la qualité".</p>
-          <p>Cette phrase précise la tâche, le public, les données, le contrôle humain et le résultat attendu. Elle donne une base bien plus solide qu'une intention générale comme "mettre de l'IA dans le support".</p>
+          <h2>Qualifier un cas utile</h2>
+          <p>Un bon cas d'usage décrit une tâche réelle, les données mobilisées, le résultat attendu, le contrôle humain et le gain espéré. Cette formulation suffit pour comparer les pistes sans ralentir l'accès à l'outil.</p>
         </article>
         <article class="content-card">
           <h2>Passer du cas au pilote</h2>
           <ul>
-            <li>Choisir un périmètre court et représentatif.</li>
-            <li>Mesurer une situation de départ avant le test.</li>
+            <li>Choisir un périmètre court et mesurable.</li>
+            <li>Mesurer la situation de départ avant le test.</li>
             <li>Définir la validation humaine et les cas d'arrêt.</li>
-            <li>Comparer le gain réel au coût de supervision.</li>
-            <li>Inscrire l'usage dans le registre si le test continue.</li>
+            <li>Chiffrer le gain puis inscrire l'usage dans le registre si le test continue.</li>
           </ul>
         </article>
       </div>
@@ -314,7 +278,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260515-seo-v4" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v2" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v2" defer></script>
 </body>
 </html>

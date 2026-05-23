@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-home-bands-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -163,6 +163,10 @@
             </div>
           </div>
           <div class="register-readiness" id="registerReadiness"></div>
+          <div class="register-example-line" aria-label="Exemple de ligne de registre">
+            <strong>Exemple</strong>
+            <span>Support client · Synthèse de tickets · Données internes · Responsable support · Revue mensuelle · Validation humaine obligatoire</span>
+          </div>
           <div class="register-list" id="registerList" aria-live="polite"></div>
         </section>
       </div>
@@ -171,71 +175,18 @@
     <section class="section">
       <div class="container content-grid two">
         <article class="content-card">
-          <h2>Pourquoi tenir un registre IA</h2>
-          <p>Un registre IA sert à rendre les usages visibles. Il aide à savoir quels outils sont utilisés, par qui, avec quelles données, pour quelle finalité, sous quelle responsabilité et avec quel niveau de risque.</p>
-        </article>
-        <article class="content-card">
-          <h2>Les informations à conserver</h2>
+          <h2>Champs à remplir</h2>
           <ul>
-            <li>Finalité du cas d'usage et équipe concernée.</li>
-            <li>Données utilisées, sensibilité et règles de partage.</li>
-            <li>Responsable, statut, fréquence de revue et critères d'arrêt.</li>
-            <li>Risques : confidentialité, erreur, biais, dépendance, sécurité ou impact métier.</li>
+            <li>Usage : tâche précise et équipe concernée.</li>
+            <li>Données : publiques, internes, personnelles ou sensibles.</li>
+            <li>Responsable : personne ou rôle qui arbitre l'usage.</li>
+            <li>Revue : date, validation humaine et prochaine décision.</li>
           </ul>
         </article>
         <article class="content-card">
-          <h2>Un outil local</h2>
-          <p>Le registre fonctionne dans le navigateur. Les données restent locales et peuvent être exportées en CSV. Cette approche convient à une première cartographie avant de choisir un outil de gouvernance plus complet.</p>
-        </article>
-        <article class="content-card">
-          <h2>Avant le registre</h2>
-          <p>Pour alimenter le registre, il est utile de partir d'un <a class="text-link" href="/outils-ia/cas-usage/">cas d'usage IA</a> suffisamment clair et d'avoir estimé son ordre de grandeur économique avec le <a class="text-link" href="/outils-ia/roi-ia/">calculateur de ROI IA</a>.</p>
-        </article>
-        <article class="content-card">
-          <h2>Point de vigilance AI Act</h2>
-          <p>Le registre n'est pas seulement un inventaire. Il aide à repérer les usages sensibles, les données mobilisées, les responsables et les revues à prévoir. Pour les systèmes à haut risque, l'AI Act prévoit notamment des obligations pour les déployeurs et des logiques d'enregistrement selon les cas.</p>
-          <p><a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-26" target="_blank" rel="noopener noreferrer">Voir l'article 26</a> et <a class="text-link" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-49" target="_blank" rel="noopener noreferrer">l'article 49</a>.</p>
-        </article>
-        <article class="content-card">
-          <h2>Rythme de pilotage</h2>
-          <p>Une revue trimestrielle suffit souvent pour commencer : supprimer les usages non pertinents, renforcer les garde-fous des usages sensibles et transformer les cas utiles en standards partagés.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section soft">
-      <div class="container content-grid two">
-        <article class="content-card">
-          <h2>Exemple d'entrée utile</h2>
-          <p>Une bonne entrée de registre ne se limite pas au nom d'un outil. Elle décrit l'usage : "Préparation de synthèses de réunions internes", indique les données utilisées, le responsable, le statut, le niveau de validation humaine, les risques principaux et la prochaine date de revue.</p>
-          <p>Cette précision permet de distinguer un usage maîtrisé d'une simple expérimentation personnelle.</p>
-        </article>
-        <article class="content-card">
-          <h2>Ce que le registre évite</h2>
-          <ul>
-            <li>Découvrir trop tard qu'un outil manipule des données sensibles.</li>
-            <li>Multiplier des usages similaires sans responsable identifié.</li>
-            <li>Déployer un cas utile sans mesure ni validation humaine.</li>
-            <li>Perdre la mémoire des décisions prises pendant les pilotes.</li>
-            <li>Confondre adoption rapide et gouvernance suffisante.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container content-grid three">
-        <article class="content-card">
-          <h3>Qui doit remplir le registre ?</h3>
-          <p>Le plus simple est de désigner un responsable par usage. La DSI, la conformité ou la direction peuvent consolider, mais l'équipe métier doit décrire la réalité de terrain.</p>
-        </article>
-        <article class="content-card">
-          <h3>À quelle fréquence le revoir ?</h3>
-          <p>Une revue trimestrielle suffit souvent au départ. Les usages sensibles ou proches d'une décision métier doivent être revus plus souvent.</p>
-        </article>
-        <article class="content-card">
-          <h3>Que faire d'un usage risqué ?</h3>
-          <p>Il ne faut pas forcément l'arrêter immédiatement. Il faut d'abord limiter le périmètre, renforcer la validation humaine ou demander un cadrage plus complet.</p>
+          <h2>À garder en tête</h2>
+          <p>Le registre fonctionne dans le navigateur : les données restent locales et peuvent être exportées en CSV. Commencez avec quelques usages, puis revoyez les lignes sensibles plus souvent.</p>
+          <p>Une ligne utile dit clairement qui fait quoi, avec quelles données, sous quelle validation et à quelle date la décision sera revue.</p>
         </article>
       </div>
     </section>
@@ -278,7 +229,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
-  <script src="/outils-ia/assets/registre-ia.js?v=20260515-seo-v4" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v2" defer></script>
+  <script src="/outils-ia/assets/registre-ia.js?v=20260523-retouches-v2" defer></script>
 </body>
 </html>
