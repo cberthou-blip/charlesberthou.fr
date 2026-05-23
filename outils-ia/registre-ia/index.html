@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v3" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -159,35 +159,20 @@
             </div>
             <div class="actions register-actions">
               <button class="button secondary" type="button" id="seedRegister">Charger un exemple</button>
-              <button class="button" type="button" id="exportRegister">Exporter CSV</button>
+              <button class="button" type="button" id="exportRegister" disabled>Exporter CSV</button>
             </div>
           </div>
           <div class="register-readiness" id="registerReadiness"></div>
-          <div class="register-example-line" aria-label="Exemple de ligne de registre">
-            <strong>Exemple</strong>
-            <span>Support client · Synthèse de tickets · Données internes · Responsable support · Revue mensuelle · Validation humaine obligatoire</span>
-          </div>
           <div class="register-list" id="registerList" aria-live="polite"></div>
+          <div class="register-inline-help" aria-label="Aide compacte pour remplir le registre">
+            <strong>À renseigner pour chaque ligne</strong>
+            <ul>
+              <li>Usage précis, équipe concernée et responsable métier.</li>
+              <li>Données utilisées, niveau de risque et validation humaine.</li>
+              <li>Date de revue et prochaine décision.</li>
+            </ul>
+          </div>
         </section>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container content-grid two">
-        <article class="content-card">
-          <h2>Champs à remplir</h2>
-          <ul>
-            <li>Usage : tâche précise et équipe concernée.</li>
-            <li>Données : publiques, internes, personnelles ou sensibles.</li>
-            <li>Responsable : personne ou rôle qui arbitre l'usage.</li>
-            <li>Revue : date, validation humaine et prochaine décision.</li>
-          </ul>
-        </article>
-        <article class="content-card">
-          <h2>À garder en tête</h2>
-          <p>Le registre fonctionne dans le navigateur : les données restent locales et peuvent être exportées en CSV. Commencez avec quelques usages, puis revoyez les lignes sensibles plus souvent.</p>
-          <p>Une ligne utile dit clairement qui fait quoi, avec quelles données, sous quelle validation et à quelle date la décision sera revue.</p>
-        </article>
       </div>
     </section>
   </main>
@@ -229,7 +214,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v2" defer></script>
-  <script src="/outils-ia/assets/registre-ia.js?v=20260523-retouches-v2" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v3" defer></script>
+  <script src="/outils-ia/assets/registre-ia.js?v=20260523-retouches-v3" defer></script>
 </body>
 </html>

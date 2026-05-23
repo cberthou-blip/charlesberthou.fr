@@ -438,13 +438,13 @@ function renderDetail() {
     nodes.detail.innerHTML = `
       <div class="case-start-guide">
         <strong>Sélectionnez un cas pour ouvrir la fiche.</strong>
-        <p>Chaque fiche indique le modèle conseillé, l'option économique, l'option entreprise, le niveau de vigilance et le gain estimé.</p>
+        <p>Une fiche doit aider à décider vite si le cas mérite un pilote. Elle rassemble les éléments utiles avant d'aller plus loin.</p>
         <dl>
-          <div><dt>Raisonnement complexe</dt><dd>GPT-5.5</dd></div>
-          <div><dt>Rédaction longue</dt><dd>Claude Opus 4.7</dd></div>
-          <div><dt>PDF et corpus longs</dt><dd>Gemini 3 Pro</dd></div>
-          <div><dt>Volume / coût</dt><dd>GPT-5.4 mini</dd></div>
-          <div><dt>Entreprise / souverain</dt><dd>Mistral Medium 3.5</dd></div>
+          <div><dt>Tâche</dt><dd>ce qui est fait</dd></div>
+          <div><dt>Sortie</dt><dd>le résultat attendu</dd></div>
+          <div><dt>Gain</dt><dd>temps estimé</dd></div>
+          <div><dt>Vigilance</dt><dd>risque à contrôler</dd></div>
+          <div><dt>Suite</dt><dd>chiffrer ou inscrire</dd></div>
         </dl>
       </div>
     `;

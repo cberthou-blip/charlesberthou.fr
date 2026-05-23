@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v3" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -109,56 +109,79 @@
               <h2 id="roiInputsTitle">Décrivez le cas d'usage</h2>
             </div>
             <div class="actions compact-actions">
-              <button class="button secondary" type="button" id="loadRoiExample">Charger un exemple</button>
+              <button class="button" type="button" id="loadRoiExample">Charger un exemple</button>
               <button class="button secondary" type="button" id="resetRoi">Réinitialiser</button>
             </div>
           </div>
 
           <div class="roi-form-grid">
-            <label class="tool-search">
-              <span>Collaborateurs concernés</span>
-              <input id="peopleCount" type="number" min="0" max="50000" step="1" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Temps gagné par personne et par semaine</span>
-              <input id="hoursSaved" type="number" min="0" max="40" step="0.25" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Coût chargé horaire moyen</span>
-              <input id="hourlyCost" type="number" min="0" max="500" step="1" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Semaines réellement concernées par an</span>
-              <input id="activeWeeks" type="number" min="0" max="52" step="1" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Taux d'adoption réaliste</span>
-              <input id="adoptionRate" type="number" min="0" max="100" step="1" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Coût mensuel du dispositif</span>
-              <input id="monthlyCost" type="number" min="0" max="1000000" step="50" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Coût de cadrage et de mise en place</span>
-              <input id="setupCost" type="number" min="0" max="1000000" step="100" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Marge de prudence sur le gain</span>
-              <input id="confidenceBuffer" type="number" min="0" max="80" step="5" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Valeur qualité / erreurs évitées par mois</span>
-              <input id="qualityGainMonthly" type="number" min="0" max="1000000" step="100" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Coût mensuel de validation humaine</span>
-              <input id="reviewMonthlyCost" type="number" min="0" max="1000000" step="50" value="0" />
-            </label>
-            <label class="tool-search">
-              <span>Réserve risque / dette opérationnelle</span>
-              <input id="riskReserveRate" type="number" min="0" max="80" step="5" value="0" />
-            </label>
+            <section class="roi-field-group">
+              <h3>Temps gagné</h3>
+              <div class="roi-field-group-grid">
+                <label class="tool-search">
+                  <span>Collaborateurs concernés</span>
+                  <div class="input-with-unit"><input id="peopleCount" type="number" min="0" max="50000" step="1" value="0" /><em>personnes</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Temps gagné / personne / semaine</span>
+                  <div class="input-with-unit"><input id="hoursSaved" type="number" min="0" max="40" step="0.25" value="0" /><em>heures</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Semaines concernées par an</span>
+                  <div class="input-with-unit"><input id="activeWeeks" type="number" min="0" max="52" step="1" value="0" /><em>semaines</em></div>
+                </label>
+              </div>
+            </section>
+
+            <section class="roi-field-group">
+              <h3>Coût</h3>
+              <div class="roi-field-group-grid">
+                <label class="tool-search">
+                  <span>Coût chargé horaire moyen</span>
+                  <div class="input-with-unit"><input id="hourlyCost" type="number" min="0" max="500" step="1" value="0" /><em>€ / h</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Coût mensuel du dispositif</span>
+                  <div class="input-with-unit"><input id="monthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>€ / mois</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Cadrage et mise en place</span>
+                  <div class="input-with-unit"><input id="setupCost" type="number" min="0" max="1000000" step="100" value="0" /><em>€</em></div>
+                </label>
+              </div>
+            </section>
+
+            <section class="roi-field-group">
+              <h3>Adoption</h3>
+              <div class="roi-field-group-grid compact">
+                <label class="tool-search">
+                  <span>Taux d'adoption réaliste</span>
+                  <div class="input-with-unit"><input id="adoptionRate" type="number" min="0" max="100" step="1" value="0" /><em>%</em></div>
+                </label>
+              </div>
+            </section>
+
+            <section class="roi-field-group">
+              <h3>Risque et qualité</h3>
+              <div class="roi-field-group-grid">
+                <label class="tool-search">
+                  <span>Marge de prudence sur le gain</span>
+                  <div class="input-with-unit"><input id="confidenceBuffer" type="number" min="0" max="80" step="5" value="0" /><em>%</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Valeur qualité / mois</span>
+                  <div class="input-with-unit"><input id="qualityGainMonthly" type="number" min="0" max="1000000" step="100" value="0" /><em>€ / mois</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Validation humaine / mois</span>
+                  <div class="input-with-unit"><input id="reviewMonthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>€ / mois</em></div>
+                </label>
+                <label class="tool-search">
+                  <span>Réserve risque</span>
+                  <div class="input-with-unit"><input id="riskReserveRate" type="number" min="0" max="80" step="5" value="0" /><em>%</em></div>
+                </label>
+              </div>
+            </section>
           </div>
         </section>
 
@@ -190,25 +213,15 @@
     </section>
 
     <section class="section">
-      <div class="container content-grid two">
-        <article class="content-card">
-          <h2>Lire le résultat</h2>
-          <p>Le calculateur donne un ordre de grandeur prudent, pas une vérité financière. Il combine le temps gagné, l'adoption réelle, la valeur qualité, les coûts complets, la validation humaine et une marge de risque.</p>
+      <div class="container content-grid one">
+        <article class="content-card compact-help-card">
+          <h2>Lire le ROI</h2>
+          <p>Le résultat donne un ordre de grandeur prudent. Un ROI positif justifie surtout un pilote mesuré ; un ROI faible invite à réduire le périmètre ou à chercher une valeur qualité, conformité ou confort de travail.</p>
           <ul>
-            <li>ROI positif : lancer un pilote mesuré, avec avant/après.</li>
-            <li>ROI incertain : réduire le périmètre ou clarifier les données.</li>
-            <li>ROI faible : vérifier si la valeur vient plutôt de la qualité, de la conformité ou du confort de travail.</li>
+            <li>Comparez le gain net au coût complet.</li>
+            <li>Vérifiez l'adoption réelle avant de généraliser.</li>
+            <li>Documentez le cas dans le registre si le pilote continue.</li>
           </ul>
-        </article>
-        <article class="content-card">
-          <h2>Variables à surveiller</h2>
-          <ul>
-            <li>Nombre de personnes réellement concernées.</li>
-            <li>Temps gagné par semaine et taux d'adoption.</li>
-            <li>Coûts complets : licences, cadrage, formation, supervision.</li>
-            <li>Marge de prudence, validation humaine et réserve de risque.</li>
-          </ul>
-          <p>Une hypothèse chiffrée doit ensuite être testée sur un périmètre court, puis documentée dans le <a class="text-link" href="/outils-ia/registre-ia/">registre IA</a>.</p>
         </article>
       </div>
     </section>
@@ -251,7 +264,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v2" defer></script>
-  <script src="/outils-ia/assets/roi-ia.js?v=20260523-retouches-v2" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v3" defer></script>
+  <script src="/outils-ia/assets/roi-ia.js?v=20260523-retouches-v3" defer></script>
 </body>
 </html>

@@ -88,12 +88,12 @@ function renderQuestions() {
         <p>${escapeHtml(axis.low)} → ${escapeHtml(axis.high)}</p>
       </div>
       <div class="axis-control">
-        <input type="range" min="0" max="4" step="1" value="${value}" aria-label="Score ${escapeHtml(axis.title)}" data-axis="${axis.id}" />
-        <div class="score-steps" aria-hidden="true">
-          ${[0, 1, 2, 3, 4].map((score) => `<span class="${score <= value ? "active" : ""}">${score}</span>`).join("")}
+        <input type="range" min="0" max="4" step="1" value="${value}" aria-label="Score ${escapeHtml(axis.title)}" aria-valuetext="${escapeHtml(getScoreLabel(value))}" data-axis="${axis.id}" />
+        <div class="axis-scale" aria-hidden="true">
+          <span>Absent</span>
+          <span>Structuré</span>
         </div>
       </div>
-      <strong>${getScoreLabel(value)}</strong>
     `;
     section.querySelector("input").addEventListener("input", (event) => {
       scores[axis.id] = Number(event.target.value);
@@ -171,7 +171,7 @@ function getLevel(total) {
       profile: "Risque d'usage invisible",
       nextStep: "Cadrer",
       insight: "Le sujet doit d'abord devenir visible, gouverné et compréhensible.",
-      summary: "L'IA existe probablement déjà dans les pratiques, mais sans cadre commun. Commencez par des règles lisibles, une formation courte et deux cas d'usage limités.",
+      summary: "Commencez par rendre les usages visibles et cadrer deux pilotes simples.",
     };
   }
 
@@ -182,7 +182,7 @@ function getLevel(total) {
       profile: "Potentiel non orchestré",
       nextStep: "Prioriser",
       insight: "La valeur vient maintenant du choix des bons usages et d'une mesure simple.",
-      summary: "Les idées sont présentes, mais le pilotage demeure fragile. L'enjeu consiste à convertir les essais dispersés en portefeuille de cas priorisés.",
+      summary: "Priorisez les usages utiles et mesurez un premier pilote court.",
     };
   }
 
@@ -193,7 +193,7 @@ function getLevel(total) {
       profile: "Passage au pilotage",
       nextStep: "Mesurer",
       insight: "Les fondations existent ; il faut objectiver les gains et fermer les angles morts.",
-      summary: "Les fondations sont en place. L'effort doit désormais porter sur la mesure réelle des gains, la maîtrise des risques et la montée en compétence.",
+      summary: "Mesurez les gains réels et clarifiez les points de vigilance.",
     };
   }
 
@@ -203,12 +203,12 @@ function getLevel(total) {
     profile: "Organisation scalable",
     nextStep: "Industrialiser",
     insight: "Le sujet peut passer d'un portefeuille de pilotes à un système de déploiement.",
-    summary: "L'organisation peut préparer le passage à l'échelle : standards communs, revue régulière des usages et industrialisation maîtrisée.",
+    summary: "Passez à l'échelle avec des standards communs et des revues régulières.",
   };
 }
 
 function getScoreLabel(value) {
-  return ["Absent", "Initial", "En cours", "Installé", "Maîtrisé"][value] || "Absent";
+  return ["Absent", "Initial", "En cours", "Installé", "Structuré"][value] || "Absent";
 }
 
 function getDefaultScores() {

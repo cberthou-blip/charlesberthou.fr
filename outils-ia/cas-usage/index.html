@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v2" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v3" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -135,6 +135,18 @@
               <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
             </div>
 
+            <div class="case-results-bar">
+              <div>
+                <p class="eyebrow">Résultats</p>
+                <h3>Cas d'usage proposés</h3>
+              </div>
+              <span class="result-count" id="caseResultCount">0 cas</span>
+            </div>
+            <div class="case-grid" id="caseGrid" aria-live="polite"></div>
+            <div class="load-more-row" id="caseLoadMoreRow" hidden>
+              <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
+            </div>
+
             <div class="case-filter-branch" aria-label="Filtres principaux">
               <div class="tool-filter-block case-filter-step">
                 <span class="filter-label">1. Fonction</span>
@@ -191,18 +203,6 @@
                 </div>
               </div>
             </details>
-
-            <div class="case-results-bar">
-              <div>
-                <p class="eyebrow">Résultats</p>
-                <h3>Cas d'usage proposés</h3>
-              </div>
-              <span class="result-count" id="caseResultCount">0 cas</span>
-            </div>
-            <div class="case-grid" id="caseGrid" aria-live="polite"></div>
-            <div class="load-more-row" id="caseLoadMoreRow" hidden>
-              <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
-            </div>
           </div>
         </section>
 
@@ -211,30 +211,25 @@
             <span class="case-step-number">2</span>
             <div>
               <h2 id="caseGuideTitle">Mode d'emploi</h2>
-              <p>Modèle conseillé, alternative économique, option entreprise, garde-fou et gain estimé.</p>
+              <p>Ce qu'il faut lire dans une fiche avant de choisir un cas.</p>
             </div>
           </div>
 
           <div class="tool-detail-panel case-detail-panel" id="caseDetail" aria-live="polite">
-            <p class="empty-state">Sélectionnez un cas affiché pour voir le modèle conseillé, les garde-fous et les vérifications.</p>
+            <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
           </div>
         </aside>
       </div>
     </section>
 
     <section class="section case-method-section">
-      <div class="container content-grid two">
-        <article class="content-card">
-          <h2>Qualifier un cas utile</h2>
-          <p>Un bon cas d'usage décrit une tâche réelle, les données mobilisées, le résultat attendu, le contrôle humain et le gain espéré. Cette formulation suffit pour comparer les pistes sans ralentir l'accès à l'outil.</p>
-        </article>
-        <article class="content-card">
-          <h2>Passer du cas au pilote</h2>
+      <div class="container content-grid one">
+        <article class="content-card compact-help-card">
+          <h2>Choisir un cas à ouvrir</h2>
           <ul>
-            <li>Choisir un périmètre court et mesurable.</li>
-            <li>Mesurer la situation de départ avant le test.</li>
-            <li>Définir la validation humaine et les cas d'arrêt.</li>
-            <li>Chiffrer le gain puis inscrire l'usage dans le registre si le test continue.</li>
+            <li>Commencez par une tâche fréquente et facile à vérifier.</li>
+            <li>Privilégiez un gain observable plutôt qu'une promesse générale.</li>
+            <li>Écartez les cas trop sensibles si la validation humaine n'est pas claire.</li>
           </ul>
         </article>
       </div>
@@ -278,7 +273,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v2" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v2" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v3" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v3" defer></script>
 </body>
 </html>

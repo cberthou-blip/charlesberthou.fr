@@ -213,7 +213,21 @@ function renderRegister() {
 
   if (items.length === 0) {
     registerNodes.registerList.innerHTML = `
-      <p class="empty-state">Le registre est vide. Ajoutez un cas filtré depuis l'explorateur ou chargez un exemple pour voir la structure.</p>
+      <article class="register-example-card" aria-label="Exemple de ligne de registre">
+        <div class="register-card-head">
+          <div>
+            <span>Support client · Synthèse</span>
+            <strong>Exemple : synthèse de tickets clients</strong>
+          </div>
+          <em>exemple</em>
+        </div>
+        <div class="register-item-metrics">
+          <span><strong>Données internes</strong> données</span>
+          <span><strong>Responsable support</strong> responsable</span>
+          <span><strong>Revue mensuelle</strong> prochaine revue</span>
+        </div>
+        <p>Cette ligne illustre le niveau d'information attendu. Elle n'est pas exportée tant qu'aucun cas réel n'est ajouté.</p>
+      </article>
     `;
     return;
   }
@@ -458,6 +472,8 @@ function saveRegister() {
 }
 
 function exportRegisterCsv() {
+  if (registerState.register.length === 0) return;
+
   const headers = [
     "id",
     "titre",
