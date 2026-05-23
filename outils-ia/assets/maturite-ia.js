@@ -116,6 +116,7 @@ function renderQuestions() {
         <p>${escapeHtml(axis.low)} → ${escapeHtml(axis.high)}</p>
       </div>
       <div class="axis-control">
+        <span class="axis-value" aria-hidden="true">${value}/4 · ${escapeHtml(getScoreLabel(value))}</span>
         <input type="range" min="0" max="4" step="1" value="${value}" aria-label="Score ${escapeHtml(axis.title)}" aria-valuetext="${escapeHtml(getScoreLabel(value))}" data-axis="${axis.id}" />
         <div class="axis-scale" aria-hidden="true">
           <span>Absent</span>

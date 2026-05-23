@@ -6037,3 +6037,126 @@ b,
     padding: 20px;
   }
 }
+
+/* Hero texte seul et respiration du test de maturite. */
+.hero-tech .hero-text-only {
+  grid-template-columns: minmax(0, 900px);
+  justify-content: start;
+}
+
+.hero-tech .hero-copy {
+  max-width: 900px;
+  padding: clamp(8px, 2vw, 18px) 0;
+}
+
+.hero-tech .hero-copy h1 {
+  max-width: 900px;
+}
+
+.hero-tech .hero-copy .lead {
+  max-width: 790px;
+}
+
+.maturity-tool .maturity-questions {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 26px);
+}
+
+.maturity-tool .maturity-questions .compact-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+}
+
+.maturity-tool .maturity-questions .compact-heading .button {
+  flex: 0 0 auto;
+}
+
+.maturity-tool #maturityAxes {
+  display: grid;
+  gap: 12px;
+}
+
+.maturity-tool .maturity-axis {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  gap: 20px;
+  align-items: center;
+  border-color: #e1e5ee;
+  background: #fbfcff;
+  padding: 16px;
+}
+
+.maturity-tool .axis-copy {
+  min-width: 0;
+}
+
+.maturity-tool .axis-copy h3 {
+  font-size: 1rem;
+  font-weight: 560;
+  line-height: 1.24;
+}
+
+.maturity-tool .axis-copy p {
+  margin-top: 5px;
+  max-width: 560px;
+  color: #687085;
+  font-size: 0.9rem;
+  line-height: 1.42;
+}
+
+.maturity-tool .axis-control {
+  gap: 8px;
+}
+
+.maturity-tool .axis-control input {
+  min-height: 22px;
+}
+
+.maturity-tool .axis-value {
+  justify-self: end;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 560;
+  line-height: 1.2;
+}
+
+.maturity-tool .axis-scale {
+  color: #7a8191;
+  font-size: 0.78rem;
+}
+
+@media (min-width: 720px) {
+  .hero.hero-tech {
+    padding: 76px 0 82px;
+  }
+}
+
+@media (max-width: 860px) {
+  .maturity-tool .maturity-axis {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .maturity-tool .axis-value {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 719px) {
+  .hero.hero-tech {
+    padding: 52px 0 58px;
+  }
+
+  .maturity-tool .maturity-questions {
+    padding: 18px;
+  }
+
+  .maturity-tool .maturity-questions .compact-heading {
+    display: grid;
+  }
+}
