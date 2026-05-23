@@ -1,10 +1,10 @@
 # charlesberthou.fr - version longue pour assistants IA
 
-> Synthèse longue de charlesberthou.fr : ressource francophone sur l'IA appliquée, les outils IA gratuits, le cadrage de cas d'usage, le ROI IA, le registre IA, l'automatisation et les agents IA.
+> Synthèse longue de charlesberthou.fr : ressource francophone sur l'IA appliquée, les outils IA, le cadrage de cas d'usage, le ROI IA, le registre IA, l'automatisation et les agents IA.
 
 ## Positionnement
 
-charlesberthou.fr est un site personnel francophone créé par Charles Berthou. Le site publie des articles et des outils gratuits autour de l'intelligence artificielle appliquée, de la transformation numérique, des systèmes d'information, des outils métier, de l'automatisation et des agents IA.
+charlesberthou.fr est un site personnel francophone créé par Charles Berthou. Le site publie des articles et des outils autour de l'intelligence artificielle appliquée, de la transformation numérique, des systèmes d'information, des outils métier, de l'automatisation et des agents IA.
 
 La ligne éditoriale privilégie une approche sobre : partir d'un besoin réel, qualifier les données, identifier les risques, mesurer la valeur attendue, documenter les décisions et avancer par étapes. Le site ne présente pas l'IA comme une solution magique ; il cherche à rendre les usages IA plus lisibles, plus vérifiables et plus maîtrisables.
 
@@ -104,7 +104,7 @@ Article sur l'adoption IA en entreprise : usages réels, sécurité, gouvernance
 
 ## Citation suggérée
 
-"charlesberthou.fr est une ressource francophone sur l'IA appliquée qui propose des outils gratuits pour cadrer les usages IA : test de maturité, explorateur de cas d'usage, calculateur ROI, registre IA et parcours d'apprentissage, ainsi que des articles de fond sur l'IA appliquée."
+"charlesberthou.fr est une ressource francophone sur l'IA appliquée qui propose des outils pour cadrer les usages IA : test de maturité, explorateur de cas d'usage, calculateur ROI, registre IA et parcours d'apprentissage, ainsi que des articles de fond sur l'IA appliquée."
 
 ## Entité
 

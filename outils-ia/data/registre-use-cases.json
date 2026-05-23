@@ -81,9 +81,9 @@
       "monthlyFrequency": 300,
       "complexity": "moyenne",
       "kpi": "Taux de conversion des leads qualifiés",
-      "summary": "Prioriser les leads selon le potentiel commercial, le contexte du compte et les signaux disponibles.",
-      "problem": "Les commerciaux passent du temps sur des prospects peu qualifiés et manquent parfois des signaux de priorité.",
-      "aiApproach": "L'IA combine les données CRM, les notes commerciales et des critères de scoring pour proposer une priorité.",
+      "summary": "Prioriser les leads selon le potentiel relationnel, le contexte du compte et les signaux disponibles.",
+      "problem": "Les équipes relation client passent du temps sur des prospects peu qualifiés et manquent parfois des signaux de priorité.",
+      "aiApproach": "L'IA combine les données CRM, les notes de suivi client et des critères de scoring pour proposer une priorité.",
       "prerequisites": [
         "CRM renseigné",
         "Critères ICP",
@@ -97,9 +97,9 @@
     },
     {
       "id": "sales-meeting-prep",
-      "title": "Préparation de rendez-vous commercial",
+      "title": "Préparation de rendez-vous client",
       "department": "Ventes",
-      "category": "Productivité commerciale",
+      "category": "Organisation client",
       "maturity": "Prêt à tester",
       "difficulty": "Faible",
       "impact": "Moyen",
@@ -112,17 +112,17 @@
       "complexity": "faible",
       "kpi": "Temps de préparation par rendez-vous",
       "summary": "Compiler les informations utiles avant un rendez-vous client ou prospect.",
-      "problem": "La préparation de rendez-vous est dispersée entre CRM, site web, notes internes et documents commerciaux.",
+      "problem": "La préparation de rendez-vous est dispersée entre CRM, site web, notes internes et documents de suivi client.",
       "aiApproach": "L'IA produit une note de préparation avec contexte du compte, enjeux probables, questions à poser et prochaines actions.",
       "prerequisites": [
         "Données CRM",
         "Notes de comptes",
-        "Documents d'offre"
+        "Documents de proposition"
       ],
       "qualitativeGains": [
         "Préparation plus rapide",
         "Rendez-vous mieux structurés",
-        "Meilleure capitalisation commerciale"
+        "Meilleure capitalisation relationnelle"
       ]
     },
     {
@@ -171,7 +171,7 @@
       "monthlyFrequency": 35,
       "complexity": "faible",
       "kpi": "Délai de production d'un brief validé",
-      "summary": "Produire des briefs de contenu cohérents pour articles, pages offres, emails et posts.",
+      "summary": "Produire des briefs de contenu cohérents pour articles, pages de présentation, emails et posts.",
       "problem": "Les briefs sont souvent incomplets, ce qui entraîne des allers-retours et des contenus moins alignés.",
       "aiApproach": "L'IA transforme un objectif, une cible et des sources internes en brief structuré avec angle, plan et messages clés.",
       "prerequisites": [
@@ -332,12 +332,12 @@
       "qualitativeGains": [
         "Économies mieux ciblées",
         "Vision fournisseurs clarifiée",
-        "Préparation des appels d'offres facilitée"
+        "Préparation des consultations facilitée"
       ]
     },
     {
       "id": "procurement-offer-comparison",
-      "title": "Comparaison d'offres fournisseurs",
+      "title": "Comparaison de propositions fournisseurs",
       "department": "Achats",
       "category": "Sourcing",
       "maturity": "Prêt à tester",
@@ -350,9 +350,9 @@
       "timeAfterMin": 75,
       "monthlyFrequency": 25,
       "complexity": "moyenne",
-      "kpi": "Délai de comparaison des offres",
+      "kpi": "Délai de comparaison des propositions",
       "summary": "Comparer des propositions fournisseurs sur prix, conditions, risques et écarts contractuels.",
-      "problem": "Les offres sont souvent en formats différents, ce qui rend la comparaison longue et imparfaite.",
+      "problem": "Les propositions sont souvent en formats différents, ce qui rend la comparaison longue et imparfaite.",
       "aiApproach": "L'IA extrait les critères clés, construit une grille comparative et met en avant les points à arbitrer.",
       "prerequisites": [
         "Dossiers de consultation",
@@ -451,7 +451,7 @@
       ],
       "qualitativeGains": [
         "Moins de replanification",
-        "Meilleur taux de service",
+        "Meilleur taux de réponse",
         "Utilisation des équipes optimisée"
       ]
     },
@@ -506,7 +506,7 @@
       "aiApproach": "L'IA lit les tickets, détecte le type d'incident, estime la sévérité et propose une affectation.",
       "prerequisites": [
         "Historique incidents",
-        "Catalogue de services IT",
+        "Catalogue IT",
         "Règles de priorisation"
       ],
       "qualitativeGains": [
@@ -741,11 +741,11 @@
       "monthlyFrequency": 15,
       "complexity": "élevée",
       "kpi": "Écart moyen de prévision de la demande",
-      "summary": "Améliorer les prévisions de demande avec historiques, saisonnalité et signaux commerciaux.",
+      "summary": "Améliorer les prévisions de demande avec historiques, saisonnalité et signaux d'activité.",
       "problem": "Les écarts de prévision entraînent ruptures, surstocks et arbitrages urgents.",
       "aiApproach": "Des modèles prévisionnels comparent plusieurs scénarios et mettent en évidence les incertitudes.",
       "prerequisites": [
-        "Historique ventes",
+        "Historique d'activité",
         "Promotions et saisonnalité",
         "Données stock"
       ],

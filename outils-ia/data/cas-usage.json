@@ -275,7 +275,7 @@
       "id": "CU-008",
       "source_id": "CC-008",
       "categorie": "Relation client",
-      "domaine": "Ventes B2B",
+      "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
       "tache": "Résumer une procédure B2B",
       "outil": "Assistant de synthèse texte",
@@ -303,7 +303,7 @@
       ],
       "chemin": [
         "Relation client",
-        "Ventes B2B",
+        "Relation client",
         "Procédures"
       ]
     },
@@ -311,7 +311,7 @@
       "id": "CU-009",
       "source_id": "CC-009",
       "categorie": "Relation client",
-      "domaine": "Ventes B2B",
+      "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
       "tache": "Résumer un bilan comptable",
       "outil": "Assistant de synthèse document",
@@ -339,7 +339,7 @@
       ],
       "chemin": [
         "Relation client",
-        "Ventes B2B",
+        "Relation client",
         "Analyse financière"
       ]
     },
@@ -347,7 +347,7 @@
       "id": "CU-010",
       "source_id": "CC-010",
       "categorie": "Relation client",
-      "domaine": "Ventes B2B",
+      "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
       "tache": "Résumer un document fiscal ou social",
       "outil": "Assistant de synthèse document",
@@ -375,7 +375,7 @@
       ],
       "chemin": [
         "Relation client",
-        "Ventes B2B",
+        "Relation client",
         "Documents"
       ]
     },
@@ -383,14 +383,14 @@
       "id": "CU-011",
       "source_id": "CC-011",
       "categorie": "Relation client",
-      "domaine": "Ventes B2B",
+      "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
-      "tache": "Reformuler une proposition commerciale",
+      "tache": "Reformuler une proposition client",
       "outil": "Assistant de reformulation",
       "reglage": "Paraphraser",
-      "entree": "Proposition commerciale copiée/collée",
+      "entree": "Proposition client copiée/collée",
       "sortie": "Proposition reformulée, plus lisible et orientée client",
-      "utilisation": "Relire la proposition et contrôler que l'offre, les conditions et les limites sont inchangées",
+      "utilisation": "Relire la proposition et contrôler que la proposition, les conditions et les limites sont inchangées",
       "verification": [
         "prix",
         "conditions",
@@ -403,15 +403,15 @@
       "temps_apres_minutes": 8,
       "frequence": 4,
       "tags": [
-        "proposition commerciale",
+        "proposition client",
         "reformulation",
         "pro",
-        "offre",
+        "proposition",
         "client"
       ],
       "chemin": [
         "Relation client",
-        "Ventes B2B",
+        "Relation client",
         "Commercial"
       ]
     },
@@ -419,7 +419,7 @@
       "id": "CU-012",
       "source_id": "CC-012",
       "categorie": "Relation client",
-      "domaine": "Ventes B2B",
+      "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
       "tache": "Dicter un compte rendu de visite client B2B",
       "outil": "Dictée augmentée",
@@ -447,7 +447,7 @@
       ],
       "chemin": [
         "Relation client",
-        "Ventes B2B",
+        "Relation client",
         "Rendez-vous"
       ]
     },
@@ -476,7 +476,7 @@
       "frequence": 4,
       "tags": [
         "marché",
-        "offre",
+        "proposition",
         "synthèse",
         "risque",
         "conseil spécialisé"
@@ -529,11 +529,11 @@
       "categorie": "Relation client",
       "domaine": "Conseil spécialisé",
       "profil": "Conseiller spécialisé",
-      "tache": "Simplifier une explication offre",
+      "tache": "Simplifier une explication produit",
       "outil": "Assistant de reformulation",
       "reglage": "Simplifier",
-      "entree": "Explication offre ou support produit copié/collé",
-      "sortie": "Explication claire du offre, de ses avantages et de ses risques",
+      "entree": "Explication produit ou support produit copié/collé",
+      "sortie": "Explication claire de la proposition, de ses avantages et de ses risques",
       "utilisation": "Vérifier que le niveau de détail est adapté et que les risques restent visibles",
       "verification": [
         "risques",
@@ -547,7 +547,7 @@
       "temps_apres_minutes": 8,
       "frequence": 5,
       "tags": [
-        "offre",
+        "proposition",
         "simplifier",
         "pédagogie",
         "risque",

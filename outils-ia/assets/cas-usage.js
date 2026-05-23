@@ -10,7 +10,7 @@ const METIER_ORDER = [
   "Droit / Avocat",
   "Santé",
   "Ressources humaines",
-  "Vente / Commercial",
+  "Relation client",
   "Conformité / Risques",
   "Marketing / Communication",
   "Management",
@@ -28,7 +28,7 @@ const METIER_DESCRIPTIONS = {
   "Droit / Avocat": "Contrats, jurisprudence, contentieux",
   "Santé": "Dossier, qualité, pédagogie patient",
   "Ressources humaines": "Recrutement, compétences, onboarding",
-  "Vente / Commercial": "Prospection, CRM, appels d'offres",
+  "Relation client": "Relation client, CRM, dossiers",
   "Conformité / Risques": "KYC, contrôle interne, veille",
   "Marketing / Communication": "Contenu, voix client, campagnes",
   "Management": "Rituels, arbitrage, communication",
@@ -41,7 +41,7 @@ const METIER_DESCRIPTIONS = {
 
 const SECTOR_ORDER = [
   "Tous secteurs",
-  "Services professionnels",
+  "Activités spécialisées",
   "Finance / Assurance",
   "Santé / Médico-social",
   "Secteur public / Collectivités",
@@ -93,7 +93,7 @@ const MODEL_PROFILES = {
     raison: "La valeur se joue surtout sur la nuance, le style et la qualité éditoriale.",
   },
   "long-document": {
-    principal: "Gemini 3.1 Pro",
+    principal: "Gemini 3 Pro",
     alternative: "GPT-5.5",
     economique: "GPT-5.4 mini",
     souverain: "Mistral Medium 3.5",
@@ -110,7 +110,7 @@ const MODEL_PROFILES = {
   },
   finance: {
     principal: "GPT-5.5",
-    alternative: "Gemini 3.1 Pro",
+    alternative: "Gemini 3 Pro",
     economique: "GPT-5.4 mini",
     souverain: "Mistral Medium 3.5",
     usage: "Analyse chiffrée, synthèse financière, scénarios et explication de variations.",
@@ -125,7 +125,7 @@ const MODEL_PROFILES = {
     raison: "La nuance rédactionnelle et la prudence de formulation comptent autant que le raisonnement.",
   },
   health: {
-    principal: "Gemini 3.1 Pro",
+    principal: "Gemini 3 Pro",
     alternative: "GPT-5.5",
     economique: "GPT-5.4 mini",
     souverain: "Mistral Medium 3.5",
@@ -442,7 +442,7 @@ function renderDetail() {
         <dl>
           <div><dt>Raisonnement complexe</dt><dd>GPT-5.5</dd></div>
           <div><dt>Rédaction longue</dt><dd>Claude Opus 4.7</dd></div>
-          <div><dt>PDF et corpus longs</dt><dd>Gemini 3.1 Pro</dd></div>
+          <div><dt>PDF et corpus longs</dt><dd>Gemini 3 Pro</dd></div>
           <div><dt>Volume / coût</dt><dd>GPT-5.4 mini</dd></div>
           <div><dt>Entreprise / souverain</dt><dd>Mistral Medium 3.5</dd></div>
         </dl>
@@ -708,7 +708,7 @@ function getMetier(item) {
 
   if (category === normalize("Management") || domain.includes("management")) return "Management";
   if (domain.includes("rh") || profile.includes("rh") || text.includes("candidat") || text.includes("formation")) return "Ressources humaines";
-  if (domain.includes("vente") || domain.includes("commercial")) return "Vente / Commercial";
+  if (domain.includes("relation client") || domain.includes("prospect") || domain.includes("crm")) return "Relation client";
   if (domain.includes("marketing") || domain.includes("communication")) return "Marketing / Communication";
   if (domain.includes("finance") || domain.includes("pilotage") || text.includes("budget") || text.includes("tresorerie")) return "Finance";
   if (domain.includes("compt") || text.includes("facture") || text.includes("tva")) return "Comptabilité";
@@ -737,15 +737,15 @@ function getSectors(item) {
   const text = normalize(caseText(item));
 
   if (metier === "Finance") return ["Finance / Assurance"];
-  if (metier === "Droit / Avocat") return ["Services professionnels", "Secteur public / Collectivités"];
+  if (metier === "Droit / Avocat") return ["Activités spécialisées", "Secteur public / Collectivités"];
   if (metier === "Santé") return ["Santé / Médico-social"];
   if (metier === "Conformité / Risques") return ["Finance / Assurance", "Secteur public / Collectivités"];
   if (metier === "DSI / Informatique") return ["Technologie / Télécoms"];
   if (metier === "Achats / Logistique") return ["Transport / Logistique", "Industrie"];
   if (metier === "Éducation / Formation") return ["Éducation / Formation"];
-  if (metier === "Vente / Commercial") return ["Commerce / Retail", "Services professionnels"];
-  if (metier === "Marketing / Communication") return ["Commerce / Retail", "Services professionnels"];
-  if (metier === "Conseil") return ["Services professionnels"];
+  if (metier === "Relation client") return ["Commerce / Retail", "Activités spécialisées"];
+  if (metier === "Marketing / Communication") return ["Commerce / Retail", "Activités spécialisées"];
+  if (metier === "Conseil") return ["Activités spécialisées"];
 
   if (text.includes("banque") || text.includes("assurance")) return ["Finance / Assurance"];
   if (text.includes("hopital") || text.includes("patient") || text.includes("soin")) return ["Santé / Médico-social"];
@@ -822,7 +822,7 @@ function getModelProfileKey(item) {
   if (metier === "Santé") return "health";
   if (metier === "Conformité / Risques" || text.includes("kyc") || text.includes("audit")) return "compliance";
   if (metier === "Finance" || metier === "Comptabilité") return "finance";
-  if (text.includes("pdf") || text.includes("corpus") || text.includes("piece") || text.includes("document") || text.includes("appel d offres") || text.includes("benchmark")) return "long-document";
+  if (text.includes("pdf") || text.includes("corpus") || text.includes("piece") || text.includes("document") || text.includes("dossier consultation") || text.includes("benchmark")) return "long-document";
   if (metier === "Service client" && risk !== "Élevé") return "customer-volume";
   if (taskType === "Rédiger") return "writing";
   if (taskType === "Analyser" || taskType === "Décider / arbitrer") return "reasoning";

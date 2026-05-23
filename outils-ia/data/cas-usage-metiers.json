@@ -20,7 +20,7 @@
         "usage": "Rédaction longue, reformulation de haut niveau, style éditorial et documents argumentés."
       },
       "multimodal_documentaire": {
-        "principal": "Gemini 3.1 Pro",
+        "principal": "Gemini 3 Pro",
         "alternative": "GPT-5.5",
         "usage": "PDF, images, grands corpus, extraction et compréhension multimodale."
       },
@@ -51,7 +51,7 @@
       "reglage": "Structurer",
       "entree": "Notes brutes d'entretiens, contexte client, irritants et objectifs",
       "sortie": "Diagnostic synthétique avec enjeux, hypothèses, risques et prochaines questions",
-      "utilisation": "Relire avec le consultant senior avant de partager au client",
+      "utilisation": "Relire avec une personne référente avant de partager au client",
       "verification": ["faits cités", "hypothèses distinctes", "données sensibles", "questions ouvertes"],
       "gain_minutes": 45,
       "temps_avant_minutes": 75,
@@ -90,7 +90,7 @@
       "frequence": 3,
       "niveau_risque": "Moyen",
       "modele_recommande": {
-        "principal": "Gemini 3.1 Pro",
+        "principal": "Gemini 3 Pro",
         "alternative": "GPT-5.5",
         "usage": "Lire un corpus web et documentaire long, puis produire une synthèse structurée."
       },
@@ -153,7 +153,7 @@
       "niveau_risque": "Élevé",
       "modele_recommande": {
         "principal": "GPT-5.5",
-        "alternative": "Gemini 3.1 Pro",
+        "alternative": "Gemini 3 Pro",
         "usage": "Raisonnement chiffré, synthèse financière et lecture de documents longs."
       },
       "garde_fou": "Ne pas produire de recommandation d'investissement sans validation qualifiée.",
@@ -204,7 +204,7 @@
       "tache": "Préparer une note de prévision de trésorerie",
       "outil": "Assistant de synthèse document",
       "reglage": "Scénarios",
-      "entree": "Prévisions d'encaissement, décaissements, dettes et hypothèses commerciales",
+      "entree": "Prévisions d'encaissement, décaissements, dettes et hypothèses d'activité",
       "sortie": "Note de trésorerie avec scénarios, risques de liquidité et leviers",
       "utilisation": "Valider les hypothèses avec finance et opérations",
       "verification": ["hypothèses", "échéances", "sensibilité", "signaux faibles"],
@@ -276,7 +276,7 @@
       "frequence": 10,
       "niveau_risque": "Moyen",
       "modele_recommande": {
-        "principal": "Gemini 3.1 Pro",
+        "principal": "Gemini 3 Pro",
         "alternative": "GPT-5.5",
         "usage": "Lecture de PDF et extraction de points de contrôle."
       },
@@ -400,11 +400,11 @@
       "frequence": 3,
       "niveau_risque": "Élevé",
       "modele_recommande": {
-        "principal": "Gemini 3.1 Pro",
+        "principal": "Gemini 3 Pro",
         "alternative": "GPT-5.5",
         "usage": "Lecture de corpus documentaire volumineux avec traçabilité."
       },
-      "garde_fou": "Aucune pièce confidentielle ne doit partir dans un service non autorisé.",
+      "garde_fou": "Aucune pièce confidentielle ne doit partir dans un outil non autorisé.",
       "references_metier": ["ESCO/ISCO-08", "ROME"],
       "tags": ["contentieux", "chronologie", "pièces", "dossier"],
       "chemin": ["Droit / Avocat", "Contentieux", "Chronologie"]
@@ -463,7 +463,7 @@
       "niveau_risque": "Élevé",
       "modele_recommande": {
         "principal": "GPT-5.5",
-        "alternative": "Gemini 3.1 Pro",
+        "alternative": "Gemini 3 Pro",
         "usage": "Synthèse prudente de documents longs avec capacité de raisonnement."
       },
       "garde_fou": "Usage d'assistance documentaire uniquement, sous responsabilité du professionnel de santé.",
@@ -660,14 +660,14 @@
     {
       "id": "CU-101",
       "source_id": "MET-101",
-      "metier": "Vente / Commercial",
+      "metier": "Relation client",
       "activite": "Prospection",
       "situation": "Priorisation",
-      "categorie": "Vente / Commercial",
+      "categorie": "Relation client",
       "domaine": "Prospection",
       "profil": "Commercial B2B",
       "tache": "Prioriser une liste de prospects avant campagne",
-      "outil": "Assistant commercial",
+      "outil": "Assistant relation client",
       "reglage": "Scoring prudent",
       "entree": "Liste prospects, secteur, signaux publics et historique CRM",
       "sortie": "Priorisation avec raisons, angles d'approche et données manquantes",
@@ -685,25 +685,25 @@
       },
       "garde_fou": "Ne pas utiliser de données personnelles non autorisées.",
       "references_metier": ["ESCO/ISCO-08", "ROME", "NAF/NACE"],
-      "tags": ["vente", "prospection", "CRM", "priorisation"],
-      "chemin": ["Vente / Commercial", "Prospection", "Priorisation"]
+      "tags": ["relation client", "prospection", "CRM", "priorisation"],
+      "chemin": ["Relation client", "Prospection", "Priorisation"]
     },
     {
       "id": "CU-102",
       "source_id": "MET-102",
-      "metier": "Vente / Commercial",
+      "metier": "Relation client",
       "activite": "Rendez-vous",
       "situation": "Préparation",
-      "categorie": "Vente / Commercial",
+      "categorie": "Relation client",
       "domaine": "Rendez-vous",
       "profil": "Account manager",
       "tache": "Préparer un rendez-vous client à partir du CRM",
-      "outil": "Assistant commercial",
+      "outil": "Assistant relation client",
       "reglage": "Brief",
       "entree": "Historique CRM, notes, produits et objectifs du rendez-vous",
-      "sortie": "Brief avec contexte, enjeux, questions et prochaines offres possibles",
+      "sortie": "Brief avec contexte, enjeux, questions et prochaines options possibles",
       "utilisation": "Vérifier le CRM et adapter au client réel",
-      "verification": ["historique", "offres", "points sensibles", "données client"],
+      "verification": ["historique", "options", "points sensibles", "données client"],
       "gain_minutes": 25,
       "temps_avant_minutes": 45,
       "temps_apres_minutes": 20,
@@ -714,24 +714,24 @@
         "alternative": "Claude Opus 4.7",
         "usage": "Synthétiser l'historique et préparer une conversation."
       },
-      "garde_fou": "Ne pas inventer de promesse commerciale ou de prix.",
+      "garde_fou": "Ne pas inventer de promesse ou de prix.",
       "references_metier": ["ESCO/ISCO-08", "ROME"],
       "tags": ["client", "rendez-vous", "CRM", "brief"],
-      "chemin": ["Vente / Commercial", "Rendez-vous", "Préparation"]
+      "chemin": ["Relation client", "Rendez-vous", "Préparation"]
     },
     {
       "id": "CU-103",
       "source_id": "MET-103",
-      "metier": "Vente / Commercial",
-      "activite": "Appel d'offres",
+      "metier": "Relation client",
+      "activite": "Dossier de consultation",
       "situation": "Synthèse exigences",
-      "categorie": "Vente / Commercial",
-      "domaine": "Appel d'offres",
-      "profil": "Ingénieur commercial",
-      "tache": "Résumer un appel d'offres en exigences et risques",
+      "categorie": "Relation client",
+      "domaine": "Dossier de consultation",
+      "profil": "Chargé de réponse",
+      "tache": "Résumer un dossier de consultation en exigences et risques",
       "outil": "Assistant de synthèse document",
       "reglage": "Exigences",
-      "entree": "Dossier d'appel d'offres, annexes et grille de réponse",
+      "entree": "Dossier de consultation, annexes et grille de réponse",
       "sortie": "Liste d'exigences, risques de réponse et questions à poser",
       "utilisation": "Faire relire par commerce, juridique et opérationnel",
       "verification": ["échéances", "critères", "clauses", "pièces obligatoires"],
@@ -741,14 +741,14 @@
       "frequence": 3,
       "niveau_risque": "Élevé",
       "modele_recommande": {
-        "principal": "Gemini 3.1 Pro",
+        "principal": "Gemini 3 Pro",
         "alternative": "GPT-5.5",
         "usage": "Lire de longs dossiers et extraire les obligations."
       },
       "garde_fou": "Vérifier toutes les exigences dans le dossier source.",
       "references_metier": ["ESCO/ISCO-08", "ROME"],
-      "tags": ["appel d'offres", "exigences", "vente", "risques"],
-      "chemin": ["Vente / Commercial", "Appel d'offres", "Synthèse exigences"]
+      "tags": ["dossier de consultation", "exigences", "relation client", "risques"],
+      "chemin": ["Relation client", "Dossier de consultation", "Synthèse exigences"]
     },
     {
       "id": "CU-104",
@@ -804,7 +804,7 @@
       "niveau_risque": "Élevé",
       "modele_recommande": {
         "principal": "GPT-5.5",
-        "alternative": "Gemini 3.1 Pro",
+        "alternative": "Gemini 3 Pro",
         "usage": "Lire plusieurs pièces et raisonner sur des alertes."
       },
       "garde_fou": "Ne pas prendre de décision d'acceptation ou refus uniquement via IA.",
@@ -1021,12 +1021,12 @@
       "niveau_risque": "Moyen",
       "modele_recommande": {
         "principal": "GPT-5.5",
-        "alternative": "Gemini 3.1 Pro",
+        "alternative": "Gemini 3 Pro",
         "usage": "Comparer documents et critères hétérogènes."
       },
       "garde_fou": "Ne pas sélectionner un fournisseur sans validation achats et juridique.",
       "references_metier": ["ESCO/ISCO-08", "ROME", "NAF/NACE"],
-      "tags": ["achats", "fournisseur", "comparaison", "appel d'offres"],
+      "tags": ["achats", "fournisseur", "comparaison", "dossier de consultation"],
       "chemin": ["Achats / Logistique", "Fournisseurs", "Comparaison"]
     },
     {
@@ -1041,7 +1041,7 @@
       "tache": "Synthétiser les causes possibles d'une rupture de stock",
       "outil": "Assistant de cadrage",
       "reglage": "Causes",
-      "entree": "Historique ventes, approvisionnements, incidents et commentaires terrain",
+      "entree": "Historique d'activité, approvisionnements, incidents et commentaires terrain",
       "sortie": "Causes possibles, données manquantes et actions de sécurisation",
       "utilisation": "Valider avec les données supply et terrain",
       "verification": ["données", "saisonnalité", "fournisseur", "prévision"],

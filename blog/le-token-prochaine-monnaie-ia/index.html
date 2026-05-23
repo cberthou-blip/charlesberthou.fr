@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-articles-clean-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-ia-clean-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,10 +57,10 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/" aria-current="page">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -82,7 +82,7 @@
       </header>
 
       <div class="article-content">
-        <p>Un cadre dirigeant rédige son compte-rendu de comité en six minutes, là où il aurait fallu une heure. Plus loin, dans un laboratoire de développement, un ingénieur sort en une matinée le squelette d’une application qui lui aurait pris une semaine. Ailleurs encore, un consultant boucle son audit le vendredi soir au lieu du jeudi suivant. Derrière chacune de ces scènes, un compteur tourne en silence, semblable à celui des taxis d’autrefois, et enregistre une unité de consommation que l’utilisateur n’aperçoit presque jamais. Cette unité s’appelle un token. Encore inconnue du grand public, elle s’apprête à dessiner l’une des grilles économiques les plus structurantes de notre rapport à la technologie.</p>
+        <p>Un cadre dirigeant rédige son compte-rendu de comité en six minutes, là où il aurait fallu une heure. Plus loin, dans un laboratoire de développement, un ingénieur sort en une matinée le squelette d’une application qui lui aurait pris une semaine. Ailleurs encore, un analyste termine son étude le vendredi soir au lieu du jeudi suivant. Derrière chacune de ces scènes, un compteur tourne en silence, semblable à celui des taxis d’autrefois, et enregistre une unité de consommation que l’utilisateur n’aperçoit presque jamais. Cette unité s’appelle un token. Encore inconnue du grand public, elle s’apprête à dessiner l’une des grilles économiques les plus structurantes de notre rapport à la technologie.</p>
 
         <h2>Une mécanique déjà éprouvée à plus petite échelle</h2>
         <p>Le mouvement a un précédent que beaucoup ont oublié. Il y a vingt ans, le téléphone mobile traversait une transformation comparable, à des proportions plus modestes. Quelques mégaoctets de data suffisaient pour consulter ses courriels, jusqu’à ce que la navigation web, la photographie, la vidéo, la géolocalisation et le travail à distance fassent du gigaoctet la mesure cardinale du quotidien connecté. Les opérateurs ont alors appris à facturer cette dépendance progressive, qui s’est installée presque sans débat public, comme un fond naturel de l’existence moderne.</p>
@@ -90,13 +90,13 @@
 
         <h2>Le token, en quelques mots</h2>
         <p>Le terme désigne, au sens technique, un fragment de langage que le modèle sait lire et générer, comparable en taille à une syllabe ou à un mot court. Une demande écrite à un assistant conversationnel se trouve d’abord découpée en une série de ces fragments, que la machine traite avant de produire à son tour de nouveaux fragments pour composer sa réponse. Les éditeurs facturent séparément les deux flux, et la sortie coûte systématiquement plus cher que l’entrée, parce que générer du texte mobilise davantage de calcul que d’en lire.</p>
-        <p>Quelques ordres de grandeur permettent de cadrer la mesure. Une discussion d’une dizaine de minutes avec un modèle haut de gamme représente quelques milliers de tokens, soit une fraction de centime sur la facture finale. Une journée de travail soutenu, ponctuée de relectures de documents, de génération de code et d’orchestration d’agents, peut grimper à plusieurs centaines de milliers de tokens. Un cabinet de conseil équipant vingt consultants d’un agent capable de relire de longs dossiers approche rapidement les dizaines de milliers d’euros mensuels. Un service client conversationnel à grande clientèle entre dans une autre dimension encore, où l’arbitrage entre la longueur d’une réponse et son coût devient un paramètre opérationnel quotidien.</p>
-        <p>Derrière ces ordres de grandeur, les éditeurs déploient une grille tarifaire de plus en plus lisible. Anthropic positionne Claude Opus 4.7, son modèle haut de gamme, à 5 dollars par million de tokens en entrée et 25 dollars en sortie, contre 3 et 15 pour Sonnet 4.6, et 1 et 5 pour Haiku 4.5. OpenAI propose son GPT-5.2 autour de 1,75 et 14 dollars, Google son Gemini 3.1 Pro autour de 2 et 12 dollars. Les forfaits grand public absorbent une partie de cette mécanique, ce qui maintient le particulier dans une douce illusion de gratuité. Le professionnel, lui, regarde déjà sa facture grimper.</p>
+        <p>Quelques ordres de grandeur permettent de cadrer la mesure. Une discussion d’une dizaine de minutes avec un modèle haut de gamme représente quelques milliers de tokens, soit une fraction de centime sur la facture finale. Une journée de travail soutenu, ponctuée de relectures de documents, de génération de code et d’orchestration d’agents, peut grimper à plusieurs centaines de milliers de tokens. Une organisation équipant vingt personnes d’un agent capable de relire de longs dossiers approche rapidement les dizaines de milliers d’euros mensuels. Une assistance conversationnelle à grande clientèle entre dans une autre dimension encore, où l’arbitrage entre la longueur d’une réponse et son coût devient un paramètre opérationnel quotidien.</p>
+        <p>Derrière ces ordres de grandeur, les éditeurs déploient une grille tarifaire de plus en plus lisible. Les modèles les plus avancés sont réservés aux raisonnements longs, aux corpus complexes ou au code exigeant ; les modèles plus légers prennent en charge les usages de volume. Les forfaits grand public absorbent une partie de cette mécanique, ce qui maintient le particulier dans une douce illusion de gratuité. Le professionnel, lui, regarde déjà sa facture grimper.</p>
 
         <h2>Ce que j’observe dans mon laboratoire</h2>
         <p>Dans mon propre laboratoire de développement, où je prototype des outils internes, automatise des tâches répétitives et construis des projets personnels sans ambition industrielle, la même équation se vérifie semaine après semaine. La première séance d’un projet sérieux laisse souvent une impression vertigineuse. Une intention formulée au matin peut donner un prototype fonctionnel le soir, et le gain obtenu sur la revue de code, la génération de squelettes ou la rédaction de tests transforme à lui seul le rythme d’un développeur isolé.</p>
         <p>Vient ensuite la limite, et elle tient rarement au modèle. Elle vient de la ressource consommée. À mesure qu’un projet gagne en sérieux, le contexte transmis au modèle s’épaissit, entre le code existant à relire, les fichiers de configuration à comprendre, l’historique des décisions à intégrer et les corrections d’erreur à enchaîner. Chaque cycle de raffinement appelle un peu plus de calcul, et la qualité visée pousse à mobiliser les modèles les plus coûteux. La productivité réelle d’un projet IA dépend, au bout du compte, autant du modèle retenu que de la discipline de consommation tenue par l’équipe.</p>
-        <p>Les modèles open source occupent évidemment leur place dans le paysage, et plusieurs sont remarquables. Leur intérêt pour la souveraineté numérique, la recherche académique et certains usages techniques pointus reste indiscutable. L’expérience demeure cependant moins confortable pour quiconque a pris l’habitude des grands modèles commerciaux : la qualité du raisonnement marque un retrait sur les tâches complexes, le travail de mise au point demande davantage de réglages, et le passage en production sérieuse réclame souvent une infrastructure dédiée que peu d’équipes savent encore administrer. Une nuance importante mérite d’être rappelée à ce stade du débat public, en France comme ailleurs : un modèle distribué gratuitement laisse intacte la question du coût réel de l’intelligence finalement produite.</p>
+        <p>Les modèles open source occupent évidemment leur place dans le paysage, et plusieurs sont remarquables. Leur intérêt pour la souveraineté numérique, la recherche académique et certains usages techniques pointus reste indiscutable. L’expérience demeure cependant moins confortable pour quiconque a pris l’habitude des grands modèles propriétaires : la qualité du raisonnement marque un retrait sur les tâches complexes, le travail de mise au point demande davantage de réglages, et le passage en production sérieuse réclame souvent une infrastructure dédiée que peu d’équipes savent encore administrer. Une nuance importante mérite d’être rappelée à ce stade du débat public, en France comme ailleurs : un modèle distribué gratuitement laisse intacte la question du coût réel de l’intelligence finalement produite.</p>
 
         <h2>L’infrastructure invisible qui supporte le compteur</h2>
         <p>Le compteur qui tourne en silence ne sort pas du néant. Sous chaque token se déploie une chaîne industrielle dont l’ampleur reste largement sous-estimée. L’intelligence artificielle exige des data centers d’une taille sans équivalent dans l’histoire récente, des processeurs graphiques produits en quantités contraintes par une poignée d’industriels, des systèmes de refroidissement avancés, et des capitaux dont l’ampleur rivalise désormais avec celle des plus grandes infrastructures énergétiques de la planète.</p>
@@ -112,7 +112,7 @@
         <p>Le seuil d’exigence personnelle se déplace au passage. Ce qui constituait jadis l’épreuve normale du travail intellectuel, c’est-à-dire la page blanche, la lenteur d’un brouillon, l’effort initial du raisonnement, devient un inconfort dont l’usager cherche à s’épargner. La première tâche confiée à la machine en appelle naturellement d’autres, jusqu’à ce qu’une fraction notable du jugement soit elle-même déléguée. Cette dépendance s’installe parce qu’elle paraît raisonnable, productive et légitime, ce qui en fait l’une des formes les plus puissantes de notre époque.</p>
 
         <h2>Apprendre à penser en tokens</h2>
-        <p>Les équipes qui dépassent le stade de la découverte développent peu à peu quelques réflexes assez simples. Elles réservent les modèles les plus coûteux aux tâches qui les justifient réellement et confient le reste à des modèles intermédiaires moins gourmands. Elles travaillent leur mise en contexte en amont, résumant ou indexant un document avant de le soumettre à l’analyse, ce qui évite qu’une partie significative de la facture ne paye la transmission brute de fichiers volumineux. Elles intègrent le coût des agents autonomes au budget projet dès le cadrage, plutôt que de le découvrir en fin d’exercice. Et elles mesurent leurs gains réels d’usage, presque toujours plus modestes que l’effet produit en démonstration commerciale.</p>
+        <p>Les équipes qui dépassent le stade de la découverte développent peu à peu quelques réflexes assez simples. Elles réservent les modèles les plus coûteux aux tâches qui les justifient réellement et confient le reste à des modèles intermédiaires moins gourmands. Elles travaillent leur mise en contexte en amont, résumant ou indexant un document avant de le soumettre à l’analyse, ce qui évite qu’une partie significative de la facture ne paye la transmission brute de fichiers volumineux. Elles intègrent le coût des agents autonomes au budget projet dès le cadrage, plutôt que de le découvrir en fin d’exercice. Et elles mesurent leurs gains réels d’usage, presque toujours plus modestes que l’effet produit en démonstration.</p>
         <p>Dans quelques années, les entreprises sérieuses tiendront sans doute des tableaux de bord de consommation IA comparables à ceux qu’elles maintiennent aujourd’hui pour le cloud, l’énergie ou la téléphonie. Les particuliers découvriront, de leur côté, que les usages avancés rencontrent toujours une limite, qu’elle s’appelle quota mensuel, surcoût ponctuel, abonnement supérieur ou dégradation silencieuse du modèle proposé sous forfait standard.</p>
 
         <h2>Le token dira la vérité économique de l’IA</h2>
@@ -131,7 +131,7 @@
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
           <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
           <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
           <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
@@ -153,18 +153,17 @@
           <a href="/llms.txt">llms.txt</a>
           <a href="/llms-full.txt">llms-full.txt</a>
           <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
         <div class="footer-links" aria-label="Liens secondaires">
           <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/contact/">Contact</a>
         </div>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
+  <script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-articles-clean-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260522-ia-clean-v2" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -63,7 +63,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
-      { "@type": "ListItem", "position": 2, "name": "Outils IA gratuits", "item": "https://charlesberthou.fr/outils-ia/" },
+      { "@type": "ListItem", "position": 2, "name": "Outils IA", "item": "https://charlesberthou.fr/outils-ia/" },
       { "@type": "ListItem", "position": 3, "name": "Cas d'usage IA gratuits", "item": "https://charlesberthou.fr/outils-ia/cas-usage/" }
     ]
   }
@@ -75,10 +75,10 @@
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/outils-ia/" aria-current="page">Outils IA</a>
         <a href="/blog/">Articles</a>
+        <a href="/outils-ia/" aria-current="page">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
@@ -239,7 +239,7 @@
         </article>
         <article class="content-card">
           <h2>Exemples de domaines</h2>
-          <p>Le parcours principal couvre les fonctions de travail : conseil, finance, comptabilité, droit, santé, RH, vente, conformité, marketing, management, DSI, achats, formation, service client et opérations. Le secteur reste un filtre transversal.</p>
+          <p>Le parcours principal couvre les fonctions de travail : conseil, finance, comptabilité, droit, santé, RH, relation client, conformité, marketing, management, DSI, achats, formation, service client et opérations. Le secteur reste un filtre transversal.</p>
         </article>
         <article class="content-card">
           <h2>Après l'exploration</h2>
@@ -251,7 +251,7 @@
         </article>
         <article class="content-card">
           <h2>Modèles IA</h2>
-          <p>Dernière revue : mai 2026. Les recommandations croisent la nature du cas d'usage avec les modèles disponibles à cette date : <a class="text-link" href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener noreferrer">GPT-5.5</a> pour le raisonnement professionnel, <a class="text-link" href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano/" target="_blank" rel="noopener noreferrer">GPT-5.4 mini</a> pour le volume, <a class="text-link" href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" rel="noopener noreferrer">Claude Opus 4.7</a> pour la rédaction longue, <a class="text-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" target="_blank" rel="noopener noreferrer">Gemini 3.1 Pro</a> pour les corpus longs et multimodaux, et <a class="text-link" href="https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5" target="_blank" rel="noopener noreferrer">Mistral Medium 3.5</a> / <a class="text-link" href="https://mistral.ai/news/mistral-3" target="_blank" rel="noopener noreferrer">Mistral Large 3</a> pour les contextes ouverts ou maîtrisés.</p>
+          <p>Dernière revue : mai 2026. Les recommandations croisent la nature du cas d'usage avec les modèles disponibles à cette date : <a class="text-link" href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">GPT-5.5</a> pour le raisonnement professionnel, <a class="text-link" href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">GPT-5.4 mini</a> pour le volume, <a class="text-link" href="https://platform.claude.com/docs/en/about-claude/models/overview" target="_blank" rel="noopener noreferrer">Claude Opus 4.7</a> pour la rédaction longue, <a class="text-link" href="https://ai.google.dev/gemini-api/docs/models?hl=fr" target="_blank" rel="noopener noreferrer">Gemini 3 Pro</a> pour les corpus longs et multimodaux, et <a class="text-link" href="https://docs.mistral.ai/models/overview" target="_blank" rel="noopener noreferrer">Mistral Medium 3.5</a> / <a class="text-link" href="https://docs.mistral.ai/models/overview" target="_blank" rel="noopener noreferrer">Mistral Large 3</a> pour les contextes ouverts ou maîtrisés.</p>
         </article>
       </div>
     </section>
@@ -281,7 +281,7 @@
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
           <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
           <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
           <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
@@ -303,19 +303,18 @@
           <a href="/llms.txt">llms.txt</a>
           <a href="/llms-full.txt">llms-full.txt</a>
           <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
         <div class="footer-links" aria-label="Liens secondaires">
           <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/contact/">Contact</a>
         </div>
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
+  <script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
   <script src="/outils-ia/assets/cas-usage.js?v=20260515-seo-v4" defer></script>
 </body>
 </html>

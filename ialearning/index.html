@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -1506,7 +1506,7 @@ body::before {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
-    { "@type": "ListItem", "position": 2, "name": "Outils IA gratuits", "item": "https://charlesberthou.fr/outils-ia/" },
+    { "@type": "ListItem", "position": 2, "name": "Outils IA", "item": "https://charlesberthou.fr/outils-ia/" },
     { "@type": "ListItem", "position": 3, "name": "IA Learning", "item": "https://charlesberthou.fr/ialearning/" }
   ]
 }
@@ -1514,7 +1514,7 @@ body::before {
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="/assets/js/site.js?v=20260522-articles-clean-v1" defer></script>
+<script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
 </head>
 <body>
 
@@ -1526,10 +1526,10 @@ body::before {
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/outils-ia/">Outils IA</a>
         <a href="/blog/">Articles</a>
+        <a href="/outils-ia/" aria-current="page">Outils IA</a>
         <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
       <button class="btn btn-primary btn-sm learning-login-button" id="btn-landing-login" type="button">Se connecter</button>
     </div>
@@ -1638,7 +1638,7 @@ body::before {
       <div class="feat-card fc-green">
         <div class="feat-icon fi-green">👥</div>
         <div class="feat-title">Mode Équipe</div>
-        <div class="feat-desc">Créez votre équipe avec vos collègues d'un même point de vente. Comparez les XP cumulés et affrontez d'autres équipes.</div>
+        <div class="feat-desc">Créez votre équipe avec vos collègues d'un même même lieu. Comparez les XP cumulés et affrontez d'autres équipes.</div>
         <div class="feat-tag ft-green">Nouveau</div>
       </div>
     </div>
@@ -1674,7 +1674,7 @@ body::before {
     <div class="container footer-grid">
       <nav class="footer-nav" aria-label="Plan du site">
         <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA gratuits</p>
+          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
           <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
           <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
           <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
@@ -1696,14 +1696,13 @@ body::before {
           <a href="/llms.txt">llms.txt</a>
           <a href="/llms-full.txt">llms-full.txt</a>
           <a href="/sitemap.xml">Sitemap XML</a>
-          <a href="/a-propos/">À propos</a>
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA gratuits et culture numérique.</p>
+        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
         <div class="footer-links" aria-label="Liens secondaires">
           <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
+          <a href="/contact/">Contact</a>
         </div>
       </div>
     </div>
@@ -2083,7 +2082,7 @@ const MODULES = [
     ],
     duelQuiz:[
       {q:"Quelle est la principale différence entre un algorithme classique et une IA qui apprend ?",opts:["L'algorithme classique est plus rapide","L'algorithme classique suit des règles fixes, l'IA améliore ses performances grâce aux données","L'IA consomme moins d'électricité","L'algorithme classique est toujours plus précis"],ans:1,exp:"Un algorithme classique exécute des règles écrites par des humains. Une IA apprenante identifie elle-même des motifs dans les données et s'améliore avec l'expérience — sans qu'on lui dicte explicitement les règles."},
-      {q:"AlphaGo a battu un champion mondial de Go en 2016. Pourquoi ce fut si marquant ?",opts:["Le Go n'avait jamais été joué par ordinateur auparavant","Le Go était considéré trop complexe pour l'IA en raison de son très grand nombre de combinaisons","AlphaGo a triché en consultant internet","C'était la première IA à utiliser un processeur"],ans:1,exp:"Le Go possède plus de configurations possibles que d'atomes dans l'univers. Beaucoup pensaient qu'il faudrait des décennies avant qu'une IA y excelle. AlphaGo y est parvenu en 2016."},
+      {q:"AlphaGo a battu un champion mondial de Go en 2016. Pourquoi ce fut si marquant ?",opts:["Le Go n'avait jamais été joué par ordinateur auparavant","Le Go était considéré trop complexe pour l'IA en raison de son très grand nombre de combinaisons","AlphaGo a triché en utilisant internet","C'était la première IA à utiliser un processeur"],ans:1,exp:"Le Go possède plus de configurations possibles que d'atomes dans l'univers. Beaucoup pensaient qu'il faudrait des décennies avant qu'une IA y excelle. AlphaGo y est parvenu en 2016."},
       {q:"Parmi ces exemples, lequel illustre une IA dans la vie quotidienne ?",opts:["Un tableau Excel qui additionne des colonnes","Le filtre anti-spam de votre boîte mail","Un correcteur orthographique basique","Une calculatrice sur votre téléphone"],ans:1,exp:"Le filtre anti-spam est un exemple concret d'IA : il analyse des millions d'emails pour apprendre à distinguer les spams des vrais messages, et s'améliore en continu avec les données."},
       {q:"Pourquoi l'IA a-t-elle besoin de grandes quantités de données ?",opts:["Pour remplir les serveurs","Pour apprendre des motifs et généraliser à des situations nouvelles","Pour impressionner les investisseurs","Pour fonctionner plus vite"],ans:1,exp:"L'IA apprend en identifiant des répétitions et des régularités dans les données. Plus elle en voit, plus elle devient précise et capable de gérer des situations qu'elle n'a encore jamais rencontrées."},
       {q:"L'IA peut-elle être créative ?",opts:["Non, elle ne fait que copier","Oui, elle peut produire des textes, images et musiques inédits — mais à partir de motifs appris","Oui, exactement comme un artiste humain","Non, elle ne traite que des chiffres"],ans:1,exp:"L'IA générative peut produire des contenus originaux (textes, images, sons) mais toujours à partir de motifs appris sur des données existantes. Ce n'est pas de la créativité au sens humain, mais le résultat peut surprendre."}
@@ -2121,7 +2120,7 @@ const MODULES = [
     duelQuiz:[
       {q:"ChatGPT a atteint 100 millions d'utilisateurs en 2 mois. Qu'est-ce qui explique cette adoption record ?",opts:["Un marketing très important","Une interface simple en langage naturel, accessible à tous sans compétence technique","Un prix très bas","Un accord avec les gouvernements"],ans:1,exp:"ChatGPT a démocratisé l'IA en permettant à n'importe qui d'interagir avec un modèle avancé via une simple conversation. Aucune compétence technique requise — c'est ce qui a déclenché une adoption très rapide."},
       {q:"La 'mémoire' d'un LLM dans une conversation est limitée. Que se passe-t-il quand cette limite est atteinte ?",opts:["L'IA s'arrête de fonctionner","L'IA commence à oublier les premières parties de la conversation","L'IA envoie un récapitulatif automatique","L'IA demande de résumer"],ans:1,exp:"Les LLM ont une mémoire de travail limitée. Quand elle est pleine, ils commencent à oublier les échanges les plus anciens. C'est pourquoi les très longues conversations peuvent perdre en cohérence."},
-      {q:"Mistral AI publie ses modèles en open source. Quelle est la principale conséquence ?",opts:["Personne ne peut les utiliser commercialement","N'importe qui peut les télécharger, les modifier et les déployer","Seules les entreprises françaises peuvent y accéder","Ils sont moins performants que les modèles fermés"],ans:1,exp:"L'open source permet à des développeurs du monde entier d'utiliser et améliorer les modèles Mistral. Cela favorise l'innovation et réduit la dépendance aux grandes plateformes américaines."},
+      {q:"Mistral AI publie ses modèles en open source. Quelle est la principale conséquence ?",opts:["Personne ne peut les utiliser dans un cadre professionnel","N'importe qui peut les télécharger, les modifier et les déployer","Seules les entreprises françaises peuvent y accéder","Ils sont moins performants que les modèles fermés"],ans:1,exp:"L'open source permet à des développeurs du monde entier d'utiliser et améliorer les modèles Mistral. Cela favorise l'innovation et réduit la dépendance aux grandes plateformes américaines."},
       {q:"Un LLM peut 'halluciner'. Que faire concrètement face à ce risque ?",opts:["Éviter d'utiliser les LLM","Vérifier les faits importants dans des sources fiables","Poser la même question plusieurs fois","Utiliser uniquement des LLM payants"],ans:1,exp:"Bonne pratique : utilisez les LLM comme point de départ, jamais comme source finale. Vérifiez toujours les chiffres, dates et citations dans des sources fiables, surtout pour des sujets à enjeux."},
       {q:"Parmi ces usages, lequel est le plus risqué à cause des hallucinations ?",opts:["Brainstormer des idées de cadeau","Générer des slogans publicitaires","Vérifier un dosage médicamenteux","Résumer un roman"],ans:2,exp:"Les usages à enjeux élevés (santé, droit, finance) sont les plus risqués car une hallucination peut avoir de vraies conséquences. Pour ces sujets, le LLM est un point de départ à vérifier, jamais une référence finale."}
     ]
@@ -2189,7 +2188,7 @@ const MODULES = [
     ],
     duelQuiz:[
       {q:"Qu'est-ce que l'IA 'agentique' (agentic AI) ?",opts:["Une IA qui imite les agents de voyage","Une IA capable de planifier et d'enchaîner des tâches de façon autonome sans validation à chaque étape","Une IA très rapide","Une IA spécialisée dans les ressources humaines"],ans:1,exp:"Les agents IA peuvent décomposer un objectif complexe en sous-tâches, exécuter des actions réelles (chercher sur le web, écrire du code, envoyer des emails) et s'adapter de façon autonome."},
-      {q:"Adobe Firefly se distingue des autres générateurs d'images car...",opts:["Il est gratuit pour tous","Il génère des vidéos aussi","Il est entraîné sur des images sous licence, le rendant légalement plus sûr pour usage commercial","Il fonctionne sans internet"],ans:2,exp:"Contrairement à Midjourney ou DALL-E, Adobe Firefly est entraîné sur des images sous licence Adobe Stock et du domaine public. Cela réduit les risques légaux liés au droit d'auteur pour un usage professionnel."},
+      {q:"Adobe Firefly se distingue des autres générateurs d'images car...",opts:["Il est gratuit pour tous","Il génère des vidéos aussi","Il est entraîné sur des images sous licence, le rendant légalement plus sûr pour un cadre professionnel","Il fonctionne sans internet"],ans:2,exp:"Contrairement à Midjourney ou DALL-E, Adobe Firefly est entraîné sur des images sous licence Adobe Stock et du domaine public. Cela réduit les risques légaux liés au droit d'auteur pour un usage professionnel."},
       {q:"Quel risque faut-il surveiller en utilisant l'IA pour des emails professionnels confidentiels ?",opts:["La longueur des emails générés","La confidentialité : les textes envoyés peuvent servir à entraîner les modèles","La qualité orthographique","Le temps de génération"],ans:1,exp:"Les données saisies dans des outils IA grand public peuvent être utilisées pour améliorer les modèles. Pour des données confidentielles (stratégie, données clients...), il faut utiliser des versions enterprise avec des garanties de confidentialité."},
       {q:"L'outil Perplexity AI est particulièrement utile pour...",opts:["Générer des images","Composer de la musique","Effectuer des recherches web avec citations directes, limitant les hallucinations","Créer des présentations PowerPoint"],ans:2,exp:"Perplexity est un moteur de recherche propulsé par IA qui cite ses sources en temps réel. Il répond directement aux questions en s'appuyant sur des pages web actuelles, ce qui réduit les hallucinations."},
       {q:"Microsoft Copilot intégré à Office 365 permet principalement de...",opts:["Remplacer complètement les employés","Analyser, résumer et rédiger directement dans Word, Excel et Outlook","Créer des sites web automatiquement","Gérer la comptabilité de l'entreprise"],ans:1,exp:"Microsoft Copilot s'intègre dans les outils du quotidien : résumer des emails dans Outlook, analyser des données dans Excel, rédiger des présentations dans PowerPoint... sans quitter ses outils habituels."}
@@ -2261,7 +2260,7 @@ const MODULES = [
     duelQuiz:[
       {q:"CodeCarbon est un outil open source qui permet de...",opts:["Générer du code sans erreur","Mesurer automatiquement l'empreinte CO2 d'un projet d'IA","Réduire la taille des modèles d'IA","Vérifier la qualité du code Python"],ans:1,exp:"CodeCarbon se branche directement dans un projet Python et mesure la consommation électrique et l'empreinte carbone réelle du code qui tourne. C'est un repère utile pour une démarche de Green AI sérieuse."},
       {q:"La fabrication des puces pour l'IA nécessite des matériaux rares. Quel problème majeur cela crée-t-il ?",opts:["Les puces deviennent trop petites","Leur extraction est très polluante et crée des dépendances géopolitiques","Les puces fonctionnent moins bien","Cela ralentit la recherche en IA"],ans:1,exp:"Les terres rares et métaux précis nécessaires aux semi-conducteurs sont concentrés dans peu de pays. Leur extraction génère pollution et conflits, et leur raréfaction potentielle est une menace pour le secteur IA."},
-      {q:"Comment l'IA améliore-t-elle concrètement les énergies renouvelables ?",opts:["En remplaçant les panneaux solaires traditionnels","En prédisant la production éolienne/solaire pour améliorer la distribution sur le réseau électrique","En fabriquant des éoliennes plus rapidement","En réduisant le coût des matériaux"],ans:1,exp:"L'IA aide à prévoir la production des éoliennes et panneaux solaires selon la météo, ce qui permet aux opérateurs de réseau de mieux équilibrer offre et demande électrique."},
+      {q:"Comment l'IA améliore-t-elle concrètement les énergies renouvelables ?",opts:["En remplaçant les panneaux solaires traditionnels","En prédisant la production éolienne/solaire pour améliorer la distribution sur le réseau électrique","En fabriquant des éoliennes plus rapidement","En réduisant le coût des matériaux"],ans:1,exp:"L'IA aide à prévoir la production des éoliennes et panneaux solaires selon la météo, ce qui permet aux opérateurs de réseau de mieux équilibrer production et demande électrique."},
       {q:"La consommation d'eau des centres de données IA est une préoccupation croissante car...",opts:["L'eau est utilisée pour refroidir les serveurs et peut représenter des millions de litres par an","L'eau sert à fabriquer les puces","Les employés boivent beaucoup","Les centres de données sont construits près des rivières"],ans:0,exp:"Les serveurs des centres de données produisent beaucoup de chaleur. Pour les refroidir, certains sites utilisent des systèmes à eau qui peuvent consommer de très grands volumes."},
       {q:"L'IA peut aider à lutter contre le changement climatique notamment en...",opts:["Remplaçant les humains dans les manifestations écologistes","Améliorant la consommation énergétique des bâtiments et industries en temps réel","Supprimant le besoin de voitures","Automatisant les discours politiques sur l'environnement"],ans:1,exp:"Des IA ajustent en temps réel la consommation énergétique des bâtiments (chauffage, climatisation, éclairage) et peuvent aider à réduire les émissions dans des secteurs comme le transport ou l'industrie."}
     ]
@@ -2295,7 +2294,7 @@ const MODULES = [
     duelQuiz:[
       {q:"L'explicabilité de l'IA (XAI - Explainable AI) désigne...",opts:["La capacité de l'IA à s'exprimer en langage simple","La capacité à comprendre et expliquer comment une IA prend ses décisions","Un outil pour créer des tutoriels IA","La traduction automatique des modèles"],ans:1,exp:"XAI (eXplainable AI) cherche à rendre les décisions des IA compréhensibles par les humains. Crucial pour les IA à forts enjeux (médecine, justice, crédit) où 'c'est l'algorithme qui l'a dit' n'est pas acceptable."},
       {q:"L'AI Act prévoit des amendes pouvant aller jusqu'à...",opts:["1 million d'euros","10 millions ou 2% du CA mondial","35 millions d'euros ou 7% du CA mondial pour les violations les plus graves","100 millions d'euros fixes"],ans:2,exp:"Pour les violations les plus graves (risques inacceptables), l'AI Act prévoit des amendes allant jusqu'à 35 millions d'euros ou 7% du chiffre d'affaires mondial annuel. Un signal fort sur le sérieux de la régulation européenne."},
-      {q:"Le 'droit à l'explication' du RGPD signifie qu'une personne peut...",opts:["Demander à l'IA de se justifier","Obtenir une explication sur toute décision automatisée la concernant (refus de crédit, offre d'emploi...)","Connaître le code source des algorithmes","Exiger qu'une IA soit retirée du marché"],ans:1,exp:"Le RGPD européen donne aux individus le droit d'obtenir une explication humaine et intelligible sur toute décision automatisée significative les concernant. Une protection importante face à l'opacité des algorithmes."},
+      {q:"Le 'droit à l'explication' du RGPD signifie qu'une personne peut...",opts:["Demander à l'IA de se justifier","Obtenir une explication sur toute décision automatisée la concernant (refus de crédit, proposition d'emploi...)","Connaître le code source des algorithmes","Exiger qu'une IA soit retirée du marché"],ans:1,exp:"Le RGPD européen donne aux individus le droit d'obtenir une explication humaine et intelligible sur toute décision automatisée significative les concernant. Une protection importante face à l'opacité des algorithmes."},
       {q:"Un algorithme de recrutement entraîné sur des données historiques risque de reproduire...",opts:["Des erreurs de syntaxe","Les biais systémiques existants dans ces données (inégalités de genre, d'origine...)","Des bugs informatiques aléatoires","Des préférences pour les candidats les plus diplômés"],ans:1,exp:"Si les données d'entraînement reflètent des décisions de recrutement passées biaisées, l'algorithme apprend que ces biais sont 'corrects'. Il perpétue et peut même accentuer les discriminations."},
       {q:"Les deepfakes vocaux (clonage de voix par IA) ont déjà été utilisés pour...",opts:["Améliorer la qualité des appels téléphoniques","Escroquer des dirigeants d'entreprises en imitant la voix de leur patron","Créer des assistants vocaux plus naturels uniquement","Traduire des discours en temps réel"],ans:1,exp:"Des cas documentés existent : une entreprise a perdu 200 000€ après qu'un dirigeant a reçu un appel d'une IA imitant parfaitement la voix de son PDG lui demandant un virement urgent."}
     ]
