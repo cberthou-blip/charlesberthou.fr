@@ -36,7 +36,7 @@
     type="image/webp"
   />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-home-bands-v1" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-onepage-v1" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -177,68 +177,119 @@
       </div>
     </section>
 
-    <section class="section home-entry-section" aria-labelledby="accueil-orientations">
+    <section class="home-onepage-zone home-onepage-thinking" id="articles" aria-labelledby="accueil-penser">
       <div class="container">
-        <h2 class="visually-hidden" id="accueil-orientations">Trois manières d'entrer dans le sujet.</h2>
-
-        <div class="home-entry-bands" aria-label="Parcours principaux">
-          <a class="home-entry-band home-entry-thinking" href="/blog/">
-            <div class="home-entry-label">
-              <p class="meta">Articles</p>
-              <span>Penser</span>
-            </div>
-            <div class="home-entry-copy">
-              <h3>Analyses longues, guides et prises de recul.</h3>
-              <p>Lire l'IA dans la durée : économie des modèles, usages réels, effets sur le travail, gouvernance et limites à garder en tête.</p>
-            </div>
-            <div class="home-entry-detail">
-              <ul>
-                <li>Analyses longues</li>
-                <li>Guides pratiques</li>
-                <li>Repères critiques</li>
-              </ul>
-              <span class="text-link">Lire les articles</span>
-            </div>
-          </a>
-
-          <a class="home-entry-band home-entry-tools" href="/outils-ia/">
-            <div class="home-entry-label">
-              <p class="meta">Outils IA</p>
-              <span>Expérimenter</span>
-            </div>
-            <div class="home-entry-copy">
-              <h3>Des supports pour tester avant de décider.</h3>
-              <p>Situer sa maturité IA, explorer des cas d'usage, estimer un ROI et documenter les usages dans un registre simple.</p>
-            </div>
-            <div class="home-entry-detail">
-              <ul>
-                <li>Maturité IA</li>
-                <li>Cas d'usage et ROI</li>
-                <li>Registre IA</li>
-              </ul>
-              <span class="text-link">Voir les outils IA</span>
-            </div>
-          </a>
-
-          <a class="home-entry-band home-entry-contact" href="/contact/">
-            <div class="home-entry-label">
-              <p class="meta">Contact</p>
-              <span>Échanger</span>
-            </div>
-            <div class="home-entry-copy">
-              <h3>Une question, une remarque, une piste à cadrer.</h3>
-              <p>Le contact sert à poursuivre une réflexion, partager un retour de terrain ou discuter d'un usage IA à clarifier.</p>
-            </div>
-            <div class="home-entry-detail">
-              <ul>
-                <li>Question sur un article</li>
-                <li>Retour d'expérience</li>
-                <li>Projet IA à cadrer</li>
-              </ul>
-              <span class="text-link">Prendre contact</span>
-            </div>
-          </a>
+        <div class="section-heading editorial-heading home-zone-heading">
+          <div>
+            <p class="eyebrow">Penser</p>
+            <h2 id="accueil-penser">Articles, analyses longues et recul critique.</h2>
+            <p>
+              Une entrée par les textes : comprendre l'IA dans la durée, distinguer les effets d'annonce des usages réels, relier économie des modèles, travail et gouvernance.
+            </p>
+          </div>
+          <a class="button secondary section-action" href="/blog/">Tous les articles</a>
         </div>
+
+        <div class="blog-showcase home-blog-showcase" data-home-posts>
+          <a class="blog-feature format-longform" href="/blog/le-token-prochaine-monnaie-ia/">
+            <div>
+              <p class="meta">Analyse longue · 11 mai 2026 · 9 min</p>
+              <h3>Le token, prochaine monnaie de l'IA</h3>
+              <p>Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.</p>
+              <div class="tag-row">
+                <span class="tag">IA</span>
+                <span class="tag">Économie</span>
+                <span class="tag">Tokens</span>
+              </div>
+            </div>
+            <span class="text-link">Lire l'analyse</span>
+          </a>
+
+          <div class="blog-side-list">
+            <a class="article-card format-guide compact" href="/blog/registre-ia-modele-gratuit/">
+              <div>
+                <p class="meta">Guide pratique · 20 mai 2026 · 8 min</p>
+                <h3>Registre IA : modèle gratuit et méthode simple</h3>
+                <p>Pourquoi tenir un registre IA, quelles informations conserver et comment démarrer simplement.</p>
+              </div>
+              <span class="text-link">Lire le guide</span>
+            </a>
+            <a class="article-card format-guide compact" href="/blog/cas-usage-ia-entreprise-prioriser/">
+              <div>
+                <p class="meta">Guide pratique · 19 mai 2026 · 7 min</p>
+                <h3>Cas d'usage IA en entreprise : comment prioriser</h3>
+                <p>Une méthode pour choisir les bons pilotes IA selon la valeur, l'effort, les données, le risque et l'adoption.</p>
+              </div>
+              <span class="text-link">Lire le guide</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-onepage-zone home-onepage-tools" id="outils-ia" aria-labelledby="accueil-experimenter">
+      <div class="container">
+        <div class="section-heading editorial-heading home-zone-heading">
+          <div>
+            <p class="eyebrow">Expérimenter</p>
+            <h2 id="accueil-experimenter">Des outils pour tester, structurer et décider.</h2>
+            <p>
+              Une entrée par l'action : situer son point de départ, explorer des cas concrets, chiffrer un ordre de grandeur et documenter les usages IA.
+            </p>
+          </div>
+          <a class="button secondary section-action" href="/outils-ia/">Voir tous les outils IA</a>
+        </div>
+
+        <div class="tool-choice-grid compact-tool-grid home-tools-preview" aria-label="Outils IA à tester">
+          <article class="tool-choice-card is-primary">
+            <p class="meta">Diagnostic</p>
+            <div>
+              <h3>Test de maturité IA</h3>
+              <p>Repérer les appuis, les freins et les priorités avant de lancer ou d'étendre des usages IA.</p>
+            </div>
+            <a class="button tool-card-cta" href="/outils-ia/maturite-ia/">Lancer le diagnostic</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Exploration</p>
+            <div>
+              <h3>Cas d'usage IA</h3>
+              <p>Partir d'un besoin métier pour identifier des pistes réalistes, leurs gains et leurs vigilances.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/cas-usage/">Explorer les cas</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Estimation</p>
+            <div>
+              <h3>Calculateur ROI IA</h3>
+              <p>Transformer une hypothèse de gain de temps en estimation économique exploitable.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/roi-ia/">Calculer le ROI</a>
+          </article>
+          <article class="tool-choice-card">
+            <p class="meta">Gouvernance</p>
+            <div>
+              <h3>Registre IA</h3>
+              <p>Consigner les usages, responsables, données, risques, statuts et prochaines revues.</p>
+            </div>
+            <a class="button secondary tool-card-cta" href="/outils-ia/registre-ia/">Ouvrir le registre</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-onepage-zone home-onepage-contact" id="contact" aria-labelledby="accueil-echanger">
+      <div class="container home-contact-zone">
+        <div class="section-heading home-zone-heading">
+          <p class="eyebrow">Échanger</p>
+          <h2 id="accueil-echanger">Continuer la conversation.</h2>
+          <p>
+            Une question sur un article, un retour d'expérience, une remarque sur un outil ou une piste IA à cadrer : le contact est intégré ici, sans détour.
+          </p>
+          <div class="actions">
+            <a class="button secondary" href="/contact/">Ouvrir la page contact</a>
+          </div>
+        </div>
+        <div class="home-contact-form" data-contact-form-mount data-contact-context="Accueil - contact"></div>
       </div>
     </section>
   </main>
@@ -280,6 +331,6 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260522-ia-clean-v2" defer></script>
+  <script src="/assets/js/site.js?v=20260523-onepage-v1" defer></script>
 </body>
 </html>
