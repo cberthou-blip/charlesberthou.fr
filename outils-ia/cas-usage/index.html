@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v4" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v5" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -103,109 +103,105 @@
 
     <section class="case-search-section" aria-labelledby="caseSearchTitle">
       <div class="container">
-        <div class="case-search-panel">
+        <div class="case-search-panel case-decision-card">
           <div class="case-step-heading">
             <span class="case-step-number">1</span>
             <div>
               <h2 id="caseSearchTitle">Rechercher un cas d'usage</h2>
-              <p>Saisissez un besoin, une tâche ou un métier. Les cas correspondants se mettront à jour dans l'explorateur juste en dessous.</p>
+              <p>Deux entrées possibles : une recherche libre ou un guidage par filtres. Les résultats se mettent à jour dans la carte suivante.</p>
             </div>
           </div>
-          <label class="case-hero-search case-search-main">
-            <span>Mot clé ou besoin métier</span>
-            <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
-          </label>
-          <div class="case-quick-starts" aria-label="Démarrages rapides">
-            <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
-            <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
-            <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
-            <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">RH</button>
+
+          <div class="case-entry-grid">
+            <section class="case-entry-mode" aria-labelledby="caseFreeSearchTitle">
+              <h3 id="caseFreeSearchTitle">Recherche libre</h3>
+              <label class="case-hero-search case-search-main">
+                <span>Mot clé ou besoin métier</span>
+                <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
+              </label>
+              <div class="case-quick-starts" aria-label="Démarrages rapides">
+                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
+                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
+                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
+                <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">RH</button>
+              </div>
+            </section>
+
+            <section class="case-entry-mode" aria-labelledby="caseGuidedSearchTitle">
+              <div class="case-entry-mode-head">
+                <h3 id="caseGuidedSearchTitle">Recherche guidée</h3>
+                <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
+              </div>
+
+              <div class="case-filter-branch case-filter-row" aria-label="Filtres principaux">
+                <div class="tool-filter-block case-filter-step">
+                  <span class="filter-label">Fonction</span>
+                  <label class="case-select-field compact">
+                    <span>Fonction / domaine</span>
+                    <select id="functionSelect" aria-label="Choisir une fonction de travail"></select>
+                  </label>
+                </div>
+
+                <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
+                  <span class="filter-label">Activité</span>
+                  <label class="case-select-field compact">
+                    <span>Activité</span>
+                    <select id="activitySelect" aria-label="Choisir une activité"></select>
+                  </label>
+                </div>
+
+                <div class="tool-filter-block case-filter-step" id="topicFilterBlock" hidden>
+                  <span class="filter-label">Situation</span>
+                  <label class="case-select-field compact">
+                    <span>Situation</span>
+                    <select id="situationSelect" aria-label="Choisir une situation"></select>
+                  </label>
+                </div>
+              </div>
+
+              <div class="case-advanced-filters case-advanced-inline" id="caseAdvancedFilters" hidden>
+                <div class="case-filter-groups">
+                  <div class="tool-filter-block">
+                    <span class="filter-label">Secteur</span>
+                    <label class="case-select-field compact">
+                      <span>Contexte</span>
+                      <select id="sectorSelect" aria-label="Filtrer par secteur"></select>
+                    </label>
+                  </div>
+
+                  <div class="tool-filter-block">
+                    <span class="filter-label">Type</span>
+                    <label class="case-select-field compact">
+                      <span>Usage</span>
+                      <select id="taskTypeSelect" aria-label="Filtrer par type d'usage"></select>
+                    </label>
+                  </div>
+
+                  <div class="tool-filter-block">
+                    <span class="filter-label">Vigilance</span>
+                    <label class="case-select-field compact">
+                      <span>Risque</span>
+                      <select id="riskSelect" aria-label="Filtrer par niveau de vigilance"></select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
+
+          <p class="case-filter-hint" id="caseFilterHint">Choisissez une fonction, un secteur ou utilisez la recherche pour afficher les cas d'usage.</p>
         </div>
       </div>
     </section>
 
     <section class="case-action-workspace">
-      <div class="container case-action-layout">
-        <section class="case-flow-section" aria-labelledby="caseLibraryTitle">
-          <div class="case-step-heading">
-            <span class="case-step-number">2</span>
-            <div>
-              <h2 id="caseLibraryTitle">Explorer les cas d'usage</h2>
-              <p>Commencez par les filtres principaux, puis ouvrez les fiches proposées sous l'outil.</p>
-            </div>
-          </div>
-
-          <div class="tool-library-panel case-explorer-panel">
-            <div class="case-filter-intro">
-              <div>
-                <strong>Filtrez, puis ouvrez une fiche.</strong>
-                <p>Chaque cas indique la tâche, le gain estimé, le modèle conseillé et les garde-fous à prévoir.</p>
-              </div>
-              <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
-            </div>
-
-            <div class="case-filter-branch" aria-label="Filtres principaux">
-              <div class="tool-filter-block case-filter-step">
-                <span class="filter-label">1. Fonction</span>
-                <label class="case-select-field">
-                  <span>Fonction / domaine de travail</span>
-                  <select id="functionSelect" aria-label="Choisir une fonction de travail"></select>
-                </label>
-              </div>
-
-              <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
-                <span class="filter-label">2. Activité</span>
-                <label class="case-select-field">
-                  <span>Activité ou sous-domaine</span>
-                  <select id="activitySelect" aria-label="Choisir une activité"></select>
-                </label>
-              </div>
-
-              <div class="tool-filter-block case-filter-step" id="topicFilterBlock" hidden>
-                <span class="filter-label">3. Situation</span>
-                <label class="case-select-field">
-                  <span>Situation de travail</span>
-                  <select id="situationSelect" aria-label="Choisir une situation"></select>
-                </label>
-              </div>
-            </div>
-
-            <p class="case-filter-hint" id="caseFilterHint">Choisissez une fonction, un secteur ou utilisez la recherche pour afficher les cas d'usage.</p>
-
-            <details class="case-advanced-filters" id="caseAdvancedFilters" hidden>
-              <summary>Affiner par secteur, type d'usage ou vigilance</summary>
-              <div class="case-filter-groups">
-                <div class="tool-filter-block">
-                  <span class="filter-label">Secteur</span>
-                  <label class="case-select-field compact">
-                    <span>Contexte sectoriel</span>
-                    <select id="sectorSelect" aria-label="Filtrer par secteur"></select>
-                  </label>
-                </div>
-
-                <div class="tool-filter-block">
-                  <span class="filter-label">Type d'usage</span>
-                  <label class="case-select-field compact">
-                    <span>Nature de la tâche</span>
-                    <select id="taskTypeSelect" aria-label="Filtrer par type d'usage"></select>
-                  </label>
-                </div>
-
-                <div class="tool-filter-block">
-                  <span class="filter-label">Vigilance</span>
-                  <label class="case-select-field compact">
-                    <span>Niveau de risque</span>
-                    <select id="riskSelect" aria-label="Filtrer par niveau de vigilance"></select>
-                  </label>
-                </div>
-              </div>
-            </details>
-
+      <div class="container">
+        <section class="tool-library-panel case-explorer-panel case-results-panel" aria-labelledby="caseLibraryTitle">
             <div class="case-results-bar">
               <div>
                 <p class="eyebrow">Résultats</p>
-                <h3>Cas d'usage proposés</h3>
+                <h2 id="caseLibraryTitle">Cas d'usage proposés</h2>
+                <p>Les fiches affichées reprennent les critères saisis dans la première carte.</p>
               </div>
               <span class="result-count" id="caseResultCount">0 cas</span>
             </div>
@@ -213,7 +209,6 @@
             <div class="load-more-row" id="caseLoadMoreRow" hidden>
               <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
             </div>
-          </div>
         </section>
       </div>
     </section>
@@ -222,12 +217,13 @@
       <div class="container">
         <article class="content-card compact-help-card wide-help-card">
           <h2>Choisir un cas à ouvrir</h2>
-          <p>Une bonne fiche doit permettre de décider rapidement si le cas mérite un test, s'il doit être cadré davantage ou s'il faut l'écarter pour l'instant.</p>
+          <p>Un cas utile n'est pas seulement une idée séduisante. Il doit relier une tâche réelle, un bénéfice observable, un responsable et une règle de contrôle simple.</p>
           <ul>
-            <li>Commencez par une tâche fréquente, irritante et facile à vérifier.</li>
-            <li>Regardez le gain attendu, mais aussi les données nécessaires et le niveau de vigilance.</li>
-            <li>Choisissez un cas avec un responsable métier identifié et une sortie contrôlable.</li>
-            <li>Écartez temporairement les cas trop sensibles si la validation humaine n'est pas claire.</li>
+            <li><strong>Tâche :</strong> elle doit être fréquente, irritante et suffisamment précise pour être testée en moins de deux semaines.</li>
+            <li><strong>Données :</strong> les documents, historiques ou consignes nécessaires doivent être disponibles et autorisés.</li>
+            <li><strong>Sortie :</strong> le résultat attendu doit pouvoir être relu par un humain sans effort excessif.</li>
+            <li><strong>Risque :</strong> plus la décision est sensible, plus le cas doit être cadré avant le pilote.</li>
+            <li><strong>Mesure :</strong> choisissez un indicateur simple : temps gagné, erreur évitée, délai réduit ou qualité améliorée.</li>
           </ul>
           <div class="tool-detail-panel case-detail-panel case-choice-detail" id="caseDetail" aria-live="polite">
             <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
@@ -274,7 +270,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v4" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v4" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v5" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v5" defer></script>
 </body>
 </html>
