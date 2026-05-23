@@ -122,16 +122,31 @@ function homeBlogShowcase(posts) {
 function blogDirectory(posts) {
   const longformPosts = posts.filter(isLongformPost);
   const guidePosts = posts.filter((post) => !isLongformPost(post));
+  const [latestLongform, ...otherLongformPosts] = longformPosts;
 
   return `
     <div class="blog-directory-split article-index">
-      ${longformPosts.length ? `
+      ${latestLongform ? `
         <section class="blog-directory-group longform-group" aria-labelledby="analyses-longues">
           <div class="blog-directory-heading">
             <h3 id="analyses-longues">Analyses longues</h3>
+            <p>Des textes de recul, plus personnels, pour lire l'IA comme un mouvement économique, culturel et humain.</p>
           </div>
-          <div class="article-grid longform-grid">
-            ${longformPosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
+          <div class="blog-showcase blog-directory longform-showcase">
+            <a class="blog-feature format-longform latest-analysis" href="${latestLongform.url}">
+              <div>
+                <p class="meta">Dernière analyse publiée · ${formatPostDate(latestLongform.date)} · ${latestLongform.readingTime}</p>
+                <h2>${latestLongform.title}</h2>
+                <p>${latestLongform.description}</p>
+                <div class="tag-row">${renderTags(latestLongform.tags)}</div>
+              </div>
+              <span class="text-link">${postCta(latestLongform)}</span>
+            </a>
+            ${otherLongformPosts.length ? `
+              <div class="blog-side-list">
+                ${otherLongformPosts.map((post) => articleCard(post, "h3", "compact")).join("")}
+              </div>
+            ` : ""}
           </div>
         </section>
       ` : ""}
@@ -139,6 +154,7 @@ function blogDirectory(posts) {
         <section class="blog-directory-group guide-group" aria-labelledby="guides-pratiques">
           <div class="blog-directory-heading">
             <h3 id="guides-pratiques">Guides pratiques</h3>
+            <p>Des formats plus ciblés pour répondre vite à une question de méthode, de gouvernance ou de pilotage.</p>
           </div>
           <div class="article-grid guide-grid">
             ${guidePosts.map((post) => articleCard(post, "h3", "index-card")).join("")}
