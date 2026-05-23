@@ -165,8 +165,8 @@ section,
   flex: 0 0 auto;
   display: none;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: #fff;
@@ -1707,7 +1707,10 @@ section,
 }
 
 .footer-group a {
+  display: inline-flex;
+  align-items: center;
   width: fit-content;
+  min-height: 44px;
   color: rgba(248, 251, 255, 0.68);
   line-height: 1.38;
   padding: 2px 0;
@@ -2177,11 +2180,11 @@ section,
 .tool-switcher a {
   display: inline-flex;
   align-items: center;
-  min-height: 30px;
+  min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: #ffffff;
-  padding: 0 10px;
+  padding: 0 12px;
   color: var(--muted);
   font-size: 0.86rem;
   font-weight: 700;
@@ -5982,7 +5985,7 @@ b,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 44px;
   border-color: var(--line);
   border-radius: 6px;
   background: #ffffff;
@@ -6005,6 +6008,11 @@ b,
   border-color: var(--deep);
   background: var(--deep);
   color: #ffffff;
+}
+
+.share-btn {
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .case-page .case-filter-hint {

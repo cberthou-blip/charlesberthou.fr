@@ -9,6 +9,7 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - [Accueil](https://charlesberthou.fr/) : présentation du site, des outils IA et des articles.
 - [Outils IA](https://charlesberthou.fr/outils-ia/) : parcours pour diagnostiquer, apprendre, prioriser, chiffrer et documenter les usages IA.
 - [Articles IA](https://charlesberthou.fr/blog/) : analyses sur l'IA en entreprise, le shadow AI, les registres IA, le ROI, l'économie des tokens et la culture numérique.
+- [Repères IA](https://charlesberthou.fr/reperes/) : notions, méthodes et liens de référence pour comprendre l'IA et cadrer une transformation.
 - [Résumé LLM](https://charlesberthou.fr/resume-llm/) : page HTML structurée pour les moteurs de recherche et assistants IA.
 
 ## Outils IA
@@ -29,6 +30,7 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - [AI Act et registre IA : ce qu'une PME peut documenter](https://charlesberthou.fr/blog/ai-act-registre-ia-pme/) : documentation minimale utile autour des usages IA.
 - [Le token, prochaine monnaie de l'IA](https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/) : lecture économique du token, du coût du calcul et des dépendances d'usage.
 - [IA en entreprise : hâtez-vous lentement](https://charlesberthou.fr/blog/ia-entreprise/) : adoption IA, sécurité, gouvernance et transformation progressive.
+- [L'humanité a toujours tremblé devant sa propre lumière](https://charlesberthou.fr/blog/humanite-lumiere/) : réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique.
 
 ## Requêtes pertinentes
 
@@ -52,4 +54,4 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - [llms-full.txt](https://charlesberthou.fr/llms-full.txt) : version plus complète pour assistants IA.
 - [sitemap.xml](https://charlesberthou.fr/sitemap.xml) : plan technique des URLs indexables.
 
-Dernière mise à jour : 2026-05-20
+Dernière mise à jour : 2026-05-23
