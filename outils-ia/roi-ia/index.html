@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v3" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v4" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -198,30 +198,39 @@
               <div><span>Budget pilote conseillé</span><strong id="roiPilotBudget">0 €</strong></div>
             </div>
           </section>
-          <section class="maturity-panel roi-summary-card premium-panel">
+          <section class="maturity-panel roi-summary-card premium-panel roi-reading-panel">
             <p class="eyebrow">Lecture</p>
             <h2 id="roiTitle">Projet à qualifier</h2>
             <p id="roiSummary">Ajustez les paramètres pour obtenir une première lecture économique.</p>
-          </section>
-          <section class="maturity-panel premium-guidance">
-            <p class="eyebrow">Prochaine étape</p>
-            <p>Validez l'hypothèse sur un échantillon restreint, mesurez le temps réellement économisé, puis inscrivez le cas dans le registre IA avec ses données, risques et responsables.</p>
-            <a class="text-link" href="/outils-ia/registre-ia/">Ouvrir le registre IA</a>
+            <div class="roi-next-step">
+              <strong>Prochaine étape</strong>
+              <p>Validez l'hypothèse sur un échantillon restreint, mesurez le temps réellement économisé, puis inscrivez le cas dans le registre IA avec ses données, risques et responsables.</p>
+              <a class="text-link" href="/outils-ia/registre-ia/">Ouvrir le registre IA</a>
+            </div>
           </section>
         </aside>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container content-grid one">
-        <article class="content-card compact-help-card">
+    <section class="section roi-reading-section">
+      <div class="container">
+        <article class="content-card compact-help-card wide-help-card">
           <h2>Lire le ROI</h2>
-          <p>Le résultat donne un ordre de grandeur prudent. Un ROI positif justifie surtout un pilote mesuré ; un ROI faible invite à réduire le périmètre ou à chercher une valeur qualité, conformité ou confort de travail.</p>
-          <ul>
-            <li>Comparez le gain net au coût complet.</li>
-            <li>Vérifiez l'adoption réelle avant de généraliser.</li>
-            <li>Documentez le cas dans le registre si le pilote continue.</li>
-          </ul>
+          <p>Le calcul donne un ordre de grandeur prudent, pas une certitude budgétaire. Il aide à savoir si le cas mérite un pilote, un cadrage plus fin ou un abandon temporaire.</p>
+          <div class="roi-reading-grid">
+            <div>
+              <h3>ROI positif</h3>
+              <p>Lancez un pilote mesuré, avec un périmètre court et une mesure avant / après.</p>
+            </div>
+            <div>
+              <h3>ROI faible</h3>
+              <p>Réduisez le coût, ciblez une population plus précise ou cherchez une valeur qualité et risque.</p>
+            </div>
+            <div>
+              <h3>ROI incertain</h3>
+              <p>Testez l'adoption réelle avant de généraliser : c'est souvent elle qui fait bouger le résultat.</p>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -264,7 +273,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v3" defer></script>
-  <script src="/outils-ia/assets/roi-ia.js?v=20260523-retouches-v3" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v4" defer></script>
+  <script src="/outils-ia/assets/roi-ia.js?v=20260523-retouches-v4" defer></script>
 </body>
 </html>

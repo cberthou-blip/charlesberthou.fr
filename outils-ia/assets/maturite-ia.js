@@ -41,6 +41,34 @@ const maturityAxes = [
     high: "Déploiement piloté",
     recommendation: "Transformer les pilotes utiles en plan 90 jours avec responsables, formation et revue.",
   },
+  {
+    id: "data",
+    title: "Données",
+    low: "Sources dispersées",
+    high: "Données qualifiées",
+    recommendation: "Identifier les sources utiles, leurs droits d'accès et leur qualité avant de lancer les cas sensibles.",
+  },
+  {
+    id: "security",
+    title: "Sécurité",
+    low: "Règles floues",
+    high: "Contrôles maîtrisés",
+    recommendation: "Préciser les données interdites, les outils autorisés et les exigences de vérification.",
+  },
+  {
+    id: "adoption",
+    title: "Adoption métier",
+    low: "Usage isolé",
+    high: "Rituels partagés",
+    recommendation: "Impliquer les équipes, documenter les retours et former sur les cas réellement utilisés.",
+  },
+  {
+    id: "oversight",
+    title: "Pilotage humain",
+    low: "Validation absente",
+    high: "Responsabilités claires",
+    recommendation: "Nommer les responsables, définir les validations humaines et les situations d'arrêt.",
+  },
 ];
 
 const maturityNodes = {
@@ -164,7 +192,7 @@ function getTotalScore() {
 }
 
 function getLevel(total) {
-  if (total <= 5) {
+  if (total <= 9) {
     return {
       label: "Fondations insuffisantes",
       title: "Fondations à poser",
@@ -175,7 +203,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 11) {
+  if (total <= 19) {
     return {
       label: "Exploration dispersée",
       title: "Exploration à structurer",
@@ -186,7 +214,7 @@ function getLevel(total) {
     };
   }
 
-  if (total <= 17) {
+  if (total <= 29) {
     return {
       label: "Structuration engagée",
       title: "Adoption structurée",

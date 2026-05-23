@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v3" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v4" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -98,13 +98,23 @@
             <span><strong data-visible-count>0</strong> affichés</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="case-hero-search-card">
-          <label class="case-hero-search">
-            <span>Décrivez votre besoin métier</span>
+    <section class="case-search-section" aria-labelledby="caseSearchTitle">
+      <div class="container">
+        <div class="case-search-panel">
+          <div class="case-step-heading">
+            <span class="case-step-number">1</span>
+            <div>
+              <h2 id="caseSearchTitle">Rechercher un cas d'usage</h2>
+              <p>Saisissez un besoin, une tâche ou un métier. Les cas correspondants se mettront à jour dans l'explorateur juste en dessous.</p>
+            </div>
+          </div>
+          <label class="case-hero-search case-search-main">
+            <span>Mot clé ou besoin métier</span>
             <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
           </label>
-          <p>Commencez par une recherche ou un premier choix. Les filtres détaillés restent disponibles juste en dessous.</p>
           <div class="case-quick-starts" aria-label="Démarrages rapides">
             <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
             <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
@@ -119,10 +129,10 @@
       <div class="container case-action-layout">
         <section class="case-flow-section" aria-labelledby="caseLibraryTitle">
           <div class="case-step-heading">
-            <span class="case-step-number">1</span>
+            <span class="case-step-number">2</span>
             <div>
-              <h2 id="caseLibraryTitle">Trouver le bon contexte</h2>
-              <p>Choisissez une fonction, une activité, puis ouvrez le cas le plus proche.</p>
+              <h2 id="caseLibraryTitle">Explorer les cas d'usage</h2>
+              <p>Commencez par les filtres principaux, puis ouvrez les fiches proposées sous l'outil.</p>
             </div>
           </div>
 
@@ -133,18 +143,6 @@
                 <p>Chaque cas indique la tâche, le gain estimé, le modèle conseillé et les garde-fous à prévoir.</p>
               </div>
               <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
-            </div>
-
-            <div class="case-results-bar">
-              <div>
-                <p class="eyebrow">Résultats</p>
-                <h3>Cas d'usage proposés</h3>
-              </div>
-              <span class="result-count" id="caseResultCount">0 cas</span>
-            </div>
-            <div class="case-grid" id="caseGrid" aria-live="polite"></div>
-            <div class="load-more-row" id="caseLoadMoreRow" hidden>
-              <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
             </div>
 
             <div class="case-filter-branch" aria-label="Filtres principaux">
@@ -203,34 +201,37 @@
                 </div>
               </div>
             </details>
-          </div>
-        </section>
 
-        <aside class="case-flow-section case-flow-side" aria-labelledby="caseGuideTitle">
-          <div class="case-step-heading">
-            <span class="case-step-number">2</span>
-            <div>
-              <h2 id="caseGuideTitle">Mode d'emploi</h2>
-              <p>Ce qu'il faut lire dans une fiche avant de choisir un cas.</p>
+            <div class="case-results-bar">
+              <div>
+                <p class="eyebrow">Résultats</p>
+                <h3>Cas d'usage proposés</h3>
+              </div>
+              <span class="result-count" id="caseResultCount">0 cas</span>
+            </div>
+            <div class="case-grid" id="caseGrid" aria-live="polite"></div>
+            <div class="load-more-row" id="caseLoadMoreRow" hidden>
+              <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
             </div>
           </div>
-
-          <div class="tool-detail-panel case-detail-panel" id="caseDetail" aria-live="polite">
-            <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
-          </div>
-        </aside>
+        </section>
       </div>
     </section>
 
-    <section class="section case-method-section">
-      <div class="container content-grid one">
-        <article class="content-card compact-help-card">
+    <section class="section case-method-section case-choice-help-section">
+      <div class="container">
+        <article class="content-card compact-help-card wide-help-card">
           <h2>Choisir un cas à ouvrir</h2>
+          <p>Une bonne fiche doit permettre de décider rapidement si le cas mérite un test, s'il doit être cadré davantage ou s'il faut l'écarter pour l'instant.</p>
           <ul>
-            <li>Commencez par une tâche fréquente et facile à vérifier.</li>
-            <li>Privilégiez un gain observable plutôt qu'une promesse générale.</li>
-            <li>Écartez les cas trop sensibles si la validation humaine n'est pas claire.</li>
+            <li>Commencez par une tâche fréquente, irritante et facile à vérifier.</li>
+            <li>Regardez le gain attendu, mais aussi les données nécessaires et le niveau de vigilance.</li>
+            <li>Choisissez un cas avec un responsable métier identifié et une sortie contrôlable.</li>
+            <li>Écartez temporairement les cas trop sensibles si la validation humaine n'est pas claire.</li>
           </ul>
+          <div class="tool-detail-panel case-detail-panel case-choice-detail" id="caseDetail" aria-live="polite">
+            <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -273,7 +274,7 @@
       </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v3" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v3" defer></script>
+  <script src="/assets/js/site.js?v=20260523-retouches-v4" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v4" defer></script>
 </body>
 </html>

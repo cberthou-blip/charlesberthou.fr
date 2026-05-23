@@ -429,7 +429,7 @@ function contactFormTemplate(context = "Site") {
       <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
       <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
       <button class="button" type="submit">Envoyer le message</button>
-      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site. Les données transmises servent uniquement à répondre à votre message.</p>
+      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera envoyé depuis ce formulaire. Les données transmises servent uniquement à vous répondre.</p>
     </form>
   `;
 }
@@ -528,7 +528,7 @@ function resetContactFormState(event) {
     button.textContent = button.dataset.defaultText || "Envoyer le message";
   }
   if (status) {
-    status.textContent = "Votre message sera transmis depuis le formulaire du site. Les données transmises servent uniquement à répondre à votre message.";
+    status.textContent = "Votre message sera envoyé depuis ce formulaire. Les données transmises servent uniquement à vous répondre.";
   }
 }
 
