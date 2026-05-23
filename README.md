@@ -11,7 +11,7 @@ Site personnel statique publie avec GitHub Pages.
 - `/llms.txt` : contexte synthetique technique pour moteurs IA et LLM, non mis en avant dans l'interface.
 - `/a-propos/` : positionnement éditorial.
 - `/confidentialite/` : politique de confidentialité.
-- `/ialearning/` : application IA Learning. Cette page utilise Firebase pour l'authentification, les données de progression, les classements et les équipes.
+- `/ialearning/` : application Formation IA. Cette page utilise Firebase pour l'authentification, les données de progression, les classements et les équipes.
 
 ## Hebergement
 
@@ -33,4 +33,5 @@ GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot.
 - `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
 - `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`
 - `/resume-llm/` vers `/`
-- `/gpts/`, `/contact/`, `/e-learning/`, `/elearning/` vers les pages utiles du site.
+- `/gpts/`, `/e-learning/`, `/elearning/` vers les pages utiles du site.
+- `/contact/` vers l'ancre contact de l'accueil.

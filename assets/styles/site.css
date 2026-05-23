@@ -137,7 +137,7 @@ section,
   overflow-x: auto;
   padding-bottom: 2px;
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   font-weight: 750;
   scrollbar-width: none;
 }
@@ -3008,6 +3008,7 @@ section,
 
   .site-contact-form .contact-field-wide,
   .site-contact-form .button,
+  .site-contact-form .contact-form-note,
   .site-contact-form .contact-form-status {
     grid-column: 1 / -1;
   }
@@ -3055,6 +3056,11 @@ section,
 .site-contact-form p {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.contact-form-note {
+  margin: -2px 0 0;
+  line-height: 1.45;
 }
 
 .site-contact-form .button {
@@ -4137,7 +4143,8 @@ body {
 }
 
 .main-nav {
-  color: #626a77;
+  color: #424b58;
+  font-weight: 520;
 }
 
 .main-nav a {
@@ -4213,12 +4220,12 @@ body {
 
 .hero-visual-panel::after {
   background:
-    linear-gradient(90deg, rgba(17, 24, 39, 0.1), rgba(0, 107, 102, 0.12)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 52%);
+    linear-gradient(90deg, rgba(17, 24, 39, 0.34) 0%, rgba(17, 24, 39, 0.08) 44%, rgba(0, 107, 102, 0.18) 100%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.2) 0%, rgba(17, 24, 39, 0) 48%, rgba(17, 24, 39, 0.26) 100%);
 }
 
 .hero-visual-panel img {
-  opacity: 0.82;
+  opacity: 0.86;
   filter: saturate(0.88) contrast(0.88) brightness(0.98);
 }
 
@@ -4776,7 +4783,6 @@ body {
   font-weight: 560;
 }
 
-.main-nav,
 .button,
 .nav-cta,
 .signal-panel-top,
@@ -5019,7 +5025,10 @@ b,
 }
 
 .home-blog-showcase .blog-feature {
-  min-height: 380px;
+  align-content: start;
+  align-self: start;
+  gap: 22px;
+  min-height: 318px;
 }
 
 .home-tools-preview .tool-choice-card {

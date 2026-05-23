@@ -411,6 +411,7 @@ function contactFormTemplate(context = "Site") {
       <input type="hidden" name="form_url" value="${escapeAttribute(currentUrl)}" data-contact-url />
       <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
       <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
+      <p class="contact-form-note">Les données transmises servent uniquement à répondre à votre message.</p>
       <button class="button" type="submit">Envoyer le message</button>
       <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Votre message sera transmis depuis le formulaire du site.</p>
     </form>

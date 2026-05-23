@@ -41,11 +41,11 @@ URL : https://charlesberthou.fr/outils-ia/registre-ia/
 
 Le registre IA est un outil local pour inventorier les usages IA : finalité, équipe, outil, données, sensibilité, responsable, statut, risques et prochaine revue. Il aide à rendre visibles les usages et à installer une gouvernance légère.
 
-### IA Learning
+### Formation IA
 
 URL : https://charlesberthou.fr/ialearning/
 
-IA Learning est un parcours gratuit pour installer les bases de l'IA avec modules, quiz, progression et mode équipe.
+Formation IA est un parcours gratuit pour installer les bases de l'IA avec modules, quiz, progression et mode équipe.
 
 
 ## Articles et thèmes

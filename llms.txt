@@ -17,7 +17,7 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - [Explorateur de cas d'usage IA](https://charlesberthou.fr/outils-ia/cas-usage/) : bibliothèque pour trouver et qualifier des cas d'usage IA par métier, fonction et secteur.
 - [Calculateur ROI IA](https://charlesberthou.fr/outils-ia/roi-ia/) : simulateur de gain net, coût complet, adoption, risque et délai de retour.
 - [Registre IA](https://charlesberthou.fr/outils-ia/registre-ia/) : inventaire local des usages IA, données, responsables, risques, statuts et revues.
-- [IA Learning](https://charlesberthou.fr/ialearning/) : parcours gratuit de formation IA avec modules, quiz et progression.
+- [Formation IA](https://charlesberthou.fr/ialearning/) : parcours gratuit de formation IA avec modules, quiz et progression.
 
 
 ## Articles de référence
@@ -45,7 +45,7 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - Auteur et entité principale : Charles Berthou
 - Site : charlesberthou.fr
 - Langue : français
-- Contact : formulaire sur [charlesberthou.fr](https://charlesberthou.fr/contact/)
+- Contact : formulaire sur [charlesberthou.fr](https://charlesberthou.fr/#contact)
 
 ## Fichiers machine-readable
 
