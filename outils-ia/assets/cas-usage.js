@@ -296,6 +296,7 @@ function bindCaseEvents() {
 
 function renderCaseExplorer() {
   renderFilters();
+  renderQuickStarts();
   renderCases();
   renderDetail();
 }
@@ -357,6 +358,16 @@ function renderFilters() {
   renderFilterHint();
 }
 
+function renderQuickStarts() {
+  nodes.quickStarts?.forEach((button) => {
+    const field = button.dataset.caseQuickField;
+    const value = button.dataset.caseQuickValue;
+    const active = Boolean(field && value && state[field] === value);
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
 function renderSelectOptions(select, options, currentValue, placeholder) {
   if (!select) return;
   select.innerHTML = `
@@ -373,21 +384,22 @@ function renderCases() {
   nodes.grid.innerHTML = "";
 
   if (!hasActiveExploration()) {
-    state.selectedId = null;
-    nodes.visible.textContent = "0";
-    nodes.count.textContent = "Choisissez un filtre";
-    nodes.grid.innerHTML = `
-      <p class="empty-state">
-        Choisissez une fonction, un secteur ou lancez une recherche pour afficher les cas d'usage.
-      </p>
-    `;
-    toggleLoadMore(0, 0);
+    const cases = getDefaultCases();
+    if (state.selectedId && !cases.some((item) => item.id === state.selectedId)) {
+      state.selectedId = null;
+    }
+    nodes.visible.textContent = cases.length;
+    nodes.count.textContent = "";
+    nodes.count.hidden = true;
+    cases.forEach(renderCaseCard);
+    toggleLoadMore(cases.length, cases.length);
     return;
   }
 
   const cases = getVisibleCases();
   const displayedCases = cases.slice(0, state.visibleLimit);
   nodes.visible.textContent = displayedCases.length;
+  nodes.count.hidden = false;
   nodes.count.textContent = `${cases.length} cas`;
 
   if (cases.length === 0) {
@@ -430,6 +442,34 @@ function renderCases() {
   });
 
   toggleLoadMore(displayedCases.length, cases.length);
+}
+
+function renderCaseCard(item) {
+  const model = getModelAdvice(item);
+  const risk = getRiskLevel(item);
+  const sector = getPrimarySector(item);
+  const taskType = getTaskType(item);
+  const card = document.createElement("button");
+  card.type = "button";
+  card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
+  card.innerHTML = `
+    <span>${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</span>
+    <strong>${escapeHtml(item.tache)}</strong>
+    <p>${escapeHtml(item.sortie)}</p>
+    <div class="case-card-meta">
+      <small class="risk-${normalizeRisk(risk)}">Risque ${escapeHtml(risk)}</small>
+      <small>${escapeHtml(taskType)}</small>
+      <small>${escapeHtml(sector)}</small>
+      <small>${escapeHtml(model.principal)}</small>
+      <small>${getMonthlyGainLabel(item)}</small>
+    </div>
+  `;
+  card.addEventListener("click", () => {
+    state.selectedId = item.id;
+    renderCases();
+    renderDetail();
+  });
+  nodes.grid.appendChild(card);
 }
 
 function renderDetail() {
@@ -580,6 +620,23 @@ function getVisibleCases() {
       return query.split(/\s+/).every((term) => haystack.includes(term));
     })
     .sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
+}
+
+function getDefaultCases() {
+  const selected = [];
+  const seenMetiers = new Set();
+  const ordered = state.cases.slice().sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
+
+  ordered.forEach((item) => {
+    if (selected.length >= 6) return;
+    const metier = getMetier(item);
+    if (!seenMetiers.has(metier) || selected.length >= 4) {
+      selected.push(item);
+      seenMetiers.add(metier);
+    }
+  });
+
+  return selected;
 }
 
 function caseText(item) {
@@ -768,7 +825,7 @@ function getTaskType(item) {
 
   const text = normalize(caseText(item));
 
-  if (text.includes("automatis")) return "Automatiser";
+  if (text.includes("automatis") || text.includes("transformer") || text.includes("checklist") || text.includes("parcours") || text.includes("workflow")) return "Automatiser";
   if (text.includes("control") || text.includes("audit") || text.includes("verifier") || text.includes("conformite") || text.includes("kyc") || text.includes("risque")) return "Contrôler";
   if (text.includes("rediger") || text.includes("ecrire") || text.includes("article") || text.includes("mail") || text.includes("courrier") || text.includes("contenu")) return "Rédiger";
   if (text.includes("synthese") || text.includes("resumer") || text.includes("resume") || text.includes("compte rendu")) return "Synthétiser";
@@ -854,7 +911,7 @@ function renderFilterHint() {
   if (!nodes.filterHint) return;
 
   if (!hasActiveExploration()) {
-    nodes.filterHint.textContent = "Choisissez une fonction, un secteur ou utilisez la recherche pour afficher les cas d'usage.";
+    nodes.filterHint.textContent = "Sélectionnez un filtre ou lancez une recherche pour afficher les cas correspondants.";
     return;
   }
 

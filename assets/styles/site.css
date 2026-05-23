@@ -5910,3 +5910,130 @@ b,
     min-height: 0;
   }
 }
+
+/* Derniers ajustements de lisibilite et d'integration visuelle. */
+.hero-tech .hero-visual-panel {
+  width: min(100%, 680px);
+}
+
+.hero-tech .hero-visual-panel::before {
+  inset: -10% -12% -12% -8%;
+  background:
+    radial-gradient(circle at 38% 50%, rgba(6, 182, 212, 0.2), transparent 30%),
+    radial-gradient(circle at 60% 54%, rgba(152, 225, 215, 0.11), transparent 44%),
+    radial-gradient(circle at 52% 54%, rgba(13, 27, 62, 0.38), transparent 68%);
+}
+
+.hero-tech .hero-visual-panel::after {
+  inset: -10% -12%;
+  background:
+    radial-gradient(ellipse at 42% 52%, transparent 0 58%, rgba(17, 24, 39, 0.18) 78%, transparent 100%),
+    linear-gradient(90deg, rgba(17, 24, 39, 0.06), transparent 28%, transparent 72%, rgba(17, 24, 39, 0.08));
+  opacity: 0.62;
+}
+
+.hero-tech .hero-visual-panel img {
+  width: 116%;
+  max-width: none;
+  margin-left: -10%;
+  opacity: 0.98;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.24));
+}
+
+.blog-page-listing {
+  padding-top: clamp(42px, 5vw, 64px);
+  padding-bottom: clamp(68px, 7vw, 96px);
+}
+
+.article-index {
+  gap: clamp(48px, 6vw, 72px);
+}
+
+.blog-directory-heading {
+  margin-bottom: 12px;
+  padding-bottom: 18px;
+}
+
+.longform-showcase {
+  gap: clamp(18px, 3vw, 28px);
+}
+
+.longform-showcase .blog-feature {
+  align-self: start;
+  min-height: 330px;
+}
+
+.blog-side-list,
+.guide-grid {
+  gap: 18px;
+}
+
+.article-card.index-card {
+  padding: 24px;
+}
+
+.case-page .case-quick-starts {
+  align-items: center;
+  gap: 8px;
+}
+
+.case-page .case-quick-starts button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border-color: var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: none;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 560;
+  line-height: 1;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.case-page .case-quick-starts button:hover {
+  border-color: var(--line-strong);
+  background: #f7f8f6;
+}
+
+.case-page .case-quick-starts button.active,
+.case-page .case-quick-starts button[aria-pressed="true"] {
+  border-color: var(--deep);
+  background: var(--deep);
+  color: #ffffff;
+}
+
+.case-page .case-filter-hint {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #ffffff;
+  color: var(--muted);
+}
+
+.case-page .result-count[hidden] {
+  display: none;
+}
+
+.reperes-practice-section {
+  border-top: 1px solid var(--line);
+  background: #fbfbf8;
+}
+
+@media (max-width: 719px) {
+  .hero-tech .hero-visual-panel {
+    width: min(100%, 390px);
+  }
+
+  .hero-tech .hero-visual-panel img {
+    width: 124%;
+    margin-left: -13%;
+  }
+
+  .article-card.index-card {
+    padding: 20px;
+  }
+}
