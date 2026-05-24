@@ -54,4 +54,4 @@ charlesberthou.fr publie des articles de fond et des outils pour aider les entre
 - [llms-full.txt](https://charlesberthou.fr/llms-full.txt) : version plus complète pour assistants IA.
 - [sitemap.xml](https://charlesberthou.fr/sitemap.xml) : plan technique des URLs indexables.
 
-Dernière mise à jour : 2026-05-23
+Dernière mise à jour : 2026-05-24
