@@ -1756,6 +1756,18 @@ section,
   color: rgba(248, 251, 255, 0.56);
 }
 
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(248, 251, 255, 0.34);
+  text-underline-offset: 3px;
+}
+
+.footer-credit a:hover {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
+
 @media (min-width: 720px) {
   .container {
     width: min(calc(100% - 48px), 1160px);

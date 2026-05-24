@@ -1261,6 +1261,18 @@ body::before {
   color: rgba(248, 251, 255, 0.56);
 }
 
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(248, 251, 255, 0.34);
+  text-underline-offset: 3px;
+}
+
+.footer-credit a:hover {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
+
 @media (min-width: 720px) {
   .footer-nav {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1783,7 +1795,7 @@ body::before {
       <div class="footer-bottom">
         <div class="footer-meta">
           <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
-          <p class="footer-credit">Conception &amp; d&eacute;veloppement : Dharma D&eacute;veloppement</p>
+          <p class="footer-credit">Conception : <a href="https://www.dharma-developpement.fr">Dharma D&eacute;veloppement</a></p>
         </div>
         <div class="footer-links" aria-label="Liens secondaires">
           <a href="/confidentialite/">Confidentialité</a>
