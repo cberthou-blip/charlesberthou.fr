@@ -1248,8 +1248,17 @@ body::before {
   color: rgba(248, 251, 255, 0.64);
 }
 
+.footer-meta {
+  display: grid;
+  gap: 4px;
+}
+
 .footer-bottom p {
   margin: 0;
+}
+
+.footer-credit {
+  color: rgba(248, 251, 255, 0.56);
 }
 
 @media (min-width: 720px) {
@@ -1772,7 +1781,10 @@ body::before {
         </section>
       </nav>
       <div class="footer-bottom">
-        <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
+        <div class="footer-meta">
+          <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
+          <p class="footer-credit">Conception &amp; d&eacute;veloppement : Dharma D&eacute;veloppement</p>
+        </div>
         <div class="footer-links" aria-label="Liens secondaires">
           <a href="/confidentialite/">Confidentialité</a>
           <a href="/#contact">Contact</a>

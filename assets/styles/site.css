@@ -1743,8 +1743,17 @@ section,
   color: rgba(248, 251, 255, 0.64);
 }
 
+.footer-meta {
+  display: grid;
+  gap: 4px;
+}
+
 .footer-bottom p {
   margin: 0;
+}
+
+.footer-credit {
+  color: rgba(248, 251, 255, 0.56);
 }
 
 @media (min-width: 720px) {
