@@ -1548,6 +1548,85 @@ body::before {
   }
 }
 
+.maintenance-shell {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 20px;
+  background: var(--bg);
+}
+
+.maintenance-panel {
+  width: min(100%, 680px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.maintenance-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  color: var(--navy);
+  font-size: 0.96rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.maintenance-brand img {
+  width: 28px;
+  height: 28px;
+}
+
+.maintenance-status {
+  margin-bottom: 12px;
+  color: var(--text3);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.maintenance-panel h1 {
+  margin: 0 0 14px;
+  color: var(--navy);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+.maintenance-panel p {
+  max-width: 58ch;
+  color: var(--text2);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.maintenance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+@media (max-width: 560px) {
+  .maintenance-shell {
+    align-items: flex-start;
+    padding: 72px 16px 32px;
+  }
+
+  .maintenance-panel {
+    padding: 24px;
+  }
+
+  .maintenance-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 </style>
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="charlesberthou.fr">
@@ -1918,6 +1997,25 @@ body::before {
 </div>
 
 <!-- ==================== VUE PENDING ==================== -->
+
+<!-- ==================== VUE MAINTENANCE ==================== -->
+<div class="view" id="view-maintenance">
+  <main class="maintenance-shell" aria-labelledby="maintenance-title">
+    <section class="maintenance-panel">
+      <a class="maintenance-brand" href="/">
+        <img src="../favicon.svg" alt="">
+        <span>charlesberthou.fr</span>
+      </a>
+      <div class="maintenance-status">Service interrompu</div>
+      <h1 id="maintenance-title">IA Learning est temporairement indisponible</h1>
+      <p>Le backend Firebase historique n&rsquo;est plus reli&eacute; &agrave; ce site. Les connexions et inscriptions sont suspendues en attendant la future version marque blanche destin&eacute;e aux entreprises.</p>
+      <div class="maintenance-actions">
+        <a class="btn btn-primary" href="/outils-ia/">Retour aux outils IA</a>
+        <a class="btn btn-secondary" href="/#contact">Me contacter</a>
+      </div>
+    </section>
+  </main>
+</div>
 
 <!-- ==================== VUE LOGIN ==================== -->
 <div class="view" id="view-login">
@@ -2531,9 +2629,15 @@ const firebaseConfig = {
   messagingSenderId:"1070690058491",
   appId:"1:1070690058491:web:5812ce416854d0c472705e"
 };
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+const IA_LEARNING_MAINTENANCE_MODE = true;
+
+let auth = null;
+let db = null;
+if(!IA_LEARNING_MAINTENANCE_MODE){
+  firebase.initializeApp(firebaseConfig);
+  auth = firebase.auth();
+  db = firebase.firestore();
+}
 
 // ============================================================
 // STATE
@@ -2603,6 +2707,24 @@ function showView(id){
     const _btn=document.getElementById('btn-landing-login');
     if(_btn){ _btn.setAttribute('data-loggedin', currentUser?'1':'0'); _btn.textContent=currentUser?'Mon espace':'Se connecter'; }
   }
+}
+
+function initMaintenanceMode(){
+  currentUser=null;
+  const entryIds=['btn-landing-login','btn-landing-start','btn-landing-register'];
+  entryIds.forEach(function(id){
+    const btn=document.getElementById(id);
+    if(btn) btn.addEventListener('click',function(e){
+      e.preventDefault();
+      showView('view-maintenance');
+    });
+  });
+  const landingBtn=document.getElementById('btn-landing-login');
+  if(landingBtn){
+    landingBtn.setAttribute('data-loggedin','0');
+    landingBtn.textContent='Indisponible';
+  }
+  showView('view-maintenance');
 }
 
 function getMastery(modData, quiz){
@@ -4448,6 +4570,11 @@ async function renderAdmin(){
 // EVENTS
 // ============================================================
 function init(){
+  if(IA_LEARNING_MAINTENANCE_MODE){
+    initMaintenanceMode();
+    return;
+  }
+
   // Landing page buttons
   const goLogin=function(){
     document.getElementById('tab-login').classList.add('active');
