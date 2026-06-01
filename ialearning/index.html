@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formation IA | Parcours gratuit avec quiz</title>
-<meta name="description" content="Formation IA gratuite pour comprendre l'intelligence artificielle, progresser par modules, quiz, défis et installer une culture IA commune." />
+<title>IA Learning revient bient&ocirc;t | charlesberthou.fr</title>
+<meta name="description" content="IA Learning revient bient&ocirc;t dans une version plus compl&egrave;te et mieux adapt&eacute;e. Les acc&egrave;s sont suspendus le temps de cette refonte." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://charlesberthou.fr/ialearning/" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1548,59 +1548,106 @@ body::before {
   }
 }
 
+#view-maintenance {
+  background: linear-gradient(180deg, #fbfbf8 0%, #f4f5f2 540px, #f8f8f5 100%);
+}
+
+#view-maintenance .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 251, 248, 0.92);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+#view-maintenance .brand {
+  color: #111827;
+  font-weight: 560;
+}
+
+#view-maintenance .main-nav {
+  color: #424b58;
+  font-weight: 520;
+}
+
+#view-maintenance .main-nav a {
+  border-radius: 7px;
+}
+
+#view-maintenance .main-nav a:hover,
+#view-maintenance .main-nav a[aria-current="page"] {
+  background: #eef0ed;
+  color: #111827;
+}
+
 .maintenance-shell {
-  min-height: 100dvh;
+  min-height: calc(100dvh - 68px);
+  background:
+    linear-gradient(135deg, rgba(0, 107, 102, 0.38) 0%, rgba(17, 24, 39, 0) 36%),
+    linear-gradient(145deg, #111827 0%, #171d27 48%, #252032 100%);
+  color: #f8faf8;
+}
+
+.maintenance-hero {
+  position: relative;
+  min-height: calc(100dvh - 68px);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 88px 20px;
-  background: var(--bg);
+  overflow: hidden;
+  padding: clamp(72px, 11vw, 136px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.maintenance-panel {
-  width: min(100%, 680px);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 32px;
+.maintenance-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.54;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 88%);
+  pointer-events: none;
 }
 
-.maintenance-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-  color: var(--navy);
-  font-size: 0.96rem;
-  font-weight: 800;
-  text-decoration: none;
+.maintenance-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 20px;
+  max-width: 850px;
 }
 
-.maintenance-brand img {
-  width: 28px;
-  height: 28px;
+.maintenance-badge {
+  width: fit-content;
+  border: 1px solid rgba(152, 225, 215, 0.24);
+  border-radius: 7px;
+  background: rgba(152, 225, 215, 0.08);
+  color: #98e1d7;
+  padding: 7px 10px;
+  font-size: 0.86rem;
+  font-weight: 760;
+  line-height: 1;
 }
 
-.maintenance-status {
-  margin-bottom: 12px;
-  color: var(--text3);
-  font-size: 0.9rem;
+.maintenance-copy h1 {
+  max-width: 930px;
+  margin: 0;
+  color: #f8faf8;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  line-height: 1.03;
+  letter-spacing: 0;
   font-weight: 700;
 }
 
-.maintenance-panel h1 {
-  margin: 0 0 14px;
-  color: var(--navy);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1.05;
-  font-weight: 800;
-}
-
-.maintenance-panel p {
-  max-width: 58ch;
-  color: var(--text2);
-  font-size: 1rem;
+.maintenance-copy p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(248, 250, 248, 0.76);
+  font-size: 1.08rem;
   line-height: 1.7;
 }
 
@@ -1608,36 +1655,95 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 26px;
+  margin-top: 8px;
 }
 
-@media (max-width: 560px) {
-  .maintenance-shell {
+.maintenance-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  border: 1px solid #f8faf8;
+  border-radius: 6px;
+  padding: 0 18px;
+  background: #f8faf8;
+  color: #111827;
+  font-weight: 750;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.maintenance-actions .button.secondary {
+  border-color: rgba(248, 250, 248, 0.34);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8faf8;
+}
+
+.maintenance-actions .button.secondary:hover {
+  border-color: rgba(248, 250, 248, 0.54);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 719px) {
+  #view-maintenance .nav-bar {
+    min-height: 60px;
+    padding: 9px 0;
+  }
+
+  #view-maintenance .main-nav {
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .nav-enhanced #view-maintenance .main-nav {
+    position: static;
+    display: flex;
+    flex: 1 1 100%;
+    max-height: none;
+    overflow-x: auto;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav-enhanced #view-maintenance .main-nav a {
+    color: #424b58;
+    font-size: 0.84rem;
+    pointer-events: auto;
+  }
+
+  .maintenance-shell,
+  .maintenance-hero {
+    min-height: calc(100dvh - 60px);
+  }
+
+  .maintenance-hero {
     align-items: flex-start;
-    padding: 72px 16px 32px;
+    padding: 64px 0 72px;
   }
 
-  .maintenance-panel {
-    padding: 24px;
-  }
-
-  .maintenance-actions .btn {
+  .maintenance-actions .button {
     width: 100%;
-    justify-content: center;
   }
 }
 
 </style>
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="charlesberthou.fr">
-<meta property="og:title" content="Formation IA | Parcours gratuit">
-<meta property="og:description" content="Formation IA gratuite avec modules, quiz, progression, défis et mode équipe pour installer les bases de l'IA.">
+<meta property="og:title" content="IA Learning revient bient&ocirc;t">
+<meta property="og:description" content="Nouvelle version en pr&eacute;paration. Les acc&egrave;s IA Learning sont suspendus le temps de la refonte.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://charlesberthou.fr/ialearning/">
 <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Formation IA — parcours gratuit">
-<meta name="twitter:description" content="Modules, quiz, défis et mode équipe pour installer les bases de l'IA.">
+<meta name="twitter:title" content="IA Learning revient bient&ocirc;t">
+<meta name="twitter:description" content="Nouvelle version en pr&eacute;paration. Les acc&egrave;s IA Learning sont suspendus le temps de la refonte.">
 <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png">
 <script type="application/ld+json">
 {
@@ -2000,18 +2106,27 @@ body::before {
 
 <!-- ==================== VUE MAINTENANCE ==================== -->
 <div class="view" id="view-maintenance">
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="/">charlesberthou.fr</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/blog/">Articles</a>
+        <a href="/outils-ia/" aria-current="page">Outils IA</a>
+        <a href="/reperes/">Rep&egrave;res</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
   <main class="maintenance-shell" aria-labelledby="maintenance-title">
-    <section class="maintenance-panel">
-      <a class="maintenance-brand" href="/">
-        <img src="../favicon.svg" alt="">
-        <span>charlesberthou.fr</span>
-      </a>
-      <div class="maintenance-status">Service interrompu</div>
-      <h1 id="maintenance-title">IA Learning est temporairement indisponible</h1>
-      <p>Le backend Firebase historique n&rsquo;est plus reli&eacute; &agrave; ce site. Les connexions et inscriptions sont suspendues en attendant la future version marque blanche destin&eacute;e aux entreprises.</p>
-      <div class="maintenance-actions">
-        <a class="btn btn-primary" href="/outils-ia/">Retour aux outils IA</a>
-        <a class="btn btn-secondary" href="/#contact">Me contacter</a>
+    <section class="maintenance-hero">
+      <div class="container maintenance-copy">
+        <p class="maintenance-badge">Nouvelle version en pr&eacute;paration</p>
+        <h1 id="maintenance-title">IA Learning revient bient&ocirc;t</h1>
+        <p>Le module IA Learning &eacute;volue actuellement vers une version plus compl&egrave;te et mieux adapt&eacute;e.<br>Les acc&egrave;s sont suspendus le temps de cette refonte.</p>
+        <div class="maintenance-actions">
+          <a class="button" href="/outils-ia/">Voir les autres outils IA</a>
+          <a class="button secondary" href="/#contact">&Ecirc;tre inform&eacute; / Me contacter</a>
+        </div>
       </div>
     </section>
   </main>
