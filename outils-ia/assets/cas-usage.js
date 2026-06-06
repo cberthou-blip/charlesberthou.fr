@@ -186,6 +186,8 @@ const nodes = {
   reset: document.querySelector("#caseResetFilters"),
   grid: document.querySelector("#caseGrid"),
   detail: document.querySelector("#caseDetail"),
+  detailTitle: document.querySelector("#caseDetailTitle"),
+  detailIntro: document.querySelector("#caseDetailIntro"),
   count: document.querySelector("#caseResultCount"),
   total: document.querySelector("[data-total-cases]"),
   functions: document.querySelector("[data-total-functions]"),
@@ -444,13 +446,24 @@ function renderCaseCard(item) {
     state.selectedId = item.id;
     renderCases();
     renderDetail();
+    openCaseDetailSection();
   });
   nodes.grid.appendChild(card);
+}
+
+function openCaseDetailSection() {
+  const block = nodes.detail.closest("[data-mobile-collapse]");
+  if (!block) return;
+  block.dataset.collapsed = "false";
+  const button = block.querySelector(".mobile-collapse-toggle");
+  if (button) button.setAttribute("aria-expanded", "true");
 }
 
 function renderDetail() {
   const item = state.cases.find((entry) => entry.id === state.selectedId);
   if (!item) {
+    nodes.detailTitle.textContent = "Comment choisir le bon cas ?";
+    nodes.detailIntro.textContent = "Un bon candidat relie une tâche réelle, un gain observable, des données disponibles et une règle de contrôle simple.";
     nodes.detail.innerHTML = `
       <div class="case-start-guide">
         <strong>Sélectionnez un cas pour ouvrir la fiche.</strong>
@@ -467,106 +480,95 @@ function renderDetail() {
     return;
   }
 
+  nodes.detailTitle.textContent = "Fiche du cas sélectionné";
+  nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou une inscription au registre.";
+
   const model = getModelAdvice(item);
   const risk = getRiskLevel(item);
-  const references = getReferences(item);
   const sectors = getSectors(item);
   const taskType = getTaskType(item);
+  const detailTags = [getMonthlyGainLabel(item), formatRiskLabel(risk), taskType, getPrimarySector(item)].filter(Boolean);
 
   nodes.detail.innerHTML = `
-    <div class="detail-heading">
-      <span class="icon-mark compact"><svg><use href="#icon-tools"></use></svg></span>
-      <div>
-        <p class="meta">${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</p>
-        <h2>${escapeHtml(item.tache)}</h2>
-      </div>
-    </div>
-    <p class="detail-summary">${escapeHtml(item.sortie)}</p>
-    <div class="tag-row compact-tags case-detail-tags">${(item.tags || []).slice(0, 5).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-    <div class="tool-detail-metrics">
-      <span><strong>${formatMinutes(item.gain_minutes)}</strong> gagnées par usage</span>
-      <span><strong>${formatMinutes(getMonthlyGain(item))}</strong> par mois estimé</span>
-      <span><strong>${escapeHtml(risk)}</strong> niveau de vigilance</span>
-    </div>
-    <div class="case-guidance-block model-guidance">
-      <h3>Modèle conseillé</h3>
-      <div class="model-choice-grid">
-        <div class="model-choice primary">
-          <span>Premier choix</span>
-          <strong>${escapeHtml(model.principal)}</strong>
-        </div>
-        <div class="model-choice">
-          <span>Alternative premium</span>
-          <strong>${escapeHtml(model.alternative)}</strong>
-        </div>
-        <div class="model-choice">
-          <span>Option économique</span>
-          <strong>${escapeHtml(model.economique)}</strong>
-        </div>
-        <div class="model-choice">
-          <span>Entreprise / souverain</span>
-          <strong>${escapeHtml(model.souverain)}</strong>
+    <article class="selected-case-sheet">
+      <div class="selected-case-head">
+        <span class="case-detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" focusable="false">
+            <path d="M6.5 3.5h5.8l3.2 3.3v9.7h-12v-13z" />
+            <path d="M12 3.8v3.5h3.3" />
+            <path d="M7 11h6M7 14h4" />
+          </svg>
+        </span>
+        <div>
+          <p class="meta">${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</p>
+          <h3>${escapeHtml(item.tache)}</h3>
+          <div class="tag-row compact-tags case-detail-tags">${detailTags.slice(0, 4).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
         </div>
       </div>
-      <p>${escapeHtml(model.usage)}</p>
-      <p class="model-reason"><strong>Pourquoi :</strong> ${escapeHtml(model.raison)}</p>
-    </div>
-    <dl class="usage-list">
-      <div class="usage-row">
-        <dt>Secteur</dt>
-        <dd><span class="checks">${sectors.map((sector) => `<span class="check-item">${escapeHtml(sector)}</span>`).join("")}</span></dd>
+      <p class="detail-summary">${escapeHtml(item.sortie)}</p>
+      <div class="case-sheet-grid">
+        <section class="case-sheet-block">
+          <h4>Contexte</h4>
+          <p>${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</p>
+          <p>${escapeHtml(sectors.join(", "))}</p>
+        </section>
+        <section class="case-sheet-block">
+          <h4>Entrée</h4>
+          <p>${escapeHtml(item.entree)}</p>
+          <small>${escapeHtml(item.reglage)}</small>
+        </section>
+        <section class="case-sheet-block">
+          <h4>Contrôle</h4>
+          <p>${escapeHtml(item.utilisation)}</p>
+          <div class="checks">${(item.verification || []).slice(0, 3).map((check) => `<span class="check-item">${escapeHtml(check)}</span>`).join("")}</div>
+          <small>${escapeHtml(getGuardrail(item))}</small>
+        </section>
+        <section class="case-sheet-block case-model-block">
+          <h4>Modèle</h4>
+          <div class="model-choice-grid">
+            <div class="model-choice primary">
+              <span>Premier choix</span>
+              <strong>${escapeHtml(model.principal)}</strong>
+            </div>
+            <div class="model-choice">
+              <span>Alternative</span>
+              <strong>${escapeHtml(model.alternative)}</strong>
+            </div>
+            <div class="model-choice">
+              <span>Économique</span>
+              <strong>${escapeHtml(model.economique)}</strong>
+            </div>
+            <div class="model-choice">
+              <span>Souverain</span>
+              <strong>${escapeHtml(model.souverain)}</strong>
+            </div>
+          </div>
+          <p>${escapeHtml(model.usage)}</p>
+        </section>
+        <section class="case-sheet-block case-measure-block">
+          <h4>Mesure</h4>
+          <form class="mini-gain-form" id="miniGainForm">
+            <label>
+              <span>Fréquence / mois</span>
+              <input id="gainFrequency" type="number" min="0" step="1" value="${item.frequence}" />
+            </label>
+            <label>
+              <span>Avant IA</span>
+              <input id="gainBefore" type="number" min="0" step="1" value="${item.temps_avant_minutes}" />
+            </label>
+            <label>
+              <span>Après IA</span>
+              <input id="gainAfter" type="number" min="0" step="1" value="${item.temps_apres_minutes}" />
+            </label>
+            <output class="mini-gain-output" id="gainOutput">Gain estimé : ${getMonthlyGainLabel(item)}</output>
+          </form>
+        </section>
       </div>
-      <div class="usage-row">
-        <dt>Type d'usage</dt>
-        <dd>${escapeHtml(taskType)}</dd>
+      <div class="detail-actions">
+        <a class="button" href="/outils-ia/roi-ia/">Chiffrer ce cas</a>
+        <a class="button secondary" href="/outils-ia/registre-ia/">L’inscrire au registre</a>
       </div>
-      <div class="usage-row">
-        <dt>Outil</dt>
-        <dd>${escapeHtml(item.outil)}</dd>
-      </div>
-      <div class="usage-row">
-        <dt>Entrée à fournir</dt>
-        <dd>${escapeHtml(item.entree)}</dd>
-      </div>
-      <div class="usage-row">
-        <dt>Réglage conseillé</dt>
-        <dd>${escapeHtml(item.reglage)}</dd>
-      </div>
-      <div class="usage-row">
-        <dt>Vérifier avant d'utiliser</dt>
-        <dd>
-          <span>${escapeHtml(item.utilisation)}</span>
-          <span class="checks">${item.verification.map((check) => `<span class="check-item">${escapeHtml(check)}</span>`).join("")}</span>
-        </dd>
-      </div>
-      <div class="usage-row">
-        <dt>Garde-fou</dt>
-        <dd>${escapeHtml(getGuardrail(item))}</dd>
-      </div>
-      <div class="usage-row">
-        <dt>Références métier</dt>
-        <dd><span class="checks">${references.map((reference) => `<span class="check-item">${escapeHtml(reference)}</span>`).join("")}</span></dd>
-      </div>
-    </dl>
-    <form class="mini-gain-form" id="miniGainForm">
-      <label>
-        Fréquence / mois
-        <input id="gainFrequency" type="number" min="0" step="1" value="${item.frequence}" />
-      </label>
-      <label>
-        Avant IA (min)
-        <input id="gainBefore" type="number" min="0" step="1" value="${item.temps_avant_minutes}" />
-      </label>
-      <label>
-        Après IA (min)
-        <input id="gainAfter" type="number" min="0" step="1" value="${item.temps_apres_minutes}" />
-      </label>
-      <output class="mini-gain-output" id="gainOutput">${getMonthlyGainLabel(item)}</output>
-    </form>
-    <div class="detail-actions">
-      <a class="button secondary" href="/outils-ia/roi-ia/">Chiffrer ce cas</a>
-      <a class="text-link" href="/outils-ia/registre-ia/">L'inscrire dans le registre IA</a>
-    </div>
+    </article>
   `;
 
   const form = document.querySelector("#miniGainForm");
@@ -578,7 +580,7 @@ function updateMiniGain() {
   const before = Number(document.querySelector("#gainBefore").value) || 0;
   const after = Number(document.querySelector("#gainAfter").value) || 0;
   const monthly = Math.max(0, frequency * (before - after));
-  document.querySelector("#gainOutput").textContent = `${formatMinutes(monthly)}/mois`;
+  document.querySelector("#gainOutput").textContent = `Gain estimé : ${formatMinutes(monthly)}/mois`;
 }
 
 function getVisibleCases() {
