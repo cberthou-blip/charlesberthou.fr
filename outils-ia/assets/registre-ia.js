@@ -234,7 +234,7 @@ function renderRegister() {
             <span>Support client · Synthèse</span>
             <strong>Synthèse de tickets clients</strong>
           </div>
-          <em>exemple fictif</em>
+          <em>Exemple</em>
         </div>
         <div class="register-item-metrics">
           <span><small>Données</small><strong>Données internes</strong></span>
@@ -257,7 +257,7 @@ function renderRegister() {
           <strong>${escapeHtml(item.title)}</strong>
         </div>
         <div class="register-card-actions">
-          ${item.isExample ? `<em class="example-pill">exemple fictif</em>` : ""}
+          ${item.isExample ? `<em class="example-pill">Exemple</em>` : ""}
           <span class="status-pill status-${normalizeStatus(item.status)}" data-status-pill="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</span>
           <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
         </div>
@@ -292,7 +292,7 @@ function renderReadiness() {
   if (count === 0) {
     const hasExample = registerState.register.some((item) => item.isExample);
     registerNodes.readiness.innerHTML = hasExample
-      ? `<strong>Exemple fictif chargé</strong><span>Il sert de repère visuel. L’export reste désactivé tant qu’aucun usage réel n’est ajouté.</span>`
+      ? `<strong>Exemple chargé</strong><span>Il sert de repère visuel. L’export reste désactivé tant qu’aucun usage réel n’est ajouté.</span>`
       : `<strong>Premier usage à ajouter</strong><span>Renseignez usage, objectif, données, responsable, risque et statut pour commencer le registre.</span>`;
     return;
   }

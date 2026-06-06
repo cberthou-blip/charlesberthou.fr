@@ -43,20 +43,16 @@
     </div>
   </header>
 <main id="contenu" class="tool-page maturity-tool" data-maturity-tool>
-    <section class="page-hero tool-hero hero-band">
-      <div class="container tool-hero-grid">
-        <div class="tool-step-row">
-          <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
-          <span class="step-pill">1/4</span>
-        </div>
-        <div>
-          <p class="eyebrow">Test de maturité IA</p>
-          <h1>Voir où l’IA peut avancer sans forcer.</h1>
-          <p class="lead">
-            Dix curseurs pour repérer les appuis disponibles, les angles morts et la prochaine décision réaliste avant un pilote.
-          </p>
-        </div>
-        <div class="maturity-score-card" id="maturityScoreCard">
+    <section class="page-hero tool-hero hero-band tool-common-hero">
+      <div class="container tool-common-hero-inner">
+        <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
+        <p class="eyebrow">Test de maturité IA</p>
+        <h1>Voir où l’IA peut avancer sans forcer.</h1>
+        <p class="lead">
+          Dix curseurs pour repérer les appuis disponibles, les angles morts et la prochaine décision réaliste avant un pilote.
+        </p>
+        <span class="step-pill">1/4</span>
+        <div class="maturity-score-card tool-hero-indicators maturity-hero-indicators" id="maturityScoreCard">
           <div class="maturity-score-visual" aria-label="Score global de maturité IA">
             <strong id="maturityScore">0/40</strong>
           </div>
@@ -75,7 +71,7 @@
 
     <section class="section tool-workspace-section">
       <div class="container maturity-layout">
-        <div class="mobile-collapse" data-mobile-collapse="Axes de maturité" data-mobile-open="true">
+        <div class="mobile-collapse maturity-axes-column" data-mobile-collapse="Axes de maturité" data-mobile-open="true">
           <div class="mobile-collapse-content">
         <section class="maturity-questions" aria-labelledby="maturityQuestionsTitle">
           <div class="panel-heading compact-heading">
@@ -89,7 +85,7 @@
           </div>
         </div>
 
-        <div class="mobile-collapse" data-mobile-collapse="Résultat" data-mobile-open="true">
+        <div class="mobile-collapse maturity-result-column" data-mobile-collapse="Résultat" data-mobile-open="true">
           <div class="mobile-collapse-content">
         <aside class="maturity-results" aria-live="polite">
           <section class="maturity-panel maturity-result-card">

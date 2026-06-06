@@ -43,26 +43,20 @@
     </div>
   </header>
 <main id="contenu" class="tool-page register-tool" data-register-tool>
-    <section class="page-hero tool-hero hero-band">
-      <div class="container tool-hero-grid">
-        <div class="tool-step-row">
-          <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
-        </div>
-        <div class="register-hero-copy">
-          <p class="eyebrow">Registre IA</p>
-          <div class="register-title-row">
-            <h1>Documenter les usages IA.</h1>
-            <span class="step-pill">4/4</span>
-          </div>
-          <p class="lead">
-            Notez l’usage, l’objectif, les données, le responsable, le risque et le statut. Le registre reste local et s’exporte en CSV.
-          </p>
-          <p class="register-empty-hero" id="registerEmptyHero">Aucun usage inscrit pour l’instant.</p>
-          <div class="tool-stat-strip register-stats" id="registerStats" aria-label="État du registre" hidden>
-            <span><strong id="registerCount">0</strong> usages</span>
-            <span><strong id="highRiskCount">0</strong> à risque élevé</span>
-            <span><strong id="reviewCount">0</strong> actifs</span>
-          </div>
+    <section class="page-hero tool-hero hero-band tool-common-hero">
+      <div class="container tool-common-hero-inner">
+        <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
+        <p class="eyebrow">Registre IA</p>
+        <h1>Documenter les usages IA.</h1>
+        <p class="lead">
+          Notez l’usage, l’objectif, les données, le responsable, le risque et le statut. Le registre reste local et s’exporte en CSV.
+        </p>
+        <span class="step-pill">4/4</span>
+        <p class="register-empty-hero tool-hero-empty-indicator" id="registerEmptyHero">Aucun usage inscrit pour l’instant.</p>
+        <div class="tool-stat-strip register-stats tool-hero-indicators" id="registerStats" aria-label="État du registre" hidden>
+          <span><strong id="registerCount">0</strong> usages</span>
+          <span><strong id="highRiskCount">0</strong> à risque élevé</span>
+          <span><strong id="reviewCount">0</strong> actifs</span>
         </div>
       </div>
     </section>
