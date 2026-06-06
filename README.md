@@ -1,37 +1,19 @@
 # charlesberthou.fr
 
-Site personnel statique publie avec GitHub Pages.
+Site personnel statique publié avec GitHub Pages.
 
-## Structure
+## Routes publiques
 
-- `/` : accueil éditorial, blog, outils IA et contact.
-- `/blog/` : index des articles.
-- `/blog/*/` : articles publics.
-- `/outils-ia/` : parcours d'outils IA pour diagnostiquer, former, prioriser, mesurer et gouverner.
-- `/llms.txt` : contexte synthetique technique pour moteurs IA et LLM, non mis en avant dans l'interface.
-- `/a-propos/` : positionnement éditorial.
-- `/confidentialite/` : politique de confidentialité.
-- `/ialearning/` : application Formation IA. Cette page utilise Firebase pour l'authentification, les données de progression, les classements et les équipes.
-
-## Hebergement
-
-Le domaine `charlesberthou.fr` est servi par GitHub Pages via `CNAME`.
-
-Firebase n'est pas utilise pour l'hébergement du site principal. Le fichier `firebase.json` ne conserve donc que la configuration Firestore nécessaire a `/ialearning/`.
-
-## Formulaire de contact
-
-Le formulaire de contact est servi depuis les pages statiques et transmet les messages via Web3Forms. La cle publique Web3Forms est declaree dans `/assets/js/site.js`; elle est concue pour etre exposee cote client.
+- `/` : accueil avec articles, outils IA et contact.
+- `/articles/` : index des analyses longues et guides pratiques.
+- `/articles/*/` : articles publics.
+- `/outils-ia/` : parcours d'outils IA en quatre étapes.
+- `/outils-ia/maturite-ia/` : test de maturité IA.
+- `/outils-ia/cas-usage/` : explorateur de cas d'usage IA.
+- `/outils-ia/roi-ia/` : calculateur ROI IA.
+- `/outils-ia/registre-ia/` : registre IA simplifié.
+- `/contact/` : formulaire de contact.
 
 ## Redirections
 
-GitHub Pages ne fournit pas de redirections serveur configurables dans ce depot. Les anciennes routes publiques sont conservees sous forme de pages statiques `noindex` avec canonical et redirection HTML/JavaScript:
-
-- `/articles/` vers `/blog/`
-- `/articles/actumars2026/` vers `/blog/`
-- `/articles/ia-entreprise/` vers `/blog/ia-entreprise/`
-- `/articles/humanite-lumiere/` vers `/blog/humanite-lumiere/`
-- `/articles/le-token-prochaine-monnaie-ia/` vers `/blog/le-token-prochaine-monnaie-ia/`
-- `/resume-llm/` vers `/`
-- `/gpts/`, `/e-learning/`, `/elearning/` vers les pages utiles du site.
-- `/contact/` vers l'ancre contact de l'accueil.
+Les anciennes routes publiques sont remplacées par des pages statiques `noindex` avec canonical et redirection HTML/JavaScript vers `/`, `/articles/`, `/outils-ia/` ou `/contact/`.

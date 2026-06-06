@@ -1,96 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
-  <title>Cas d'usage IA gratuits | Explorateur métier</title>
-  <meta name="description" content="Explorateur gratuit de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <title>Cas d'usage IA | Explorateur métier</title>
+  <meta name="description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/cas-usage/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Cas d'usage IA gratuits" />
-  <meta property="og:description" content="Bibliothèque gratuite pour trouver, filtrer et qualifier des cas d'usage IA par métier." />
+  <meta property="og:title" content="Cas d'usage IA | Explorateur métier" />
+  <meta property="og:description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/cas-usage/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cas d'usage IA gratuits" />
-  <meta name="twitter:description" content="Bibliothèque gratuite pour identifier, filtrer et qualifier des cas d'usage IA avant un pilote." />
+  <meta name="twitter:title" content="Cas d'usage IA | Explorateur métier" />
+  <meta name="twitter:description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v9" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Explorateur gratuit de cas d'usage IA",
-    "url": "https://charlesberthou.fr/outils-ia/cas-usage/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "inLanguage": "fr-FR",
-    "isAccessibleForFree": true,
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "description": "Bibliothèque gratuite de cas d'usage IA pour identifier des tâches, filtrer par fonction, secteur et type d'usage, qualifier le gain attendu et préparer un portefeuille de pilotes.",
-    "featureList": [
-      "Recherche de cas d'usage IA",
-      "Filtres par fonction, secteur, type d'usage et vigilance",
-      "Recommandations de modèles par cas d'usage",
-      "Fiches de cadrage",
-      "Estimation de gain et vigilance"
-    ],
-    "about": [
-      "cas d'usage IA",
-      "IA en entreprise",
-      "automatisation",
-      "agents IA",
-      "transformation IA"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
-      { "@type": "ListItem", "position": 2, "name": "Outils IA", "item": "https://charlesberthou.fr/outils-ia/" },
-      { "@type": "ListItem", "position": 3, "name": "Cas d'usage IA gratuits", "item": "https://charlesberthou.fr/outils-ia/cas-usage/" }
-    ]
-  }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260606-clean" />
+  
 </head>
 <body>
+
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Articles</a>
+        <a href="/articles/">Articles</a>
         <a href="/outils-ia/" aria-current="page">Outils IA</a>
-        <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
-
-  <main id="contenu" class="tool-page case-page" data-case-explorer>
+<main id="contenu" class="tool-page case-page" data-case-explorer>
     <section class="case-action-hero hero-band">
       <div class="container case-action-hero-grid">
+        <div class="tool-step-row">
+          <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
+          <span class="step-pill">2/4</span>
+        </div>
         <div class="case-hero-copy">
-          <p class="case-kicker">Bibliothèque de cas d'usage</p>
-          <h1>Trouvez un cas<br /> d'usage IA à piloter.</h1>
+          
+          <h1>Choisir un cas d’usage IA qui tient debout.</h1>
           <p>
-            Filtrez par métier ou décrivez un besoin : les cas concrets s'affichent directement avec gain, vigilance et suite possible.
+            Filtrez par métier ou partez d’un besoin : chaque piste indique le gain attendu, les points de vigilance et la suite à tester.
           </p>
           <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
             <span><strong data-total-cases>116</strong> cas référencés</span>
@@ -231,49 +194,29 @@
         </article>
       </div>
     </section>
+    <section class="section tool-next-section">
+      <div class="container next-card">
+        <div>
+          <span class="card-meta">Suite du parcours</span>
+          <h2>Calculer le ROI IA</h2>
+          <p>Gardez le fil : chaque outil transforme la sortie précédente en décision plus concrète.</p>
+        </div>
+        <a class="button" href="/outils-ia/roi-ia/">Calculer le ROI IA</a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <nav class="footer-nav" aria-label="Plan du site">
-        <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
-          <a href="/ialearning/">Formation IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/reperes/">Rep&egrave;res IA</a>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">Référencement IA</p>
-          <a href="/resume-llm/">Résumé LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-        </section>
+    <div class="container footer-simple">
+      <nav aria-label="Liens de pied de page">
+        <a href="/articles/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
+        <a href="/contact/">Contact</a>
+        <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a>
       </nav>
-      <div class="footer-bottom">
-        <div class="footer-meta">
-          <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et culture numérique.</p>
-          <p class="footer-credit">&Eacute;dit&eacute; par <a href="https://dharma-developpement.fr">Dharma D&eacute;veloppement</a></p>
-        </div>
-        <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
-        </div>
-      </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v8" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260523-retouches-v8" defer></script>
+  <script src="/assets/js/site.js?v=20260606-clean" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260606-clean" defer></script>
 </body>
 </html>

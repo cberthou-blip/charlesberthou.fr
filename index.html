@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
-  <title>Charles Berthou | IA appliquée, outils et repères</title>
-  <meta name="description" content="Articles, repères et outils gratuits pour comprendre l'IA, mesurer ses effets, choisir des usages utiles et cadrer maturité, ROI, registre et gouvernance." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <title>Charles Berthou | Analyses IA et outils IA</title>
+  <meta name="description" content="Analyses longues et outils simples pour trier les usages IA, estimer leur intérêt et documenter les risques." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -14,315 +15,137 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Charles Berthou | IA appliquée, outils et repères" />
-  <meta property="og:description" content="Articles, repères et outils gratuits pour comprendre l'IA, mesurer ses effets et cadrer maturité, ROI, registre et gouvernance." />
+  <meta property="og:title" content="Charles Berthou | Analyses IA et outils IA" />
+  <meta property="og:description" content="Analyses longues et outils simples pour trier les usages IA, estimer leur intérêt et documenter les risques." />
   <meta property="og:url" content="https://charlesberthou.fr/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
-  <meta property="og:image:secure_url" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Aperçu charlesberthou.fr - transformation IA, diagnostic, cas d'usage et gouvernance." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Charles Berthou | IA appliquée, outils et repères" />
-  <meta name="twitter:description" content="Articles, repères et outils gratuits pour comprendre l'IA, mesurer ses effets et cadrer maturité, ROI, registre et gouvernance." />
+  <meta name="twitter:title" content="Charles Berthou | Analyses IA et outils IA" />
+  <meta name="twitter:description" content="Analyses longues et outils simples pour trier les usages IA, estimer leur intérêt et documenter les risques." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v9" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260606-clean" />
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://charlesberthou.fr/#website",
-        "name": "charlesberthou.fr",
-        "alternateName": "Charles Berthou",
-        "url": "https://charlesberthou.fr/",
-        "image": "https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png",
-        "inLanguage": "fr-FR",
-        "description": "Articles, repères et outils gratuits pour comprendre l'IA, mesurer ses effets, choisir des usages utiles et cadrer maturité, ROI, registre et gouvernance.",
-        "publisher": { "@id": "https://charlesberthou.fr/#person" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://charlesberthou.fr/#person",
-        "name": "Charles Berthou",
-        "url": "https://charlesberthou.fr/",
-        "sameAs": ["https://www.linkedin.com/in/charlesberthou"],
-        "description": "Auteur de ressources francophones sur l'IA appliquée, les outils IA, le cadrage de cas d'usage, le ROI IA, les registres IA et la gouvernance.",
-        "knowsAbout": [
-          "intelligence artificielle",
-          "IA générative",
-          "IA appliquée",
-          "transformation IA",
-          "cas d'usage IA",
-          "ROI IA",
-          "registre IA",
-          "automatisation",
-          "agents IA"
-        ]
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://charlesberthou.fr/#webpage",
-        "url": "https://charlesberthou.fr/",
-        "name": "Charles Berthou | IA appliquée, outils et repères",
-        "headline": "Comprendre l'IA, en mesurer les effets, en choisir les usages.",
-        "description": "Articles, repères et outils gratuits pour comprendre l'IA, mesurer ses effets, choisir des usages utiles et cadrer maturité, ROI, registre et gouvernance.",
-        "isPartOf": { "@id": "https://charlesberthou.fr/#website" },
-        "dateModified": "2026-05-24",
-        "about": [
-          "IA appliquée",
-          "outils IA",
-          "articles sur l'intelligence artificielle",
-          "maturité IA",
-          "registre IA",
-          "calculateur ROI IA",
-          "cas d'usage IA",
-          "gouvernance IA",
-          "formation IA"
-        ],
-        "inLanguage": "fr-FR"
-      },
-      {
-        "@type": "ItemList",
-        "@id": "https://charlesberthou.fr/#free-ai-tools",
-        "name": "Outils IA gratuits",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Test de maturité IA", "url": "https://charlesberthou.fr/outils-ia/maturite-ia/" },
-          { "@type": "ListItem", "position": 2, "name": "Explorateur de cas d'usage IA", "url": "https://charlesberthou.fr/outils-ia/cas-usage/" },
-          { "@type": "ListItem", "position": 3, "name": "Calculateur de ROI IA", "url": "https://charlesberthou.fr/outils-ia/roi-ia/" },
-          { "@type": "ListItem", "position": 4, "name": "Registre IA simplifié", "url": "https://charlesberthou.fr/outils-ia/registre-ia/" }
-        ]
-      }
-    ]
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "charlesberthou.fr",
+  "url": "https://charlesberthou.fr/",
+  "inLanguage": "fr-FR",
+  "description": "Analyses longues et outils simples pour trier les usages IA, estimer leur intérêt et documenter les risques.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Charles Berthou"
   }
+}
   </script>
 </head>
 <body>
-  <svg class="icon-sprite" aria-hidden="true">
-    <symbol id="icon-blog" viewBox="0 0 24 24">
-      <path d="M6 4h9l3 3v13H6z" />
-      <path d="M14 4v4h4" />
-      <path d="M9 11h6M9 15h6M9 18h4" />
-    </symbol>
-    <symbol id="icon-tools" viewBox="0 0 24 24">
-      <path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z" />
-    </symbol>
-    <symbol id="icon-share" viewBox="0 0 24 24">
-      <circle cx="7" cy="12" r="2.5" />
-      <circle cx="17" cy="6" r="2.5" />
-      <circle cx="17" cy="18" r="2.5" />
-      <path d="M9.2 10.8l5.6-3.4M9.2 13.2l5.6 3.4" />
-    </symbol>
-    <symbol id="icon-shield" viewBox="0 0 24 24">
-      <path d="M12 3l7 3v5c0 4.7-2.9 7.9-7 10-4.1-2.1-7-5.3-7-10V6z" />
-      <path d="M9 12l2 2 4-4" />
-    </symbol>
-    <symbol id="icon-chart" viewBox="0 0 24 24">
-      <path d="M4 19h16" />
-      <path d="M7 16v-5M12 16V7M17 16v-8" />
-    </symbol>
-    <symbol id="icon-prompt" viewBox="0 0 24 24">
-      <path d="M5 6h14v12H5z" />
-      <path d="M8 10l2 2-2 2M12 14h4" />
-    </symbol>
-    <symbol id="icon-learning" viewBox="0 0 24 24">
-      <path d="M4 7l8-4 8 4-8 4z" />
-      <path d="M7 10v5c0 1.6 2.2 3 5 3s5-1.4 5-3v-5" />
-    </symbol>
-    <symbol id="icon-contact" viewBox="0 0 24 24">
-      <path d="M4 6h16v12H4z" />
-      <path d="M4 7l8 6 8-6" />
-    </symbol>
-  </svg>
+
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Articles</a>
+        <a href="/articles/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
-        <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="contenu">
-    <section class="hero hero-tech">
-      <div class="container hero-grid hero-tech-grid hero-text-only">
-        <div class="hero-copy">
-          <p class="eyebrow">IA appliquée</p>
-          <h1>Comprendre l’IA, en mesurer les effets, en choisir les usages.</h1>
-          <p class="lead">
-            Un espace de réflexion, de pédagogie et de repères pour accompagner particuliers et professionnels dans la transformation ouverte par l'intelligence artificielle.
-          </p>
-          <div class="actions">
-            <a class="button" href="/blog/">Lire les articles</a>
-            <a class="button secondary" href="/outils-ia/">Tester les outils IA</a>
-          </div>
+    <section class="home-hero">
+      <div class="container home-hero-inner">
+        <h1>Faire passer l’IA du discours aux décisions utiles.</h1>
+        <p class="lead">Analyses longues pour comprendre ce que l’IA change vraiment, outils sobres pour cadrer un usage, estimer sa valeur et garder une trace des risques.</p>
+        <div class="actions">
+          <a class="button" href="/articles/">Lire les articles</a>
+          <a class="button secondary" href="/outils-ia/">Tester les outils IA</a>
         </div>
       </div>
     </section>
-
-    <section class="home-onepage-zone home-onepage-thinking" id="articles" aria-labelledby="accueil-penser">
-      <div class="container">
-        <div class="section-heading editorial-heading home-zone-heading">
-          <div>
-            <p class="eyebrow">Penser</p>
-            <h2 id="accueil-penser">Articles, analyses et recul critique.</h2>
-            <p>
-              Une entrée par les textes : comprendre l'IA dans la durée, distinguer les effets d'annonce des usages réels, relier économie des modèles, travail et gouvernance.
-            </p>
-          </div>
-          <a class="button secondary section-action" href="/blog/">Tous les articles</a>
+    <section class="section">
+      <div class="container page-stack">
+        <div class="section-heading">
+          <h2>Dernières analyses longues</h2>
+          <p>Trois lectures pour relier économie du calcul, adoption en entreprise et rapport humain au progrès technologique.</p>
         </div>
-
-        <div class="blog-showcase home-blog-showcase" data-home-posts>
-          <a class="blog-feature format-longform" href="/blog/le-token-prochaine-monnaie-ia/">
-            <div>
-              <p class="meta">Analyse longue · 11 mai 2026 · 9 min</p>
-              <h3>Le token, prochaine monnaie de l'IA</h3>
-              <p>Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.</p>
-              <div class="tag-row">
-                <span class="tag">IA</span>
-                <span class="tag">Économie</span>
-                <span class="tag">Tokens</span>
-              </div>
-            </div>
-            <span class="text-link">Lire l'analyse</span>
-          </a>
-
-          <div class="blog-side-list">
-            <a class="article-card format-longform compact" href="/blog/ia-entreprise/">
-              <div>
-                <p class="meta">Article · 4 avril 2026 · 5 min</p>
-                <h3>IA en entreprise : hâtez-vous lentement</h3>
-                <p>Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.</p>
-              </div>
-              <span class="text-link">Lire l'article</span>
-            </a>
-            <a class="article-card format-longform compact" href="/blog/humanite-lumiere/">
-              <div>
-                <p class="meta">Article · 1 avril 2026 · 9 min</p>
-                <h3>L'humanité a toujours tremblé devant sa propre lumière</h3>
-                <p>Une réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique majeure.</p>
-              </div>
-              <span class="text-link">Lire l'article</span>
-            </a>
-          </div>
+        <div class="article-grid home-article-grid">
+          
+    <a class="article-card longform featured-analysis" href="/articles/le-token-prochaine-monnaie-ia/">
+      <span class="card-meta">Analyse longue · 11 mai 2026 · 9 min</span>
+      <h3>Le token, prochaine monnaie de l’IA</h3>
+      <p>Une lecture économique du token comme nouvelle unité comptable de l'IA : coût du calcul, infrastructures, dépendance d'usage et discipline de consommation.</p>
+      <span class="tag-row"><span class="tag">IA</span><span class="tag">Économie</span><span class="tag">Tokens</span></span>
+      <strong>Lire l’analyse</strong>
+    </a>
+    <a class="article-card longform" href="/articles/ia-entreprise/">
+      <span class="card-meta">Analyse longue · 4 avril 2026 · 5 min</span>
+      <h3>IA en entreprise : hâtez-vous lentement</h3>
+      <p>Une lecture opérationnelle de l'adoption de l'IA : usages réels, encadrement, sécurité et transformation des pratiques.</p>
+      <span class="tag-row"><span class="tag">IA</span><span class="tag">Entreprise</span><span class="tag">Transformation</span></span>
+      <strong>Lire l'analyse</strong>
+    </a>
+    <a class="article-card longform" href="/articles/humanite-lumiere/">
+      <span class="card-meta">Analyse longue · 1 avril 2026 · 9 min</span>
+      <h3>L’humanité a toujours tremblé devant sa propre lumière</h3>
+      <p>Une réflexion sur le progrès, la peur collective et les conditions humaines d'une bascule technologique majeure.</p>
+      <span class="tag-row"><span class="tag">IA</span><span class="tag">Progrès</span><span class="tag">Société</span></span>
+      <strong>Lire l'analyse</strong>
+    </a>
         </div>
       </div>
     </section>
-
-    <section class="home-onepage-zone home-onepage-tools" id="outils-ia" aria-labelledby="accueil-experimenter">
-      <div class="container">
-        <div class="section-heading editorial-heading home-zone-heading">
-          <div>
-            <p class="eyebrow">Expérimenter</p>
-            <h2 id="accueil-experimenter">Des outils pour tester, structurer et décider.</h2>
-            <p>
-              Une entrée par l'action : situer son point de départ, explorer des cas concrets, chiffrer un ordre de grandeur et documenter les usages IA.
-            </p>
-          </div>
-          <a class="button secondary section-action" href="/outils-ia/">Voir tous les outils IA</a>
+    <section class="section section-muted">
+      <div class="container page-stack">
+        <div class="section-heading">
+          <h2>Outils IA</h2>
+          <p>Un parcours simple : diagnostiquer, choisir un cas, estimer la valeur, documenter l'usage.</p>
         </div>
-
-        <div class="tool-choice-grid compact-tool-grid home-tools-preview" aria-label="Outils IA à tester">
-          <article class="tool-choice-card is-primary">
-            <p class="meta">Diagnostic</p>
-            <div>
-              <h3>Test de maturité IA</h3>
-              <p>Repérer les appuis, les freins et les priorités avant de lancer ou d'étendre des usages IA.</p>
-            </div>
-            <a class="button tool-card-cta" href="/outils-ia/maturite-ia/">Lancer le diagnostic</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Exploration</p>
-            <div>
-              <h3>Cas d'usage IA</h3>
-              <p>Partir d'un besoin métier pour identifier des pistes réalistes, leurs gains et leurs vigilances.</p>
-            </div>
-            <a class="button secondary tool-card-cta" href="/outils-ia/cas-usage/">Explorer les cas</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Estimation</p>
-            <div>
-              <h3>Calculateur ROI IA</h3>
-              <p>Transformer une hypothèse de gain de temps en estimation économique exploitable.</p>
-            </div>
-            <a class="button secondary tool-card-cta" href="/outils-ia/roi-ia/">Calculer le ROI</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Gouvernance</p>
-            <div>
-              <h3>Registre IA</h3>
-              <p>Consigner les usages, responsables, données, risques, statuts et prochaines revues.</p>
-            </div>
-            <a class="button secondary tool-card-cta" href="/outils-ia/registre-ia/">Ouvrir le registre</a>
-          </article>
+        <div class="tool-grid">
+          
+    <a class="tool-card" href="/outils-ia/maturite-ia/">
+      <span class="card-meta">1/4 · Diagnostic</span>
+      <h3>Test de maturité IA</h3>
+      <p>Situer les appuis, les freins et les priorités avant de choisir un premier chantier.</p>
+      <strong>Lancer le test</strong>
+    </a>
+    <a class="tool-card" href="/outils-ia/cas-usage/">
+      <span class="card-meta">2/4 · Exploration</span>
+      <h3>Explorateur de cas d'usage IA</h3>
+      <p>Identifier des pistes réalistes par métier, avec gains, risques et données à prévoir.</p>
+      <strong>Explorer les cas</strong>
+    </a>
+    <a class="tool-card" href="/outils-ia/roi-ia/">
+      <span class="card-meta">3/4 · Estimation</span>
+      <h3>Calculateur ROI IA</h3>
+      <p>Transformer une hypothèse de gain de temps en ordre de grandeur économique.</p>
+      <strong>Calculer le ROI</strong>
+    </a>
+    <a class="tool-card" href="/outils-ia/registre-ia/">
+      <span class="card-meta">4/4 · Gouvernance</span>
+      <h3>Registre IA simplifié</h3>
+      <p>Garder une trace des usages, objectifs, données, responsables, risques et statuts.</p>
+      <strong>Ouvrir le registre</strong>
+    </a>
         </div>
-      </div>
-    </section>
-
-    <section class="home-onepage-zone home-onepage-contact" id="contact" aria-labelledby="accueil-echanger">
-      <div class="container home-contact-zone">
-        <div class="section-heading home-zone-heading">
-          <p class="eyebrow">Échanger</p>
-          <h2 id="accueil-echanger">Continuer la conversation.</h2>
-          <p>
-            Une question sur un article, un retour d'expérience, une remarque sur un outil ou une piste IA à cadrer : le contact est intégré ici, sans détour.
-          </p>
-        </div>
-        <div class="home-contact-form" data-contact-form-mount data-contact-context="Accueil - contact"></div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <nav class="footer-nav" aria-label="Plan du site">
-        <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
-          <a href="/ialearning/">Formation IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/reperes/">Rep&egrave;res IA</a>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">Référencement IA</p>
-          <a href="/resume-llm/">Résumé LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-        </section>
+    <div class="container footer-simple">
+      <nav aria-label="Liens de pied de page">
+        <a href="/articles/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
+        <a href="/contact/">Contact</a>
+        <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a>
       </nav>
-      <div class="footer-bottom">
-        <div class="footer-meta">
-          <p>&copy; Charles Berthou &middot; IA appliquée, outils IA et repères.</p>
-          <p class="footer-credit">&Eacute;dit&eacute; par <a href="https://dharma-developpement.fr">Dharma D&eacute;veloppement</a></p>
-        </div>
-        <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
-        </div>
-      </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v8" defer></script>
+  <script src="/assets/js/site.js?v=20260606-clean" defer></script>
 </body>
 </html>

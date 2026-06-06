@@ -1,8 +1,6 @@
 User-agent: *
 Allow: /
-Allow: /outils-ia/
-Allow: /resume-llm/
-Allow: /llms.txt
-Allow: /llms-full.txt
+Disallow: /llms.txt
+Disallow: /llms-full.txt
 
 Sitemap: https://charlesberthou.fr/sitemap.xml

@@ -71,7 +71,7 @@
   <g transform="translate(72 526)">
     <rect x="0" y="0" width="238" height="48" rx="24" fill="#ffffff" opacity="0.09"/>
     <circle cx="25" cy="24" r="6" fill="#67e8f9"/>
-    <text x="46" y="32" fill="#e0f2fe" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="0">Outils IA gratuits</text>
+    <text x="46" y="32" fill="#e0f2fe" font-family="Outfit, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="0">Outils IA</text>
   </g>
   <g transform="translate(330 526)">
     <rect x="0" y="0" width="250" height="48" rx="24" fill="#ffffff" opacity="0.09"/>

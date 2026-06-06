@@ -1,254 +1,166 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
   <title>Outils IA | Charles Berthou</title>
-  <meta name="description" content="Des outils pour comprendre, expérimenter et structurer ses usages de l'intelligence artificielle." />
+  <meta name="description" content="Quatre outils pour cadrer un usage IA : maturité, cas d'usage, ROI et registre simplifié." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Outils IA" />
-  <meta property="og:description" content="Des outils pour comprendre, expérimenter et structurer ses usages de l'intelligence artificielle." />
+  <meta property="og:title" content="Outils IA | Charles Berthou" />
+  <meta property="og:description" content="Quatre outils pour cadrer un usage IA : maturité, cas d'usage, ROI et registre simplifié." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Outils IA" />
-  <meta name="twitter:description" content="Des outils pour comprendre, expérimenter et structurer ses usages de l'intelligence artificielle." />
+  <meta name="twitter:title" content="Outils IA | Charles Berthou" />
+  <meta name="twitter:description" content="Quatre outils pour cadrer un usage IA : maturité, cas d'usage, ROI et registre simplifié." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260523-retouches-v9" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260606-clean" />
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Outils IA",
-    "url": "https://charlesberthou.fr/outils-ia/",
-    "inLanguage": "fr-FR",
-    "description": "Page d'entrée vers des outils pour comprendre, expérimenter et structurer ses usages de l'intelligence artificielle.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "charlesberthou.fr",
-      "url": "https://charlesberthou.fr/"
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Outils IA",
+  "url": "https://charlesberthou.fr/outils-ia/",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Test de maturité IA",
+      "url": "https://charlesberthou.fr/outils-ia/maturite-ia/"
     },
-    "mainEntity": {
-      "@type": "ItemList",
-      "name": "Outils IA",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Test de maturité IA", "url": "https://charlesberthou.fr/outils-ia/maturite-ia/" },
-        { "@type": "ListItem", "position": 2, "name": "Formation IA", "url": "https://charlesberthou.fr/ialearning/" },
-        { "@type": "ListItem", "position": 3, "name": "Explorateur de cas d'usage IA", "url": "https://charlesberthou.fr/outils-ia/cas-usage/" },
-        { "@type": "ListItem", "position": 4, "name": "Calculateur de ROI IA", "url": "https://charlesberthou.fr/outils-ia/roi-ia/" },
-          { "@type": "ListItem", "position": 5, "name": "Registre IA simplifié", "url": "https://charlesberthou.fr/outils-ia/registre-ia/" }
-      ]
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Explorateur de cas d'usage IA",
+      "url": "https://charlesberthou.fr/outils-ia/cas-usage/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Calculateur ROI IA",
+      "url": "https://charlesberthou.fr/outils-ia/roi-ia/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Registre IA simplifié",
+      "url": "https://charlesberthou.fr/outils-ia/registre-ia/"
     }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://charlesberthou.fr/" },
-          { "@type": "ListItem", "position": 2, "name": "Outils IA", "item": "https://charlesberthou.fr/outils-ia/" }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "À quoi servent ces outils IA ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ils servent de supports de compréhension, d'expérimentation et de réflexion pour structurer des usages de l'intelligence artificielle."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quel outil IA utiliser en premier ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Formation IA permet d'installer les bases. Le test de maturité IA aide ensuite à situer les usages avant d'explorer des cas, d'estimer un ordre de grandeur et de documenter les pratiques."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Ces outils sont-ils des produits à vendre ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Non. Ils sont présentés comme des supports pédagogiques pour comprendre, expérimenter et réfléchir aux usages de l'IA."
-            }
-          }
-        ]
-      }
-    ]
-  }
+  ]
+}
   </script>
 </head>
 <body>
+
   <a class="skip-link" href="#contenu">Aller au contenu</a>
   <header class="site-header">
     <div class="container nav-bar">
       <a class="brand" href="/">charlesberthou.fr</a>
       <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/blog/">Articles</a>
+        <a href="/articles/">Articles</a>
         <a href="/outils-ia/" aria-current="page">Outils IA</a>
-        <a href="/reperes/">Rep&egrave;res</a>
-        <a href="/#contact">Contact</a>
+        <a href="/contact/">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="contenu" class="tool-page">
-    <section class="page-hero tools-hub-hero premium-tools-hero tool-hero hero-band">
-      <div class="container tools-hub-hero-layout">
-        <div>
-          <p class="eyebrow">Outils IA</p>
-          <h1>Outils IA</h1>
-          <p class="lead">
-            Des outils pour comprendre, expérimenter et structurer ses usages de l'intelligence artificielle.
-          </p>
-          <div class="actions">
-            <a class="button" href="#catalogue-outils">Découvrir les outils</a>
-            <a class="button secondary" href="/reperes/">Lire les repères</a>
-          </div>
-        </div>
-        <aside class="tools-hub-summary" aria-label="Ce que permet la page outils IA">
-          <h2>Accès rapide</h2>
-          <ul class="tools-quick-list">
-            <li><a href="/ialearning/" aria-label="Formation IA"><strong>Formation IA</strong><span>Installer les bases</span></a></li>
-            <li><a href="/outils-ia/maturite-ia/" aria-label="Test de maturité IA"><strong>Test de maturité IA</strong><span>Situer les pratiques</span></a></li>
-            <li><a href="/outils-ia/cas-usage/" aria-label="Explorateur de cas d'usage IA"><strong>Explorateur de cas d'usage IA</strong><span>Explorer des pistes</span></a></li>
-            <li><a href="/outils-ia/roi-ia/" aria-label="Calculateur ROI IA"><strong>Calculateur ROI IA</strong><span>Estimer un ordre de grandeur</span></a></li>
-            <li><a href="/outils-ia/registre-ia/" aria-label="Registre IA simplifié"><strong>Registre IA simplifié</strong><span>Documenter les usages</span></a></li>
-          </ul>
-        </aside>
+  <main id="contenu">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <h1>Outils IA</h1>
+        <p class="lead">Quatre outils pour situer le niveau de départ, choisir un cas utile, chiffrer l’effort et documenter les points de risque.</p>
       </div>
     </section>
-
-    <section class="section tools-hub-section tools-catalog-section" id="catalogue-outils">
-      <div class="container">
-        <div class="section-heading wide">
-          <p class="eyebrow">Supports</p>
-          <h2>Cinq entrées pour comprendre et expérimenter.</h2>
-          <p>Ces outils ne sont pas des produits à vendre. Ils servent de supports de compréhension, d'expérimentation et de réflexion.</p>
+    <section class="section tools-suite-section">
+      <div class="container tools-suite">
+        <div class="tools-suite-copy">
+          <h2>Un parcours court pour cadrer avant de lancer.</h2>
+          <p>Ces outils aident à poser les questions dans le bon ordre : le terrain d’abord, la valeur ensuite, puis la trace avant que les usages ne se dispersent.</p>
         </div>
 
-        <div class="tool-choice-grid tool-choice-grid-five" aria-label="Catalogue des outils IA">
-          <article class="tool-choice-card is-primary">
-            <p class="meta">Comprendre</p>
-            <div>
-              <h3>Formation IA</h3>
-              <p>Un parcours pédagogique pour installer les bases : modèles de langage, usages, limites et bonnes pratiques.</p>
-            </div>
-            <dl class="tool-card-facts">
-              <div><dt>Usage</dt><dd>Apprendre</dd></div>
-              <div><dt>Sortie</dt><dd>Repères</dd></div>
-            </dl>
-            <a class="button tool-card-cta" href="/ialearning/">Ouvrir le parcours</a>
-          </article>
-          <article class="tool-choice-card is-primary">
-            <p class="meta">Se situer</p>
-            <div>
-              <h3>Test de maturité IA</h3>
-              <p>Un questionnaire pour prendre du recul sur les usages, les compétences, les règles et les habitudes de travail.</p>
-            </div>
-            <dl class="tool-card-facts">
-              <div><dt>Usage</dt><dd>Observer</dd></div>
-              <div><dt>Sortie</dt><dd>Lecture synthétique</dd></div>
-            </dl>
-            <a class="button secondary tool-card-cta" href="/outils-ia/maturite-ia/">Faire le test</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Explorer</p>
-            <div>
-              <h3>Explorateur de cas d'usage IA</h3>
-              <p>Une bibliothèque de situations pour relier l'IA à des tâches concrètes, avec bénéfices et points de vigilance.</p>
-            </div>
-            <dl class="tool-card-facts">
-              <div><dt>Usage</dt><dd>Comparer</dd></div>
-              <div><dt>Sortie</dt><dd>Pistes de travail</dd></div>
-            </dl>
-            <a class="button secondary tool-card-cta" href="/outils-ia/cas-usage/">Explorer les cas</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Mesurer</p>
-            <div>
-              <h3>Calculateur de ROI IA</h3>
-              <p>Un support de calcul pour convertir une hypothèse de temps gagné en ordre de grandeur économique.</p>
-            </div>
-            <dl class="tool-card-facts">
-              <div><dt>Usage</dt><dd>Estimer</dd></div>
-              <div><dt>Sortie</dt><dd>Hypothèse chiffrée</dd></div>
-            </dl>
-            <a class="button secondary tool-card-cta" href="/outils-ia/roi-ia/">Calculer le ROI</a>
-          </article>
-          <article class="tool-choice-card">
-            <p class="meta">Documenter</p>
-            <div>
-              <h3>Registre IA simplifié</h3>
-              <p>Un cadre léger pour garder trace des usages, des données mobilisées, des risques et des revues à prévoir.</p>
-            </div>
-            <dl class="tool-card-facts">
-              <div><dt>Usage</dt><dd>Structurer</dd></div>
-              <div><dt>Sortie</dt><dd>Trace claire</dd></div>
-            </dl>
-            <a class="button secondary tool-card-cta" href="/outils-ia/registre-ia/">Ouvrir le registre</a>
-          </article>
+        <div class="tools-context-grid" aria-label="Repères de méthode">
+          <div class="tools-context-item">
+            <strong>Partir du niveau réel</strong>
+            <p>Avant de choisir un projet, vérifier les appuis déjà présents : données, usages, règles, compétences.</p>
+          </div>
+          <div class="tools-context-item">
+            <strong>Choisir un cas défendable</strong>
+            <p>Un bon cas d’usage tient par son utilité, sa faisabilité et les risques qu’on accepte de traiter.</p>
+          </div>
+          <div class="tools-context-item">
+            <strong>Garder une trace</strong>
+            <p>Documenter tôt évite les usages invisibles, les décisions floues et les responsabilités mal posées.</p>
+          </div>
+        </div>
+
+        <div class="tools-journey" aria-label="Parcours outils IA">
+          <a class="tools-journey-card" href="/outils-ia/maturite-ia/">
+            <span class="tool-route-head">
+              <span class="step-pill">1/4</span>
+              <span class="tool-route-kicker">Diagnostic</span>
+            </span>
+            <h2>Test de maturité IA</h2>
+            <p>Situer les appuis, les freins et les décisions à prendre avant de lancer un premier pilote.</p>
+            <span class="tool-route-output">Sortie utile : un score, un axe prioritaire et une lecture exploitable.</span>
+            <strong>Lancer le test</strong>
+          </a>
+          <a class="tools-journey-card" href="/outils-ia/cas-usage/">
+            <span class="tool-route-head">
+              <span class="step-pill">2/4</span>
+              <span class="tool-route-kicker">Sélection</span>
+            </span>
+            <h2>Explorateur de cas d'usage IA</h2>
+            <p>Identifier des pistes réalistes par métier, avec le gain attendu, les vigilances et les données à prévoir.</p>
+            <span class="tool-route-output">Sortie utile : une shortlist de cas à discuter avec les équipes.</span>
+            <strong>Explorer les cas</strong>
+          </a>
+          <a class="tools-journey-card" href="/outils-ia/roi-ia/">
+            <span class="tool-route-head">
+              <span class="step-pill">3/4</span>
+              <span class="tool-route-kicker">Chiffrage</span>
+            </span>
+            <h2>Calculateur ROI IA</h2>
+            <p>Transformer une hypothèse de gain de temps en ordre de grandeur économique, avec prudence.</p>
+            <span class="tool-route-output">Sortie utile : gain net, ROI estimé et délai de retour.</span>
+            <strong>Calculer le ROI</strong>
+          </a>
+          <a class="tools-journey-card" href="/outils-ia/registre-ia/">
+            <span class="tool-route-head">
+              <span class="step-pill">4/4</span>
+              <span class="tool-route-kicker">Suivi</span>
+            </span>
+            <h2>Registre IA simplifié</h2>
+            <p>Garder une trace des usages, objectifs, données, responsables, risques et statuts.</p>
+            <span class="tool-route-output">Sortie utile : un registre local exportable, lisible et facile à reprendre.</span>
+            <strong>Ouvrir le registre</strong>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <nav class="footer-nav" aria-label="Plan du site">
-        <section class="footer-group" aria-labelledby="footer-tools-title">
-          <p class="footer-heading" id="footer-tools-title">Outils IA</p>
-          <a href="/outils-ia/maturite-ia/">Test de maturité IA</a>
-          <a href="/outils-ia/cas-usage/">Cas d'usage IA</a>
-          <a href="/outils-ia/roi-ia/">Calculateur ROI IA</a>
-          <a href="/outils-ia/registre-ia/">Registre IA</a>
-          <a href="/ialearning/">Formation IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-articles-title">
-          <p class="footer-heading" id="footer-articles-title">Articles piliers</p>
-          <a href="/reperes/">Rep&egrave;res IA</a>
-          <a href="/blog/registre-ia-modele-gratuit/">Registre IA : méthode</a>
-          <a href="/blog/cas-usage-ia-entreprise-prioriser/">Prioriser les cas d'usage IA</a>
-          <a href="/blog/shadow-ai-cadrer-sans-bloquer/">Shadow AI</a>
-          <a href="/blog/roi-ia-exemple-calcul-pilote/">Exemple de ROI IA</a>
-          <a href="/blog/ai-act-registre-ia-pme/">AI Act et registre IA</a>
-        </section>
-        <section class="footer-group" aria-labelledby="footer-llm-title">
-          <p class="footer-heading" id="footer-llm-title">Référencement IA</p>
-          <a href="/resume-llm/">Résumé LLM</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/llms-full.txt">llms-full.txt</a>
-          <a href="/sitemap.xml">Sitemap XML</a>
-        </section>
+    <div class="container footer-simple">
+      <nav aria-label="Liens de pied de page">
+        <a href="/articles/">Articles</a>
+        <a href="/outils-ia/">Outils IA</a>
+        <a href="/contact/">Contact</a>
+        <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a>
       </nav>
-      <div class="footer-bottom">
-        <div class="footer-meta">
-          <p>&copy; Charles Berthou &middot; IA, repères et culture numérique.</p>
-          <p class="footer-credit">&Eacute;dit&eacute; par <a href="https://dharma-developpement.fr">Dharma D&eacute;veloppement</a></p>
-        </div>
-        <div class="footer-links" aria-label="Liens secondaires">
-          <a href="/confidentialite/">Confidentialité</a>
-          <a href="/#contact">Contact</a>
-        </div>
-      </div>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260523-retouches-v8" defer></script>
+  <script src="/assets/js/site.js?v=20260606-clean" defer></script>
 </body>
 </html>

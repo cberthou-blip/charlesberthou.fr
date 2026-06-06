@@ -1,148 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://charlesberthou.fr/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/a-propos/</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-
-
-
-
-  <url>
-    <loc>https://charlesberthou.fr/confidentialite/</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://charlesberthou.fr/blog/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://charlesberthou.fr/articles/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/reperes/</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://charlesberthou.fr/blog/registre-ia-modele-gratuit/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/registre-ia-modele-gratuit/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/cas-usage-ia-entreprise-prioriser/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/cas-usage-ia-entreprise-prioriser/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/shadow-ai-cadrer-sans-bloquer/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/shadow-ai-cadrer-sans-bloquer/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/roi-ia-exemple-calcul-pilote/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/roi-ia-exemple-calcul-pilote/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/ai-act-registre-ia-pme/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/ai-act-registre-ia-pme/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/le-token-prochaine-monnaie-ia/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <loc>https://charlesberthou.fr/articles/le-token-prochaine-monnaie-ia/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/ia-entreprise/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <loc>https://charlesberthou.fr/articles/ia-entreprise/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/blog/humanite-lumiere/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://charlesberthou.fr/articles/humanite-lumiere/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://charlesberthou.fr/outils-ia/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
     <loc>https://charlesberthou.fr/outils-ia/maturite-ia/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://charlesberthou.fr/outils-ia/cas-usage/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://charlesberthou.fr/outils-ia/roi-ia/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://charlesberthou.fr/outils-ia/registre-ia/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://charlesberthou.fr/resume-llm/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://charlesberthou.fr/contact/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
-
-  <url>
-    <loc>https://charlesberthou.fr/ialearning/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
 </urlset>

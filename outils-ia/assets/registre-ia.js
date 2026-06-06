@@ -27,16 +27,15 @@ const registerNodes = {
   registerList: document.querySelector("#registerList"),
   registerCount: document.querySelector("#registerCount"),
   highRiskCount: document.querySelector("#highRiskCount"),
-  reviewCount: document.querySelector("#reviewCount"),
+  activeCount: document.querySelector("#reviewCount"),
   readiness: document.querySelector("#registerReadiness"),
   exportButton: document.querySelector("#exportRegister"),
   seedButton: document.querySelector("#seedRegister"),
 };
 
-const statusOptions = ["idée", "à tester", "en pilote", "revue interne effectuée", "suspendu"];
+const statusOptions = ["idée", "à tester", "en pilote", "validé", "suspendu"];
 const riskOptions = ["faible", "moyen", "élevé"];
 const dataTypeOptions = ["", "données publiques", "données internes", "données confidentielles", "données personnelles", "données sensibles"];
-const reviewOptions = ["à qualifier", "revue métier effectuée", "revue conformité effectuée", "en revue", "à corriger", "suspendu"];
 
 initRegisterTool();
 
@@ -205,7 +204,7 @@ function renderRegister() {
   const items = registerState.register;
   registerNodes.registerCount.textContent = items.length;
   registerNodes.highRiskCount.textContent = items.filter((item) => isHighRisk(item.riskLevel)).length;
-  registerNodes.reviewCount.textContent = items.filter((item) => item.reviewDate).length;
+  registerNodes.activeCount.textContent = items.filter((item) => item.status && item.status !== "suspendu").length;
   registerNodes.exportButton.disabled = items.length === 0;
 
   renderReadiness();
@@ -224,7 +223,7 @@ function renderRegister() {
         <div class="register-item-metrics">
           <span><strong>Données internes</strong> données</span>
           <span><strong>Responsable support</strong> responsable</span>
-          <span><strong>Revue mensuelle</strong> prochaine revue</span>
+          <span><strong>à tester</strong> statut</span>
         </div>
         <p>Cette ligne illustre le niveau d'information attendu. Elle n'est pas exportée tant qu'aucun cas réel n'est ajouté.</p>
       </article>
@@ -249,20 +248,16 @@ function renderRegister() {
         ${item.recommendedTool ? `<span class="tag">${escapeHtml(item.recommendedTool)}</span>` : ""}
       </div>
       <div class="register-item-metrics">
-        <span><strong>${formatMinutes(item.gainMin)}</strong> gain / usage</span>
+        <span><strong>${escapeHtml(item.status)}</strong> statut</span>
         <span><strong data-risk-display="${escapeHtml(item.id)}">${escapeHtml(item.riskLevel)}</strong> risque</span>
         <span><strong data-next-action="${escapeHtml(item.id)}">${escapeHtml(getNextAction(item))}</strong> prochaine action</span>
       </div>
       <div class="register-form-grid">
-        ${selectField(item, "status", "Statut de l'usage", statusOptions)}
-        ${selectField(item, "riskLevel", "Niveau de risque", riskOptions)}
-        ${selectField(item, "dataType", "Données utilisées", dataTypeOptions, "À préciser")}
-        ${selectField(item, "validationStatus", "Validation / revue", reviewOptions)}
-        ${inputField(item, "businessOwner", "Responsable métier", "Nom, rôle ou équipe")}
-        ${inputField(item, "reviewDate", "Prochaine revue", "", "date")}
-        ${textareaField(item, "purpose", "Usage et finalité", "Ex. préparer une synthèse de tickets pour aider le support")}
-        ${textareaField(item, "impactedPeople", "Public concerné", "Clients, collaborateurs, candidats, partenaires...")}
-        ${textareaField(item, "comment", "Décision / prochaine action", "Valider, limiter, tester, suspendre ou revoir")}
+        ${textareaField(item, "purpose", "Usage / objectif", "Ex. synthétiser les tickets pour préparer la réponse support")}
+        ${selectField(item, "dataType", "Données", dataTypeOptions, "À préciser")}
+        ${inputField(item, "businessOwner", "Responsable", "Nom, rôle ou équipe")}
+        ${selectField(item, "riskLevel", "Risque", riskOptions)}
+        ${selectField(item, "status", "Statut", statusOptions)}
       </div>
     `;
     card.addEventListener("input", handleRegisterInput);
@@ -277,7 +272,7 @@ function renderReadiness() {
   const highRisk = registerState.register.filter((item) => isHighRisk(item.riskLevel)).length;
 
   if (count === 0) {
-    registerNodes.readiness.innerHTML = `<strong>Premier pas</strong><span>Ajoutez deux ou trois usages pour commencer à voir les risques, gains et revues à organiser.</span>`;
+    registerNodes.readiness.innerHTML = `<strong>Premier pas</strong><span>Ajoutez deux ou trois usages pour commencer à voir les objectifs, données, responsables, risques et statuts à suivre.</span>`;
     return;
   }
 
@@ -286,7 +281,7 @@ function renderReadiness() {
     return;
   }
 
-  registerNodes.readiness.innerHTML = `<strong>Registre exploitable</strong><span>${count} usages suivis, dont ${highRisk} à risque élevé. La prochaine étape consiste à planifier les revues et vérifier les données.</span>`;
+  registerNodes.readiness.innerHTML = `<strong>Registre exploitable</strong><span>${count} usages suivis, dont ${highRisk} à risque élevé. La prochaine étape consiste à clarifier les responsables et vérifier les données.</span>`;
 }
 
 function selectField(item, key, label, options, emptyLabel = "") {
@@ -346,7 +341,7 @@ function updateRegisterItem(id, updates) {
   saveRegister();
   renderReadiness();
   registerNodes.highRiskCount.textContent = registerState.register.filter((item) => isHighRisk(item.riskLevel)).length;
-  registerNodes.reviewCount.textContent = registerState.register.filter((item) => item.reviewDate).length;
+  registerNodes.activeCount.textContent = registerState.register.filter((item) => item.status && item.status !== "suspendu").length;
   updateInlineMetrics(id);
 }
 
@@ -364,11 +359,7 @@ function createRegisterEntry(item) {
     status: "idée",
     purpose: item.summary || "",
     dataType: "",
-    impactedPeople: "",
     businessOwner: "",
-    validationStatus: "à qualifier",
-    reviewDate: "",
-    comment: "",
     gainMin: item.gainMin,
     timeBeforeMin: item.timeBeforeMin,
     timeAfterMin: item.timeAfterMin,
@@ -448,9 +439,9 @@ function toggleRegisterLoadMore(visibleCount, totalCount) {
 function getNextAction(item) {
   if (!item.businessOwner) return "nommer un responsable";
   if (!item.dataType) return "qualifier les données";
-  if (!item.validationStatus || item.validationStatus === "à qualifier") return "prévoir une revue";
-  if (!item.reviewDate) return "fixer une date";
-  return "arbitrer la suite";
+  if (!item.purpose) return "préciser l'objectif";
+  if (!item.status || item.status === "idée") return "choisir un statut";
+  return "suivre le statut";
 }
 
 function loadRegister() {
@@ -475,51 +466,21 @@ function exportRegisterCsv() {
   if (registerState.register.length === 0) return;
 
   const headers = [
-    "id",
-    "titre",
-    "domaine",
-    "categorie",
-    "maturite",
-    "impact",
-    "outil",
-    "risque",
-    "avancement",
-    "finalite",
-    "personnes_impactees",
+    "usage",
+    "objectif",
     "donnees",
     "responsable",
-    "revue",
-    "date_revue",
-    "note",
-    "kpi",
-    "gain_min_par_usage",
-    "temps_avant_min",
-    "temps_apres_min",
-    "frequence_mensuelle",
+    "risque",
+    "statut",
     "date_ajout",
   ];
   const rows = registerState.register.map((item) => [
-    item.id,
     item.title,
-    item.department,
-    item.category,
-    item.maturity,
-    item.impact,
-    item.recommendedTool,
-    item.riskLevel,
-    item.status,
     item.purpose,
-    item.impactedPeople,
     item.dataType,
     item.businessOwner,
-    item.validationStatus,
-    item.reviewDate,
-    item.comment,
-    item.kpi,
-    item.gainMin,
-    item.timeBeforeMin,
-    item.timeAfterMin,
-    item.monthlyFrequency,
+    item.riskLevel,
+    item.status,
     item.addedAt,
   ]);
   const csv = [headers, ...rows].map((row) => row.map(csvCell).join(";")).join("\r\n");
