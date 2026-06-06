@@ -90,7 +90,8 @@
           <p>Ces outils aident à poser les questions dans le bon ordre : le terrain d’abord, la valeur ensuite, puis la trace avant que les usages ne se dispersent.</p>
         </div>
 
-        <div class="tools-context-grid" aria-label="Repères de méthode">
+        <div class="mobile-collapse" data-mobile-collapse="Repères de méthode" data-mobile-open="false">
+        <div class="mobile-collapse-content tools-context-grid" aria-label="Repères de méthode">
           <div class="tools-context-item">
             <strong>Partir du niveau réel</strong>
             <p>Avant de choisir un projet, vérifier les appuis déjà présents : données, usages, règles, compétences.</p>
@@ -104,8 +105,10 @@
             <p>Documenter tôt évite les usages invisibles, les décisions floues et les responsabilités mal posées.</p>
           </div>
         </div>
+        </div>
 
-        <div class="tools-journey" aria-label="Parcours outils IA">
+        <div class="mobile-collapse" data-mobile-collapse="Parcours en 4 outils" data-mobile-open="true">
+        <div class="mobile-collapse-content tools-journey" aria-label="Parcours outils IA">
           <a class="tools-journey-card" href="/outils-ia/maturite-ia/">
             <span class="tool-route-head">
               <span class="step-pill">1/4</span>
@@ -147,12 +150,17 @@
             <strong>Ouvrir le registre</strong>
           </a>
         </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-simple">
+      <div class="footer-brand">
+        <a class="footer-brand-name" href="/">charlesberthou.fr</a>
+        <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
+      </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>

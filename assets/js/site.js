@@ -25,6 +25,7 @@ function enhanceMobileNavigation() {
 
   const navId = nav.id || "navigation-principale";
   nav.id = navId;
+  header.classList.add("has-mobile-menu");
 
   const button = document.createElement("button");
   button.className = "menu-toggle";
@@ -43,6 +44,59 @@ function enhanceMobileNavigation() {
 
   button.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+}
+
+function enhanceMobileCollapsibles() {
+  const blocks = Array.from(document.querySelectorAll("[data-mobile-collapse]"));
+  if (!blocks.length) return;
+
+  const mobileQuery = window.matchMedia("(max-width: 680px)");
+
+  const configuredBlocks = [];
+
+  blocks.forEach((block, index) => {
+    if (block.dataset.mobileCollapseReady === "true") return;
+    block.dataset.mobileCollapseReady = "true";
+    const label = block.dataset.mobileCollapse || "Section";
+    const defaultOpen = block.dataset.mobileOpen !== "false";
+    const button = document.createElement("button");
+    button.className = "mobile-collapse-toggle";
+    button.type = "button";
+    button.setAttribute("aria-controls", `mobile-collapse-${index}`);
+    button.innerHTML = `<span>${escapeAttribute(label)}</span><span aria-hidden="true"></span>`;
+
+    const content = block.querySelector(".mobile-collapse-content");
+    if (content) content.id = content.id || `mobile-collapse-${index}`;
+
+    const setCollapsed = (collapsed) => {
+      block.dataset.collapsed = collapsed ? "true" : "false";
+      button.setAttribute("aria-expanded", String(!collapsed));
+    };
+
+    button.addEventListener("click", () => {
+      if (mobileQuery.matches) block.dataset.mobileTouched = "true";
+      setCollapsed(block.dataset.collapsed !== "true");
+    });
+    block.insertBefore(button, block.firstChild);
+    setCollapsed(mobileQuery.matches ? !defaultOpen : false);
+    configuredBlocks.push({ block, button, defaultOpen });
+  });
+
+  const syncForViewport = () => {
+    configuredBlocks.forEach(({ block, button, defaultOpen }) => {
+      if (mobileQuery.matches) {
+        if (block.dataset.mobileTouched === "true") return;
+        block.dataset.collapsed = defaultOpen ? "false" : "true";
+        button.setAttribute("aria-expanded", String(defaultOpen));
+      } else {
+        delete block.dataset.mobileTouched;
+        block.dataset.collapsed = "false";
+        button.setAttribute("aria-expanded", "true");
+      }
+    });
+  };
+
+  mobileQuery.addEventListener?.("change", syncForViewport);
 }
 
 function getContactRecipient() {
@@ -205,6 +259,7 @@ function hydrateBackToTop() {
 document.addEventListener("DOMContentLoaded", () => {
   ensureIconSprite();
   enhanceMobileNavigation();
+  enhanceMobileCollapsibles();
   hydrateBackToTop();
   hydrateContactForms();
 });

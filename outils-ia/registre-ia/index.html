@@ -47,91 +47,128 @@
       <div class="container tool-hero-grid">
         <div class="tool-step-row">
           <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
-          <span class="step-pill">4/4</span>
         </div>
-        <div>
+        <div class="register-hero-copy">
           <p class="eyebrow">Registre IA</p>
-          <h1>Garder une trace claire des usages IA.</h1>
+          <div class="register-title-row">
+            <h1>Documenter les usages IA.</h1>
+            <span class="step-pill">4/4</span>
+          </div>
           <p class="lead">
-            Notez l’usage, l’objectif, les données, le responsable, le risque et le statut. Le registre reste local dans le navigateur et s’exporte en CSV.
+            Notez l’usage, l’objectif, les données, le responsable, le risque et le statut. Le registre reste local et s’exporte en CSV.
           </p>
-        </div>
-        <div class="tool-stat-strip register-stats" aria-label="État du registre">
-          <span><strong id="registerCount">0</strong> usages</span>
-          <span><strong id="highRiskCount">0</strong> à risque élevé</span>
-          <span><strong id="reviewCount">0</strong> actifs</span>
+          <p class="register-empty-hero" id="registerEmptyHero">Aucun usage inscrit pour l’instant.</p>
+          <div class="tool-stat-strip register-stats" id="registerStats" aria-label="État du registre" hidden>
+            <span><strong id="registerCount">0</strong> usages</span>
+            <span><strong id="highRiskCount">0</strong> à risque élevé</span>
+            <span><strong id="reviewCount">0</strong> actifs</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section tool-workspace-section">
       <div class="container register-layout">
-        <section class="tool-library-panel register-source-panel" aria-labelledby="sourceTitle">
+        <section class="tool-library-panel register-form-panel" aria-labelledby="sourceTitle">
           <div class="panel-heading compact-heading">
             <div>
-              <h2 id="sourceTitle">Explorer les usages à inscrire</h2>
+              <h2 id="sourceTitle">Ajouter un usage IA</h2>
+              <p>Données stockées localement dans le navigateur.</p>
             </div>
-            <span class="result-count" id="sourceCount">0 cas</span>
           </div>
-          <label class="tool-search compact-search">
-            <span>Rechercher</span>
-            <input id="registerSearch" type="search" placeholder="Ex. RH, support, juridique, facture" autocomplete="off" />
-          </label>
-          <div class="register-filter-grid">
-            <div class="tool-filter-block">
-              <span class="filter-label">Domaine</span>
+          <form class="register-short-form" id="registerManualForm">
+            <label class="form-row compact wide-field">
+              <span>Usage</span>
+              <input id="registerUsage" type="text" placeholder="Ex. Synthèse de tickets support" autocomplete="off" required />
+            </label>
+            <label class="form-row compact wide-field">
+              <span>Objectif</span>
+              <textarea id="registerObjective" rows="3" placeholder="Ce que l’usage doit aider à produire ou décider" required></textarea>
+            </label>
+            <label class="form-row compact">
+              <span>Données</span>
+              <input id="registerData" type="text" placeholder="Ex. tickets, CRM, documents internes" />
+            </label>
+            <label class="form-row compact">
+              <span>Responsable</span>
+              <input id="registerOwner" type="text" placeholder="Équipe ou personne référente" />
+            </label>
+            <label class="form-row compact">
+              <span>Risque</span>
+              <select id="registerRisk">
+                <option value="faible">Risque faible</option>
+                <option value="moyen" selected>Risque moyen</option>
+                <option value="élevé">Risque élevé</option>
+              </select>
+            </label>
+            <label class="form-row compact">
+              <span>Statut</span>
+              <select id="registerStatus">
+                <option value="à tester" selected>À tester</option>
+                <option value="actif">Actif</option>
+                <option value="à revoir">À revoir</option>
+                <option value="archivé">Archivé</option>
+              </select>
+            </label>
+            <div class="register-form-actions">
+              <button class="button" type="submit">Ajouter un usage</button>
+              <button class="button secondary" type="button" id="seedRegister">Charger un exemple</button>
+            </div>
+          </form>
+
+          <div class="register-method" aria-label="Méthode registre IA">
+            <span>Identifier</span>
+            <span>Documenter</span>
+            <span>Suivre</span>
+            <span>Exporter</span>
+          </div>
+
+          <details class="register-source-panel register-secondary-panel" id="registerSourcePanel" hidden>
+            <summary>Suggestions et filtres</summary>
+            <label class="tool-search compact-search">
+              <span>Rechercher</span>
+              <input id="registerSearch" type="search" placeholder="Ex. RH, support, juridique, facture" autocomplete="off" />
+            </label>
+            <div class="register-filter-grid">
               <label class="case-select-field compact">
-                <span>Fonction concernée</span>
+                <span>Domaine</span>
                 <select id="registerDepartmentFilters" aria-label="Filtrer par domaine"></select>
               </label>
-            </div>
-            <div class="tool-filter-block">
-              <span class="filter-label">Risque</span>
               <label class="case-select-field compact">
-                <span>Niveau de risque</span>
+                <span>Risque</span>
                 <select id="registerRiskFilters" aria-label="Filtrer par risque"></select>
               </label>
-            </div>
-            <div class="tool-filter-block">
-              <span class="filter-label">Maturité</span>
               <label class="case-select-field compact">
-                <span>État de maturité</span>
+                <span>Maturité</span>
                 <select id="registerMaturityFilters" aria-label="Filtrer par maturité"></select>
               </label>
-            </div>
-            <div class="tool-filter-block">
-              <span class="filter-label">Impact</span>
               <label class="case-select-field compact">
-                <span>Impact attendu</span>
+                <span>Impact</span>
                 <select id="registerImpactFilters" aria-label="Filtrer par impact"></select>
               </label>
             </div>
-          </div>
-          <div class="source-case-list" id="sourceCaseList" aria-live="polite"></div>
-          <div class="load-more-row" id="registerLoadMoreRow" hidden>
-            <button class="button secondary" type="button" id="registerLoadMore">Afficher plus</button>
-          </div>
+            <span class="result-count" id="sourceCount">0 cas</span>
+            <div class="source-case-list" id="sourceCaseList" aria-live="polite"></div>
+            <div class="load-more-row" id="registerLoadMoreRow" hidden>
+              <button class="button secondary" type="button" id="registerLoadMore">Afficher plus</button>
+            </div>
+          </details>
         </section>
 
         <section class="register-board" aria-labelledby="registerTitle">
           <div class="panel-heading register-board-heading">
             <div>
-              <h2 id="registerTitle">Registre de travail</h2>
+              <h2 id="registerTitle">Registre IA simplifié</h2>
             </div>
             <div class="actions register-actions">
-              <button class="button secondary" type="button" id="seedRegister">Charger un exemple</button>
               <button class="button" type="button" id="exportRegister" disabled>Exporter CSV</button>
             </div>
           </div>
           <div class="register-readiness" id="registerReadiness"></div>
           <div class="register-list" id="registerList" aria-live="polite"></div>
           <div class="register-inline-help" aria-label="Aide compacte pour remplir le registre">
-            <strong>À renseigner pour chaque ligne</strong>
-            <ul>
-              <li>Usage précis et objectif attendu.</li>
-              <li>Données utilisées et responsable métier.</li>
-              <li>Niveau de risque et statut de suivi.</li>
-            </ul>
+            <strong>Aide</strong>
+            <p>Commencez par une ligne imparfaite : usage, données, responsable, risque et statut suffisent pour suivre le sujet.</p>
           </div>
         </section>
       </div>
@@ -141,7 +178,7 @@
         <div>
           <span class="card-meta">Suite du parcours</span>
           <h2>Retour aux outils IA</h2>
-          <p>Gardez le fil : chaque outil transforme la sortie précédente en décision plus concrète.</p>
+          <p>Revenir au parcours complet pour ajuster maturité, cas d’usage ou ROI.</p>
         </div>
         <a class="button" href="/outils-ia/">Retour aux outils IA</a>
       </div>
@@ -150,6 +187,10 @@
 
   <footer class="site-footer">
     <div class="container footer-simple">
+      <div class="footer-brand">
+        <a class="footer-brand-name" href="/">charlesberthou.fr</a>
+        <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
+      </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>

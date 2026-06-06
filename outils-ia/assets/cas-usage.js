@@ -306,7 +306,7 @@ function renderFilters() {
     nodes.functionSelect,
     buildFilterOptions(state.cases, getMetier, METIER_ORDER, METIER_DESCRIPTIONS),
     state.category,
-    "Sélectionner une fonction"
+    "Tous les métiers"
   );
 
   const domainCases = state.category
@@ -345,7 +345,7 @@ function renderFilters() {
     nodes.taskTypeSelect,
     buildFilterOptions(state.cases, getTaskType, TASK_TYPE_ORDER),
     state.taskType,
-    "Tous les types"
+    "Tous les usages"
   );
   renderSelectOptions(
     nodes.riskSelect,
@@ -355,7 +355,6 @@ function renderFilters() {
   );
 
   nodes.reset?.toggleAttribute("hidden", !hasActiveExploration());
-  renderFilterHint();
 }
 
 function renderQuickStarts() {
@@ -389,10 +388,11 @@ function renderCases() {
       state.selectedId = null;
     }
     nodes.visible.textContent = cases.length;
-    nodes.count.textContent = "";
-    nodes.count.hidden = true;
+    nodes.count.hidden = false;
+    nodes.count.textContent = `${cases.length} cas affichés sur ${state.cases.length}`;
     cases.forEach(renderCaseCard);
     toggleLoadMore(cases.length, cases.length);
+    renderFilterHint(cases.length);
     return;
   }
 
@@ -400,12 +400,13 @@ function renderCases() {
   const displayedCases = cases.slice(0, state.visibleLimit);
   nodes.visible.textContent = displayedCases.length;
   nodes.count.hidden = false;
-  nodes.count.textContent = `${cases.length} cas`;
+  nodes.count.textContent = `${displayedCases.length} cas affichés sur ${cases.length} correspondants`;
 
   if (cases.length === 0) {
     nodes.grid.innerHTML = `<p class="empty-state">Aucun cas ne correspond aux filtres. Essayez un mot plus simple : réunion, document, client, RH.</p>`;
     state.selectedId = null;
     toggleLoadMore(0, 0);
+    renderFilterHint(0);
     return;
   }
 
@@ -413,56 +414,31 @@ function renderCases() {
     state.selectedId = null;
   }
 
-  displayedCases.forEach((item) => {
-    const model = getModelAdvice(item);
-    const risk = getRiskLevel(item);
-    const sector = getPrimarySector(item);
-    const taskType = getTaskType(item);
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
-    card.innerHTML = `
-      <span>${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</span>
-      <strong>${escapeHtml(item.tache)}</strong>
-      <p>${escapeHtml(item.sortie)}</p>
-      <div class="case-card-meta">
-        <small class="risk-${normalizeRisk(risk)}">Risque ${escapeHtml(risk)}</small>
-        <small>${escapeHtml(taskType)}</small>
-        <small>${escapeHtml(sector)}</small>
-        <small>${escapeHtml(model.principal)}</small>
-        <small>${getMonthlyGainLabel(item)}</small>
-      </div>
-    `;
-    card.addEventListener("click", () => {
-      state.selectedId = item.id;
-      renderCases();
-      renderDetail();
-    });
-    nodes.grid.appendChild(card);
-  });
+  displayedCases.forEach(renderCaseCard);
 
   toggleLoadMore(displayedCases.length, cases.length);
+  renderFilterHint(cases.length);
 }
 
 function renderCaseCard(item) {
-  const model = getModelAdvice(item);
   const risk = getRiskLevel(item);
   const sector = getPrimarySector(item);
   const taskType = getTaskType(item);
   const card = document.createElement("button");
   card.type = "button";
   card.className = `case-tool-card ${item.id === state.selectedId ? "selected" : ""}`;
+  card.setAttribute("aria-label", `Ouvrir la fiche : ${item.tache}`);
   card.innerHTML = `
-    <span>${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</span>
-    <strong>${escapeHtml(item.tache)}</strong>
+    <span class="case-card-kicker">${escapeHtml(getMetier(item))} · ${escapeHtml(getActivity(item))}</span>
+    <strong class="case-card-title">${escapeHtml(item.tache)}</strong>
     <p>${escapeHtml(item.sortie)}</p>
     <div class="case-card-meta">
-      <small class="risk-${normalizeRisk(risk)}">Risque ${escapeHtml(risk)}</small>
+      <small class="gain-tag">${getMonthlyGainLabel(item)}</small>
+      <small class="risk-${normalizeRisk(risk)}">${escapeHtml(formatRiskLabel(risk))}</small>
       <small>${escapeHtml(taskType)}</small>
       <small>${escapeHtml(sector)}</small>
-      <small>${escapeHtml(model.principal)}</small>
-      <small>${getMonthlyGainLabel(item)}</small>
     </div>
+    <span class="case-card-cta">Ouvrir la fiche</span>
   `;
   card.addEventListener("click", () => {
     state.selectedId = item.id;
@@ -907,11 +883,12 @@ function getReferences(item) {
   return ["ESCO/ISCO-08", "ROME"];
 }
 
-function renderFilterHint() {
+function renderFilterHint(resultCount) {
   if (!nodes.filterHint) return;
 
-  if (!hasActiveExploration()) {
-    nodes.filterHint.textContent = "Sélectionnez un filtre ou lancez une recherche pour afficher les cas correspondants.";
+  if (resultCount !== 0) {
+    nodes.filterHint.hidden = true;
+    nodes.filterHint.textContent = "";
     return;
   }
 
@@ -928,9 +905,10 @@ function renderFilterHint() {
     parts.unshift(`Recherche : ${state.query.trim()}`);
   }
 
+  nodes.filterHint.hidden = false;
   nodes.filterHint.textContent = parts.length
-    ? `Sélection active : ${parts.join(" > ")}.`
-    : "Les cas filtrés s'affichent ci-dessous.";
+    ? `Aucun cas trouvé pour : ${parts.join(" > ")}.`
+    : "Aucun cas à afficher.";
 }
 
 function getMonthlyGain(item) {
@@ -939,6 +917,10 @@ function getMonthlyGain(item) {
 
 function getMonthlyGainLabel(item) {
   return `${formatMinutes(getMonthlyGain(item))}/mois`;
+}
+
+function formatRiskLabel(value) {
+  return `Risque ${value || "moyen"}`.replace("Risque Moyen", "Risque moyen").replace("Risque Faible", "Risque faible").replace("Risque Élevé", "Risque élevé");
 }
 
 function formatMinutes(minutes) {

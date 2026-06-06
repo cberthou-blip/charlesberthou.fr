@@ -45,6 +45,9 @@ const roiNodes = {
   payback: document.querySelector("#roiPayback"),
   title: document.querySelector("#roiTitle"),
   summary: document.querySelector("#roiSummary"),
+  keyGain: document.querySelector("#roiKeyGain"),
+  keyCost: document.querySelector("#roiKeyCost"),
+  keyRatio: document.querySelector("#roiKeyRatio"),
   hours: document.querySelector("#roiHours"),
   grossGain: document.querySelector("#roiGrossGain"),
   qualityGain: document.querySelector("#roiQualityGain"),
@@ -115,14 +118,17 @@ function renderRoi() {
   roiNodes.netGain.textContent = formatCurrency(netGain);
   roiNodes.ratio.textContent = `${Math.round(roiRatio)} %`;
   roiNodes.payback.textContent = Number.isFinite(paybackMonths) ? `${Math.max(1, Math.ceil(paybackMonths))} mois` : "-";
-  roiNodes.title.textContent = reading.title;
+  if (roiNodes.title) roiNodes.title.textContent = reading.title;
   roiNodes.summary.textContent = reading.summary;
+  if (roiNodes.keyGain) roiNodes.keyGain.textContent = formatCurrency(netGain);
+  if (roiNodes.keyCost) roiNodes.keyCost.textContent = formatCurrency(annualCost);
+  if (roiNodes.keyRatio) roiNodes.keyRatio.textContent = `${Math.round(roiRatio)} %`;
   roiNodes.hours.textContent = `${Math.round(annualHours).toLocaleString("fr-FR")} h`;
-  roiNodes.grossGain.textContent = formatCurrency(grossGain);
-  roiNodes.qualityGain.textContent = formatCurrency(qualityGain);
+  if (roiNodes.grossGain) roiNodes.grossGain.textContent = formatCurrency(grossGain);
+  if (roiNodes.qualityGain) roiNodes.qualityGain.textContent = formatCurrency(qualityGain);
   roiNodes.prudentGain.textContent = formatCurrency(prudentGain);
-  roiNodes.annualCost.textContent = formatCurrency(annualCost);
-  roiNodes.monthlyNet.textContent = formatCurrency(monthlyNet);
+  if (roiNodes.annualCost) roiNodes.annualCost.textContent = formatCurrency(annualCost);
+  if (roiNodes.monthlyNet) roiNodes.monthlyNet.textContent = formatCurrency(monthlyNet);
   roiNodes.pilotBudget.textContent = formatCurrency(pilotBudget);
 }
 

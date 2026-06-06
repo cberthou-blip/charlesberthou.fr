@@ -47,6 +47,11 @@
       <div class="container case-action-hero-grid">
         <div class="tool-step-row">
           <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
+          <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
+            <span><strong data-total-cases>116</strong> cas</span>
+            <span><strong data-total-functions>15</strong> fonctions</span>
+            <span><strong data-visible-count>0</strong> affichés</span>
+          </div>
           <span class="step-pill">2/4</span>
         </div>
         <div class="case-hero-copy">
@@ -55,110 +60,84 @@
           <p>
             Filtrez par métier ou partez d’un besoin : chaque piste indique le gain attendu, les points de vigilance et la suite à tester.
           </p>
-          <div class="tool-stat-strip case-hero-stats" aria-label="Statistiques de la bibliothèque">
-            <span><strong data-total-cases>116</strong> cas référencés</span>
-            <span><strong data-total-functions>15</strong> fonctions</span>
-            <span><strong data-visible-count>0</strong> affichés</span>
-          </div>
         </div>
       </div>
     </section>
 
     <section class="case-search-section" aria-labelledby="caseSearchTitle">
       <div class="container">
+        <div class="mobile-collapse" data-mobile-collapse="Recherche" data-mobile-open="true">
+          <div class="mobile-collapse-content">
         <div class="case-search-panel case-decision-card">
           <div class="case-step-heading">
             <span class="case-step-number">1</span>
             <div>
-              <h2 id="caseSearchTitle">Rechercher un cas d'usage</h2>
-              <p>Deux entrées possibles : une recherche libre ou un guidage par filtres. Les résultats se mettent à jour dans la carte suivante.</p>
+              <h2 id="caseSearchTitle">Trouver un cas d'usage</h2>
+              <p>Décrivez le besoin, puis affinez par métier, contexte, type d'usage ou niveau de risque.</p>
             </div>
           </div>
 
-          <div class="case-entry-grid">
-            <section class="case-entry-mode" aria-labelledby="caseFreeSearchTitle">
-              <h3 id="caseFreeSearchTitle">Recherche libre</h3>
-              <label class="case-hero-search case-search-main">
-                <span>Mot clé ou besoin métier</span>
-                <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
+          <div class="case-search-stack">
+            <label class="case-hero-search case-search-main">
+              <span>Besoin ou mot clé</span>
+              <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
+            </label>
+
+            <div class="case-quick-starts" aria-label="Filtres rapides">
+              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
+              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
+              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
+              <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">Ressources humaines</button>
+            </div>
+
+            <div class="case-filter-groups case-filter-compact" aria-label="Filtres">
+              <label class="case-select-field compact">
+                <span>Métier</span>
+                <select id="functionSelect" aria-label="Choisir un métier"></select>
               </label>
-              <div class="case-quick-starts" aria-label="Démarrages rapides">
-                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
-                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
-                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
-                <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">Ressources humaines</button>
-              </div>
-            </section>
 
-            <section class="case-entry-mode" aria-labelledby="caseGuidedSearchTitle">
-              <div class="case-entry-mode-head">
-                <h3 id="caseGuidedSearchTitle">Recherche guidée</h3>
-                <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser</button>
-              </div>
+              <label class="case-select-field compact" id="domainFilterBlock" hidden>
+                <span>Activité</span>
+                <select id="activitySelect" aria-label="Choisir une activité"></select>
+              </label>
 
-              <div class="case-filter-branch case-filter-row" aria-label="Filtres principaux">
-                <div class="tool-filter-block case-filter-step">
-                  <span class="filter-label">Fonction</span>
-                  <label class="case-select-field compact">
-                    <span>Fonction / domaine</span>
-                    <select id="functionSelect" aria-label="Choisir une fonction de travail"></select>
-                  </label>
-                </div>
-
-                <div class="tool-filter-block case-filter-step" id="domainFilterBlock" hidden>
-                  <span class="filter-label">Activité</span>
-                  <label class="case-select-field compact">
-                    <span>Activité</span>
-                    <select id="activitySelect" aria-label="Choisir une activité"></select>
-                  </label>
-                </div>
-
-                <div class="tool-filter-block case-filter-step" id="topicFilterBlock" hidden>
-                  <span class="filter-label">Situation</span>
-                  <label class="case-select-field compact">
-                    <span>Situation</span>
-                    <select id="situationSelect" aria-label="Choisir une situation"></select>
-                  </label>
-                </div>
-              </div>
+              <label class="case-select-field compact" id="topicFilterBlock" hidden>
+                <span>Situation</span>
+                <select id="situationSelect" aria-label="Choisir une situation"></select>
+              </label>
 
               <div class="case-advanced-filters case-advanced-inline" id="caseAdvancedFilters" hidden>
-                <div class="case-filter-groups">
-                  <div class="tool-filter-block">
-                    <span class="filter-label">Secteur</span>
-                    <label class="case-select-field compact">
-                      <span>Contexte</span>
-                      <select id="sectorSelect" aria-label="Filtrer par secteur"></select>
-                    </label>
-                  </div>
+                <label class="case-select-field compact">
+                  <span>Secteur</span>
+                  <select id="sectorSelect" aria-label="Filtrer par secteur"></select>
+                </label>
 
-                  <div class="tool-filter-block">
-                    <span class="filter-label">Type</span>
-                    <label class="case-select-field compact">
-                      <span>Usage</span>
-                      <select id="taskTypeSelect" aria-label="Filtrer par type d'usage"></select>
-                    </label>
-                  </div>
+                <label class="case-select-field compact">
+                  <span>Usage</span>
+                  <select id="taskTypeSelect" aria-label="Filtrer par type d'usage"></select>
+                </label>
 
-                  <div class="tool-filter-block">
-                    <span class="filter-label">Vigilance</span>
-                    <label class="case-select-field compact">
-                      <span>Risque</span>
-                      <select id="riskSelect" aria-label="Filtrer par niveau de vigilance"></select>
-                    </label>
-                  </div>
-                </div>
+                <label class="case-select-field compact">
+                  <span>Risque</span>
+                  <select id="riskSelect" aria-label="Filtrer par niveau de vigilance"></select>
+                </label>
               </div>
-            </section>
+            </div>
+
+            <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser les filtres</button>
           </div>
 
-          <p class="case-filter-hint" id="caseFilterHint">Sélectionnez un filtre ou lancez une recherche pour afficher les cas correspondants.</p>
+          <p class="case-filter-hint" id="caseFilterHint" hidden></p>
+        </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="case-action-workspace">
       <div class="container">
+        <div class="mobile-collapse" data-mobile-collapse="Résultats" data-mobile-open="true">
+          <div class="mobile-collapse-content">
         <section class="tool-library-panel case-explorer-panel case-results-panel" aria-labelledby="caseLibraryTitle">
             <div class="case-results-bar">
               <div>
@@ -173,33 +152,32 @@
               <button class="button secondary" type="button" id="caseLoadMore">Afficher plus</button>
             </div>
         </section>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section case-method-section case-choice-help-section">
       <div class="container">
+        <div class="mobile-collapse" data-mobile-collapse="Méthode de choix" data-mobile-open="false">
+          <div class="mobile-collapse-content">
         <article class="content-card compact-help-card wide-help-card">
-          <h2>Choisir un cas à ouvrir</h2>
-          <p>Un cas utile n'est pas seulement une idée séduisante. Il doit relier une tâche réelle, un bénéfice observable, un responsable et une règle de contrôle simple.</p>
-          <ul>
-            <li><strong>Tâche :</strong> elle doit être fréquente, irritante et suffisamment précise pour être testée en moins de deux semaines.</li>
-            <li><strong>Données :</strong> les documents, historiques ou consignes nécessaires doivent être disponibles et autorisés.</li>
-            <li><strong>Sortie :</strong> le résultat attendu doit pouvoir être relu par un humain sans effort excessif.</li>
-            <li><strong>Risque :</strong> plus la décision est sensible, plus le cas doit être cadré avant le pilote.</li>
-            <li><strong>Mesure :</strong> choisissez un indicateur simple : temps gagné, erreur évitée, délai réduit ou qualité améliorée.</li>
-          </ul>
+          <h2>Comment choisir le bon cas ?</h2>
+          <p>Un bon candidat relie une tâche réelle, un gain observable, des données disponibles et une règle de contrôle simple.</p>
           <div class="tool-detail-panel case-detail-panel case-choice-detail" id="caseDetail" aria-live="polite">
             <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
           </div>
         </article>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section tool-next-section">
       <div class="container next-card">
         <div>
-          <span class="card-meta">Suite du parcours</span>
+          <span class="card-meta">Cas d'usage sélectionné → ROI IA</span>
           <h2>Calculer le ROI IA</h2>
-          <p>Gardez le fil : chaque outil transforme la sortie précédente en décision plus concrète.</p>
+          <p>Une fois le cas choisi, chiffrez l'ordre de grandeur avant de lancer un pilote.</p>
         </div>
         <a class="button" href="/outils-ia/roi-ia/">Calculer le ROI IA</a>
       </div>
@@ -208,6 +186,10 @@
 
   <footer class="site-footer">
     <div class="container footer-simple">
+      <div class="footer-brand">
+        <a class="footer-brand-name" href="/">charlesberthou.fr</a>
+        <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
+      </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>
         <a href="/outils-ia/">Outils IA</a>
