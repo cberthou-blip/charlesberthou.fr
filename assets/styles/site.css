@@ -474,7 +474,7 @@ button.button:not(.secondary) * {
 .site-footer {
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(152, 225, 215, 0.14);
+  border-top: 1px solid rgba(248, 250, 248, 0.08);
   background:
     linear-gradient(135deg, rgba(0, 107, 102, 0.34) 0%, rgba(17, 24, 39, 0) 34%),
     linear-gradient(145deg, #081d23 0%, #101923 52%, #1c1928 100%);
@@ -498,14 +498,14 @@ button.button:not(.secondary) * {
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
-  align-items: end;
-  padding: 44px 0;
+  gap: 28px;
+  align-items: center;
+  padding: 30px 0;
 }
 
 .footer-brand {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   max-width: 460px;
 }
 
@@ -522,41 +522,67 @@ button.button:not(.secondary) * {
 }
 
 .footer-brand-name:hover {
-  color: #98e1d7;
+  color: #f8faf8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .footer-brand p {
   max-width: 430px;
-  color: rgba(248, 250, 248, 0.72);
-  font-size: 0.96rem;
-  font-weight: 650;
-  line-height: 1.55;
+  color: rgba(248, 250, 248, 0.66);
+  font-size: 0.93rem;
+  font-weight: 560;
+  line-height: 1.45;
+}
+
+.footer-brand .footer-editor {
+  color: rgba(248, 250, 248, 0.54);
+}
+
+.footer-editor a {
+  color: rgba(248, 250, 248, 0.7);
+  text-decoration: none;
+}
+
+.footer-editor a:hover {
+  color: #f8faf8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .footer-simple nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 10px;
-  color: rgba(248, 250, 248, 0.78);
-  font-weight: 750;
+  gap: 0;
+  color: rgba(248, 250, 248, 0.68);
+  font-size: 0.94rem;
+  font-weight: 560;
 }
 
 .footer-simple nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 8px 11px;
-  border: 1px solid rgba(248, 250, 248, 0.12);
-  border-radius: 8px;
-  background: rgba(248, 250, 248, 0.055);
-  transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  transition: color 0.16s ease, opacity 0.16s ease;
+}
+
+.footer-simple nav a + a::before {
+  content: "·";
+  margin: 0 10px;
+  color: rgba(248, 250, 248, 0.38);
 }
 
 .footer-simple nav a:hover {
-  border-color: rgba(152, 225, 215, 0.36);
-  background: rgba(152, 225, 215, 0.09);
   color: #f8faf8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 main.article-shell {
@@ -2754,8 +2780,9 @@ input[type="range"]::-moz-range-thumb {
 
   .footer-simple {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 36px 0;
+    gap: 14px;
+    align-items: start;
+    padding: 28px 0;
   }
 
   .footer-brand {
@@ -2764,11 +2791,12 @@ input[type="range"]::-moz-range-thumb {
 
   .footer-simple nav {
     justify-content: flex-start;
+    row-gap: 4px;
   }
 
   .footer-simple nav a {
-    min-height: 36px;
-    padding: 7px 10px;
+    min-height: 0;
+    padding: 0;
   }
 }
 
