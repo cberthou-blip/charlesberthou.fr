@@ -2,6 +2,7 @@ const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
 const CASE_METIER_DATA_URL = "/outils-ia/data/cas-usage-metiers.json";
 const NO_SELECTION = "";
 const CASE_PAGE_SIZE = 12;
+const CASE_MOBILE_PAGE_SIZE = 4;
 
 const METIER_ORDER = [
   "Conseil",
@@ -168,7 +169,7 @@ const state = {
   taskType: NO_SELECTION,
   risk: NO_SELECTION,
   selectedId: null,
-  visibleLimit: CASE_PAGE_SIZE,
+  visibleLimit: getCasePageSize(),
 };
 
 const nodes = {
@@ -231,7 +232,7 @@ function bindCaseEvents() {
   });
 
   nodes.loadMore?.addEventListener("click", () => {
-    state.visibleLimit += CASE_PAGE_SIZE;
+    state.visibleLimit += getCasePageSize();
     renderCases();
   });
 
@@ -585,30 +586,45 @@ function updateMiniGain() {
 
 function getVisibleCases() {
   const query = normalize(state.query);
-  return state.cases
+  const baseCases = state.cases
     .filter((item) => !state.category || getMetier(item) === state.category)
     .filter((item) => !state.domain || getActivity(item) === state.domain)
     .filter((item) => !state.topic || getTopic(item) === state.topic)
     .filter((item) => !state.sector || getSectors(item).includes(state.sector))
     .filter((item) => !state.taskType || getTaskType(item) === state.taskType)
-    .filter((item) => !state.risk || getRiskLevel(item) === state.risk)
-    .filter((item) => {
-      if (!query) return true;
+    .filter((item) => !state.risk || getRiskLevel(item) === state.risk);
+
+  if (!query) return sortCasesByGain(baseCases);
+
+  const terms = query.split(/\s+/).filter(Boolean);
+  const exactMatches = baseCases.filter((item) => {
+    const haystack = normalize(caseText(item));
+    return terms.every((term) => haystack.includes(term));
+  });
+
+  if (exactMatches.length) return sortCasesByGain(exactMatches);
+
+  return baseCases
+    .map((item) => {
       const haystack = normalize(caseText(item));
-      return query.split(/\s+/).every((term) => haystack.includes(term));
+      const score = terms.reduce((total, term) => total + (haystack.includes(term) ? 1 : 0), 0);
+      return { item, score };
     })
-    .sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || getMonthlyGain(b.item) - getMonthlyGain(a.item))
+    .map((entry) => entry.item);
 }
 
 function getDefaultCases() {
   const selected = [];
   const seenMetiers = new Set();
   const ordered = state.cases.slice().sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
+  const defaultLimit = window.matchMedia?.("(max-width: 680px)").matches ? 4 : 6;
 
   ordered.forEach((item) => {
-    if (selected.length >= 6) return;
+    if (selected.length >= defaultLimit) return;
     const metier = getMetier(item);
-    if (!seenMetiers.has(metier) || selected.length >= 4) {
+    if (!seenMetiers.has(metier) || selected.length >= Math.max(3, defaultLimit - 2)) {
       selected.push(item);
       seenMetiers.add(metier);
     }
@@ -652,7 +668,7 @@ function hasActiveExploration() {
 
 function resetCaseSelection() {
   state.selectedId = null;
-  state.visibleLimit = CASE_PAGE_SIZE;
+  state.visibleLimit = getCasePageSize();
 }
 
 function resetFilters() {
@@ -672,8 +688,16 @@ function toggleLoadMore(visibleCount, totalCount) {
   const remaining = totalCount - visibleCount;
   nodes.loadMoreRow.toggleAttribute("hidden", remaining <= 0);
   if (remaining > 0) {
-    nodes.loadMore.textContent = `Afficher ${Math.min(CASE_PAGE_SIZE, remaining)} cas de plus`;
+    nodes.loadMore.textContent = `Afficher ${Math.min(getCasePageSize(), remaining)} cas de plus`;
   }
+}
+
+function getCasePageSize() {
+  return window.matchMedia?.("(max-width: 680px)").matches ? CASE_MOBILE_PAGE_SIZE : CASE_PAGE_SIZE;
+}
+
+function sortCasesByGain(cases) {
+  return cases.slice().sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
 }
 
 function buildFilterOptions(items, getter, orderedValues = [], descriptions = {}) {

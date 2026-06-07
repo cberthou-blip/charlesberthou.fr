@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-site" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-mobile" />
   
 </head>
 <body>
@@ -62,6 +62,8 @@
 
     <section class="section tool-workspace-section">
       <div class="container roi-layout">
+        <div class="mobile-collapse roi-input-column" data-mobile-collapse="Hypothèses" data-mobile-open="true">
+          <div class="mobile-collapse-content">
         <section class="roi-panel" aria-labelledby="roiInputsTitle">
           <div class="panel-heading compact-heading">
             <div>
@@ -138,7 +140,11 @@
             </section>
           </div>
         </section>
+          </div>
+        </div>
 
+        <div class="mobile-collapse roi-result-column" data-mobile-collapse="Résultats" data-mobile-open="false">
+          <div class="mobile-collapse-content">
         <aside class="roi-results" aria-live="polite">
           <section class="maturity-panel roi-key-results">
             <p class="eyebrow">Résultats</p>
@@ -163,11 +169,15 @@
             </div>
           </section>
         </aside>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section roi-reading-section">
       <div class="container">
+        <div class="mobile-collapse" data-mobile-collapse="Lire le ROI" data-mobile-open="false">
+          <div class="mobile-collapse-content">
         <article class="content-card compact-help-card wide-help-card">
           <h2>Lire le ROI</h2>
           <p>Le calcul donne un ordre de grandeur prudent, pas une certitude budgétaire. Il aide à savoir si le cas mérite un pilote, un cadrage plus fin ou un abandon temporaire.</p>
@@ -186,6 +196,8 @@
             </div>
           </div>
         </article>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section tool-next-section">
@@ -214,7 +226,7 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260607-site" defer></script>
+  <script src="/assets/js/site.js?v=20260607-mobile" defer></script>
   <script src="/outils-ia/assets/roi-ia.js?v=20260607-tools" defer></script>
 </body>
 </html>

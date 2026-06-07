@@ -22,6 +22,7 @@ function enhanceMobileNavigation() {
   const nav = header?.querySelector(".main-nav");
   const navBar = header?.querySelector(".nav-bar");
   if (!header || !nav || !navBar || header.querySelector(".menu-toggle")) return;
+  const mobileQuery = window.matchMedia("(max-width: 680px)");
 
   const navId = nav.id || "navigation-principale";
   nav.id = navId;
@@ -37,13 +38,23 @@ function enhanceMobileNavigation() {
   navBar.insertBefore(button, nav);
 
   const setOpen = (isOpen) => {
-    header.classList.toggle("menu-open", isOpen);
-    button.setAttribute("aria-expanded", String(isOpen));
-    button.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+    const shouldOpen = Boolean(isOpen && mobileQuery.matches);
+    header.classList.toggle("menu-open", shouldOpen);
+    document.documentElement.classList.toggle("mobile-nav-open", shouldOpen);
+    button.setAttribute("aria-expanded", String(shouldOpen));
+    button.setAttribute("aria-label", shouldOpen ? "Fermer le menu" : "Ouvrir le menu");
   };
 
   button.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("click", (event) => {
+    if (!header.classList.contains("menu-open") || header.contains(event.target)) return;
+    setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+  mobileQuery.addEventListener?.("change", () => setOpen(false));
 }
 
 function enhanceMobileCollapsibles() {
