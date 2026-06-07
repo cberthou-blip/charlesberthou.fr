@@ -174,8 +174,7 @@ function hydrateContactForms() {
   }
 }
 
-async function submitContactForm(event) {
-  event.preventDefault();
+function submitContactForm(event) {
   const form = event.currentTarget;
   const status = form.querySelector("[data-contact-status]");
   const button = form.querySelector("button[type='submit']");
@@ -185,44 +184,36 @@ async function submitContactForm(event) {
   const fullSubject = "[charlesberthou.fr] Message depuis le site";
   const pageUrl = window.location.href;
 
+  if (form.dataset.submitting === "true") {
+    event.preventDefault();
+    return;
+  }
+
   form.querySelector("[data-contact-subject]").value = fullSubject;
   form.querySelector("[data-contact-replyto]").value = replyTo;
   form.querySelector("[data-contact-next]").value = getContactReturnUrl();
   form.querySelector("[data-contact-url]").value = pageUrl;
   form.querySelector("[data-contact-page]").value = pageUrl;
 
-  data.set("subject", fullSubject);
-  data.set("replyto", replyTo);
-  data.set("redirect", getContactReturnUrl());
-  data.set("form_url", pageUrl);
-  data.set("page", pageUrl);
-
   form.classList.remove("is-sent", "has-error");
   form.classList.add("is-loading");
   button.disabled = true;
   button.dataset.defaultText = initialButtonText;
+  button.textContent = "Envoi en cours...";
   status.textContent = "Envoi en cours...";
 
-  try {
-    const response = await fetch(CONTACT_ENDPOINT, {
-      method: "POST",
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(data))
-    });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === false) throw new Error(result.message || "Envoi impossible");
-    form.classList.add("is-sent");
-    button.textContent = "Message envoyé";
-    button.disabled = true;
-    status.textContent = "Merci, le message a bien été transmis.";
-  } catch (error) {
+  if (navigator.onLine === false) {
+    event.preventDefault();
     const fallbackUrl = getContactFallbackUrl(fullSubject, data.get("message"));
+    form.classList.remove("is-loading");
     form.classList.add("has-error");
     status.innerHTML = `L'envoi automatique n'a pas abouti. <a href="${escapeAttribute(fallbackUrl)}">Ouvrir un email prérempli</a>.`;
     button.disabled = false;
-  } finally {
-    form.classList.remove("is-loading");
+    button.textContent = initialButtonText;
+    return;
   }
+
+  form.dataset.submitting = "true";
 }
 
 function resetContactFormState(event) {
