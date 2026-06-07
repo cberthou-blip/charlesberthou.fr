@@ -65,7 +65,6 @@ async function initRegisterTool() {
     renderSourceCases();
   } catch (error) {
     registerNodes.sourceCount.textContent = "0 cas";
-    registerNodes.seedButton.disabled = true;
     registerNodes.sourceList.innerHTML = `<p class="empty-state">La bibliothèque de départ n'a pas pu être chargée.</p>`;
   }
 }
@@ -219,6 +218,7 @@ function renderRegister() {
   registerNodes.highRiskCount.textContent = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
   registerNodes.activeCount.textContent = realItems.filter((item) => isActiveStatus(item.status)).length;
   syncExportButton(realItems.length);
+  syncSeedButton();
   registerNodes.heroStats.hidden = realItems.length === 0;
   registerNodes.heroEmpty.hidden = realItems.length > 0;
   registerNodes.sourcePanel.hidden = realItems.length === 0;
@@ -588,6 +588,22 @@ function csvCell(value) {
 
 function getRealRegisterItems() {
   return registerState.register.filter((item) => !item.isExample);
+}
+
+function hasLoadedExample() {
+  return registerState.register.some((item) => item.isExample);
+}
+
+function syncSeedButton() {
+  if (!registerNodes.seedButton) return;
+  const isLoaded = hasLoadedExample();
+  registerNodes.seedButton.disabled = isLoaded;
+  registerNodes.seedButton.textContent = isLoaded ? "Exemple chargé" : "Charger un exemple";
+  registerNodes.seedButton.setAttribute("aria-disabled", String(isLoaded));
+  registerNodes.seedButton.classList.toggle("is-disabled", isLoaded);
+  registerNodes.seedButton.title = isLoaded
+    ? "L'exemple est déjà chargé dans le registre"
+    : "Ajouter un exemple fictif dans le registre";
 }
 
 function syncExportButton(realItemCount) {

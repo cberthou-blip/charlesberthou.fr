@@ -3974,6 +3974,16 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: none;
 }
 
+.register-form-actions .button.is-disabled,
+.register-form-actions .button:disabled {
+  border-color: rgba(13, 27, 62, 0.14);
+  background: #f8fafc;
+  color: #667085;
+  box-shadow: none;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
 .register-method {
   gap: 8px;
   padding-top: 8px;
