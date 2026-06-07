@@ -22,6 +22,8 @@ node_modules/
 dist/
 build/
 coverage/
+.playwright-cli/
+output/
 .cache/
 .parcel-cache/
 .vite/
@@ -35,3 +37,6 @@ ui-debug.log
 # IDE-local settings
 .idea/
 .vscode/
+
+# Local agent instructions
+AGENTS.md
