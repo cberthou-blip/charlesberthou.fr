@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /llms.txt
-Disallow: /llms-full.txt
 
 Sitemap: https://charlesberthou.fr/sitemap.xml
