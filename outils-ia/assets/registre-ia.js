@@ -296,10 +296,12 @@ function renderReadiness() {
   const highRisk = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
 
   if (count === 0) {
-    const hasExample = registerState.register.some((item) => item.isExample);
-    registerNodes.readiness.innerHTML = hasExample
-      ? `<strong>Exemple chargé</strong><span>Il sert de repère visuel. L’export reste désactivé tant qu’aucun usage réel n’est ajouté.</span>`
-      : `<strong>Premier usage à ajouter</strong><span>Renseignez usage, objectif, données, responsable, risque et statut pour commencer le registre.</span>`;
+    registerNodes.readiness.innerHTML = `<strong>Premier usage à ajouter</strong><span>Renseignez usage, objectif, données, responsable, risque et statut pour commencer le registre.</span>`;
+    return;
+  }
+
+  if (count === 1 && hasLoadedExample()) {
+    registerNodes.readiness.innerHTML = `<strong>Exemple chargé</strong><span>Vous pouvez exporter ce modèle en CSV ou ajouter votre propre usage avant de télécharger le registre.</span>`;
     return;
   }
 
@@ -587,7 +589,7 @@ function csvCell(value) {
 }
 
 function getRealRegisterItems() {
-  return registerState.register.filter((item) => !item.isExample);
+  return registerState.register;
 }
 
 function hasLoadedExample() {
@@ -614,8 +616,8 @@ function syncExportButton(realItemCount) {
   registerNodes.exportButton.setAttribute("aria-disabled", String(!isAvailable));
   registerNodes.exportButton.classList.toggle("is-disabled", !isAvailable);
   registerNodes.exportButton.title = isAvailable
-    ? "Télécharger les usages réels au format CSV"
-    : "Ajoutez au moins un usage réel pour exporter le CSV";
+    ? "Télécharger le registre au format CSV"
+    : "Ajoutez un usage ou chargez l'exemple pour exporter le CSV";
 }
 
 function updateInlineMetrics(id) {
