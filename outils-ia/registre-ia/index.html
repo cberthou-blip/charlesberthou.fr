@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-ui" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-register-premium" />
   
 </head>
 <body>
@@ -55,8 +55,8 @@
         <p class="register-empty-hero tool-hero-empty-indicator" id="registerEmptyHero">Aucun usage inscrit pour l’instant.</p>
         <div class="tool-stat-strip register-stats tool-hero-indicators" id="registerStats" aria-label="État du registre" hidden>
           <span><strong id="registerCount">0</strong> usages</span>
-          <span><strong id="highRiskCount">0</strong> à risque élevé</span>
-          <span><strong id="reviewCount">0</strong> actifs</span>
+          <span><strong id="highRiskCount">0</strong> risque Élevé</span>
+          <span><strong id="reviewCount">0</strong> Actif</span>
         </div>
       </div>
     </section>
@@ -90,9 +90,9 @@
             <label class="form-row compact">
               <span>Risque</span>
               <select id="registerRisk">
-                <option value="faible">Risque faible</option>
-                <option value="moyen" selected>Risque moyen</option>
-                <option value="élevé">Risque élevé</option>
+                <option value="faible">Faible</option>
+                <option value="moyen" selected>Moyen</option>
+                <option value="élevé">Élevé</option>
               </select>
             </label>
             <label class="form-row compact">
@@ -100,7 +100,6 @@
               <select id="registerStatus">
                 <option value="à tester" selected>À tester</option>
                 <option value="actif">Actif</option>
-                <option value="à revoir">À revoir</option>
                 <option value="archivé">Archivé</option>
               </select>
             </label>
@@ -155,7 +154,7 @@
               <h2 id="registerTitle">Registre IA simplifié</h2>
             </div>
             <div class="actions register-actions">
-              <button class="button" type="button" id="exportRegister" disabled>Exporter CSV</button>
+              <button class="button is-disabled" type="button" id="exportRegister" disabled aria-disabled="true">Export CSV indisponible</button>
             </div>
           </div>
           <div class="register-readiness" id="registerReadiness"></div>
@@ -194,6 +193,6 @@
     </div>
   </footer>
   <script src="/assets/js/site.js?v=20260606-clean" defer></script>
-  <script src="/outils-ia/assets/registre-ia.js?v=20260606-clean" defer></script>
+  <script src="/outils-ia/assets/registre-ia.js?v=20260607-register-premium" defer></script>
 </body>
 </html>

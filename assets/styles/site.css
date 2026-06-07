@@ -2434,8 +2434,8 @@ input[type="range"]::-moz-range-thumb {
 
 .register-tool .register-example-card,
 .register-tool .register-item-card {
-  gap: 12px;
-  padding: 15px;
+  gap: 14px;
+  padding: 18px;
   border-radius: 8px;
   border-color: rgba(13, 27, 62, 0.12);
   box-shadow: none;
@@ -2449,6 +2449,7 @@ input[type="range"]::-moz-range-thumb {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-items: center;
   gap: 7px;
 }
 
@@ -2466,7 +2467,7 @@ input[type="range"]::-moz-range-thumb {
 
 .example-pill {
   border: 1px solid rgba(13, 27, 62, 0.1);
-  background: #eef2f7;
+  background: #f3f6fa;
   color: #4b5565;
 }
 
@@ -2491,19 +2492,68 @@ input[type="range"]::-moz-range-thumb {
   color: #647084;
 }
 
-.register-tool .register-item-metrics {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.register-tool .register-item-metrics span {
-  padding: 9px;
-  border-color: rgba(13, 27, 62, 0.09);
+.register-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  padding: 14px;
+  border: 1px solid rgba(13, 27, 62, 0.08);
+  border-radius: 8px;
   background: #f8fafc;
 }
 
+.register-summary-grid div {
+  min-width: 0;
+  padding: 0;
+}
+
+.register-summary-grid span {
+  display: block;
+  margin-bottom: 3px;
+  color: #667085;
+  font-size: 0.78rem;
+  font-weight: 620;
+}
+
+.register-summary-grid p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
 .register-tool .register-form-grid {
-  gap: 10px;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.register-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.register-card-footer .danger-button {
+  border-color: rgba(180, 35, 24, 0.18);
+  background: #fff;
+  color: #a13b32;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.register-card-footer .danger-button:hover {
+  border-color: rgba(180, 35, 24, 0.3);
+  background: rgba(180, 35, 24, 0.055);
+}
+
+.register-tool .register-actions .button.is-disabled,
+.register-tool .register-actions .button:disabled {
+  border-color: rgba(13, 27, 62, 0.16);
+  background: #f8fafc;
+  color: #667085;
+  opacity: 1;
 }
 
 .register-tool .register-inline-help {
@@ -3936,7 +3986,7 @@ input[type="range"]::-moz-range-thumb {
 
 .register-tool .register-example-card,
 .register-tool .register-item-card {
-  padding: 16px;
+  padding: 18px;
 }
 
 .contact-layout {
@@ -4023,6 +4073,19 @@ input[type="range"]::-moz-range-thumb {
 
   .register-short-form {
     grid-template-columns: 1fr;
+  }
+
+  .register-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .register-summary-grid div,
+  .register-summary-grid div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .register-summary-grid div:last-child {
+    border-bottom: 0;
   }
 
   .roi-tool .roi-secondary-metrics div {

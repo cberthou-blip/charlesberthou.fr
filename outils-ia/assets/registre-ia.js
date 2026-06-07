@@ -43,7 +43,7 @@ const registerNodes = {
   sourcePanel: document.querySelector("#registerSourcePanel"),
 };
 
-const statusOptions = ["à tester", "actif", "à revoir", "archivé"];
+const statusOptions = ["à tester", "actif", "archivé"];
 const riskOptions = ["faible", "moyen", "élevé"];
 const dataTypeOptions = ["", "données publiques", "données internes", "données confidentielles", "données personnelles", "données sensibles"];
 
@@ -84,8 +84,8 @@ function bindRegisterEvents() {
     renderSourceCases();
   });
 
-  registerNodes.exportButton.addEventListener("click", exportRegisterCsv);
-  registerNodes.seedButton.addEventListener("click", seedRegister);
+  registerNodes.exportButton?.addEventListener("click", exportRegisterCsv);
+  registerNodes.seedButton?.addEventListener("click", seedRegister);
 }
 
 function renderRegisterFilters() {
@@ -143,7 +143,7 @@ function renderChipGroup(root, values, currentValue, onSelect) {
 
   if (root.tagName === "SELECT") {
     root.innerHTML = values.map((value) => (
-      `<option value="${escapeHtml(value)}" ${value === currentValue ? "selected" : ""}>${escapeHtml(value)}</option>`
+      `<option value="${escapeHtml(value)}" ${value === currentValue ? "selected" : ""}>${escapeHtml(formatValueLabel(value))}</option>`
     )).join("");
     root.onchange = () => onSelect(root.value);
     return;
@@ -196,7 +196,7 @@ function renderSourceCases() {
         <strong>${escapeHtml(item.title)}</strong>
         <p>${escapeHtml(item.summary)}</p>
         <div class="tag-row compact-tags">
-          <span class="tag">Risque ${escapeHtml(item.riskLevel)}</span>
+          <span class="tag">${escapeHtml(formatRisk(item.riskLevel))}</span>
           <span class="tag">${escapeHtml(item.maturity)}</span>
           <span class="tag">Impact ${escapeHtml(item.impact)}</span>
         </div>
@@ -214,11 +214,11 @@ function renderSourceCases() {
 
 function renderRegister() {
   const items = registerState.register;
-  const realItems = items.filter((item) => !item.isExample);
+  const realItems = getRealRegisterItems();
   registerNodes.registerCount.textContent = realItems.length;
   registerNodes.highRiskCount.textContent = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
-  registerNodes.activeCount.textContent = realItems.filter((item) => item.status === "actif").length;
-  registerNodes.exportButton.disabled = realItems.length === 0;
+  registerNodes.activeCount.textContent = realItems.filter((item) => isActiveStatus(item.status)).length;
+  syncExportButton(realItems.length);
   registerNodes.heroStats.hidden = realItems.length === 0;
   registerNodes.heroEmpty.hidden = realItems.length > 0;
   registerNodes.sourcePanel.hidden = realItems.length === 0;
@@ -236,10 +236,12 @@ function renderRegister() {
           </div>
           <em>Exemple</em>
         </div>
-        <div class="register-item-metrics">
-          <span><small>Données</small><strong>Données internes</strong></span>
-          <span><small>Responsable</small><strong>Support client</strong></span>
-          <span><small>Statut</small><strong>À tester</strong></span>
+        <div class="register-summary-grid">
+          <div><span>Usage</span><p>Synthèse de tickets clients</p></div>
+          <div><span>Données</span><p>Données internes</p></div>
+          <div><span>Responsable</span><p>Support client</p></div>
+          <div><span>Risque</span><p>Moyen</p></div>
+          <div><span>Statut</span><p>À tester</p></div>
         </div>
         <p>Cette ligne illustre le niveau d'information attendu. Elle n'est pas exportée tant qu'aucun cas réel n'est ajouté.</p>
       </article>
@@ -259,22 +261,26 @@ function renderRegister() {
         <div class="register-card-actions">
           ${item.isExample ? `<em class="example-pill">Exemple</em>` : ""}
           <span class="status-pill status-${normalizeStatus(item.status)}" data-status-pill="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</span>
-          <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
         </div>
       </div>
-      <div class="register-item-metrics">
-        <span><small>Usage</small><strong>${escapeHtml(item.title)}</strong></span>
-        <span><small>Données</small><strong data-data-display="${escapeHtml(item.id)}">${escapeHtml(item.dataType || "à préciser")}</strong></span>
-        <span><small>Responsable</small><strong data-owner-display="${escapeHtml(item.id)}">${escapeHtml(item.businessOwner || "à nommer")}</strong></span>
-        <span><small>Risque</small><strong data-risk-display="${escapeHtml(item.id)}">${escapeHtml(item.riskLevel)}</strong></span>
-        <span><small>Statut</small><strong data-status-display="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</strong></span>
+      <div class="register-summary-grid">
+        <div><span>Usage</span><p>${escapeHtml(item.title)}</p></div>
+        <div><span>Données</span><p data-data-display="${escapeHtml(item.id)}">${escapeHtml(item.dataType || "à préciser")}</p></div>
+        <div><span>Responsable</span><p data-owner-display="${escapeHtml(item.id)}">${escapeHtml(item.businessOwner || "à nommer")}</p></div>
+        <div><span>Risque</span><p data-risk-display="${escapeHtml(item.id)}">${escapeHtml(formatRisk(item.riskLevel))}</p></div>
+        <div><span>Statut</span><p data-status-display="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</p></div>
       </div>
-      <div class="register-form-grid">
-        ${textareaField(item, "purpose", "Objectif", "Ex. synthétiser les tickets pour préparer la réponse support")}
-        ${inputField(item, "dataType", "Données", "Ex. tickets, CRM, documents internes")}
-        ${inputField(item, "businessOwner", "Responsable", "Nom, rôle ou équipe")}
-        ${selectField(item, "riskLevel", "Risque", riskOptions)}
-        ${selectField(item, "status", "Statut", statusOptions)}
+      ${item.isExample ? "" : `
+        <div class="register-form-grid">
+          ${textareaField(item, "purpose", "Objectif", "Ex. synthétiser les tickets pour préparer la réponse support")}
+          ${inputField(item, "dataType", "Données", "Ex. tickets, CRM, documents internes")}
+          ${inputField(item, "businessOwner", "Responsable", "Nom, rôle ou équipe")}
+          ${selectField(item, "riskLevel", "Risque", riskOptions)}
+          ${selectField(item, "status", "Statut", statusOptions)}
+        </div>
+      `}
+      <div class="register-card-footer">
+        <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
       </div>
     `;
     card.addEventListener("input", handleRegisterInput);
@@ -285,7 +291,7 @@ function renderRegister() {
 }
 
 function renderReadiness() {
-  const realItems = registerState.register.filter((item) => !item.isExample);
+  const realItems = getRealRegisterItems();
   const count = realItems.length;
   const highRisk = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
 
@@ -302,7 +308,7 @@ function renderReadiness() {
     return;
   }
 
-  registerNodes.readiness.innerHTML = `<strong>Registre exploitable</strong><span>${count} usages suivis, dont ${highRisk} à risque élevé. La prochaine étape consiste à clarifier les responsables et vérifier les données.</span>`;
+  registerNodes.readiness.innerHTML = `<strong>Registre exploitable</strong><span>${count} usages suivis, dont ${highRisk} risque Élevé. La prochaine étape consiste à clarifier les responsables et vérifier les données.</span>`;
 }
 
 function addManualRegisterEntry(event) {
@@ -335,7 +341,7 @@ function selectField(item, key, label, options, emptyLabel = "") {
     <label class="form-row compact">
       <span>${label}</span>
       <select data-id="${escapeHtml(item.id)}" data-field="${key}">
-        ${options.map((option) => `<option value="${escapeHtml(option)}" ${String(item[key] || "") === option ? "selected" : ""}>${escapeHtml(option || emptyLabel)}</option>`).join("")}
+        ${options.map((option) => `<option value="${escapeHtml(option)}" ${String(item[key] || "") === option ? "selected" : ""}>${escapeHtml(formatOptionLabel(key, option || emptyLabel))}</option>`).join("")}
       </select>
     </label>
   `;
@@ -385,10 +391,11 @@ function removeFromRegister(id) {
 function updateRegisterItem(id, updates) {
   registerState.register = registerState.register.map((item) => item.id === id ? { ...item, ...updates } : item);
   saveRegister();
-  const realItems = registerState.register.filter((item) => !item.isExample);
+  const realItems = getRealRegisterItems();
   renderReadiness();
   registerNodes.highRiskCount.textContent = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
-  registerNodes.activeCount.textContent = realItems.filter((item) => item.status === "actif").length;
+  registerNodes.activeCount.textContent = realItems.filter((item) => isActiveStatus(item.status)).length;
+  syncExportButton(realItems.length);
   updateInlineMetrics(id);
 }
 
@@ -539,8 +546,11 @@ function saveRegister() {
 }
 
 function exportRegisterCsv() {
-  const exportableItems = registerState.register.filter((item) => !item.isExample);
-  if (exportableItems.length === 0) return;
+  const exportableItems = getRealRegisterItems();
+  if (exportableItems.length === 0) {
+    syncExportButton(0);
+    return;
+  }
 
   const headers = [
     "usage",
@@ -549,15 +559,15 @@ function exportRegisterCsv() {
     "responsable",
     "risque",
     "statut",
-    "date_ajout",
+    "date_creation",
   ];
   const rows = exportableItems.map((item) => [
     item.title,
     item.purpose,
     item.dataType,
     item.businessOwner,
-    item.riskLevel,
-    item.status,
+    formatRisk(item.riskLevel),
+    formatStatus(item.status),
     item.addedAt,
   ]);
   const csv = [headers, ...rows].map((row) => row.map(csvCell).join(";")).join("\r\n");
@@ -569,18 +579,34 @@ function exportRegisterCsv() {
   document.body.appendChild(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function csvCell(value) {
   return `"${String(value ?? "").replace(/"/g, '""')}"`;
 }
 
+function getRealRegisterItems() {
+  return registerState.register.filter((item) => !item.isExample);
+}
+
+function syncExportButton(realItemCount) {
+  if (!registerNodes.exportButton) return;
+  const isAvailable = realItemCount > 0;
+  registerNodes.exportButton.disabled = !isAvailable;
+  registerNodes.exportButton.textContent = isAvailable ? "Exporter CSV" : "Export CSV indisponible";
+  registerNodes.exportButton.setAttribute("aria-disabled", String(!isAvailable));
+  registerNodes.exportButton.classList.toggle("is-disabled", !isAvailable);
+  registerNodes.exportButton.title = isAvailable
+    ? "Télécharger les usages réels au format CSV"
+    : "Ajoutez au moins un usage réel pour exporter le CSV";
+}
+
 function updateInlineMetrics(id) {
   const item = registerState.register.find((entry) => entry.id === id);
   if (!item) return;
   registerNodes.registerList.querySelectorAll("[data-risk-display]").forEach((node) => {
-    if (node.dataset.riskDisplay === id) node.textContent = item.riskLevel;
+    if (node.dataset.riskDisplay === id) node.textContent = formatRisk(item.riskLevel);
   });
   registerNodes.registerList.querySelectorAll("[data-next-action]").forEach((node) => {
     if (node.dataset.nextAction === id) node.textContent = getNextAction(item);
@@ -619,10 +645,21 @@ function isHighRisk(value) {
   return riskWeight(value) >= 3;
 }
 
+function isActiveStatus(value) {
+  const normalized = normalize(value);
+  return normalized.includes("actif") || normalized.includes("valide") || normalized.includes("pilote");
+}
+
+function formatRisk(value) {
+  const normalized = normalize(value);
+  if (normalized.includes("eleve")) return "Élevé";
+  if (normalized.includes("faible")) return "Faible";
+  return "Moyen";
+}
+
 function formatStatus(value) {
   const normalized = normalize(value);
   if (normalized.includes("actif") || normalized.includes("valide") || normalized.includes("pilote")) return "Actif";
-  if (normalized.includes("revoir") || normalized.includes("suspendu")) return "À revoir";
   if (normalized.includes("archive")) return "Archivé";
   return "À tester";
 }
@@ -630,9 +667,21 @@ function formatStatus(value) {
 function normalizeStatus(value) {
   const normalized = normalize(value);
   if (normalized.includes("actif") || normalized.includes("valide") || normalized.includes("pilote")) return "active";
-  if (normalized.includes("revoir") || normalized.includes("suspendu")) return "review";
   if (normalized.includes("archive")) return "archived";
   return "test";
+}
+
+function formatOptionLabel(key, value) {
+  if (key === "riskLevel") return formatRisk(value);
+  if (key === "status") return formatStatus(value);
+  return formatValueLabel(value);
+}
+
+function formatValueLabel(value) {
+  const normalized = normalize(value);
+  if (normalized === normalize(ALL_DEPARTMENTS)) return ALL_DEPARTMENTS;
+  if (["faible", "moyen", "eleve"].some((risk) => normalized.includes(risk))) return formatRisk(value);
+  return value;
 }
 
 function sortRiskValues(values) {
