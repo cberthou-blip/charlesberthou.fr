@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
-  <title>Test de maturitÃ© IA | Diagnostic entreprise</title>
-  <meta name="description" content="Test de maturitÃ© IA pour situer une entreprise : usages, compÃ©tences, gouvernance, gains, cas d'usage et passage Ã  l'Ã©chelle." />
+  <title>Test de maturité IA | Diagnostic entreprise</title>
+  <meta name="description" content="Test de maturité IA pour situer une entreprise : usages, compétences, gouvernance, gains, cas d'usage et passage à l'échelle." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/maturite-ia/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Test de maturitÃ© IA | Diagnostic entreprise" />
-  <meta property="og:description" content="Test de maturitÃ© IA pour situer une entreprise : usages, compÃ©tences, gouvernance, gains, cas d'usage et passage Ã  l'Ã©chelle." />
+  <meta property="og:title" content="Test de maturité IA | Diagnostic entreprise" />
+  <meta property="og:description" content="Test de maturité IA pour situer une entreprise : usages, compétences, gouvernance, gains, cas d'usage et passage à l'échelle." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/maturite-ia/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Test de maturitÃ© IA | Diagnostic entreprise" />
-  <meta name="twitter:description" content="Test de maturitÃ© IA pour situer une entreprise : usages, compÃ©tences, gouvernance, gains, cas d'usage et passage Ã  l'Ã©chelle." />
+  <meta name="twitter:title" content="Test de maturité IA | Diagnostic entreprise" />
+  <meta name="twitter:description" content="Test de maturité IA pour situer une entreprise : usages, compétences, gouvernance, gains, cas d'usage et passage à l'échelle." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,14 +46,14 @@
     <section class="page-hero tool-hero hero-band tool-common-hero">
       <div class="container tool-common-hero-inner">
         <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
-        <p class="eyebrow">Test de maturitÃ© IA</p>
-        <h1>Voir oÃ¹ lâ€™IA peut avancer sans forcer.</h1>
+        <p class="eyebrow">Test de maturité IA</p>
+        <h1>Voir où l’IA peut avancer sans forcer.</h1>
         <p class="lead">
-          Dix curseurs pour repÃ©rer les appuis disponibles, les angles morts et la prochaine dÃ©cision rÃ©aliste avant un pilote.
+          Dix curseurs pour repérer les appuis disponibles, les angles morts et la prochaine décision réaliste avant un pilote.
         </p>
         <span class="step-pill">1/4</span>
         <div class="maturity-score-card tool-hero-indicators maturity-hero-indicators" id="maturityScoreCard">
-          <div class="maturity-score-visual" aria-label="Score global de maturitÃ© IA">
+          <div class="maturity-score-visual" aria-label="Score global de maturité IA">
             <strong id="maturityScore">0/40</strong>
           </div>
           <div class="maturity-score-copy">
@@ -62,7 +62,7 @@
             <p id="maturityScoreInsight">Renseignez les axes pour obtenir une lecture exploitable.</p>
           </div>
           <div class="maturity-score-meta">
-            <span><strong id="maturityScorePercent">0 %</strong> de maturitÃ©</span>
+            <span><strong id="maturityScorePercent">0 %</strong> de maturité</span>
             <span><strong id="maturityScoreBlocker">-</strong> axe prioritaire</span>
           </div>
         </div>
@@ -71,28 +71,28 @@
 
     <section class="section tool-workspace-section">
       <div class="container maturity-layout">
-        <div class="mobile-collapse maturity-axes-column" data-mobile-collapse="Axes de maturitÃ©" data-mobile-open="true">
+        <div class="mobile-collapse maturity-axes-column" data-mobile-collapse="Axes de maturité" data-mobile-open="true">
           <div class="mobile-collapse-content">
         <section class="maturity-questions" aria-labelledby="maturityQuestionsTitle">
           <div class="panel-heading compact-heading">
             <div>
               <h2 id="maturityQuestionsTitle">Positionnez l'organisation</h2>
             </div>
-            <button class="button secondary" type="button" id="resetMaturity">RÃ©initialiser</button>
+            <button class="button secondary" type="button" id="resetMaturity">Réinitialiser</button>
           </div>
           <div id="maturityAxes"></div>
         </section>
           </div>
         </div>
 
-        <div class="mobile-collapse maturity-result-column" data-mobile-collapse="RÃ©sultat" data-mobile-open="false">
+        <div class="mobile-collapse maturity-result-column" data-mobile-collapse="Résultat" data-mobile-open="false">
           <div class="mobile-collapse-content">
         <aside class="maturity-results" aria-live="polite">
           <section class="maturity-panel maturity-result-card">
-            <h2 id="maturityTitle">DÃ©marrage Ã  cadrer</h2>
-            <p id="maturitySummary">DÃ©placez les curseurs pour obtenir une lecture adaptÃ©e.</p>
-            <p class="maturity-result-note">Ce score n'est pas un verdict : il sert Ã  choisir le prochain chantier concret et Ã  rendre visibles les conditions de rÃ©ussite.</p>
-            <p class="maturity-result-meta"><span>Niveau obtenu</span><strong id="maturityProfile">Non qualifiÃ©</strong></p>
+            <h2 id="maturityTitle">Démarrage à cadrer</h2>
+            <p id="maturitySummary">Déplacez les curseurs pour obtenir une lecture adaptée.</p>
+            <p class="maturity-result-note">Ce score n'est pas un verdict : il sert à choisir le prochain chantier concret et à rendre visibles les conditions de réussite.</p>
+            <p class="maturity-result-meta"><span>Niveau obtenu</span><strong id="maturityProfile">Non qualifié</strong></p>
             <div class="actions">
               <a class="button" href="/outils-ia/cas-usage/">Explorer les cas d'usage</a>
             </div>
@@ -108,7 +108,7 @@
         <div>
           <span class="card-meta">Suite du parcours</span>
           <h2>Explorer les cas d'usage IA</h2>
-          <p>Gardez le fil : chaque outil transforme la sortie prÃ©cÃ©dente en dÃ©cision plus concrÃ¨te.</p>
+          <p>Gardez le fil : chaque outil transforme la sortie précédente en décision plus concrète.</p>
         </div>
         <a class="button" href="/outils-ia/cas-usage/">Explorer les cas d'usage IA</a>
       </div>
@@ -120,7 +120,7 @@
       <div class="footer-brand">
         <a class="footer-brand-name" href="/">charlesberthou.fr</a>
         <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Ã‰ditÃ© par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma DÃ©veloppement</a></p>
+        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>
