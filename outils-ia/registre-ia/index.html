@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
   <title>Registre IA | Inventaire usages et risques</title>
-  <meta name="description" content="Registre IA simplifié pour documenter usage, objectif, données, responsable, risque et statut avant un déploiement en entreprise." />
+  <meta name="description" content="Registre IA simplifiÃ© pour documenter usage, objectif, donnÃ©es, responsable, risque et statut avant un dÃ©ploiement en entreprise." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/registre-ia/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,12 +16,12 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Registre IA | Inventaire usages et risques" />
-  <meta property="og:description" content="Registre IA simplifié pour documenter usage, objectif, données, responsable, risque et statut avant un déploiement en entreprise." />
+  <meta property="og:description" content="Registre IA simplifiÃ© pour documenter usage, objectif, donnÃ©es, responsable, risque et statut avant un dÃ©ploiement en entreprise." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/registre-ia/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Registre IA | Inventaire usages et risques" />
-  <meta name="twitter:description" content="Registre IA simplifié pour documenter usage, objectif, données, responsable, risque et statut avant un déploiement en entreprise." />
+  <meta name="twitter:description" content="Registre IA simplifiÃ© pour documenter usage, objectif, donnÃ©es, responsable, risque et statut avant un dÃ©ploiement en entreprise." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,13 +49,13 @@
         <p class="eyebrow">Registre IA</p>
         <h1>Documenter les usages IA.</h1>
         <p class="lead">
-          Notez l’usage, l’objectif, les données, le responsable, le risque et le statut. Le registre reste local et s’exporte en CSV.
+          Notez lâ€™usage, lâ€™objectif, les donnÃ©es, le responsable, le risque et le statut. Le registre reste local et sâ€™exporte en CSV.
         </p>
         <span class="step-pill">4/4</span>
-        <p class="register-empty-hero tool-hero-empty-indicator" id="registerEmptyHero">Aucun usage inscrit pour l’instant.</p>
-        <div class="tool-stat-strip register-stats tool-hero-indicators" id="registerStats" aria-label="État du registre" hidden>
+        <p class="register-empty-hero tool-hero-empty-indicator" id="registerEmptyHero">Aucun usage inscrit pour lâ€™instant.</p>
+        <div class="tool-stat-strip register-stats tool-hero-indicators" id="registerStats" aria-label="Ã‰tat du registre" hidden>
           <span><strong id="registerCount">0</strong> usages</span>
-          <span><strong id="highRiskCount">0</strong> risque Élevé</span>
+          <span><strong id="highRiskCount">0</strong> risque Ã‰levÃ©</span>
           <span><strong id="reviewCount">0</strong> Actif</span>
         </div>
       </div>
@@ -67,40 +67,40 @@
           <div class="panel-heading compact-heading">
             <div>
               <h2 id="sourceTitle">Ajouter un usage IA</h2>
-              <p>Données stockées localement dans le navigateur.</p>
+              <p>DonnÃ©es stockÃ©es localement dans le navigateur.</p>
             </div>
           </div>
           <form class="register-short-form" id="registerManualForm">
             <label class="form-row compact wide-field">
               <span>Usage</span>
-              <input id="registerUsage" type="text" placeholder="Ex. Synthèse de tickets support" autocomplete="off" required />
+              <input id="registerUsage" type="text" placeholder="Ex. SynthÃ¨se de tickets support" autocomplete="off" required />
             </label>
             <label class="form-row compact wide-field">
               <span>Objectif</span>
-              <textarea id="registerObjective" rows="3" placeholder="Ce que l’usage doit aider à produire ou décider" required></textarea>
+              <textarea id="registerObjective" rows="3" placeholder="Ce que lâ€™usage doit aider Ã  produire ou dÃ©cider" required></textarea>
             </label>
             <label class="form-row compact">
-              <span>Données</span>
+              <span>DonnÃ©es</span>
               <input id="registerData" type="text" placeholder="Ex. tickets, CRM, documents internes" />
             </label>
             <label class="form-row compact">
               <span>Responsable</span>
-              <input id="registerOwner" type="text" placeholder="Équipe ou personne référente" />
+              <input id="registerOwner" type="text" placeholder="Ã‰quipe ou personne rÃ©fÃ©rente" />
             </label>
             <label class="form-row compact">
               <span>Risque</span>
               <select id="registerRisk">
                 <option value="faible">Faible</option>
                 <option value="moyen" selected>Moyen</option>
-                <option value="élevé">Élevé</option>
+                <option value="Ã©levÃ©">Ã‰levÃ©</option>
               </select>
             </label>
             <label class="form-row compact">
               <span>Statut</span>
               <select id="registerStatus">
-                <option value="à tester" selected>À tester</option>
+                <option value="Ã  tester" selected>Ã€ tester</option>
                 <option value="actif">Actif</option>
-                <option value="archivé">Archivé</option>
+                <option value="archivÃ©">ArchivÃ©</option>
               </select>
             </label>
             <div class="register-form-actions">
@@ -109,7 +109,7 @@
             </div>
           </form>
 
-          <div class="register-method" aria-label="Méthode registre IA">
+          <div class="register-method" aria-label="MÃ©thode registre IA">
             <span>Identifier</span>
             <span>Documenter</span>
             <span>Suivre</span>
@@ -132,8 +132,8 @@
                 <select id="registerRiskFilters" aria-label="Filtrer par risque"></select>
               </label>
               <label class="case-select-field compact">
-                <span>Maturité</span>
-                <select id="registerMaturityFilters" aria-label="Filtrer par maturité"></select>
+                <span>MaturitÃ©</span>
+                <select id="registerMaturityFilters" aria-label="Filtrer par maturitÃ©"></select>
               </label>
               <label class="case-select-field compact">
                 <span>Impact</span>
@@ -151,7 +151,7 @@
         <section class="register-board" aria-labelledby="registerTitle">
           <div class="panel-heading register-board-heading">
             <div>
-              <h2 id="registerTitle">Registre IA simplifié</h2>
+              <h2 id="registerTitle">Registre IA simplifiÃ©</h2>
             </div>
             <div class="actions register-actions">
               <button class="button is-disabled" type="button" id="exportRegister" disabled aria-disabled="true">Export CSV indisponible</button>
@@ -161,7 +161,7 @@
           <div class="register-list" id="registerList" aria-live="polite"></div>
           <div class="register-inline-help" aria-label="Aide compacte pour remplir le registre">
             <strong>Aide</strong>
-            <p>Commencez par une ligne imparfaite : usage, données, responsable, risque et statut suffisent pour suivre le sujet.</p>
+            <p>Commencez par une ligne imparfaite : usage, donnÃ©es, responsable, risque et statut suffisent pour suivre le sujet.</p>
           </div>
         </section>
       </div>
@@ -171,7 +171,7 @@
         <div>
           <span class="card-meta">Suite du parcours</span>
           <h2>Retour aux outils IA</h2>
-          <p>Revenir au parcours complet pour ajuster maturité, cas d’usage ou ROI.</p>
+          <p>Revenir au parcours complet pour ajuster maturitÃ©, cas dâ€™usage ou ROI.</p>
         </div>
         <a class="button" href="/outils-ia/">Retour aux outils IA</a>
       </div>
@@ -183,7 +183,7 @@
       <div class="footer-brand">
         <a class="footer-brand-name" href="/">charlesberthou.fr</a>
         <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
+        <p class="footer-editor">Ã‰ditÃ© par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma DÃ©veloppement</a></p>
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>

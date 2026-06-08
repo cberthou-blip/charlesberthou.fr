@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
-  <title>Cas d'usage IA | Explorateur métier</title>
-  <meta name="description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <title>Cas d'usage IA | Explorateur mÃ©tier</title>
+  <meta name="description" content="Explorateur de cas d'usage IA pour trouver des idÃ©es mÃ©tier, filtrer par fonction, qualifier les gains, les risques et prÃ©parer un pilote." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/cas-usage/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Cas d'usage IA | Explorateur métier" />
-  <meta property="og:description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
+  <meta property="og:title" content="Cas d'usage IA | Explorateur mÃ©tier" />
+  <meta property="og:description" content="Explorateur de cas d'usage IA pour trouver des idÃ©es mÃ©tier, filtrer par fonction, qualifier les gains, les risques et prÃ©parer un pilote." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/cas-usage/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Cas d'usage IA | Explorateur métier" />
-  <meta name="twitter:description" content="Explorateur de cas d'usage IA pour trouver des idées métier, filtrer par fonction, qualifier les gains, les risques et préparer un pilote." />
+  <meta name="twitter:title" content="Cas d'usage IA | Explorateur mÃ©tier" />
+  <meta name="twitter:description" content="Explorateur de cas d'usage IA pour trouver des idÃ©es mÃ©tier, filtrer par fonction, qualifier les gains, les risques et prÃ©parer un pilote." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,16 +46,16 @@
     <section class="page-hero tool-hero case-action-hero hero-band tool-common-hero">
       <div class="container tool-common-hero-inner">
         <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
-        <p class="eyebrow">Explorateur de cas d’usage IA</p>
-        <h1>Choisir un cas d’usage IA qui tient debout.</h1>
+        <p class="eyebrow">Explorateur de cas dâ€™usage IA</p>
+        <h1>Choisir un cas dâ€™usage IA qui tient debout.</h1>
         <p class="lead">
-          Filtrez par métier ou partez d’un besoin : chaque piste indique le gain attendu, les points de vigilance et la suite à tester.
+          Filtrez par mÃ©tier ou partez dâ€™un besoin : chaque piste indique le gain attendu, les points de vigilance et la suite Ã  tester.
         </p>
         <span class="step-pill">2/4</span>
-        <div class="tool-stat-strip case-hero-stats tool-hero-indicators" aria-label="Statistiques de la bibliothèque">
+        <div class="tool-stat-strip case-hero-stats tool-hero-indicators" aria-label="Statistiques de la bibliothÃ¨que">
           <span><strong data-total-cases>116</strong> cas</span>
           <span><strong data-total-functions>15</strong> fonctions</span>
-          <span><strong data-visible-count>0</strong> affichés</span>
+          <span><strong data-visible-count>0</strong> affichÃ©s</span>
         </div>
       </div>
     </section>
@@ -69,32 +69,32 @@
             <span class="case-step-number">1</span>
             <div>
               <h2 id="caseSearchTitle">Trouver un cas d'usage</h2>
-              <p>Décrivez le besoin, puis affinez par métier, contexte, type d'usage ou niveau de risque.</p>
+              <p>DÃ©crivez le besoin, puis affinez par mÃ©tier, contexte, type d'usage ou niveau de risque.</p>
             </div>
           </div>
 
           <div class="case-search-stack">
             <label class="case-hero-search case-search-main">
-              <span>Besoin ou mot clé</span>
-              <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
+              <span>Besoin ou mot clÃ©</span>
+              <input id="caseSearch" type="search" placeholder="Ex. rÃ©sumer une rÃ©union projet" autocomplete="off" />
             </label>
 
             <div class="case-quick-starts" aria-label="Filtres rapides">
-              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
-              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
+              <button type="button" data-case-quick-field="taskType" data-case-quick-value="SynthÃ©tiser">SynthÃ©tiser</button>
+              <button type="button" data-case-quick-field="taskType" data-case-quick-value="ContrÃ´ler">ContrÃ´ler</button>
               <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
               <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">Ressources humaines</button>
             </div>
 
             <div class="case-filter-groups case-filter-compact" aria-label="Filtres">
               <label class="case-select-field compact">
-                <span>Métier</span>
-                <select id="functionSelect" aria-label="Choisir un métier"></select>
+                <span>MÃ©tier</span>
+                <select id="functionSelect" aria-label="Choisir un mÃ©tier"></select>
               </label>
 
               <label class="case-select-field compact" id="domainFilterBlock" hidden>
-                <span>Activité</span>
-                <select id="activitySelect" aria-label="Choisir une activité"></select>
+                <span>ActivitÃ©</span>
+                <select id="activitySelect" aria-label="Choisir une activitÃ©"></select>
               </label>
 
               <label class="case-select-field compact" id="topicFilterBlock" hidden>
@@ -120,7 +120,7 @@
               </div>
             </div>
 
-            <button class="case-reset-button" type="button" id="caseResetFilters" hidden>Réinitialiser les filtres</button>
+            <button class="case-reset-button" type="button" id="caseResetFilters" hidden>RÃ©initialiser les filtres</button>
           </div>
 
           <p class="case-filter-hint" id="caseFilterHint" hidden></p>
@@ -132,14 +132,14 @@
 
     <section class="case-action-workspace">
       <div class="container">
-        <div class="mobile-collapse" data-mobile-collapse="Résultats" data-mobile-open="true">
+        <div class="mobile-collapse" data-mobile-collapse="RÃ©sultats" data-mobile-open="true">
           <div class="mobile-collapse-content">
         <section class="tool-library-panel case-explorer-panel case-results-panel" aria-labelledby="caseLibraryTitle">
             <div class="case-results-bar">
               <div>
-                <p class="eyebrow">Résultats</p>
-                <h2 id="caseLibraryTitle">Cas d'usage proposés</h2>
-                <p>Les fiches affichées reprennent les critères saisis dans la première carte.</p>
+                <p class="eyebrow">RÃ©sultats</p>
+                <h2 id="caseLibraryTitle">Cas d'usage proposÃ©s</h2>
+                <p>Les fiches affichÃ©es reprennent les critÃ¨res saisis dans la premiÃ¨re carte.</p>
               </div>
               <span class="result-count" id="caseResultCount">0 cas</span>
             </div>
@@ -155,13 +155,13 @@
 
     <section class="section case-method-section case-choice-help-section">
       <div class="container">
-        <div class="mobile-collapse" data-mobile-collapse="Méthode de choix" data-mobile-open="false">
+        <div class="mobile-collapse" data-mobile-collapse="MÃ©thode de choix" data-mobile-open="false">
           <div class="mobile-collapse-content">
         <article class="content-card compact-help-card wide-help-card">
           <h2 id="caseDetailTitle">Comment choisir le bon cas ?</h2>
-          <p id="caseDetailIntro">Un bon candidat relie une tâche réelle, un gain observable, des données disponibles et une règle de contrôle simple.</p>
+          <p id="caseDetailIntro">Un bon candidat relie une tÃ¢che rÃ©elle, un gain observable, des donnÃ©es disponibles et une rÃ¨gle de contrÃ´le simple.</p>
           <div class="tool-detail-panel case-detail-panel case-choice-detail" id="caseDetail" aria-live="polite">
-            <p class="empty-state">Sélectionnez un cas affiché pour voir la tâche, la sortie attendue, le gain estimé, le niveau de vigilance, les données à fournir et les vérifications à prévoir.</p>
+            <p class="empty-state">SÃ©lectionnez un cas affichÃ© pour voir la tÃ¢che, la sortie attendue, le gain estimÃ©, le niveau de vigilance, les donnÃ©es Ã  fournir et les vÃ©rifications Ã  prÃ©voir.</p>
           </div>
         </article>
           </div>
@@ -171,7 +171,7 @@
     <section class="section tool-next-section">
       <div class="container next-card">
         <div>
-          <span class="card-meta">Cas d'usage sélectionné → ROI IA</span>
+          <span class="card-meta">Cas d'usage sÃ©lectionnÃ© â†’ ROI IA</span>
           <h2>Calculer le ROI IA</h2>
           <p>Une fois le cas choisi, chiffrez l'ordre de grandeur avant de lancer un pilote.</p>
         </div>
@@ -185,7 +185,7 @@
       <div class="footer-brand">
         <a class="footer-brand-name" href="/">charlesberthou.fr</a>
         <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
+        <p class="footer-editor">Ã‰ditÃ© par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma DÃ©veloppement</a></p>
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
   <title>Calculateur ROI IA | Simulateur de gains</title>
-  <meta name="description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagné, coût chargé, adoption, coût annuel, risque et délai de retour." />
+  <meta name="description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagnÃ©, coÃ»t chargÃ©, adoption, coÃ»t annuel, risque et dÃ©lai de retour." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/outils-ia/roi-ia/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,12 +16,12 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Calculateur ROI IA | Simulateur de gains" />
-  <meta property="og:description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagné, coût chargé, adoption, coût annuel, risque et délai de retour." />
+  <meta property="og:description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagnÃ©, coÃ»t chargÃ©, adoption, coÃ»t annuel, risque et dÃ©lai de retour." />
   <meta property="og:url" content="https://charlesberthou.fr/outils-ia/roi-ia/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Calculateur ROI IA | Simulateur de gains" />
-  <meta name="twitter:description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagné, coût chargé, adoption, coût annuel, risque et délai de retour." />
+  <meta name="twitter:description" content="Calculateur de ROI IA pour estimer le gain net d'un cas d'usage : temps gagnÃ©, coÃ»t chargÃ©, adoption, coÃ»t annuel, risque et dÃ©lai de retour." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,13 +47,13 @@
       <div class="container tool-common-hero-inner">
         <a class="back-link" href="/outils-ia/">Retour aux outils IA</a>
         <p class="eyebrow">Calculateur de ROI IA</p>
-        <h1>Chiffrer un usage IA avant d’y mettre du temps.</h1>
+        <h1>Chiffrer un usage IA avant dâ€™y mettre du temps.</h1>
         <p class="lead">
-          Estimez le gain annuel, ajoutez une marge de prudence et comparez le résultat au coût complet. Le calcul sert à savoir si le pilote mérite l’effort.
+          Estimez le gain annuel, ajoutez une marge de prudence et comparez le rÃ©sultat au coÃ»t complet. Le calcul sert Ã  savoir si le pilote mÃ©rite lâ€™effort.
         </p>
         <span class="step-pill">3/4</span>
-        <div class="tool-stat-strip roi-stats tool-hero-indicators" aria-label="Résultats principaux">
-          <span><strong id="roiNetGain">0 €</strong> gain net</span>
+        <div class="tool-stat-strip roi-stats tool-hero-indicators" aria-label="RÃ©sultats principaux">
+          <span><strong id="roiNetGain">0 â‚¬</strong> gain net</span>
           <span><strong id="roiRatio">0 %</strong> ROI</span>
           <span><strong id="roiPayback">-</strong> retour</span>
         </div>
@@ -62,17 +62,17 @@
 
     <section class="section tool-workspace-section">
       <div class="container roi-layout">
-        <div class="mobile-collapse roi-input-column" data-mobile-collapse="Hypothèses" data-mobile-open="true">
+        <div class="mobile-collapse roi-input-column" data-mobile-collapse="HypothÃ¨ses" data-mobile-open="true">
           <div class="mobile-collapse-content">
         <section class="roi-panel" aria-labelledby="roiInputsTitle">
           <div class="panel-heading compact-heading">
             <div>
-              <h2 id="roiInputsTitle">Saisir les hypothèses</h2>
-              <p>Estimez les gains, les coûts et la prudence du calcul.</p>
+              <h2 id="roiInputsTitle">Saisir les hypothÃ¨ses</h2>
+              <p>Estimez les gains, les coÃ»ts et la prudence du calcul.</p>
             </div>
             <div class="actions compact-actions">
               <button class="button secondary" type="button" id="loadRoiExample">Charger un exemple</button>
-              <button class="roi-reset-link" type="button" id="resetRoi">Réinitialiser</button>
+              <button class="roi-reset-link" type="button" id="resetRoi">RÃ©initialiser</button>
             </div>
           </div>
 
@@ -81,38 +81,38 @@
               <h3>Volume et adoption</h3>
               <div class="roi-field-group-grid">
                 <label class="tool-search">
-                  <span>Collaborateurs concernés</span>
+                  <span>Collaborateurs concernÃ©s</span>
                   <div class="input-with-unit"><input id="peopleCount" type="number" min="0" max="50000" step="1" value="0" /><em>personnes</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Temps gagné / personne / semaine</span>
+                  <span>Temps gagnÃ© / personne / semaine</span>
                   <div class="input-with-unit"><input id="hoursSaved" type="number" min="0" max="40" step="0.25" value="0" /><em>heures</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Semaines concernées par an</span>
+                  <span>Semaines concernÃ©es par an</span>
                   <div class="input-with-unit"><input id="activeWeeks" type="number" min="0" max="52" step="1" value="0" /><em>semaines</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Taux d'adoption réaliste</span>
+                  <span>Taux d'adoption rÃ©aliste</span>
                   <div class="input-with-unit"><input id="adoptionRate" type="number" min="0" max="100" step="1" value="0" /><em>%</em></div>
                 </label>
               </div>
             </section>
 
             <section class="roi-field-group">
-              <h3>Coût</h3>
+              <h3>CoÃ»t</h3>
               <div class="roi-field-group-grid">
                 <label class="tool-search">
-                  <span>Coût chargé horaire moyen</span>
-                  <div class="input-with-unit"><input id="hourlyCost" type="number" min="0" max="500" step="1" value="0" /><em>€ / h</em></div>
+                  <span>CoÃ»t chargÃ© horaire moyen</span>
+                  <div class="input-with-unit"><input id="hourlyCost" type="number" min="0" max="500" step="1" value="0" /><em>â‚¬ / h</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Coût mensuel du dispositif</span>
-                  <div class="input-with-unit"><input id="monthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>€ / mois</em></div>
+                  <span>CoÃ»t mensuel du dispositif</span>
+                  <div class="input-with-unit"><input id="monthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>â‚¬ / mois</em></div>
                 </label>
                 <label class="tool-search">
                   <span>Cadrage et mise en place</span>
-                  <div class="input-with-unit"><input id="setupCost" type="number" min="0" max="1000000" step="100" value="0" /><em>€</em></div>
+                  <div class="input-with-unit"><input id="setupCost" type="number" min="0" max="1000000" step="100" value="0" /><em>â‚¬</em></div>
                 </label>
               </div>
             </section>
@@ -125,15 +125,15 @@
                   <div class="input-with-unit"><input id="confidenceBuffer" type="number" min="0" max="80" step="5" value="0" /><em>%</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Valeur qualité / mois</span>
-                  <div class="input-with-unit"><input id="qualityGainMonthly" type="number" min="0" max="1000000" step="100" value="0" /><em>€ / mois</em></div>
+                  <span>Valeur qualitÃ© / mois</span>
+                  <div class="input-with-unit"><input id="qualityGainMonthly" type="number" min="0" max="1000000" step="100" value="0" /><em>â‚¬ / mois</em></div>
                 </label>
                 <label class="tool-search">
                   <span>Validation humaine / mois</span>
-                  <div class="input-with-unit"><input id="reviewMonthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>€ / mois</em></div>
+                  <div class="input-with-unit"><input id="reviewMonthlyCost" type="number" min="0" max="1000000" step="50" value="0" /><em>â‚¬ / mois</em></div>
                 </label>
                 <label class="tool-search">
-                  <span>Réserve risque</span>
+                  <span>RÃ©serve risque</span>
                   <div class="input-with-unit"><input id="riskReserveRate" type="number" min="0" max="80" step="5" value="0" /><em>%</em></div>
                 </label>
               </div>
@@ -143,28 +143,28 @@
           </div>
         </div>
 
-        <div class="mobile-collapse roi-result-column" data-mobile-collapse="Résultats" data-mobile-open="false">
+        <div class="mobile-collapse roi-result-column" data-mobile-collapse="RÃ©sultats" data-mobile-open="false">
           <div class="mobile-collapse-content">
         <aside class="roi-results" aria-live="polite">
           <section class="maturity-panel roi-key-results">
-            <p class="eyebrow">Résultats</p>
+            <p class="eyebrow">RÃ©sultats</p>
             <div class="roi-primary-metrics">
-              <div><span>Gain annuel</span><strong id="roiKeyGain">0 €</strong></div>
-              <div><span>Coût annuel</span><strong id="roiKeyCost">0 €</strong></div>
+              <div><span>Gain annuel</span><strong id="roiKeyGain">0 â‚¬</strong></div>
+              <div><span>CoÃ»t annuel</span><strong id="roiKeyCost">0 â‚¬</strong></div>
               <div><span>ROI</span><strong id="roiKeyRatio">0 %</strong></div>
             </div>
             <div class="roi-metric-list roi-secondary-metrics">
-              <div><span>Heures récupérées par an</span><strong id="roiHours">0 h</strong></div>
-              <div><span>Gain prudent après marge</span><strong id="roiPrudentGain">0 €</strong></div>
-              <div><span>Budget pilote conseillé</span><strong id="roiPilotBudget">0 €</strong></div>
+              <div><span>Heures rÃ©cupÃ©rÃ©es par an</span><strong id="roiHours">0 h</strong></div>
+              <div><span>Gain prudent aprÃ¨s marge</span><strong id="roiPrudentGain">0 â‚¬</strong></div>
+              <div><span>Budget pilote conseillÃ©</span><strong id="roiPilotBudget">0 â‚¬</strong></div>
             </div>
           </section>
           <section class="maturity-panel roi-summary-card premium-panel roi-reading-panel">
             <h2>Lecture rapide</h2>
-            <p id="roiSummary">Ajustez les paramètres pour obtenir une première lecture économique.</p>
+            <p id="roiSummary">Ajustez les paramÃ¨tres pour obtenir une premiÃ¨re lecture Ã©conomique.</p>
             <div class="roi-next-step">
-              <strong>Prochaine étape</strong>
-              <p>Validez l'hypothèse sur un échantillon restreint, mesurez le temps réellement économisé, puis inscrivez le cas dans le registre IA avec ses données, risques et responsables.</p>
+              <strong>Prochaine Ã©tape</strong>
+              <p>Validez l'hypothÃ¨se sur un Ã©chantillon restreint, mesurez le temps rÃ©ellement Ã©conomisÃ©, puis inscrivez le cas dans le registre IA avec ses donnÃ©es, risques et responsables.</p>
               <a class="button" href="/outils-ia/registre-ia/">Ouvrir le registre IA</a>
             </div>
           </section>
@@ -180,19 +180,19 @@
           <div class="mobile-collapse-content">
         <article class="content-card compact-help-card wide-help-card">
           <h2>Lire le ROI</h2>
-          <p>Le calcul donne un ordre de grandeur prudent, pas une certitude budgétaire. Il aide à savoir si le cas mérite un pilote, un cadrage plus fin ou un abandon temporaire.</p>
+          <p>Le calcul donne un ordre de grandeur prudent, pas une certitude budgÃ©taire. Il aide Ã  savoir si le cas mÃ©rite un pilote, un cadrage plus fin ou un abandon temporaire.</p>
           <div class="roi-reading-grid roi-reading-cards">
             <div>
               <h3>ROI positif</h3>
-              <p>Lancez un pilote mesuré, avec un périmètre court et une mesure avant / après.</p>
+              <p>Lancez un pilote mesurÃ©, avec un pÃ©rimÃ¨tre court et une mesure avant / aprÃ¨s.</p>
             </div>
             <div>
               <h3>ROI faible</h3>
-              <p>Réduisez le coût, ciblez une population plus précise ou cherchez une valeur qualité et risque.</p>
+              <p>RÃ©duisez le coÃ»t, ciblez une population plus prÃ©cise ou cherchez une valeur qualitÃ© et risque.</p>
             </div>
             <div>
               <h3>ROI incertain</h3>
-              <p>Testez l'adoption réelle avant de généraliser : c'est souvent elle qui fait bouger le résultat.</p>
+              <p>Testez l'adoption rÃ©elle avant de gÃ©nÃ©raliser : c'est souvent elle qui fait bouger le rÃ©sultat.</p>
             </div>
           </div>
         </article>
@@ -205,7 +205,7 @@
         <div>
           <span class="card-meta">Suite du parcours</span>
           <h2>Documenter dans le registre IA</h2>
-          <p>Gardez le fil : chaque outil transforme la sortie précédente en décision plus concrète.</p>
+          <p>Gardez le fil : chaque outil transforme la sortie prÃ©cÃ©dente en dÃ©cision plus concrÃ¨te.</p>
         </div>
         <a class="button" href="/outils-ia/registre-ia/">Documenter dans le registre IA</a>
       </div>
@@ -217,7 +217,7 @@
       <div class="footer-brand">
         <a class="footer-brand-name" href="/">charlesberthou.fr</a>
         <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
+        <p class="footer-editor">Ã‰ditÃ© par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma DÃ©veloppement</a></p>
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/articles/">Articles</a>

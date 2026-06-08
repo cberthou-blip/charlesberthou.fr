@@ -1,6 +1,10 @@
 const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
 const CONTACT_ACCESS_KEY = "17656ba1-b511-4eed-b0b7-a34bc7716102";
-const CONTACT_RECIPIENT_CODES = [99, 98, 101, 114, 116, 104, 111, 117, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109];
+const OPS_FIRESTORE = {
+  projectId: "dharma-d153e",
+  apiKey: "AIzaSyCIcdAVTXMiNmd5gacUcERH957JPEDNCfY",
+  collectionPath: "ops/public/contactMessages"
+};
 
 function ensureIconSprite() {
   if (document.querySelector(".icon-sprite")) return;
@@ -110,14 +114,6 @@ function enhanceMobileCollapsibles() {
   mobileQuery.addEventListener?.("change", syncForViewport);
 }
 
-function getContactRecipient() {
-  return CONTACT_RECIPIENT_CODES.map((code) => String.fromCharCode(code)).join("");
-}
-
-function getContactFallbackUrl(subject = "Message depuis charlesberthou.fr", message = "") {
-  return `mailto:${getContactRecipient()}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message || "Bonjour,\n\n")}`;
-}
-
 function getContactReturnUrl() {
   const url = new URL(window.location.href);
   url.searchParams.set("contact", "envoye");
@@ -132,6 +128,44 @@ function escapeAttribute(value) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;")
     .replace(/`/g, "&#096;");
+}
+
+function firestoreValue(value, fieldName) {
+  if (fieldName.endsWith("At")) return { timestampValue: value };
+  if (typeof value === "boolean") return { booleanValue: value };
+  return { stringValue: String(value || "") };
+}
+
+async function writeOpsContactMessage(payload) {
+  const fields = Object.fromEntries(
+    Object.entries(payload).map(([key, value]) => [key, firestoreValue(value, key)])
+  );
+  const url = `https://firestore.googleapis.com/v1/projects/${OPS_FIRESTORE.projectId}/databases/(default)/documents/${OPS_FIRESTORE.collectionPath}?key=${OPS_FIRESTORE.apiKey}`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ fields })
+  });
+
+  if (!response.ok) {
+    throw new Error("Message non reçu dans Ops.");
+  }
+}
+
+async function notifyContactEmail(form) {
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    });
+    const result = await response.json().catch(() => ({}));
+    return response.ok && result.success !== false;
+  } catch {
+    return false;
+  }
 }
 
 function contactFormTemplate(context = "Site") {
@@ -185,7 +219,9 @@ function hydrateContactForms() {
   }
 }
 
-function submitContactForm(event) {
+async function submitContactForm(event) {
+  event.preventDefault();
+
   const form = event.currentTarget;
   const status = form.querySelector("[data-contact-status]");
   const button = form.querySelector("button[type='submit']");
@@ -194,9 +230,9 @@ function submitContactForm(event) {
   const replyTo = data.get("email") || "";
   const fullSubject = "[charlesberthou.fr] Message depuis le site";
   const pageUrl = window.location.href;
+  const now = new Date().toISOString();
 
   if (form.dataset.submitting === "true") {
-    event.preventDefault();
     return;
   }
 
@@ -213,18 +249,50 @@ function submitContactForm(event) {
   button.textContent = "Envoi en cours...";
   status.textContent = "Envoi en cours...";
 
-  if (navigator.onLine === false) {
-    event.preventDefault();
-    const fallbackUrl = getContactFallbackUrl(fullSubject, data.get("message"));
+  if (data.get("botcheck")) {
+    form.reset();
     form.classList.remove("is-loading");
-    form.classList.add("has-error");
-    status.innerHTML = `L'envoi automatique n'a pas abouti. <a href="${escapeAttribute(fallbackUrl)}">Ouvrir un email prérempli</a>.`;
+    form.classList.add("is-sent");
+    status.textContent = "Merci, le message a bien été transmis.";
     button.disabled = false;
     button.textContent = initialButtonText;
     return;
   }
 
   form.dataset.submitting = "true";
+
+  try {
+    await writeOpsContactMessage({
+      name: data.get("name"),
+      email: data.get("email"),
+      message: data.get("message"),
+      subject: fullSubject,
+      source: "Charles Berthou",
+      sourceSystem: "charlesberthou",
+      saas: "Charles Berthou",
+      type: "Formulaire site",
+      status: "new",
+      createdAt: now,
+      pageUrl,
+      userAgent: navigator.userAgent
+    });
+
+    const notified = await notifyContactEmail(form);
+    form.reset();
+    form.classList.remove("is-loading", "has-error");
+    form.classList.add("is-sent");
+    status.textContent = notified
+      ? "Merci, le message a bien été transmis."
+      : "Message reçu. La notification email sera vérifiée côté Ops.";
+  } catch {
+    form.classList.remove("is-loading", "is-sent");
+    form.classList.add("has-error");
+    status.textContent = "L'envoi n'a pas abouti dans la console. Merci de réessayer dans un instant.";
+  } finally {
+    delete form.dataset.submitting;
+    button.disabled = false;
+    button.textContent = initialButtonText;
+  }
 }
 
 function resetContactFormState(event) {
