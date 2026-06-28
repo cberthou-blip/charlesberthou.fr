@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
   <title>Contact | Charles Berthou</title>
-  <meta name="description" content="Contacter Charles Berthou pour une question sur les articles, les outils IA ou un sujet de cadrage IA." />
+  <meta name="description" content="Échanger avec Charles Berthou autour des usages concrets de l'IA, suivre ses réflexions sur LinkedIn ou envoyer un message direct." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/contact/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,65 +16,110 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Contact | Charles Berthou" />
-  <meta property="og:description" content="Contacter Charles Berthou pour une question sur les articles, les outils IA ou un sujet de cadrage IA." />
+  <meta property="og:description" content="Échanger autour des usages concrets de l'IA ou suivre mes réflexions sur LinkedIn." />
   <meta property="og:url" content="https://charlesberthou.fr/contact/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact | Charles Berthou" />
-  <meta name="twitter:description" content="Contacter Charles Berthou pour une question sur les articles, les outils IA ou un sujet de cadrage IA." />
+  <meta name="twitter:description" content="Échanger autour des usages concrets de l'IA ou suivre mes réflexions sur LinkedIn." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-mobile" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260628-mobile-first" />
 </head>
-<body>
 
+<body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
+
   <header class="site-header">
-    <div class="container nav-bar">
-      <a class="brand" href="/">charlesberthou.fr</a>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/articles/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
+    <div class="shell header-shell">
+      <a class="brand" href="/" aria-label="Charles Berthou, accueil">Charles Berthou</a>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" id="menu-principal" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/ressources/">Ressources</a>
         <a href="/contact/" aria-current="page">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="contenu">
-    <section class="page-hero">
-      <div class="container page-hero-inner">
-        <h1>Contact</h1>
-        <p class="lead">Un message court suffit. Le formulaire sert uniquement à répondre à votre demande.</p>
+    <section class="hero page-hero contact-hero">
+      <div class="shell page-hero-grid">
+        <div class="page-hero-copy">
+          <h1>Contact</h1>
+          <p>Invitation à échanger autour de l'IA.</p>
+        </div>
+        <figure class="page-visual" aria-hidden="true">
+          <img src="/assets/media/ia-network-portrait.png" alt="" width="1000" height="1200" loading="eager" />
+        </figure>
       </div>
     </section>
-    <section class="section">
-      <div class="container contact-layout">
-        <div class="contact-note">
-          <h2>Écrire</h2>
-          <p>Articles, outils IA, méthode de cadrage ou simple question : tout arrive au même endroit.</p>
-        </div>
-        <div data-contact-form-mount data-contact-context="Contact"></div>
+
+    <section class="section contact-section" aria-labelledby="contact-options">
+      <div class="shell contact-stack">
+        <h2 id="contact-options" class="sr-only">Options de contact</h2>
+
+        <a class="wide-card linkedin-wide" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">
+          <span class="linkedin-mark large" aria-hidden="true">in</span>
+          <span class="wide-card-copy">
+            <strong>Mes analyses et réflexions sur LinkedIn</strong>
+            <em>Retrouvez mes analyses, retours d'expérience et réflexions sur l'IA au quotidien.</em>
+            <span>Me suivre sur LinkedIn <span aria-hidden="true">→</span></span>
+          </span>
+          <span class="icon-disc small hide-mobile" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" /></svg>
+          </span>
+        </a>
+
+        <section class="contact-form-card" aria-labelledby="contact-direct">
+          <div class="form-heading">
+            <span class="icon-disc small" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" /><path d="m4 7 8 6 8-6" /></svg>
+            </span>
+            <div>
+              <h2 id="contact-direct">Me contacter directement</h2>
+              <p>Je vous réponds rapidement.</p>
+            </div>
+          </div>
+          <div data-contact-form-mount data-contact-context="Contact direct"></div>
+        </section>
       </div>
     </section>
   </main>
 
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a href="/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9Z" /></svg>
+      Accueil
+    </a>
+    <a href="/ressources/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2Z" /><path d="M9 8h6M9 12h6" /></svg>
+      Ressources
+    </a>
+    <a href="/contact/" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0" /></svg>
+      Contact
+    </a>
+  </nav>
+
   <footer class="site-footer">
-    <div class="container footer-simple">
-      <div class="footer-brand">
-        <a class="footer-brand-name" href="/">charlesberthou.fr</a>
-        <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
-      </div>
+    <div class="shell footer-shell">
+      <a class="footer-brand" href="/">Charles Berthou</a>
       <nav aria-label="Liens de pied de page">
-        <a href="/articles/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
+        <a href="/">Accueil</a>
+        <a href="/ressources/">Ressources</a>
         <a href="/contact/">Contact</a>
+        <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260607-mobile" defer></script>
+
+  <script src="/assets/js/site.js?v=20260628-mobile-first" defer></script>
 </body>
 </html>

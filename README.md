@@ -4,16 +4,16 @@ Site personnel statique publié avec GitHub Pages.
 
 ## Routes publiques
 
-- `/` : accueil avec articles, outils IA et contact.
-- `/articles/` : index des analyses longues et guides pratiques.
-- `/articles/*/` : articles publics.
-- `/outils-ia/` : parcours d'outils IA en quatre étapes.
-- `/outils-ia/maturite-ia/` : test de maturité IA.
-- `/outils-ia/cas-usage/` : explorateur de cas d'usage IA.
-- `/outils-ia/roi-ia/` : calculateur ROI IA.
-- `/outils-ia/registre-ia/` : registre IA simplifié.
-- `/contact/` : formulaire de contact.
+- `/` : accueil mobile-first avec présentation, ressources et contact.
+- `/ressources/` : prompts, outils IA, guides et checklists.
+- `/contact/` : LinkedIn et formulaire de contact.
+- `/outils-ia/maturite-ia/` : outil conservé, accessible depuis les ressources.
+- `/outils-ia/cas-usage/` : outil conservé, accessible depuis les ressources.
+- `/outils-ia/roi-ia/` : outil conservé, accessible depuis les ressources.
+- `/outils-ia/registre-ia/` : outil conservé, accessible depuis les ressources.
 
 ## Redirections
 
-Les anciennes routes publiques sont remplacées par des pages statiques `noindex` avec canonical et redirection HTML/JavaScript vers `/`, `/articles/`, `/outils-ia/` ou `/contact/`.
+- `/outils-ia/` redirige vers `/ressources/`.
+- Les anciennes routes Articles et Blog sont supprimées du dépôt ; la page 404 renvoie ces chemins vers LinkedIn.
+- Les anciennes routes de repères, services, GPTs et e-learning redirigent vers `/ressources/`.

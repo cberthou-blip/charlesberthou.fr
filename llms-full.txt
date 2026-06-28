@@ -1,28 +1,20 @@
 # charlesberthou.fr
 
-charlesberthou.fr publie des analyses longues et des guides pratiques sur les usages de l'IA, ainsi que quatre outils IA : maturité, cas d'usage, ROI et registre simplifié.
+charlesberthou.fr publie des ressources concrètes pour comprendre, tester et cadrer les usages de l'IA : prompts copiables, outils IA, guides pratiques et checklists.
 
 ## Routes publiques
 
 - Accueil : https://charlesberthou.fr/
-- Articles : https://charlesberthou.fr/articles/
-- Outils IA : https://charlesberthou.fr/outils-ia/
+- Ressources : https://charlesberthou.fr/ressources/
 - Contact : https://charlesberthou.fr/contact/
 
-## Articles
-
-- Registre IA : modèle simple et méthode pratique : https://charlesberthou.fr/articles/registre-ia-modele-gratuit/
-- Cas d’usage IA en entreprise : comment prioriser : https://charlesberthou.fr/articles/cas-usage-ia-entreprise-prioriser/
-- Shadow AI : cadrer les usages sans bloquer : https://charlesberthou.fr/articles/shadow-ai-cadrer-sans-bloquer/
-- ROI IA : exemple de calcul avant un pilote : https://charlesberthou.fr/articles/roi-ia-exemple-calcul-pilote/
-- AI Act et registre IA : ce qu’une PME peut documenter : https://charlesberthou.fr/articles/ai-act-registre-ia-pme/
-- Le token, prochaine monnaie de l’IA : https://charlesberthou.fr/articles/le-token-prochaine-monnaie-ia/
-- IA en entreprise : hâtez-vous lentement : https://charlesberthou.fr/articles/ia-entreprise/
-- L’humanité a toujours tremblé devant sa propre lumière : https://charlesberthou.fr/articles/humanite-lumiere/
-
-## Outils IA
+## Outils IA conservés
 
 - Test de maturité IA : https://charlesberthou.fr/outils-ia/maturite-ia/
 - Explorateur de cas d'usage IA : https://charlesberthou.fr/outils-ia/cas-usage/
 - Calculateur ROI IA : https://charlesberthou.fr/outils-ia/roi-ia/
 - Registre IA simplifié : https://charlesberthou.fr/outils-ia/registre-ia/
+
+## Analyses
+
+Les analyses et réflexions éditoriales ne sont plus publiées en section Articles sur le site. Elles sont renvoyées vers LinkedIn : https://fr.linkedin.com/in/charlesberthou

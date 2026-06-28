@@ -6,14 +6,112 @@ const OPS_FIRESTORE = {
   collectionPath: "ops/public/contactMessages"
 };
 
-function escapeAttribute(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
-    .replace(/`/g, "&#096;");
+function ensureIconSprite() {
+  if (document.querySelector(".icon-sprite")) return;
+  document.body.insertAdjacentHTML("afterbegin", `
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-tools" viewBox="0 0 24 24">
+        <path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8z" />
+      </symbol>
+      <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+        <path d="M12 19V5" />
+        <path d="M6 11l6-6 6 6" />
+      </symbol>
+    </svg>
+  `);
+}
+
+function enhanceMobileNavigation() {
+  const header = document.querySelector(".site-header");
+  const nav = header?.querySelector(".main-nav");
+  const navBar = header?.querySelector(".nav-bar");
+  if (!header || !nav || !navBar || header.querySelector(".menu-toggle")) return;
+  const mobileQuery = window.matchMedia("(max-width: 680px)");
+
+  const navId = nav.id || "navigation-principale";
+  nav.id = navId;
+  header.classList.add("has-mobile-menu");
+
+  const button = document.createElement("button");
+  button.className = "menu-toggle";
+  button.type = "button";
+  button.setAttribute("aria-label", "Ouvrir le menu");
+  button.setAttribute("aria-expanded", "false");
+  button.setAttribute("aria-controls", navId);
+  button.innerHTML = "<span></span><span></span><span></span>";
+  navBar.insertBefore(button, nav);
+
+  const setOpen = (isOpen) => {
+    const shouldOpen = Boolean(isOpen && mobileQuery.matches);
+    header.classList.toggle("menu-open", shouldOpen);
+    document.documentElement.classList.toggle("mobile-nav-open", shouldOpen);
+    button.setAttribute("aria-expanded", String(shouldOpen));
+    button.setAttribute("aria-label", shouldOpen ? "Fermer le menu" : "Ouvrir le menu");
+  };
+
+  button.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("click", (event) => {
+    if (!header.classList.contains("menu-open") || header.contains(event.target)) return;
+    setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+  mobileQuery.addEventListener?.("change", () => setOpen(false));
+}
+
+function enhanceMobileCollapsibles() {
+  const blocks = Array.from(document.querySelectorAll("[data-mobile-collapse]"));
+  if (!blocks.length) return;
+
+  const mobileQuery = window.matchMedia("(max-width: 680px)");
+
+  const configuredBlocks = [];
+
+  blocks.forEach((block, index) => {
+    if (block.dataset.mobileCollapseReady === "true") return;
+    block.dataset.mobileCollapseReady = "true";
+    const label = block.dataset.mobileCollapse || "Section";
+    const defaultOpen = block.dataset.mobileOpen !== "false";
+    const button = document.createElement("button");
+    button.className = "mobile-collapse-toggle";
+    button.type = "button";
+    button.setAttribute("aria-controls", `mobile-collapse-${index}`);
+    button.innerHTML = `<span>${escapeAttribute(label)}</span><span aria-hidden="true"></span>`;
+
+    const content = block.querySelector(".mobile-collapse-content");
+    if (content) content.id = content.id || `mobile-collapse-${index}`;
+
+    const setCollapsed = (collapsed) => {
+      block.dataset.collapsed = collapsed ? "true" : "false";
+      button.setAttribute("aria-expanded", String(!collapsed));
+    };
+
+    button.addEventListener("click", () => {
+      if (mobileQuery.matches) block.dataset.mobileTouched = "true";
+      setCollapsed(block.dataset.collapsed !== "true");
+    });
+    block.insertBefore(button, block.firstChild);
+    setCollapsed(mobileQuery.matches ? !defaultOpen : false);
+    configuredBlocks.push({ block, button, defaultOpen });
+  });
+
+  const syncForViewport = () => {
+    configuredBlocks.forEach(({ block, button, defaultOpen }) => {
+      if (mobileQuery.matches) {
+        if (block.dataset.mobileTouched === "true") return;
+        block.dataset.collapsed = defaultOpen ? "false" : "true";
+        button.setAttribute("aria-expanded", String(defaultOpen));
+      } else {
+        delete block.dataset.mobileTouched;
+        block.dataset.collapsed = "false";
+        button.setAttribute("aria-expanded", "true");
+      }
+    });
+  };
+
+  mobileQuery.addEventListener?.("change", syncForViewport);
 }
 
 function getContactReturnUrl() {
@@ -22,86 +120,14 @@ function getContactReturnUrl() {
   return url.toString();
 }
 
-function setupMenu() {
-  const toggle = document.querySelector("[data-menu-toggle]");
-  const nav = document.getElementById(toggle?.getAttribute("aria-controls"));
-  if (!toggle || !nav) return;
-
-  const setOpen = (open) => {
-    document.body.classList.toggle("menu-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-  };
-
-  toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
-  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setOpen(false);
-  });
-  document.addEventListener("click", (event) => {
-    if (!document.body.classList.contains("menu-open")) return;
-    if (toggle.contains(event.target) || nav.contains(event.target)) return;
-    setOpen(false);
-  });
-}
-
-function setupResourceFilters() {
-  const tabs = Array.from(document.querySelectorAll("[data-filter]"));
-  const cards = Array.from(document.querySelectorAll("[data-category]"));
-  if (!tabs.length || !cards.length) return;
-
-  const applyFilter = (filter) => {
-    tabs.forEach((tab) => {
-      const selected = tab.dataset.filter === filter;
-      tab.classList.toggle("is-active", selected);
-      tab.setAttribute("aria-pressed", String(selected));
-    });
-    cards.forEach((card) => {
-      const visible = filter === "all" || card.dataset.category === filter;
-      card.classList.toggle("is-hidden", !visible);
-    });
-  };
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => applyFilter(tab.dataset.filter || "all"));
-  });
-}
-
-async function copyToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const helper = document.createElement("textarea");
-  helper.value = text;
-  helper.setAttribute("readonly", "");
-  helper.style.position = "fixed";
-  helper.style.left = "-9999px";
-  document.body.appendChild(helper);
-  helper.select();
-  document.execCommand("copy");
-  helper.remove();
-}
-
-function setupPromptCopy() {
-  document.querySelectorAll("[data-copy-target]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const target = document.getElementById(button.dataset.copyTarget);
-      if (!target) return;
-      const initialText = button.textContent;
-      try {
-        await copyToClipboard(target.textContent.trim());
-        button.textContent = "Prompt copié";
-      } catch {
-        button.textContent = "Copie impossible";
-      } finally {
-        window.setTimeout(() => {
-          button.textContent = initialText;
-        }, 1600);
-      }
-    });
-  });
+function escapeAttribute(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+    .replace(/`/g, "&#096;");
 }
 
 function firestoreValue(value, fieldName) {
@@ -147,16 +173,16 @@ function contactFormTemplate(context = "Site") {
   return `
     <form class="site-contact-form" action="${escapeAttribute(CONTACT_ENDPOINT)}" method="POST" accept-charset="UTF-8" data-contact-form data-contact-context="${escapeAttribute(context)}">
       <label class="contact-field">
-        <span>Nom</span>
-        <input type="text" name="name" placeholder="Nom" autocomplete="name" required />
+        Nom
+        <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
       </label>
       <label class="contact-field">
-        <span>Email</span>
-        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+        Email
+        <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required />
       </label>
-      <label class="contact-field message-field">
-        <span>Message</span>
-        <textarea name="message" rows="7" placeholder="Votre message" required></textarea>
+      <label class="contact-field">
+        Message
+        <textarea name="message" rows="8" placeholder="Votre message" required></textarea>
       </label>
       <input type="hidden" name="access_key" value="${escapeAttribute(CONTACT_ACCESS_KEY)}" />
       <input class="contact-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -167,8 +193,8 @@ function contactFormTemplate(context = "Site") {
       <input type="hidden" name="form_url" value="${escapeAttribute(currentUrl)}" data-contact-url />
       <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
       <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
-      <button class="button button-primary" type="submit">Envoyer un message</button>
-      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Vos informations restent confidentielles et ne sont jamais partagées.</p>
+      <button class="button" type="submit">Envoyer le message</button>
+      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Les données transmises servent uniquement à vous répondre.</p>
     </form>
   `;
 }
@@ -206,7 +232,9 @@ async function submitContactForm(event) {
   const pageUrl = window.location.href;
   const now = new Date().toISOString();
 
-  if (form.dataset.submitting === "true") return;
+  if (form.dataset.submitting === "true") {
+    return;
+  }
 
   form.querySelector("[data-contact-subject]").value = fullSubject;
   form.querySelector("[data-contact-replyto]").value = replyTo;
@@ -259,7 +287,7 @@ async function submitContactForm(event) {
   } catch {
     form.classList.remove("is-loading", "is-sent");
     form.classList.add("has-error");
-    status.textContent = "L'envoi n'a pas abouti. Merci de réessayer dans un instant.";
+    status.textContent = "L'envoi n'a pas abouti dans la console. Merci de réessayer dans un instant.";
   } finally {
     delete form.dataset.submitting;
     button.disabled = false;
@@ -275,16 +303,33 @@ function resetContactFormState(event) {
   form.classList.remove("is-sent", "has-error");
   if (button) {
     button.disabled = false;
-    button.textContent = button.dataset.defaultText || "Envoyer un message";
+    button.textContent = button.dataset.defaultText || "Envoyer le message";
   }
-  if (status) {
-    status.textContent = "Vos informations restent confidentielles et ne sont jamais partagées.";
-  }
+  if (status) status.textContent = "Les données transmises servent uniquement à vous répondre.";
+}
+
+
+function hydrateBackToTop() {
+  if (document.querySelector("[data-back-to-top]")) return;
+  const button = document.createElement("button");
+  button.className = "back-to-top";
+  button.type = "button";
+  button.setAttribute("data-back-to-top", "");
+  button.setAttribute("aria-label", "Remonter en haut de la page");
+  button.innerHTML = '<svg aria-hidden="true"><use href="#icon-arrow-up"></use></svg>';
+  document.body.appendChild(button);
+  const mobileQuery = window.matchMedia("(max-width: 719px)");
+  const updateVisibility = () => button.classList.toggle("is-visible", mobileQuery.matches && window.scrollY > 520);
+  button.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  mobileQuery.addEventListener?.("change", updateVisibility);
+  updateVisibility();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupMenu();
-  setupResourceFilters();
-  setupPromptCopy();
+  ensureIconSprite();
+  enhanceMobileNavigation();
+  enhanceMobileCollapsibles();
+  hydrateBackToTop();
   hydrateContactForms();
 });

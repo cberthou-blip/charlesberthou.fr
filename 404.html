@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
   <title>Page introuvable | Charles Berthou</title>
-  <meta name="description" content="Page introuvable : retour vers les articles, les outils IA ou le contact." />
+  <meta name="description" content="Page introuvable : retour vers l'accueil, les ressources ou le contact." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://charlesberthou.fr/404.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,28 +16,33 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Page introuvable | Charles Berthou" />
-  <meta property="og:description" content="Page introuvable : retour vers les articles, les outils IA ou le contact." />
+  <meta property="og:description" content="Page introuvable : retour vers l'accueil, les ressources ou le contact." />
   <meta property="og:url" content="https://charlesberthou.fr/404.html" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Page introuvable | Charles Berthou" />
-  <meta name="twitter:description" content="Page introuvable : retour vers les articles, les outils IA ou le contact." />
+  <meta name="twitter:description" content="Page introuvable : retour vers l'accueil, les ressources ou le contact." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260607-mobile" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260628-mobile-first" />
 </head>
-<body>
 
+<body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
+
   <header class="site-header">
-    <div class="container nav-bar">
-      <a class="brand" href="/">charlesberthou.fr</a>
-      <nav class="main-nav" aria-label="Navigation principale">
-        <a href="/articles/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
+    <div class="shell header-shell">
+      <a class="brand" href="/" aria-label="Charles Berthou, accueil">Charles Berthou</a>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" id="menu-principal" aria-label="Navigation principale">
+        <a href="/">Accueil</a>
+        <a href="/ressources/">Ressources</a>
         <a href="/contact/">Contact</a>
       </nav>
     </div>
@@ -46,46 +51,60 @@
   <script>
     (function () {
       var path = window.location.pathname.toLowerCase();
-      var articleSlugs = ["registre-ia-modele-gratuit","cas-usage-ia-entreprise-prioriser","shadow-ai-cadrer-sans-bloquer","roi-ia-exemple-calcul-pilote","ai-act-registre-ia-pme","le-token-prochaine-monnaie-ia","ia-entreprise","humanite-lumiere"];
+      var linkedIn = "https://fr.linkedin.com/in/charlesberthou";
       var dest = "";
-      if (path === "/blog" || path === "/blog/") dest = "/articles/";
-      else if (path.indexOf("/blog/") === 0) {
-        var slug = path.replace(/^\/blog\//, "").replace(/\/.*$/, "");
-        dest = articleSlugs.indexOf(slug) !== -1 ? "/articles/" + slug + "/" : "/articles/";
-      } else if (path.indexOf("/reperes") === 0 || path.indexOf("/services") === 0 || path.indexOf("/gpts") === 0 || path.indexOf("/e-learning") === 0 || path.indexOf("/elearning") === 0) dest = "/outils-ia/";
-      else if (path.indexOf("/ialearning") === 0) dest = "/outils-ia/";
+      if (path === "/articles" || path.indexOf("/articles/") === 0) dest = linkedIn;
+      else if (path === "/blog" || path.indexOf("/blog/") === 0) dest = linkedIn;
+      else if (path === "/outils-ia" || path === "/outils-ia/") dest = "/ressources/";
+      else if (path.indexOf("/reperes") === 0 || path.indexOf("/services") === 0 || path.indexOf("/gpts") === 0 || path.indexOf("/e-learning") === 0 || path.indexOf("/elearning") === 0) dest = "/ressources/";
       else if (path.indexOf("/a-propos") === 0) dest = "/contact/";
       else if (path.indexOf("/resume-llm") === 0) dest = "/";
       if (dest) window.location.replace(dest);
     })();
   </script>
+
   <main id="contenu">
-    <section class="page-hero">
-      <div class="container page-hero-inner">
-        <h1>Page introuvable</h1>
-        <p class="lead">Le lien a changé. Les contenus principaux sont maintenant regroupés entre articles, outils IA et contact.</p>
-        <div class="actions">
-          <a class="button" href="/">Accueil</a>
-          <a class="button secondary" href="/articles/">Articles</a>
+    <section class="hero page-hero">
+      <div class="shell page-hero-grid">
+        <div class="page-hero-copy">
+          <h1>Page introuvable</h1>
+          <p>Le lien a changé. Les contenus principaux sont maintenant regroupés entre accueil, ressources et contact.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/">Accueil</a>
+            <a class="button button-secondary" href="/ressources/">Ressources</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
+  <nav class="bottom-nav" aria-label="Navigation mobile">
+    <a href="/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9Z" /></svg>
+      Accueil
+    </a>
+    <a href="/ressources/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2Z" /><path d="M9 8h6M9 12h6" /></svg>
+      Ressources
+    </a>
+    <a href="/contact/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0" /></svg>
+      Contact
+    </a>
+  </nav>
+
   <footer class="site-footer">
-    <div class="container footer-simple">
-      <div class="footer-brand">
-        <a class="footer-brand-name" href="/">charlesberthou.fr</a>
-        <p>Analyses longues et outils IA pour cadrer les bons usages.</p>
-        <p class="footer-editor">Édité par <a href="https://dharma-developpement.fr" rel="noopener noreferrer">Dharma Développement</a></p>
-      </div>
+    <div class="shell footer-shell">
+      <a class="footer-brand" href="/">Charles Berthou</a>
       <nav aria-label="Liens de pied de page">
-        <a href="/articles/">Articles</a>
-        <a href="/outils-ia/">Outils IA</a>
+        <a href="/">Accueil</a>
+        <a href="/ressources/">Ressources</a>
         <a href="/contact/">Contact</a>
+        <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/site.js?v=20260607-mobile" defer></script>
+
+  <script src="/assets/js/site.js?v=20260628-mobile-first" defer></script>
 </body>
 </html>

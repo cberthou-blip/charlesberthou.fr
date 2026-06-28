@@ -1,15 +1,14 @@
 # charlesberthou.fr
 
-Site personnel de Charles Berthou consacré aux analyses longues sur l'IA et aux outils IA pratiques.
+Site personnel de Charles Berthou consacré aux ressources, prompts et outils IA pratiques.
 
 Routes principales :
 
 - https://charlesberthou.fr/
-- https://charlesberthou.fr/articles/
-- https://charlesberthou.fr/outils-ia/
+- https://charlesberthou.fr/ressources/
 - https://charlesberthou.fr/contact/
 
-Outils IA :
+Outils IA conservés :
 
 - https://charlesberthou.fr/outils-ia/maturite-ia/
 - https://charlesberthou.fr/outils-ia/cas-usage/
