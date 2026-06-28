@@ -380,7 +380,6 @@ h1 span {
 }
 
 .posture-section .shell,
-.kleo-section .shell,
 .contact-preview .shell {
   max-width: 760px;
 }
@@ -498,41 +497,6 @@ h1 span {
 
 .home-resource-card em {
   font-style: normal;
-}
-
-.kleo-panel {
-  display: block;
-  border: 1px solid rgba(201, 151, 58, 0.24);
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius);
-  background: rgba(244, 223, 183, 0.28);
-  padding: 16px;
-}
-
-.kleo-panel:hover {
-  border-color: rgba(201, 151, 58, 0.42);
-}
-
-.kleo-panel h2 {
-  color: var(--ink);
-  font-size: 1.16rem;
-  line-height: 1.2;
-}
-
-.kleo-panel p {
-  margin-top: 8px;
-  color: var(--muted-strong);
-  line-height: 1.48;
-}
-
-.panel-link {
-  display: inline-flex;
-  margin-top: 12px;
-  color: var(--ink);
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: rgba(201, 151, 58, 0.58);
-  text-underline-offset: 4px;
 }
 
 .resource-card p,
@@ -761,7 +725,7 @@ h1 span {
   .home-hero .hero-copy,
   .page-hero-copy {
     width: min(100%, 660px);
-    padding: 38px 0 34px;
+    padding: 42px 0 38px;
   }
 
   h1 {
@@ -793,7 +757,7 @@ h1 span {
   }
 
   .section {
-    padding: 38px 0;
+    padding: 42px 0;
   }
 
   .section-heading h2 {
@@ -844,27 +808,37 @@ h1 span {
 
 @media (min-width: 1040px) {
   h1 {
-    font-size: 2.86rem;
+    font-size: 3rem;
   }
 
   .home-hero .hero-copy {
-    width: min(100%, 660px);
-    margin-inline: auto;
+    width: min(100%, 720px);
+    margin-inline: 0;
   }
 
   .posture-section .shell,
-  .kleo-section .shell,
   .contact-preview .shell {
-    max-width: 680px;
+    max-width: 1120px;
   }
 
   .resources-preview .shell {
-    max-width: 900px;
+    max-width: 1120px;
+  }
+
+  .posture-section .shell {
+    display: grid;
+    grid-template-columns: minmax(280px, 390px) 1fr;
+    align-items: start;
+    gap: 46px;
+  }
+
+  .posture-editorial {
+    margin-bottom: 0;
   }
 
   .editorial-minis {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 26px;
   }
 
   .editorial-mini {
@@ -872,8 +846,8 @@ h1 span {
   }
 
   .home-resource-grid {
-    grid-template-columns: repeat(4, minmax(0, 205px));
-    justify-content: center;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    justify-content: stretch;
   }
 
   .resource-grid {
