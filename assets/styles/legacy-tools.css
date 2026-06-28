@@ -4788,8 +4788,8 @@ textarea {
 
 .footer-simple {
   grid-template-columns: 1fr auto;
-  gap: 12px;
-  padding: 18px 0 20px;
+  gap: 8px;
+  padding: 12px 0 14px;
 }
 
 .footer-brand {
@@ -4799,7 +4799,7 @@ textarea {
 .footer-brand .footer-editor,
 .footer-editor {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   line-height: 1.45;
 }
 
@@ -4814,8 +4814,8 @@ textarea {
 .footer-simple nav {
   justify-content: flex-end;
   color: var(--muted);
-  gap: 8px 15px;
-  font-size: 0.94rem;
+  gap: 6px 13px;
+  font-size: 0.88rem;
   font-weight: 600;
 }
 
@@ -4893,8 +4893,8 @@ textarea {
 
   .footer-simple {
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 18px 0 20px;
+    gap: 8px;
+    padding: 12px 0 14px;
   }
 
   .footer-simple nav {
