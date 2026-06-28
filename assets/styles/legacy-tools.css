@@ -4778,7 +4778,7 @@ textarea {
 .site-footer {
   margin-top: auto;
   border-top: 1px solid rgba(203, 189, 169, 0.68);
-  background: rgba(255, 253, 248, 0.76);
+  background: rgba(255, 253, 248, 0.9);
   color: var(--ink);
 }
 
@@ -4788,8 +4788,8 @@ textarea {
 
 .footer-simple {
   grid-template-columns: 1fr auto;
-  gap: 14px;
-  padding: 22px 0 26px;
+  gap: 12px;
+  padding: 18px 0 20px;
 }
 
 .footer-brand {
@@ -4799,7 +4799,8 @@ textarea {
 .footer-brand .footer-editor,
 .footer-editor {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .footer-editor a {
@@ -4813,6 +4814,8 @@ textarea {
 .footer-simple nav {
   justify-content: flex-end;
   color: var(--muted);
+  gap: 8px 15px;
+  font-size: 0.94rem;
   font-weight: 600;
 }
 
@@ -4891,7 +4894,7 @@ textarea {
   .footer-simple {
     grid-template-columns: 1fr;
     gap: 10px;
-    padding: 22px 0;
+    padding: 18px 0 20px;
   }
 
   .footer-simple nav {
