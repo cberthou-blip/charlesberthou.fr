@@ -27,7 +27,10 @@ html {
 
 body {
   margin: 0;
+  min-height: 100dvh;
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
   background: linear-gradient(180deg, #fffdf8 0%, var(--bg) 54%, #fffdf8 100%);
   color: var(--ink);
@@ -35,6 +38,10 @@ body {
   font-size: 16px;
   line-height: 1.5;
   padding-bottom: 0;
+}
+
+main {
+  flex: 1;
 }
 
 img,
@@ -271,7 +278,7 @@ h1 span {
 
 .button,
 .resource-link {
-  min-height: 48px;
+  min-height: 46px;
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -438,9 +445,10 @@ h1 span {
 }
 
 .site-footer {
+  margin-top: auto;
   border-top: 1px solid rgba(203, 189, 169, 0.68);
   background: rgba(255, 253, 248, 0.76);
-  padding: 22px 0 26px;
+  padding: 20px 0 22px;
 }
 
 .footer-shell {
@@ -551,8 +559,8 @@ h1 span {
 
   .home-hero .hero-copy,
   .page-hero-copy {
-    width: min(100%, 560px);
-    padding: 54px 0 48px;
+    width: min(100%, 720px);
+    padding: 44px 0 42px;
   }
 
   h1 {
@@ -565,6 +573,7 @@ h1 span {
 
   .hero-copy p,
   .page-hero-copy p {
+    max-width: 650px;
     font-size: 1.16rem;
   }
 
@@ -578,7 +587,7 @@ h1 span {
   }
 
   .section {
-    padding: 38px 0;
+    padding: 34px 0;
   }
 
   .section-heading h2 {
@@ -628,11 +637,20 @@ h1 span {
 
 @media (min-width: 1040px) {
   h1 {
-    font-size: 3.52rem;
+    font-size: 3.64rem;
+  }
+
+  .home-hero .hero-copy {
+    width: min(100%, 760px);
   }
 
   .home-card-grid,
   .resource-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.single-card {
+  grid-template-columns: 1fr;
+  max-width: 560px;
 }

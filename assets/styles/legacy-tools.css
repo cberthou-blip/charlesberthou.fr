@@ -4471,10 +4471,17 @@ input[type="range"]::-moz-range-thumb {
 }
 
 body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(180deg, #fffdf8 0%, var(--bg) 54%, #fffdf8 100%);
   color: var(--ink);
   font-family: "Aptos", "Avenir Next", system-ui, sans-serif;
   line-height: 1.52;
+}
+
+main {
+  flex: 1;
 }
 
 .container {
@@ -4769,6 +4776,7 @@ textarea {
 }
 
 .site-footer {
+  margin-top: auto;
   border-top: 1px solid rgba(203, 189, 169, 0.68);
   background: rgba(255, 253, 248, 0.76);
   color: var(--ink);
