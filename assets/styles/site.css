@@ -501,11 +501,16 @@ h1 span {
 }
 
 .kleo-panel {
+  display: block;
   border: 1px solid rgba(201, 151, 58, 0.24);
   border-left: 3px solid var(--gold);
   border-radius: var(--radius);
   background: rgba(244, 223, 183, 0.28);
   padding: 16px;
+}
+
+.kleo-panel:hover {
+  border-color: rgba(201, 151, 58, 0.42);
 }
 
 .kleo-panel h2 {
@@ -518,6 +523,16 @@ h1 span {
   margin-top: 8px;
   color: var(--muted-strong);
   line-height: 1.48;
+}
+
+.panel-link {
+  display: inline-flex;
+  margin-top: 12px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 151, 58, 0.58);
+  text-underline-offset: 4px;
 }
 
 .resource-card p,
@@ -745,8 +760,8 @@ h1 span {
 
   .home-hero .hero-copy,
   .page-hero-copy {
-    width: min(100%, 680px);
-    padding: 44px 0 40px;
+    width: min(100%, 660px);
+    padding: 38px 0 34px;
   }
 
   h1 {
@@ -778,7 +793,7 @@ h1 span {
   }
 
   .section {
-    padding: 48px 0;
+    padding: 38px 0;
   }
 
   .section-heading h2 {
@@ -829,11 +844,22 @@ h1 span {
 
 @media (min-width: 1040px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.86rem;
   }
 
   .home-hero .hero-copy {
-    width: min(100%, 720px);
+    width: min(100%, 660px);
+    margin-inline: auto;
+  }
+
+  .posture-section .shell,
+  .kleo-section .shell,
+  .contact-preview .shell {
+    max-width: 680px;
+  }
+
+  .resources-preview .shell {
+    max-width: 900px;
   }
 
   .editorial-minis {
@@ -845,7 +871,11 @@ h1 span {
     padding: 12px 0 0;
   }
 
-  .home-resource-grid,
+  .home-resource-grid {
+    grid-template-columns: repeat(4, minmax(0, 205px));
+    justify-content: center;
+  }
+
   .resource-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
