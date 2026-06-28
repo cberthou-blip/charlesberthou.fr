@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
   <title>Ressources IA | Charles Berthou</title>
-  <meta name="description" content="Des ressources concrètes pour comprendre, tester et cadrer les usages de l'IA au quotidien : prompts, outils, guides et checklists." />
+  <meta name="description" content="Quatre outils concrets pour comprendre, tester et cadrer les usages de l'IA au quotidien." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/ressources/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,17 +16,17 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Ressources IA | Charles Berthou" />
-  <meta property="og:description" content="Prompts, outils, guides et checklists pour cadrer les usages de l'IA." />
+  <meta property="og:description" content="Quatre outils concrets pour cadrer les usages de l'IA." />
   <meta property="og:url" content="https://charlesberthou.fr/ressources/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ressources IA | Charles Berthou" />
-  <meta name="twitter:description" content="Prompts, outils, guides et checklists pour cadrer les usages de l'IA." />
+  <meta name="twitter:description" content="Quatre outils concrets pour cadrer les usages de l'IA." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260628-mobile-first" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260628-mobile-compact" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +34,7 @@
     "name": "Ressources IA",
     "url": "https://charlesberthou.fr/ressources/",
     "inLanguage": "fr-FR",
-    "description": "Prompts, outils, guides et checklists pour cadrer les usages de l'IA."
+    "description": "Quatre outils concrets pour cadrer les usages de l'IA."
   }
   </script>
 </head>
@@ -71,158 +71,65 @@
     <section class="section resource-browser" aria-labelledby="ressources-liste-titre">
       <div class="shell">
         <h2 id="ressources-liste-titre" class="sr-only">Liste des ressources</h2>
-        <div class="resource-toolbar" role="group" aria-label="Filtrer les ressources">
-          <button class="filter-tab is-active" type="button" data-filter="all" aria-pressed="true">Tous</button>
-          <button class="filter-tab" type="button" data-filter="prompts" aria-pressed="false">Prompts</button>
-          <button class="filter-tab" type="button" data-filter="outils" aria-pressed="false">Outils IA</button>
-          <button class="filter-tab" type="button" data-filter="guides" aria-pressed="false">Guides</button>
-          <button class="filter-tab" type="button" data-filter="checklists" aria-pressed="false">Checklists</button>
-        </div>
-
         <div class="resource-grid" id="ressources-liste">
-          <article class="resource-card prompt-resource" id="prompts" data-category="prompts">
-            <div class="resource-topline">
-              <span class="resource-type">Prompt</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 11.5c0-3.6 3.5-6.5 8-6.5s8 2.9 8 6.5-3.5 6.5-8 6.5c-.8 0-1.6-.1-2.3-.3L5 20l1.2-4C4.8 14.8 4 13.2 4 11.5Z" /></svg>
-              </span>
-            </div>
-            <h2>Clarifier un cas d'usage IA</h2>
-            <p>Un prompt de cadrage pour passer d'une idée vague à une fiche utile.</p>
-            <div class="prompt-text" id="prompt-cas-usage">Agis comme un conseiller IA pragmatique. Aide-moi à cadrer ce cas d'usage : objectif, utilisateurs concernés, données nécessaires, gain attendu, risques, limites, première expérimentation possible et critères de réussite.</div>
-            <button class="copy-button" type="button" data-copy-target="prompt-cas-usage">Copier le prompt</button>
-          </article>
-
-          <article class="resource-card prompt-resource" data-category="prompts">
-            <div class="resource-topline">
-              <span class="resource-type">Prompt</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 4h14v14H8l-3 3V4Z" /><path d="M8 8h8M8 12h6" /></svg>
-              </span>
-            </div>
-            <h2>Comparer deux outils IA</h2>
-            <p>Un prompt pour sortir du ressenti et comparer des outils sur des critères concrets.</p>
-            <div class="prompt-text" id="prompt-comparaison">Compare ces deux outils IA pour un usage réel. Analyse : facilité d'adoption, qualité de sortie, confidentialité, coût, intégration aux outils existants, limites, risques et recommandation finale selon trois profils d'utilisateurs.</div>
-            <button class="copy-button" type="button" data-copy-target="prompt-comparaison">Copier le prompt</button>
-          </article>
-
-          <article class="resource-card" id="outils" data-category="outils">
+          <article class="resource-card">
             <div class="resource-topline">
               <span class="resource-type">Outil IA</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18" /></svg>
-              </span>
             </div>
             <h2>Test de maturité IA</h2>
             <p>Situer le niveau de départ avant de lancer un premier chantier IA.</p>
             <a class="resource-link" href="/outils-ia/maturite-ia/">Ouvrir l'outil <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="resource-card" data-category="outils">
+          <article class="resource-card">
             <div class="resource-topline">
               <span class="resource-type">Outil IA</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 18V6h16v12H4Z" /><path d="M8 10h8M8 14h5" /></svg>
-              </span>
             </div>
             <h2>Explorateur de cas d'usage</h2>
             <p>Identifier des pistes réalistes par métier, avec gains, vigilances et données à prévoir.</p>
             <a class="resource-link" href="/outils-ia/cas-usage/">Explorer les cas <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="resource-card" data-category="outils">
+          <article class="resource-card">
             <div class="resource-topline">
               <span class="resource-type">Outil IA</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-7" /><path d="M8 19v-4M14 19v-6M20 19V6" /></svg>
-              </span>
             </div>
-            <h2>Calculateur ROI IA</h2>
+            <h2>Calculateur ROI</h2>
             <p>Estimer un gain, un coût complet et un ordre de grandeur avant de lancer un pilote.</p>
             <a class="resource-link" href="/outils-ia/roi-ia/">Calculer le ROI <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="resource-card" id="guides" data-category="guides">
+          <article class="resource-card">
             <div class="resource-topline">
-              <span class="resource-type">Guide</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 5.5A3 3 0 0 1 8 4h11v15H8a3 3 0 0 0-3 1.5V5.5Z" /><path d="M8 8h7M8 12h5" /></svg>
-              </span>
+              <span class="resource-type">Outil IA</span>
             </div>
-            <h2>Cadrer sans surdocumenter</h2>
-            <p>Une trame courte : usage, public, données, validation humaine, risques et prochaine revue.</p>
-            <a class="resource-link" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Demander la trame <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="resource-card" data-category="guides">
-            <div class="resource-topline">
-              <span class="resource-type">Guide</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 19h16M7 16V7h10v9M9 10h6M9 13h4" /></svg>
-              </span>
-            </div>
-            <h2>Passer de l'idée au test</h2>
-            <p>Une méthode simple pour transformer une envie d'IA en expérimentation limitée et observable.</p>
-            <a class="resource-link" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Échanger sur le sujet <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="resource-card" id="checklists" data-category="checklists">
-            <div class="resource-topline">
-              <span class="resource-type">Checklist</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6l1.2 1.2L6.8 4.6M3 12l1.2 1.2 2.6-2.6M3 18l1.2 1.2 2.6-2.6" /></svg>
-              </span>
-            </div>
-            <h2>Avant de tester un outil IA</h2>
-            <p>Objectif clair, données autorisées, critère de qualité, personne responsable et point de sortie.</p>
-            <a class="resource-link" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Me contacter si besoin <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="resource-card" data-category="checklists">
-            <div class="resource-topline">
-              <span class="resource-type">Checklist</span>
-              <span class="resource-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3l1-2Z" /><path d="m8 11 2 2 4-5M8 17h8" /></svg>
-              </span>
-            </div>
-            <h2>Revue rapide d'un usage IA</h2>
-            <p>Une liste d'essentiels pour décider de continuer, encadrer ou arrêter un usage.</p>
+            <h2>Registre IA</h2>
+            <p>Documenter les usages, les responsables et les points de vigilance.</p>
             <a class="resource-link" href="/outils-ia/registre-ia/">Ouvrir le registre <span aria-hidden="true">→</span></a>
           </article>
         </div>
-
-        <aside class="open-resources">
-          <span class="icon-disc small" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z" /><path d="M12 15v2" /></svg>
-          </span>
-          <div>
-            <h2>Ressources ouvertes</h2>
-            <p>Accès libre à toutes les ressources. Les contenus courts sont pensés pour être copiés, testés, puis adaptés.</p>
-          </div>
-          <a class="button button-secondary" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Me contacter si besoin</a>
-        </aside>
       </div>
     </section>
   </main>
 
   <nav class="bottom-nav" aria-label="Navigation mobile">
     <a href="/">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9Z" /></svg>
       Accueil
     </a>
     <a href="/ressources/" aria-current="page">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2Z" /><path d="M9 8h6M9 12h6" /></svg>
       Ressources
     </a>
     <a href="/contact/">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0" /></svg>
       Contact
     </a>
   </nav>
 
   <footer class="site-footer">
     <div class="shell footer-shell">
-      <a class="footer-brand" href="/">Charles Berthou</a>
+      <div class="footer-identity">
+        <a class="footer-brand" href="/">Charles Berthou</a>
+        <p>Édité par <a href="https://dharma-developpement.fr/" rel="noopener noreferrer">Dharma Développement</a></p>
+      </div>
       <nav aria-label="Liens de pied de page">
         <a href="/">Accueil</a>
         <a href="/ressources/">Ressources</a>
@@ -232,6 +139,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/site.js?v=20260628-mobile-first" defer></script>
+  <script src="/assets/js/site.js?v=20260628-mobile-compact" defer></script>
 </body>
 </html>

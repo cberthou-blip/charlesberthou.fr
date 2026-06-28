@@ -42,67 +42,6 @@ function setupMenu() {
   setOpen(false);
 }
 
-function setupResourceFilters() {
-  const tabs = Array.from(document.querySelectorAll("[data-filter]"));
-  const cards = Array.from(document.querySelectorAll("[data-category]"));
-  if (!tabs.length || !cards.length) return;
-
-  const applyFilter = (filter) => {
-    tabs.forEach((tab) => {
-      const selected = tab.dataset.filter === filter;
-      tab.classList.toggle("is-active", selected);
-      tab.setAttribute("aria-pressed", String(selected));
-    });
-    cards.forEach((card) => {
-      const visible = filter === "all" || card.dataset.category === filter;
-      card.classList.toggle("is-hidden", !visible);
-    });
-  };
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => applyFilter(tab.dataset.filter || "all"));
-  });
-}
-
-async function copyToClipboard(text) {
-  if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const helper = document.createElement("textarea");
-  helper.value = text;
-  helper.setAttribute("readonly", "");
-  helper.style.position = "fixed";
-  helper.style.left = "-9999px";
-  document.body.appendChild(helper);
-  helper.select();
-  document.execCommand("copy");
-  helper.remove();
-}
-
-function setupPromptCopy() {
-  document.querySelectorAll("[data-copy-target]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const target = document.getElementById(button.dataset.copyTarget);
-      if (!target) return;
-      const initialText = button.textContent;
-      try {
-        await copyToClipboard(target.textContent.trim());
-        button.textContent = "Prompt copié";
-      } catch {
-        button.textContent = "Copie impossible";
-      } finally {
-        window.setTimeout(() => {
-          button.textContent = initialText;
-        }, 1600);
-      }
-    });
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   setupMenu();
-  setupResourceFilters();
-  setupPromptCopy();
 });

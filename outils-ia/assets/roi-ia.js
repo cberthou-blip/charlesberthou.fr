@@ -12,20 +12,6 @@ const roiDefaults = {
   riskReserveRate: 0,
 };
 
-const roiExampleValues = {
-  peopleCount: 25,
-  hoursSaved: 1.5,
-  hourlyCost: 45,
-  activeWeeks: 42,
-  adoptionRate: 60,
-  monthlyCost: 1500,
-  setupCost: 6000,
-  confidenceBuffer: 20,
-  qualityGainMonthly: 0,
-  reviewMonthlyCost: 400,
-  riskReserveRate: 10,
-};
-
 const roiNodes = {
   peopleCount: document.querySelector("#peopleCount"),
   hoursSaved: document.querySelector("#hoursSaved"),
@@ -39,7 +25,6 @@ const roiNodes = {
   reviewMonthlyCost: document.querySelector("#reviewMonthlyCost"),
   riskReserveRate: document.querySelector("#riskReserveRate"),
   reset: document.querySelector("#resetRoi"),
-  example: document.querySelector("#loadRoiExample"),
   netGain: document.querySelector("#roiNetGain"),
   ratio: document.querySelector("#roiRatio"),
   payback: document.querySelector("#roiPayback"),
@@ -78,11 +63,6 @@ function initRoiTool() {
     renderRoi();
   });
 
-  roiNodes.example?.addEventListener("click", () => {
-    applyRoiValues(roiExampleValues);
-    renderRoi();
-  });
-
   renderRoi();
 }
 
@@ -111,7 +91,7 @@ function renderRoi() {
   const reading = grossGain === 0 && annualCost === 0
     ? {
       title: "Projet à qualifier",
-      summary: "Renseignez un cas réel ou chargez l'exemple pour voir comment le simulateur interprète les gains, les coûts et la prudence.",
+      summary: "Renseignez un cas réel pour voir comment le simulateur interprète les gains, les coûts et la prudence.",
     }
     : getRoiReading(netGain, roiRatio, paybackMonths);
 

@@ -1,6 +1,6 @@
 # charlesberthou.fr
 
-charlesberthou.fr publie des ressources concrètes pour comprendre, tester et cadrer les usages de l'IA : prompts copiables, outils IA, guides pratiques et checklists.
+charlesberthou.fr publie quatre outils concrets pour comprendre, tester et cadrer les usages de l'IA.
 
 ## Routes publiques
 

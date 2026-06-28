@@ -39,7 +39,6 @@ const registerNodes = {
   heroEmpty: document.querySelector("#registerEmptyHero"),
   readiness: document.querySelector("#registerReadiness"),
   exportButton: document.querySelector("#exportRegister"),
-  seedButton: document.querySelector("#seedRegister"),
   sourcePanel: document.querySelector("#registerSourcePanel"),
 };
 
@@ -84,7 +83,6 @@ function bindRegisterEvents() {
   });
 
   registerNodes.exportButton?.addEventListener("click", exportRegisterCsv);
-  registerNodes.seedButton?.addEventListener("click", seedRegister);
 }
 
 function renderRegisterFilters() {
@@ -218,7 +216,6 @@ function renderRegister() {
   registerNodes.highRiskCount.textContent = realItems.filter((item) => isHighRisk(item.riskLevel)).length;
   registerNodes.activeCount.textContent = realItems.filter((item) => isActiveStatus(item.status)).length;
   syncExportButton(realItems.length);
-  syncSeedButton();
   registerNodes.heroStats.hidden = realItems.length === 0;
   registerNodes.heroEmpty.hidden = realItems.length > 0;
   registerNodes.sourcePanel.hidden = realItems.length === 0;
@@ -227,25 +224,7 @@ function renderRegister() {
   registerNodes.registerList.innerHTML = "";
 
   if (items.length === 0) {
-    registerNodes.registerList.innerHTML = `
-      <article class="register-example-card" aria-label="Exemple de ligne de registre">
-        <div class="register-card-head">
-          <div>
-            <span>Support client · Synthèse</span>
-            <strong>Synthèse de tickets clients</strong>
-          </div>
-          <em>Exemple</em>
-        </div>
-        <div class="register-summary-grid">
-          <div><span>Usage</span><p>Synthèse de tickets clients</p></div>
-          <div><span>Données</span><p>Données internes</p></div>
-          <div><span>Responsable</span><p>Support client</p></div>
-          <div><span>Risque</span><p>Moyen</p></div>
-          <div><span>Statut</span><p>À tester</p></div>
-        </div>
-        <p>Cette ligne illustre le niveau d'information attendu. Elle n'est pas exportée tant qu'aucun cas réel n'est ajouté.</p>
-      </article>
-    `;
+    registerNodes.registerList.innerHTML = `<p class="empty-state">Aucun usage ajouté pour l'instant.</p>`;
     return;
   }
 
@@ -259,7 +238,6 @@ function renderRegister() {
           <strong>${escapeHtml(item.title)}</strong>
         </div>
         <div class="register-card-actions">
-          ${item.isExample ? `<em class="example-pill">Exemple</em>` : ""}
           <span class="status-pill status-${normalizeStatus(item.status)}" data-status-pill="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</span>
         </div>
       </div>
@@ -270,15 +248,13 @@ function renderRegister() {
         <div><span>Risque</span><p data-risk-display="${escapeHtml(item.id)}">${escapeHtml(formatRisk(item.riskLevel))}</p></div>
         <div><span>Statut</span><p data-status-display="${escapeHtml(item.id)}">${escapeHtml(formatStatus(item.status))}</p></div>
       </div>
-      ${item.isExample ? "" : `
-        <div class="register-form-grid">
-          ${textareaField(item, "purpose", "Objectif", "Ex. synthétiser les tickets pour préparer la réponse support")}
-          ${inputField(item, "dataType", "Données", "Ex. tickets, CRM, documents internes")}
-          ${inputField(item, "businessOwner", "Responsable", "Nom, rôle ou équipe")}
-          ${selectField(item, "riskLevel", "Risque", riskOptions)}
-          ${selectField(item, "status", "Statut", statusOptions)}
-        </div>
-      `}
+      <div class="register-form-grid">
+        ${textareaField(item, "purpose", "Objectif", "Ex. synthétiser les tickets pour préparer la réponse support")}
+        ${inputField(item, "dataType", "Données", "Ex. tickets, CRM, documents internes")}
+        ${inputField(item, "businessOwner", "Responsable", "Nom, rôle ou équipe")}
+        ${selectField(item, "riskLevel", "Risque", riskOptions)}
+        ${selectField(item, "status", "Statut", statusOptions)}
+      </div>
       <div class="register-card-footer">
         <button class="danger-button compact-button" type="button" data-remove="${escapeHtml(item.id)}" aria-label="Supprimer ${escapeHtml(item.title)} du registre">Supprimer</button>
       </div>
@@ -297,11 +273,6 @@ function renderReadiness() {
 
   if (count === 0) {
     registerNodes.readiness.innerHTML = `<strong>Premier usage à ajouter</strong><span>Renseignez usage, objectif, données, responsable, risque et statut pour commencer le registre.</span>`;
-    return;
-  }
-
-  if (count === 1 && hasLoadedExample()) {
-    registerNodes.readiness.innerHTML = `<strong>Exemple chargé</strong><span>Vous pouvez exporter ce modèle en CSV ou ajouter votre propre usage avant de télécharger le registre.</span>`;
     return;
   }
 
@@ -446,29 +417,6 @@ function createManualEntry(values) {
   };
 }
 
-function seedRegister() {
-  const byId = new Map(registerState.register.map((item) => [item.id, item]));
-  if (!byId.has("example-support-ticket")) {
-    byId.set("example-support-ticket", {
-      id: "example-support-ticket",
-      title: "Synthèse fictive de tickets clients",
-      department: "Support client",
-      category: "exemple",
-      riskLevel: "moyen",
-      status: "à tester",
-      purpose: "Préparer une synthèse hebdomadaire des irritants clients avant le point support.",
-      dataType: "Tickets support fictifs",
-      businessOwner: "Responsable support",
-      isExample: true,
-      addedAt: new Date().toISOString().slice(0, 10),
-    });
-  }
-  registerState.register = Array.from(byId.values());
-  saveRegister();
-  renderSourceCases();
-  renderRegister();
-}
-
 function getFilteredSourceCases() {
   const query = normalize(registerState.query);
   return registerState.sourceCases
@@ -533,7 +481,7 @@ function loadRegister() {
   try {
     const raw = localStorage.getItem(REGISTER_STORAGE_KEY);
     const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? parsed.filter((item) => !item.isExample) : [];
   } catch (error) {
     return [];
   }
@@ -592,22 +540,6 @@ function getRealRegisterItems() {
   return registerState.register;
 }
 
-function hasLoadedExample() {
-  return registerState.register.some((item) => item.isExample);
-}
-
-function syncSeedButton() {
-  if (!registerNodes.seedButton) return;
-  const isLoaded = hasLoadedExample();
-  registerNodes.seedButton.disabled = isLoaded;
-  registerNodes.seedButton.textContent = isLoaded ? "Exemple chargé" : "Charger un exemple";
-  registerNodes.seedButton.setAttribute("aria-disabled", String(isLoaded));
-  registerNodes.seedButton.classList.toggle("is-disabled", isLoaded);
-  registerNodes.seedButton.title = isLoaded
-    ? "L'exemple est déjà chargé dans le registre"
-    : "Ajouter un exemple fictif dans le registre";
-}
-
 function syncExportButton(realItemCount) {
   if (!registerNodes.exportButton) return;
   const isAvailable = realItemCount > 0;
@@ -617,7 +549,7 @@ function syncExportButton(realItemCount) {
   registerNodes.exportButton.classList.toggle("is-disabled", !isAvailable);
   registerNodes.exportButton.title = isAvailable
     ? "Télécharger le registre au format CSV"
-    : "Ajoutez un usage ou chargez l'exemple pour exporter le CSV";
+    : "Ajoutez un usage pour exporter le CSV";
 }
 
 function updateInlineMetrics(id) {

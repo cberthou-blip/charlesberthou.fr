@@ -1,6 +1,6 @@
 # charlesberthou.fr
 
-Site personnel de Charles Berthou consacré aux ressources, prompts et outils IA pratiques.
+Site personnel de Charles Berthou consacré aux outils IA pratiques.
 
 Routes principales :
 
