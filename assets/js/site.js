@@ -1,48 +1,45 @@
-const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
-const CONTACT_ACCESS_KEY = "17656ba1-b511-4eed-b0b7-a34bc7716102";
-const OPS_FIRESTORE = {
-  projectId: "dharma-d153e",
-  apiKey: "AIzaSyCIcdAVTXMiNmd5gacUcERH957JPEDNCfY",
-  collectionPath: "ops/public/contactMessages"
-};
-
-function escapeAttribute(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
-    .replace(/`/g, "&#096;");
-}
-
-function getContactReturnUrl() {
-  const url = new URL(window.location.href);
-  url.searchParams.set("contact", "envoye");
-  return url.toString();
-}
-
 function setupMenu() {
   const toggle = document.querySelector("[data-menu-toggle]");
   const nav = document.getElementById(toggle?.getAttribute("aria-controls"));
   if (!toggle || !nav) return;
 
-  const setOpen = (open) => {
-    document.body.classList.toggle("menu-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  const mobileQuery = window.matchMedia("(max-width: 759px)");
+  const navLinks = Array.from(nav.querySelectorAll("a"));
+
+  const setInteractive = (interactive) => {
+    nav.hidden = mobileQuery.matches && !interactive;
+    nav.toggleAttribute("inert", mobileQuery.matches && !interactive);
+    nav.setAttribute("aria-hidden", String(mobileQuery.matches && !interactive));
+    navLinks.forEach((link) => {
+      if (mobileQuery.matches && !interactive) {
+        link.setAttribute("tabindex", "-1");
+      } else {
+        link.removeAttribute("tabindex");
+      }
+    });
+  };
+
+  const setOpen = (open, restoreFocus = false) => {
+    const shouldOpen = Boolean(open && mobileQuery.matches);
+    document.body.classList.toggle("menu-open", shouldOpen);
+    toggle.setAttribute("aria-expanded", String(shouldOpen));
+    toggle.setAttribute("aria-label", shouldOpen ? "Fermer le menu" : "Ouvrir le menu");
+    setInteractive(shouldOpen || !mobileQuery.matches);
+    if (restoreFocus) toggle.focus();
   };
 
   toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("menu-open")));
-  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  navLinks.forEach((link) => link.addEventListener("click", () => setOpen(false)));
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setOpen(false);
+    if (event.key === "Escape") setOpen(false, document.body.classList.contains("menu-open"));
   });
   document.addEventListener("click", (event) => {
     if (!document.body.classList.contains("menu-open")) return;
     if (toggle.contains(event.target) || nav.contains(event.target)) return;
     setOpen(false);
   });
+  mobileQuery.addEventListener?.("change", () => setOpen(false));
+  setOpen(false);
 }
 
 function setupResourceFilters() {
@@ -104,187 +101,8 @@ function setupPromptCopy() {
   });
 }
 
-function firestoreValue(value, fieldName) {
-  if (fieldName.endsWith("At")) return { timestampValue: value };
-  if (typeof value === "boolean") return { booleanValue: value };
-  return { stringValue: String(value || "") };
-}
-
-async function writeOpsContactMessage(payload) {
-  const fields = Object.fromEntries(
-    Object.entries(payload).map(([key, value]) => [key, firestoreValue(value, key)])
-  );
-  const url = `https://firestore.googleapis.com/v1/projects/${OPS_FIRESTORE.projectId}/databases/(default)/documents/${OPS_FIRESTORE.collectionPath}?key=${OPS_FIRESTORE.apiKey}`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({ fields })
-  });
-
-  if (!response.ok) {
-    throw new Error("Message non reçu dans Ops.");
-  }
-}
-
-async function notifyContactEmail(form) {
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form)
-    });
-    const result = await response.json().catch(() => ({}));
-    return response.ok && result.success !== false;
-  } catch {
-    return false;
-  }
-}
-
-function contactFormTemplate(context = "Site") {
-  const currentUrl = window.location.href;
-  return `
-    <form class="site-contact-form" action="${escapeAttribute(CONTACT_ENDPOINT)}" method="POST" accept-charset="UTF-8" data-contact-form data-contact-context="${escapeAttribute(context)}">
-      <label class="contact-field">
-        <span>Nom</span>
-        <input type="text" name="name" placeholder="Nom" autocomplete="name" required />
-      </label>
-      <label class="contact-field">
-        <span>Email</span>
-        <input type="email" name="email" placeholder="Email" autocomplete="email" required />
-      </label>
-      <label class="contact-field message-field">
-        <span>Message</span>
-        <textarea name="message" rows="7" placeholder="Votre message" required></textarea>
-      </label>
-      <input type="hidden" name="access_key" value="${escapeAttribute(CONTACT_ACCESS_KEY)}" />
-      <input class="contact-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <input type="hidden" name="subject" value="[charlesberthou.fr] Nouveau message" data-contact-subject />
-      <input type="hidden" name="from_name" value="charlesberthou.fr" />
-      <input type="hidden" name="replyto" value="" data-contact-replyto />
-      <input type="hidden" name="redirect" value="${escapeAttribute(getContactReturnUrl())}" data-contact-next />
-      <input type="hidden" name="form_url" value="${escapeAttribute(currentUrl)}" data-contact-url />
-      <input type="hidden" name="page" value="${escapeAttribute(currentUrl)}" data-contact-page />
-      <input type="hidden" name="contexte" value="${escapeAttribute(context)}" />
-      <button class="button button-primary" type="submit">Envoyer un message</button>
-      <p class="contact-form-status" data-contact-status role="status" aria-live="polite">Vos informations restent confidentielles et ne sont jamais partagées.</p>
-    </form>
-  `;
-}
-
-function hydrateContactForms() {
-  document.querySelectorAll("[data-contact-form-mount]").forEach((mount) => {
-    if (mount.querySelector("[data-contact-form]")) return;
-    mount.innerHTML = contactFormTemplate(mount.dataset.contactContext || document.title);
-  });
-
-  document.querySelectorAll("[data-contact-form]").forEach((form) => {
-    if (form.dataset.bound === "true") return;
-    form.dataset.bound = "true";
-    form.addEventListener("submit", submitContactForm);
-    form.addEventListener("input", resetContactFormState);
-  });
-
-  if (new URLSearchParams(window.location.search).get("contact") === "envoye") {
-    document.querySelectorAll("[data-contact-status]").forEach((status) => {
-      status.textContent = "Merci, le message a bien été transmis.";
-    });
-  }
-}
-
-async function submitContactForm(event) {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const status = form.querySelector("[data-contact-status]");
-  const button = form.querySelector("button[type='submit']");
-  const initialButtonText = button.dataset.defaultText || button.textContent;
-  const data = new FormData(form);
-  const replyTo = data.get("email") || "";
-  const fullSubject = "[charlesberthou.fr] Message depuis le site";
-  const pageUrl = window.location.href;
-  const now = new Date().toISOString();
-
-  if (form.dataset.submitting === "true") return;
-
-  form.querySelector("[data-contact-subject]").value = fullSubject;
-  form.querySelector("[data-contact-replyto]").value = replyTo;
-  form.querySelector("[data-contact-next]").value = getContactReturnUrl();
-  form.querySelector("[data-contact-url]").value = pageUrl;
-  form.querySelector("[data-contact-page]").value = pageUrl;
-
-  form.classList.remove("is-sent", "has-error");
-  form.classList.add("is-loading");
-  button.disabled = true;
-  button.dataset.defaultText = initialButtonText;
-  button.textContent = "Envoi en cours...";
-  status.textContent = "Envoi en cours...";
-
-  if (data.get("botcheck")) {
-    form.reset();
-    form.classList.remove("is-loading");
-    form.classList.add("is-sent");
-    status.textContent = "Merci, le message a bien été transmis.";
-    button.disabled = false;
-    button.textContent = initialButtonText;
-    return;
-  }
-
-  form.dataset.submitting = "true";
-
-  try {
-    await writeOpsContactMessage({
-      name: data.get("name"),
-      email: data.get("email"),
-      message: data.get("message"),
-      subject: fullSubject,
-      source: "Charles Berthou",
-      sourceSystem: "charlesberthou",
-      saas: "Charles Berthou",
-      type: "Formulaire site",
-      status: "new",
-      createdAt: now,
-      pageUrl,
-      userAgent: navigator.userAgent
-    });
-
-    const notified = await notifyContactEmail(form);
-    form.reset();
-    form.classList.remove("is-loading", "has-error");
-    form.classList.add("is-sent");
-    status.textContent = notified
-      ? "Merci, le message a bien été transmis."
-      : "Message reçu. La notification email sera vérifiée côté Ops.";
-  } catch {
-    form.classList.remove("is-loading", "is-sent");
-    form.classList.add("has-error");
-    status.textContent = "L'envoi n'a pas abouti. Merci de réessayer dans un instant.";
-  } finally {
-    delete form.dataset.submitting;
-    button.disabled = false;
-    button.textContent = initialButtonText;
-  }
-}
-
-function resetContactFormState(event) {
-  const form = event.currentTarget;
-  if (!form.classList.contains("is-sent") && !form.classList.contains("has-error")) return;
-  const status = form.querySelector("[data-contact-status]");
-  const button = form.querySelector("button[type='submit']");
-  form.classList.remove("is-sent", "has-error");
-  if (button) {
-    button.disabled = false;
-    button.textContent = button.dataset.defaultText || "Envoyer un message";
-  }
-  if (status) {
-    status.textContent = "Vos informations restent confidentielles et ne sont jamais partagées.";
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   setupMenu();
   setupResourceFilters();
   setupPromptCopy();
-  hydrateContactForms();
 });

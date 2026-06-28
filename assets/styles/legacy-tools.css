@@ -357,7 +357,6 @@ button.button:not(.secondary) * {
 .content-card,
 .contact-band,
 .contact-note,
-.site-contact-form,
 .maturity-panel,
 .roi-panel,
 .tool-library-panel,
@@ -903,8 +902,7 @@ main.article-shell {
 .tool-library-panel,
 .case-search-panel,
 .content-card,
-.contact-note,
-.site-contact-form {
+.contact-note {
   display: grid;
   gap: 16px;
   padding: 22px;
@@ -959,8 +957,7 @@ main.article-shell {
 label,
 .form-row,
 .tool-search,
-.case-select-field,
-.contact-field {
+.case-select-field {
   display: grid;
   gap: 6px;
   color: #34405c;
@@ -1450,7 +1447,6 @@ input[type="range"]::-moz-range-thumb {
 
 .empty-state,
 .case-filter-hint,
-.contact-form-status,
 .register-readiness,
 .explorer-start {
   color: var(--muted);
@@ -2580,11 +2576,6 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-}
-
-.contact-honey {
-  position: absolute;
-  left: -9999px;
 }
 
 .back-to-top {
@@ -4017,10 +4008,6 @@ input[type="range"]::-moz-range-thumb {
 
 .contact-note p {
   line-height: 1.43;
-}
-
-.site-contact-form textarea {
-  min-height: 148px;
 }
 
 @media (max-width: 980px) {

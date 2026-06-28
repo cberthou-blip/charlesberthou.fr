@@ -208,6 +208,10 @@ body.menu-open .menu-toggle span:nth-child(3) {
   transition: max-height 0.18s ease, padding 0.18s ease, border-color 0.18s ease;
 }
 
+.main-nav[hidden] {
+  display: none;
+}
+
 body.menu-open .main-nav {
   max-height: 260px;
   padding: 12px 0 16px;
@@ -242,7 +246,7 @@ body.menu-open .main-nav {
 
 .hero-grid {
   position: relative;
-  min-height: 570px;
+  min-height: 456px;
   display: grid;
   align-items: start;
 }
@@ -320,27 +324,6 @@ h1 span {
   width: 100%;
 }
 
-.hero-visual,
-.page-visual {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  margin: 0;
-}
-
-.hero-visual {
-  top: 28px;
-  right: -188px;
-  width: 430px;
-  opacity: 0.96;
-}
-
-.hero-visual img,
-.page-visual img {
-  width: 100%;
-  height: auto;
-}
-
 .section {
   padding: 34px 0;
 }
@@ -355,7 +338,7 @@ h1 span {
 .section-heading h2,
 .resource-card h2,
 .open-resources h2,
-.form-heading h2 {
+.wide-card strong {
   font-family: var(--font-display);
   color: var(--ink);
   font-weight: 700;
@@ -399,7 +382,6 @@ h1 span {
 .feature-card,
 .contact-card,
 .wide-card,
-.contact-form-card,
 .resource-card,
 .open-resources {
   border: 1px solid rgba(229, 220, 207, 0.86);
@@ -515,7 +497,7 @@ h1 span {
 
 .page-hero-grid {
   position: relative;
-  min-height: 390px;
+  min-height: 300px;
 }
 
 .page-hero-copy {
@@ -536,13 +518,6 @@ h1 span {
   height: 2px;
   margin-bottom: 22px;
   background: var(--gold);
-}
-
-.page-visual {
-  top: -8px;
-  right: -214px;
-  width: 480px;
-  opacity: 0.95;
 }
 
 .resource-toolbar {
@@ -666,79 +641,6 @@ h1 span {
   font-weight: 700;
 }
 
-.contact-form-card {
-  padding: 22px;
-}
-
-.form-heading {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.form-heading h2 {
-  font-size: 1.95rem;
-}
-
-.site-contact-form {
-  display: grid;
-  gap: 14px;
-}
-
-.contact-field {
-  display: grid;
-  gap: 7px;
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.contact-field span {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.contact-field input,
-.contact-field textarea {
-  width: 100%;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-small);
-  background: rgba(255, 255, 255, 0.86);
-  color: var(--ink);
-  padding: 15px 14px;
-  line-height: 1.4;
-}
-
-.contact-field textarea {
-  min-height: 148px;
-  resize: vertical;
-}
-
-.contact-field input::placeholder,
-.contact-field textarea::placeholder {
-  color: #7a838e;
-}
-
-.contact-honey {
-  position: absolute;
-  left: -9999px;
-}
-
-.contact-form-status {
-  color: var(--muted);
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-.site-contact-form.is-sent .contact-form-status {
-  color: #27724d;
-}
-
-.site-contact-form.has-error .contact-form-status {
-  color: #9d2f21;
-}
-
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -829,11 +731,6 @@ h1 span {
 }
 
 @media (min-width: 560px) {
-  .hero-visual {
-    right: -120px;
-    width: 500px;
-  }
-
   .contact-card-grid,
   .resource-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -900,7 +797,7 @@ h1 span {
   }
 
   .hero-grid {
-    min-height: 680px;
+    min-height: 520px;
     align-items: center;
   }
 
@@ -920,12 +817,6 @@ h1 span {
 
   .hero-actions {
     width: min(100%, 390px);
-  }
-
-  .hero-visual {
-    right: -90px;
-    top: -24px;
-    width: 690px;
   }
 
   .section {
@@ -967,7 +858,7 @@ h1 span {
   }
 
   .page-hero-grid {
-    min-height: 520px;
+    min-height: 360px;
   }
 
   .page-hero-copy {
@@ -977,12 +868,6 @@ h1 span {
 
   .page-hero-copy h1 {
     font-size: 6rem;
-  }
-
-  .page-visual {
-    right: -120px;
-    top: -72px;
-    width: 650px;
   }
 
   .resource-toolbar {
@@ -1019,20 +904,6 @@ h1 span {
     display: grid;
   }
 
-  .contact-form-card {
-    padding: 34px;
-  }
-
-  .site-contact-form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .contact-field.message-field,
-  .site-contact-form .button,
-  .contact-form-status {
-    grid-column: 1 / -1;
-  }
-
   .footer-shell {
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -1045,12 +916,7 @@ h1 span {
   }
 
   .hero-grid {
-    min-height: 720px;
-  }
-
-  .hero-visual {
-    right: -42px;
-    width: 760px;
+    min-height: 560px;
   }
 
   .home-card-grid {

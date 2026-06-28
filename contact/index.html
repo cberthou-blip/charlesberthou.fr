@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://api.web3forms.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests" />
   <title>Contact | Charles Berthou</title>
-  <meta name="description" content="Échanger avec Charles Berthou autour des usages concrets de l'IA, suivre ses réflexions sur LinkedIn ou envoyer un message direct." />
+  <meta name="description" content="Échanger avec Charles Berthou autour des usages concrets de l'IA et suivre ses réflexions sur LinkedIn." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/contact/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -55,9 +55,6 @@
           <h1>Contact</h1>
           <p>Invitation à échanger autour de l'IA.</p>
         </div>
-        <figure class="page-visual" aria-hidden="true">
-          <img src="/assets/media/ia-network-portrait.png" alt="" width="1000" height="1200" loading="eager" />
-        </figure>
       </div>
     </section>
 
@@ -69,26 +66,13 @@
           <span class="linkedin-mark large" aria-hidden="true">in</span>
           <span class="wide-card-copy">
             <strong>Mes analyses et réflexions sur LinkedIn</strong>
-            <em>Retrouvez mes analyses, retours d'expérience et réflexions sur l'IA au quotidien.</em>
-            <span>Me suivre sur LinkedIn <span aria-hidden="true">→</span></span>
+            <em>Retrouvez mes analyses, retours d'expérience et réflexions sur l'IA au quotidien. Pour me contacter, passez par LinkedIn.</em>
+            <span>Me contacter sur LinkedIn <span aria-hidden="true">→</span></span>
           </span>
           <span class="icon-disc small hide-mobile" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" /></svg>
           </span>
         </a>
-
-        <section class="contact-form-card" aria-labelledby="contact-direct">
-          <div class="form-heading">
-            <span class="icon-disc small" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z" /><path d="m4 7 8 6 8-6" /></svg>
-            </span>
-            <div>
-              <h2 id="contact-direct">Me contacter directement</h2>
-              <p>Je vous réponds rapidement.</p>
-            </div>
-          </div>
-          <div data-contact-form-mount data-contact-context="Contact direct"></div>
-        </section>
       </div>
     </section>
   </main>
