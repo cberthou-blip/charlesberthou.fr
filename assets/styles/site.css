@@ -12,8 +12,7 @@
   --gold-soft: #f4dfb7;
   --shadow-soft: 0 3px 10px rgba(8, 35, 65, 0.08);
   --radius: 10px;
-  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-body: "Outfit", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Aptos", "Avenir Next", system-ui, sans-serif;
 }
 
 *,
@@ -35,7 +34,7 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
-  padding-bottom: 64px;
+  padding-bottom: 0;
 }
 
 img,
@@ -131,9 +130,8 @@ p {
 
 .brand,
 .footer-brand {
-  font-family: var(--font-display);
-  font-size: 1.72rem;
-  font-weight: 700;
+  font-size: 1.18rem;
+  font-weight: 650;
   line-height: 1;
   color: var(--ink);
 }
@@ -234,10 +232,9 @@ body.menu-open .main-nav {
 }
 
 h1 {
-  font-family: var(--font-display);
-  font-size: 3.1rem;
-  font-weight: 700;
-  line-height: 0.96;
+  font-size: 2.28rem;
+  font-weight: 650;
+  line-height: 1.06;
   color: var(--ink);
 }
 
@@ -254,7 +251,7 @@ h1 span {
 }
 
 .page-hero-copy h1 {
-  font-size: 3.15rem;
+  font-size: 2.28rem;
 }
 
 .page-hero-copy p::before {
@@ -318,14 +315,19 @@ h1 span {
 .resource-card h2,
 .wide-card strong,
 .contact-card strong {
-  font-family: var(--font-display);
   color: var(--ink);
-  font-weight: 700;
-  line-height: 1.08;
+  font-weight: 650;
+  line-height: 1.14;
 }
 
 .section-heading h2 {
-  font-size: 1.86rem;
+  font-size: 1.36rem;
+}
+
+.section-heading p {
+  margin-top: 6px;
+  color: var(--muted-strong);
+  font-size: 0.98rem;
 }
 
 .home-card-grid,
@@ -354,9 +356,9 @@ h1 span {
 }
 
 .feature-card h3 {
-  font-family: var(--font-display);
-  font-size: 1.42rem;
-  line-height: 1.05;
+  font-size: 1.08rem;
+  line-height: 1.18;
+  font-weight: 650;
   color: var(--ink);
 }
 
@@ -388,7 +390,7 @@ h1 span {
 .contact-card strong,
 .wide-card strong {
   display: block;
-  font-size: 1.42rem;
+  font-size: 1.12rem;
 }
 
 .contact-card em,
@@ -411,7 +413,7 @@ h1 span {
 }
 
 .resource-card h2 {
-  font-size: 1.58rem;
+  font-size: 1.16rem;
 }
 
 .resource-link {
@@ -433,49 +435,6 @@ h1 span {
   margin-top: 14px;
   color: var(--ink);
   font-weight: 700;
-}
-
-.bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 45;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(203, 189, 169, 0.82);
-  background: rgba(255, 253, 248, 0.98);
-  backdrop-filter: blur(12px);
-}
-
-.bottom-nav a {
-  position: relative;
-  min-height: 60px;
-  display: grid;
-  place-items: center;
-  color: var(--ink);
-  font-size: 0.95rem;
-  font-weight: 600;
-  padding: 8px 4px;
-}
-
-.bottom-nav a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 30%;
-  right: 30%;
-  height: 2px;
-  border-radius: 999px;
-  background: transparent;
-}
-
-.bottom-nav a[aria-current="page"] {
-  color: var(--gold);
-}
-
-.bottom-nav a[aria-current="page"]::before {
-  background: var(--gold);
 }
 
 .site-footer {
@@ -521,15 +480,15 @@ h1 span {
 
 @media (max-width: 370px) {
   .brand {
-    font-size: 1.54rem;
+    font-size: 1.08rem;
   }
 
   h1 {
-    font-size: 2.74rem;
+    font-size: 2.04rem;
   }
 
   .page-hero-copy h1 {
-    font-size: 2.86rem;
+    font-size: 2.04rem;
   }
 }
 
@@ -558,12 +517,7 @@ h1 span {
     min-height: 68px;
   }
 
-  .brand {
-    font-size: 2.18rem;
-  }
-
-  .menu-toggle,
-  .bottom-nav {
+  .menu-toggle {
     display: none;
   }
 
@@ -602,11 +556,11 @@ h1 span {
   }
 
   h1 {
-    font-size: 4.9rem;
+    font-size: 3.08rem;
   }
 
   .page-hero-copy h1 {
-    font-size: 5.1rem;
+    font-size: 3rem;
   }
 
   .hero-copy p,
@@ -628,7 +582,7 @@ h1 span {
   }
 
   .section-heading h2 {
-    font-size: 2.26rem;
+    font-size: 1.62rem;
   }
 
   .home-card-grid,
@@ -643,11 +597,11 @@ h1 span {
   }
 
   .feature-card h3 {
-    font-size: 1.62rem;
+    font-size: 1.18rem;
   }
 
   .resource-card h2 {
-    font-size: 1.76rem;
+    font-size: 1.26rem;
   }
 
   .contact-card {
@@ -674,7 +628,7 @@ h1 span {
 
 @media (min-width: 1040px) {
   h1 {
-    font-size: 5.7rem;
+    font-size: 3.52rem;
   }
 
   .home-card-grid,
