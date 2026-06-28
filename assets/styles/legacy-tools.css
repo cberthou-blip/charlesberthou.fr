@@ -4464,7 +4464,7 @@ input[type="range"]::-moz-range-thumb {
   --success: #27724d;
   --danger: #9d2f21;
   --shadow: 0 8px 20px rgba(8, 35, 65, 0.10);
-  --shadow-soft: 0 3px 10px rgba(8, 35, 65, 0.08);
+  --shadow-soft: 0 1px 3px rgba(8, 35, 65, 0.05);
   --grad-card: none;
   --grad-cyan: none;
   --tool-hero-mobile: auto;
@@ -4788,8 +4788,8 @@ textarea {
 
 .footer-simple {
   grid-template-columns: 1fr auto;
-  gap: 8px;
-  padding: 12px 0 14px;
+  gap: 5px;
+  padding: 8px 0 10px;
 }
 
 .footer-brand {
@@ -4799,7 +4799,7 @@ textarea {
 .footer-brand .footer-editor,
 .footer-editor {
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   line-height: 1.45;
 }
 
@@ -4814,8 +4814,8 @@ textarea {
 .footer-simple nav {
   justify-content: flex-end;
   color: var(--muted);
-  gap: 6px 13px;
-  font-size: 0.88rem;
+  gap: 4px 11px;
+  font-size: 0.82rem;
   font-weight: 600;
 }
 
@@ -4893,8 +4893,8 @@ textarea {
 
   .footer-simple {
     grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 12px 0 14px;
+    gap: 5px;
+    padding: 8px 0 10px;
   }
 
   .footer-simple nav {
