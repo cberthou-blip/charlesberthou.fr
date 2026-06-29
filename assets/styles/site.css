@@ -456,6 +456,8 @@ h1 span {
 
 .resource-card {
   display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  align-content: start;
   gap: 8px;
   padding: 14px;
 }
@@ -616,6 +618,10 @@ h1 span {
   justify-self: stretch;
   min-height: 42px;
   margin-top: 2px;
+}
+
+.contact-section .shell {
+  max-width: 760px;
 }
 
 .wide-card {
@@ -820,6 +826,12 @@ h1 span {
     font-size: 1.18rem;
   }
 
+  .resource-link {
+    justify-self: start;
+    min-width: 210px;
+    padding-inline: 16px;
+  }
+
   .contact-card {
     padding: 16px;
   }
@@ -870,6 +882,8 @@ h1 span {
     border-left: 3px solid rgba(201, 151, 58, 0.82);
     border-radius: var(--radius);
     background:
+      linear-gradient(90deg, transparent 0 22px, rgba(201, 151, 58, 0.5) 22px 24px, transparent 24px 100%),
+      linear-gradient(180deg, transparent 0 36px, rgba(203, 189, 169, 0.48) 36px 37px, transparent 37px 70px, rgba(203, 189, 169, 0.32) 70px 71px, transparent 71px 100%),
       linear-gradient(135deg, rgba(255, 253, 248, 0.96), rgba(244, 223, 183, 0.36)),
       linear-gradient(180deg, rgba(8, 35, 65, 0.035), rgba(8, 35, 65, 0));
     box-shadow: var(--shadow-soft);
