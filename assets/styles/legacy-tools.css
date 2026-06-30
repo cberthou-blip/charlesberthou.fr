@@ -4428,3 +4428,190 @@ textarea::placeholder {
     color: var(--ink);
   }
 }
+
+/* Final UI/typo pass: keep the IA tools aligned with the editorial site. */
+body {
+  font-family: "Aptos", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.main-nav a[aria-current="page"] {
+  border-bottom: 2px solid var(--hero-accent);
+}
+
+.main-nav a {
+  border-bottom: 2px solid transparent;
+}
+
+.tool-page .tool-common-hero-inner {
+  padding: 50px 0 44px;
+}
+
+.tool-page .tool-common-hero h1,
+.case-page .case-action-hero h1 {
+  max-width: min(780px, 16ch);
+}
+
+.tool-page .tool-common-hero .lead,
+.case-page .case-action-hero p {
+  max-width: 62ch;
+}
+
+.tool-page .tool-common-hero .tool-hero-indicators,
+.tool-page .tool-common-hero .maturity-score-card {
+  margin-top: 2px;
+}
+
+.maturity-questions,
+.maturity-panel,
+.roi-panel,
+.tool-library-panel,
+.content-card,
+.next-card {
+  padding: 24px;
+}
+
+.maturity-tool .axis-copy h3,
+.roi-tool .roi-field-group h3,
+.case-page .case-card-title {
+  letter-spacing: 0;
+}
+
+.maturity-tool .axis-copy p,
+.roi-tool .tool-search > span,
+.case-page .case-select-field span,
+.case-page .case-filter-hint,
+.case-tool-card p {
+  line-height: 1.48;
+}
+
+.case-quick-starts button,
+.case-page .case-quick-starts button {
+  min-height: 38px;
+  padding-inline: 12px;
+  font-weight: 660;
+}
+
+.input-with-unit {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.input-with-unit em {
+  min-width: 54px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.roi-tool .roi-primary-metrics strong,
+.roi-tool .roi-secondary-metrics strong,
+.tool-stat-strip strong,
+.maturity-score-visual strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.roi-panel .compact-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.roi-panel .compact-heading > div {
+  min-width: 0;
+}
+
+.roi-panel .compact-actions {
+  margin: 0;
+}
+
+.roi-reset-link {
+  min-height: 34px;
+  border: 0;
+  background: transparent;
+  color: var(--hero-accent-dark);
+  padding: 0;
+  box-shadow: none;
+  font-weight: 680;
+}
+
+.roi-reset-link:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.roi-tool .roi-field-group {
+  gap: 14px;
+  padding: 16px;
+}
+
+.roi-tool .roi-field-group + .roi-field-group {
+  padding-top: 16px;
+}
+
+@media (max-width: 680px) {
+  .tool-page .tool-common-hero-inner {
+    padding: 34px 0 32px;
+  }
+
+  .tool-page .tool-common-hero h1,
+  .case-page .case-action-hero h1 {
+    max-width: 16ch;
+    font-size: clamp(1.88rem, 8.6vw, 2.35rem);
+    line-height: 1.04;
+  }
+
+  .tool-page .tool-common-hero .lead,
+  .case-page .case-action-hero p {
+    line-height: 1.56;
+  }
+
+  .maturity-questions,
+  .maturity-panel,
+  .roi-panel,
+  .tool-library-panel,
+  .content-card,
+  .next-card {
+    padding: 18px;
+  }
+
+  .roi-panel .compact-heading {
+    display: grid;
+    gap: 12px;
+  }
+
+  .roi-panel .compact-actions {
+    justify-content: start;
+  }
+
+  .roi-tool .roi-form-grid {
+    margin-top: 6px;
+  }
+
+  .roi-tool .roi-field-group {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .case-quick-starts {
+    gap: 8px;
+  }
+
+  .case-quick-starts button,
+  .case-page .case-quick-starts button {
+    min-height: 36px;
+    padding-inline: 10px;
+  }
+}

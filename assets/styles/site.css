@@ -96,8 +96,15 @@ h3 {
   overflow-wrap: break-word;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 p {
   color: var(--muted);
+  text-wrap: pretty;
 }
 
 :focus-visible {
@@ -1256,6 +1263,16 @@ a.action-row:hover,
   min-height: 240px;
 }
 
+.prompt-source-list {
+  grid-template-columns: 1fr;
+}
+
+.prompt-source-card {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-height: 0;
+  gap: 16px;
+}
+
 .prompt-card-head {
   display: flex;
   align-items: start;
@@ -1263,11 +1280,22 @@ a.action-row:hover,
   gap: 12px;
 }
 
+.prompt-card-head > div {
+  min-width: 0;
+}
+
+.prompt-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
 .prompt-card p {
   margin-top: 0;
 }
 
-.prompt-copy {
+.prompt-link {
   min-height: 32px;
   border: 1px solid rgba(51, 66, 87, 0.84);
   border-radius: 8px;
@@ -1277,18 +1305,107 @@ a.action-row:hover,
   font-size: 0.84rem;
   font-weight: 680;
   cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
   transition: border-color var(--ease), background-color var(--ease), color var(--ease);
 }
 
-.prompt-copy:hover,
-.prompt-copy[data-state="done"] {
+.prompt-link::after {
+  content: "\2197";
+  margin-left: 7px;
+}
+
+.prompt-link:hover {
   border-color: rgba(164, 206, 255, 0.44);
   background: rgba(76, 157, 246, 0.08);
   color: var(--ink);
 }
 
-.prompt-copy[data-state="error"] {
-  color: var(--muted-strong);
+.gist-shell {
+  overflow: auto;
+  max-height: 380px;
+  border: 1px solid rgba(51, 66, 87, 0.72);
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.gist-shell .gist,
+.gist-shell .gist-file {
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+}
+
+.gist-shell .gist-data {
+  max-height: 380px;
+  overflow: auto;
+  border-bottom: 1px solid rgba(51, 66, 87, 0.72) !important;
+  background: var(--surface-muted) !important;
+}
+
+.gist-shell .blob-wrapper,
+.gist-shell .highlight,
+.gist-shell .blob-code-inner,
+.gist-shell table {
+  background: var(--surface-muted) !important;
+  color: var(--ink-soft) !important;
+}
+
+.gist-shell .blob-code,
+.gist-shell .blob-code-inner {
+  color: var(--ink-soft) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.55 !important;
+}
+
+.gist-shell .blob-num {
+  min-width: 36px !important;
+  border-color: rgba(51, 66, 87, 0.42) !important;
+  background: #070a10 !important;
+  color: var(--muted) !important;
+}
+
+.gist-shell .gist-meta {
+  border-top: 1px solid rgba(51, 66, 87, 0.72) !important;
+  background: #070a10 !important;
+  color: var(--muted) !important;
+}
+
+.gist-shell .gist-meta a {
+  color: var(--blue-soft) !important;
+}
+
+.gist-shell .markdown-body {
+  padding: 18px !important;
+}
+
+.gist-shell .markdown-body h1 {
+  margin-bottom: 12px !important;
+  padding-bottom: 8px !important;
+  color: var(--ink) !important;
+  font-size: 1.42rem !important;
+  line-height: 1.15 !important;
+}
+
+.gist-shell .markdown-body h2,
+.gist-shell .markdown-body h3 {
+  color: var(--ink) !important;
+  font-size: 1rem !important;
+  line-height: 1.25 !important;
+}
+
+.gist-shell .markdown-body p,
+.gist-shell .markdown-body li {
+  color: var(--ink-soft) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.55 !important;
+}
+
+.gist-shell .markdown-body blockquote {
+  color: var(--muted-strong) !important;
 }
 
 .resource-card {
@@ -1351,6 +1468,15 @@ a.action-row:hover,
 
   .prompt-card {
     min-height: 0;
+  }
+
+  .prompt-card-head {
+    align-items: start;
+  }
+
+  .gist-shell,
+  .gist-shell .gist-data {
+    max-height: 340px;
   }
 }
 
