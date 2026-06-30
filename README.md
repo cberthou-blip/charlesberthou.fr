@@ -17,11 +17,10 @@ Site personnel statique publié avec GitHub Pages.
 - `/outils-ia/maturite-ia/` : test de maturité IA.
 - `/outils-ia/cas-usage/` : explorateur de 116 cas d'usage IA.
 - `/outils-ia/roi-ia/` : calculateur ROI IA.
-- `/outils-ia/registre-ia/` : registre IA simplifié.
 
 ## Redirections
 
-- `/outils-ia/` redirige vers `/#outils`.
+- Les anciennes routes supprimées sont traitées par la 404 et renvoyées vers la destination active.
 - Les anciennes routes Articles et Blog renvoient vers `/articles/`.
 - Les anciennes routes de repères, services, GPTs et e-learning redirigent vers `/#outils`.
 

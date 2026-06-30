@@ -567,7 +567,7 @@ function renderDetail() {
       </div>
       <div class="detail-actions">
         <a class="button" href="/outils-ia/roi-ia/">Chiffrer ce cas</a>
-        <a class="button secondary" href="/outils-ia/registre-ia/">L’inscrire au registre</a>
+        <a class="button secondary" href="https://monregistreia.fr/" rel="noopener noreferrer">L’inscrire au registre</a>
       </div>
     </article>
   `;

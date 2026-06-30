@@ -40,3 +40,5 @@ ui-debug.log
 
 # Local agent instructions
 AGENTS.md
+.agents/
+.codex/

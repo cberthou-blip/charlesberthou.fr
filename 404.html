@@ -50,7 +50,8 @@
     (function () {
       var path = window.location.pathname.toLowerCase();
       var dest = "";
-      if (path === "/articles") dest = "/articles/";
+      if (path === "/outils-ia/registre-ia" || path.indexOf("/outils-ia/registre-ia/") === 0) dest = "https://monregistreia.fr/";
+      else if (path === "/articles") dest = "/articles/";
       else if (path.indexOf("/articles/") === 0) dest = "/articles/";
       else if (path === "/blog" || path.indexOf("/blog/") === 0) dest = "/articles/";
       else if (path === "/outils-ia" || path === "/outils-ia/") dest = "/#outils";
