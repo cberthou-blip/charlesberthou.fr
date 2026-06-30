@@ -1,6 +1,6 @@
 # charlesberthou.fr
 
-charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA : analyses, outils pratiques, prompts, cas d'usage et retours d'expérience.
+charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA et de la transformation numérique : analyses, outils pratiques, prompts, cas d'usage et retours d'expérience.
 
 ## Routes publiques
 
@@ -23,5 +23,5 @@ charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA
 - Séparation : ne pas mélanger cette page personnelle avec l'emploi salarié.
 - Dharma reste un lien discret pour les missions structurées : https://dharma-developpement.fr/
 - Les publications longues et échanges se poursuivent aussi sur LinkedIn : https://fr.linkedin.com/in/charlesberthou
-- Les analyses reprennent les axes des anciens articles : humanité et progrès, IA en entreprise, économie du token, registre IA, Shadow AI, priorisation de cas d'usage, ROI, AI Act, KLEO et publications récentes.
+- Les analyses reprennent les axes des anciens articles et publications : humanité et progrès, IA en entreprise, économie du token, éducation à l'IA, sécurité des usages IA, registre IA, Shadow AI, priorisation de cas d'usage, ROI, AI Act, KLEO et publications récentes.
 - Trois textes structurants : IA en entreprise : hâtez-vous lentement ; L'humanité a toujours tremblé devant sa propre lumière ; Le token, prochaine monnaie de l'IA.
