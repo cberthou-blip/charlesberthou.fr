@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Charles Berthou | IA compréhensible, utile et humaine</title>
-  <meta name="description" content="Analyses et ressources pour rendre l'IA compréhensible, utile et humaine, avec des repères simples pour passer à l'action." />
+  <title>Charles Berthou | IA pratique, outils et analyses</title>
+  <meta name="description" content="Analyses, outils IA, prompts, cas d'usage et retours d'expérience de Charles Berthou pour comprendre, tester et transmettre l'IA avec discernement." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://charlesberthou.fr/" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -14,15 +14,15 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
-  <meta property="og:title" content="Charles Berthou | IA compréhensible, utile et humaine" />
-  <meta property="og:description" content="Analyses et ressources pour rendre l'IA compréhensible, utile et humaine, avec des repères simples pour passer à l'action." />
+  <meta property="og:title" content="Charles Berthou | IA pratique, outils et analyses" />
+  <meta property="og:description" content="Analyses, outils IA, prompts, cas d'usage et retours d'expérience pour comprendre, tester et transmettre l'IA avec discernement." />
   <meta property="og:url" content="https://charlesberthou.fr/" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Charles Berthou | IA compréhensible, utile et humaine" />
-  <meta name="twitter:description" content="Analyses et ressources pour rendre l'IA compréhensible, utile et humaine, avec des repères simples pour passer à l'action." />
+  <meta name="twitter:title" content="Charles Berthou | IA pratique, outils et analyses" />
+  <meta name="twitter:description" content="Analyses, outils IA, prompts, cas d'usage et retours d'expérience pour comprendre, tester et transmettre l'IA avec discernement." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260629-render-fixes" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260630-fluid" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,10 +30,11 @@
     "name": "Charles Berthou",
     "url": "https://charlesberthou.fr/",
     "inLanguage": "fr-FR",
-    "description": "Analyses et ressources pour rendre l'IA compréhensible, utile et humaine, avec des repères simples pour passer à l'action.",
+    "description": "Analyses, outils IA, prompts, cas d'usage et retours d'expérience pour comprendre, tester et transmettre l'IA avec discernement.",
     "publisher": {
       "@type": "Person",
-      "name": "Charles Berthou"
+      "name": "Charles Berthou",
+      "sameAs": "https://fr.linkedin.com/in/charlesberthou"
     }
   }
   </script>
@@ -52,7 +53,9 @@
       </button>
       <nav class="main-nav" id="menu-principal" aria-label="Navigation principale">
         <a href="/#accueil" aria-current="page">Accueil</a>
-        <a href="/#ressources">Ressources</a>
+        <a href="/articles/">Analyses</a>
+        <a href="/#outils">Outils</a>
+        <a href="/#prompts">Prompts</a>
         <a href="/#contact">Contact</a>
       </nav>
     </div>
@@ -62,87 +65,160 @@
     <section class="hero home-hero" id="accueil">
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <h1>Rendre l'IA compréhensible, utile et humaine.</h1>
-          <p class="hero-chapo">Des repères pour comprendre la bascule, choisir les bons usages et avancer avec discernement.</p>
-          <p>J'aide à traduire la complexité technique en usages concrets, en ressources pratiques et en analyses accessibles.</p>
+          <h1>Relier technologie, transformation et usages.</h1>
+          <p class="hero-chapo">J'expérimente avec l'IA, je construis des outils et je partage des repères pour avancer sans perdre le discernement humain.</p>
+          <p>Pour les particuliers curieux, les parents, les professionnels et les équipes qui veulent comprendre, tester, mesurer et transmettre.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="/ressources/">Explorer les ressources</a>
-            <a class="text-cta" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Lire mes analyses</a>
+            <a class="button button-primary" href="#outils">Trouver un outil</a>
+            <a class="button button-secondary" href="/articles/">Lire les analyses</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section posture-section" aria-labelledby="posture-title">
-      <div class="shell">
-        <div class="posture-editorial">
-          <h2 id="posture-title">Passeur, accompagnateur, vulgarisateur.</h2>
-          <p>Rendre les mutations technologiques lisibles, utiles et discutables. Donner des mots, des repères et des outils pour passer de l'intuition à l'action.</p>
-        </div>
-
-        <div class="editorial-minis" aria-label="Axes de travail">
-          <article class="editorial-mini">
-            <h3>Comprendre</h3>
-            <p>Voir ce que l'IA change vraiment.</p>
+        <div class="signal-panel" aria-label="Axes de travail">
+          <article>
+            <span>01</span>
+            <strong>Comprendre les bascules</strong>
+            <p>IA comme infrastructure de pensée, économie du token, dépendance aux plateformes et souveraineté d'usage.</p>
           </article>
-
-          <article class="editorial-mini">
-            <h3>Cadrer</h3>
-            <p>Choisir les usages qui méritent d'être testés.</p>
+          <article>
+            <span>02</span>
+            <strong>Tester proprement</strong>
+            <p>Cas d'usage réel, données autorisées, mesure avant/après, validation humaine et décision suivante.</p>
           </article>
-
-          <article class="editorial-mini">
-            <h3>Transmettre</h3>
-            <p>Partager des repères simples et responsables.</p>
+          <article>
+            <span>03</span>
+            <strong>Transmettre simplement</strong>
+            <p>Prompts, méthodes, outils et repères pédagogiques pour passer de la sidération à la pratique.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section resources-preview" id="ressources" aria-labelledby="ressources-action">
-      <div class="shell">
+    <section class="section action-section" id="outils" aria-labelledby="outils-title">
+      <div class="shell split-section">
         <div class="section-heading">
-          <h2 id="ressources-action">Des ressources pour passer à l'action</h2>
+          <h2 id="outils-title">Entrées directes</h2>
+          <p>Un besoin, un outil. Les parcours vont directement vers les ressources utiles.</p>
         </div>
 
-        <p class="section-callout">Avant de déployer, comprendre. Avant d'automatiser, choisir.</p>
-
-        <div class="home-resource-grid" aria-label="Ressources disponibles">
-          <a class="home-resource-card" href="/outils-ia/maturite-ia/">
-            <strong>Évaluer la maturité IA</strong>
-            <em>Situer le point de départ avant un chantier IA.</em>
+        <div class="action-list">
+          <a class="action-row" href="https://kleoia.fr/" rel="noopener noreferrer">
+            <span class="action-kicker">Apprendre</span>
+            <strong>Apprendre l'IA avec mon enfant ou mon ado</strong>
+            <em>KLEO, modules pédagogiques, quiz et repères pour comprendre l'IA dès 11 ans.</em>
           </a>
-
-          <a class="home-resource-card" href="/outils-ia/cas-usage/">
-            <strong>Explorer les cas d'usage</strong>
-            <em>Repérer des pistes réalistes par métier.</em>
+          <a class="action-row" href="https://monregistreia.fr/" rel="noopener noreferrer">
+            <span class="action-kicker">Documenter</span>
+            <strong>Créer un registre IA</strong>
+            <em>MonRegistreIA, registre interne avec repères AI Act, classification indicative et validation humaine.</em>
           </a>
-
-          <a class="home-resource-card" href="/outils-ia/roi-ia/">
-            <strong>Estimer le ROI</strong>
-            <em>Comparer gains, coûts et délai de retour.</em>
+          <a class="action-row" href="/outils-ia/maturite-ia/">
+            <span class="action-kicker">Diagnostiquer</span>
+            <strong>Évaluer ma maturité IA</strong>
+            <em>Usages, compétences, gouvernance, données, sécurité et adoption.</em>
           </a>
-
-          <a class="home-resource-card" href="/outils-ia/registre-ia/">
-            <strong>Structurer un registre IA</strong>
-            <em>Garder une trace claire des usages.</em>
+          <a class="action-row" href="/outils-ia/cas-usage/">
+            <span class="action-kicker">Choisir</span>
+            <strong>Trouver un cas d'usage IA</strong>
+            <em>116 pistes classées par métier, situation, risque et gain potentiel.</em>
           </a>
-
-          <a class="home-resource-card" href="https://kleoia.fr/" rel="noopener noreferrer">
-            <strong>KLEO</strong>
-            <em>Comprendre l'IA dès l'enfance, avec des repères simples et responsables.</em>
+          <a class="action-row" href="/outils-ia/roi-ia/">
+            <span class="action-kicker">Mesurer</span>
+            <strong>Chiffrer un pilote IA</strong>
+            <em>Temps gagné, adoption, coûts, prudence et délai de retour.</em>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section contact-preview" id="contact" aria-labelledby="suivre-reflexions">
+    <section class="section analyses-section" id="analyses" aria-labelledby="analyses-title">
       <div class="shell">
-        <div class="contact-simple">
-          <h2 id="suivre-reflexions">LinkedIn</h2>
-          <p>Analyses sur l'IA, les usages, le travail et le discernement humain.</p>
-          <a class="inline-link" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">Lire mes analyses et prolonger l'échange</a>
+        <div class="section-heading wide-heading">
+          <h2 id="analyses-title">Analyses</h2>
+          <p>Des textes pour tenir ensemble vitesse technologique, usages réels, coût du calcul, responsabilité et transmission.</p>
         </div>
+
+        <div class="editorial-list">
+          <article class="editorial-row">
+            <span>Intelligence commune</span>
+            <div>
+              <h3>À qui appartient l'intelligence ?</h3>
+              <p>L'IA devient une infrastructure cognitive. La question n'est plus seulement l'accès aux modèles, mais la capacité collective à comprendre, gouverner et mutualiser les usages.</p>
+              <a class="inline-link" href="https://www.linkedin.com/pulse/%C3%A0-qui-appartient-lintelligence-charles-berthou-roffe/" rel="noopener noreferrer">Lire sur LinkedIn</a>
+            </div>
+          </article>
+
+          <article class="editorial-row">
+            <span>Entreprise</span>
+            <div>
+              <h3>IA en entreprise : hâtez-vous lentement</h3>
+              <p>Partir des pratiques réelles, rendre le Shadow AI visible, protéger les données, former les équipes et mesurer les pilotes avant de généraliser.</p>
+            </div>
+          </article>
+
+          <article class="editorial-row">
+            <span>Économie</span>
+            <div>
+              <h3>Le token, prochaine monnaie de l'IA</h3>
+              <p>Le token rend visible une économie du calcul, du contexte et de la dépendance. Les organisations devront apprendre à piloter cette consommation comme elles pilotent déjà le cloud.</p>
+            </div>
+          </article>
+
+          <article class="editorial-row">
+            <span>Transmission</span>
+            <div>
+              <h3>L'humanité a toujours tremblé devant sa propre lumière</h3>
+              <p>Ni sidération, ni déni : chaque progrès technique oblige à choisir ce que l'on veut mieux comprendre, mieux faire et mieux transmettre.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-actions">
+          <a class="button button-secondary" href="/articles/">Toutes les analyses</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section prompts-section" id="prompts" aria-labelledby="prompts-title">
+      <div class="shell split-section">
+        <div class="section-heading">
+          <h2 id="prompts-title">Prompts utiles</h2>
+          <p>Des formulations simples pour cadrer un essai, contrôler une réponse et préparer une décision.</p>
+        </div>
+
+        <div class="prompt-list">
+          <article class="prompt-card">
+            <h3>Clarifier un usage</h3>
+            <p>Agis comme un sparring partner. Aide-moi à transformer cette idée en cas d'usage testable : tâche réelle, données nécessaires, sortie attendue, risque, mesure du gain et première expérience en 30 minutes.</p>
+          </article>
+
+          <article class="prompt-card">
+            <h3>Contrôler une réponse</h3>
+            <p>Relis cette réponse. Sépare les faits vérifiables, les hypothèses, les zones incertaines et les décisions à ne pas prendre sans validation humaine. Termine par les contrôles à effectuer.</p>
+          </article>
+
+          <article class="prompt-card">
+            <h3>Préparer un pilote</h3>
+            <p>À partir de ce besoin, propose un pilote court : périmètre, utilisateurs, données autorisées, critères de succès, risques, plan de mesure avant/après et décision à prendre en fin de test.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-preview" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-grid">
+        <div class="section-heading">
+          <h2 id="contact-title">Échanger</h2>
+          <p>Une question, un usage à cadrer, un retour sur un outil ou une envie de comprendre l'IA autrement.</p>
+        </div>
+
+        <a class="wide-card" href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">
+          <span class="wide-card-copy">
+            <strong>LinkedIn</strong>
+            <em>Analyses, expérimentations, projets personnels et échanges autour des usages concrets de l'IA.</em>
+            <span>Ouvrir le profil <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
       </div>
     </section>
   </main>
@@ -150,13 +226,15 @@
   <footer class="site-footer">
     <div class="shell footer-shell">
       <div class="footer-identity">
-        <p>Édité par <a href="https://dharma-developpement.fr/" rel="noopener noreferrer">Dharma Développement</a></p>
+        <p>Charles Berthou</p>
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/#accueil">Accueil</a>
-        <a href="/#ressources">Ressources</a>
-        <a href="/#contact">Contact</a>
+        <a href="/articles/">Analyses</a>
+        <a href="/#outils">Outils</a>
+        <a href="/#prompts">Prompts</a>
         <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://dharma-developpement.fr/" rel="noopener noreferrer">Dharma</a>
       </nav>
     </div>
   </footer>

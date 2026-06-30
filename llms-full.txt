@@ -1,20 +1,27 @@
 # charlesberthou.fr
 
-charlesberthou.fr publie quatre outils concrets pour comprendre, tester et cadrer les usages de l'IA.
+charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA : analyses, outils pratiques, prompts, cas d'usage et retours d'expérience.
 
 ## Routes publiques
 
 - Accueil : https://charlesberthou.fr/
+- Analyses : https://charlesberthou.fr/articles/
 - Ressources : https://charlesberthou.fr/ressources/
 - Contact : https://charlesberthou.fr/contact/
 
-## Outils IA conservés
+## Outils IA
 
 - Test de maturité IA : https://charlesberthou.fr/outils-ia/maturite-ia/
-- Explorateur de cas d'usage IA : https://charlesberthou.fr/outils-ia/cas-usage/
+- Explorateur de 116 cas d'usage IA : https://charlesberthou.fr/outils-ia/cas-usage/
 - Calculateur ROI IA : https://charlesberthou.fr/outils-ia/roi-ia/
 - Registre IA simplifié : https://charlesberthou.fr/outils-ia/registre-ia/
 
-## Analyses
+## Ligne éditoriale
 
-Les analyses et réflexions éditoriales ne sont plus publiées en section Articles sur le site. Elles sont renvoyées vers LinkedIn : https://fr.linkedin.com/in/charlesberthou
+- Objectif : transmettre des repères simples pour comprendre, tester, mesurer et documenter les usages de l'IA.
+- Publics : particuliers curieux, professionnels, équipes et décideurs.
+- Séparation : ne pas mélanger cette page personnelle avec l'emploi salarié.
+- Dharma reste un lien discret pour les missions structurées : https://dharma-developpement.fr/
+- Les publications longues et échanges se poursuivent aussi sur LinkedIn : https://fr.linkedin.com/in/charlesberthou
+- Les analyses reprennent les axes des anciens articles : humanité et progrès, IA en entreprise, économie du token, registre IA, Shadow AI, priorisation de cas d'usage, ROI, AI Act, KLEO et publications récentes.
+- Trois textes structurants : IA en entreprise : hâtez-vous lentement ; L'humanité a toujours tremblé devant sa propre lumière ; Le token, prochaine monnaie de l'IA.

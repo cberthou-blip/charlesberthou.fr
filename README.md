@@ -2,18 +2,31 @@
 
 Site personnel statique publié avec GitHub Pages.
 
+## Ligne éditoriale
+
+- Labo personnel autour de l'IA : analyses, outils, prompts, cas d'usage et retours d'expérience.
+- Publics visés : particuliers curieux, professionnels, équipes et décideurs qui veulent comprendre et tester sans jargon.
+- Séparation volontaire : ne pas mélanger cette page avec l'emploi salarié ; Dharma reste un lien discret pour les missions structurées.
+
 ## Routes publiques
 
-- `/` : accueil mobile-first avec présentation, ressources et contact.
-- `/ressources/` : les quatre outils IA disponibles.
+- `/` : accueil éditorial dark mode avec analyses, outils, prompts et contact.
+- `/articles/` : analyses issues des textes longs, guides pratiques et publications récentes.
+- `/ressources/` : boîte à outils IA disponible.
 - `/contact/` : contact via LinkedIn uniquement.
-- `/outils-ia/maturite-ia/` : outil conservé, accessible depuis les ressources.
-- `/outils-ia/cas-usage/` : outil conservé, accessible depuis les ressources.
-- `/outils-ia/roi-ia/` : outil conservé, accessible depuis les ressources.
-- `/outils-ia/registre-ia/` : outil conservé, accessible depuis les ressources.
+- `/outils-ia/maturite-ia/` : test de maturité IA.
+- `/outils-ia/cas-usage/` : explorateur de 116 cas d'usage IA.
+- `/outils-ia/roi-ia/` : calculateur ROI IA.
+- `/outils-ia/registre-ia/` : registre IA simplifié.
 
 ## Redirections
 
-- `/outils-ia/` redirige vers `/ressources/`.
-- Les anciennes routes Articles et Blog sont supprimées du dépôt ; la page 404 renvoie ces chemins vers LinkedIn.
-- Les anciennes routes de repères, services, GPTs et e-learning redirigent vers `/ressources/`.
+- `/outils-ia/` redirige vers `/#outils`.
+- Les anciennes routes Articles et Blog renvoient vers `/articles/`.
+- Les anciennes routes de repères, services, GPTs et e-learning redirigent vers `/#outils`.
+
+## Analyses sources intégrées
+
+- `IA en entreprise : hâtez-vous lentement`
+- `L'humanité a toujours tremblé devant sa propre lumière`
+- `Le token, prochaine monnaie de l'IA`
