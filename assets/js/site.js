@@ -42,6 +42,38 @@ function setupMenu() {
   setOpen(false);
 }
 
+function setupPromptCopy() {
+  const copyButtons = Array.from(document.querySelectorAll("[data-copy-prompt]"));
+  if (!copyButtons.length) return;
+
+  copyButtons.forEach((button) => {
+    const card = button.closest("[data-prompt-card]");
+    const prompt = card?.querySelector("p");
+    if (!prompt) return;
+
+    button.addEventListener("click", async () => {
+      const initialLabel = button.textContent;
+      try {
+        await navigator.clipboard.writeText(prompt.textContent.trim());
+        button.textContent = "Copié";
+        button.dataset.state = "done";
+        window.setTimeout(() => {
+          button.textContent = initialLabel;
+          delete button.dataset.state;
+        }, 1400);
+      } catch {
+        button.textContent = "Indisponible";
+        button.dataset.state = "error";
+        window.setTimeout(() => {
+          button.textContent = initialLabel;
+          delete button.dataset.state;
+        }, 1600);
+      }
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupMenu();
+  setupPromptCopy();
 });

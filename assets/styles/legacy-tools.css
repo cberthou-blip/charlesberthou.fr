@@ -10,18 +10,18 @@
   --teal: #036477;
   --hero-accent: #006b66;
   --hero-accent-dark: #064e4b;
-  --blue: #4338ca;
-  --coral: #7c3aed;
-  --accent: #6366f1;
-  --violet: #7c3aed;
-  --cyan: #06b6d4;
+  --blue: #4c9df6;
+  --coral: #4c9df6;
+  --accent: #4c9df6;
+  --violet: #4c9df6;
+  --cyan: #4c9df6;
   --deep: #0d1b3e;
   --success: #047857;
   --danger: #b42318;
   --shadow: 0 18px 46px rgba(13, 27, 62, 0.14);
   --shadow-soft: 0 8px 24px rgba(13, 27, 62, 0.09);
-  --grad-card: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);
-  --grad-cyan: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+  --grad-card: none;
+  --grad-cyan: none;
 }
 
 *,
@@ -3524,12 +3524,12 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-/* Unified light theme for the current site direction. */
+/* Unified dark theme for the current site direction. */
 :root {
   --bg: #05070b;
   --bg-soft: #080c12;
   --surface: #0e131b;
-  --surface-strong: #ffffff;
+  --surface-strong: #141b25;
   --ink: #f4f7fb;
   --muted: #b8c4d4;
   --line: #202938;
@@ -3711,8 +3711,8 @@ button.button,
 .danger-button {
   min-height: 46px;
   border-radius: 10px;
-  border-color: #d4a34d;
-  background: #e5bd72;
+  border-color: var(--hero-accent);
+  background: var(--hero-accent);
   color: var(--ink);
   box-shadow: var(--shadow-soft);
   font-weight: 700;
@@ -3889,5 +3889,542 @@ textarea {
 
   .footer-simple nav {
     justify-content: flex-start;
+  }
+}
+
+/* 2026 DA pass: align IA tools with the editorial dark system. */
+:root {
+  --bg: #05070b;
+  --bg-soft: #070a10;
+  --surface: #0d121a;
+  --surface-strong: #131a24;
+  --surface-clear: #141b25;
+  --ink: #f4f7fb;
+  --muted: #b8c4d4;
+  --muted-soft: #8f9eb0;
+  --line: #202938;
+  --line-strong: #334257;
+  --hero-accent: #4c9df6;
+  --hero-accent-dark: #a4ceff;
+  --blue: #4c9df6;
+  --accent: #4c9df6;
+  --teal: #4c9df6;
+  --cyan: #4c9df6;
+  --deep: #f4f7fb;
+  --success: #4fa06b;
+  --danger: #d96b5f;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.035) inset, 0 12px 28px rgba(0, 0, 0, 0.18);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.028) inset;
+}
+
+html,
+body {
+  background: var(--bg);
+}
+
+body {
+  color: var(--ink);
+  line-height: 1.56;
+}
+
+p,
+li {
+  color: var(--muted);
+}
+
+.container {
+  width: min(calc(100% - 32px), 1160px);
+}
+
+.site-header {
+  background: rgba(5, 7, 11, 0.92);
+  border-bottom-color: rgba(51, 66, 87, 0.72);
+}
+
+.nav-bar {
+  min-height: 64px;
+}
+
+.brand {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 690;
+}
+
+.main-nav {
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 640;
+}
+
+.main-nav a {
+  min-height: 42px;
+  border-radius: 8px;
+  color: var(--muted);
+  padding: 0 10px;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  background: rgba(76, 157, 246, 0.08);
+  color: var(--hero-accent-dark);
+}
+
+.tool-page .tool-common-hero {
+  border-bottom: 0;
+  background: var(--bg);
+  padding: 0;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+.tool-page .tool-common-hero-inner {
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  grid-template-columns: minmax(0, 760px);
+  gap: 14px;
+  align-items: start;
+  border-bottom: 1px solid rgba(51, 66, 87, 0.54);
+  padding: 54px 0 48px;
+}
+
+.tool-page .tool-common-hero .back-link {
+  grid-column: 1 / -1;
+  color: var(--muted);
+}
+
+.tool-page .tool-common-hero .eyebrow {
+  display: none;
+}
+
+.tool-page .tool-common-hero h1,
+.case-page .case-action-hero h1,
+h1 {
+  max-width: 13ch;
+  color: var(--ink);
+  font-size: clamp(2.45rem, 6vw, 4rem);
+  font-weight: 735;
+  line-height: 1;
+}
+
+.tool-page .tool-common-hero .lead,
+.case-page .case-action-hero p,
+.lead {
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tool-page .tool-common-hero .step-pill {
+  grid-column: 1;
+  position: static;
+  top: auto;
+  right: auto;
+  margin: 0;
+  width: fit-content;
+  min-height: 30px;
+  border: 1px solid rgba(76, 157, 246, 0.32);
+  border-radius: 8px;
+  background: rgba(76, 157, 246, 0.08);
+  color: var(--hero-accent-dark);
+}
+
+.tool-page .tool-common-hero .tool-hero-indicators,
+.tool-page .tool-common-hero .maturity-score-card,
+.tool-stat-strip,
+.maturity-score-card {
+  grid-column: 1;
+  grid-row: auto;
+  align-self: start;
+  border: 1px solid rgba(51, 66, 87, 0.72);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.tool-page .tool-common-hero .tool-hero-indicators,
+.tool-page .tool-common-hero .maturity-score-card {
+  width: min(100%, 760px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+}
+
+.tool-page .tool-common-hero .maturity-score-visual,
+.tool-page .tool-common-hero .maturity-score-meta span,
+.tool-page .tool-common-hero .tool-hero-indicators span {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(76, 157, 246, 0.2);
+  border-radius: 8px;
+  padding: 5px 9px;
+  background: rgba(76, 157, 246, 0.07);
+}
+
+.tool-stat-strip span,
+.maturity-score-meta span,
+.case-page .case-hero-stats span {
+  border-bottom-color: rgba(51, 66, 87, 0.58);
+  background: transparent;
+  color: var(--muted);
+}
+
+.tool-stat-strip strong,
+.maturity-score-visual strong,
+.roi-metric-list strong,
+.maturity-score-copy small,
+.case-page .case-hero-stats strong {
+  color: var(--ink);
+}
+
+.maturity-score-copy span,
+.maturity-score-copy p {
+  color: var(--muted);
+}
+
+.section,
+.tool-page .section.tool-workspace-section,
+.case-page .case-search-section,
+.case-page .case-action-workspace,
+.case-page .case-method-section,
+.roi-reading-section {
+  padding: 54px 0;
+  border-block: 0;
+  background: var(--bg);
+}
+
+.maturity-layout,
+.roi-layout {
+  gap: 18px;
+}
+
+.maturity-questions,
+.maturity-panel,
+.roi-panel,
+.roi-tool .roi-panel,
+.roi-key-results,
+.roi-tool .roi-key-results,
+.roi-tool .maturity-panel,
+.roi-tool .roi-results .maturity-panel,
+.roi-tool .roi-summary-card,
+.roi-summary-card,
+.content-card,
+.case-search-panel,
+.case-page .case-search-panel,
+.tool-library-panel,
+.case-results-panel,
+.case-page .case-choice-help-section .content-card,
+.next-card,
+.tool-page .next-card,
+.case-page .next-card,
+.roi-tool .content-card {
+  border: 1px solid rgba(51, 66, 87, 0.72);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.maturity-questions,
+.maturity-panel,
+.roi-panel,
+.tool-library-panel,
+.content-card,
+.next-card {
+  padding: 22px;
+}
+
+.panel-heading,
+.compact-heading,
+.case-step-heading,
+.case-results-bar {
+  gap: 16px;
+}
+
+h2,
+.tool-page .case-results-bar h2,
+.case-page .case-choice-help-section h2 {
+  color: var(--ink);
+  font-size: clamp(1.28rem, 2vw, 1.72rem);
+  font-weight: 690;
+}
+
+h3 {
+  color: var(--ink);
+  font-weight: 680;
+}
+
+.button,
+button.button,
+.tool-page .button,
+.tool-page .case-card-cta,
+.tool-page .case-reset-button,
+.case-reset-button,
+.compact-button,
+.danger-button {
+  min-height: 44px;
+  border: 1px solid var(--hero-accent);
+  border-radius: 9px;
+  background: var(--hero-accent);
+  color: #04111f;
+  box-shadow: none;
+  font-weight: 720;
+}
+
+.button:not(.secondary),
+button.button:not(.secondary),
+.button:not(.secondary):hover,
+button.button:not(.secondary):hover,
+.button:not(.secondary) *,
+button.button:not(.secondary) * {
+  color: #04111f;
+}
+
+.button.secondary,
+.tool-page .button.secondary,
+.tool-page .button[disabled],
+.tool-page button[disabled],
+.case-reset-button,
+.compact-button,
+.danger-button,
+.roi-reset-link {
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+}
+
+.button:hover,
+button.button:hover,
+.tool-page .button:hover,
+.tool-page .case-card-cta:hover,
+.tool-page .case-reset-button:hover,
+.case-reset-button:hover,
+.compact-button:hover {
+  border-color: var(--hero-accent-dark);
+  background: rgba(76, 157, 246, 0.10);
+  color: var(--ink);
+}
+
+label,
+.form-row,
+.tool-search,
+.case-select-field {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+input,
+select,
+textarea {
+  border-color: var(--line-strong);
+  border-radius: 9px;
+  background: var(--surface-clear);
+  background-color: var(--surface-clear);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #758397;
+}
+
+.input-with-unit em,
+.axis-value,
+.case-results-bar .result-count,
+.result-count,
+.tag,
+.status-pill,
+.example-pill,
+.case-quick-starts button,
+.case-page .case-quick-starts button,
+.case-card-meta small,
+.case-page .case-card-meta small {
+  border: 1px solid rgba(76, 157, 246, 0.26);
+  border-radius: 8px;
+  background: rgba(76, 157, 246, 0.08);
+  color: var(--hero-accent-dark);
+}
+
+.case-quick-starts button:hover,
+.case-quick-starts button.active,
+.case-page .case-quick-starts button[aria-pressed="true"] {
+  border-color: rgba(164, 206, 255, 0.44);
+  background: rgba(76, 157, 246, 0.14);
+  color: var(--ink);
+}
+
+.roi-field-group,
+.roi-tool .roi-field-group,
+.roi-tool .roi-primary-metrics div,
+.roi-tool .roi-secondary-metrics div,
+.case-tool-card,
+.case-page .case-tool-card,
+.case-page .case-start-guide dl div,
+.case-page .case-sheet-block,
+.roi-reading-cards div,
+.roi-tool .roi-reading-cards div {
+  border: 1px solid rgba(51, 66, 87, 0.72);
+  border-radius: 8px;
+  background: var(--surface-clear);
+  box-shadow: none;
+}
+
+.case-page .case-select-field select,
+.case-page .case-search-main input,
+.case-page input,
+.case-page select,
+.roi-tool input,
+.roi-tool select {
+  border-color: var(--line-strong);
+  background: var(--surface-clear);
+  background-color: var(--surface-clear);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+.case-page select option,
+.roi-tool select option {
+  background: var(--surface-clear);
+  color: var(--ink);
+}
+
+.case-tool-card:hover,
+.case-page .case-tool-card:hover,
+.case-tool-card.selected,
+.case-page .case-tool-card.selected {
+  border-color: rgba(164, 206, 255, 0.4);
+  background: #17202c;
+}
+
+.case-card-kicker,
+.case-page .case-card-kicker,
+.case-step-number,
+.card-meta,
+.meta {
+  color: var(--hero-accent-dark);
+}
+
+.maturity-result-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.case-page .case-card-title,
+.case-tool-card strong,
+.source-case-card strong,
+.maturity-result-meta strong {
+  color: var(--ink);
+}
+
+.case-tool-card p,
+.case-page .case-tool-card p,
+.case-page .case-start-guide dd,
+.case-page .case-sheet-block p,
+.case-page .case-sheet-block small,
+.roi-reading-cards p,
+.roi-tool .roi-summary-card p,
+.roi-tool .roi-secondary-metrics span,
+.roi-tool .roi-primary-metrics span,
+.maturity-result-note,
+.empty-state {
+  color: var(--muted);
+}
+
+.roi-tool .roi-primary-metrics strong,
+.roi-tool .roi-secondary-metrics strong,
+.roi-tool .roi-summary-card strong {
+  color: var(--ink);
+}
+
+.roi-tool .roi-next-step {
+  border-top-color: rgba(51, 66, 87, 0.72);
+}
+
+.site-footer {
+  border-top-color: rgba(51, 66, 87, 0.68);
+  background: #05070b;
+}
+
+.footer-simple {
+  min-height: 64px;
+  padding: 18px 0;
+}
+
+.footer-brand .footer-editor,
+.footer-editor,
+.footer-simple nav,
+.footer-simple nav a {
+  color: var(--muted);
+}
+
+.footer-simple nav a:hover {
+  color: var(--hero-accent-dark);
+}
+
+@media (max-width: 980px) {
+  .tool-page .tool-common-hero-inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .tool-page .tool-common-hero .tool-hero-indicators,
+  .tool-page .tool-common-hero .maturity-score-card,
+  .tool-stat-strip,
+  .maturity-score-card {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    width: min(calc(100% - 28px), 1160px);
+  }
+
+  .nav-bar {
+    min-height: 58px;
+  }
+
+  .site-header.has-mobile-menu .main-nav {
+    top: 58px;
+    border-color: var(--line);
+    background: rgba(5, 7, 11, 0.98);
+    box-shadow: none;
+  }
+
+  .site-header.has-mobile-menu .menu-toggle {
+    border-color: var(--line-strong);
+    background: var(--surface);
+  }
+
+  .tool-page .tool-common-hero-inner {
+    gap: 13px;
+    padding: 38px 0 34px;
+  }
+
+  .tool-page .tool-common-hero h1,
+  .case-page .case-action-hero h1 {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .section,
+  .tool-page .section.tool-workspace-section,
+  .case-page .case-search-section,
+  .case-page .case-action-workspace,
+  .case-page .case-method-section,
+  .roi-reading-section {
+    padding: 38px 0;
+  }
+
+  .mobile-collapse-toggle {
+    border-color: var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
   }
 }
