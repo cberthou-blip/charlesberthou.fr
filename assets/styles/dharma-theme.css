@@ -1,0 +1,19 @@
+:root {
+  --ivory: #f4f2ec;
+  --paper: #fbfaf6;
+  --paper-quiet: #f8f6ef;
+  --black: #111214;
+  --black-soft: #1a1b1d;
+  --mineral: #8c8f94;
+  --mineral-dark: #6f7378;
+  --mineral-light: #a0a3a8;
+  --steel: #5f6871;
+  --steel-dark: #3f474f;
+  --line: rgba(17, 18, 20, 0.16);
+  --line-strong: rgba(17, 18, 20, 0.34);
+  --line-dark: rgba(244, 242, 236, 0.22);
+  --shadow-subtle: 0 1px 2px rgba(17, 18, 20, 0.05);
+  --font-title: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
