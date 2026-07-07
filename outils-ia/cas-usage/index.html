@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/styles/dharma-theme.css?v=20260707-dharma-source" />
-  <link rel="stylesheet" href="/assets/styles/legacy-tools.css?v=20260707-dharma-source" />
+  <link rel="stylesheet" href="/assets/styles/legacy-tools.css?v=20260707-corrections" />
   
 </head>
 <body>
@@ -37,7 +37,7 @@
       <a class="brand" href="/#accueil" aria-label="Charles Berthou, accueil">Charles Berthou</a>
       <nav class="main-nav" aria-label="Navigation principale">
         <a href="/#accueil">Accueil</a>
-        <a href="/#outils" aria-current="page">Outils</a>
+        <a href="/ressources/">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="/#contact">Contact</a>
       </nav>
@@ -70,7 +70,7 @@
             <span class="case-step-number">1</span>
             <div>
               <h2 id="caseSearchTitle">Trouver un cas d'usage</h2>
-              <p>Décrivez le besoin, puis affinez par métier, contexte, type d'usage ou niveau de risque.</p>
+              <p>Commencez par un métier, un besoin, un niveau de vigilance ou un gain attendu.</p>
             </div>
           </div>
 
@@ -80,11 +80,14 @@
               <input id="caseSearch" type="search" placeholder="Ex. résumer une réunion projet" autocomplete="off" />
             </label>
 
-            <div class="case-quick-starts" aria-label="Filtres rapides">
-              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
-              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Contrôler">Contrôler</button>
-              <button type="button" data-case-quick-field="taskType" data-case-quick-value="Automatiser">Automatiser</button>
-              <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">Ressources humaines</button>
+            <div class="case-quick-panel">
+              <span>Départ rapide</span>
+              <div class="case-quick-starts" aria-label="Filtres rapides">
+                <button type="button" data-case-quick-field="category" data-case-quick-value="Ressources humaines">Métier RH</button>
+                <button type="button" data-case-quick-field="taskType" data-case-quick-value="Synthétiser">Synthétiser</button>
+                <button type="button" data-case-quick-field="risk" data-case-quick-value="Faible">Vigilance faible</button>
+                <button type="button" data-case-quick-field="gainPreset" data-case-quick-value="high">Gain élevé</button>
+              </div>
             </div>
 
             <div class="case-filter-groups case-filter-compact" aria-label="Filtres">
@@ -188,7 +191,7 @@
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/#accueil">Accueil</a>
-        <a href="/#outils">Outils</a>
+        <a href="/ressources/">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="/#contact">Contact</a>
         <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>
@@ -196,6 +199,6 @@
     </div>
   </footer>
   <script src="/assets/js/legacy-site.js?v=20260628-unified" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260607-mobile" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260707-corrections" defer></script>
 </body>
 </html>

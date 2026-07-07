@@ -21,7 +21,6 @@
   "fiches": [
     {
       "id": "CU-001",
-      "source_id": "CC-001",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -57,7 +56,6 @@
     },
     {
       "id": "CU-002",
-      "source_id": "CC-002",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -93,7 +91,6 @@
     },
     {
       "id": "CU-003",
-      "source_id": "CC-003",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -129,7 +126,6 @@
     },
     {
       "id": "CU-004",
-      "source_id": "CC-004",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -165,7 +161,6 @@
     },
     {
       "id": "CU-005",
-      "source_id": "CC-005",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -201,7 +196,6 @@
     },
     {
       "id": "CU-006",
-      "source_id": "CC-006",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -237,7 +231,6 @@
     },
     {
       "id": "CU-007",
-      "source_id": "CC-007",
       "categorie": "Relation client",
       "domaine": "Service client",
       "profil": "Conseiller / chargé de clientèle",
@@ -273,7 +266,6 @@
     },
     {
       "id": "CU-008",
-      "source_id": "CC-008",
       "categorie": "Relation client",
       "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
@@ -309,7 +301,6 @@
     },
     {
       "id": "CU-009",
-      "source_id": "CC-009",
       "categorie": "Relation client",
       "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
@@ -345,7 +336,6 @@
     },
     {
       "id": "CU-010",
-      "source_id": "CC-010",
       "categorie": "Relation client",
       "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
@@ -381,7 +371,6 @@
     },
     {
       "id": "CU-011",
-      "source_id": "CC-011",
       "categorie": "Relation client",
       "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
@@ -417,7 +406,6 @@
     },
     {
       "id": "CU-012",
-      "source_id": "CC-012",
       "categorie": "Relation client",
       "domaine": "Relation client",
       "profil": "Chargé d'affaires B2B",
@@ -453,7 +441,6 @@
     },
     {
       "id": "CU-013",
-      "source_id": "CC-013",
       "categorie": "Relation client",
       "domaine": "Conseil spécialisé",
       "profil": "Conseiller spécialisé",
@@ -489,7 +476,6 @@
     },
     {
       "id": "CU-014",
-      "source_id": "CC-014",
       "categorie": "Relation client",
       "domaine": "Conseil spécialisé",
       "profil": "Conseiller spécialisé",
@@ -525,7 +511,6 @@
     },
     {
       "id": "CU-015",
-      "source_id": "CC-015",
       "categorie": "Relation client",
       "domaine": "Conseil spécialisé",
       "profil": "Conseiller spécialisé",
@@ -561,7 +546,6 @@
     },
     {
       "id": "CU-016",
-      "source_id": "CC-016",
       "categorie": "Relation client",
       "domaine": "Conseil spécialisé",
       "profil": "Conseiller spécialisé",
@@ -597,7 +581,6 @@
     },
     {
       "id": "CU-017",
-      "source_id": "CC-017",
       "categorie": "Relation client",
       "domaine": "Finance et projets",
       "profil": "Conseiller / chargé de clientèle",
@@ -633,7 +616,6 @@
     },
     {
       "id": "CU-018",
-      "source_id": "CC-018",
       "categorie": "Relation client",
       "domaine": "Finance et projets",
       "profil": "Conseiller / chargé de clientèle",
@@ -669,7 +651,6 @@
     },
     {
       "id": "CU-019",
-      "source_id": "CC-019",
       "categorie": "Relation client",
       "domaine": "Pilotage",
       "profil": "Conseiller / chargé de clientèle",
@@ -705,7 +686,6 @@
     },
     {
       "id": "CU-020",
-      "source_id": "CC-020",
       "categorie": "Relation client",
       "domaine": "Pilotage",
       "profil": "Conseiller / chargé de clientèle",
@@ -741,7 +721,6 @@
     },
     {
       "id": "CU-021",
-      "source_id": "MS-001",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -775,7 +754,6 @@
     },
     {
       "id": "CU-022",
-      "source_id": "MS-002",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -809,7 +787,6 @@
     },
     {
       "id": "CU-023",
-      "source_id": "MS-003",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -843,7 +820,6 @@
     },
     {
       "id": "CU-024",
-      "source_id": "MS-004",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -877,7 +853,6 @@
     },
     {
       "id": "CU-025",
-      "source_id": "MS-005",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -911,7 +886,6 @@
     },
     {
       "id": "CU-026",
-      "source_id": "MS-006",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -946,7 +920,6 @@
     },
     {
       "id": "CU-027",
-      "source_id": "MS-007",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -980,7 +953,6 @@
     },
     {
       "id": "CU-028",
-      "source_id": "MS-008",
       "categorie": "Fonctions support",
       "domaine": "Support interne",
       "profil": "Assistant terrain / support",
@@ -1014,7 +986,6 @@
     },
     {
       "id": "CU-029",
-      "source_id": "MS-009",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1048,7 +1019,6 @@
     },
     {
       "id": "CU-030",
-      "source_id": "MS-010",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1082,7 +1052,6 @@
     },
     {
       "id": "CU-031",
-      "source_id": "MS-011",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1116,7 +1085,6 @@
     },
     {
       "id": "CU-032",
-      "source_id": "MS-012",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1150,7 +1118,6 @@
     },
     {
       "id": "CU-033",
-      "source_id": "MS-013",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1184,7 +1151,6 @@
     },
     {
       "id": "CU-034",
-      "source_id": "MS-014",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1218,7 +1184,6 @@
     },
     {
       "id": "CU-035",
-      "source_id": "MS-015",
       "categorie": "Fonctions support",
       "domaine": "Conformité et risques",
       "profil": "Conformité / risques / contrôle",
@@ -1252,7 +1217,6 @@
     },
     {
       "id": "CU-036",
-      "source_id": "MS-016",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1286,7 +1250,6 @@
     },
     {
       "id": "CU-037",
-      "source_id": "MS-017",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1320,7 +1283,6 @@
     },
     {
       "id": "CU-038",
-      "source_id": "MS-018",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1354,7 +1316,6 @@
     },
     {
       "id": "CU-039",
-      "source_id": "MS-019",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1388,7 +1349,6 @@
     },
     {
       "id": "CU-040",
-      "source_id": "MS-020",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1422,7 +1382,6 @@
     },
     {
       "id": "CU-041",
-      "source_id": "MS-021",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1456,7 +1415,6 @@
     },
     {
       "id": "CU-042",
-      "source_id": "MS-022",
       "categorie": "Fonctions support",
       "domaine": "Projets et organisation",
       "profil": "Chef de projet / organisateur",
@@ -1490,7 +1448,6 @@
     },
     {
       "id": "CU-043",
-      "source_id": "MS-023",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1524,7 +1481,6 @@
     },
     {
       "id": "CU-044",
-      "source_id": "MS-024",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1559,7 +1515,6 @@
     },
     {
       "id": "CU-045",
-      "source_id": "MS-025",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1593,7 +1548,6 @@
     },
     {
       "id": "CU-046",
-      "source_id": "MS-026",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1627,7 +1581,6 @@
     },
     {
       "id": "CU-047",
-      "source_id": "MS-027",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1661,7 +1614,6 @@
     },
     {
       "id": "CU-048",
-      "source_id": "MS-028",
       "categorie": "Fonctions support",
       "domaine": "RH",
       "profil": "Ressources humaines",
@@ -1695,7 +1647,6 @@
     },
     {
       "id": "CU-049",
-      "source_id": "MS-029",
       "categorie": "Fonctions support",
       "domaine": "Marketing et communication",
       "profil": "Marketing / communication",
@@ -1729,7 +1680,6 @@
     },
     {
       "id": "CU-050",
-      "source_id": "MS-030",
       "categorie": "Fonctions support",
       "domaine": "Marketing et communication",
       "profil": "Marketing / communication",
@@ -1763,7 +1713,6 @@
     },
     {
       "id": "CU-051",
-      "source_id": "MS-031",
       "categorie": "Fonctions support",
       "domaine": "Marketing et communication",
       "profil": "Marketing / communication",
@@ -1797,7 +1746,6 @@
     },
     {
       "id": "CU-052",
-      "source_id": "MS-032",
       "categorie": "Fonctions support",
       "domaine": "Marketing et communication",
       "profil": "Marketing / communication",
@@ -1831,7 +1779,6 @@
     },
     {
       "id": "CU-053",
-      "source_id": "MS-033",
       "categorie": "Fonctions support",
       "domaine": "Marketing et communication",
       "profil": "Marketing / communication",
@@ -1865,7 +1812,6 @@
     },
     {
       "id": "CU-054",
-      "source_id": "MS-034",
       "categorie": "Fonctions support",
       "domaine": "Juridique et fiscalité",
       "profil": "Juridique / fiscalité",
@@ -1899,7 +1845,6 @@
     },
     {
       "id": "CU-055",
-      "source_id": "MS-035",
       "categorie": "Fonctions support",
       "domaine": "Juridique et fiscalité",
       "profil": "Juridique / fiscalité",
@@ -1933,7 +1878,6 @@
     },
     {
       "id": "CU-056",
-      "source_id": "MS-036",
       "categorie": "Fonctions support",
       "domaine": "Juridique et fiscalité",
       "profil": "Juridique / fiscalité",
@@ -1967,7 +1911,6 @@
     },
     {
       "id": "CU-057",
-      "source_id": "MS-037",
       "categorie": "Fonctions support",
       "domaine": "Juridique et fiscalité",
       "profil": "Juridique / fiscalité",
@@ -2001,7 +1944,6 @@
     },
     {
       "id": "CU-058",
-      "source_id": "MS-038",
       "categorie": "Fonctions support",
       "domaine": "Finance et pilotage",
       "profil": "Finance / pilotage",
@@ -2035,7 +1977,6 @@
     },
     {
       "id": "CU-059",
-      "source_id": "MS-039",
       "categorie": "Fonctions support",
       "domaine": "Finance et pilotage",
       "profil": "Finance / pilotage",
@@ -2069,7 +2010,6 @@
     },
     {
       "id": "CU-060",
-      "source_id": "MS-040",
       "categorie": "Fonctions support",
       "domaine": "Finance et pilotage",
       "profil": "Finance / pilotage",
@@ -2103,7 +2043,6 @@
     },
     {
       "id": "CU-061",
-      "source_id": "MS-041",
       "categorie": "Fonctions support",
       "domaine": "Finance et pilotage",
       "profil": "Finance / pilotage",
@@ -2137,7 +2076,6 @@
     },
     {
       "id": "CU-062",
-      "source_id": "MS-042",
       "categorie": "Fonctions support",
       "domaine": "Audit et contrôle",
       "profil": "Audit / inspection",
@@ -2171,7 +2109,6 @@
     },
     {
       "id": "CU-063",
-      "source_id": "MS-043",
       "categorie": "Fonctions support",
       "domaine": "Audit et contrôle",
       "profil": "Audit / inspection",
@@ -2205,7 +2142,6 @@
     },
     {
       "id": "CU-064",
-      "source_id": "MS-044",
       "categorie": "Fonctions support",
       "domaine": "Audit et contrôle",
       "profil": "Audit / inspection",
@@ -2239,7 +2175,6 @@
     },
     {
       "id": "CU-065",
-      "source_id": "MS-045",
       "categorie": "Fonctions support",
       "domaine": "Audit et contrôle",
       "profil": "Audit / inspection",
@@ -2273,7 +2208,6 @@
     },
     {
       "id": "CU-066",
-      "source_id": "MS-046",
       "categorie": "Fonctions support",
       "domaine": "Juridique et recouvrement",
       "profil": "Engagements / recouvrement / contentieux",
@@ -2307,7 +2241,6 @@
     },
     {
       "id": "CU-067",
-      "source_id": "MS-047",
       "categorie": "Fonctions support",
       "domaine": "Juridique et recouvrement",
       "profil": "Engagements / recouvrement / contentieux",
@@ -2341,7 +2274,6 @@
     },
     {
       "id": "CU-068",
-      "source_id": "MS-048",
       "categorie": "Fonctions support",
       "domaine": "Juridique et recouvrement",
       "profil": "Engagements / recouvrement / contentieux",
@@ -2375,7 +2307,6 @@
     },
     {
       "id": "CU-069",
-      "source_id": "MG-001",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2409,7 +2340,6 @@
     },
     {
       "id": "CU-070",
-      "source_id": "MG-002",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2443,7 +2373,6 @@
     },
     {
       "id": "CU-071",
-      "source_id": "MG-003",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2477,7 +2406,6 @@
     },
     {
       "id": "CU-072",
-      "source_id": "MG-004",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2511,7 +2439,6 @@
     },
     {
       "id": "CU-073",
-      "source_id": "MG-005",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2545,7 +2472,6 @@
     },
     {
       "id": "CU-074",
-      "source_id": "MG-006",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2579,7 +2505,6 @@
     },
     {
       "id": "CU-075",
-      "source_id": "MG-007",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2613,7 +2538,6 @@
     },
     {
       "id": "CU-076",
-      "source_id": "MG-008",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2647,7 +2571,6 @@
     },
     {
       "id": "CU-077",
-      "source_id": "MG-009",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2681,7 +2604,6 @@
     },
     {
       "id": "CU-078",
-      "source_id": "MG-010",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2715,7 +2637,6 @@
     },
     {
       "id": "CU-079",
-      "source_id": "MG-011",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",
@@ -2749,7 +2670,6 @@
     },
     {
       "id": "CU-080",
-      "source_id": "MG-012",
       "categorie": "Management",
       "domaine": "Management",
       "profil": "Manager",

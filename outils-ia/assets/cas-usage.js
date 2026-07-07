@@ -68,97 +68,6 @@ const TASK_TYPE_ORDER = [
 
 const RISK_ORDER = ["Faible", "Moyen", "Élevé"];
 
-const MODEL_PROFILES = {
-  general: {
-    principal: "GPT-5.5",
-    alternative: "Claude Opus 4.7",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Cas généraliste nécessitant un bon équilibre entre raisonnement, synthèse et clarté.",
-    raison: "Le cas demande de structurer une réponse fiable sans spécialisation dominante.",
-  },
-  reasoning: {
-    principal: "GPT-5.5",
-    alternative: "Claude Opus 4.7",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Analyse multi-contraintes, arbitrage, diagnostic ou décision préparatoire.",
-    raison: "Le besoin principal est la qualité du raisonnement et la capacité à tenir plusieurs hypothèses.",
-  },
-  writing: {
-    principal: "Claude Opus 4.7",
-    alternative: "GPT-5.5",
-    economique: "Claude Haiku 4.5",
-    souverain: "Mistral Medium 3.5",
-    usage: "Rédaction longue, reformulation sensible, argumentation ou adaptation du ton.",
-    raison: "La valeur se joue surtout sur la nuance, le style et la qualité éditoriale.",
-  },
-  "long-document": {
-    principal: "Gemini 3 Pro",
-    alternative: "GPT-5.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Lecture de PDF, corpus longs, pièces multiples, tableaux ou documents multimodaux.",
-    raison: "Le cas dépend d'abord de l'ingestion documentaire et de la robustesse sur contexte long.",
-  },
-  "customer-volume": {
-    principal: "GPT-5.4 mini",
-    alternative: "Claude Haiku 4.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Small 4",
-    usage: "Tâches fréquentes, bien cadrées, à faible risque et besoin de réponse rapide.",
-    raison: "Le gain vient du volume, de la latence basse et d'un coût maîtrisé par interaction.",
-  },
-  finance: {
-    principal: "GPT-5.5",
-    alternative: "Gemini 3 Pro",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Analyse chiffrée, synthèse financière, scénarios et explication de variations.",
-    raison: "Le cas exige un raisonnement prudent sur chiffres, hypothèses et limites d'interprétation.",
-  },
-  legal: {
-    principal: "Claude Opus 4.7",
-    alternative: "GPT-5.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Préparation juridique, revue de clauses, rédaction argumentée ou analyse de dossier.",
-    raison: "La nuance rédactionnelle et la prudence de formulation comptent autant que le raisonnement.",
-  },
-  health: {
-    principal: "Gemini 3 Pro",
-    alternative: "GPT-5.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Synthèse de dossier, vulgarisation, qualité ou documentation santé sous validation humaine.",
-    raison: "Les cas santé sont documentaires et sensibles : priorité au contexte long et au contrôle humain.",
-  },
-  compliance: {
-    principal: "GPT-5.5",
-    alternative: "Mistral Medium 3.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Large 3",
-    usage: "Contrôle, conformité, audit, KYC, risques ou dossiers sensibles.",
-    raison: "Le cas demande traçabilité, prudence et option de déploiement maîtrisé.",
-  },
-  coding: {
-    principal: "Mistral Medium 3.5",
-    alternative: "GPT-5.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5 self-hosted",
-    usage: "Spécification, tests, tickets, diagnostic technique, code ou workflows agentiques.",
-    raison: "Le cas bénéficie d'un modèle robuste en code, outils et exécution de tâches longues.",
-  },
-  workflow: {
-    principal: "Mistral Medium 3.5",
-    alternative: "GPT-5.5",
-    economique: "GPT-5.4 mini",
-    souverain: "Mistral Medium 3.5",
-    usage: "Plan d'action, coordination, classement, automatisation légère ou suivi opérationnel.",
-    raison: "Le besoin porte sur des sorties structurées et des enchaînements opérationnels.",
-  },
-};
-
 const state = {
   cases: [],
   query: "",
@@ -168,6 +77,7 @@ const state = {
   sector: NO_SELECTION,
   taskType: NO_SELECTION,
   risk: NO_SELECTION,
+  gainPreset: NO_SELECTION,
   selectedId: null,
   visibleLimit: getCasePageSize(),
 };
@@ -484,11 +394,11 @@ function renderDetail() {
   nodes.detailTitle.textContent = "Fiche du cas sélectionné";
   nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou une inscription au registre.";
 
-  const model = getModelAdvice(item);
   const risk = getRiskLevel(item);
   const sectors = getSectors(item);
   const taskType = getTaskType(item);
   const detailTags = [getMonthlyGainLabel(item), formatRiskLabel(risk), taskType, getPrimarySector(item)].filter(Boolean);
+  const pilotChecks = getPilotChecklist(item);
 
   nodes.detail.innerHTML = `
     <article class="selected-case-sheet">
@@ -524,27 +434,12 @@ function renderDetail() {
           <div class="checks">${(item.verification || []).slice(0, 3).map((check) => `<span class="check-item">${escapeHtml(check)}</span>`).join("")}</div>
           <small>${escapeHtml(getGuardrail(item))}</small>
         </section>
-        <section class="case-sheet-block case-model-block">
-          <h4>Modèle</h4>
-          <div class="model-choice-grid">
-            <div class="model-choice primary">
-              <span>Premier choix</span>
-              <strong>${escapeHtml(model.principal)}</strong>
-            </div>
-            <div class="model-choice">
-              <span>Alternative</span>
-              <strong>${escapeHtml(model.alternative)}</strong>
-            </div>
-            <div class="model-choice">
-              <span>Économique</span>
-              <strong>${escapeHtml(model.economique)}</strong>
-            </div>
-            <div class="model-choice">
-              <span>Souverain</span>
-              <strong>${escapeHtml(model.souverain)}</strong>
-            </div>
-          </div>
-          <p>${escapeHtml(model.usage)}</p>
+        <section class="case-sheet-block case-check-block">
+          <h4>À vérifier avant de tester</h4>
+          <ul class="case-check-list">
+            ${pilotChecks.map((check) => `<li>${escapeHtml(check)}</li>`).join("")}
+          </ul>
+          <small>${escapeHtml(getGuardrail(item))}</small>
         </section>
         <section class="case-sheet-block case-measure-block">
           <h4>Mesure</h4>
@@ -592,7 +487,8 @@ function getVisibleCases() {
     .filter((item) => !state.topic || getTopic(item) === state.topic)
     .filter((item) => !state.sector || getSectors(item).includes(state.sector))
     .filter((item) => !state.taskType || getTaskType(item) === state.taskType)
-    .filter((item) => !state.risk || getRiskLevel(item) === state.risk);
+    .filter((item) => !state.risk || getRiskLevel(item) === state.risk)
+    .filter((item) => !state.gainPreset || isHighGainCase(item));
 
   if (!query) return sortCasesByGain(baseCases);
 
@@ -648,8 +544,6 @@ function caseText(item) {
     item.secteur,
     item.niveau_risque,
     ...(item.secteurs || []),
-    item.modele_recommande?.principal,
-    item.modele_recommande?.alternative,
     ...(item.tags || []),
   ].join(" ");
 }
@@ -663,6 +557,7 @@ function hasActiveExploration() {
     || state.sector
     || state.taskType
     || state.risk
+    || state.gainPreset
   );
 }
 
@@ -679,6 +574,7 @@ function resetFilters() {
   state.sector = NO_SELECTION;
   state.taskType = NO_SELECTION;
   state.risk = NO_SELECTION;
+  state.gainPreset = NO_SELECTION;
   resetCaseSelection();
   if (nodes.search) nodes.search.value = "";
 }
@@ -856,57 +752,51 @@ function normalizeRisk(value) {
   return "medium";
 }
 
-function getModelAdvice(item) {
-  const profile = MODEL_PROFILES[getModelProfileKey(item)] || MODEL_PROFILES.general;
-  const existing = item.modele_recommande || {};
-
-  return {
-    principal: profile.principal || existing.principal,
-    alternative: profile.alternative || existing.alternative,
-    economique: existing.economique || profile.economique,
-    souverain: existing.souverain || profile.souverain,
-    usage: profile.usage || existing.usage,
-    raison: existing.raison || profile.raison,
-  };
-}
-
-function getModelProfileKey(item) {
-  const metier = getMetier(item);
-  const taskType = getTaskType(item);
-  const risk = getRiskLevel(item);
-  const text = normalize(caseText(item));
-
-  if (metier === "DSI / Informatique" || text.includes("code") || text.includes("ticket") || text.includes("api") || text.includes("test")) return "coding";
-  if (metier === "Droit / Avocat" || text.includes("jurisprudence") || text.includes("clause")) return "legal";
-  if (metier === "Santé") return "health";
-  if (metier === "Conformité / Risques" || text.includes("kyc") || text.includes("audit")) return "compliance";
-  if (metier === "Finance" || metier === "Comptabilité") return "finance";
-  if (text.includes("pdf") || text.includes("corpus") || text.includes("piece") || text.includes("document") || text.includes("dossier consultation") || text.includes("benchmark")) return "long-document";
-  if (metier === "Service client" && risk !== "Élevé") return "customer-volume";
-  if (taskType === "Rédiger") return "writing";
-  if (taskType === "Analyser" || taskType === "Décider / arbitrer") return "reasoning";
-  if (taskType === "Contrôler" && risk === "Élevé") return "compliance";
-  if (taskType === "Classer" || taskType === "Automatiser" || taskType === "Préparer") return "workflow";
-  if (taskType === "Synthétiser" && risk === "Faible") return "customer-volume";
-
-  return "general";
-}
-
 function getGuardrail(item) {
   if (item.garde_fou) return item.garde_fou;
   const risk = getRiskLevel(item);
-  if (risk === "Élevé") return "Utiliser comme aide à la préparation uniquement, avec validation d'un professionnel responsable.";
-  if (risk === "Moyen") return "Vérifier les faits, les sources et les données avant partage ou décision.";
-  return "Relire, adapter au contexte et conserver une trace de la source.";
+  if (risk === "Élevé") return "Utiliser comme aide au cadrage uniquement, avec validation d'un professionnel responsable.";
+  if (risk === "Moyen") return "Vérifier les faits, les références et les données avant partage ou décision.";
+  return "Relire, adapter au contexte et conserver une preuve vérifiable.";
 }
 
-function getReferences(item) {
-  if (Array.isArray(item.references_metier) && item.references_metier.length) return item.references_metier;
-  const metier = getMetier(item);
-  if (["Finance", "Comptabilité", "Santé", "Droit / Avocat", "Conformité / Risques"].includes(metier)) {
-    return ["ESCO/ISCO-08", "ROME", "Référentiel interne ou source officielle"];
-  }
-  return ["ESCO/ISCO-08", "ROME"];
+function getPilotChecklist(item) {
+  const checks = (item.verification || [])
+    .slice(0, 3)
+    .map(formatCheckLabel)
+    .filter(Boolean);
+
+  const defaults = [
+    "Données disponibles",
+    "Responsable identifié",
+    "Mesure avant / après",
+  ];
+
+  defaults.forEach((check) => {
+    if (checks.length < 3 && !checks.includes(check)) checks.push(check);
+  });
+
+  return checks;
+}
+
+function formatCheckLabel(value) {
+  const normalized = normalize(value);
+  if (!normalized) return "";
+  if (normalized === "source") return "Référence vérifiable";
+  if (normalized === "date") return "Date ou période";
+  if (normalized.includes("responsable")) return "Responsable identifié";
+  if (normalized.includes("donnee")) return "Données disponibles";
+  if (normalized.includes("risque")) return "Risque cadré";
+  if (normalized.includes("performance")) return "Chiffres cohérents";
+  return String(value).charAt(0).toUpperCase() + String(value).slice(1);
+}
+
+function isHighGainCase(item) {
+  return getMonthlyGain(item) >= 120;
+}
+
+function getGainPresetLabel(value) {
+  return value === "high" ? "Gain élevé" : value;
 }
 
 function renderFilterHint(resultCount) {
@@ -925,6 +815,7 @@ function renderFilterHint(resultCount) {
     state.sector,
     state.taskType,
     state.risk,
+    getGainPresetLabel(state.gainPreset),
   ].filter(Boolean);
 
   if (state.query.trim()) {
