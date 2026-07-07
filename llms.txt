@@ -1,11 +1,10 @@
 # charlesberthou.fr
 
-Site personnel de Charles Berthou consacré à l'IA pratique et à la transformation numérique : analyses, outils, prompts, cas d'usage et retours d'expérience.
+Site personnel de Charles Berthou consacré à l'IA pratique et à la transformation numérique : outils, prompts, cas d'usage et retours d'expérience.
 
 Routes principales :
 
 - https://charlesberthou.fr/
-- https://charlesberthou.fr/articles/
 - https://charlesberthou.fr/ressources/
 - https://charlesberthou.fr/contact/
 
@@ -21,5 +20,4 @@ Ligne éditoriale :
 - laboratoire personnel, sans mélange avec l'emploi salarié ;
 - lien discret vers Dharma pour les missions structurées ;
 - contenus destinés aux particuliers comme aux professionnels.
-- analyses longues, guides pratiques, éducation à l'IA, sécurité des usages IA, publications LinkedIn sélectionnées, KLEO, prompts et cas d'usage.
-- analyses sources intégrées : IA en entreprise, L'humanité a toujours tremblé devant sa propre lumière, Le token prochaine monnaie de l'IA.
+- éducation à l'IA, sécurité des usages IA, publications LinkedIn sélectionnées, KLEO, prompts et cas d'usage.

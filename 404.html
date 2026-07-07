@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable | Charles Berthou</title>
-  <meta name="description" content="Page introuvable : retour vers l'accueil, les analyses, les outils ou le contact." />
+  <meta name="description" content="Page introuvable : retour vers l'accueil, les outils ou le contact." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://charlesberthou.fr/404.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,12 +15,12 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="charlesberthou.fr" />
   <meta property="og:title" content="Page introuvable | Charles Berthou" />
-  <meta property="og:description" content="Page introuvable : retour vers l'accueil, les analyses, les outils ou le contact." />
+  <meta property="og:description" content="Page introuvable : retour vers l'accueil, les outils ou le contact." />
   <meta property="og:url" content="https://charlesberthou.fr/404.html" />
   <meta property="og:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Page introuvable | Charles Berthou" />
-  <meta name="twitter:description" content="Page introuvable : retour vers l'accueil, les analyses, les outils ou le contact." />
+  <meta name="twitter:description" content="Page introuvable : retour vers l'accueil, les outils ou le contact." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,7 +42,6 @@
       </button>
       <nav class="main-nav" id="menu-principal" aria-label="Navigation principale">
         <a href="/#accueil">Accueil</a>
-        <a href="/articles/">Analyses</a>
         <a href="/#outils">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="/#contact">Contact</a>
@@ -55,9 +54,8 @@
       var path = window.location.pathname.toLowerCase();
       var dest = "";
       if (path === "/outils-ia/registre-ia" || path.indexOf("/outils-ia/registre-ia/") === 0) dest = "https://monregistreia.fr/";
-      else if (path === "/articles") dest = "/articles/";
-      else if (path.indexOf("/articles/") === 0) dest = "/articles/";
-      else if (path === "/blog" || path.indexOf("/blog/") === 0) dest = "/articles/";
+      else if (path === "/articles" || path.indexOf("/articles/") === 0) dest = "/#accueil";
+      else if (path === "/blog" || path.indexOf("/blog/") === 0) dest = "/#accueil";
       else if (path === "/outils-ia" || path === "/outils-ia/") dest = "/#outils";
       else if (path.indexOf("/reperes") === 0 || path.indexOf("/services") === 0 || path.indexOf("/gpts") === 0 || path.indexOf("/e-learning") === 0 || path.indexOf("/elearning") === 0) dest = "/#outils";
       else if (path.indexOf("/a-propos") === 0) dest = "/#contact";
@@ -71,7 +69,7 @@
       <div class="shell page-hero-grid">
         <div class="page-hero-copy">
           <h1>Page introuvable</h1>
-          <p>Le lien a changé. Les contenus principaux sont accessibles depuis l'accueil, les analyses, les outils et le contact.</p>
+          <p>Le lien a changé. Les contenus principaux sont accessibles depuis l'accueil, les outils et le contact.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="/#accueil">Accueil</a>
             <a class="button button-secondary" href="/#outils">Outils</a>
@@ -88,7 +86,6 @@
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/#accueil">Accueil</a>
-        <a href="/articles/">Analyses</a>
         <a href="/#outils">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>
