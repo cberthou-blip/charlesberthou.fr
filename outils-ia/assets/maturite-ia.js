@@ -86,7 +86,6 @@ const maturityNodes = {
   bars: document.querySelector("#axisBars"),
   priorities: document.querySelector("#maturityPriorities"),
   reset: document.querySelector("#resetMaturity"),
-  registerSignal: document.querySelector("#registerSignal"),
 };
 
 let scores = getDefaultScores();
@@ -177,14 +176,6 @@ function renderMaturity() {
         </div>
       </article>
     `).join("");
-  }
-
-  renderRegisterSignal();
-}
-
-function renderRegisterSignal() {
-  if (maturityNodes.registerSignal) {
-    maturityNodes.registerSignal.textContent = "Le diagnostic démarre sans reprendre automatiquement le registre local. Ouvrez le registre IA pour documenter les usages retenus.";
   }
 }
 

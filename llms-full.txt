@@ -13,7 +13,6 @@ charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA
 - Test de maturité IA : https://charlesberthou.fr/outils-ia/maturite-ia/
 - Explorateur de 116 cas d'usage IA : https://charlesberthou.fr/outils-ia/cas-usage/
 - Calculateur ROI IA : https://charlesberthou.fr/outils-ia/roi-ia/
-- Registre IA : https://monregistreia.fr/
 
 ## Ligne éditoriale
 

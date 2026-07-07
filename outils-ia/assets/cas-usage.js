@@ -384,7 +384,7 @@ function renderDetail() {
           <div><dt>Sortie</dt><dd>le résultat attendu</dd></div>
           <div><dt>Gain</dt><dd>temps estimé</dd></div>
           <div><dt>Vigilance</dt><dd>risque à contrôler</dd></div>
-          <div><dt>Suite</dt><dd>chiffrer ou inscrire</dd></div>
+          <div><dt>Suite</dt><dd>chiffrer ou comparer</dd></div>
         </dl>
       </div>
     `;
@@ -392,7 +392,7 @@ function renderDetail() {
   }
 
   nodes.detailTitle.textContent = "Fiche du cas sélectionné";
-  nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou une inscription au registre.";
+  nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou un test terrain.";
 
   const risk = getRiskLevel(item);
   const sectors = getSectors(item);
@@ -462,7 +462,6 @@ function renderDetail() {
       </div>
       <div class="detail-actions">
         <a class="button" href="/outils-ia/roi-ia/">Chiffrer ce cas</a>
-        <a class="button secondary" href="https://monregistreia.fr/" rel="noopener noreferrer">L’inscrire au registre</a>
       </div>
     </article>
   `;
