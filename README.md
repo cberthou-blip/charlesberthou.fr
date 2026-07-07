@@ -11,6 +11,7 @@ Site personnel statique publié avec GitHub Pages.
 ## Routes publiques
 
 - `/` : accueil éditorial avec outils, prompts et contact.
+- `/articles/` : articles et publications sélectionnées.
 - `/ressources/` : boîte à outils IA disponible.
 - `/contact/` : contact via LinkedIn uniquement.
 - `/outils-ia/maturite-ia/` : test de maturité IA.
@@ -20,5 +21,5 @@ Site personnel statique publié avec GitHub Pages.
 ## Redirections
 
 - Les anciennes routes supprimées sont traitées par la 404 et renvoyées vers la destination active.
-- Les anciennes routes Articles et Blog renvoient vers `/#accueil`.
-- Les anciennes routes de repères, services, GPTs et e-learning redirigent vers `/#outils`.
+- Les anciennes routes Blog renvoient vers `/#accueil`.
+- Les anciennes routes de repères, services et e-learning redirigent vers `/ressources/`.

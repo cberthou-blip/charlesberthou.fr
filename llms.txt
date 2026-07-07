@@ -5,6 +5,7 @@ Site personnel de Charles Berthou consacré à l'IA pratique et à la transforma
 Routes principales :
 
 - https://charlesberthou.fr/
+- https://charlesberthou.fr/articles/
 - https://charlesberthou.fr/ressources/
 - https://charlesberthou.fr/contact/
 

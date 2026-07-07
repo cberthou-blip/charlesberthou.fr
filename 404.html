@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/styles/dharma-theme.css?v=20260707-dharma-source" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260707-corrections" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260707-corrections2" />
 </head>
 
 <body>
@@ -42,6 +42,7 @@
       </button>
       <nav class="main-nav" id="menu-principal" aria-label="Navigation principale">
         <a href="/#accueil">Accueil</a>
+        <a href="/articles/">Articles</a>
         <a href="/ressources/">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="/#contact">Contact</a>
@@ -54,10 +55,9 @@
       var path = window.location.pathname.toLowerCase();
       var dest = "";
       if (path === "/outils-ia/registre-ia" || path.indexOf("/outils-ia/registre-ia/") === 0) dest = "https://monregistreia.fr/";
-      else if (path === "/articles" || path.indexOf("/articles/") === 0) dest = "/#accueil";
       else if (path === "/blog" || path.indexOf("/blog/") === 0) dest = "/#accueil";
       else if (path === "/outils-ia" || path === "/outils-ia/") dest = "/ressources/";
-      else if (path.indexOf("/reperes") === 0 || path.indexOf("/services") === 0 || path.indexOf("/gpts") === 0 || path.indexOf("/e-learning") === 0 || path.indexOf("/elearning") === 0) dest = "/ressources/";
+      else if (path.indexOf("/reperes") === 0 || path.indexOf("/services") === 0 || path.indexOf("/e-learning") === 0 || path.indexOf("/elearning") === 0) dest = "/ressources/";
       else if (path.indexOf("/a-propos") === 0) dest = "/#contact";
       else if (path.indexOf("/resume-llm") === 0) dest = "/#accueil";
       if (dest) window.location.replace(dest);
@@ -86,6 +86,7 @@
       </div>
       <nav aria-label="Liens de pied de page">
         <a href="/#accueil">Accueil</a>
+        <a href="/articles/">Articles</a>
         <a href="/ressources/">Outils</a>
         <a href="/#prompts">Prompts</a>
         <a href="https://fr.linkedin.com/in/charlesberthou" rel="noopener noreferrer">LinkedIn</a>

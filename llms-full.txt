@@ -5,6 +5,7 @@ charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA
 ## Routes publiques
 
 - Accueil : https://charlesberthou.fr/
+- Articles : https://charlesberthou.fr/articles/
 - Ressources : https://charlesberthou.fr/ressources/
 - Contact : https://charlesberthou.fr/contact/
 

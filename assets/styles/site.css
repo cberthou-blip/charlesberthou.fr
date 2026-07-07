@@ -104,7 +104,6 @@ p {
 }
 
 #accueil,
-#analyses,
 #outils,
 #prompts,
 #contact {
@@ -300,8 +299,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
 }
 
 .button,
-.resource-link,
-.prompt-link {
+.resource-link {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -330,15 +328,13 @@ body.menu-open .menu-toggle span:nth-child(3) {
 }
 
 .button-secondary,
-.resource-link,
-.prompt-link {
+.resource-link {
   background: var(--paper);
   color: var(--black);
 }
 
 .button-secondary:hover,
-.resource-link:hover,
-.prompt-link:hover {
+.resource-link:hover {
   border-color: var(--mineral-dark);
   background: var(--paper-quiet);
 }
@@ -346,7 +342,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .signal-board,
 .signal-panel,
 .reading-item,
-.prompt-card,
 .resource-card,
 .home-resource-card,
 .wide-card,
@@ -495,8 +490,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .module-list span,
 .signal-panel span,
 .action-kicker,
-.resource-type,
-.prompt-meta {
+.resource-type {
   color: var(--steel-dark);
   font-family: var(--font-mono);
   font-size: 12px;
@@ -569,7 +563,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .plain-list,
 .reading-list,
 .tool-lineup,
-.prompt-list,
 .resource-grid,
 .home-resource-grid,
 .contact-stack,
@@ -590,7 +583,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 .plain-list p,
 .reading-item p,
 .tool-card em,
-.prompt-card p,
 .bridge-panel p,
 .resource-card p,
 .contact-card em,
@@ -605,7 +597,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
 .plain-list p,
 .reading-item p,
-.prompt-card p,
 .resource-card p {
   margin-top: 10px;
 }
@@ -626,8 +617,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
 .action-cards .action-row::after,
 .resource-link::after,
-.wide-card-copy > span::after,
-.prompt-link::after {
+.wide-card-copy > span::after {
   content: "→";
   color: var(--black);
   font-family: var(--font-mono);
@@ -636,8 +626,7 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
 .action-cards .action-row[href^="http"]::after,
 .resource-card a[href^="http"]::after,
-.wide-card[href^="http"] .wide-card-copy > span::after,
-.prompt-link[href^="http"]::after {
+.wide-card[href^="http"] .wide-card-copy > span::after {
   content: "↗";
 }
 
@@ -649,7 +638,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
 .action-row:hover,
 .reading-item:hover,
-.prompt-card:hover,
 .wide-card:hover,
 .resource-card:hover,
 .home-resource-card:hover {
@@ -672,18 +660,12 @@ body.menu-open .menu-toggle span:nth-child(3) {
 }
 
 .reading-list,
-.prompt-list,
 .resource-grid,
 .home-resource-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.prompt-source-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .reading-item,
-.prompt-card,
 .resource-card,
 .home-resource-card,
 .wide-card,
@@ -693,21 +675,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
   align-content: start;
   gap: 10px;
   padding: 18px;
-}
-
-.prompt-source-card {
-  min-height: 230px;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-}
-
-.prompt-card-head {
-  display: grid;
-  gap: 4px;
-}
-
-.prompt-link {
-  justify-self: start;
-  margin-top: 6px;
 }
 
 .resource-grid {
@@ -837,7 +804,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
   .plain-list,
   .reading-list,
-  .prompt-list,
   .resource-grid,
   .home-resource-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -985,8 +951,6 @@ body.menu-open .menu-toggle span:nth-child(3) {
 
   .plain-list,
   .reading-list,
-  .prompt-list,
-  .prompt-source-list,
   .resource-grid,
   .home-resource-grid {
     grid-template-columns: 1fr;
