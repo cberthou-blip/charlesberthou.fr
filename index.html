@@ -22,7 +22,10 @@
   <meta name="twitter:title" content="Charles Berthou | IA pratique, outils et analyses" />
   <meta name="twitter:description" content="Analyses, outils IA, éducation à l'IA, prompts et retours d'expérience pour comprendre, cadrer, tester et transmettre." />
   <meta name="twitter:image" content="https://charlesberthou.fr/assets/social/charlesberthou-og-2026.png" />
-  <link rel="stylesheet" href="/assets/styles/site.css?v=20260630-premium" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles/site.css?v=20260707-dharma-dark" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,23 +77,47 @@
           </div>
         </div>
 
-        <div class="signal-panel" aria-label="Axes de travail">
-          <article>
-            <span>01</span>
-            <strong>Comprendre les bascules</strong>
-            <p>Modèles, agents, tokens, dépendance aux plateformes, souveraineté d'usage et nouveaux modes de travail.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <strong>Cadrer les usages</strong>
-            <p>Données, sécurité, traçabilité, consentement, responsabilité et validation humaine dans les usages IA.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <strong>Passer à l'action</strong>
-            <p>Prompts, outils, cas concrets, pilotes mesurables et repères pédagogiques pour passer de la sidération à la pratique.</p>
-          </article>
-        </div>
+        <figure
+          class="signal-board"
+          role="img"
+          aria-label="Diagramme modulaire illustrant les axes de travail de Charles Berthou."
+          data-nosnippet
+        >
+          <div class="board-header">
+            <span>Module central</span>
+            <span>IA / Usages</span>
+          </div>
+
+          <div class="board-core">
+            <div class="octagon-system" aria-hidden="true">
+              <svg class="octagon-svg" viewBox="0 0 232 232" aria-hidden="true" focusable="false">
+                <path d="M70 10h92l60 60v92l-60 60H70l-60-60V70z" />
+                <path d="M85 44h62l41 41v62l-41 41H85l-41-41V85z" />
+                <path d="M96 96h40v40H96z" />
+                <path d="M24 116h184M116 24v184" class="octagon-axis" />
+                <circle cx="116" cy="116" r="9" class="octagon-fill" />
+              </svg>
+            </div>
+
+            <div class="board-readout">
+              <span>Cadre</span>
+              <strong>IA</strong>
+              <span>usage concret</span>
+            </div>
+          </div>
+
+          <div class="module-list">
+            <div><span>01</span><strong>Comprendre</strong></div>
+            <div><span>02</span><strong>Cadrer</strong></div>
+            <div><span>03</span><strong>Tester</strong></div>
+            <div><span>04</span><strong>Transmettre</strong></div>
+          </div>
+
+          <div class="board-footer">
+            <span>Repères publics</span>
+            <span>Veille / outils</span>
+          </div>
+        </figure>
       </div>
     </section>
 
