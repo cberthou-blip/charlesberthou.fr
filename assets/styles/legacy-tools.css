@@ -764,6 +764,31 @@ input[type="range"]::-moz-range-thumb {
   color: var(--black);
 }
 
+.case-advanced-toggle {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid rgba(17, 18, 20, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--black);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+.case-advanced-toggle::after {
+  content: "+";
+}
+
+.case-advanced-toggle[aria-expanded="true"]::after {
+  content: "-";
+}
+
 .case-filter-hint {
   margin-top: 12px;
   font-size: 14px;
@@ -1374,7 +1399,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .case-filter-groups {
-  grid-template-columns: minmax(240px, 1.15fr) repeat(3, minmax(170px, 0.8fr));
+  grid-template-columns: minmax(240px, 1.15fr) auto repeat(3, minmax(150px, 0.8fr));
   align-items: end;
 }
 
@@ -1395,7 +1420,7 @@ input[type="range"]::-moz-range-thumb {
 
 .case-tool-card:hover,
 .case-tool-card.selected {
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .case-card-title {
@@ -1449,7 +1474,7 @@ button.button:hover,
 .case-reset-button:hover,
 .compact-button:hover,
 .roi-reset-link:hover {
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .tool-next-section .next-card {
@@ -1612,6 +1637,103 @@ button.button:hover,
   .case-reset-button {
     width: 100%;
     justify-self: stretch;
+  }
+
+  .tool-common-hero-inner {
+    gap: 16px;
+    padding: 26px 0 20px;
+  }
+
+  .back-link {
+    min-height: 28px;
+  }
+
+  .tool-hero-indicators,
+  .tool-stat-strip {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .tool-stat-strip,
+  .case-hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .tool-stat-strip span,
+  .case-hero-stats span {
+    min-height: 0;
+    align-content: start;
+    padding: 8px;
+  }
+
+  .tool-stat-strip strong,
+  .case-hero-stats strong {
+    font-size: 22px;
+  }
+
+  .case-search-section,
+  .case-action-workspace,
+  .case-method-section,
+  .tool-workspace-section,
+  .tool-next-section,
+  .roi-reading-section {
+    padding: 24px 0;
+  }
+
+  .case-search-panel,
+  .tool-library-panel,
+  .next-card {
+    padding: 14px;
+  }
+
+  .case-step-number {
+    display: none;
+  }
+
+  .panel-heading h2,
+  .compact-heading h2,
+  .case-step-heading h2 {
+    font-size: 24px;
+  }
+
+  .case-advanced-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .case-quick-starts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-quick-starts button {
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 8px;
+    white-space: normal;
+  }
+
+  .case-tool-card {
+    min-height: 0;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .case-card-title {
+    font-size: 17px;
+  }
+
+  .case-card-cta {
+    min-height: 38px;
+    padding: 9px 12px;
+  }
+
+  .case-results-bar {
+    gap: 8px;
+  }
+
+  .result-count {
+    justify-self: start;
   }
 
   .case-sheet-grid,

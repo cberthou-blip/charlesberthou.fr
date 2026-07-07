@@ -78,6 +78,7 @@ const state = {
   taskType: NO_SELECTION,
   risk: NO_SELECTION,
   gainPreset: NO_SELECTION,
+  advancedOpen: false,
   selectedId: null,
   visibleLimit: getCasePageSize(),
 };
@@ -92,6 +93,7 @@ const nodes = {
   riskSelect: document.querySelector("#riskSelect"),
   domainBlock: document.querySelector("#domainFilterBlock"),
   topicBlock: document.querySelector("#topicFilterBlock"),
+  advancedToggle: document.querySelector("#caseAdvancedToggle"),
   advancedFilters: document.querySelector("#caseAdvancedFilters"),
   filterHint: document.querySelector("#caseFilterHint"),
   reset: document.querySelector("#caseResetFilters"),
@@ -149,6 +151,11 @@ function bindCaseEvents() {
   nodes.reset?.addEventListener("click", () => {
     resetFilters();
     renderCaseExplorer();
+  });
+
+  nodes.advancedToggle?.addEventListener("click", () => {
+    state.advancedOpen = !state.advancedOpen;
+    renderFilters();
   });
 
   nodes.functionSelect?.addEventListener("change", () => {
@@ -246,7 +253,9 @@ function renderFilters() {
     "Toutes les situations"
   );
 
-  nodes.advancedFilters?.removeAttribute("hidden");
+  const showAdvanced = state.advancedOpen || hasAdvancedFilters();
+  nodes.advancedFilters?.toggleAttribute("hidden", !showAdvanced);
+  nodes.advancedToggle?.setAttribute("aria-expanded", showAdvanced ? "true" : "false");
 
   renderSelectOptions(
     nodes.sectorSelect,
@@ -268,6 +277,10 @@ function renderFilters() {
   );
 
   nodes.reset?.toggleAttribute("hidden", !hasActiveExploration());
+}
+
+function hasAdvancedFilters() {
+  return Boolean(state.sector || state.taskType || state.risk);
 }
 
 function renderQuickStarts() {
@@ -577,6 +590,7 @@ function resetFilters() {
   state.taskType = NO_SELECTION;
   state.risk = NO_SELECTION;
   state.gainPreset = NO_SELECTION;
+  state.advancedOpen = false;
   resetCaseSelection();
   if (nodes.search) nodes.search.value = "";
 }

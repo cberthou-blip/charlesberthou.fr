@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/styles/dharma-theme.css?v=20260707-dharma-source" />
-  <link rel="stylesheet" href="/assets/styles/legacy-tools.css?v=20260707-ui-bugfix" />
+  <link rel="stylesheet" href="/assets/styles/legacy-tools.css?v=20260707-ux-pass" />
   
 </head>
 <body>
@@ -105,6 +105,8 @@
                 <span>Situation</span>
                 <select id="situationSelect" aria-label="Choisir une situation"></select>
               </label>
+
+              <button class="case-advanced-toggle" type="button" id="caseAdvancedToggle" aria-expanded="false" aria-controls="caseAdvancedFilters">Filtres avancés</button>
 
               <div class="case-advanced-filters case-advanced-inline" id="caseAdvancedFilters" hidden>
                 <label class="case-select-field compact">
@@ -199,6 +201,6 @@
     </div>
   </footer>
   <script src="/assets/js/legacy-site.js?v=20260628-unified" defer></script>
-  <script src="/outils-ia/assets/cas-usage.js?v=20260707-case-count" defer></script>
+  <script src="/outils-ia/assets/cas-usage.js?v=20260707-advanced-filters" defer></script>
 </body>
 </html>
