@@ -784,9 +784,63 @@ body.menu-open .menu-toggle span:nth-child(3) {
   display: none;
 }
 
+/* Premium pass for the tools index. Keep the resource page balanced with four cards. */
+.resource-browser {
+  padding-top: 52px;
+  padding-bottom: 56px;
+}
+
+.resource-browser .narrow-heading {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.resource-browser .resource-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.resource-browser .resource-card {
+  min-height: 268px;
+  padding: 20px;
+  gap: 12px;
+  border-color: rgba(17, 18, 20, 0.24);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(251, 250, 246, 0.9));
+  box-shadow: 0 1px 0 rgba(251, 250, 246, 0.92) inset, 0 14px 34px rgba(17, 18, 20, 0.06);
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.resource-browser .resource-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(17, 18, 20, 0.38);
+  box-shadow: 0 1px 0 rgba(251, 250, 246, 0.94) inset, 0 18px 42px rgba(17, 18, 20, 0.09);
+}
+
+.resource-browser .resource-card h2 {
+  font-size: 24px;
+  line-height: 1.06;
+}
+
+.resource-browser .resource-card p {
+  margin-top: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.resource-browser .resource-link {
+  width: 100%;
+  margin-top: auto;
+}
+
 @media (min-width: 760px) {
   .hide-mobile {
     display: grid;
+  }
+}
+
+@media (max-width: 1120px) {
+  .resource-browser .resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -957,6 +1011,10 @@ body.menu-open .menu-toggle span:nth-child(3) {
   .reading-list,
   .resource-grid,
   .home-resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-browser .resource-grid {
     grid-template-columns: 1fr;
   }
 

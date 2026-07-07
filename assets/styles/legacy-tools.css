@@ -1179,6 +1179,330 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
+/* Premium pass for the IA tools. These overrides tighten hierarchy without changing the flows. */
+.tool-common-hero-inner {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.44fr);
+  gap: 24px 42px;
+  align-items: center;
+  padding: 50px 0 42px;
+}
+
+.tool-common-hero h1,
+.case-action-hero h1 {
+  max-width: 780px;
+}
+
+.lead,
+.tool-common-hero p:not(.eyebrow),
+.case-action-hero p:not(.eyebrow) {
+  max-width: 720px;
+}
+
+.tool-hero-indicators,
+.maturity-score-card,
+.tool-stat-strip {
+  min-height: 0;
+  gap: 10px;
+  border-color: rgba(17, 18, 20, 0.26);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(251, 250, 246, 0.9));
+  box-shadow: 0 1px 0 rgba(251, 250, 246, 0.94) inset, 0 14px 34px rgba(17, 18, 20, 0.07);
+  padding: 18px;
+}
+
+.maturity-score-visual,
+.maturity-score-meta span,
+.tool-stat-strip span,
+.case-hero-stats span {
+  min-height: 54px;
+  border-color: rgba(17, 18, 20, 0.14);
+  background: rgba(255, 255, 255, 0.42);
+  padding: 10px 12px;
+}
+
+.maturity-score-visual strong,
+.tool-stat-strip strong,
+.case-hero-stats strong,
+.roi-primary-metrics strong,
+.roi-secondary-metrics strong,
+.roi-metric-list strong {
+  font-size: 30px;
+}
+
+.maturity-layout,
+.roi-layout,
+.roi-results {
+  gap: 16px;
+}
+
+.maturity-layout,
+.roi-layout {
+  grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.74fr);
+}
+
+.maturity-questions,
+.maturity-panel,
+.roi-panel,
+.roi-key-results,
+.roi-summary-card,
+.content-card,
+.case-search-panel,
+.tool-library-panel,
+.case-results-panel,
+.next-card {
+  border-color: rgba(17, 18, 20, 0.22);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(251, 250, 246, 0.9));
+  box-shadow: 0 1px 0 rgba(251, 250, 246, 0.94) inset, 0 18px 42px rgba(17, 18, 20, 0.07);
+}
+
+.case-tool-card,
+.case-sheet-block,
+.roi-field-group,
+.roi-primary-metrics div,
+.roi-secondary-metrics div,
+.roi-reading-cards div,
+.case-start-guide dl div {
+  border-color: rgba(17, 18, 20, 0.18);
+  background: rgba(255, 255, 255, 0.44);
+  box-shadow: none;
+}
+
+.maturity-questions::after,
+.maturity-panel::after,
+.roi-panel::after,
+.roi-key-results::after,
+.roi-summary-card::after,
+.content-card::after,
+.case-search-panel::after,
+.tool-library-panel::after,
+.next-card::after,
+.case-tool-card::after,
+.case-sheet-block::after,
+.roi-field-group::after,
+.roi-reading-cards div::after {
+  width: 24px;
+  height: 24px;
+  opacity: 0.42;
+}
+
+.panel-heading h2,
+.compact-heading h2,
+.case-step-heading h2 {
+  font-size: 32px;
+}
+
+.maturity-axis {
+  grid-template-columns: minmax(0, 0.72fr) minmax(270px, 1fr);
+  gap: 20px;
+  padding: 18px 0;
+}
+
+.axis-copy p {
+  font-size: 15px;
+  line-height: 1.48;
+}
+
+.axis-value,
+.result-count,
+.tag,
+.case-card-meta small,
+.case-quick-starts button,
+.input-with-unit em {
+  border-color: rgba(17, 18, 20, 0.14);
+  background: rgba(255, 255, 255, 0.46);
+}
+
+input,
+select,
+textarea {
+  min-height: 44px;
+  border-color: rgba(17, 18, 20, 0.22);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 1px 0 rgba(251, 250, 246, 0.7) inset;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  border: 1px solid rgba(17, 18, 20, 0.14);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(17, 18, 20, 0.68), rgba(17, 18, 20, 0.16));
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -6px;
+  box-shadow: 0 0 0 4px rgba(17, 18, 20, 0.06), 0 4px 10px rgba(17, 18, 20, 0.16);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 10px;
+  border: 1px solid rgba(17, 18, 20, 0.14);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(17, 18, 20, 0.68), rgba(17, 18, 20, 0.16));
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 0 4px rgba(17, 18, 20, 0.06), 0 4px 10px rgba(17, 18, 20, 0.16);
+}
+
+.case-search-panel {
+  padding: 26px 28px;
+}
+
+.case-step-heading {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: start;
+}
+
+.case-step-number {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(17, 18, 20, 0.18);
+  border-radius: 4px;
+  background: var(--black);
+  color: var(--ivory);
+}
+
+.case-search-stack {
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.case-filter-groups {
+  grid-template-columns: minmax(240px, 1.15fr) repeat(3, minmax(170px, 0.8fr));
+  align-items: end;
+}
+
+.case-filter-groups .case-advanced-inline {
+  display: contents;
+}
+
+.case-grid {
+  gap: 10px;
+}
+
+.case-tool-card {
+  min-height: 224px;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  padding: 18px;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.case-tool-card:hover,
+.case-tool-card.selected {
+  transform: translateY(-2px);
+}
+
+.case-card-title {
+  font-size: 19px;
+}
+
+.case-card-cta {
+  align-self: end;
+  margin-top: 4px;
+}
+
+.roi-field-group {
+  padding: 18px;
+}
+
+.roi-field-group-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.input-with-unit {
+  grid-template-columns: minmax(0, 1fr) minmax(58px, max-content);
+  gap: 8px;
+}
+
+.roi-primary-metrics,
+.roi-secondary-metrics,
+.roi-reading-grid {
+  gap: 10px;
+}
+
+.roi-primary-metrics div,
+.roi-secondary-metrics div,
+.roi-reading-cards div {
+  min-height: 96px;
+  padding: 16px;
+}
+
+.button,
+button.button,
+.case-card-cta,
+.case-reset-button,
+.compact-button,
+.roi-reset-link {
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.button:hover,
+button.button:hover,
+.case-card-cta:hover,
+.case-reset-button:hover,
+.compact-button:hover,
+.roi-reset-link:hover {
+  transform: translateY(-1px);
+}
+
+.tool-next-section .next-card {
+  align-items: center;
+  padding: 22px;
+}
+
+@media (max-width: 980px) {
+  .tool-common-hero-inner,
+  .maturity-layout,
+  .roi-layout,
+  .case-filter-groups,
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-filter-groups .case-advanced-inline {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .roi-field-group-grid,
+  .roi-primary-metrics,
+  .roi-secondary-metrics,
+  .roi-reading-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .tool-common-hero-inner {
+    padding: 30px 0 26px;
+  }
+
+  .case-search-panel,
+  .maturity-questions,
+  .maturity-panel,
+  .roi-panel,
+  .roi-key-results,
+  .roi-summary-card,
+  .content-card,
+  .tool-library-panel,
+  .next-card {
+    padding: 18px;
+  }
+
+  .maturity-axis,
+  .case-step-heading,
+  .tool-next-section .next-card {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
