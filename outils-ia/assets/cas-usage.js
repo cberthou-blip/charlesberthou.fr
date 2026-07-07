@@ -392,7 +392,7 @@ function renderDetail() {
   }
 
   nodes.detailTitle.textContent = "Fiche du cas sélectionné";
-  nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou un test terrain.";
+  nodes.detailIntro.textContent = "La fiche rassemble les informations utiles pour décider si le cas mérite un chiffrage ou un test de terrain.";
 
   const risk = getRiskLevel(item);
   const sectors = getSectors(item);

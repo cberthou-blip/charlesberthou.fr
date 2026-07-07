@@ -818,7 +818,7 @@
       "outil": "Assistant relation client",
       "reglage": "Brief",
       "entree": "Historique CRM, notes, produits et objectifs du rendez-vous",
-      "sortie": "Brief avec contexte, enjeux, questions et prochaines options possibles",
+      "sortie": "Brief avec contexte, enjeux, questions et prochaines actions possibles",
       "utilisation": "Vérifier le CRM et adapter au client réel",
       "verification": [
         "historique",
