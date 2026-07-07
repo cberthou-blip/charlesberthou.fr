@@ -5,7 +5,6 @@ charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA
 ## Routes publiques
 
 - Accueil : https://charlesberthou.fr/
-- Articles : https://charlesberthou.fr/articles/
 - Ressources : https://charlesberthou.fr/ressources/
 - Contact : https://charlesberthou.fr/contact/
 
@@ -21,5 +20,4 @@ charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA
 - Objectif : transmettre des repères simples pour comprendre, tester, mesurer et documenter les usages de l'IA.
 - Publics : particuliers curieux, professionnels, équipes et décideurs.
 - Séparation : ne pas mélanger cette page personnelle avec l'emploi salarié.
-- Dharma reste un lien discret pour les missions structurées : https://dharma-developpement.fr/
 - Les publications longues et échanges se poursuivent sur LinkedIn : https://fr.linkedin.com/in/charlesberthou

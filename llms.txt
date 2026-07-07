@@ -5,7 +5,6 @@ Site personnel de Charles Berthou consacré à l'IA pratique et à la transforma
 Routes principales :
 
 - https://charlesberthou.fr/
-- https://charlesberthou.fr/articles/
 - https://charlesberthou.fr/ressources/
 - https://charlesberthou.fr/contact/
 
@@ -19,6 +18,5 @@ Outils IA conservés :
 Ligne éditoriale :
 
 - laboratoire personnel, sans mélange avec l'emploi salarié ;
-- lien discret vers Dharma pour les missions structurées ;
 - contenus destinés aux particuliers comme aux professionnels.
 - éducation à l'IA, sécurité des usages IA, publications LinkedIn sélectionnées, KLEO, prompts et cas d'usage.

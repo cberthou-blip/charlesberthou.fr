@@ -6,12 +6,11 @@ Site personnel statique publié avec GitHub Pages.
 
 - Labo personnel autour de l'IA et de la transformation numérique : outils, prompts, cas d'usage et retours d'expérience.
 - Publics visés : particuliers curieux, professionnels, équipes et décideurs qui veulent comprendre et tester sans jargon.
-- Séparation volontaire : ne pas mélanger cette page avec l'emploi salarié ; Dharma reste un lien discret pour les missions structurées.
+- Séparation volontaire : ne pas mélanger cette page personnelle avec l'emploi salarié ou les missions structurées.
 
 ## Routes publiques
 
 - `/` : accueil éditorial avec outils, prompts et contact.
-- `/articles/` : articles et publications sélectionnées.
 - `/ressources/` : boîte à outils IA disponible.
 - `/contact/` : contact via LinkedIn uniquement.
 - `/outils-ia/maturite-ia/` : test de maturité IA.
