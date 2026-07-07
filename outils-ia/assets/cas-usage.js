@@ -1,8 +1,8 @@
 const CASE_DATA_URL = "/outils-ia/data/cas-usage.json";
 const CASE_METIER_DATA_URL = "/outils-ia/data/cas-usage-metiers.json";
 const NO_SELECTION = "";
-const CASE_PAGE_SIZE = 12;
-const CASE_MOBILE_PAGE_SIZE = 4;
+const CASE_PAGE_SIZE = 6;
+const CASE_MOBILE_PAGE_SIZE = 3;
 
 const METIER_ORDER = [
   "Conseil",
@@ -368,6 +368,9 @@ function openCaseDetailSection() {
   block.dataset.collapsed = "false";
   const button = block.querySelector(".mobile-collapse-toggle");
   if (button) button.setAttribute("aria-expanded", "true");
+  window.requestAnimationFrame(() => {
+    block.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 }
 
 function renderDetail() {
@@ -514,7 +517,7 @@ function getDefaultCases() {
   const selected = [];
   const seenMetiers = new Set();
   const ordered = state.cases.slice().sort((a, b) => getMonthlyGain(b) - getMonthlyGain(a));
-  const defaultLimit = window.matchMedia?.("(max-width: 680px)").matches ? 4 : 6;
+  const defaultLimit = getCasePageSize();
 
   ordered.forEach((item) => {
     if (selected.length >= defaultLimit) return;
