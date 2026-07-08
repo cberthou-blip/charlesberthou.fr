@@ -71,6 +71,19 @@ const maturityAxes = [
   },
 ];
 
+const maturityExampleScores = {
+  usage: 2,
+  skills: 1,
+  usecases: 2,
+  governance: 1,
+  measurement: 1,
+  scale: 0,
+  data: 2,
+  security: 1,
+  adoption: 1,
+  oversight: 1,
+};
+
 const maturityNodes = {
   axes: document.querySelector("#maturityAxes"),
   scoreCard: document.querySelector("#maturityScoreCard"),
@@ -86,6 +99,7 @@ const maturityNodes = {
   bars: document.querySelector("#axisBars"),
   priorities: document.querySelector("#maturityPriorities"),
   reset: document.querySelector("#resetMaturity"),
+  example: document.querySelector("#applyMaturityExample"),
 };
 
 let scores = getDefaultScores();
@@ -98,6 +112,11 @@ function initMaturityTool() {
   renderMaturity();
   maturityNodes.reset.addEventListener("click", () => {
     scores = getDefaultScores();
+    renderQuestions();
+    renderMaturity();
+  });
+  maturityNodes.example?.addEventListener("click", () => {
+    scores = { ...maturityExampleScores };
     renderQuestions();
     renderMaturity();
   });
@@ -191,7 +210,7 @@ function getLevel(total) {
       profile: "Risque d'usage invisible",
       nextStep: "Cadrer",
       insight: "Le sujet doit d'abord devenir visible, gouverné et compréhensible.",
-      summary: "Commencez par rendre les usages visibles et cadrer deux pilotes simples.",
+      summary: "Commencez par rendre les usages visibles, ou chargez un exemple pour voir comment lire le diagnostic.",
     };
   }
 
