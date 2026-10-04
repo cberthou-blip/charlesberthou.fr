@@ -70,7 +70,7 @@ def render_feature(e):
     return f'''<article class="feature">
    <a class="feature-link" href="{escape(e['url'])}" target="_blank" rel="noopener noreferrer" aria-labelledby="latest-title latest-read" aria-describedby="external-note">
     <div class="feature-image">{image_tag(e, True)}</div>
-    <div class="feature-copy"><p class="eyebrow">{escape(e['theme'])}</p><h2 id="latest-title">{escape(e['title'])}</h2><p>{escape(e['summary'])}</p><span class="text-link" id="latest-read">Lire l’édition sur LinkedIn {ARROW}</span></div>
+    <div class="feature-copy"><p class="eyebrow">{escape(e['theme'])}</p><h2 id="latest-title">{escape(e['title'])}</h2><p>{escape(e['summary'])}</p><span class="text-link" id="latest-read">Lire l’article sur LinkedIn {ARROW}</span></div>
    </a>
   </article>'''
 
@@ -96,19 +96,19 @@ def build():
     linkedin_url(author['url'])
     editions = data['editions']
     if not editions:
-        raise ValueError('Au moins une édition est nécessaire')
+        raise ValueError('Au moins un article est nécessaire')
     slugs = set()
     urls = set()
     for e in editions:
         if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', e['slug']) or e['slug'] in slugs:
-            raise ValueError('Identifiant d’édition invalide ou dupliqué')
+            raise ValueError('Identifiant d’article invalide ou dupliqué')
         slugs.add(e['slug'])
         linkedin_url(e['url'])
         if e['url'] in urls:
-            raise ValueError('Adresse d’édition dupliquée')
+            raise ValueError('Adresse d’article dupliquée')
         urls.add(e['url'])
         if date.fromisoformat(e['date']) > updated:
-            raise ValueError('La date updated doit inclure la dernière édition')
+            raise ValueError('La date updated doit inclure le dernier article')
         for field in ('title', 'theme', 'summary', 'alt'):
             if not isinstance(e[field], str) or not e[field].strip():
                 raise ValueError(f'Champ {field} manquant dans {e["slug"]}')
@@ -127,7 +127,7 @@ def build():
     schema = {
         '@context': 'https://schema.org', '@type': 'CollectionPage',
         'name': 'Le Passage IA | ' + author['name'], 'url': 'https://charlesberthou.fr/',
-        'description': 'La newsletter de Charles Berthou sur l’intelligence artificielle, le travail et la société. Retrouvez les éditions du Passage IA sur LinkedIn.',
+        'description': 'La newsletter de Charles Berthou sur l’intelligence artificielle, le travail et la société. Retrouvez les articles du Passage IA sur LinkedIn.',
         'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author},
         'mainEntity': {'@type': 'ItemList', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'item': {
@@ -140,7 +140,7 @@ def build():
         header_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-small', True),
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
-        all_editions=link(newsletter, 'Toutes les éditions'),
+        all_editions=link(newsletter, 'Tous les articles'),
         card_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-light', True),
         author_link=link(author['url'], 'Retrouver l’auteur'),
         footer_subscribe=link(newsletter, 'S’abonner sur LinkedIn', subscribe=True),
@@ -157,9 +157,9 @@ Ce site est le relais de la newsletter. Les articles et l’abonnement sont acce
     outputs = {
         'index.html': page,
         'llms.txt': llms,
-        'llms-full.txt': llms + '\n## Éditions\n\n' + '\n'.join(f'- [{e["title"]}]({e["url"]}) ({e["date"]})' for e in editions) + '\n',
+        'llms-full.txt': llms + '\n## Articles\n\n' + '\n'.join(f'- [{e["title"]}]({e["url"]}) ({e["date"]})' for e in editions) + '\n',
         'sitemap.xml': f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://charlesberthou.fr/</loc><lastmod>{updated.isoformat()}</lastmod></url></urlset>\n',
-        '404.html': f'<!doctype html><html lang="fr"><head>{head}<title>Page introuvable | Le Passage IA</title><meta name="robots" content="noindex, follow"><script src="/assets/passage/redirect.js" defer></script></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les éditions du Passage IA sur la page d’accueil.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main></body></html>\n',
+        '404.html': f'<!doctype html><html lang="fr"><head>{head}<title>Page introuvable | Le Passage IA</title><meta name="robots" content="noindex, follow"><script src="/assets/passage/redirect.js" defer></script></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles du Passage IA sur la page d’accueil.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main></body></html>\n',
     }
     redirect = f'<!doctype html><html lang="fr"><head>{head}<title>Le Passage IA | {escape(author["name"])}</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="https://charlesberthou.fr/"><meta http-equiv="refresh" content="0; url=/"></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA</p><h1>Retrouvez la newsletter.</h1><p><a class="text-link" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></p></main></body></html>\n'
     for path in LEGACY:
