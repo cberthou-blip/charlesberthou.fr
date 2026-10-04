@@ -6,8 +6,9 @@
 <meta name="theme-color" content="#102f38">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=passage-20261004">
 <link rel="icon" type="image/png" href="/favicon.png?v=passage-20261004">
-<link rel="stylesheet" href="/assets/passage/fonts.css">
-<link rel="stylesheet" href="/assets/passage/site.css?v=20261004">
+<link rel="preload" href="/assets/passage/libre-caslon-display.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/passage/fonts.css?v=1fde681f64">
+<link rel="stylesheet" href="/assets/passage/site.css?v=6f62a65901">
 <title>Le Passage IA | La newsletter de Charles Berthou</title>
 <meta name="description" content="L’intelligence artificielle, à hauteur humaine. Retrouvez les éditions du Passage IA, la newsletter de Charles Berthou sur le travail, les organisations et la société.">
 <link rel="canonical" href="https://charlesberthou.fr/">
@@ -19,78 +20,90 @@
 <meta property="og:image:alt" content="Un passage entre l’histoire du travail et le monde numérique">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Le Passage IA · Charles Berthou">
 <meta name="twitter:description" content="L’intelligence artificielle, à hauteur humaine."><meta name="twitter:image" content="https://charlesberthou.fr/assets/passage/partage.jpg">
+<meta name="twitter:image:alt" content="Un passage entre l’histoire du travail et le monde numérique">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Le Passage IA | Charles Berthou", "url": "https://charlesberthou.fr/", "description": "La newsletter de Charles Berthou sur l’intelligence artificielle, le travail et la société. Retrouvez les éditions du Passage IA sur LinkedIn.", "inLanguage": "fr-FR", "author": {"@type": "Person", "name": "Charles Berthou", "url": "https://fr.linkedin.com/in/charlesberthou"}, "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "Article", "headline": "Le travail vaut-il encore la peine ?", "url": "https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye", "datePublished": "2026-10-04", "author": {"@type": "Person", "name": "Charles Berthou"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "Article", "headline": "« On n’arrête pas le progrès », n’est-ce pas ?", "url": "https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje", "datePublished": "2026-09-18", "author": {"@type": "Person", "name": "Charles Berthou"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "Article", "headline": "Qui regarde encore le compteur ?", "url": "https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte", "datePublished": "2026-08-20", "author": {"@type": "Person", "name": "Charles Berthou"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "Article", "headline": "L’intelligence a soif : ce que l’IA vaut en eau", "url": "https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke", "datePublished": "2026-07-28", "author": {"@type": "Person", "name": "Charles Berthou"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "Article", "headline": "L’humanité a toujours tremblé devant sa propre lumière", "url": "https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje", "datePublished": "2026-07-21", "author": {"@type": "Person", "name": "Charles Berthou"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "Article", "headline": "IA en entreprise : hâtez-vous lentement", "url": "https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine", "datePublished": "2026-07-08", "author": {"@type": "Person", "name": "Charles Berthou"}}}]}}</script>
 </head>
 <body>
 <a class="skip-link" href="#contenu">Aller au contenu</a>
+<p class="visually-hidden" id="external-note">S’ouvre dans un nouvel onglet sur LinkedIn</p>
 <header class="site-header shell">
- <a class="author-brand" href="/" aria-label="Le Passage IA, accueil"><span class="brand-mark" aria-hidden="true"><i></i></span><span>Charles Berthou</span></a>
- <nav aria-label="Navigation principale"><a href="#editions">Les éditions</a><a href="#newsletter">La newsletter</a><a class="button button-small" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer">S’abonner <span aria-hidden="true">↗</span></a></nav>
+ <a class="author-brand" href="/" aria-label="Charles Berthou, accueil du Passage IA"><span class="brand-mark" aria-hidden="true"><i></i></span><span>Charles Berthou</span></a>
+ <div class="header-actions">
+  <nav aria-label="Navigation principale"><a href="#editions">Les éditions</a><a href="#newsletter">La newsletter</a><a class="button button-small" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer" aria-describedby="external-note subscription-note">S’abonner sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></nav>
+  <p class="header-note" id="subscription-note">Un compte LinkedIn est nécessaire pour s’abonner</p>
+ </div>
 </header>
-<main id="contenu">
+<main id="contenu" tabindex="-1">
  <section class="masthead shell" aria-labelledby="site-title">
   <p class="eyebrow">Une newsletter de Charles Berthou</p>
   <h1 id="site-title">Le Passage <em>IA</em><span class="masthead-dot" aria-hidden="true">.</span></h1>
-  <div class="masthead-bottom"><p class="tagline">L’intelligence artificielle,<br><em>à hauteur humaine.</em></p><p class="masthead-description">Des réflexions sur l’IA, le travail et la société,<br class="desktop-break"> à la lumière de l’histoire et des idées.</p></div>
+  <div class="masthead-bottom"><p class="tagline">L’intelligence artificielle,<br><em>à hauteur humaine.</em></p><p class="masthead-description">Des réflexions sur l’IA, le travail et la société, à la lumière de l’histoire et des idées.</p></div>
  </section>
  <section class="latest shell" aria-labelledby="latest-title">
   <div class="section-kicker"><span>La dernière édition</span><time datetime="2026-10-04">4 octobre 2026</time></div>
   <article class="feature">
-   <a class="feature-image" href="https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : Le travail vaut-il encore la peine ?"><img src="/assets/passage/travail.webp" srcset="/assets/passage/travail-small.webp 768w, /assets/passage/travail.webp 1440w" sizes="(max-width: 760px) 92vw, 62vw" width="1672" height="941" alt="Un homme gravit un escalier entre un atelier ancien et un espace de travail contemporain, reliés par un fil de lumière" fetchpriority="high" decoding="async"></a>
-   <div class="feature-copy"><p class="eyebrow">Travail & société</p><h2 id="latest-title">Le travail vaut-il<br class="desktop-break"> encore la peine ?</h2><p>L’IA bouscule le lien entre effort, mérite et résultat. Que voulons-nous préserver du travail lorsqu’une partie de la peine peut disparaître ?</p><a class="text-link" href="https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye" target="_blank" rel="noopener noreferrer">Lire l’édition sur LinkedIn <span aria-hidden="true">↗</span></a></div>
+   <a class="feature-link" href="https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye" target="_blank" rel="noopener noreferrer" aria-labelledby="latest-title latest-read" aria-describedby="external-note">
+    <div class="feature-image"><img src="/assets/passage/travail.webp?v=982d660aa8" width="1440" height="810" alt="Un homme gravit un escalier entre un atelier ancien et un espace de travail contemporain, reliés par un fil de lumière" decoding="async" srcset="/assets/passage/travail-small.webp?v=aa976ad077 768w, /assets/passage/travail.webp?v=982d660aa8 1440w" sizes="(max-width: 900px) 96vw, (max-width: 1100px) 54vw, 60vw" fetchpriority="high"></div>
+    <div class="feature-copy"><p class="eyebrow">Travail &amp; société</p><h2 id="latest-title">Le travail vaut-il encore la peine ?</h2><p>L’IA bouscule le lien entre effort, mérite et résultat. Que voulons-nous préserver du travail lorsqu’une partie de la peine peut disparaître ?</p><span class="text-link" id="latest-read">Lire l’édition sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span></div>
+   </a>
   </article>
  </section>
  <section class="editions shell" id="editions" aria-labelledby="editions-title">
-  <div class="section-heading"><div><p class="eyebrow">Au fil des éditions</p><h2 id="editions-title">Prendre le temps de comprendre.</h2></div><a class="text-link" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer">Toutes les éditions <span aria-hidden="true">↗</span></a></div>
+  <div class="section-heading"><div><p class="eyebrow">Au fil des éditions</p><h2 id="editions-title">Prendre le temps de comprendre.</h2></div><a class="text-link" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer" aria-describedby="external-note">Toutes les éditions <span class="arrow" aria-hidden="true">↗</span></a></div>
   <div class="edition-grid">
    <article class="edition">
-  <a class="edition-link" href="https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : « On n’arrête pas le progrès », n’est-ce pas ?">
-   <div class="edition-image"><img src="/assets/passage/progres.webp" width="960" height="540" alt="Illustration de l’édition consacrée au progrès et à la maîtrise de l’intelligence artificielle" loading="lazy" decoding="async"></div>
+  <a class="edition-link" href="https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje" target="_blank" rel="noopener noreferrer" aria-labelledby="edition-progres-title edition-progres-read" aria-describedby="external-note">
+   <div class="edition-image"><img src="/assets/passage/progres.webp?v=ae35dc207b" width="960" height="539" alt="Illustration de l’édition consacrée au progrès et à la maîtrise de l’intelligence artificielle" decoding="async" loading="lazy"></div>
    <div class="edition-meta"><span>Progrès &amp; responsabilité</span><time datetime="2026-09-18">18 septembre 2026</time></div>
-   <h3>« On n’arrête pas le progrès », n’est-ce pas ?</h3>
+   <h3 id="edition-progres-title">« On n’arrête pas le progrès », n’est-ce pas ?</h3>
    <p>Nos peurs anciennes éclairent les choix très actuels que pose l’accélération de l’intelligence artificielle.</p>
-   <span class="read-link">Lire l’édition <span aria-hidden="true">↗</span></span>
-  </a>
- </article><article class="edition">
-  <a class="edition-link" href="https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : Qui regarde encore le compteur ?">
-   <div class="edition-image"><img src="/assets/passage/compteur.webp" width="960" height="540" alt="Un visage composé de fragments de papier, traversé de pièces et de connexions dorées sur fond bleu pétrole" loading="lazy" decoding="async"></div>
-   <div class="edition-meta"><span>Économie &amp; usages</span><time datetime="2026-08-20">20 août 2026</time></div>
-   <h3>Qui regarde encore le compteur ?</h3>
-   <p>Derrière la simplicité d’une demande, des ressources bien réelles. Une réflexion sur le coût du calcul et l’utilité de ce que nous produisons.</p>
-   <span class="read-link">Lire l’édition <span aria-hidden="true">↗</span></span>
-  </a>
- </article><article class="edition">
-  <a class="edition-link" href="https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : L’intelligence a soif : ce que l’IA vaut en eau">
-   <div class="edition-image"><img src="/assets/passage/eau.webp" width="960" height="540" alt="Un visage de papier face à des centres de données et à un paysage marqué par la sécheresse" loading="lazy" decoding="async"></div>
-   <div class="edition-meta"><span>Écologie &amp; arbitrages</span><time datetime="2026-07-28">28 juillet 2026</time></div>
-   <h3>L’intelligence a soif : ce que l’IA vaut en eau</h3>
-   <p>L’eau garde une adresse et une saison. Les usages de l’IA nous obligent à reposer la question du partage de cette ressource.</p>
-   <span class="read-link">Lire l’édition <span aria-hidden="true">↗</span></span>
-  </a>
- </article><article class="edition">
-  <a class="edition-link" href="https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : L’humanité a toujours tremblé devant sa propre lumière">
-   <div class="edition-image"><img src="/assets/passage/humanite.webp" width="960" height="540" alt="Un collage relie les ateliers industriels d’autrefois aux collectifs de travail actuels autour d’une lumière centrale" loading="lazy" decoding="async"></div>
-   <div class="edition-meta"><span>Histoire &amp; transformations</span><time datetime="2026-07-21">21 juillet 2026</time></div>
-   <h3>L’humanité a toujours tremblé devant sa propre lumière</h3>
-   <p>Des révolutions industrielles à l’IA, les transformations techniques interrogent nos habitudes, nos peurs et notre capacité à les accompagner.</p>
-   <span class="read-link">Lire l’édition <span aria-hidden="true">↗</span></span>
-  </a>
- </article><article class="edition">
-  <a class="edition-link" href="https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine" target="_blank" rel="noopener noreferrer" aria-label="Lire sur LinkedIn : IA en entreprise : hâtez-vous lentement">
-   <div class="edition-image"><img src="/assets/passage/entreprise.webp" width="960" height="540" alt="Un homme au milieu d’un passage lumineux entre des fragments de papier, des visages et des équipes au travail" loading="lazy" decoding="async"></div>
-   <div class="edition-meta"><span>Organisations &amp; adoption</span><time datetime="2026-07-08">8 juillet 2026</time></div>
-   <h3>IA en entreprise : hâtez-vous lentement</h3>
-   <p>Entre impatience et prudence, l’adoption de l’IA se construit au rythme des personnes, des usages et des responsabilités.</p>
-   <span class="read-link">Lire l’édition <span aria-hidden="true">↗</span></span>
+   <span class="read-link" id="edition-progres-read">Lire sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span>
   </a>
  </article>
-   <aside class="subscribe-card" aria-labelledby="subscribe-title"><span class="subscribe-number" aria-hidden="true">À suivre</span><div><p class="eyebrow">Le Passage IA</p><h3 id="subscribe-title">La prochaine réflexion,<br>dans votre fil.</h3><p>Abonnez-vous à la newsletter sur LinkedIn pour retrouver les nouvelles éditions.</p><a class="button button-light" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer">S’abonner sur LinkedIn <span aria-hidden="true">↗</span></a><p class="subscribe-note">Lecture et abonnement sur LinkedIn</p></div></aside>
+<article class="edition">
+  <a class="edition-link" href="https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte" target="_blank" rel="noopener noreferrer" aria-labelledby="edition-compteur-title edition-compteur-read" aria-describedby="external-note">
+   <div class="edition-image"><img src="/assets/passage/compteur-sans-titre.webp?v=8afad6b10f" width="960" height="539" alt="Un visage composé de fragments de papier, traversé de pièces et de connexions dorées sur fond bleu pétrole" decoding="async" loading="lazy"></div>
+   <div class="edition-meta"><span>Économie &amp; usages</span><time datetime="2026-08-20">20 août 2026</time></div>
+   <h3 id="edition-compteur-title">Qui regarde encore le compteur ?</h3>
+   <p>Derrière la simplicité d’une demande, des ressources bien réelles. Une réflexion sur le coût du calcul et l’utilité de ce que nous produisons.</p>
+   <span class="read-link" id="edition-compteur-read">Lire sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span>
+  </a>
+ </article>
+<article class="edition">
+  <a class="edition-link" href="https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke" target="_blank" rel="noopener noreferrer" aria-labelledby="edition-eau-title edition-eau-read" aria-describedby="external-note">
+   <div class="edition-image"><img src="/assets/passage/eau.webp?v=39ddd90926" width="960" height="540" alt="Un visage de papier face à des centres de données et à un paysage marqué par la sécheresse" decoding="async" loading="lazy"></div>
+   <div class="edition-meta"><span>Écologie &amp; arbitrages</span><time datetime="2026-07-28">28 juillet 2026</time></div>
+   <h3 id="edition-eau-title">L’intelligence a soif : ce que l’IA vaut en eau</h3>
+   <p>L’eau garde une adresse et une saison. Les usages de l’IA nous obligent à reposer la question du partage de cette ressource.</p>
+   <span class="read-link" id="edition-eau-read">Lire sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span>
+  </a>
+ </article>
+<article class="edition">
+  <a class="edition-link" href="https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje" target="_blank" rel="noopener noreferrer" aria-labelledby="edition-humanite-title edition-humanite-read" aria-describedby="external-note">
+   <div class="edition-image"><img src="/assets/passage/humanite.webp?v=4b6d24a5da" width="707" height="397" alt="Un collage relie les ateliers industriels d’autrefois aux collectifs de travail actuels autour d’une lumière centrale" decoding="async" loading="lazy"></div>
+   <div class="edition-meta"><span>Histoire &amp; transformations</span><time datetime="2026-07-21">21 juillet 2026</time></div>
+   <h3 id="edition-humanite-title">L’humanité a toujours tremblé devant sa propre lumière</h3>
+   <p>Des révolutions industrielles à l’IA, les transformations techniques interrogent nos habitudes, nos peurs et notre capacité à les accompagner.</p>
+   <span class="read-link" id="edition-humanite-read">Lire sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span>
+  </a>
+ </article>
+<article class="edition">
+  <a class="edition-link" href="https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine" target="_blank" rel="noopener noreferrer" aria-labelledby="edition-entreprise-title edition-entreprise-read" aria-describedby="external-note">
+   <div class="edition-image"><img src="/assets/passage/entreprise.webp?v=c556014d3b" width="707" height="398" alt="Un homme au milieu d’un passage lumineux entre des fragments de papier, des visages et des équipes au travail" decoding="async" loading="lazy"></div>
+   <div class="edition-meta"><span>Organisations &amp; adoption</span><time datetime="2026-07-08">8 juillet 2026</time></div>
+   <h3 id="edition-entreprise-title">IA en entreprise : hâtez-vous lentement</h3>
+   <p>Entre impatience et prudence, l’adoption de l’IA se construit au rythme des personnes, des usages et des responsabilités.</p>
+   <span class="read-link" id="edition-entreprise-read">Lire sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></span>
+  </a>
+ </article>
+   <aside class="subscribe-card" aria-labelledby="subscribe-title"><span class="subscribe-number" aria-hidden="true">À suivre</span><div><p class="eyebrow">Le Passage IA</p><h3 id="subscribe-title">La prochaine réflexion,<br>dans votre fil.</h3><p>Abonnez-vous à la newsletter sur LinkedIn pour retrouver les nouvelles éditions.</p><a class="button button-light" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer" aria-describedby="external-note subscription-note">S’abonner sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></a><p class="subscribe-note">Un compte LinkedIn est nécessaire pour s’abonner</p></div></aside>
   </div>
  </section>
  <section class="about shell" id="newsletter" aria-labelledby="about-title">
   <div><p class="eyebrow">La newsletter</p><h2 id="about-title">Explorer ce que<br>l’IA change en nous.</h2></div>
-  <div class="about-copy"><p>Le Passage IA relie l’actualité de l’intelligence artificielle à des questions plus anciennes : notre rapport au travail, au progrès, au savoir et aux ressources.</p><p>J’y croise l’histoire, les idées et l’expérience des organisations pour examiner ce que ces transformations font à nos vies et aux choix qui nous appartiennent.</p><div class="signature"><span>Charles Berthou</span><a class="text-link" href="https://fr.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">Retrouver l’auteur <span aria-hidden="true">↗</span></a></div></div>
+  <div class="about-copy"><p>Le Passage IA relie l’actualité de l’intelligence artificielle à des questions plus anciennes : notre rapport au travail, au progrès, au savoir et aux ressources.</p><p>J’y croise l’histoire, les idées et l’expérience des organisations pour examiner ce que ces transformations font à nos vies et aux choix qui nous appartiennent.</p><div class="signature"><span>Charles Berthou</span><a class="text-link" href="https://fr.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer" aria-describedby="external-note">Retrouver l’auteur <span class="arrow" aria-hidden="true">↗</span></a></div></div>
  </section>
 </main>
-<footer class="site-footer"><div class="shell footer-content"><a class="footer-brand" href="/">Le Passage <em>IA</em></a><p>© 2026 Charles Berthou</p><div><a class="text-link" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer">La newsletter <span aria-hidden="true">↗</span></a><a class="text-link" href="https://fr.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></div></footer>
-</body></html>
+<footer class="site-footer"><div class="shell footer-content"><a class="footer-brand" href="/">Le Passage <em>IA</em></a><p>© 2026 Charles Berthou</p><div><a class="text-link" href="https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032" target="_blank" rel="noopener noreferrer" aria-describedby="external-note subscription-note">S’abonner sur LinkedIn <span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://fr.linkedin.com/in/charlesberthou" target="_blank" rel="noopener noreferrer" aria-describedby="external-note">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></div></div></footer>
+</body>
+</html>

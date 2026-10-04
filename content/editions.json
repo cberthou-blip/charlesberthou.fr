@@ -1,0 +1,95 @@
+{
+  "updated": "2026-10-04",
+  "newsletter_url": "https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032",
+  "author": {
+    "name": "Charles Berthou",
+    "url": "https://fr.linkedin.com/in/charlesberthou"
+  },
+  "editions": [
+    {
+      "slug": "travail",
+      "title": "Le travail vaut-il encore la peine ?",
+      "date": "2026-10-04",
+      "theme": "Travail & société",
+      "url": "https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye",
+      "summary": "L’IA bouscule le lien entre effort, mérite et résultat. Que voulons-nous préserver du travail lorsqu’une partie de la peine peut disparaître ?",
+      "alt": "Un homme gravit un escalier entre un atelier ancien et un espace de travail contemporain, reliés par un fil de lumière",
+      "image": {
+        "src": "/assets/passage/travail.webp",
+        "width": 1440,
+        "height": 810,
+        "srcset": "/assets/passage/travail-small.webp 768w, /assets/passage/travail.webp 1440w"
+      }
+    },
+    {
+      "slug": "progres",
+      "title": "« On n’arrête pas le progrès », n’est-ce pas ?",
+      "date": "2026-09-18",
+      "theme": "Progrès & responsabilité",
+      "url": "https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje",
+      "summary": "Nos peurs anciennes éclairent les choix très actuels que pose l’accélération de l’intelligence artificielle.",
+      "alt": "Illustration de l’édition consacrée au progrès et à la maîtrise de l’intelligence artificielle",
+      "image": {
+        "src": "/assets/passage/progres.webp",
+        "width": 960,
+        "height": 539
+      }
+    },
+    {
+      "slug": "compteur",
+      "title": "Qui regarde encore le compteur ?",
+      "date": "2026-08-20",
+      "theme": "Économie & usages",
+      "url": "https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte",
+      "summary": "Derrière la simplicité d’une demande, des ressources bien réelles. Une réflexion sur le coût du calcul et l’utilité de ce que nous produisons.",
+      "alt": "Un visage composé de fragments de papier, traversé de pièces et de connexions dorées sur fond bleu pétrole",
+      "image": {
+        "src": "/assets/passage/compteur-sans-titre.webp",
+        "width": 960,
+        "height": 539
+      }
+    },
+    {
+      "slug": "eau",
+      "title": "L’intelligence a soif : ce que l’IA vaut en eau",
+      "date": "2026-07-28",
+      "theme": "Écologie & arbitrages",
+      "url": "https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke",
+      "summary": "L’eau garde une adresse et une saison. Les usages de l’IA nous obligent à reposer la question du partage de cette ressource.",
+      "alt": "Un visage de papier face à des centres de données et à un paysage marqué par la sécheresse",
+      "image": {
+        "src": "/assets/passage/eau.webp",
+        "width": 960,
+        "height": 540
+      }
+    },
+    {
+      "slug": "humanite",
+      "title": "L’humanité a toujours tremblé devant sa propre lumière",
+      "date": "2026-07-21",
+      "theme": "Histoire & transformations",
+      "url": "https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje",
+      "summary": "Des révolutions industrielles à l’IA, les transformations techniques interrogent nos habitudes, nos peurs et notre capacité à les accompagner.",
+      "alt": "Un collage relie les ateliers industriels d’autrefois aux collectifs de travail actuels autour d’une lumière centrale",
+      "image": {
+        "src": "/assets/passage/humanite.webp",
+        "width": 707,
+        "height": 397
+      }
+    },
+    {
+      "slug": "entreprise",
+      "title": "IA en entreprise : hâtez-vous lentement",
+      "date": "2026-07-08",
+      "theme": "Organisations & adoption",
+      "url": "https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine",
+      "summary": "Entre impatience et prudence, l’adoption de l’IA se construit au rythme des personnes, des usages et des responsabilités.",
+      "alt": "Un homme au milieu d’un passage lumineux entre des fragments de papier, des visages et des équipes au travail",
+      "image": {
+        "src": "/assets/passage/entreprise.webp",
+        "width": 707,
+        "height": 398
+      }
+    }
+  ]
+}

@@ -3,26 +3,26 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(./font-0.ttf) format('truetype');
+  src: url('./dm-sans-regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(./font-1.ttf) format('truetype');
+  src: url('./dm-sans-medium.woff2') format('woff2');
 }
 @font-face {
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(./font-2.ttf) format('truetype');
+  src: url('./dm-sans-semibold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Libre Caslon Display';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(./font-3.ttf) format('truetype');
+  src: url('./libre-caslon-display.woff2') format('woff2');
 }

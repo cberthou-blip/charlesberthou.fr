@@ -1,25 +1,45 @@
 # Le Passage IA · charlesberthou.fr
 
-Site statique publié sur GitHub Pages depuis la branche `main`.
+Site statique publié sur GitHub Pages depuis la branche `main`. L’accueil relaie exclusivement la newsletter de Charles Berthou. Les articles et l’abonnement sont hébergés sur LinkedIn.
 
-## Périmètre
+## Modifier une édition
 
-Le site relaie exclusivement la newsletter **Le Passage IA** de Charles Berthou. Les éditions et l’abonnement renvoient vers LinkedIn. Aucun formulaire, outil interactif, traceur ou contenu intégré tiers.
+La source éditoriale unique est `content/editions.json`.
 
-## Direction artistique
+1. Ajouter ou modifier l’édition dans ce fichier : identifiant, titre, date ISO, thème, adresse LinkedIn, résumé, alternative textuelle et caractéristiques de l’image
+2. Placer l’illustration WebP dans `assets/passage/` et renseigner ses dimensions exactes
+3. Actualiser `updated` avec la date de modification
+4. Exécuter `python3 scripts/build.py`, puis `python3 scripts/build.py --check`
+5. Vérifier l’édition principale, les liens et les rendus sur téléphone et ordinateur avant de publier les fichiers modifiés
 
-Ivoire, bleu pétrole et or patiné, illustrations éditoriales fournies par Charles, typographie à empattements et mise en page aérée. Cette direction remplace l’ancienne identité Dharma.
+Le script fonctionne avec Python 3, sans dépendance. Il trie les éditions par date, affiche la dernière puis les cinq précédentes, et produit les dates françaises, le HTML, les données structurées, le sitemap et les fichiers `llms`. La liste complète reste conservée dans la source et dans `llms-full.txt`.
 
-## Maintenance
+`--check` ne modifie aucun fichier. Il retourne un code d’erreur si une sortie générée est périmée ou si une donnée obligatoire, une image ou une adresse LinkedIn est invalide. Ne pas modifier directement les fichiers générés.
 
-- `index.html` : une édition mise en avant et cinq éditions précédentes
-- `assets/passage/` : styles, illustrations optimisées et polices locales
-- Mettre à jour les dates, liens, résumés et données structurées ensemble lors d’une nouvelle édition
-- Mettre à jour `sitemap.xml` et `llms-full.txt`
-- Les anciennes routes des outils redirigent vers l’accueil ; leurs scripts et données sont retirés de la branche publiée
-- Le code historique des outils reste récupérable dans les commits antérieurs à cette refonte
-- Les captures, scripts de préparation et fichiers temporaires restent hors dépôt
+## Modifier la présentation
 
-## Vérifications
+- `templates/index.html` : structure et textes de présentation
+- `assets/passage/site.css` : mise en page, couleurs, états interactifs et tailles de texte
+- `assets/passage/fonts.css` : quatre polices WOFF2 locales, licences incluses
+- `scripts/build.py` : composants d’édition, métadonnées et pages de repli
 
-Contrôler l’affichage mobile et bureau, les liens d’articles et d’abonnement, et la redirection des anciennes routes avant publication.
+Après une modification des styles ou du modèle, relancer la génération. Les adresses des styles et des images comportent une empreinte de contenu pour actualiser le cache.
+
+L’accueil fonctionne sans JavaScript, formulaire, traceur ni contenu tiers intégré. Le titre, l’image et le lien de lecture de l’article principal constituent une seule zone cliquable. Les ouvertures LinkedIn sont décrites pour les technologies d’assistance. L’abonnement nécessite un compte LinkedIn.
+
+## Anciennes rubriques
+
+Les sept anciennes routes de rubrique sont conservées uniquement pour rediriger vers l’accueil. Les scripts et données des outils sont absents de la version publiée. Leur historique reste récupérable dans Git.
+
+## Illustrations
+
+Les illustrations éditoriales proviennent des références fournies pour Le Passage IA. `assets/passage/compteur-sans-titre.webp` remplace la vignette qui portait un titre différent de celui de l’article. La retouche a été réalisée avec le module imagegen intégré : suppression du titre du panneau supérieur gauche et de ses deux filets, reconstitution du papier, conservation du cercle doré, du visage, des pièces, du cadrage et de la palette. Le fichier est ensuite encodé en WebP pour le site.
+
+## Recette ciblée
+
+- Lancer `python3 scripts/build.py --check`
+- Vérifier les contrastes des petits textes sur fond clair et foncé, y compris au survol
+- Contrôler le lien d’évitement, les noms accessibles, la tabulation et le focus
+- Inspecter la grille à 320, 390, 640, 768, 900 et 1363 pixels, puis le zoom et les appareils réels lorsque disponibles
+- Ouvrir la dernière édition, une carte, la newsletter, le profil auteur et une ancienne route
+- Vérifier la page 404 et les ressources publiées après le déploiement
