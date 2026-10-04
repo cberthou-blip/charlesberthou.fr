@@ -1,22 +1,17 @@
-# charlesberthou.fr
+# Le Passage IA
 
-charlesberthou.fr est le laboratoire personnel de Charles Berthou autour de l'IA et de la transformation numérique : outils pratiques, prompts, cas d'usage et retours d'expérience.
+> La newsletter de Charles Berthou sur l’intelligence artificielle, le travail, les organisations et la société.
 
-## Routes publiques
+Ce site est le relais de la newsletter. Les articles et l’abonnement sont accessibles sur LinkedIn.
 
-- Accueil : https://charlesberthou.fr/
-- Ressources : https://charlesberthou.fr/ressources/
-- Contact : https://charlesberthou.fr/contact/
+- [Newsletter Le Passage IA](https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032)
+- [Charles Berthou](https://fr.linkedin.com/in/charlesberthou)
 
-## Outils IA
+## Éditions
 
-- Test de maturité IA : https://charlesberthou.fr/outils-ia/maturite-ia/
-- Explorateur de 116 cas d'usage IA : https://charlesberthou.fr/outils-ia/cas-usage/
-- Calculateur ROI IA : https://charlesberthou.fr/outils-ia/roi-ia/
-
-## Ligne éditoriale
-
-- Objectif : transmettre des repères simples pour comprendre, tester, mesurer et documenter les usages de l'IA.
-- Publics : particuliers curieux, professionnels, équipes et décideurs.
-- Séparation : ne pas mélanger cette page personnelle avec l'emploi salarié.
-- Les publications longues et échanges se poursuivent sur LinkedIn : https://fr.linkedin.com/in/charlesberthou
+- [Le travail vaut-il encore la peine ?](https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye) (2026-10-04)
+- [« On n’arrête pas le progrès », n’est-ce pas ?](https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje) (2026-09-18)
+- [Qui regarde encore le compteur ?](https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte) (2026-08-20)
+- [L’intelligence a soif : ce que l’IA vaut en eau](https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke) (2026-07-28)
+- [L’humanité a toujours tremblé devant sa propre lumière](https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje) (2026-07-21)
+- [IA en entreprise : hâtez-vous lentement](https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine) (2026-07-08)

@@ -1,21 +1,8 @@
-# charlesberthou.fr
+# Le Passage IA
 
-Site personnel de Charles Berthou consacré à l'IA pratique et à la transformation numérique : outils, prompts, cas d'usage et retours d'expérience.
+> La newsletter de Charles Berthou sur l’intelligence artificielle, le travail, les organisations et la société.
 
-Routes principales :
+Ce site est le relais de la newsletter. Les articles et l’abonnement sont accessibles sur LinkedIn.
 
-- https://charlesberthou.fr/
-- https://charlesberthou.fr/ressources/
-- https://charlesberthou.fr/contact/
-
-Outils IA conservés :
-
-- https://charlesberthou.fr/outils-ia/maturite-ia/
-- https://charlesberthou.fr/outils-ia/cas-usage/
-- https://charlesberthou.fr/outils-ia/roi-ia/
-
-Ligne éditoriale :
-
-- laboratoire personnel, sans mélange avec l'emploi salarié ;
-- contenus destinés aux particuliers comme aux professionnels.
-- éducation à l'IA, sécurité des usages IA, publications LinkedIn sélectionnées, KLEO, prompts et cas d'usage.
+- [Newsletter Le Passage IA](https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032)
+- [Charles Berthou](https://fr.linkedin.com/in/charlesberthou)

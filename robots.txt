@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://charlesberthou.fr/sitemap.xml
