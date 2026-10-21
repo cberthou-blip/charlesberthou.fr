@@ -19,6 +19,8 @@ Desktop.ini
 
 # Dependencies and generated output
 node_modules/
+__pycache__/
+*.pyc
 dist/
 build/
 coverage/

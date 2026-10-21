@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère les pages statiques à partir de content/editions.json, sans dépendance."""
+"""Génère le site statique à partir de content/, sans dépendance."""
 import argparse
 from datetime import date
 from hashlib import sha256
@@ -10,13 +10,14 @@ import re
 from string import Template
 import sys
 from urllib.parse import urlsplit
+import resources
 
 ROOT = Path(__file__).resolve().parents[1]
 MONTHS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
           'août', 'septembre', 'octobre', 'novembre', 'décembre')
 ARROW = '<span class="arrow" aria-hidden="true">↗</span>'
 LEGACY = ('outils-ia', 'outils-ia/maturite-ia', 'outils-ia/cas-usage',
-          'outils-ia/roi-ia', 'outils-ia/registre-ia', 'ressources', 'contact')
+          'outils-ia/roi-ia', 'outils-ia/registre-ia', 'contact')
 
 
 def linkedin_url(value):
@@ -27,7 +28,7 @@ def linkedin_url(value):
 
 
 def asset(path):
-    if not path.startswith('/assets/passage/') or '..' in Path(path).parts:
+    if not path.startswith(('/assets/passage/', '/assets/resources/')) or '..' in Path(path).parts:
         raise ValueError(f'Chemin d’image invalide : {path}')
     file = ROOT / path.lstrip('/')
     if not file.is_file():
@@ -88,9 +89,25 @@ def render_card(e):
  </article>'''
 
 
+def render_page(content, *, head, title, description, canonical, robots,
+                author, newsletter, year, schema=None, scripts='', resource_page=False):
+    structured = '' if schema is None else '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
+    return Template((ROOT / 'templates/page.html').read_text(encoding='utf-8')).substitute(
+        head=head, title=escape(title), description=escape(description),
+        canonical=escape(canonical), robots=robots, structured_data=structured,
+        scripts=scripts, content=content, author_name=escape(author['name']), year=year,
+        resources_current=' aria-current="page"' if resource_page else '',
+        header_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-small', True),
+        footer_subscribe=link(newsletter, 'S’abonner sur LinkedIn', subscribe=True),
+        footer_author=link(author['url'], 'LinkedIn'))
+
+
 def build():
     data = json.loads((ROOT / 'content/editions.json').read_text(encoding='utf-8'))
     updated = date.fromisoformat(data['updated'])
+    resource_data = json.loads((ROOT / 'content/resources.json').read_text(encoding='utf-8'))
+    resources_updated, published = resources.validate(resource_data, ROOT)
+    site_updated = max(updated, resources_updated)
     newsletter = linkedin_url(data['newsletter_url'])
     author = data['author']
     linkedin_url(author['url'])
@@ -134,17 +151,31 @@ def build():
                 '@type': 'Article', 'headline': e['title'], 'url': e['url'],
                 'datePublished': e['date'], 'author': {'@type': 'Person', 'name': author['name']}}}
             for i, e in enumerate(visible)]}}
-    page = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
-        head=head, author_name=escape(author['name']), year=updated.year,
-        schema=json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c'),
-        header_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-small', True),
+    content = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
+        author_name=escape(author['name']),
+        resources_status='' if published else ' · En préparation',
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
         all_editions=link(newsletter, 'Tous les articles'),
         card_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-light', True),
-        author_link=link(author['url'], 'Retrouver l’auteur'),
-        footer_subscribe=link(newsletter, 'S’abonner sur LinkedIn', subscribe=True),
-        footer_author=link(author['url'], 'LinkedIn'))
+        author_link=link(author['url'], 'Retrouver l’auteur'))
+    common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
+    page = render_page(content, **common,
+        title='Le Passage IA | La newsletter de ' + author['name'],
+        description='L’intelligence artificielle, à hauteur humaine. Retrouvez les articles du Passage IA, la newsletter de ' + author['name'] + ' sur le travail, les organisations et la société.',
+        canonical='https://charlesberthou.fr/', robots='index, follow, max-image-preview:large', schema=schema)
+    resource_content = Template((ROOT / 'templates/resources.html').read_text(encoding='utf-8')).substitute(
+        resources_content='\n'.join(resources.render_resource(item, asset) for item in published) if published else resources.EMPTY_STATE)
+    resource_page = render_page(resource_content, **common,
+        title='Ressources IA : usages et prompts | Le Passage IA',
+        description=resources.RESOURCE_DESCRIPTION if published else 'Les ressources du Passage IA sont en préparation : usages personnels de l’IA, prompts et conseils de Charles Berthou.',
+        canonical=resources.RESOURCE_URL,
+        robots='index, follow, max-image-preview:large' if published else 'noindex, follow',
+        schema=resources.structured_data(published, author), resource_page=True,
+        scripts=f'<script src="{asset("/assets/passage/resources.js")}" defer></script>' if published else '')
+    sitemap_entries = [('https://charlesberthou.fr/', site_updated)]
+    if published:
+        sitemap_entries.append((resources.RESOURCE_URL, resources_updated))
     llms = f'''# Le Passage IA
 
 > La newsletter de {author['name']} sur l’intelligence artificielle, le travail, les organisations et la société.
@@ -154,12 +185,20 @@ Ce site est le relais de la newsletter. Les articles et l’abonnement sont acce
 - [Newsletter Le Passage IA]({newsletter})
 - [{author['name']}]({author['url']})
 '''
+    if published:
+        llms += f'\n## Ressources\n\nDes usages personnels de l’IA, des prompts et des conseils : [Ressources]({resources.RESOURCE_URL})\n'
+    resources_full = '\n## Ressources\n\n' + '\n'.join(
+        f'- [{item["title"]}]({resources.RESOURCE_URL}#resource-{item["slug"]}) : {item["summary"]}' for item in published) + '\n' if published else ''
     outputs = {
         'index.html': page,
+        'ressources/index.html': resource_page,
         'llms.txt': llms,
-        'llms-full.txt': llms + '\n## Articles\n\n' + '\n'.join(f'- [{e["title"]}]({e["url"]}) ({e["date"]})' for e in editions) + '\n',
-        'sitemap.xml': f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://charlesberthou.fr/</loc><lastmod>{updated.isoformat()}</lastmod></url></urlset>\n',
-        '404.html': f'<!doctype html><html lang="fr"><head>{head}<title>Page introuvable | Le Passage IA</title><meta name="robots" content="noindex, follow"><script src="/assets/passage/redirect.js" defer></script></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles du Passage IA sur la page d’accueil.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main></body></html>\n',
+        'llms-full.txt': llms + '\n## Articles\n\n' + '\n'.join(f'- [{e["title"]}]({e["url"]}) ({e["date"]})' for e in editions) + '\n' + resources_full,
+        'sitemap.xml': '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'  <url><loc>{url}</loc><lastmod>{modified.isoformat()}</lastmod></url>' for url, modified in sitemap_entries) + '\n</urlset>\n',
+        '404.html': render_page('<main id="contenu" class="return-page shell" tabindex="-1"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles et les ressources du Passage IA.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main>', **common,
+            title='Page introuvable | Le Passage IA', description='Retrouvez les articles et les ressources du Passage IA.',
+            canonical='https://charlesberthou.fr/404.html', robots='noindex, follow',
+            scripts='<script src="/assets/passage/redirect.js" defer></script>'),
     }
     redirect = f'<!doctype html><html lang="fr"><head>{head}<title>Le Passage IA | {escape(author["name"])}</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="https://charlesberthou.fr/"><meta http-equiv="refresh" content="0; url=/"></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA</p><h1>Retrouvez la newsletter.</h1><p><a class="text-link" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></p></main></body></html>\n'
     for path in LEGACY:
