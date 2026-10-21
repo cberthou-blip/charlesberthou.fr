@@ -43,7 +43,7 @@
         "steps": [
           {
             "title": "Donner le contexte",
-            "text": "Ouvrez une conversation consacrée aux repas. Copiez le prompt ci-dessous, ajoutez vos contraintes et vos fichiers. Répondez aux questions sur les informations manquantes."
+            "text": "Ouvrez une conversation consacrée aux repas. Copiez le prompt proposé au début du guide, ajoutez vos contraintes et vos fichiers. Répondez aux questions sur les informations manquantes."
           },
           {
             "title": "Constituer la base du foyer",
@@ -111,7 +111,7 @@
         "steps": [
           {
             "title": "Préparer un dossier de sources",
-            "text": "Nommez chaque document avec sa nature et sa date. Ajoutez les transcriptions, archives et légendes des photos dans la conversation ou un projet dédié. Copiez le prompt ci-dessous en précisant à qui le livre est destiné."
+            "text": "Nommez chaque document avec sa nature et sa date. Ajoutez les transcriptions, archives et légendes des photos dans la conversation ou un projet dédié. Copiez le prompt proposé au début du guide en précisant à qui le livre est destiné."
           },
           {
             "title": "Vérifier la chronologie",
@@ -179,7 +179,7 @@
         "steps": [
           {
             "title": "Fixer l’histoire",
-            "text": "Copiez le prompt ci-dessous avec votre sujet. Faites valider le synopsis, la conclusion et le rôle de chaque personnage avant de demander une image."
+            "text": "Copiez le prompt proposé au début du guide avec votre sujet. Faites valider le synopsis, la conclusion et le rôle de chaque personnage avant de demander une image."
           },
           {
             "title": "Écrire les cases",
@@ -313,7 +313,7 @@
         "steps": [
           {
             "title": "Décrire la situation réelle",
-            "text": "Copiez le prompt ci-dessous et indiquez les participants, le temps disponible et l’énergie du moment. Précisez si vous cherchez une sortie, un jeu ou une activité à la maison."
+            "text": "Copiez le prompt proposé au début du guide et indiquez les participants, le temps disponible et l’énergie du moment. Précisez si vous cherchez une sortie, un jeu ou une activité à la maison."
           },
           {
             "title": "Choisir une proposition réalisable",

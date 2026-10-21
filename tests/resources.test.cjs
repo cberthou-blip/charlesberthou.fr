@@ -8,22 +8,39 @@ const source = fs.readFileSync(path.join(__dirname, '../assets/passage/resources
 
 function setup(clipboard, hash = '') {
   const feedback = { textContent: '' };
-  const prompt = { textContent: 'Ligne une\nLigne deux & suite', scrolled: false,
-    closest: () => entry, scrollIntoView() { this.scrolled = true; } };
-  const details = { open: false };
+  const summary = { focused: false, focus() { this.focused = true; } };
+  const indexSummary = { focused: false, focus() { this.focused = true; } };
+  const index = { open: false, scrolled: false, parentElement: null,
+    closest: selector => selector === 'details' ? index : null,
+    querySelector: () => indexSummary, scrollIntoView() { this.scrolled = true; } };
+  const entry = { scrolled: false,
+    closest: selector => selector === '.resource-entry' ? entry : null,
+    querySelector: selector => selector === 'summary' ? summary : details,
+    scrollIntoView() { this.scrolled = true; } };
+  const details = { open: false, parentElement: entry, querySelector: () => summary,
+    closest: selector => selector === '.resource-entry' ? entry : details };
+  const promptBlock = { scrolled: false,
+    closest: selector => selector === 'details' ? details : selector === '.resource-entry' ? entry : promptBlock,
+    querySelector: selector => selector === '.copy-feedback' ? feedback : promptDetails,
+    scrollIntoView() { this.scrolled = true; } };
+  const promptDetails = { open: false, parentElement: promptBlock };
+  const prompt = { textContent: 'Ligne une\nLigne deux & suite',
+    closest: selector => selector === '.resource-entry' ? entry : selector === 'details' ? promptDetails : promptBlock };
   const button = {
-    hidden: true, disabled: false, dataset: { copy: 'prompt' },
+    hidden: true, disabled: false, dataset: { copy: 'prompt-text' },
     addEventListener(name, handler) { this[name] = handler; },
-    closest() { return { querySelector: () => feedback }; },
+    closest: () => promptBlock,
   };
-  const entry = { closest: () => entry, querySelector: () => details };
+  const close = { hidden: true, closest: () => details,
+    addEventListener(name, handler) { this[name] = handler; } };
   const document = {
-    getElementById: id => id === 'prompt' ? prompt : id === 'resource-test' ? entry : null,
-    querySelectorAll: () => [button],
+    getElementById: id => ({ prompt: promptBlock, 'prompt-text': prompt, 'resource-test': entry, 'choisir-usage': index }[id] || null),
+    querySelectorAll: selector => selector === '.guide-close' ? [close] : [button],
+    addEventListener(name, handler) { this[name] = handler; },
   };
-  const window = { location: { hash }, addEventListener() {} };
+  const window = { location: { hash }, addEventListener(name, handler) { this[name] = handler; } };
   vm.runInNewContext(source, { document, window, navigator: { clipboard } });
-  return { button, feedback, prompt, details };
+  return { button, close, feedback, prompt, details, promptDetails, promptBlock, summary, index, indexSummary, entry, window, document };
 }
 
 test('la copie conserve intégralement le prompt et annonce le résultat', async () => {
@@ -34,6 +51,7 @@ test('la copie conserve intégralement le prompt et annonce le résultat', async
   assert.equal(copied, ui.prompt.textContent);
   assert.equal(ui.feedback.textContent, 'Prompt copié');
   assert.equal(ui.button.disabled, false);
+  assert.equal(ui.promptDetails.open, false);
 });
 
 test('un refus du presse-papiers conserve le texte et permet de réessayer', async () => {
@@ -43,6 +61,7 @@ test('un refus du presse-papiers conserve le texte et permet de réessayer', asy
   assert.match(ui.feedback.textContent, /Sélectionnez le texte/);
   assert.equal(ui.prompt.textContent, original);
   assert.equal(ui.button.disabled, false);
+  assert.equal(ui.promptDetails.open, true);
 });
 
 test('sans API de copie, le lien direct ouvre encore la ressource', () => {
@@ -52,8 +71,38 @@ test('sans API de copie, le lien direct ouvre encore la ressource', () => {
   assert.doesNotThrow(() => setup(undefined, '#%not-valid'));
 });
 
-test('un lien vers le prompt ouvre son mode d’emploi et rejoint le texte', () => {
+test('une ancienne ancre ouvre le guide et le texte, puis rejoint le bloc avec la copie', () => {
   const ui = setup(undefined, '#prompt');
   assert.equal(ui.details.open, true);
-  assert.equal(ui.prompt.scrolled, true);
+  assert.equal(ui.promptDetails.open, true);
+  assert.equal(ui.promptBlock.scrolled, true);
+});
+
+test('replier en bas rend le focus au résumé et revient au titre, même sans presse-papiers', () => {
+  const ui = setup(undefined, '#resource-test');
+  assert.equal(ui.close.hidden, false);
+  ui.close.click();
+  assert.equal(ui.details.open, false);
+  assert.equal(ui.summary.focused, true);
+  assert.equal(ui.entry.scrolled, true);
+});
+
+test('le retour ouvre le sommaire et une sélection le replie en ouvrant le guide', () => {
+  const ui = setup(undefined, '#choisir-usage');
+  assert.equal(ui.index.open, true);
+  assert.equal(ui.indexSummary.focused, true);
+  ui.window.location.hash = '#resource-test';
+  ui.window.hashchange();
+  assert.equal(ui.index.open, false);
+  assert.equal(ui.details.open, true);
+});
+
+test('sélectionner de nouveau la même ancre rouvre un guide replié', () => {
+  const ui = setup(undefined, '#resource-test');
+  ui.close.click();
+  let prevented = false;
+  ui.document.click({ target: { closest: () => ({ hash: '#resource-test' }) },
+    preventDefault() { prevented = true; } });
+  assert.equal(ui.details.open, true);
+  assert.equal(prevented, true);
 });

@@ -98,7 +98,7 @@ class ResourcesTest(unittest.TestCase):
         self.assertNotIn('<script>', html)
         self.assertIn('&lt;script&gt;', html)
         self.assertIn('\nDeuxième ligne &amp; suite', html)
-        self.assertIn('<details>', html)
+        self.assertIn('<details class="resource-details">', html)
         self.assertIn(' hidden>', html)
 
     def test_unknown_kinds_and_icons_are_rejected(self):
@@ -140,7 +140,7 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('<ol class="guide-steps">', html)
         doc = Document(html)
         self.assertTrue(set(doc.references) <= set(doc.ids))
-        self.assertTrue(all(href[1:] in doc.ids for href in doc.links if href.startswith('#')))
+        self.assertTrue(all(href[1:] in doc.ids for href in doc.links if href.startswith('#') and href != '#choisir-usage'))
 
     def test_astuce_is_visible_and_escaped_without_a_disclosure(self):
         item = {'slug': 'conseil', 'published': True, 'kind': 'astuce', 'icon': 'mic',
@@ -168,14 +168,16 @@ class ResourcesTest(unittest.TestCase):
         page = build.build()['ressources/index.html']
         doc = Document(page)
         self.assertEqual(doc.prompts, [item['prompts'][0]['text'] for item in usages])
-        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'details']), 10)
+        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'resource-details']), 10)
+        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'prompt-disclosure']), 10)
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'ol' and attrs.get('class') == 'guide-steps']), 10)
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 16)
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'svg']), 16)
         self.assertFalse(any(tag in ('img', 'video', 'audio', 'iframe') for tag, _ in doc.tags))
         self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags if tag == 'details'))
         self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 16)
-        self.assertIn('#cas-usage', doc.links)
+        self.assertIn('cas-usage', doc.ids)
+        self.assertIn('#choisir-usage', doc.links)
         self.assertIn('#astuces', doc.links)
         for internal in ('État interne', 'Résultat final visé', 'Précision interne', 'Mission pour Work'):
             self.assertNotIn(internal, page)

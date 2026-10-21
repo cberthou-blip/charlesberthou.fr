@@ -139,9 +139,7 @@ def render_guide(guide, prefix):
             name = f'<a href="{escape(tool["url"])}">{name}</a>'
         tools += f'<div><dt>{name}</dt><dd>{escape(tool["role"])}</dd></div>'
     steps = ''.join(f'<li><h5>{escape(step["title"])}</h5><p>{escape(step["text"])}</p></li>' for step in guide['steps'])
-    return f'''<p class="guide-result"><strong>À obtenir :</strong> {escape(guide['result'])}</p>
-     <a class="guide-prompt-link" href="#{prefix}-prompt-1">Aller au prompt <span aria-hidden="true">↓</span></a>
-     <section class="guide-section" aria-labelledby="{prefix}-prepare"><h4 id="{prefix}-prepare">Avant de commencer</h4><ul>{preparation}</ul></section>
+    return f'''<section class="guide-section" aria-labelledby="{prefix}-prepare"><h4 id="{prefix}-prepare">Avant de commencer</h4><ul>{preparation}</ul></section>
      <section class="guide-section" aria-labelledby="{prefix}-tools"><h4 id="{prefix}-tools">Les outils et leur rôle</h4><dl class="guide-tools">{tools}</dl></section>
      <section class="guide-section" aria-labelledby="{prefix}-steps"><h4 id="{prefix}-steps">Pas à pas</h4><ol class="guide-steps">{steps}</ol></section>'''
 
@@ -160,18 +158,23 @@ def render_resource(item, asset):
   </article>'''
     content = ''.join(f'<p>{escape(p)}</p>' for p in item.get('paragraphs', []))
     if guide := item.get('guide'):
-        content += render_guide(guide, prefix)
+        tool_names = ' · '.join(escape(tool['name']) for tool in guide['tools'])
+        content += f'''<p class="guide-result"><strong>À obtenir :</strong> {escape(guide['result'])}</p>
+     <p class="guide-requirements"><strong>Outils et fonctionnalités :</strong> {tool_names}</p>'''
     if image := item.get('image'):
         content += f'<figure class="resource-figure"><img src="{escape(asset(image["src"]))}" alt="{escape(image["alt"])}" width="{image["width"]}" height="{image["height"]}" loading="lazy" decoding="async"></figure>'
     for index, prompt in enumerate(item.get('prompts', []), 1):
         prompt_id = f'{prefix}-prompt-{index}'
-        content += f'''<section class="resource-prompt" aria-labelledby="{prompt_id}-title">
-      <div class="prompt-heading"><h4 id="{prompt_id}-title">{escape(prompt.get('title', 'Prompt à adapter'))}</h4>
-       <button class="button button-copy" type="button" data-copy="{prompt_id}" aria-describedby="{prompt_id}-title" hidden>Copier le prompt</button></div>
-      <pre id="{prompt_id}" tabindex="0" aria-labelledby="{prompt_id}-title">{escape(prompt['text'])}</pre>
+        content += f'''<section class="resource-prompt" id="{prompt_id}" aria-labelledby="{prompt_id}-title">
+      <h4 class="visually-hidden" id="{prompt_id}-title">{escape(prompt.get('title', 'Prompt à adapter'))}</h4>
+      <button class="button button-copy" type="button" data-copy="{prompt_id}-text" aria-describedby="{prompt_id}-title" hidden>Copier le prompt</button>
+      <details class="prompt-disclosure"><summary><span class="when-closed">Lire le prompt</span><span class="when-open">Masquer le prompt</span><span class="visually-hidden"> : {escape(prompt.get('title', 'Prompt à adapter'))}</span></summary>
+       <pre id="{prompt_id}-text" tabindex="0" aria-labelledby="{prompt_id}-title">{escape(prompt['text'])}</pre>
+      </details>
       <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
      </section>'''
     if guide := item.get('guide'):
+        content += render_guide(guide, prefix)
         checks = ''.join(f'<li>{escape(value)}</li>' for value in guide['checks'])
         content += f'<section class="guide-section" aria-labelledby="{prefix}-checks"><h4 id="{prefix}-checks">Vérifier le résultat</h4><ul>{checks}</ul></section>'
     if tips := item.get('tips'):
@@ -184,10 +187,15 @@ def render_resource(item, asset):
         content += '<ul class="resource-links" aria-label="Documents et liens utiles">'
         content += ''.join(f'<li><a class="text-link" href="{escape(doc["url"])}">{escape(doc["label"])} <span aria-hidden="true">→</span></a></li>' for doc in links) + '</ul>'
     label = 'Voir le mode d’emploi' if item.get('guide') else 'Voir le prompt' if len(item.get('prompts', [])) == 1 else 'Voir la méthode et les prompts' if item.get('prompts') else 'Lire la ressource'
+    close_label = 'Replier ce guide' if item.get('guide') else 'Replier cette ressource'
+    content += f'''<div class="guide-navigation">
+     <button class="text-link guide-close" type="button" hidden>{close_label}</button>
+     <a class="text-link" href="#choisir-usage">Choisir un autre usage</a>
+    </div>'''
     return f'''<article class="resource-entry" id="{prefix}" aria-labelledby="{prefix}-title">
    {heading}
    <div class="resource-copy">{summary}
-    <details><summary>{label}<span class="visually-hidden"> : {escape(item['title'])}</span></summary>
+    <details class="resource-details"><summary><span class="when-closed">{label}</span><span class="when-open">{close_label}</span><span class="visually-hidden"> : {escape(item['title'])}</span></summary>
     <div class="resource-body">{content}</div>
     </details>
    </div>
@@ -198,7 +206,7 @@ def render_collection(published, asset):
     if not published:
         return EMPTY_STATE
     groups = (
-        ('usage', 'cas-usage', 'Modes d’emploi', 'Des méthodes adaptées de mes expériences, avec leurs étapes et un prompt pour démarrer.'),
+        ('usage', 'cas-usage', 'Modes d’emploi', ''),
         ('astuce', 'astuces', 'Astuces', 'Six habitudes pour mieux utiliser ChatGPT. Les fonctions et leurs réglages varient selon le compte et l’appareil.'),
     )
     navigation, sections = [], []
@@ -206,10 +214,15 @@ def render_collection(published, asset):
         entries = [item for item in published if item.get('kind', 'usage') == kind]
         if not entries:
             continue
-        navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
+        if kind == 'usage':
+            links = ''.join(f'<li><a href="#resource-{item["slug"]}">{escape(item["title"])}</a></li>' for item in entries)
+            navigation.append(f'<details class="resources-index" id="choisir-usage"><summary>Choisir un usage</summary><ul>{links}</ul></details>')
+        else:
+            navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
         body = '\n'.join(render_resource(item, asset) for item in entries)
+        heading = f'<header class="resource-group-heading"><h2 id="{anchor}-title">{title}</h2><p>{intro}</p></header>' if intro else f'<h2 class="visually-hidden" id="{anchor}-title">{title}</h2>'
         sections.append(f'''<section class="resource-group" id="{anchor}" aria-labelledby="{anchor}-title">
-   <header class="resource-group-heading"><h2 id="{anchor}-title">{title}</h2><p>{intro}</p></header>
+   {heading}
    {body}
   </section>''')
     return '<nav class="resources-nav" aria-label="Rubriques des ressources">' + ''.join(navigation) + '</nav>\n' + '\n'.join(sections)

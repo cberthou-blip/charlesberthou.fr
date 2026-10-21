@@ -25,7 +25,7 @@ Le script fonctionne avec Python 3, sans dépendance. Il trie les articles par d
 - `assets/passage/fonts.css` : quatre polices WOFF2 locales, licences incluses
 - `scripts/build.py` : composants d’article, métadonnées et pages de repli
 - `scripts/resources.py` : validation et rendu statique des ressources
-- `assets/passage/resources.js` : copie des prompts et ouverture des liens directs
+- `assets/passage/resources.js` : copie des prompts, sommaire et navigation dans les guides
 
 Après une modification des styles ou du modèle, relancer la génération. Les adresses des styles et des images comportent une empreinte de contenu pour actualiser le cache.
 
@@ -50,9 +50,9 @@ Chaque entrée possède un `slug` unique et stable, un booléen `published`, un 
 
 Tout contenu éditorial est du texte brut, échappé lors de la génération. Les sauts de ligne des prompts sont préservés. Les liens acceptent HTTPS ou un fichier local existant dans `assets/resources/`. Les documents s’ouvrent dans le même onglet. Aucune dépendance, aucun rendu de contenu côté client et aucun service tiers ne sont ajoutés.
 
-Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux « Voir le mode d’emploi » utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Un lien dans le panneau rejoint le prompt ; avec JavaScript, une ancre vers un prompt ouvre aussi le panneau concerné. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé sans effacer le prompt.
+Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux « Voir le mode d’emploi » utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Le résultat, les outils et la copie du prompt sont accessibles au début du guide. Le texte intégral du prompt possède son propre panneau « Lire le prompt », fermé au départ et utilisable sans JavaScript. Les anciennes ancres vers les prompts ouvrent les deux panneaux et rejoignent le bloc complet, bouton compris. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé en dépliant le texte pour une sélection manuelle. Le bouton « Replier ce guide » en fin de fiche rend le focus au résumé et revient au titre ; il apparaît seulement avec JavaScript.
 
-Deux liens de rubrique, « Modes d’emploi » et « Astuces », mènent à `#cas-usage` et `#astuces`. Les 16 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Sur ordinateur, les titres et les textes occupent deux colonnes dans chaque ligne ; à 900 px et en dessous, ils se superposent. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
+Le sommaire « Choisir un usage » (`#choisir-usage`), replié au départ, donne accès aux dix guides ; un lien voisin mène aux astuces. Un lien en fin de guide ouvre ce sommaire. L’ancre historique `#cas-usage` est conservée, ainsi que les titres de section pour les technologies d’assistance. Les 16 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Sur ordinateur, les titres et les textes occupent deux colonnes dans chaque ligne ; à 900 px et en dessous, ils se superposent. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
 
 Les indications produit ont été vérifiées le 21 octobre 2026 dans la documentation officielle : [mémoire](https://learn.chatgpt.com/docs/customization/memories), [modèles et niveaux de réflexion](https://learn.chatgpt.com/docs/models), [dictée](https://learn.chatgpt.com/docs/prompting), [tâches planifiées et connexions](https://learn.chatgpt.com/training/walkthroughs/scheduled-tasks). Les textes conservent les réserves sur la disponibilité selon le compte, la plateforme et les permissions. Les valeurs « Moyen » et « Élevé » sont conditionnelles, sans promesse d’un sélecteur identique partout.
 
