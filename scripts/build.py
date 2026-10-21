@@ -97,7 +97,7 @@ def render_page(content, *, head, title, description, canonical, robots,
         canonical=escape(canonical), robots=robots, structured_data=structured,
         scripts=scripts, content=content, author_name=escape(author['name']), year=year,
         resources_current=' aria-current="page"' if resource_page else '',
-        header_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-small', True),
+        newsletter_url=escape(newsletter),
         footer_subscribe=link(newsletter, 'S’abonner sur LinkedIn', subscribe=True),
         footer_author=link(author['url'], 'LinkedIn'))
 
