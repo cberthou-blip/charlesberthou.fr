@@ -1,4 +1,5 @@
 """Petits pictogrammes filaires locaux, sans bibliothèque ni requête externe."""
+from html import escape
 
 ICONS = {
     'shopping-basket': '<path d="m8 3-4 6m12-6 4 6M3 9h18l-2 11H5L3 9Z"/><path d="M9 12v5m6-5v5"/>',
@@ -18,13 +19,16 @@ ICONS = {
     'mic': '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3m-4 0h8"/>',
     'shield-check': '<path d="M12 2 3 6v6c0 5 5 8 9 10 4-2 9-5 9-10V6l-9-4Z"/><path d="m8 12 3 3 5-6"/>',
     'calendar-clock': '<path d="M10 21H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5M6 1v5m10-5v5M2 9h18"/><circle cx="17" cy="17" r="5"/><path d="M17 14v3l2 1"/>',
+    'copy': '<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
+    'list': '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+    'check-circle': '<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
 }
 
 
-def render_icon(name):
+def render_icon(name, class_name='resource-icon'):
     if name is None:
         return ''
-    return ('<svg class="resource-icon" width="22" height="22" viewBox="0 0 24 24" '
+    return (f'<svg class="{escape(class_name, quote=True)}" width="22" height="22" viewBox="0 0 24 24" '
             'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
             'stroke-linejoin="round" aria-hidden="true" focusable="false">'
             + ICONS[name] + '</svg>')

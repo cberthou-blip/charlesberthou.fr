@@ -100,13 +100,12 @@ em { font-weight: 400; }
 .resources-intro { max-width: 42rem; font-size: 1.125rem; line-height: 1.75; color: var(--muted); }
 .resources-position { max-width: 48rem; margin-top: 1rem; font-size: .9375rem; line-height: 1.7; color: var(--muted); }
 .resources-content { padding-bottom: clamp(3rem, 6vw, 5rem); }
-.resources-nav { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .5rem 2rem; margin-bottom: 1.25rem; }
+.resources-nav { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .75rem 1.25rem; margin-bottom: 1.5rem; }
 .resources-index { flex: 1; min-width: min(100%, 12rem); }
-.resources-index summary { width: fit-content; min-height: 44px; padding-block: .625rem; font-size: .875rem; line-height: 1.5; font-weight: 500; cursor: pointer; }
-.resources-index summary::marker { color: var(--gold-text); }
+.resources-index summary { width: fit-content; max-width: 100%; font-size: .875rem; line-height: 1.5; font-weight: 500; cursor: pointer; }
 .resources-index ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: .25rem 2rem; list-style: none; margin: .75rem 0 0; padding: 0; }
 .resources-index a { display: flex; align-items: center; min-height: 44px; padding-block: .5rem; font-size: .9375rem; line-height: 1.6; text-decoration: underline; text-underline-offset: .2em; overflow-wrap: anywhere; }
-.resources-index :is(a, summary):hover { color: var(--gold-text); }
+.resources-index a:hover { color: var(--gold-text); }
 .resource-group + .resource-group { margin-top: clamp(2rem, 5vw, 4rem); }
 .resource-group-heading { margin-bottom: 1.75rem; }
 .resource-group-heading h2 { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); line-height: 1.15; letter-spacing: -.02em; }
@@ -120,21 +119,29 @@ em { font-weight: 400; }
 .resource-entry > h3 a { display: flex; align-items: baseline; gap: .75rem; }
 .resource-entry > h3 a:hover span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
 .resource-icon { flex: 0 0 1.375rem; width: 1.375rem; height: 1.375rem; align-self: flex-start; margin-top: .22em; color: var(--gold-text); }
+.action-icon { flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; }
+.section-icon { flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; color: var(--gold-text); }
 .resource-copy { min-width: 0; }
 .resource-summary { max-width: 44rem; color: var(--muted); line-height: 1.8; }
 .resource-try { margin-top: .875rem; line-height: 1.8; }
 .resource-try strong, .resource-tip strong { font-weight: 600; }
-.resource-entry summary { width: fit-content; max-width: 100%; min-height: 44px; padding-block: .75rem; line-height: 1.6; font-size: .875rem; font-weight: 500; cursor: pointer; }
-.resource-entry summary::marker { color: var(--gold-text); }
-.resource-entry summary:hover { color: var(--gold-text); }
+.resource-details { margin-top: 1rem; }
+.resource-entry summary { width: fit-content; max-width: 100%; min-height: 44px; line-height: 1.5; font-size: .875rem; font-weight: 500; cursor: pointer; }
+.resources-page summary { display: inline-flex; align-items: center; gap: .625rem; list-style: none; overflow-wrap: anywhere; }
+.resources-page summary::-webkit-details-marker { display: none; }
+.resources-page summary::marker { content: ''; }
+.resources-page summary::after { content: ''; flex: 0 0 .4375rem; width: .4375rem; height: .4375rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); margin-left: .375rem; transition: transform .2s; }
+.resources-page details[open] > summary::after { transform: rotate(225deg) translateY(-1px); }
+.resource-details > summary, .resources-index > summary { min-height: 48px; padding: .75rem 1rem; border: 1px solid var(--ink); border-radius: 2px; color: var(--ink); background: transparent; transition: background .2s; }
+.resource-details > summary:hover, .resources-index > summary:hover { background: var(--paper-deep); }
+.resources-page .prompt-disclosure > summary, .guide-tools-disclosure > summary { padding: .625rem .125rem; border-bottom: 1px solid var(--ink); color: var(--ink); }
+.resources-page .prompt-disclosure > summary:hover, .guide-tools-disclosure > summary:hover { color: var(--gold-text); }
 details > summary > .when-open, details[open] > summary > .when-closed { display: none; }
 details[open] > summary > .when-open { display: inline; }
-.resource-body { max-width: 48rem; padding-top: 1.25rem; line-height: 1.8; }
+.resource-body { max-width: 48rem; padding-top: 1.5rem; line-height: 1.8; }
 .resource-body > * + * { margin-top: 1.5rem; }
-.resource-body h4 { font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
+.resource-body h4 { display: flex; align-items: center; gap: .5rem; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
 .guide-result strong { font-weight: 600; }
-.resource-body > .guide-requirements { margin-top: .75rem; color: var(--muted); font-size: .875rem; line-height: 1.7; }
-.guide-requirements strong { font-weight: 500; }
 .guide-tools a:hover { color: var(--gold-text); }
 .guide-section ul, .guide-steps { margin-block: .75rem 0; padding-inline-start: 1.375rem; }
 .guide-section ul li + li { margin-top: .625rem; }
@@ -143,22 +150,30 @@ details[open] > summary > .when-open { display: inline; }
 .guide-tools dt { font-weight: 500; }
 .guide-tools a { text-decoration: underline; text-underline-offset: .2em; }
 .guide-tools dd { margin-inline-start: 0; color: var(--muted); }
+.guide-tools-disclosure { min-width: 0; }
+.guide-tools-disclosure[open] > summary { margin-bottom: .25rem; }
+.guide-experience { border-left: 2px solid var(--gold); padding-left: 1rem; color: var(--muted); }
+.guide-experience h4, .guide-experience strong { color: var(--ink); }
+.guide-experience h4 + p { margin-top: .5rem; }
+.guide-experience p + p { margin-top: .75rem; }
 .guide-steps li + li { margin-top: 1.25rem; }
 .guide-steps li::marker { color: var(--gold-text); font-weight: 600; }
 .guide-steps h5 { margin: 0 0 .25rem; font: inherit; font-weight: 600; }
 .guide-steps p { color: var(--muted); }
 .resource-figure { margin: 1.5rem 0 0; }
 .resource-figure img { max-width: 100%; height: auto; }
-.resource-prompt { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; padding: clamp(1rem, 3vw, 1.75rem); background: var(--paper-deep); }
+.resource-prompt { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; padding: clamp(1rem, 3vw, 1.5rem); background: var(--paper-deep); }
 .prompt-disclosure { min-width: 0; }
 .prompt-disclosure[open] { flex-basis: 100%; order: 2; }
 .prompt-disclosure[open] pre { margin-top: .75rem; }
-.button-copy { max-width: 100%; min-height: 44px; font-size: .8125rem; }
+.button-copy { justify-content: center; gap: .625rem; max-width: 100%; min-height: 48px; font-size: .875rem; border-radius: 2px; }
 .button-copy:disabled { cursor: wait; }
 .resource-prompt pre { font: inherit; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; tab-size: 2; }
 .copy-feedback { flex-basis: 100%; order: 1; color: var(--ink); font-size: .8125rem; line-height: 1.6; }
-.guide-navigation { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding-top: .75rem; border-top: 1px solid var(--rule); }
-.guide-close { padding-inline: 0; background: none; border: 0; border-bottom: 1px solid currentColor; color: var(--ink); }
+.copy-feedback:empty { display: none; }
+.guide-navigation { display: flex; flex-wrap: wrap; gap: .75rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.guide-navigation .text-link { justify-content: center; min-height: 44px; padding: .625rem .875rem; border: 1px solid var(--ink); border-radius: 2px; background: transparent; color: var(--ink); }
+.guide-navigation .text-link:hover { background: var(--paper-deep); }
 .resource-tips ul { padding-left: 1.25rem; margin-block: .75rem 0; }
 .resource-tips li + li { margin-top: .5rem; }
 .resource-links { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; padding: 0; list-style: none; }
@@ -209,6 +224,9 @@ details[open] > summary > .when-open { display: inline; }
   .section-kicker { font-size: .75rem; letter-spacing: .02em; }
   .feature-copy { padding: 1.75rem 1.4375rem; }
   .feature-copy h2 { font-size: 2.5rem; }
+  .resource-details > summary { width: 100%; justify-content: space-between; }
+  .resource-prompt .button-copy { width: 100%; }
+  .guide-navigation .text-link { flex: 1 1 12rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
