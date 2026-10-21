@@ -145,15 +145,19 @@ class ResourcesTest(unittest.TestCase):
     def test_astuce_is_visible_and_escaped_without_a_disclosure(self):
         item = {'slug': 'conseil', 'published': True, 'kind': 'astuce', 'icon': 'mic',
                 'title': 'Dicter', 'summary': 'Un conseil bref',
-                'try_it': 'Explique <script>ce besoin</script> & précise les contraintes'}
+                'try_it': 'Explique <script>ce besoin</script> & précise les contraintes',
+                'links': [{'label': 'Aide <officielle>', 'url': 'https://example.com/?a=1&b=2'}]}
         resources.validate(self.data(item), ROOT)
         html = resources.render_resource(item, lambda path: path)
         self.assertNotIn('<details', html)
         self.assertNotIn('<script>', html)
         self.assertIn('&lt;script&gt;ce besoin&lt;/script&gt; &amp;', html)
         self.assertIn('aria-hidden="true"', html)
+        self.assertIn('Aide &lt;officielle&gt;', html)
+        self.assertIn('href="https://example.com/?a=1&amp;b=2"', html)
         for invalid in ({**item, 'try_it': ''}, {**item, 'prompts': self.item['prompts']},
-                        {**item, 'guide': self.guide()}):
+                        {**item, 'guide': self.guide()},
+                        {**item, 'links': [{'label': 'Lien', 'url': 'javascript:alert(1)'}]}):
             with self.assertRaises(ValueError):
                 resources.validate(self.data(invalid), ROOT)
 
@@ -162,7 +166,7 @@ class ResourcesTest(unittest.TestCase):
         _, published = resources.validate(data, ROOT)
         usages = [item for item in published if item['kind'] == 'usage']
         astuces = [item for item in published if item['kind'] == 'astuce']
-        self.assertEqual((len(usages), len(astuces)), (10, 6))
+        self.assertEqual((len(usages), len(astuces)), (10, 7))
         self.assertTrue(all(len(item['prompts']) == 1 and len(item['tips']) == 1 for item in usages))
         self.assertTrue(all(item['guide']['steps'] and item['guide']['checks'] for item in usages))
         page = build.build()['ressources/index.html']
@@ -171,11 +175,11 @@ class ResourcesTest(unittest.TestCase):
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'resource-details']), 10)
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'prompt-disclosure']), 10)
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'ol' and attrs.get('class') == 'guide-steps']), 10)
-        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 16)
-        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'svg']), 16)
+        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 17)
+        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'svg']), 17)
         self.assertFalse(any(tag in ('img', 'video', 'audio', 'iframe') for tag, _ in doc.tags))
         self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags if tag == 'details'))
-        self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 16)
+        self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 17)
         self.assertIn('cas-usage', doc.ids)
         self.assertIn('#choisir-usage', doc.links)
         self.assertIn('#astuces', doc.links)

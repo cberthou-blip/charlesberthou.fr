@@ -93,8 +93,8 @@ def validate(data, root):
             text(item.get(field), field)
         if kind == 'astuce':
             text(item.get('try_it'), 'try_it')
-            if any(item.get(field) for field in ('paragraphs', 'prompts', 'tips', 'links', 'image')) or 'guide' in item:
-                raise ValueError(f'Une astuce contient seulement son texte et « À essayer » : {slug}')
+            if any(item.get(field) for field in ('paragraphs', 'prompts', 'tips', 'image')) or 'guide' in item:
+                raise ValueError(f'Une astuce contient son texte, « À essayer » et des liens facultatifs : {slug}')
         elif 'try_it' in item:
             raise ValueError(f'« À essayer » est réservé aux astuces : {slug}')
         if 'guide' in item:
@@ -144,6 +144,14 @@ def render_guide(guide, prefix):
      <section class="guide-section" aria-labelledby="{prefix}-steps"><h4 id="{prefix}-steps">Pas à pas</h4><ol class="guide-steps">{steps}</ol></section>'''
 
 
+def render_links(links):
+    if not links:
+        return ''
+    return '<ul class="resource-links" aria-label="Documents et liens utiles">' + ''.join(
+        f'<li><a class="text-link" href="{escape(doc["url"])}">{escape(doc["label"])} <span aria-hidden="true">→</span></a></li>'
+        for doc in links) + '</ul>'
+
+
 def render_resource(item, asset):
     """Le texte fourni reste du texte : tout HTML est échappé à la génération."""
     prefix = 'resource-' + item['slug']
@@ -153,7 +161,7 @@ def render_resource(item, asset):
         return f'''<article class="resource-entry resource-astuce" id="{prefix}" aria-labelledby="{prefix}-title">
    {heading}
    <div class="resource-copy">{summary}
-    <p class="resource-try"><strong>À essayer :</strong> {escape(item['try_it'])}</p>
+    <p class="resource-try"><strong>À essayer :</strong> {escape(item['try_it'])}</p>{render_links(item.get('links'))}
    </div>
   </article>'''
     content = ''.join(f'<p>{escape(p)}</p>' for p in item.get('paragraphs', []))
@@ -183,9 +191,7 @@ def render_resource(item, asset):
         else:
             content += '<section class="resource-tips"><h4>Mes conseils</h4><ul>'
             content += ''.join(f'<li>{escape(tip)}</li>' for tip in tips) + '</ul></section>'
-    if links := item.get('links'):
-        content += '<ul class="resource-links" aria-label="Documents et liens utiles">'
-        content += ''.join(f'<li><a class="text-link" href="{escape(doc["url"])}">{escape(doc["label"])} <span aria-hidden="true">→</span></a></li>' for doc in links) + '</ul>'
+    content += render_links(item.get('links'))
     label = 'Voir le mode d’emploi' if item.get('guide') else 'Voir le prompt' if len(item.get('prompts', [])) == 1 else 'Voir la méthode et les prompts' if item.get('prompts') else 'Lire la ressource'
     close_label = 'Replier ce guide' if item.get('guide') else 'Replier cette ressource'
     content += f'''<div class="guide-navigation">
@@ -207,7 +213,7 @@ def render_collection(published, asset):
         return EMPTY_STATE
     groups = (
         ('usage', 'cas-usage', 'Modes d’emploi', ''),
-        ('astuce', 'astuces', 'Astuces', 'Six habitudes pour mieux utiliser ChatGPT. Les fonctions et leurs réglages varient selon le compte et l’appareil.'),
+        ('astuce', 'astuces', 'Astuces', 'Des habitudes et des outils pour mieux utiliser ChatGPT. Les fonctions et leurs réglages varient selon le compte et l’appareil.'),
     )
     navigation, sections = [], []
     for kind, anchor, title, intro in groups:

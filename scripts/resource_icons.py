@@ -13,6 +13,7 @@ ICONS = {
     'mail-search': '<path d="M11 19H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v6M2 5l10 7 10-7"/><circle cx="17" cy="17" r="4"/><path d="m20 20 3 3"/>',
     'brain': '<path d="M12 5a3 3 0 0 0-6 0 4 4 0 0 0-3 7 4 4 0 0 0 2 7 3.5 3.5 0 0 0 7 1V5Zm0 0a3 3 0 0 1 6 0 4 4 0 0 1 3 7 4 4 0 0 1-2 7 3.5 3.5 0 0 1-7 1M7 8c0 2 2 3 5 3m5-3c0 2-2 3-5 3M6 16c0-2 2-3 4-3m8 3c0-2-2-3-4-3"/>',
     'plug': '<path d="M8 2v5m8-5v5M6 7h12v3a6 6 0 0 1-12 0V7Zm6 9v6"/>',
+    'browser': '<rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 8h20M6 5.5h.01M9 5.5h.01M8 12h8m-8 4h5"/>',
     'sliders-horizontal': '<path d="M3 6h4m4 0h10M3 12h10m4 0h4M3 18h4m4 0h10"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/>',
     'mic': '<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3m-4 0h8"/>',
     'shield-check': '<path d="M12 2 3 6v6c0 5 5 8 9 10 4-2 9-5 9-10V6l-9-4Z"/><path d="m8 12 3 3 5-6"/>',
