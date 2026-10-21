@@ -6,7 +6,7 @@
       "published": true,
       "kind": "usage",
       "icon": "shopping-basket",
-      "title": "Déléguer les courses, des menus au panier",
+      "title": "Déléguer les repas et les courses, jusqu’au panier prêt à payer",
       "summary": "À partir des tickets de courses et des goûts du foyer, l’IA a préparé les menus, calculé les achats et rempli le panier sur le site du drive. Il me restait à vérifier la commande et à payer. Les retours servent ensuite à préparer la semaine suivante.",
       "prompts": [
         {
@@ -83,14 +83,14 @@
         "extension": "Après un cycle réussi, demandez une tâche hebdomadaire avec son horaire, les fichiers à relire et les validations à conserver. Vérifiez son enregistrement et sa première exécution. Elle peut lancer la préparation ; le panier dépend des accès disponibles et le paiement reste à votre main.",
         "extension_title": "Automatiser la préparation chaque semaine"
       },
-      "short_title": "Menus et panier drive"
+      "short_title": "Intendant des repas"
     },
     {
       "slug": "transmettre-memoire-familiale",
       "published": true,
       "kind": "usage",
       "icon": "book-open",
-      "title": "Mener une enquête familiale jusqu’au livre",
+      "title": "Faire d’une histoire familiale un livre à transmettre",
       "summary": "Pour créer un livre de mémoire familiale, l’IA a exploité les archives fournies, contacté une cinquantaine de personnes et d’organisations et organisé la collecte de témoignages. Ce travail a abouti à un livre illustré de 88 pages, préparé pour l’impression, avec ses sources conservées.",
       "prompts": [
         {
@@ -168,14 +168,14 @@
           "access": "Une messagerie connectée permet les envois autorisés ; sinon, vous envoyez les textes préparés. Work sert à produire les fichiers du livre."
         }
       },
-      "short_title": "Enquête familiale"
+      "short_title": "Biographe familial"
     },
     {
       "slug": "creer-bande-dessinee-ia",
       "published": true,
       "kind": "usage",
       "icon": "messages-square",
-      "title": "Concevoir et réaliser un album de bande dessinée",
+      "title": "Donner vie à une bande dessinée, du scénario à l’album",
       "summary": "J’ai réalisé des bandes dessinées complètes avec l’IA, du scénario au PDF. L’un des albums compte dix planches, avec des personnages récurrents et un lettrage séparé. Les fichiers de composition permettent de corriger une scène ou un dialogue après la première version.",
       "prompts": [
         {
@@ -245,14 +245,14 @@
           "access": "Vérifiez l’accès à la génération d’images et à un outil de composition, notamment dans Work. Sinon, les dessins et dialogues devront être assemblés dans votre outil de mise en page."
         }
       },
-      "short_title": "Album de bande dessinée"
+      "short_title": "Studio de bande dessinée"
     },
     {
       "slug": "reduire-depenses-energetiques",
       "published": true,
       "kind": "usage",
       "icon": "zap",
-      "title": "Optimiser son contrat d’énergie et suivre les économies",
+      "title": "Reprendre la main sur sa facture d’énergie",
       "summary": "L’IA a analysé mes factures et mes usages, comparé les offres sur ma consommation réelle et accompagné les démarches jusqu’au changement de fournisseur. L’étude a aussi porté sur la puissance souscrite et les options tarifaires. Les économies estimées restent à mesurer sur les factures suivantes.",
       "prompts": [
         {
@@ -328,14 +328,14 @@
         "extension": "Une revue peut être programmée avant la fin d’un prix garanti ou à une échéance choisie. Elle devra relire les factures récentes et les offres du moment. Vérifiez l’accès aux documents et l’existence de la tâche ; le changement de fournisseur déjà réalisé ne suffit pas à activer ce suivi.",
         "extension_title": "Programmer la prochaine comparaison des offres"
       },
-      "short_title": "Énergie et économies"
+      "short_title": "Stratégie énergie"
     },
     {
       "slug": "experiences-familiales-sur-mesure",
       "published": true,
       "kind": "usage",
       "icon": "users-round",
-      "title": "Concevoir un séjour qui s’adapte à toute la famille",
+      "title": "Orchestrer un séjour familial entièrement sur mesure",
       "summary": "L’IA m’a accompagné pendant tout un séjour familial : découverte de sorties, parcours adaptés aux enfants d’âges différents et ajustements quotidiens. Les envies de chacun, les trajets, la météo et la fatigue ont fait évoluer le programme au fil des journées.",
       "prompts": [
         {
@@ -409,14 +409,14 @@
           "access": "La recherche web vérifie sorties et météo. Vous indiquez le lieu utile à chaque demande, sans suivi de position présumé. Agenda et navigateur pour les réservations sont facultatifs."
         }
       },
-      "short_title": "Séjour sur mesure"
+      "short_title": "Concierge de voyage"
     },
     {
       "slug": "assistant-personnel-sante",
       "published": true,
       "kind": "usage",
       "icon": "heart-pulse",
-      "title": "Relier ses données de santé pour préparer ses consultations",
+      "title": "Construire un assistant santé autour de son histoire personnelle",
       "summary": "J’ai rapproché bilans sanguins, symptômes et données de santé et d’activité pour préparer les consultations. L’IA a aussi aidé à explorer les publications et essais cliniques, rechercher un professionnel et préparer un contact avec une synthèse précise. Les décisions médicales restent prises avec les soignants.",
       "prompts": [
         {
@@ -508,14 +508,14 @@
           "url": "https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq"
         }
       ],
-      "short_title": "Parcours de santé"
+      "short_title": "Assistant santé personnel"
     },
     {
       "slug": "comprendre-finances-foyer",
       "published": true,
       "kind": "usage",
       "icon": "wallet",
-      "title": "Éclairer ses choix patrimoniaux par des scénarios chiffrés",
+      "title": "Mettre son patrimoine au service de ses projets de vie",
       "summary": "L’IA m’a aidé à relier budget, patrimoine et projets de vie, puis à comparer plusieurs trajectoires. Les travaux ont porté sur la fiscalité, la recherche de biens locatifs et leur rentabilité, ainsi que sur le coût d’un véhicule et le moment de sa revente.",
       "prompts": [
         {
@@ -600,14 +600,14 @@
           "url": "https://www.esma.europa.eu/document/warning-use-ai-investing"
         }
       ],
-      "short_title": "Choix patrimoniaux"
+      "short_title": "Stratégie patrimoniale"
     },
     {
       "slug": "creer-application-personnelle",
       "published": true,
       "kind": "usage",
       "icon": "smartphone",
-      "title": "Créer une application et l’installer sur son téléphone",
+      "title": "Créer l’application qui répond exactement à ses besoins",
       "summary": "J’ai créé avec l’IA une application pour mes collections de films, séries et bandes dessinées, avec mes critères de classement et de suivi. Elle a été compilée à distance et installée sur mon iPhone, sans Mac. Le code et les données restent conservés.",
       "prompts": [
         {
@@ -684,14 +684,14 @@
           "access": "Le parcours utilise React Native, Expo et EAS Build. L’installation demande un compte Expo et l’enregistrement de l’iPhone. Un dépôt GitHub privé conserve le code. Vérifiez les conditions et coûts avant l’installation."
         }
       },
-      "short_title": "Application personnelle"
+      "short_title": "Créateur d’applications"
     },
     {
       "slug": "mettre-decisions-epreuve",
       "published": true,
       "kind": "usage",
       "icon": "scale",
-      "title": "Confronter cinq points de vue avant de décider",
+      "title": "S’entourer d’un conseil à cinq voix pour mieux décider",
       "summary": "J’ai créé un Conseil à cinq rôles pour confronter les arguments avant une décision. Le protocole produit des avis distincts, examine leurs désaccords et aboutit à un arbitrage avec une première action. Dans cette version, un même modèle tient les cinq perspectives.",
       "prompts": [
         {
@@ -763,14 +763,14 @@
           "access": "Aucune installation particulière n’est requise. Les cinq rôles partagent un même modèle ; leur accord ne constitue pas une vérification indépendante."
         }
       },
-      "short_title": "Conseil à cinq rôles"
+      "short_title": "Conseil personnel"
     },
     {
       "slug": "intermediaire-ia-pour-mes-mails",
       "published": true,
       "kind": "usage",
       "icon": "mail-search",
-      "title": "Déléguer le suivi de ses mails, des devis à la négociation",
+      "title": "Déléguer ses échanges à un assistant qui défend ses intérêts",
       "summary": "À réception d’un devis d’assurance, mon assistant a comparé les garanties avec mes contrats existants et anticipé la réponse à préparer. Le dossier conserve les pièces et les échanges, pour poursuivre les démarches sans reconstruire le contexte à chaque nouveau mail.",
       "prompts": [
         {
@@ -845,7 +845,7 @@
           "access": "Connectez la messagerie et vérifiez les droits de lecture et d’envoi. Sans connexion, copiez les échanges et joignez les pièces ; vous transmettrez les réponses préparées."
         }
       },
-      "short_title": "Mails et négociation"
+      "short_title": "Assistant et négociateur"
     },
     {
       "slug": "activer-memoire-ia",
