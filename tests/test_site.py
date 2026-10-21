@@ -118,6 +118,8 @@ class ResourcesTest(unittest.TestCase):
         base = self.guide()
         invalid = [None, {}, {**base, 'steps': []}, {**base, 'preparation': []},
                    {**base, 'checks': ['']}, {**base, 'tools': [{'name': 'Outil'}]},
+                   {**base, 'start': None}, {**base, 'start': {'where': 'Ici'}},
+                   {**base, 'extension': ''},
                    {**base, 'steps': [{'title': 'Étape', 'text': 12}]},
                    {**base, 'tools': [{'name': 'Outil', 'role': 'Lire', 'url': 'javascript:alert(1)'}]}]
         for guide in invalid:
@@ -130,6 +132,8 @@ class ResourcesTest(unittest.TestCase):
         guide = self.guide()
         guide['steps'][0]['text'] = '<script>alert(1)</script> & source'
         guide['tools'][0]['name'] = '<img src=x onerror=alert(1)>'
+        guide['start'] = {'where': '<script>ici</script>', 'access': 'Compte & documents'}
+        guide['extension'] = '<img src=x> & suite'
         item = {**self.item, 'guide': guide}
         resources.validate(self.data(item), ROOT)
         html = resources.render_resource(item, lambda path: path)
@@ -138,6 +142,8 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('&lt;script&gt;alert(1)&lt;/script&gt; &amp; source', html)
         self.assertIn('Ouvrir le guide', html)
         self.assertIn('<ol class="guide-steps">', html)
+        self.assertIn('&lt;script&gt;ici&lt;/script&gt;', html)
+        self.assertIn('&lt;img src=x&gt; &amp; suite', html)
         doc = Document(html)
         self.assertTrue(set(doc.references) <= set(doc.ids))
         self.assertTrue(all(href[1:] in doc.ids for href in doc.links if href.startswith('#') and href != '#choisir-usage'))
@@ -169,6 +175,8 @@ class ResourcesTest(unittest.TestCase):
         self.assertEqual((len(usages), len(astuces)), (10, 7))
         self.assertTrue(all(len(item['prompts']) == 1 and len(item['tips']) == 1 for item in usages))
         self.assertTrue(all(item['guide']['steps'] and item['guide']['checks'] for item in usages))
+        self.assertTrue(all(item['short_title'] and item['guide']['start']['where']
+                            and item['guide']['start']['access'] for item in usages))
         page = build.build()['ressources/index.html']
         doc = Document(page)
         self.assertEqual(doc.prompts, [item['prompts'][0]['text'] for item in usages])
@@ -185,6 +193,8 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('cas-usage', doc.ids)
         self.assertIn('#choisir-usage', doc.links)
         self.assertIn('#astuces', doc.links)
+        self.assertIn('tabindex="-1" aria-labelledby="usage-index-title"', page)
+        self.assertFalse(any(tag == 'details' and attrs.get('id') == 'choisir-usage' for tag, attrs in doc.tags))
         for internal in ('État interne', 'Résultat final visé', 'Précision interne', 'Mission pour Work'):
             self.assertNotIn(internal, page)
 

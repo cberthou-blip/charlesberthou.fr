@@ -9,10 +9,9 @@ const source = fs.readFileSync(path.join(__dirname, '../assets/passage/resources
 function setup(clipboard, hash = '') {
   const feedback = { textContent: '' };
   const summary = { focused: false, focus() { this.focused = true; } };
-  const indexSummary = { focused: false, focus() { this.focused = true; } };
-  const index = { open: false, scrolled: false, parentElement: null,
-    closest: selector => selector === 'details' ? index : null,
-    querySelector: () => indexSummary, scrollIntoView() { this.scrolled = true; } };
+  const index = { focused: false, scrolled: false, parentElement: null,
+    focus() { this.focused = true; }, closest: () => null,
+    scrollIntoView() { this.scrolled = true; } };
   const entry = { scrolled: false,
     closest: selector => selector === '.resource-entry' ? entry : null,
     querySelector: selector => selector === 'summary' ? summary : details,
@@ -40,7 +39,7 @@ function setup(clipboard, hash = '') {
   };
   const window = { location: { hash }, addEventListener(name, handler) { this[name] = handler; } };
   vm.runInNewContext(source, { document, window, navigator: { clipboard } });
-  return { button, close, feedback, prompt, details, promptDetails, promptBlock, summary, index, indexSummary, entry, window, document };
+  return { button, close, feedback, prompt, details, promptDetails, promptBlock, summary, index, entry, window, document };
 }
 
 test('la copie conserve intégralement le prompt et annonce le résultat', async () => {
@@ -49,7 +48,7 @@ test('la copie conserve intégralement le prompt et annonce le résultat', async
   assert.equal(ui.button.hidden, false);
   await ui.button.click();
   assert.equal(copied, ui.prompt.textContent);
-  assert.equal(ui.feedback.textContent, 'Prompt copié');
+  assert.equal(ui.feedback.textContent, 'Prompt copié. Collez-le dans votre conversation.');
   assert.equal(ui.button.disabled, false);
   assert.equal(ui.promptDetails.open, false);
 });
@@ -87,13 +86,12 @@ test('replier en bas rend le focus au résumé et revient au titre, même sans p
   assert.equal(ui.entry.scrolled, true);
 });
 
-test('le retour ouvre le sommaire et une sélection le replie en ouvrant le guide', () => {
+test('le retour donne le focus au sommaire permanent et une sélection ouvre le guide', () => {
   const ui = setup(undefined, '#choisir-usage');
-  assert.equal(ui.index.open, true);
-  assert.equal(ui.indexSummary.focused, true);
+  assert.equal(ui.index.focused, true);
+  assert.equal(ui.index.scrolled, true);
   ui.window.location.hash = '#resource-test';
   ui.window.hashchange();
-  assert.equal(ui.index.open, false);
   assert.equal(ui.details.open, true);
 });
 

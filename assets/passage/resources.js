@@ -17,7 +17,6 @@
     if (entry) {
       const details = entry.querySelector('.resource-details');
       if (details) details.open = true;
-      if (index) index.open = false;
     }
     const promptBlock = target.closest('.resource-prompt');
     if (promptBlock) promptBlock.querySelector('.prompt-disclosure').open = true;
@@ -27,7 +26,9 @@
       panel.open = true;
       panel = panel.parentElement?.closest('details');
     }
-    if (target === index || target === entry) {
+    if (target === index) {
+      index.focus({ preventScroll: true });
+    } else if (target === entry) {
       target.querySelector('summary')?.focus({ preventScroll: true });
     }
     // Une ancre vers le texte doit laisser le bouton de copie dans l’écran.
@@ -66,7 +67,7 @@
       feedback.textContent = '';
       try {
         await navigator.clipboard.writeText(prompt.textContent);
-        feedback.textContent = 'Prompt copié';
+        feedback.textContent = 'Prompt copié. Collez-le dans votre conversation.';
       } catch {
         button.closest('.resource-prompt').querySelector('.prompt-disclosure').open = true;
         feedback.textContent = 'La copie automatique est indisponible. Sélectionnez le texte du prompt pour le copier.';
