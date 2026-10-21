@@ -98,8 +98,8 @@ def render_page(content, *, head, title, description, canonical, robots,
         scripts=scripts, content=content, author_name=escape(author['name']), year=year,
         resources_current=' aria-current="page"' if resource_page else '',
         newsletter_url=escape(newsletter),
-        footer_subscribe=link(newsletter, 'S’abonner sur LinkedIn', subscribe=True),
-        footer_author=link(author['url'], 'LinkedIn'))
+        footer_subscribe=link(newsletter, 'S’abonner', subscribe=True),
+        footer_author=link(author['url'], 'Profil LinkedIn'))
 
 
 def build():
@@ -152,11 +152,9 @@ def build():
                 'datePublished': e['date'], 'author': {'@type': 'Person', 'name': author['name']}}}
             for i, e in enumerate(visible)]}}
     content = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
-        author_name=escape(author['name']),
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
-        all_editions=link(newsletter, 'Tous les articles'),
-        author_link=link(author['url'], 'Retrouver l’auteur'))
+        all_editions=link(newsletter, 'Tous les articles'))
     common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
     page = render_page(content, **common,
         title='Le Passage IA | La newsletter de ' + author['name'],
