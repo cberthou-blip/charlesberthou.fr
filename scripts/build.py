@@ -153,11 +153,9 @@ def build():
             for i, e in enumerate(visible)]}}
     content = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
         author_name=escape(author['name']),
-        resources_status='' if published else ' · En préparation',
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
         all_editions=link(newsletter, 'Tous les articles'),
-        card_subscribe=link(newsletter, 'S’abonner sur LinkedIn', 'button button-light', True),
         author_link=link(author['url'], 'Retrouver l’auteur'))
     common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
     page = render_page(content, **common,
