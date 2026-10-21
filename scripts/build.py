@@ -11,11 +11,13 @@ from string import Template
 import sys
 from urllib.parse import urlsplit
 import resources
+import articles
 
 ROOT = Path(__file__).resolve().parents[1]
 MONTHS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet',
           'août', 'septembre', 'octobre', 'novembre', 'décembre')
 ARROW = '<span class="arrow" aria-hidden="true">↗</span>'
+INTERNAL_ARROW = '<span class="arrow" aria-hidden="true">→</span>'
 LEGACY = ('outils-ia', 'outils-ia/maturite-ia', 'outils-ia/cas-usage',
           'outils-ia/roi-ia', 'outils-ia/registre-ia', 'contact')
 
@@ -68,22 +70,22 @@ def link(url, text, classes='text-link'):
 
 def render_feature(e):
     return f'''<article class="feature">
-   <a class="feature-link" href="{escape(e['url'])}" target="_blank" rel="noopener noreferrer" aria-labelledby="latest-title latest-read" aria-describedby="external-note">
+   <a class="feature-link" href="{articles.path(e)}" aria-labelledby="latest-title latest-read">
     <div class="feature-image">{image_tag(e, True)}</div>
-    <div class="feature-copy"><p class="eyebrow">{escape(e['theme'])}</p><h2 id="latest-title">{escape(e['title'])}</h2><p>{escape(e['summary'])}</p><span class="text-link" id="latest-read">Lire l’article sur LinkedIn {ARROW}</span></div>
+    <div class="feature-copy"><p class="eyebrow">{escape(e['theme'])}</p><h2 id="latest-title">{escape(e['title'])}</h2><p>{escape(e['summary'])}</p><span class="text-link" id="latest-read">Lire l’article {INTERNAL_ARROW}</span></div>
    </a>
   </article>'''
 
 
-def render_card(e):
+def render_card(e, heading='h3'):
     prefix = 'edition-' + e['slug']
     return f'''<article class="edition">
-  <a class="edition-link" href="{escape(e['url'])}" target="_blank" rel="noopener noreferrer" aria-labelledby="{prefix}-title {prefix}-read" aria-describedby="external-note">
+  <a class="edition-link" href="{articles.path(e)}" aria-labelledby="{prefix}-title {prefix}-read">
    <div class="edition-image">{image_tag(e)}</div>
    <div class="edition-meta"><span>{escape(e['theme'])}</span><time datetime="{e['date']}">{date_label(e['date'])}</time></div>
-   <h3 id="{prefix}-title">{escape(e['title'])}</h3>
+   <{heading} id="{prefix}-title">{escape(e['title'])}</{heading}>
    <p>{escape(e['summary'])}</p>
-   <span class="read-link" id="{prefix}-read">Lire sur LinkedIn {ARROW}</span>
+   <span class="read-link" id="{prefix}-read">Lire l’article {INTERNAL_ARROW}</span>
   </a>
  </article>'''
 
@@ -99,13 +101,19 @@ def render_resources_feature(published):
 
 
 def render_page(content, *, head, title, description, canonical, robots,
-                author, newsletter, year, schema=None, scripts='', resource_page=False):
+                author, newsletter, year, schema=None, scripts='', resource_page=False,
+                article_section=None, edition=None):
     structured = '' if schema is None else '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return Template((ROOT / 'templates/page.html').read_text(encoding='utf-8')).substitute(
         head=head, title=escape(title), description=escape(description),
         canonical=escape(canonical), robots=robots, structured_data=structured,
         scripts=scripts, content=content, author_name=escape(author['name']), year=year,
         resources_current=' aria-current="page"' if resource_page else '',
+        articles_current=' aria-current="' + article_section + '"' if article_section else '',
+        og_type='article' if edition else 'website',
+        share_image=escape(articles.SITE_URL + (edition['image']['src'] if edition else '/assets/passage/partage.jpg')),
+        share_image_alt=escape(edition['alt'] if edition else 'Un passage entre l’histoire du travail et le monde numérique'),
+        extra_meta=f'<meta property="article:published_time" content="{edition["date"]}">\n<meta property="article:author" content="{escape(author["url"])}">' if edition else '',
         newsletter_url=escape(newsletter),
         footer_subscribe=link(newsletter, 'S’abonner'),
         footer_author=link(author['url'], 'Profil LinkedIn'))
@@ -139,7 +147,11 @@ def build():
             if not isinstance(e[field], str) or not e[field].strip():
                 raise ValueError(f'Champ {field} manquant dans {e["slug"]}')
         image_tag(e)
+        if not date.fromisoformat(e['date']) <= date.fromisoformat(e['integrated']) <= updated:
+            raise ValueError('Date d’intégration invalide : ' + e['slug'])
     editions = sorted(editions, key=lambda e: e['date'], reverse=True)
+    internal_paths = {articles.path(e) for e in editions}
+    bodies = {e['slug']: articles.load(e, ROOT, internal_paths) for e in editions}
     visible = editions[:6]
     latest = visible[0]
     site_description = 'Des réflexions sur l’intelligence artificielle, le travail et la société, et des usages expliqués pas à pas. Articles et ressources de ' + author['name'] + '.'
@@ -158,7 +170,7 @@ def build():
         'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author},
         'mainEntity': {'@type': 'ItemList', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'item': {
-                '@type': 'Article', 'headline': e['title'], 'url': e['url'],
+                '@type': 'Article', 'headline': e['title'], 'url': articles.SITE_URL + articles.path(e),
                 'datePublished': e['date'], 'author': {'@type': 'Person', 'name': author['name']}}}
             for i, e in enumerate(visible)]}}
     if published:
@@ -166,7 +178,7 @@ def build():
     content = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
-        all_editions=link(newsletter, 'Tous les articles'),
+        all_editions=f'<a class="text-link" href="/articles/">Tous les articles {INTERNAL_ARROW}</a>',
         resources_feature=render_resources_feature(published))
     common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
     page = render_page(content, **common,
@@ -182,15 +194,57 @@ def build():
         robots='index, follow, max-image-preview:large' if published else 'noindex, follow',
         schema=resources.structured_data(published, author), resource_page=True,
         scripts=f'<script src="{asset("/assets/passage/resources.js")}" defer></script>' if published else '')
-    sitemap_entries = [('https://charlesberthou.fr/', site_updated)]
+    archive_description = 'Tous les articles du Passage IA, par Charles Berthou : intelligence artificielle, travail, société, progrès et responsabilité.'
+    archive_schema = {
+        '@context': 'https://schema.org', '@type': 'CollectionPage',
+        'name': 'Articles | Le Passage IA', 'url': articles.ARCHIVE_URL,
+        'description': archive_description, 'inLanguage': 'fr-FR',
+        'author': {'@type': 'Person', **author},
+        'mainEntity': {'@type': 'ItemList', 'numberOfItems': len(editions), 'itemListElement': [
+            {'@type': 'ListItem', 'position': i + 1, 'name': e['title'],
+             'url': articles.SITE_URL + articles.path(e)} for i, e in enumerate(editions)]}}
+    archive_content = Template((ROOT / 'templates/articles.html').read_text(encoding='utf-8')).substitute(
+        cards='\n'.join(render_card(e, 'h2') for e in editions))
+    archive_page = render_page(archive_content, **common, title='Articles | Le Passage IA',
+        description=archive_description, canonical=articles.ARCHIVE_URL,
+        robots='index, follow, max-image-preview:large', schema=archive_schema, article_section='page')
+    article_pages = {}
+    article_template = Template((ROOT / 'templates/article.html').read_text(encoding='utf-8'))
+    for i, e in enumerate(editions):
+        body = bodies[e['slug']]
+        url = articles.SITE_URL + articles.path(e)
+        next_edition = editions[(i + 1) % len(editions)]
+        article_content = article_template.substitute(
+            theme=escape(e['theme']), article_title=escape(e['title']), author_name=escape(author['name']),
+            date=e['date'], date_label=date_label(e['date']), minutes=body['minutes'],
+            summary=escape(e['summary']), image=image_tag(e, True), body=body['html'],
+            source_link=link(e['url'], 'Publication d’origine sur LinkedIn'),
+            next_url=articles.path(next_edition), next_title=escape(next_edition['title']))
+        article_schema = {'@context': 'https://schema.org', '@graph': [
+            {'@type': 'Article', '@id': url + '#article', 'url': url, 'mainEntityOfPage': url,
+             'headline': e['title'], 'description': e['summary'], 'datePublished': e['date'],
+             'author': {'@type': 'Person', **author}, 'inLanguage': 'fr-FR',
+             'image': articles.SITE_URL + e['image']['src'], 'wordCount': body['words'],
+             'sameAs': e['url'], 'isPartOf': {'@type': 'CollectionPage', 'url': articles.ARCHIVE_URL, 'name': 'Le Passage IA'}},
+            {'@type': 'BreadcrumbList', 'itemListElement': [
+                {'@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': articles.SITE_URL + '/'},
+                {'@type': 'ListItem', 'position': 2, 'name': 'Articles', 'item': articles.ARCHIVE_URL},
+                {'@type': 'ListItem', 'position': 3, 'name': e['title'], 'item': url}]}]}
+        article_pages[articles.path(e).lstrip('/') + 'index.html'] = render_page(article_content, **common,
+            title=e['title'] + ' | Le Passage IA', description=e['summary'], canonical=url,
+            robots='index, follow, max-image-preview:large', schema=article_schema,
+            article_section='location', edition=e)
+    sitemap_entries = [('https://charlesberthou.fr/', site_updated), (articles.ARCHIVE_URL, updated)]
+    sitemap_entries += [(articles.SITE_URL + articles.path(e), date.fromisoformat(e['integrated'])) for e in editions]
     if published:
         sitemap_entries.append((resources.RESOURCE_URL, resources_updated))
     llms = f'''# Le Passage IA
 
 > Les articles et les usages de l’IA de {author['name']}, sur le travail, les organisations, la société et le quotidien.
 
-Ce site présente les articles du Passage IA, actuellement accessibles sur LinkedIn, où l’abonnement à la newsletter est proposé.
+Les articles complets du Passage IA sont lisibles sur ce site. Ils sont également publiés sur LinkedIn, où l’abonnement à la newsletter est proposé.
 
+- [Tous les articles]({articles.ARCHIVE_URL})
 - [Newsletter Le Passage IA]({newsletter})
 - [{author['name']}]({author['url']})
 '''
@@ -200,9 +254,13 @@ Ce site présente les articles du Passage IA, actuellement accessibles sur Linke
         f'- [{item["title"]}]({resources.RESOURCE_URL}#resource-{item["slug"]}) : {item["summary"]}' for item in published) + '\n' if published else ''
     outputs = {
         'index.html': page,
+        'articles/index.html': archive_page,
+        **article_pages,
         'ressources/index.html': resource_page,
         'llms.txt': llms,
-        'llms-full.txt': llms + '\n## Articles\n\n' + '\n'.join(f'- [{e["title"]}]({e["url"]}) ({e["date"]})' for e in editions) + '\n' + resources_full,
+        'llms-full.txt': llms + '\n## Articles\n\n' + '\n\n'.join(
+            f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}'
+            for e in editions) + '\n' + resources_full,
         'sitemap.xml': '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'  <url><loc>{url}</loc><lastmod>{modified.isoformat()}</lastmod></url>' for url, modified in sitemap_entries) + '\n</urlset>\n',
         '404.html': render_page('<main id="contenu" class="return-page shell" tabindex="-1"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles et les ressources du Passage IA.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main>', **common,
             title='Page introuvable | Le Passage IA', description='Retrouvez les articles et les ressources du Passage IA.',

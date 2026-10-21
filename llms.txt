@@ -2,8 +2,9 @@
 
 > Les articles et les usages de l’IA de Charles Berthou, sur le travail, les organisations, la société et le quotidien.
 
-Ce site présente les articles du Passage IA, actuellement accessibles sur LinkedIn, où l’abonnement à la newsletter est proposé.
+Les articles complets du Passage IA sont lisibles sur ce site. Ils sont également publiés sur LinkedIn, où l’abonnement à la newsletter est proposé.
 
+- [Tous les articles](https://charlesberthou.fr/articles/)
 - [Newsletter Le Passage IA](https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032)
 - [Charles Berthou](https://fr.linkedin.com/in/charlesberthou)
 

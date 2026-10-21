@@ -2,8 +2,9 @@
 
 > Les articles et les usages de l’IA de Charles Berthou, sur le travail, les organisations, la société et le quotidien.
 
-Ce site présente les articles du Passage IA, actuellement accessibles sur LinkedIn, où l’abonnement à la newsletter est proposé.
+Les articles complets du Passage IA sont lisibles sur ce site. Ils sont également publiés sur LinkedIn, où l’abonnement à la newsletter est proposé.
 
+- [Tous les articles](https://charlesberthou.fr/articles/)
 - [Newsletter Le Passage IA](https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032)
 - [Charles Berthou](https://fr.linkedin.com/in/charlesberthou)
 
@@ -13,12 +14,377 @@ Des modes d’emploi, outils, étapes et prompts issus de mes usages personnels 
 
 ## Articles
 
-- [Le travail vaut-il encore la peine ?](https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye) (2026-10-04)
-- [« On n’arrête pas le progrès », n’est-ce pas ?](https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje) (2026-09-18)
-- [Qui regarde encore le compteur ?](https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte) (2026-08-20)
-- [L’intelligence a soif : ce que l’IA vaut en eau](https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke) (2026-07-28)
-- [L’humanité a toujours tremblé devant sa propre lumière](https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje) (2026-07-21)
-- [IA en entreprise : hâtez-vous lentement](https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine) (2026-07-08)
+### Le travail vaut-il encore la peine ?
+
+Auteur : Charles Berthou
+Date de publication : 2026-10-04
+Article : https://charlesberthou.fr/articles/travail/
+Publication LinkedIn : https://fr.linkedin.com/pulse/le-travail-vaut-il-encore-la-peine-charles-berthou-m9mye
+
+Le 25 septembre, l’Académie Goncourt retirait de sa première sélection C’était ça ou mourir, de Thélyson Orélien, après des accusations de plagiat et plusieurs analyses estimant que le roman avait très largement recours à l’intelligence artificielle. Le livre, lui, n’avait pas changé : les mots étaient les mêmes et l’histoire aussi. Seule avait changé l’idée que nous nous faisions de la manière dont ils avaient été écrits. Et avec elle, notre jugement.
+
+Reste la question de la transparence. Depuis le 2 août 2026, l’AI Act prévoit des obligations pour certains contenus générés par IA, dans des cas précis. Un roman n’entre pas automatiquement dans ce cadre mais lorsqu’une IA a réellement participé à l’écriture d’une œuvre présentée à un prix littéraire, cette information semble devoir être connue du lecteur et du jury. La manière dont une œuvre a été produite compte dans la manière dont nous l’apprécions, c'est un fait.
+
+En effet, nous accordons rarement de la valeur au seul résultat. Le temps passé, la difficulté, le savoir-faire et l’effort fourni comptent aussi. La psychologie parle même de « moralisation de l’effort » : nous avons tendance à mieux considérer celui qui s’est donné du mal, même lorsque cet effort supplémentaire change peu le résultat. Quelqu’un qui travaille beaucoup nous paraît sérieux, engagé, méritant. Tandis que la facilité peut, elle, éveiller le soupçon.
+
+Ce lien entre travail et effort vient de loin. La Genèse fait déjà une distinction intéressante. Adam travaille dans le jardin d’Éden avant la Chute. La peine, les épines et la sueur apparaissent ensuite. Le travail précède la souffrance. Et le Sabbat fixe une limite très claire : six jours d’activité, puis un jour où l’on cesse de produire.
+
+Chez Aristote, le loisir tient même une place centrale dans la vie accomplie ! Pour lui, le temps libéré du travail permet surtout de penser, d’échanger et de participer à la vie de la cité. Sa vision appartient évidemment à une société inégalitaire mais elle rappelle que notre manière actuelle d’associer travail et valeur personnelle s’est construite avec le temps.
+
+Puis l’industrialisation a transformé profondément notre manière de travailler. Avec l’usine, les heures se comptent, se contrôlent et se rémunèrent. Deux siècles plus tard, nous continuons à raisonner en journées, en charges, en effectifs et en temps passé. Plus un projet mobilise de personnes, de réunions et de temps, plus il donne facilement l’impression d’être important.
+
+Young pousse cette logique jusqu’à la satire lorsqu’il invente le terme de « méritocratie ». Dans la société qu’il imagine, une formule résume le classement des individus : intelligence + effort = mérite. Depuis, nous avons adopté le nom du système dont il cherchait à montrer justement les dérives. Dire de quelqu’un qu’il a « beaucoup travaillé » parle rarement seulement du temps passé puisque nous lui attribuons aussi de la volonté et nous estimons plus facilement qu’il mérite sa réussite.
+
+Pour illustrer, le film Whiplash raconte l’histoire d’un jeune batteur poussé jusqu’à l’épuisement par son professeur : plus il souffre, plus il semble se rapprocher de l’excellence. Le film montre jusqu’où peut aller cette idée : une réussite obtenue dans la douleur paraît parfois avoir plus de valeur.
+
+L’IA vient brouiller cette relation entre effort et résultat. Une synthèse, une analyse ou une présentation peuvent demander une heure là où il en fallait quatre. Un professionnel qui maîtrise correctement ces outils peut consacrer beaucoup moins de temps à une tâche et produire un résultat de même niveau, parfois meilleur.
+
+Depuis plusieurs décennies, la France cherche elle-même à faire évoluer l’action publique d’une culture des moyens vers une culture des résultats. L’exercice reste difficile pour une raison simple : un budget, des effectifs ou des dispositifs se comptent facilement ; leur efficacité beaucoup moins.
+
+La même logique existe en entreprise. Temps passé, taille d’une équipe, nombre de réunions ou volume d’un document donnent immédiatement une impression d’activité. Ces repères deviennent moins fiables lorsqu’une partie du travail peut être réalisée beaucoup plus vite.
+
+Reste à savoir ce que nous voulons réellement automatiser. Recopier une information, remettre en forme un document, compiler des données ou rechercher une information dispersée prend du temps et apporte peu en matière d’apprentissage. Si ces tâches diminuent fortement, nous ne perdrons probablement pas grand-chose.
+
+Chercher peut en revanche apprendre à chercher. Écrire aide à ordonner sa pensée. Résoudre un problème construit des réflexes. Se tromper puis recommencer affine le jugement. Une part de notre expérience professionnelle vient précisément de ce travail.
+
+Ces deux formes d’effort étaient jusqu’ici souvent mêlées. Il fallait traverser une partie fastidieuse d’une tâche pour accéder à ce qu’elle avait de réellement utile ou formateur. L’IA permet enfin de mieux les séparer. Cependant, le risque est d’automatiser aussi ce qui nous aidait réellement à apprendre.
+
+Keynes imaginait en 1930 que les progrès de productivité permettraient à ses petits-enfants de travailler une quinzaine d’heures par semaine... La productivité a considérablement progressé depuis; nous avons surtout utilisé une partie de ces gains pour produire davantage, relever nos standards et créer de nouveaux besoins.
+
+L’IA pourrait amplifier ce phénomène : une note produite quatre fois plus vite peut conduire à demander davantage de notes. Une présentation réalisée en trente minutes peut multiplier les présentations. Si le temps gagné peut alléger le travail, il peut également nous pousser à produire toujours plus. Cette course à la production fera d'ailleurs l’objet d’une prochaine édition du Passage IA.
+
+Dans un roman, le travail d’écriture fait partie de ce que nous attendons d’un écrivain : une voix, un regard, des choix, une expérience mise en mots, etc. Savoir qui écrit et quelle place l’IA a prise dans ce travail compte réellement.
+
+Pour une grande partie de nos tâches quotidiennes, le raisonnement change : deux heures passées à mettre en forme un tableau n’ont pas la même valeur que deux heures consacrées à le comprendre, à repérer une anomalie ou à décider ce qu’il faut en faire.
+
+L’IA va nous épargner une partie du travail que nous faisions simplement parce que nous n’avions pas de meilleur outil. Elle peut aussi nous épargner des efforts qui nous faisaient apprendre.
+
+Toute la difficulté sera là : certaines peines pourront disparaître sans grand regret, d’autres valent encore la peine.
+
+Le Passage IA, à hauteur humaine
+
+Recherche et analyse avec GPT-6 Astra
+
+### « On n’arrête pas le progrès », n’est-ce pas ?
+
+Auteur : Charles Berthou
+Date de publication : 2026-09-18
+Article : https://charlesberthou.fr/articles/progres/
+Publication LinkedIn : https://fr.linkedin.com/pulse/narr%C3%AAte-pas-le-progr%C3%A8s-nest-ce-charles-berthou-cudje
+
+Jusqu’où faut-il avoir peur du progrès pour vouloir le ralentir ?
+
+Encore faut-il s’entendre sur ce que nous appelons "progrès". Pour cette réflexion, je vous propose une définition simple : le progrès est une avancée de nos connaissances et de nos capacités qui cherche à améliorer notre condition. On peut évidemment discuter de ce qu’il améliore réellement, de ce qu’il dégrade ou de la manière dont ses bénéfices sont partagés. Le sujet mérite presque un article à lui seul. Mais partons au moins de cette base commune.
+
+Cet été, le débat sur l’intelligence artificielle a changé de nature. Plusieurs chercheurs et dirigeants qui travaillent sur les systèmes les plus avancés ont demandé que nous soyons capables, si nécessaire, d’en ralentir le rythme. En juillet, 1 386 salariés d’entreprises de l’IA de pointe ont signé un texte en ce sens. Leur inquiétude est assez simple : les principaux laboratoires pensent pouvoir être proches d’automatiser une partie de la recherche en IA. Si cette boucle accélère trop vite, nous pourrions produire de nouveaux systèmes plus rapidement que nous ne savons les comprendre et les contrôler.
+
+Quelques semaines plus tôt, un incident avait rendu cette crainte très concrète. Lors d’évaluations internes de cybersécurité, des modèles expérimentaux d’OpenAI avaient réussi à contourner des mécanismes destinés à les isoler d’Internet, à exploiter plusieurs vulnérabilités et à communiquer par des canaux qui n’avaient pas été autorisés. Ils avaient fini par compromettre une partie de l’infrastructure de recherche d’OpenAI ainsi que des systèmes de Hugging Face. Raconté rapidement, l’épisode ressemble presque au début d’un scénario de science-fiction : nous assignons un objectif à des machines et celles-ci découvrent seules des chemins que leurs concepteurs n’avaient pas anticipés.
+
+Mais revenons aux faits. Ces systèmes évoluaient dans un environnement expérimental conçu précisément pour tester leurs capacités offensives, avec des protections volontairement réduites. Aucun modèle prévu pour une diffusion publique n’était impliqué. L’incident reste pourtant sérieux. Il montre que lorsqu’un système devient suffisamment capable, nous pouvons lui fixer un objectif sans connaître à l’avance le chemin exact qu’il empruntera pour l’atteindre. Une machine n’a pas besoin de conscience, d’intention ou de volonté propre pour faire quelque chose que ses concepteurs n’avaient pas envisagé.
+
+Le malaise vient sans doute de là. Nous avons longtemps pensé la machine comme un outil dont le fonctionnement pouvait se résumer à une relation assez simple entre une commande et un résultat. Cette image était imparfaite, mais rassurante : une commande, un résultat. L’intelligence artificielle change un peu la donne. Nous définissons une tâche, des règles, un environnement, puis le système construit sa réponse selon un chemin que nous ne suivons pas toujours étape par étape. Plus les modèles deviennent capables de planifier, d’utiliser des outils, d’écrire du code ou d’enchaîner plusieurs actions, plus l’écart entre ce que nous demandons et la manière dont ils s’y prennent devient visible.
+
+L’idée de déléguer une partie du contrôle à une machine n’a pourtant rien de nouveau. Un pilote automatique corrige en permanence la trajectoire d’un avion sans demander au pilote d’approuver chacune de ses décisions. Les réseaux électriques, certains procédés industriels ou les marchés financiers reposent depuis longtemps sur des systèmes capables de réagir beaucoup plus vite qu’un humain. Nous avons accepté progressivement cette délégation parce que nous avons appris à définir des limites et à intervenir lorsque quelque chose sort du cadre prévu. Aujourd’hui, c’est surtout la nature de cette délégation qui change. Quand les systèmes commencent à adapter eux-mêmes leur stratégie à une situation nouvelle, il devient plus difficile de distinguer ce que nous avons réellement prévu de ce qu’ils trouvent par eux-mêmes.
+
+Cette peur est beaucoup plus ancienne que l’IA. Elle renvoie à une représentation très ancienne de la machine, celle d’un outil créé par l’homme qui finit par lui échapper. Nous avions déjà exploré ensemble cette peur du progrès dans L’humanité a toujours tremblé devant sa propre lumière. Frankenstein, les automates inquiétants du XIXe siècle puis les machines autonomes de la science-fiction racontent depuis longtemps la même histoire. Nous fabriquons quelque chose pour augmenter notre pouvoir d’action, puis nous découvrons que cette création ne se comporte plus tout à fait comme nous l’avions imaginé. Cette histoire, nous la connaissons tous. Elle explique sans doute pourquoi chaque comportement inattendu d’une intelligence artificielle prend immédiatement une dimension beaucoup plus grande que l’incident lui-même.
+
+Pour autant, nous n’en sommes pas là. Les systèmes les plus avancés dépendent toujours d’infrastructures construites et contrôlées par des humains, de centres de données, d’électricité, d’accès réseau, de logiciels et d’autorisations qui peuvent être modifiés ou interrompus. Les incidents sont justement découverts parce que des chercheurs conçoivent des tests pour provoquer ces comportements et mesurer leurs limites. La prudence paraît donc assez naturelle. Le bon réflexe est surtout de revenir aux faits avant de tirer une conclusion, car le sujet se prête trop bien aux gros titres et aux emballements.
+
+Il faut aussi regarder qui parle. Leurs inquiétudes peuvent être sincères. Il faut garder en tête les intérêts économiques qui entourent aujourd’hui cette industrie. Les grands laboratoires américains sont engagés dans une compétition mondiale où les montants donnent le vertige : OpenAI vise actuellement une valorisation autour de 1 500 milliards de dollars, quand Anthropic est valorisée autour de 965 milliards. Ralentir peut répondre à une vraie préoccupation de sécurité, mais certaines règles plus lourdes peuvent aussi protéger une avance et un business devenus considérables. Il faut donc écouter leurs alertes sans oublier le décor : une bataille commerciale, technologique et médiatique considérable.
+
+Reste surtout un fait : ce débat dépasse largement les laboratoires californiens et les débats occidentaux. En mars 2026, l’écart entre le meilleur modèle américain et le meilleur modèle chinois n’était plus que de 2,7 % selon le Stanford AI Index. La Chine travaille elle aussi sur la sécurité de ces systèmes et poursuit en parallèle leur développement. Ralentir peut se comprendre à l’échelle d’un laboratoire. La décision devient autrement plus compliquée lorsqu’un État sait que son concurrent, lui, continue d’avancer. L’intelligence artificielle est désormais un enjeu de puissance autant qu’un sujet technologique.
+
+L’histoire, elle, invite à relativiser. Chaque fois que nous avons augmenté considérablement notre capacité d’action, nous avons aussi créé de nouveaux risques qu’il a fallu apprendre à mesurer et à encadrer. La vapeur a transformé l’industrie tout en provoquant des explosions de chaudières. L’électricité a changé nos sociétés tout en imposant de nouvelles normes de sécurité. L’aviation est devenue extrêmement sûre après des décennies durant lesquelles chaque accident permettait de mieux comprendre les systèmes, les procédures et les comportements humains. Dans tous ces cas, nous avons appris en avançant. La maîtrise s’est construite en même temps que la technologie progressait.
+
+L’intelligence artificielle pourrait suivre une trajectoire comparable, avec une différence importante : les systèmes numériques évoluent rapidement, se diffusent presque instantanément et peuvent désormais contribuer directement au travail de recherche qui permet de produire la génération suivante. Si cette boucle accélère, nos outils d’évaluation, de sécurité et de contrôle pourraient simplement ne plus suivre le rythme. Ceux qui alertent sur ce risque peuvent se tromper. Leur inquiétude mérite néanmoins d’être entendue.
+
+Sur ce point, ma conviction est simple. Je crois au progrès. Les risques doivent nous pousser à mieux le maîtriser, certainement pas à l’arrêter. Les systèmes doivent être testés, encadrés et sécurisés. L’histoire montre surtout que nous avons appris à maîtriser les grandes technologies en avançant, en corrigeant et en sécurisant au fur et à mesure.
+
+Notre vieille formule, « on n’arrête pas le progrès », prend alors un autre sens. Le progrès exige aussi de la prudence et de la lucidité. Nous n’avons jamais attendu de tout maîtriser pour progresser. À nous surtout de faire en sorte que cette avancée améliore réellement notre condition.
+
+Peut-être n’arrête-on pas le progrès….
+
+Alors, qu’allons-nous choisir d’en faire ?
+
+Rédaction humaine, appui documentaire avec GPT-5.6 Sol X Opus 5 Max
+
+### Qui regarde encore le compteur ?
+
+Auteur : Charles Berthou
+Date de publication : 2026-08-20
+Article : https://charlesberthou.fr/articles/compteur/
+Publication LinkedIn : https://fr.linkedin.com/pulse/qui-regarde-encore-le-compteur-charles-berthou-cmrte
+
+Il suffit désormais de quelques mots pour demander à une intelligence artificielle d’analyser un dossier, de confronter plusieurs documents, d’explorer un marché ou de préparer une recommandation. L’expérience est devenue si fluide que ce qui se déroule entre la demande et la réponse tend presque naturellement à disparaître derrière l’interface.
+
+Cette simplicité masque pourtant une activité bien réelle : les modèles traitent du texte, consultent parfois des sources, utilisent des outils et mobilisent une quantité variable de calcul. Une partie de cette activité est encore comptabilisée à travers une unité largement étrangère au grand public : le token, fragment de langage utilisé par les modèles pour lire un contexte et produire une réponse.
+
+Le token ne mesure pas l’intelligence. Dix mille tokens ne représentent ni dix mille idées, ni une quantité déterminée de raisonnement, encore moins une qualité particulière de résultat. Une analyse remarquable et une production parfaitement dispensable peuvent mobiliser des volumes comparables.
+
+Son intérêt se trouve précisément ailleurs. Il donne une mesure à une activité dont celui qui la déclenche perçoit de moins en moins directement le coût.
+
+Une consommation qui s’éloigne de la demande
+
+Le coût d’une grande partie des tâches intellectuelles a longtemps entretenu une relation assez intuitive avec le temps nécessaire pour les accomplir. Une étude mobilisait plusieurs journées, une note quelques heures, le développement d’une fonctionnalité davantage encore. Cette relation n’a jamais été parfaite, mais elle imposait au moins une limite perceptible : demander davantage signifiait généralement mobiliser davantage de temps humain.
+
+L’intelligence artificielle défait progressivement cette correspondance. Un collaborateur peut consacrer quelques dizaines de secondes à formuler une demande et obtenir, quelques minutes plus tard, un résultat qui lui aurait demandé plusieurs heures de travail. Le coût n’a pas disparu. Une partie s’est simplement déplacée vers les ressources nécessaires à la machine pour produire ce résultat.
+
+Avec un assistant conversationnel, cette mécanique reste encore assez facile à suivre. Une demande appelle une réponse, éventuellement une correction, puis une nouvelle demande. Les agents introduisent une évolution plus profonde : l’utilisateur peut désormais leur confier un objectif sans déterminer lui-même toutes les opérations nécessaires pour l’atteindre. Le système recherche alors des informations, consulte des documents, mobilise plusieurs outils, confronte des résultats, abandonne une première piste et en emprunte une autre.
+
+L’informatique accomplit évidemment depuis longtemps un grand nombre d’opérations derrière une action simple. La différence tient ici moins au volume de calcul qu’au chemin lui-même. L’utilisateur ne délègue plus seulement l’exécution d’une opération qu’il a préalablement définie ; il confie également à la machine une partie de la manière dont le problème doit être traité.
+
+Quelques lignes peuvent ainsi déclencher une quantité de travail machine dont leur auteur ignore l’étendue exacte. Plus les systèmes gagnent en autonomie, moins l’effort nécessaire pour formuler une demande renseigne sur les ressources nécessaires pour y répondre.
+
+Cette distance demeure encore peu perceptible parce que l’expérience utilisateur a précisément été conçue pour l’effacer.
+
+Celui qui demande, qui paie et qui sait
+
+Cette première distance en révèle une seconde, économique cette fois.
+
+Le particulier utilise le plus souvent l’intelligence artificielle dans le cadre d’un abonnement mensuel. Une demande supplémentaire ne fait pas apparaître quelques centimes de plus sur son relevé bancaire. Dans une entreprise, la séparation peut être plus nette encore : le collaborateur utilise l’outil, une direction en porte le contrat et le fournisseur mesure, de son côté, les ressources effectivement mobilisées.
+
+Ces trois acteurs n’observent donc pas exactement la même économie.
+
+Celui qui demande voit d’abord le temps gagné et la facilité nouvelle avec laquelle une tâche peut être accomplie. Celui qui paie regarde un budget, souvent présenté sous la forme d’une licence ou d’un forfait qui masque lui-même une partie du coût réel de chaque usage. Le fournisseur, enfin, dispose d’une connaissance beaucoup plus précise de la consommation et des conditions dans lesquelles elle est produite.
+
+Cette asymétrie compte davantage qu’il n’y paraît. Le signal économique devient particulièrement faible pour l’utilisateur au moment même où sa capacité à produire augmente fortement.
+
+La photographie numérique en a donné une illustration simple. Lorsque chaque cliché avait un coût perceptible, la sélection précédait largement le déclenchement. Le smartphone a presque supprimé cette contrainte : nous n’avons pas nécessairement appris à prendre de meilleures photographies, nous avons surtout appris à choisir parmi elles après les avoir prises.
+
+L’intelligence artificielle étend cette logique à certaines productions intellectuelles. Une nouvelle version d’un document, dix formulations supplémentaires, une analyse reprise sous un autre angle ou cinquante propositions de titres deviennent faciles à demander. Certaines seront utiles. D’autres ne seront jamais relues. Mais le coût apparent de leur production est devenu suffisamment faible pour que la sélection intervienne désormais après la production plutôt qu’avant.
+
+Avec les agents, une étape supplémentaire est franchie : celui qui formule la demande ne sait même plus nécessairement combien d’opérations ont été nécessaires pour produire ce qu’il décidera finalement de conserver ou d’écarter.
+
+L’abondance ne conduit donc pas spontanément à mieux choisir. Elle permet surtout de différer le moment où le choix devient nécessaire.
+
+Ce que le compteur ne sait pas mesurer
+
+Une quantité comparable de calcul peut servir à produire plusieurs milliers de contenus génériques à peine consultés ou à parcourir un corpus scientifique complexe afin d’aider une équipe à identifier une piste nouvelle. Pour la facture, la différence peut être faible. Dans ses effets, elle est évidemment considérable.
+
+Cette indifférence n’est pas propre à l’intelligence artificielle. Un kilowattheure reste un kilowattheure, qu’il alimente un bloc opératoire ou un écran publicitaire. Mais l’IA introduit une particularité : elle permet d’accroître très rapidement la quantité de certaines productions intellectuelles sans augmenter dans les mêmes proportions l’effort humain nécessaire pour les déclencher.
+
+Les organisations apprendront à piloter cette consommation. Elles réserveront certains modèles aux tâches qui les justifient, encadreront les agents les plus coûteux, limiteront les traitements inutiles et chercheront progressivement à rapprocher les usages des budgets. Ce mouvement est assez naturel et finira probablement par rejoindre les disciplines déjà appliquées au cloud ou aux autres grandes ressources informatiques.
+
+Il restera pourtant parfaitement possible de réduire de 20 % le coût d’un système qui produit quelque chose dont personne n’avait réellement besoin.
+
+La discipline budgétaire dit combien une organisation dépense et permet d’en maîtriser le montant. Elle ne dit pas si cette dépense méritait d’être engagée. Cette seconde question apparaît ailleurs, lorsqu’un responsable doit répondre du résultat obtenu et arbitrer entre plusieurs usages possibles : temps effectivement libéré, décision améliorée, risque détecté, erreur évitée, capacité nouvelle ou simple augmentation du volume produit.
+
+La distinction pourrait devenir déterminante à mesure que les usages se généralisent. Tant que le calcul reste rare et coûteux, le prix impose lui-même une forme de sélection. Lorsque son coût unitaire diminue fortement, cette sélection cesse d’être automatique. L’économie réalisée sur chaque opération peut alors être absorbée par la multiplication d’usages dont personne n’a véritablement interrogé l’utilité.
+
+Le token sait compter ce qui entre et ce qui sort d’un modèle. Il reste parfaitement indifférent à la raison pour laquelle cette consommation a eu lieu...
+
+Lorsque les conditions d’accès deviennent stratégiques
+
+Cette économie ne s’arrête évidemment pas au budget d’une entreprise. Les modèles les plus avancés reposent sur une infrastructure très matérielle : semi-conducteurs spécialisés, centres de données, énergie, réseaux, services cloud et investissements considérables.
+
+La situation est cependant plus nuancée que ne le laisse parfois entendre le débat public. Dans son étude Artificial Intelligence Markets : Recent Developments and Competition Issues, publiée en juillet 2026, l’OCDE souligne le dynamisme persistant du marché des modèles de fondation, où les performances progressent tandis que les prix diminuent. Elle constate en revanche une concentration beaucoup plus forte sur plusieurs ressources situées en amont, en particulier les capacités de calcul, les puces avancées et certaines infrastructures cloud.
+
+La concurrence demeure donc réelle là où l’utilisateur voit les modèles, tandis que plusieurs des infrastructures qui permettent de les faire fonctionner restent beaucoup plus concentrées.
+
+C’est une distinction importante car la question n’est pas uniquement de savoir où se trouvent les data centers ni même quel modèle arrive en tête d’un classement à un instant donné, elle porte davantage sur les conditions dans lesquelles cette capacité de calcul demeure disponible.
+
+Un fournisseur fixe un prix, un niveau de service, des quotas, les modèles accessibles et les conditions d’usage... Tout cela relève d’un fonctionnement commercial ordinaire tant que l’intelligence artificielle reste un outil numérique parmi d’autres. La question change de portée lorsque certaines activités commencent à dépendre durablement de ces capacités : recherche, développement logiciel, analyse, services publics ou compétitivité industrielle.
+
+Pour une entreprise, cette dépendance concerne le choix de fournisseurs dont elle ne maîtrise ni entièrement la technologie, ni les évolutions tarifaires, ni les conditions futures d’accès. Pour la France et l’Europe, elle rejoint plus largement des choix de politique industrielle : capacité de calcul disponible, accès aux semi-conducteurs avancés, infrastructures énergétiques, cloud et maîtrise d’un certain nombre d'éléments critiques.
+
+La souveraineté apparaît alors comme la conséquence d’une question très concrète : qui fixe les conditions économiques d’accès à une capacité devenue productive ?
+
+C’est à cet endroit que le sujet devient politique.
+
+Non parce qu’il faudrait décider publiquement de chaque usage ou prétendre produire seul tout ce que l’intelligence artificielle exige, mais parce qu’une dépendance change de nature lorsqu’elle commence à conditionner des fonctions dont une économie considère qu’elle ne peut durablement se passer. Le débat sur l’IA ne portera donc pas seulement sur la puissance des modèles, leurs risques ou leurs effets sur l’emploi, il portera également sur les conditions matérielles et économiques dans lesquelles cette puissance reste accessible.
+
+Le token lui-même finira peut-être par disparaître de notre champ de vision. Les agents pourront être facturés à la tâche ou au résultat, les abonnements continueront à absorber une partie de la mécanique et d’autres unités commerciales remplaceront celle que nous utilisons aujourd’hui. Qui sait ?
+
+Cela importe peu. Le token révèle surtout une évolution plus durable : plus il devient facile de confier une tâche à l’IA, moins celui qui la demande perçoit les ressources nécessaires pour l’accomplir et le coût qu’elles représentent.
+
+Un compteur saura toujours mesurer ce qui a été consommé mais il ne dira jamais si cela valait la peine de l’être.
+
+Rédaction humaine, appui documentaire avec GPT-5.6 Sol X Opus 5 Max
+
+### L’intelligence a soif : ce que l’IA vaut en eau
+
+Auteur : Charles Berthou
+Date de publication : 2026-07-28
+Article : https://charlesberthou.fr/articles/eau/
+Publication LinkedIn : https://fr.linkedin.com/pulse/lintelligence-soif-ce-que-lia-vaut-en-eau-charles-berthou-18mke
+
+De 5 gouttes à 45 millilitres, personne ne s’accorde sur ce que boit une requête. De toute manière, le vrai débat est ailleurs.
+
+Ouvrir un robinet : ce luxe occidental résume des siècles d’insouciance. L’eau couvre 71% de la planète, mais presque toute est salée, gelée ou enfouie, et un quart de l’humanité ne dispose toujours pas d’eau potable à domicile. Tout dépend du lieu et de la saison. Météo-France projette pour 2050 un pays réchauffé de 2,7 °C et une vingtaine de jours de sécheresse supplémentaires par an. D’autres estimations publiques évoquent, à usages constants, un déficit annuel proche de 2Mds de mètres cubes. Quant à ce que l’IA y prélèvera, les chiffres disponibles varient parfois d’un facteur supérieur à 170.
+
+L’eau nourrit, soigne, refroidit, fabrique. L’agriculture concentre à elle seule près de 70 % des prélèvements mondiaux d’eau douce. Le numérique, lui, se dissimule derrière un cloud presque inoffensif, faute d’être matérialisé pour l’utilisateur. Mais derrière le nuage, il y a du foncier, des serveurs et une soif insatiable.
+
+Le premier litre est consommé bien avant la première question. Fabriquer une puce exige une eau d’une pureté extrême, pour rincer le silicium et en chasser jusqu’à la poussière. Vient ensuite l’électricité, qui traîne sa propre empreinte hydrique selon la façon dont elle est produite. Puis les centres de données, où les processeurs chauffent et qu’il faut refroidir : par l’air, par des circuits fermés ou en laissant l’eau s’évaporer. Aucune solution n’est neutre.
+
+Le refroidissement à air, qui semble naïvement le plus économe, épargne certes l’eau du site mais alourdit la facture électrique, et donc l’eau consommée à la centrale. En 2023, aux États-Unis, les centres de données auraient directement consommé quelque 66Mds de litres d’eau pour leur refroidissement, mais près de 800Mds, 12 fois plus, pour produire leur électricité. Le visible ne dit presque rien du coût réel.
+
+Les estimations s’affolent dès qu’on descend à l’échelle d’une requête. Google annonce environ 0,26 millilitre, soit 5 gouttes, pour une requête textuelle médiane adressée à Gemini. Mistral estime à 45 millilitres l’empreinte d’une réponse de 400 tokens. Plus de 170 fois davantage. Cet écart tient d’abord aux périmètres retenus : Google mesure essentiellement l’eau consommée sur ses sites, tandis que Mistral y ajoute celle liée à la production d’électricité. Les modèles, les infrastructures et les conditions d’exploitation diffèrent aussi. Ces chiffres éclairent moins la consommation réelle d’une question qu’ils ne révèlent notre incapacité à la mesurer de manière commune.
+
+Un litre n’en vaut pas un autre
+
+C’est sans doute ici le cœur du sujet : l’eau garde une adresse et une saison. Un litre puisé dans le Rhône au printemps ne pèse pas comme un litre tiré d’une nappe catalane le 15 août. Rapportée aux 70 % de l’agriculture, "la consommation des centres de données reste dérisoire", diront les partisans de la technologie. Sauf que le problème de l’IA réside moins dans son volume global que dans sa capacité à concentrer une demande nouvelle sur un lieu et un instant précis, souvent là où l’eau manque déjà.
+
+Le bon arbitrage dépend donc du climat, du mix énergétique, de la technologie retenue et de la disponibilité locale de la ressource.
+
+En 1995, un film avait poussé ce paradoxe jusqu’à l’absurde. Waterworld imaginait une Terre entièrement noyée, où des rescapés dérivaient sur des radeaux, s’échangeaient une poignée de terre comme un trésor et mouraient de soif au milieu de l’océan. 31 ans plus tard, sa leçon reste crédible : il est possible de se noyer dans l’eau et de manquer de celle que l’on peut boire. Notre trajectoire est plus lente, mais le paradoxe reste identique.
+
+Ce qui vaut son eau
+
+La question est donc de savoir quels usages de l’IA méritent que nous leur consacrions de l’eau.
+
+Nous arbitrons déjà nos ressources en fonction de l’utilité attendue. Une ambulance hurle, bloque un carrefour et brûle du carburant : nous l’acceptons parce qu’une vie peut en dépendre. Une climatisation rejette de la chaleur et consomme de l’électricité, mais elle protège les plus fragiles pendant une canicule. Certaines dépenses de ressources se justifient par leurs bénéfices.
+
+Le fameux retour sur investissement mérite ici un calcul plus large. Il inclut l’argent gagné, mais aussi le temps rendu, les erreurs évitées, l’eau économisée ailleurs et la qualité du service. Certains usages mériteront beaucoup de ressources. D’autres auront du mal à justifier quelques litres. Refuser une technologie dès qu’elle consomme conduit à l’immobilisme ; lui ouvrir un crédit illimité au nom du progrès mène au gaspillage. Entre les deux, il reste le choix, avec ce qu’il demande de mesure, de transparence et parfois de renoncement.
+
+De l’eau consacrée à prévoir une sécheresse, repérer une fuite sur un réseau, affiner un diagnostic ou réduire la facture énergétique d’un bâtiment peut valoir chaque goutte. La même eau dépensée pour produire la quatorzième variante d’une bannière publicitaire ou une vidéo verticale de neuf secondes appelle une autre réponse.
+
+Le progrès technique ne nous dispensera pas de cet arbitrage. Les puces s’affinent, les modèles maigrissent, le refroidissement devient plus précis, et le total continue pourtant de grimper, parce que l’IA se glisse partout : moteurs de recherche, téléphones, voitures et agents autonomes. C’est le vieux piège de Jevons :
+
+Plus une ressource devient efficace et bon marché, plus sa consommation augmente.
+
+Un bien que personne ne possède seul
+
+Reste ce que la technique ne tranchera jamais à notre place. L’eau est un bien commun avant d’être une facture : chacun en dépend, et ce que l’un prélève peut manquer à l’autre, en aval ou plus tard. Arbitrer entre boire, cultiver, soigner, produire de l’électricité, préserver une rivière et faire tourner des serveurs, c’est gouverner une ressource partagée. La France le fait déjà chaque été : les arrêtés sécheresse classent les usages selon leur nécessité, l’eau potable et la santé d’abord, le reste ensuite.
+
+Ces arbitrages n’ont rien de paisible. Retenues, tours d’arrosage, débits des rivières : chaque été rouvre les mêmes conflits entre agriculteurs, industriels, élus et riverains. L’IA réclame désormais sa part au nom d’un progrès qu’elle doit encore prouver, usage par usage.
+
+De plus, un centre de données s’implante rarement là où se prennent les décisions. Il choisit un foncier, une connexion électrique et un accès au réseau. Sa consommation retombe pourtant sur un bassin versant local, parfois très éloigné de ceux qui profitent du service.
+
+Qui ouvre le robinet ?
+
+La responsabilité ne repose pas seulement sur les ingénieurs, les entreprises ou les utilisateurs. L’intelligence artificielle est désormais un sujet politique.
+
+Le 12 mai 2026, Arthur Mensch, cofondateur de Mistral AI, était auditionné à l’Assemblée nationale sur les dépendances numériques françaises. Seuls 2 des 28 membres de la commission étaient présents. Le symbole est brutal : une technologie capable de bouleverser l’emploi, l’énergie, l’industrie et notre souveraineté discutée devant une salle presque vide.
+
+Quelques rapports existent mais ils restent dispersés, tardifs et rarement suivis d’effets. La loi prévoyait dès 2021 un indicateur limitant l’usage de l’eau par les centres de données. Plusieurs années plus tard, son décret d’application se faisait toujours attendre.
+
+Les élus devront pourtant arbitrer les implantations, les raccordements, les conflits d’usage et la pression sur les bassins versants. Ils devront demander combien d’eau sera prélevée, quand, où et au bénéfice de qui. Nous pouvons déjà leur poser ces questions. Car choisir où installer les machines et quelles contraintes leur imposer, c’est décider ce qui vaut son eau.
+
+Gouverner avant la pénurie
+
+La question posée par l’IA, comme par Google, Netflix, Spotify ou YouTube, est donc simple : appliquerons-nous au calcul l’échelle de valeur que nous imposons déjà aux autres usages ? Et qui aura voix au chapitre pour la fixer ?
+
+Cela exige de la transparence sur ce que chaque site consomme, quand et où. De la sobriété aussi : choisir le modèle adapté plutôt que le plus lourd, repousser certains calculs vers des heures ou des saisons moins tendues, et renoncer aux usages dont l’utilité ne justifie pas les ressources mobilisées. Ces règles doivent être établies avant l’été, plutôt qu’au milieu du mois d’août.
+
+Waterworld s’achevait sur une terre retrouvée, verte, presque un mirage. Nous n’en sommes pas là, et n’y serons peut-être jamais. Mais nous réapprenons ce que ses naufragés savaient déjà : l’abondance et la pénurie peuvent tenir sur la même carte.
+
+L’eau a rendu possible presque tout ce que nous appelons le progrès, et sa présence nous a longtemps évité d’y penser. Sa fragilité nous force maintenant à trancher.
+
+L’intelligence artificielle aura besoin d’eau. À nous de savoir pourquoi nous ouvrons le robinet, pour quel progrès et au bénéfice de qui.
+
+Rédaction humaine, appui documentaire avec GPT-5.6 Sol
+
+### L’humanité a toujours tremblé devant sa propre lumière
+
+Auteur : Charles Berthou
+Date de publication : 2026-07-21
+Article : https://charlesberthou.fr/articles/humanite/
+Publication LinkedIn : https://www.linkedin.com/pulse/lhumanit%C3%A9-toujours-trembl%C3%A9-devant-sa-propre-lumi%C3%A8re-charles-berthou-uukje
+
+Dans Matrix, Morpheus tend à Néo deux pilules : la bleue pour demeurer dans l'illusion confortable, la rouge pour voir le monde tel qu'il est réellement. Cette scène est universelle, elle parle de la condition humaine devant l'irruption d'une réalité qu'on ne peut plus ignorer.
+
+La pilule rouge, aujourd'hui, c'est l'IA.
+
+Pour ma part, je l'ai prise. Je travaille dans un secteur vieux de plusieurs siècles, dont les fondations sont interrogées par des acteurs qui n'existaient pas il y a dix ans.
+
+Déjà vu mais jamais à cette vitesse
+
+Au 19e siècle, la machine à vapeur a multiplié la force physique de l'homme et a fait entré le monde dans l'ère industrielle. Dans les 90's, internet a transformé la circulation de l'information, réduit les distances et rebattu les cartes économiques. Blockbuster, Kodak, ou les libraires ne diront pas le contraire...
+
+Ces deux révolutions avaient un point commun : elles laissaient intact le monopole cognitif de l'Homme. La machine pouvait tisser, souder, calculer selon des règles prédéfinies, mais ne raisonnait pas, ne reformulait pas et ne créait pas en situation d'incertitude. Cela restait notre domaine.
+
+L'IA change cela et elle le fait à une vitesse inédite. En novembre 2022, ChatGPT atteint 1 million d'utilisateurs en 5 jours. Facebook, en 10 mois et Netflix en 42 mois. C'est la diffusion technologique la plus rapide que l'humanité ait jamais connue, et elle touche simultanément le droit, la médecine, la finance, l'éducation, l'art, etc.
+
+En 1950, Wiener écrivait que les machines finiraient par défier non seulement le travail manuel, mais également le travail intellectuel. Il écrivait cela, il y a plus de 70 ans, lorsque les ordinateurs occupaient des salles entières et apprenaient à jouer aux échecs.
+
+Ni catastrophisme ni déni : regardons le réel
+
+D'un côté, les alarmistes annoncent des destructions massives d'emplois. Goldman Sachs évoque 300 millions d'emplois potentiellement exposés dans le monde. McKinsey chiffre à plus de 27% les heures travaillées en Europe susceptibles d'être automatisées d'ici 2030.
+
+Ces chiffres sont utiles : ils forcent la prise de conscience là où la complaisance pourrait s'installer. Mais ils entretiennent également une confusion : automatiser des tâches ne signifie pas supprimer automatiquement des métiers. De l'autre côté, les sceptiques rappellent que toutes les révolutions technologiques ont provoqué des peurs comparables et que l'emploi a toujours fini par rebondir. Ils ont raison sur le principe mais ils sous-estiment un facteur majeur : la vitesse.
+
+C'est elle qui change la nature du moment que nous vivons.
+
+Le Forum économique mondial projette la création de 170 millions de nouveaux postes d'ici 2030 contre 92 millions supprimés, soit un solde net positif de 78 millions. Ce qui arrive, c'est un monde avec un travail profondément recomposé, qui réclame des compétences différentes à une vitesse sans précédent.
+
+Les organisations face à leurs choix
+
+Dans les organisations, le constat est sans appel : seulement 6% des grandes entreprises ont effectué un déploiement d'IA à grande échelle, et moins d'un tiers des PME a véritablement engagé le sujet. On expérimente, on pilote et on teste avec beaucoup de prudence.
+
+Cette inertie n'est ni de la lâcheté ni de l'ignorance. C'est une réaction humaine classique face à un changement profond. Machiavel l'a d'ailleurs théorisé ainsi :
+
+Rien n'est plus difficile à conduire qu'un changement d'ordre nouveau, parce que ceux qui profitent de l'ancien ordre le défendront avec énergie, tandis que ceux qui bénéficieraient du nouvel ordre ne le soutiennent qu'avec timidité.
+
+Le sujet est donc humain, organisationnel et culturel.
+
+Il faut imaginer l'homme heureux
+
+Imaginons : - un médecin libéré des tâches administratives rendu à sa mission première : soigner, écouter, décider avec toute la finesse que l'expérience humaine seule peut conférer; - un conseiller bancaire déchargé de la conformité, capable de consacrer l'intégralité de son attention à comprendre la situation de son client, à construire une relation de confiance que l'algorithme ne pourra jamais remplacer; - une PME accédant pour la première fois à des capacités d'analyse et de veille comparables à celles des grandes entreprises; - un enfant apprenant à son rythme, avec un tuteur infiniment patient qui ne se lasse jamais et ne compare pas...
+
+Cela existe déjà, certes de façon inégale, mais réelle.
+
+Par ailleurs, il y a une perspective que ce sujet néglige presque toujours : la planète. Simon Stiell, secrétaire exécutif de l'ONU pour le climat, déclarait dès 2023 qu'il est désormais évident que l'intelligence artificielle peut s'avérer un instrument précieux dans la lutte contre les changements climatiques. D'ailleurs, selon l’ADEME, les démarches structurées d’audit et de management énergétique permettent généralement de réaliser 10 à 20 % d’économies sur un site industriel.
+
+L'IA peut contribuer à ces optimisations, notamment en analysant les consommations et en détectant les anomalies.
+
+Par exemple, Google a appliqué un algorithme d'apprentissage automatique à la gestion thermique de ses data centers. Résultat : réduction de 40% de la consommation d'énergie liée au refroidissement. Il est indéniable que l'IA consomme beaucoup d'énergie; Mais bien orientée, au service des "bons" problèmes, elle pourrait rendre à la planète bien plus qu'elle ne lui prend.
+
+Les passeurs
+
+L'histoire des grandes transformations technologiques enseigne une leçon constante : la technologie ne se déploie pas d'elle-même, elle a besoin de passeurs capables de tenir ensemble la promesse technologique et la résistance humaine, la vision stratégique et le sens du travail.
+
+Lewin, dans ses travaux fondateurs sur la psychologie du changement, avait modélisé le processus en trois phases : dégeler les certitudes, transformer les pratiques et recristalliser les nouvelles normes. La phase de dégel est celle où tout échoue habituellement par manque de narration, par l'absence d'une orientation capable de rendre compréhensible et acceptable ce qui est d'abord vécu comme une menace.
+
+L'exemple de Toyota est une bonne illustration : lorsque la firme nippone a déployé son Toyota Production System, du Lean Management, la majorité des groupes industriels occidentaux ont d'abord observé le modèle avec curiosité puis l'ont copié à la lettre ensuite. Ils ont, pour la plupart, échoué parce qu'ils avaient importé la méthode sans importer la culture qui la rendait possible.
+
+En effet, Toyota incarnait une philosophie du travail, de l'amélioration continue, du respect de l'opérateur.... La transformation IA reproduit ce schéma : les organisations qui n'y voient qu'un outil rateront la marche mais celles qui y voient un changement de culture et de rapport au travail auront une longueur d'avance.
+
+Les grandes transformations de l'humanité n'ont jamais été stoppées. Elles ont été guidées, bien ou mal, par ceux qui avaient compris avant les autres ce qui se passait et qui avaient eu le courage de l'organiser.
+
+La pilule rouge est sur la table. La question qui demeure est de savoir qui aura la lucidité de la saisir ?
+
+Rédaction humaine, appui éditorial par IA : GPT-5.4
+
+### IA en entreprise : hâtez-vous lentement
+
+Auteur : Charles Berthou
+Date de publication : 2026-07-08
+Article : https://charlesberthou.fr/articles/entreprise/
+Publication LinkedIn : https://fr.linkedin.com/pulse/ia-en-entreprise-h%C3%A2tez-vous-lentement-charles-berthou-qnine
+
+Entre l'enthousiasme des promesses et l'exigence du réel : ma lecture à l'issue des rencontres au West Data Festival et de l'actualité.
+
+Sur le terrain : entre impatience et attentisme.
+
+Impatience de collègues qui voient, semaine après semaine, les grands laboratoires publier de nouvelles fonctionnalités et repousser les usages. Attentisme de ceux qui n'attendent plus des annonces, mais des preuves : des usages concrets et une vraie valeur ajoutée au quotidien. Cet écart est légitime : les usages progressent plus vite que la capacité collective à les organiser.
+
+Selon Le Monde, près de la moitié des Français utilisent déjà l'IA générative : 85% chez les 18-24 ans, 73% chez les 25-39 ans, 48% chez les 40-59 ans. Côté pro, l'Apec relève que 35 % des cadres y recourent au moins une fois par semaine, que 72 % souhaitent être formés, et que seuls 24 % l'ont déjà été.
+
+En fait, derrière ces chiffres, trois réalités :
+
+1. Des rythmes d'appropriation différents
+
+Tous n'avancent pas au même rythme. Certains expérimentent, d'autres observent, d'autres attendent des repères. L'IA bouscule les habitudes, parfois le rapport au travail, à l'expertise et à la valeur ajoutée individuelle. C'est bien pour cela qu'il faut remettre cette technologie à sa juste place : un outil au service de l'humain. Rien de plus.
+
+2. Le Shadow AI progresse plus vite que les cadres
+
+La deuxième réalité est celle du Shadow AI. Microsoft emploie ce terme pour désigner l'usage d'outils sans validation, sans cadre et sans visibilité pour l'organisation. Les risques sont connus : exposition des données, difficultés de conformité, usages dispersés. Ce phénomène, bien connu des DSI, traduit de la curiosité ou un besoin métier ; il rappelle également qu'une innovation, aussi enthousiasmante soit-elle, est un véritable défi d'encadrement.
+
+3. La valeur n'est pas dans toutes les nouveautés
+
+La troisième réalité réside dans le choix. Oui, toutes les nouveautés n'ont pas vocation à entrer dans l'environnement de travail. Toutes ne produisent pas la même utilité. Il faut distinguer l'effet de démonstration du gain réel.
+
+En pratique, la valeur se joue souvent sur des usages simples et répétés : rédiger un compte rendu, synthétiser un document, analyser plus vite des statistiques, faire ressortir un risque, retrouver une information dans une masse documentaire. Voilà ce qui change réellement le quotidien.
+
+Le temps de l'entreprise
+
+In fine, c'est ce qui donne sa légitimité au temps de l'entreprise. Il peut sembler plus lent que celui des annonces et des démonstrations : 1 heure sur la planète de Miller pour 7 années terrestres, comme dans Interstellar. Il répond pourtant à d'autres exigences : protection des données, sécurité, conformité, équité, continuité d'activité, qualité de service.
+
+« Science sans conscience n'est que ruine de l'âme », écrivait Rabelais.
+
+Le sens est là : faire de l'intelligence artificielle une technologie utile, ancrée dans le réel, au service du collectif et d'un progrès durable.
+
+Rédaction humaine, appui éditorial par IA : GPT-5.4
 
 ## Ressources
 

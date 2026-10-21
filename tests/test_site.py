@@ -209,6 +209,7 @@ class ResourcesTest(unittest.TestCase):
             for name in ('templates', 'assets'):
                 (root / name).symlink_to(ROOT / name, target_is_directory=True)
             (root / 'content').mkdir()
+            (root / 'content/articles').symlink_to(ROOT / 'content/articles', target_is_directory=True)
             (root / 'content/editions.json').write_bytes((ROOT / 'content/editions.json').read_bytes())
             source = root / 'content/resources.json'
             with patch.object(build, 'ROOT', root):
@@ -236,18 +237,22 @@ class ResourcesTest(unittest.TestCase):
 
     def test_navigation_and_accessibility_references(self):
         outputs = build.build()
-        documents = {path: Document(outputs[path]) for path in ('index.html', 'ressources/index.html', '404.html')}
+        documents = {path: Document(html) for path, html in outputs.items()
+                     if path in ('index.html', 'ressources/index.html', '404.html') or path.startswith('articles/')}
         for path, doc in documents.items():
             with self.subTest(page=path):
                 self.assertEqual(doc.headings.count('h1'), 1)
                 self.assertEqual(len(doc.ids), len(set(doc.ids)))
                 self.assertTrue(set(doc.references) <= set(doc.ids))
                 self.assertIn('/ressources/', doc.links)
+                self.assertIn('/articles/', doc.links)
                 for href in doc.links:
                     if href.startswith('/#'):
                         self.assertIn(href[2:], documents['index.html'].ids)
                     elif href.startswith('#'):
                         self.assertIn(href[1:], doc.ids)
+                    elif href.startswith('/articles/'):
+                        self.assertIn(href.lstrip('/') + 'index.html', documents)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04",
+  "updated": "2026-10-21",
   "newsletter_url": "https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032",
   "author": {
     "name": "Charles Berthou",
@@ -19,7 +19,9 @@
         "width": 1440,
         "height": 810,
         "srcset": "/assets/passage/travail-small.webp 768w, /assets/passage/travail.webp 1440w"
-      }
+      },
+      "body": "articles/travail.html",
+      "integrated": "2026-10-21"
     },
     {
       "slug": "progres",
@@ -33,7 +35,9 @@
         "src": "/assets/passage/progres.webp",
         "width": 960,
         "height": 539
-      }
+      },
+      "body": "articles/progres.html",
+      "integrated": "2026-10-21"
     },
     {
       "slug": "compteur",
@@ -47,7 +51,9 @@
         "src": "/assets/passage/compteur-sans-titre.webp",
         "width": 960,
         "height": 539
-      }
+      },
+      "body": "articles/compteur.html",
+      "integrated": "2026-10-21"
     },
     {
       "slug": "eau",
@@ -61,7 +67,9 @@
         "src": "/assets/passage/eau.webp",
         "width": 960,
         "height": 540
-      }
+      },
+      "body": "articles/eau.html",
+      "integrated": "2026-10-21"
     },
     {
       "slug": "humanite",
@@ -75,7 +83,9 @@
         "src": "/assets/passage/humanite.webp",
         "width": 707,
         "height": 397
-      }
+      },
+      "body": "articles/humanite.html",
+      "integrated": "2026-10-21"
     },
     {
       "slug": "entreprise",
@@ -89,7 +99,9 @@
         "src": "/assets/passage/entreprise.webp",
         "width": 707,
         "height": 398
-      }
+      },
+      "body": "articles/entreprise.html",
+      "integrated": "2026-10-21"
     }
   ]
 }

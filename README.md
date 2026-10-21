@@ -1,26 +1,28 @@
 # Le Passage IA · charlesberthou.fr
 
-Site statique publié sur GitHub Pages depuis la branche `main`. L’accueil relaie la newsletter de Charles Berthou et donne accès à ses ressources pratiques. Les articles et l’abonnement sont hébergés sur LinkedIn.
+Site statique publié sur GitHub Pages depuis la branche `main`. L’accueil donne accès aux articles complets de Charles Berthou et à ses ressources pratiques. LinkedIn reste le lieu d’abonnement à la newsletter et la publication d’origine des articles.
 
 L’accueil présente le dernier article, une entrée vers les expériences et leurs modes d’emploi, puis les autres articles. Les métadonnées, le pied de page et les fichiers `llms` décrivent ces deux dimensions. Le bloc Ressources disparaît si aucun cas d’usage n’est publié.
 
-## Intégration prochaine des articles
+## Articles intégrés
 
-Les textes complets ne sont pas encore présents dans `content/editions.json` : ce fichier contient les titres, résumés, images et destinations LinkedIn. Leur intégration au site est une phase distincte. Prévoir une page `/articles/<slug>/` pour chaque texte validé, avec auteur, dates, illustration, corps du texte, sources et liens utiles vers les ressources. La lecture doit rester dans le même onglet ; LinkedIn devient un lien secondaire sur les articles intégrés. Les autres articles conservent leur destination actuelle.
+Les six textes complets sont intégrés depuis le 21 octobre 2026. `/articles/` réunit toutes les éditions et `/articles/<slug>/` propose leur lecture dans le même onglet. Chaque page conserve le titre, la date d’origine, l’auteur, l’illustration, le texte, ses références et le crédit éditorial. La publication LinkedIn est accessible en fin de lecture. Le lien entre l’article sur le progrès et celui sur l’humanité est interne.
 
-Lors de cette intégration, adapter le générateur qui impose actuellement une URL LinkedIn, puis ajouter les pages au sitemap et aux données structurées `Article`. Ne pas fabriquer de page de lecture à partir d’un résumé ni annoncer un texte complet absent. La page d’accueil conserve sa structure, avec le dernier article, les ressources puis les autres lectures.
+Les textes proviennent des publications publiques de Charles sur LinkedIn : extraction HTML pour cinq articles, extraction textuelle indexée avec restitution des liens pour `humanite`. Les recommandations, commentaires, scripts et paramètres de suivi de LinkedIn sont exclus. Le texte est conservé, sans nouvelle révision factuelle des articles historiques. Les corps sont des fragments HTML locaux dans `content/articles/`, validés à la génération. Les pages sont autonomes, sans script de lecture, avec une colonne de 44 rem au maximum, une image non recadrée et une navigation en fin d’article.
+
+Chaque article a une canonique locale, des métadonnées de partage avec sa propre illustration, des données structurées `Article` et un fil d’Ariane. L’archive et les six pages figurent au sitemap. `llms-full.txt` reprend les textes complets, leur auteur et leur date ; ces fichiers ne garantissent aucun classement ni citation. La durée de lecture est indicative, calculée sur 220 mots par minute.
 
 ## Modifier un article
 
-La source éditoriale unique est `content/editions.json`.
+Les métadonnées éditoriales sont dans `content/editions.json` et le texte complet dans `content/articles/<slug>.html`.
 
-1. Ajouter ou modifier l’article dans ce fichier : identifiant, titre, date ISO, thème, adresse LinkedIn, résumé, alternative textuelle et caractéristiques de l’image
-2. Placer l’illustration WebP dans `assets/passage/` et renseigner ses dimensions exactes
+1. Ajouter ou modifier les métadonnées : identifiant, titre, date ISO de publication, thème, adresse LinkedIn d’origine, résumé, alternative textuelle, image, `body` (`articles/<slug>.html`) et `integrated` (date de mise à jour locale)
+2. Placer le texte complet dans le fichier `body`, puis l’illustration WebP dans `assets/passage/` avec ses dimensions exactes
 3. Actualiser `updated` avec la date de modification
 4. Exécuter `python3 scripts/build.py`, puis `python3 scripts/build.py --check`
 5. Vérifier l’article principal, les liens et les rendus sur téléphone et ordinateur avant de publier les fichiers modifiés
 
-Le script fonctionne avec Python 3, sans dépendance. Il trie les articles par date, affiche le dernier puis les cinq précédents, et produit les dates françaises, le HTML, les données structurées, le sitemap et les fichiers `llms`. La liste complète reste conservée dans la source et dans `llms-full.txt`.
+Le script fonctionne avec Python 3, sans dépendance. Il trie les articles par date, affiche le dernier puis les cinq précédents à l’accueil, toutes les éditions dans l’archive et une page pour chaque texte. Il produit les dates françaises, le HTML, les données structurées, le sitemap et les fichiers `llms`. Un corps absent, un chemin invalide ou une balise active bloque la génération. Les balises admises sont `p`, `h2`, `h3`, `blockquote`, `ul`, `ol`, `li`, `strong`, `em`, `a`, `br` et `hr` ; les liens doivent être HTTPS ou pointer vers un article local existant.
 
 `--check` ne modifie aucun fichier. Il retourne un code d’erreur si une sortie générée est périmée ou si une donnée obligatoire, une image ou une adresse LinkedIn est invalide. Ne pas modifier directement les fichiers générés.
 
@@ -28,10 +30,12 @@ Le script fonctionne avec Python 3, sans dépendance. Il trie les articles par d
 
 - `templates/page.html` : enveloppe commune, métadonnées, navigation et pied de page
 - `templates/index.html` : contenu de l’accueil
+- `templates/articles.html` et `templates/article.html` : archive et lecture d’un article
 - `templates/resources.html` : structure de la page Ressources
 - `assets/passage/site.css` : mise en page, couleurs, états interactifs et tailles de texte
 - `assets/passage/fonts.css` : quatre polices WOFF2 locales, licences incluses
 - `scripts/build.py` : composants d’article, métadonnées et pages de repli
+- `scripts/articles.py` : validation des textes complets et calcul de la durée de lecture
 - `scripts/resources.py` : validation et rendu statique des ressources
 - `assets/passage/resources.js` : copie des prompts, sommaire et navigation dans les guides
 
