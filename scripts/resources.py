@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlsplit
 from resource_icons import ICONS, render_icon
 
 RESOURCE_URL = 'https://charlesberthou.fr/ressources/'
-RESOURCE_DESCRIPTION = 'Des modes d’emploi issus des expériences de Charles Berthou : outils, étapes, prompts à copier et vérifications pour utiliser l’IA au quotidien.'
+RESOURCE_DESCRIPTION = 'Des usages réels de l’IA, du projet au résultat : courses, livre, énergie, mails et applications. Modes d’emploi et prompts de Charles Berthou.'
 EMPTY_STATE = '''<section class="resources-empty" aria-labelledby="resources-empty-title">
    <p class="eyebrow">Prochainement</p>
    <h2 id="resources-empty-title">Les premières ressources<br>sont en préparation.</h2>

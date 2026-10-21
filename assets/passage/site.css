@@ -98,6 +98,7 @@ em { font-weight: 400; }
 .resources-heading h1 { font-size: clamp(2.75rem, 1.5rem + 6vw, 6rem); letter-spacing: -.04em; line-height: 1.08; margin-bottom: 1rem; overflow-wrap: anywhere; }
 .resources-heading h1 > span { color: var(--gold); }
 .resources-intro { max-width: 42rem; font-size: 1.125rem; line-height: 1.75; color: var(--muted); }
+.resources-position { max-width: 48rem; margin-top: 1rem; font-size: .9375rem; line-height: 1.7; color: var(--muted); }
 .resources-content { padding-bottom: clamp(3rem, 6vw, 5rem); }
 .resources-nav { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .5rem 2rem; margin-bottom: 1.25rem; }
 .resources-index { flex: 1; min-width: min(100%, 12rem); }

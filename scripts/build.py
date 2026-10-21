@@ -62,9 +62,8 @@ def image_tag(edition, featured=False):
     return f'<img {attrs}>'
 
 
-def link(url, text, classes='text-link', subscribe=False):
-    description = 'external-note subscription-note' if subscribe else 'external-note'
-    return f'<a class="{classes}" href="{escape(url)}" target="_blank" rel="noopener noreferrer" aria-describedby="{description}">{escape(text)} {ARROW}</a>'
+def link(url, text, classes='text-link'):
+    return f'<a class="{classes}" href="{escape(url)}" target="_blank" rel="noopener noreferrer" aria-describedby="external-note">{escape(text)} {ARROW}</a>'
 
 
 def render_feature(e):
@@ -98,7 +97,7 @@ def render_page(content, *, head, title, description, canonical, robots,
         scripts=scripts, content=content, author_name=escape(author['name']), year=year,
         resources_current=' aria-current="page"' if resource_page else '',
         newsletter_url=escape(newsletter),
-        footer_subscribe=link(newsletter, 'S’abonner', subscribe=True),
+        footer_subscribe=link(newsletter, 'S’abonner'),
         footer_author=link(author['url'], 'Profil LinkedIn'))
 
 
