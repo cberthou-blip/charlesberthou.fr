@@ -161,9 +161,9 @@ def build():
         description='L’intelligence artificielle, à hauteur humaine. Retrouvez les articles du Passage IA, la newsletter de ' + author['name'] + ' sur le travail, les organisations et la société.',
         canonical='https://charlesberthou.fr/', robots='index, follow, max-image-preview:large', schema=schema)
     resource_content = Template((ROOT / 'templates/resources.html').read_text(encoding='utf-8')).substitute(
-        resources_content='\n'.join(resources.render_resource(item, asset) for item in published) if published else resources.EMPTY_STATE)
+        resources_content=resources.render_collection(published, asset))
     resource_page = render_page(resource_content, **common,
-        title='Ressources IA : usages et prompts | Le Passage IA',
+        title='Ressources IA : usages, prompts et astuces | Le Passage IA',
         description=resources.RESOURCE_DESCRIPTION if published else 'Les ressources du Passage IA sont en préparation : usages personnels de l’IA, prompts et conseils de Charles Berthou.',
         canonical=resources.RESOURCE_URL,
         robots='index, follow, max-image-preview:large' if published else 'noindex, follow',

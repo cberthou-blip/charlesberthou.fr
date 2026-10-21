@@ -31,21 +31,29 @@ Après une modification des styles ou du modèle, relancer la génération. Les 
 
 L’accueil fonctionne sans JavaScript, formulaire, traceur ni contenu tiers intégré. Le titre, l’image et le lien de lecture de l’article principal constituent une seule zone cliquable. Les ouvertures LinkedIn sont décrites pour les technologies d’assistance. L’abonnement nécessite un compte LinkedIn.
 
-## Ajouter une ressource, en deuxième phase
+## Modifier les ressources
 
-La source est `content/resources.json`. La première version contient une liste vide : aucun cas d’usage ni prompt n’est inventé pour remplir la page. L’état d’attente disparaît dès qu’une ressource est publiée.
+La source est `content/resources.json`. La version du 21 octobre 2026 contient 10 cas d’usage, chacun avec un prompt intégral et un conseil, et 6 astuces directement lisibles. Le contenu public provient du document éditorial fourni par Charles. Les prompts sont des modèles reconstruits à partir de ses expériences, sans être présentés comme des copies historiques. Aucun média de réalisation ni commentaire interne n’est publié.
 
-Chaque entrée possède un `slug` unique et stable, un booléen `published`, un `title` et un `summary`. Les champs optionnels sont `paragraphs` (liste de textes), `prompts` (objets `title` et `text`), `tips` (liste de conseils), `links` (objets `label` et `url`) et `image` (`src`, `alt`, `width`, `height`). Le corps doit contenir au moins un paragraphe, prompt, conseil ou lien pour être publié.
+Chaque entrée possède un `slug` unique et stable, un booléen `published`, un `kind` (`usage` ou `astuce`), un `title`, un `summary` et un `icon` choisi dans `scripts/resource_icons.py`. Les SVG décoratifs sont locaux, homogènes et masqués aux technologies d’assistance ; aucune bibliothèque d’icônes n’est chargée. Pour compatibilité, l’absence de `kind` signifie `usage` et `icon` reste facultatif.
+
+- Un cas d’usage possède `prompts` (objets `title` et `text`) et `tips` (un conseil dans la sélection actuelle). Les champs historiques optionnels `paragraphs`, `links` et `image` restent compatibles, mais les fiches actuelles sont exclusivement textuelles
+- Une astuce possède un texte `try_it` affiché sous « À essayer ». Les champs de contenu dépliable et les médias y sont refusés
+- Les types et pictogrammes inconnus, les slugs dupliqués, les textes vides et les adresses non sûres bloquent la génération
 
 1. Ajouter le contenu fourni dans `resources` et renseigner `published: true` uniquement lorsqu’il est prêt
-2. Placer les images et documents dans `assets/resources/`, avec des noms simples sans espaces
+2. Conserver les fiches textuelles et les prompts intégraux ; ne pas ajouter de donnée privée
 3. Actualiser la date `updated` du fichier de ressources
-4. Exécuter `python3 scripts/build.py`, `python3 scripts/build.py --check` et `python3 -m unittest discover -s tests`
+4. Exécuter `python3 scripts/build.py`, `python3 scripts/build.py --check`, `python3 -m unittest discover -s tests` et `node --test tests/resources.test.cjs`
 5. Contrôler le rendu mobile, le dépliage, les liens et la copie avant publication
 
 Tout contenu éditorial est du texte brut, échappé lors de la génération. Les sauts de ligne des prompts sont préservés. Les liens acceptent HTTPS ou un fichier local existant dans `assets/resources/`. Les documents s’ouvrent dans le même onglet. Aucune dépendance, aucun rendu de contenu côté client et aucun service tiers ne sont ajoutés.
 
 Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé sans effacer le prompt.
+
+Deux liens de rubrique mènent à `#cas-usage` et `#astuces`. Les 16 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Sur ordinateur, les titres et les textes occupent deux colonnes dans chaque ligne ; à 900 px et en dessous, ils se superposent. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
+
+Les indications produit ont été vérifiées le 21 octobre 2026 dans la documentation officielle : [mémoire](https://learn.chatgpt.com/docs/customization/memories), [modèles et niveaux de réflexion](https://learn.chatgpt.com/docs/models), [dictée](https://learn.chatgpt.com/docs/prompting), [tâches planifiées et connexions](https://learn.chatgpt.com/training/walkthroughs/scheduled-tasks). Les textes conservent les réserves sur la disponibilité selon le compte, la plateforme et les permissions. Les valeurs « Moyen » et « Élevé » sont conditionnelles, sans promesse d’un sélecteur identique partout.
 
 `published: false` ou l’absence de ce champ exclut l’entrée de toutes les sorties générées. Attention : le dépôt et ses sources sont publics ; n’y placer que des éléments destinés à être publics, même en brouillon.
 

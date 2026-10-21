@@ -1,4 +1,229 @@
 {
   "updated": "2026-10-21",
-  "resources": []
+  "resources": [
+    {
+      "slug": "organiser-repas-courses",
+      "published": true,
+      "kind": "usage",
+      "icon": "shopping-basket",
+      "title": "Organiser les repas et les courses",
+      "summary": "J’utilise l’IA pour organiser les repas du foyer en tenant compte des goûts de chacun et des contraintes de la semaine. Elle m’aide à construire des menus réalistes, puis à préparer une liste de courses cohérente, avec les quantités nécessaires et moins de gaspillage.",
+      "prompts": [
+        {
+          "title": "Organiser une semaine de repas et les courses",
+          "text": "Je veux obtenir un menu familial réalisable pour les 7 prochains jours et une liste de courses directement utilisable.\n\nCommence par me demander uniquement ce que tu ignores : nombre de convives selon les repas, goûts, restrictions, repas déjà prévus, produits disponibles, budget et temps de préparation. Ne suppose pas connaître le contenu de mes placards.\n\nProduis d'abord un menu sous forme de tableau (jour, déjeuner, dîner, préparation, éventuels restes), avec des recettes simples et des ingrédients réutilisés intelligemment. Vérifie la variété, les portions, le temps de cuisine et les contraintes alimentaires.\n\nAttends ma validation ou mes corrections. Ensuite seulement, prépare une liste de courses unique, classée par rayon, avec quantités consolidées, ingrédients déjà disponibles à exclure et estimation de budget uniquement si elle est justifiable.\n\nTermine par un contrôle : aucun ingrédient manquant dans la liste, pas de doublon et cohérence entre recettes, quantités et nombre de convives."
+        }
+      ],
+      "tips": [
+        "Validez le menu avant de demander les courses. Les corrections faites en amont évitent de recalculer toute la liste."
+      ]
+    },
+    {
+      "slug": "transmettre-memoire-familiale",
+      "published": true,
+      "kind": "usage",
+      "icon": "book-open",
+      "title": "Transmettre la mémoire familiale",
+      "summary": "J’ai entrepris de raconter l’histoire d’un proche à partir d’entretiens, de souvenirs et d’archives familiales. L’IA m’a accompagné dans le classement des sources, la chronologie et la rédaction, avec une exigence particulière : préserver la voix des témoins et distinguer les faits établis des souvenirs incertains.",
+      "prompts": [
+        {
+          "title": "Construire un livre de mémoire familiale",
+          "text": "Je souhaite aboutir à un livre biographique fidèle, fluide et documenté sur la vie d’un proche. Je fournirai progressivement des entretiens, souvenirs, dates, photographies décrites et archives que j’ai le droit d’utiliser.\n\nTravaille comme un biographe et un documentaliste :\n1. Commence par dresser la liste des sources disponibles et des témoignages à recueillir\n2. Prépare des questions d’entretien ouvertes qui font émerger les anecdotes, les lieux, les relations et les mots personnels\n3. Construis une chronologie où chaque événement important renvoie à sa source\n4. Signale contradictions, zones d’ombre et dates incertaines avant toute rédaction\n5. Propose un sommaire cohérent, puis rédige un chapitre à la fois avec ma validation\n6. Effectue une relecture finale de cohérence entre chapitres et sources\n\nLe résultat attendu est un manuscrit lisible et humain, accompagné d’une liste des points qui restent à confirmer.\n\nN’invente jamais de scène vécue, de dialogue, de citation ou de détail historique. Sépare clairement faits documentés, souvenirs rapportés et hypothèses. Respecte la vie privée des personnes mentionnées."
+        }
+      ],
+      "tips": [
+        "Recueillez d’abord les mots et anecdotes des proches. Ils donnent au récit une matière que l’IA ne saurait reconstituer seule."
+      ]
+    },
+    {
+      "slug": "creer-bande-dessinee-ia",
+      "published": true,
+      "kind": "usage",
+      "icon": "messages-square",
+      "title": "Créer une bande dessinée avec l’IA",
+      "summary": "J’ai expérimenté la création de bandes dessinées avec l’IA, de l’écriture jusqu’aux planches illustrées. La difficulté principale est apparue dans la durée : conserver les mêmes personnages, des dialogues naturels et un ordre de lecture cohérent. J’ai donc construit une méthode de génération et de contrôle, planche après planche.",
+      "prompts": [
+        {
+          "title": "Préparer une bande dessinée cohérente",
+          "text": "Je veux réaliser une bande dessinée courte dont l’histoire, les personnages et le style restent cohérents d’une planche à l’autre.\n\nAide-moi à produire les éléments dans cet ordre, sans brûler les étapes :\n1. Un synopsis avec début, progression et conclusion\n2. Un découpage planche par planche puis case par case, avec action, décor, cadrage, texte exact des bulles et personne qui parle\n3. Une bible fixe des personnages, lieux, vêtements, objets récurrents et règles graphiques\n4. Un jeu de consignes d’illustration réutilisant systématiquement cette bible\n5. Une grille de contrôle des planches avant de passer à la suivante\n\nPar défaut, propose 4 planches de 6 à 8 cases, à ajuster si le récit l’exige. Les dialogues doivent être courts, vivants et naturels. Vérifie l’ordre de lecture, l’orientation des bulles, les mains, les accessoires, les positions et les continuités d’une case à l’autre.\n\nFais-moi valider d’abord le synopsis, puis le scénario, puis la bible graphique. Lorsqu’une planche présente une erreur, décris précisément la correction, sans modifier arbitrairement les autres éléments.\n\nLivrable attendu : scénario complet, bible de référence, consignes prêtes à générer et liste de vérification."
+        }
+      ],
+      "tips": [
+        "Fixez une bible graphique commune et contrôlez les planches une par une. Les petites incohérences deviennent difficiles à corriger une fois multipliées."
+      ]
+    },
+    {
+      "slug": "reduire-depenses-energetiques",
+      "published": true,
+      "kind": "usage",
+      "icon": "zap",
+      "title": "Réduire ses dépenses énergétiques",
+      "summary": "J’ai utilisé l’IA pour rapprocher mes factures d’énergie, les équipements du logement et nos habitudes. Ce travail permet de mieux comprendre les postes de dépense, de comparer les mesures faciles aux investissements plus lourds et de préparer un suivi des économies réellement obtenues.",
+      "prompts": [
+        {
+          "title": "Construire un plan d’économies énergétiques vérifiable",
+          "text": "Je veux obtenir un plan concret pour réduire les dépenses énergétiques de mon logement, avec des priorités et une méthode pour vérifier les résultats.\n\nJe te transmettrai mes factures, historiques de consommation, contrats et tarifs, caractéristiques du logement, équipements, réglages et habitudes d’occupation.\n\n1. Reconstitue la situation de départ, en distinguant consommation (kWh), prix unitaire, abonnement et facture totale\n2. Identifie les données manquantes et les postes plausiblement les plus importants\n3. Propose trois niveaux d’actions : sans dépense, petits investissements, travaux ou changements de contrat à étudier\n4. Pour chaque action, indique coût éventuel, effort, économies possibles, hypothèses et ordre de priorité\n5. Prépare un tableau de suivi avant/après, avec des périodes comparables et une correction des effets de météo ou de saison quand les données le permettent\n\nTermine par les cinq actions les plus pertinentes pour mon logement. Distingue calculs vérifiés, estimations et simples pistes. Ne promets aucun pourcentage d’économie sans base mesurable et ne propose pas de manipulation électrique ou de chauffage dangereuse."
+        }
+      ],
+      "tips": [
+        "Séparez consommation et tarif : une baisse de facture peut venir du prix de l’énergie, sans changement de vos usages."
+      ]
+    },
+    {
+      "slug": "experiences-familiales-sur-mesure",
+      "published": true,
+      "kind": "usage",
+      "icon": "users-round",
+      "title": "Imaginer des expériences familiales sur mesure",
+      "summary": "J’utilise l’IA pour imaginer des jeux et des découvertes adaptés à ma famille : quiz sur les univers préférés des enfants, activités à la maison ou idées de sorties. Les propositions deviennent vraiment utiles lorsqu’elles tiennent compte des âges, du temps disponible et des réactions en direct.",
+      "prompts": [
+        {
+          "title": "Inventer et animer une expérience familiale",
+          "text": "Je veux une activité familiale sur mesure, que nous puissions réellement faire aujourd’hui. Commence par me demander les âges, les centres d’intérêt, le lieu, la durée, le budget éventuel et les contraintes importantes.\n\nPropose ensuite une seule idée principale avec objectif, matériel, préparation minimale, déroulement, adaptation pour les plus jeunes et variante plus difficile pour les plus grands. Prévois un plan B si l’activité dépend de la météo.\n\nSi je choisis un quiz :\n- Pose une seule question à la fois\n- Attends nos réponses avant de continuer\n- Tiens compte des corrections et ne change pas rétroactivement les réponses données\n- Ajuste la difficulté à nos réactions\n- Alterne les participants et garde une ambiance simple et bienveillante\n\nLe résultat attendu est une activité prête à vivre, sans préparation complexe ni longues explications."
+        }
+      ],
+      "tips": [
+        "Pour les quiz, imposez « une question à la fois ». L’IA devient alors un véritable animateur plutôt qu’un générateur de listes."
+      ]
+    },
+    {
+      "slug": "assistant-personnel-sante",
+      "published": true,
+      "kind": "usage",
+      "icon": "heart-pulse",
+      "title": "Construire un assistant personnel de santé",
+      "summary": "J’explore l’utilisation de l’IA pour mieux organiser mon parcours de santé : comprendre un compte rendu, mettre les événements dans l’ordre et préparer les questions à poser en consultation. La perspective d’un suivi plus proactif m’intéresse, avec une limite essentielle : le médecin reste responsable des décisions médicales.",
+      "prompts": [
+        {
+          "title": "Préparer une synthèse pour une consultation",
+          "text": "À partir des informations de santé que je choisis de partager, aide-moi à préparer une consultation médicale claire et efficace.\n\nRésultat attendu : une synthèse d’une page maximum, comprenant le motif de consultation, la chronologie datée des symptômes ou événements, les résultats documentés, les traitements que j’ai déclarés, les inconnues et cinq questions pertinentes pour le professionnel de santé.\n\nMéthode :\n1. Classe mes informations par date et cite le document ou mon témoignage comme source\n2. Explique les termes médicaux sans tirer de conclusion clinique excessive\n3. Repère les contradictions et demande les précisions indispensables\n4. Identifie les signes qui, s’ils sont présents, pourraient nécessiter un avis urgent\n5. Prépare la synthèse et les questions, sans ajouter de faits absents de mon dossier\n\nNe pose pas de diagnostic, ne prescris pas et ne modifie aucun traitement. Si un signe potentiellement grave apparaît, recommande l’évaluation médicale appropriée. Ne suppose pas qu’un rappel ou un suivi automatique est actif."
+        }
+      ],
+      "tips": [
+        "Une chronologie datée et une question précise à résoudre sont souvent plus utiles qu’un long récit de symptômes."
+      ]
+    },
+    {
+      "slug": "comprendre-finances-foyer",
+      "published": true,
+      "kind": "usage",
+      "icon": "wallet",
+      "title": "Comprendre les finances de son foyer",
+      "summary": "J’ai utilisé l’IA pour rapprocher relevés, factures et versements afin de comprendre ce que certains services coûtent réellement au foyer. Le travail consiste notamment à éviter les doubles comptes, distinguer les aides des remboursements et retrouver l’origine d’opérations peu explicites.",
+      "prompts": [
+        {
+          "title": "Reconstituer un budget familial fiable",
+          "text": "Je veux obtenir un bilan mensuel fiable de mon foyer à partir des relevés, factures et justificatifs que je te fournirai.\n\nLivre-moi un tableau des opérations avec date, montant, sens, catégorie, source documentaire et degré de certitude, puis un bilan par poste et une liste des anomalies à vérifier.\n\nTravaille ainsi :\n1. Extrais les flux et définis une période d’analyse commune\n2. Rapproche les opérations qui semblent correspondre au même événement et repère les doublons\n3. Isole les virements entre mes propres comptes, qui ne sont ni des revenus ni des dépenses du foyer\n4. Distingue prestations générales, remboursements affectés à un poste et recettes ordinaires\n5. Pour chaque service, calcule son coût net seulement après déduction des aides qui lui sont réellement liées\n6. Vérifie les sommes, donne les formules et cite les pièces qui soutiennent les conclusions\n\nSi une facture manque, si un libellé est ambigu ou si deux montants ne correspondent pas, conserve l’incertitude visible. Ne fabrique ni affectation comptable ni économie."
+        }
+      ],
+      "tips": [
+        "Ne déduisez d’une charge que les aides qui lui correspondent. Une prestation familiale générale ne doit pas être confondue avec le remboursement d’un service précis."
+      ]
+    },
+    {
+      "slug": "creer-application-personnelle",
+      "published": true,
+      "kind": "usage",
+      "icon": "smartphone",
+      "title": "Créer sa propre application",
+      "summary": "Je me suis lancé dans la création d’une application iPhone pour suivre une collection de films, de séries et de bandes dessinées. L’IA m’a accompagné dans la définition du produit, l’écriture du code et les premiers tests. Une première compilation fonctionne, tandis que l’ergonomie reste à affiner.",
+      "prompts": [
+        {
+          "title": "Passer de l’idée à une application installable",
+          "text": "Je veux transformer mon idée en une première application réellement utilisable, même sans expérience avancée en développement.\n\nCommence par reformuler le besoin, les utilisateurs, les appareils visés, les trois fonctions essentielles, les données à conserver et mes contraintes de budget. Propose une version minimale avant les fonctions secondaires.\n\nProduis ensuite, étape par étape :\n1. Une spécification courte et testable\n2. Une architecture simple, avec les dépendances justifiées\n3. Les écrans et parcours indispensables, dans un style adapté à la plateforme\n4. Le code et des instructions précises pour installer, lancer et tester\n5. Une solution de conservation, sauvegarde ou export des données\n6. Une liste de tests fonctionnels et des corrections à apporter\n\nAprès chaque étape, attends le résultat des essais avant de déclarer la fonction terminée. Distingue compilation réussie, test manuel et fonctionnalité réellement validée. Privilégie des services gratuits lorsqu’ils répondent au besoin ; ne suppose pas une API payante indispensable.\n\nLivrable final : application minimale testable, instructions de lancement, bilan des fonctionnalités validées et limites connues."
+        }
+      ],
+      "tips": [
+        "Une compilation réussie est une étape technique, pas une validation de l’expérience utilisateur. Testez les parcours sur le vrai téléphone."
+      ]
+    },
+    {
+      "slug": "mettre-decisions-epreuve",
+      "published": true,
+      "kind": "usage",
+      "icon": "scale",
+      "title": "Mettre ses décisions à l’épreuve",
+      "summary": "J’utilise l’IA pour remettre mes raisonnements à l’épreuve. Après une première analyse, je lui demande de chercher ce qui manque, ce qui pourrait la contredire et ce qui mérite d’être vérifié. Cette confrontation m’aide à décider avec davantage de recul, tout en gardant la responsabilité du choix.",
+      "prompts": [
+        {
+          "title": "Faire examiner une décision par un contradicteur",
+          "text": "Je vais te présenter une décision à prendre, mon objectif, les éléments disponibles et mon avis initial.\n\nJe veux, à la fin, une note de décision courte et utilisable : options crédibles, critères de choix, risques, hypothèses à tester et recommandation justifiée.\n\n1. Reformule mon objectif et les contraintes réelles\n2. Distingue les faits établis, mes interprétations et les inconnues\n3. Cherche activement ce qui pourrait invalider mon raisonnement\n4. Compare deux ou trois options, y compris le maintien de la situation actuelle si pertinent\n5. Présente les conséquences, les risques et les informations qui feraient changer la recommandation\n6. Conclus par l’option la plus robuste selon les informations disponibles et les prochaines vérifications utiles\n\nNe cherche pas à me donner raison. N’invente ni sources ni données. Si les preuves sont insuffisantes, dis-le clairement. Ne transforme pas des préférences personnelles en faits établis."
+        }
+      ],
+      "tips": [
+        "Demandez « Qu’est-ce qui pourrait invalider ta conclusion ? » puis exigez que la réponse modifie réellement l’analyse si nécessaire."
+      ]
+    },
+    {
+      "slug": "intermediaire-ia-pour-mes-mails",
+      "published": true,
+      "kind": "usage",
+      "icon": "mail-search",
+      "title": "Faire de l’IA un intermédiaire pour ses mails",
+      "summary": "J’expérimente l’IA pour retrouver des échanges, rapprocher des factures, lire les conditions d’un devis ou d’une garantie et préparer une réponse adaptée. L’objectif à terme est de disposer d’un intermédiaire plus autonome pour certaines démarches, avec validation avant tout envoi ou engagement.",
+      "prompts": [
+        {
+          "title": "Examiner un dossier reçu par mail et préparer la suite",
+          "text": "Je veux traiter un dossier reçu par courriel avec rigueur, depuis la compréhension de l’échange jusqu’à une réponse prête à envoyer.\n\nUtilise uniquement les courriels et pièces jointes que je fournis ou auxquels les applications connectées t’autorisent réellement à accéder.\n\nLivrable attendu :\n- Résumé du dossier et chronologie des échanges\n- Tableau des montants, dates, garanties, obligations, conditions et échéances\n- Points incohérents ou absents, avec citation précise des documents\n- Deux ou trois démarches possibles et leurs avantages ou risques\n- Proposition de courriel courte, naturelle, factuelle et polie\n- Liste des éléments à confirmer avant envoi\n\nTravaille par étapes. Sépare ce qui est écrit dans les pièces de ce qui est une interprétation ou une hypothèse. Pour un droit, une garantie ou une clause, indique la source exacte. Si l’information manque, demande-la.\n\nNe contacte aucun tiers, n’envoie aucun message, n’accepte aucune offre et ne négocie aucun engagement sans mon autorisation explicite pour l’action concernée. Ne prétends pas avoir effectué une démarche non réalisée."
+        }
+      ],
+      "tips": [
+        "Commencez par faire auditer les pièces et leur chronologie. Le bon argument se trouve souvent dans une date ou une condition oubliée."
+      ]
+    },
+    {
+      "slug": "activer-memoire-ia",
+      "published": true,
+      "kind": "astuce",
+      "icon": "brain",
+      "title": "Activez la mémoire : donnez de la continuité à vos échanges",
+      "summary": "Activez la mémoire dans les paramètres de personnalisation, si votre compte le permet. Donnez à l’IA vos préférences durables, vos projets et les contraintes utiles. Elle pourra mieux contextualiser vos prochains échanges. Vérifiez régulièrement ce qu’elle retient : la mémoire est sélective et mérite d’être tenue à jour.",
+      "try_it": "« Quelles informations utiles connais-tu déjà sur mes projets et mes préférences ? Que devrais-je compléter ou corriger ? »"
+    },
+    {
+      "slug": "connecter-outils-quotidiens",
+      "published": true,
+      "kind": "astuce",
+      "icon": "plug",
+      "title": "Connectez vos outils : donnez-lui accès au bon contexte",
+      "summary": "Reliez les services que vous utilisez au quotidien, lorsque les connexions sont disponibles : messagerie, agenda, Drive et autres espaces documentaires. L’IA peut alors travailler sur des échanges et documents existants au lieu de vous demander de tout résumer. Vérifiez les permissions accordées et les sources effectivement accessibles.",
+      "try_it": "« Retrouve les mails et documents liés à ce dossier, puis indique ce qui reste à traiter, en citant tes sources. »"
+    },
+    {
+      "slug": "choisir-niveau-reflexion",
+      "published": true,
+      "kind": "astuce",
+      "icon": "sliders-horizontal",
+      "title": "Réglez le niveau de réflexion selon l’enjeu",
+      "summary": "Si votre offre propose ce réglage, choisissez Moyen pour les échanges courants qui demandent une vraie analyse, puis Élevé pour les comparaisons difficiles, les audits et les décisions importantes. Un effort de réflexion supplémentaire peut améliorer le raisonnement, sans dispenser de vérifier les faits et les sources.",
+      "try_it": "Avant d’examiner plusieurs devis ou une décision complexe, sélectionnez « Élevé », puis demandez une analyse critique des options."
+    },
+    {
+      "slug": "dicter-contexte",
+      "published": true,
+      "kind": "astuce",
+      "icon": "mic",
+      "title": "Dictez vos demandes : donnez plus de matière à l’IA",
+      "summary": "Dictez vos demandes dès qu’un sujet mérite du contexte. En parlant naturellement, on précise souvent les circonstances, les hésitations, les priorités et les contraintes qu’un message trop bref aurait oubliées. Cette richesse améliore les réponses. Relisez toutefois la transcription, particulièrement les montants, les dates et les noms.",
+      "try_it": "Racontez votre problème oralement, puis demandez : « Reformule mon besoin et identifie les informations qui te manquent vraiment. »"
+    },
+    {
+      "slug": "challenger-reponses",
+      "published": true,
+      "kind": "astuce",
+      "icon": "shield-check",
+      "title": "Challengez les réponses : poussez l’analyse plus loin",
+      "summary": "Avant de reprendre une réponse à votre compte, demandez à l’IA de la critiquer : hypothèses discutables, faits non vérifiés, oublis ou autres options. Prenez-en systématiquement l’habitude pour les décisions et les travaux importants. Le bon réflexe consiste à faire corriger la conclusion après la critique, plutôt qu’à accumuler des objections.",
+      "try_it": "« Challenge ta réponse. Identifie tes hypothèses fragiles et tes angles morts, puis propose une version corrigée et plus solide. »"
+    },
+    {
+      "slug": "rendre-ia-proactive",
+      "published": true,
+      "kind": "astuce",
+      "icon": "calendar-clock",
+      "title": "Rendez votre IA proactive : confiez-lui des rendez-vous réguliers",
+      "summary": "Au lieu de tout demander manuellement, programmez les tâches utiles : briefing du matin, préparation d’une semaine, veille ciblée ou alerte sur un changement important. Définissez ce qui mérite réellement une notification pour éviter le bruit. Les automatisations possibles varient selon les fonctionnalités et connexions disponibles.",
+      "try_it": "« Chaque matin, résume les rendez-vous du jour et les informations prioritaires. Ne me signale que ce qui demande mon attention. »"
+    }
+  ]
 }

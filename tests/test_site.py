@@ -21,18 +21,33 @@ class Document(HTMLParser):
         self.links = []
         self.references = []
         self.headings = []
+        self.tags = []
+        self.prompts = []
+        self._prompt = None
         self.feed(source)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        self.tags.append((tag, attrs))
+        if tag == 'pre':
+            self._prompt = ''
         if 'id' in attrs:
             self.ids.append(attrs['id'])
-        if tag in ('h1', 'h2', 'h3'):
+        if tag in ('h1', 'h2', 'h3', 'h4'):
             self.headings.append(tag)
         if tag == 'a':
             self.links.append(attrs.get('href', ''))
         for attr in ('aria-labelledby', 'aria-describedby'):
             self.references.extend(attrs.get(attr, '').split())
+
+    def handle_data(self, data):
+        if self._prompt is not None:
+            self._prompt += data
+
+    def handle_endtag(self, tag):
+        if tag == 'pre' and self._prompt is not None:
+            self.prompts.append(self._prompt)
+            self._prompt = None
 
 
 class ResourcesTest(unittest.TestCase):
@@ -85,6 +100,46 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('\nDeuxième ligne &amp; suite', html)
         self.assertIn('<details>', html)
         self.assertIn(' hidden>', html)
+
+    def test_unknown_kinds_and_icons_are_rejected(self):
+        for field, value in (('kind', 'autre'), ('icon', 'absent'), ('icon', '<svg onload="alert(1)">')):
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                resources.validate(self.data({**self.item, field: value}), ROOT)
+
+    def test_astuce_is_visible_and_escaped_without_a_disclosure(self):
+        item = {'slug': 'conseil', 'published': True, 'kind': 'astuce', 'icon': 'mic',
+                'title': 'Dicter', 'summary': 'Un conseil bref',
+                'try_it': 'Explique <script>ce besoin</script> & précise les contraintes'}
+        resources.validate(self.data(item), ROOT)
+        html = resources.render_resource(item, lambda path: path)
+        self.assertNotIn('<details', html)
+        self.assertNotIn('<script>', html)
+        self.assertIn('&lt;script&gt;ce besoin&lt;/script&gt; &amp;', html)
+        self.assertIn('aria-hidden="true"', html)
+        for invalid in ({**item, 'try_it': ''}, {**item, 'prompts': self.item['prompts']}):
+            with self.assertRaises(ValueError):
+                resources.validate(self.data(invalid), ROOT)
+
+    def test_editorial_release_is_complete_and_text_only(self):
+        data = json.loads((ROOT / 'content/resources.json').read_text())
+        _, published = resources.validate(data, ROOT)
+        usages = [item for item in published if item['kind'] == 'usage']
+        astuces = [item for item in published if item['kind'] == 'astuce']
+        self.assertEqual((len(usages), len(astuces)), (10, 6))
+        self.assertTrue(all(len(item['prompts']) == 1 and len(item['tips']) == 1 for item in usages))
+        page = build.build()['ressources/index.html']
+        doc = Document(page)
+        self.assertEqual(doc.prompts, [item['prompts'][0]['text'] for item in usages])
+        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'details']), 10)
+        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 16)
+        self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'svg']), 16)
+        self.assertFalse(any(tag in ('img', 'video', 'audio', 'iframe') for tag, _ in doc.tags))
+        self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags if tag == 'details'))
+        self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 16)
+        self.assertIn('#cas-usage', doc.links)
+        self.assertIn('#astuces', doc.links)
+        for internal in ('État interne', 'Résultat final visé', 'Précision interne', 'Mission pour Work'):
+            self.assertNotIn(internal, page)
 
     def test_publication_controls_indexing_and_machine_readable_content(self):
         # Le générateur réel travaille sur une source temporaire, jamais sur le contenu publié.
