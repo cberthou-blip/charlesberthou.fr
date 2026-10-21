@@ -9,10 +9,14 @@
     } catch {
       return;
     }
-    const entry = document.getElementById(id);
-    if (entry?.classList.contains('resource-entry')) {
+    const target = document.getElementById(id);
+    const entry = target?.closest('.resource-entry');
+    if (entry) {
       const details = entry.querySelector('details');
-      if (details) details.open = true;
+      if (details && !details.open) {
+        details.open = true;
+        if (target !== entry) target.scrollIntoView({ block: 'start' });
+      }
     }
   }
 

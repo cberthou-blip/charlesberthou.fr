@@ -7,16 +7,67 @@
       "kind": "usage",
       "icon": "shopping-basket",
       "title": "Organiser les repas et les courses",
-      "summary": "J’utilise l’IA pour organiser les repas du foyer en tenant compte des goûts de chacun et des contraintes de la semaine. Elle m’aide à construire des menus réalistes, puis à préparer une liste de courses cohérente, avec les quantités nécessaires et moins de gaspillage.",
+      "summary": "J’utilise l’IA pour organiser les repas et les courses du foyer. Mon projet Kitchen s’appuie sur un Google Sheet pour conserver les goûts, les menus et les achats. Le principe : faire valider les repas, calculer les quantités, puis garder une trace de ce qui a réellement convenu.",
       "prompts": [
         {
           "title": "Organiser une semaine de repas et les courses",
-          "text": "Je veux obtenir un menu familial réalisable pour les 7 prochains jours et une liste de courses directement utilisable.\n\nCommence par me demander uniquement ce que tu ignores : nombre de convives selon les repas, goûts, restrictions, repas déjà prévus, produits disponibles, budget et temps de préparation. Ne suppose pas connaître le contenu de mes placards.\n\nProduis d'abord un menu sous forme de tableau (jour, déjeuner, dîner, préparation, éventuels restes), avec des recettes simples et des ingrédients réutilisés intelligemment. Vérifie la variété, les portions, le temps de cuisine et les contraintes alimentaires.\n\nAttends ma validation ou mes corrections. Ensuite seulement, prépare une liste de courses unique, classée par rayon, avec quantités consolidées, ingrédients déjà disponibles à exclure et estimation de budget uniquement si elle est justifiable.\n\nTermine par un contrôle : aucun ingrédient manquant dans la liste, pas de doublon et cohérence entre recettes, quantités et nombre de convives."
+          "text": "Je veux organiser les repas des 7 prochains jours, obtenir une liste de courses utilisable et conserver une base pour les semaines suivantes.\n\nCommence par me demander uniquement ce que tu ignores : convives selon les repas, goûts, restrictions, absences, produits disponibles, budget et temps de préparation. Utilise les fichiers que je joins, sans supposer connaître mon stock actuel.\n\nTravaille par étapes, avec ma validation :\n1. Prépare quatre tableaux réutilisables : goûts du foyer, menus, courses et produits disponibles. Si une base existe déjà, propose sa mise à jour\n2. Construis le menu de la semaine : jour, déjeuner, dîner, préparation et restes éventuels. Réutilise les ingrédients et vérifie portions, variété et contraintes\n3. Attends mes corrections et ma validation du menu\n4. Produis une liste unique par rayon, avec quantités consolidées et déduction des produits dont j’ai confirmé la présence\n5. Donne les lignes à enregistrer dans le tableur et les informations à actualiser la semaine suivante\n\nSi un tableur connecté est réellement accessible, indique le fichier concerné et les modifications proposées avant de l’éditer. Sinon, fournis des tableaux à copier ou un fichier exportable si cette fonction est disponible.\n\nTermine en rapprochant la liste de courses des recettes : aucun ingrédient manquant, aucun doublon et des quantités cohérentes avec le nombre de convives. N’estime le budget que si tu disposes de prix justifiables."
         }
       ],
       "tips": [
         "Validez le menu avant de demander les courses. Les corrections faites en amont évitent de recalculer toute la liste."
-      ]
+      ],
+      "guide": {
+        "result": "un menu de sept jours, une liste de courses par rayon et un tableau réutilisable la semaine suivante.",
+        "preparation": [
+          "Le nombre de personnes à chaque repas, les goûts, les restrictions, le budget et le temps disponible",
+          "Les repas déjà prévus et un inventaire rapide des produits à utiliser",
+          "Quelques anciens menus ou tickets de courses, si vous souhaitez partir de vos habitudes"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : conversation et fichiers",
+            "role": "Pour lire vos éléments, proposer les repas et consolider les quantités. Ajoutez les fichiers à la conversation ; corrigez toute lecture incertaine.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "Google Sheets ou Excel",
+            "role": "Pour conserver les goûts, les menus validés, les courses et les produits disponibles dans quatre onglets simples."
+          },
+          {
+            "name": "Google Drive, facultatif",
+            "role": "Une connexion disponible dans ChatGPT permet de travailler avec votre feuille. Sinon, joignez un export et reportez vous-même les modifications.",
+            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Donner le contexte",
+            "text": "Ouvrez une conversation consacrée aux repas. Copiez le prompt ci-dessous, ajoutez vos contraintes et vos fichiers. Répondez aux questions sur les informations manquantes."
+          },
+          {
+            "title": "Constituer la base du foyer",
+            "text": "Demandez quatre tableaux : goûts, menus, courses et produits disponibles. Faites corriger les préférences mal comprises, puis conservez cette base dans votre tableur. Un ticket ancien renseigne une habitude, pas le stock actuel."
+          },
+          {
+            "title": "Valider les repas",
+            "text": "Faites proposer la semaine en tenant compte des absences, des restes et du temps de cuisine. Remplacez les plats qui ne conviennent pas avant de calculer les courses."
+          },
+          {
+            "title": "Produire une seule liste",
+            "text": "Demandez les quantités totales, classées par rayon, après déduction des produits disponibles. Faites rapprocher chaque ingrédient des recettes prévues."
+          },
+          {
+            "title": "Préparer la semaine suivante",
+            "text": "Notez les repas appréciés, les portions excessives et les ingrédients restants. Au prochain échange, transmettez cette mise à jour. Vérifiez la feuille après toute modification effectuée par une application connectée."
+          }
+        ],
+        "checks": [
+          "Les quantités correspondent aux personnes présentes et les ingrédients ne sont pas comptés deux fois",
+          "La liste exclut seulement les produits dont vous avez confirmé la présence",
+          "La base enregistrée contient les menus validés et vos dernières corrections"
+        ]
+      }
     },
     {
       "slug": "transmettre-memoire-familiale",
@@ -24,7 +75,7 @@
       "kind": "usage",
       "icon": "book-open",
       "title": "Transmettre la mémoire familiale",
-      "summary": "J’ai entrepris de raconter l’histoire d’un proche à partir d’entretiens, de souvenirs et d’archives familiales. L’IA m’a accompagné dans le classement des sources, la chronologie et la rédaction, avec une exigence particulière : préserver la voix des témoins et distinguer les faits établis des souvenirs incertains.",
+      "summary": "Pour écrire le livre sur mon père, j’ai réuni des entretiens, des souvenirs et des archives. Le travail a consisté à confronter les témoignages aux documents, à remettre les événements dans l’ordre et à reprendre le manuscrit. La fidélité des faits et de la voix comptait autant que la qualité du récit.",
       "prompts": [
         {
           "title": "Construire un livre de mémoire familiale",
@@ -33,7 +84,58 @@
       ],
       "tips": [
         "Recueillez d’abord les mots et anecdotes des proches. Ils donnent au récit une matière que l’IA ne saurait reconstituer seule."
-      ]
+      ],
+      "guide": {
+        "result": "un manuscrit relu, une chronologie sourcée et une liste des points qui restent à confirmer.",
+        "preparation": [
+          "Des témoignages écrits ou des transcriptions relues d’entretiens, avec leur date",
+          "Des archives et photographies que vous avez le droit d’utiliser, nommées de manière explicite",
+          "Le destinataire du livre, le ton souhaité et les sujets à garder privés"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : fichiers et projet",
+            "role": "Pour réunir les sources et les consignes dans un même espace, puis travailler par chapitre. Gardez aussi vos originaux dans un dossier personnel.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "ChatGPT Work : document modifiable",
+            "role": "Pour demander un manuscrit Word, relire le fichier obtenu et faire corriger une version précise.",
+            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+          },
+          {
+            "name": "Word ou un autre traitement de texte",
+            "role": "Pour conserver les versions, relire la mise en page et effectuer les dernières corrections."
+          }
+        ],
+        "steps": [
+          {
+            "title": "Préparer un dossier de sources",
+            "text": "Nommez chaque document avec sa nature et sa date. Ajoutez les transcriptions, archives et légendes des photos dans la conversation ou un projet dédié. Copiez le prompt ci-dessous en précisant à qui le livre est destiné."
+          },
+          {
+            "title": "Vérifier la chronologie",
+            "text": "Demandez un tableau événement, date, source et incertitude. Comparez les informations avec les pièces originales. Faites apparaître les contradictions avant de lancer la rédaction."
+          },
+          {
+            "title": "Compléter les témoignages",
+            "text": "À partir des zones peu documentées, faites préparer des questions d’entretien. Recueillez les réponses auprès des proches, puis ajoutez-les avec leur provenance. Une absence de souvenir doit rester visible."
+          },
+          {
+            "title": "Écrire par chapitre",
+            "text": "Validez le sommaire, puis demandez un premier chapitre. Corrigez la voix, les mots et les faits. Faites reprendre ce chapitre avant d’appliquer la même méthode au suivant."
+          },
+          {
+            "title": "Relire et conserver le manuscrit",
+            "text": "Demandez un contrôle des dates, répétitions et changements de ton entre chapitres. Faites produire un DOCX, ouvrez-le et relisez-le. Conservez une version datée à chaque étape importante."
+          }
+        ],
+        "checks": [
+          "Chaque date ou citation importante peut être reliée à une source",
+          "Aucun dialogue, souvenir ou détail de vie n’a été ajouté pour embellir le récit",
+          "Le fichier s’ouvre correctement et les passages incertains restent identifiés"
+        ]
+      }
     },
     {
       "slug": "creer-bande-dessinee-ia",
@@ -44,13 +146,64 @@
       "summary": "J’ai expérimenté la création de bandes dessinées avec l’IA, de l’écriture jusqu’aux planches illustrées. La difficulté principale est apparue dans la durée : conserver les mêmes personnages, des dialogues naturels et un ordre de lecture cohérent. J’ai donc construit une méthode de génération et de contrôle, planche après planche.",
       "prompts": [
         {
-          "title": "Préparer une bande dessinée cohérente",
-          "text": "Je veux réaliser une bande dessinée courte dont l’histoire, les personnages et le style restent cohérents d’une planche à l’autre.\n\nAide-moi à produire les éléments dans cet ordre, sans brûler les étapes :\n1. Un synopsis avec début, progression et conclusion\n2. Un découpage planche par planche puis case par case, avec action, décor, cadrage, texte exact des bulles et personne qui parle\n3. Une bible fixe des personnages, lieux, vêtements, objets récurrents et règles graphiques\n4. Un jeu de consignes d’illustration réutilisant systématiquement cette bible\n5. Une grille de contrôle des planches avant de passer à la suivante\n\nPar défaut, propose 4 planches de 6 à 8 cases, à ajuster si le récit l’exige. Les dialogues doivent être courts, vivants et naturels. Vérifie l’ordre de lecture, l’orientation des bulles, les mains, les accessoires, les positions et les continuités d’une case à l’autre.\n\nFais-moi valider d’abord le synopsis, puis le scénario, puis la bible graphique. Lorsqu’une planche présente une erreur, décris précisément la correction, sans modifier arbitrairement les autres éléments.\n\nLivrable attendu : scénario complet, bible de référence, consignes prêtes à générer et liste de vérification."
+          "title": "Créer une bande dessinée, du scénario aux planches",
+          "text": "Je veux réaliser une bande dessinée courte, puis obtenir les planches validées dans un PDF lisible.\n\nSujet : [votre idée]. Public : [vos lecteurs]. Style : [description]. Références jointes : [leur rôle]. Commence par me demander les éléments manquants.\n\nTravaille dans cet ordre, avec ma validation entre les étapes :\n1. Un synopsis avec début, progression et conclusion\n2. Le découpage de chaque planche et case : action, décor, cadrage, texte exact des bulles et personne qui parle\n3. Une bible des personnages, vêtements, lieux et règles graphiques, puis une image de référence à valider\n4. La génération d’une seule planche à la fois, en réutilisant la bible et les images validées\n5. Les corrections nécessaires avant la planche suivante\n6. L’assemblage des planches approuvées dans l’ordre, puis le contrôle du PDF\n\nCommence avec 4 planches de 6 à 8 cases, à ajuster selon le récit. Les dialogues doivent rester courts et naturels. Contrôle le sens de lecture, l’orientation des bulles, les mains, les accessoires et la continuité entre les cases.\n\nPour chaque correction, précise la case et les éléments à modifier ou conserver. Vérifie ensuite toute la planche : une retouche peut changer d’autres détails.\n\nSi la génération d’images ou l’export de fichier n’est pas disponible, dis-le clairement et fournis les consignes et éléments nécessaires pour poursuivre dans un outil adapté. Ne présente pas un scénario ou un simple assemblage comme un album visuellement validé."
         }
       ],
       "tips": [
         "Fixez une bible graphique commune et contrôlez les planches une par une. Les petites incohérences deviennent difficiles à corriger une fois multipliées."
-      ]
+      ],
+      "guide": {
+        "result": "une courte bande dessinée dont le scénario, les personnages et les dialogues restent cohérents, avec des planches assemblées en PDF.",
+        "preparation": [
+          "Une idée d’histoire, son public et une longueur de départ, par exemple quatre planches",
+          "Une description des personnages et quelques références visuelles que vous pouvez utiliser",
+          "Un accès à la génération d’images pour produire les planches, selon les possibilités de votre compte"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : écriture et relecture",
+            "role": "Pour construire le synopsis, le découpage et les dialogues, puis comparer les versions."
+          },
+          {
+            "name": "ChatGPT Images",
+            "role": "Pour générer les planches et demander des corrections à partir des images de référence. La cohérence doit être contrôlée à chaque nouvelle image.",
+            "url": "https://learn.chatgpt.com/docs/image-generation"
+          },
+          {
+            "name": "ChatGPT Work : assemblage du PDF",
+            "role": "Pour réunir les planches validées dans l’ordre et vérifier le fichier exporté.",
+            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Fixer l’histoire",
+            "text": "Copiez le prompt ci-dessous avec votre sujet. Faites valider le synopsis, la conclusion et le rôle de chaque personnage avant de demander une image."
+          },
+          {
+            "title": "Écrire les cases",
+            "text": "Demandez un découpage précis : action, cadrage, personne qui parle et texte exact de chaque bulle. Lisez les dialogues à voix haute et raccourcissez ceux qui sonnent artificiels."
+          },
+          {
+            "title": "Créer les références",
+            "text": "Faites établir une fiche commune des personnages, vêtements, lieux et couleurs. Demandez une image de référence des personnages et validez-la. Joignez-la aux demandes d’illustration suivantes."
+          },
+          {
+            "title": "Générer une planche à la fois",
+            "text": "Demandez de créer la première planche à partir de son découpage et des références validées. Contrôlez les visages, mains, accessoires, bulles et sens de lecture avant de poursuivre."
+          },
+          {
+            "title": "Corriger et assembler",
+            "text": "Joignez la planche concernée et indiquez précisément la case, l’erreur et les éléments à conserver. Comparez aussi les parties censées rester identiques. Une fois les planches validées, demandez leur assemblage en PDF et relisez l’album sur téléphone."
+          }
+        ],
+        "checks": [
+          "Les personnages sont reconnaissables et leurs accessoires restent cohérents",
+          "Chaque bulle désigne le bon personnage, sans faute ni texte manquant",
+          "Le PDF contient toutes les planches dans l’ordre et les textes restent lisibles"
+        ]
+      }
     },
     {
       "slug": "reduire-depenses-energetiques",
@@ -67,7 +220,57 @@
       ],
       "tips": [
         "Séparez consommation et tarif : une baisse de facture peut venir du prix de l’énergie, sans changement de vos usages."
-      ]
+      ],
+      "guide": {
+        "result": "un tableau de départ, des actions classées par priorité et un suivi permettant de comparer les consommations après changement.",
+        "preparation": [
+          "Si possible, douze mois de factures et de consommations, avec les dates et les unités",
+          "Le contrat, les tarifs, les principaux équipements et leurs réglages",
+          "Les habitudes d’occupation, le confort à préserver et les changements intervenus dans le logement"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : lecture de fichiers",
+            "role": "Pour rapprocher factures, relevés et informations sur le logement. Fournissez les PDF ou exports disponibles.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "Tableur",
+            "role": "Pour garder une base vérifiable : période, kWh, abonnement, prix de l’énergie et total payé."
+          },
+          {
+            "name": "Sites des fournisseurs",
+            "role": "Pour vérifier les offres et conditions en vigueur avant tout changement de contrat. Les comparaisons doivent être datées."
+          }
+        ],
+        "steps": [
+          {
+            "title": "Transmettre les données",
+            "text": "Ajoutez les factures et le contrat dans une conversation dédiée, puis copiez le prompt. Précisez les équipements, les réglages et les périodes d’absence. Retirez les identifiants inutiles à l’analyse."
+          },
+          {
+            "title": "Contrôler la situation de départ",
+            "text": "Demandez d’abord un tableau des périodes, consommations et coûts. Vérifiez quelques lignes sur les factures et faites corriger les unités, relevés estimés ou périodes qui se chevauchent."
+          },
+          {
+            "title": "Comparer les actions",
+            "text": "Faites distinguer les réglages sans dépense, les petits investissements et les travaux. Pour chaque proposition, demandez sur quelles données elle repose et ce qui reste à mesurer."
+          },
+          {
+            "title": "Choisir une première action",
+            "text": "Retenez une modification compatible avec votre confort. Notez sa date et le réglage initial. Pour une offre commerciale, contrôlez vous-même l’abonnement, les conditions et la durée de validité."
+          },
+          {
+            "title": "Mesurer et réviser",
+            "text": "Ajoutez les nouveaux relevés au même tableau. Comparez des périodes cohérentes en tenant compte de l’occupation, de la saison et, si possible, de la météo. Faites séparer l’effet du tarif de celui de la consommation."
+          }
+        ],
+        "checks": [
+          "Les calculs retrouvent les montants des factures et utilisent des unités cohérentes",
+          "Les économies annoncées sont accompagnées d’hypothèses et d’une méthode de calcul",
+          "Une baisse de facture n’est pas attribuée à vos actions sans examiner les autres changements"
+        ]
+      }
     },
     {
       "slug": "experiences-familiales-sur-mesure",
@@ -84,7 +287,57 @@
       ],
       "tips": [
         "Pour les quiz, imposez « une question à la fois ». L’IA devient alors un véritable animateur plutôt qu’un générateur de listes."
-      ]
+      ],
+      "guide": {
+        "result": "une activité adaptée à votre famille, avec un déroulement prêt à utiliser et une solution de repli.",
+        "preparation": [
+          "Les âges, les centres d’intérêt et ce que chacun apprécie ou souhaite éviter",
+          "Le lieu, la date, la durée, le budget et les contraintes de déplacement",
+          "Pour une sortie, les réservations déjà faites et les informations à vérifier"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : conversation interactive",
+            "role": "Pour proposer une activité, puis adapter son déroulement aux réponses des participants."
+          },
+          {
+            "name": "Recherche web, pour les sorties",
+            "role": "Pour demander des informations datées sur les horaires, tarifs et conditions. Ouvrez ensuite les sites officiels concernés."
+          },
+          {
+            "name": "Contexte conservé dans un projet",
+            "role": "Pour retrouver les préférences et les activités précédentes. Actualisez les contraintes du jour dans chaque nouvelle demande.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Décrire la situation réelle",
+            "text": "Copiez le prompt ci-dessous et indiquez les participants, le temps disponible et l’énergie du moment. Précisez si vous cherchez une sortie, un jeu ou une activité à la maison."
+          },
+          {
+            "title": "Choisir une proposition réalisable",
+            "text": "Demandez une idée principale, le matériel et la préparation. Ajustez-la avant de détailler. Pour une sortie, faites vérifier les horaires et tarifs à la date prévue, puis consultez les liens officiels."
+          },
+          {
+            "title": "Préparer le déroulement",
+            "text": "Faites établir les séquences, les adaptations selon les âges et un plan B. Demandez une version courte que vous pourrez consulter sur votre téléphone."
+          },
+          {
+            "title": "Animer en direct",
+            "text": "Pour un quiz, demandez explicitement une question à la fois, sans afficher la réponse. Répondez dans la conversation et indiquez si la difficulté convient. Faites alterner les participants."
+          },
+          {
+            "title": "Retenir ce qui fonctionne",
+            "text": "Après l’activité, notez ce qui a plu, ce qui était trop difficile et ce qui mérite une variante. Ajoutez ce retour au contexte de la prochaine demande."
+          }
+        ],
+        "checks": [
+          "La durée, la préparation et le niveau conviennent aux participants",
+          "Les horaires, conditions et éventuelles réservations sont confirmés pour une sortie",
+          "Le quiz attend les réponses et adapte sa difficulté au fil de l’échange"
+        ]
+      }
     },
     {
       "slug": "assistant-personnel-sante",
@@ -101,7 +354,59 @@
       ],
       "tips": [
         "Une chronologie datée et une question précise à résoudre sont souvent plus utiles qu’un long récit de symptômes."
-      ]
+      ],
+      "guide": {
+        "result": "un dossier chronologique à jour et une synthèse courte pour une consultation ; un rappel de mise à jour peut être ajouté séparément.",
+        "preparation": [
+          "Les documents utiles à la consultation et leurs dates, limités aux informations que vous choisissez de partager",
+          "Une chronologie personnelle datée et la liste des traitements que vous souhaitez déclarer",
+          "La question à préparer avec le professionnel de santé"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : lecture documentaire",
+            "role": "Pour classer les comptes rendus, expliquer leur vocabulaire et préparer des questions. Les sources restent nécessaires à chaque conclusion.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "ChatGPT Work : synthèse exportable",
+            "role": "Pour produire un document court que vous pourrez relire et apporter en consultation.",
+            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+          },
+          {
+            "name": "Tâches planifiées, facultatives",
+            "role": "Si elles sont disponibles, pour vous rappeler de mettre le dossier à jour. Un rappel ne constitue pas une surveillance médicale.",
+            "url": "https://learn.chatgpt.com/training/walkthroughs/scheduled-tasks"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Délimiter le besoin",
+            "text": "Ouvrez une conversation dédiée, ajoutez les documents nécessaires et copiez le prompt. Indiquez la consultation préparée et vos questions. Demandez de lister les fichiers effectivement lus."
+          },
+          {
+            "title": "Vérifier les informations extraites",
+            "text": "Faites établir la chronologie avec, pour chaque ligne, la date et la source. Vérifiez les noms de médicaments, unités et dates sur les originaux. Corrigez les erreurs avant toute synthèse."
+          },
+          {
+            "title": "Préparer la consultation",
+            "text": "Demandez une page comprenant les faits documentés, les points à éclaircir et cinq questions. Faites expliquer les termes difficiles, puis retirez les passages qui ne correspondent pas à votre situation."
+          },
+          {
+            "title": "Actualiser après le rendez-vous",
+            "text": "Ajoutez les nouvelles consignes du professionnel et leur date. Demandez de mettre à jour la synthèse en distinguant les anciennes informations des nouvelles, puis conservez le fichier relu."
+          },
+          {
+            "title": "Ajouter un rappel si utile",
+            "text": "Si votre compte propose les tâches planifiées, demandez un rappel à une date précise pour préparer le prochain rendez-vous. Vérifiez la tâche créée et sa prochaine exécution. Ne supposez ni accès automatique aux nouveaux documents ni détection d’un problème médical."
+          }
+        ],
+        "checks": [
+          "Les dates, traitements et résultats cités correspondent exactement à vos documents",
+          "La synthèse distingue les faits, vos observations et les questions encore ouvertes",
+          "Les décisions médicales restent discutées avec le professionnel ; aucun traitement n’est modifié sur cette seule base"
+        ]
+      }
     },
     {
       "slug": "comprendre-finances-foyer",
@@ -118,7 +423,59 @@
       ],
       "tips": [
         "Ne déduisez d’une charge que les aides qui lui correspondent. Une prestation familiale générale ne doit pas être confondue avec le remboursement d’un service précis."
-      ]
+      ],
+      "guide": {
+        "result": "un tableau de dépenses et de recettes dont les totaux peuvent être rapprochés des relevés, avec les opérations incertaines à vérifier.",
+        "preparation": [
+          "Les relevés ou exports des comptes concernés sur une même période",
+          "Les factures et justificatifs nécessaires aux rapprochements que vous souhaitez faire",
+          "La liste des comptes à traiter et la question précise, par exemple le coût net d’un service"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : fichiers et analyse",
+            "role": "Pour lire plusieurs sources et proposer les rapprochements. Masquez les coordonnées bancaires inutiles.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "ChatGPT Work : tableur",
+            "role": "Pour obtenir un fichier avec les opérations, catégories, sources et calculs, puis contrôler les totaux.",
+            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+          },
+          {
+            "name": "Gmail ou Google Drive, facultatifs",
+            "role": "Pour retrouver un justificatif dans les services que vous avez connectés. Demandez la source exacte de chaque pièce utilisée.",
+            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Fixer le périmètre",
+            "text": "Choisissez une période et les comptes concernés. Joignez les fichiers, puis copiez le prompt. Demandez un inventaire des pièces lues et des mois manquants avant le calcul."
+          },
+          {
+            "title": "Extraire et contrôler les opérations",
+            "text": "Faites produire un tableau avec date, libellé, montant, compte, catégorie et source. Comparez plusieurs lignes aux relevés, notamment les montants élevés et les libellés ambigus."
+          },
+          {
+            "title": "Éliminer les doubles comptes",
+            "text": "Demandez d’identifier les virements entre vos propres comptes et les opérations présentes dans plusieurs documents. Faites conserver les rapprochements incertains dans une liste à part."
+          },
+          {
+            "title": "Calculer le coût net",
+            "text": "Pour un service précis, rapprochez chaque paiement des remboursements qui lui correspondent. Vérifiez leur objet et leur période ; une aide générale ne doit pas être déduite automatiquement de cette charge."
+          },
+          {
+            "title": "Exporter et rapprocher les totaux",
+            "text": "Demandez un fichier tableur avec les formules et les sources. Contrôlez les totaux des flux par compte, puis vérifiez que le solde de départ augmenté des recettes et diminué des dépenses retrouve le solde final."
+          }
+        ],
+        "checks": [
+          "Les transferts internes sont isolés et chaque opération n’est comptée qu’une fois",
+          "Les remboursements sont rattachés au bon service et à la bonne période",
+          "Les écarts non expliqués restent visibles, sans affectation inventée pour équilibrer le tableau"
+        ]
+      }
     },
     {
       "slug": "creer-application-personnelle",
@@ -126,16 +483,70 @@
       "kind": "usage",
       "icon": "smartphone",
       "title": "Créer sa propre application",
-      "summary": "Je me suis lancé dans la création d’une application iPhone pour suivre une collection de films, de séries et de bandes dessinées. L’IA m’a accompagné dans la définition du produit, l’écriture du code et les premiers tests. Une première compilation fonctionne, tandis que l’ergonomie reste à affiner.",
+      "summary": "J’ai entrepris de créer Collection, une application iPhone pour mes films, séries et bandes dessinées. Le projet utilise React Native avec Expo, un dépôt GitHub privé et EAS Build. Une première compilation fonctionne ; les parcours et la présentation restent à affiner.",
       "prompts": [
         {
           "title": "Passer de l’idée à une application installable",
-          "text": "Je veux transformer mon idée en une première application réellement utilisable, même sans expérience avancée en développement.\n\nCommence par reformuler le besoin, les utilisateurs, les appareils visés, les trois fonctions essentielles, les données à conserver et mes contraintes de budget. Propose une version minimale avant les fonctions secondaires.\n\nProduis ensuite, étape par étape :\n1. Une spécification courte et testable\n2. Une architecture simple, avec les dépendances justifiées\n3. Les écrans et parcours indispensables, dans un style adapté à la plateforme\n4. Le code et des instructions précises pour installer, lancer et tester\n5. Une solution de conservation, sauvegarde ou export des données\n6. Une liste de tests fonctionnels et des corrections à apporter\n\nAprès chaque étape, attends le résultat des essais avant de déclarer la fonction terminée. Distingue compilation réussie, test manuel et fonctionnalité réellement validée. Privilégie des services gratuits lorsqu’ils répondent au besoin ; ne suppose pas une API payante indispensable.\n\nLivrable final : application minimale testable, instructions de lancement, bilan des fonctionnalités validées et limites connues."
+          "text": "Je veux créer une première application iPhone personnelle avec React Native et Expo, conserver le code dans un dépôt GitHub privé et la compiler avec EAS Build.\n\nMon idée : [décrivez le besoin]. Mes trois fonctions prioritaires : [liste]. Mon ordinateur : [système]. Mes données à conserver : [description]. Mes comptes et mon budget : [précisez].\n\nCommence par vérifier les prérequis et les coûts, notamment la signature Apple et les services éventuels. Demande les informations manquantes avant d’écrire le code.\n\nTravaille dans cet ordre, avec ma validation à chaque étape :\n1. Besoin, trois parcours testables et version minimale\n2. Projet Expo, dépendances justifiées et instructions adaptées à mon ordinateur\n3. Écrans, stockage local et export des données\n4. Essais avec des données fictives et correction des erreurs\n5. Configuration EAS, enregistrement de l’appareil, compilation et installation sur mon iPhone\n6. Tests des parcours, fermeture et réouverture, export et restauration\n\nÀ chaque étape, indique ce que je dois faire, le résultat attendu et comment te transmettre un échec. Attends mes essais avant de poursuivre. Conserve une version fonctionnelle du code avant une modification importante.\n\nNe déclare pas une fonction validée sur la seule base d’une compilation. Termine par les instructions de lancement, les tests réellement effectués et les limites connues. Aucune publication sur l’App Store n’est demandée."
         }
       ],
       "tips": [
         "Une compilation réussie est une étape technique, pas une validation de l’expérience utilisateur. Testez les parcours sur le vrai téléphone."
-      ]
+      ],
+      "guide": {
+        "result": "une première version installable et testable, avec conservation des données, export et liste des fonctions réellement validées.",
+        "preparation": [
+          "Le besoin, trois fonctions prioritaires et quelques données fictives pour les essais",
+          "Un ordinateur, un iPhone et des comptes GitHub et Expo pour le parcours décrit ici",
+          "Pour une compilation iPhone avec EAS Build, un compte Apple Developer adapté ; ce parcours comporte des prérequis payants"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT Work ou Codex",
+            "role": "Pour écrire et corriger le code, lire les erreurs et préparer les tests. Précisez l’environnement réellement disponible."
+          },
+          {
+            "name": "React Native et Expo",
+            "role": "La base technique choisie pour Collection. Demandez des instructions d’installation adaptées à votre ordinateur."
+          },
+          {
+            "name": "GitHub",
+            "role": "Pour conserver les versions du code dans un dépôt privé et retrouver une version fonctionnelle."
+          },
+          {
+            "name": "EAS Build",
+            "role": "Pour compiler l’application iOS et préparer son installation sur un appareil enregistré. Suivez la documentation officielle pour la signature.",
+            "url": "https://docs.expo.dev/tutorial/eas/ios-development-build-for-devices/"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Définir une version minimale",
+            "text": "Copiez le prompt en décrivant votre application. Pour une collection, commencez par ajouter un élément, consulter sa fiche et modifier son statut. Validez ces parcours avant d’ajouter le scan ou des connexions externes."
+          },
+          {
+            "title": "Préparer le projet",
+            "text": "Demandez le projet React Native avec Expo, les versions des dépendances et les commandes adaptées à votre ordinateur. Créez le dépôt privé, conservez le code et lancez les instructions. Transmettez le message d’erreur complet si une étape échoue."
+          },
+          {
+            "title": "Tester les écrans et les données",
+            "text": "Essayez les trois parcours avec des données fictives. Faites ajouter le stockage local et un export. Fermez et rouvrez l’application ; vérifiez que les données sont toujours présentes."
+          },
+          {
+            "title": "Compiler pour votre iPhone",
+            "text": "Faites préparer la configuration EAS et suivez les étapes officielles d’enregistrement de l’appareil et de signature Apple. Lancez la compilation, installez le résultat sur le téléphone et transmettez tout journal d’erreur utile."
+          },
+          {
+            "title": "Corriger à partir des essais",
+            "text": "Testez l’ajout, la modification, l’export et la restauration sur l’appareil. Décrivez un problème à la fois avec le résultat attendu. Enregistrez une version fonctionnelle avant la correction suivante."
+          }
+        ],
+        "checks": [
+          "Les parcours essentiels fonctionnent sur le téléphone, au-delà d’une compilation réussie",
+          "Les données résistent à la fermeture et peuvent être exportées puis restaurées",
+          "Les services et coûts indispensables sont identifiés avant de poursuivre le développement"
+        ]
+      }
     },
     {
       "slug": "mettre-decisions-epreuve",
@@ -152,7 +563,52 @@
       ],
       "tips": [
         "Demandez « Qu’est-ce qui pourrait invalider ta conclusion ? » puis exigez que la réponse modifie réellement l’analyse si nécessaire."
-      ]
+      ],
+      "guide": {
+        "result": "une note courte exposant les options, les critères, les incertitudes et ce qui pourrait faire changer la décision.",
+        "preparation": [
+          "Une décision formulée précisément, son échéance et les contraintes à respecter",
+          "Votre avis initial, les faits disponibles et leurs sources",
+          "Les critères qui comptent pour vous, classés par importance"
+        ],
+        "tools": [
+          {
+            "name": "ChatGPT : dialogue critique",
+            "role": "Pour expliciter les hypothèses, chercher les objections et reprendre la conclusion après examen."
+          },
+          {
+            "name": "Documents et sources externes",
+            "role": "Pour vérifier les faits qui font basculer le choix. Une seconde réponse du modèle ne constitue pas une vérification indépendante."
+          }
+        ],
+        "steps": [
+          {
+            "title": "Formuler la décision",
+            "text": "Copiez le prompt en ajoutant l’objectif, les contraintes et votre préférence actuelle. Demandez une reformulation pour vérifier que le problème traité est bien le vôtre."
+          },
+          {
+            "title": "Séparer faits et hypothèses",
+            "text": "Faites classer les éléments en faits documentés, interprétations et inconnues. Corrigez ce classement avant de comparer les options."
+          },
+          {
+            "title": "Mettre la conclusion à l’épreuve",
+            "text": "Demandez les objections les plus fortes, les conditions d’échec et une option alternative crédible. Précisez les contraintes qui restent impératives."
+          },
+          {
+            "title": "Vérifier ce qui change le choix",
+            "text": "Repérez les deux ou trois inconnues décisives. Consultez les pièces ou les sources appropriées, puis apportez ces éléments dans la conversation."
+          },
+          {
+            "title": "Faire réviser la note",
+            "text": "Demandez une nouvelle conclusion tenant compte des vérifications. Faites indiquer les changements par rapport à l’analyse initiale, le risque résiduel et la prochaine action concrète."
+          }
+        ],
+        "checks": [
+          "La recommandation respecte vos contraintes et explique le poids des critères",
+          "Les objections ont été examinées et les faits décisifs vérifiés",
+          "Vous savez quelles nouvelles informations justifieraient de revoir le choix"
+        ]
+      }
     },
     {
       "slug": "intermediaire-ia-pour-mes-mails",
@@ -169,7 +625,58 @@
       ],
       "tips": [
         "Commencez par faire auditer les pièces et leur chronologie. Le bon argument se trouve souvent dans une date ou une condition oubliée."
-      ]
+      ],
+      "guide": {
+        "result": "un dossier compris et sourcé, une réponse prête à valider et une liste des prochaines actions.",
+        "preparation": [
+          "Le fil de courriels complet et les pièces utiles : devis, facture, conditions ou garantie",
+          "Votre objectif, l’échéance et ce que vous autorisez à préparer",
+          "Une messagerie connectée si votre compte le permet, ou des copies des messages et pièces jointes"
+        ],
+        "tools": [
+          {
+            "name": "Gmail ou une messagerie disponible",
+            "role": "Pour rechercher les échanges autorisés. Connectez le bon compte dans les applications ou plugins et vérifiez les permissions proposées.",
+            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+          },
+          {
+            "name": "ChatGPT : lecture de documents",
+            "role": "Pour rapprocher les messages et les pièces. Sans connexion, joignez les documents ou copiez les échanges dans une conversation dédiée.",
+            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+          },
+          {
+            "name": "Brouillon et envoi, selon les outils",
+            "role": "Pour préparer la réponse. Un envoi nécessite votre autorisation et une capacité effectivement disponible ; vous pouvez toujours envoyer le texte vous-même."
+          }
+        ],
+        "steps": [
+          {
+            "title": "Délimiter la recherche",
+            "text": "Copiez le prompt en précisant le dossier, le correspondant et la période. Si la messagerie est connectée, demandez les échanges pertinents et leurs pièces jointes. Sinon, fournissez-les. Faites lister les sources réellement consultées."
+          },
+          {
+            "title": "Reconstituer le dossier",
+            "text": "Demandez une chronologie et un tableau des montants, échéances et engagements. Vérifiez les points importants dans les documents cités, en particulier les exclusions ou conditions d’une garantie."
+          },
+          {
+            "title": "Choisir la démarche",
+            "text": "Faites proposer une demande de précision, une contestation argumentée ou une proposition de solution selon les pièces. Retenez l’option adaptée et fixez vos limites avant de rédiger."
+          },
+          {
+            "title": "Relire le message",
+            "text": "Demandez un courriel court avec les faits, votre demande et la prochaine étape. Contrôlez le destinataire, les pièces jointes, les montants et le ton. Faites retirer toute affirmation que le dossier ne prouve pas."
+          },
+          {
+            "title": "Envoyer et suivre",
+            "text": "Envoyez le message vous-même ou autorisez explicitement son envoi si l’outil le permet. Vérifiez le message dans les éléments envoyés. Pour la suite, notez l’échéance ou programmez un rappel disponible, puis apportez la réponse reçue au dossier."
+          }
+        ],
+        "checks": [
+          "Les arguments renvoient aux bonnes pièces et les incertitudes sont signalées",
+          "Le message validé exprime votre demande sans accepter un engagement non souhaité",
+          "L’envoi et le suivi sont vérifiés dans les outils, sans supposer une négociation autonome"
+        ]
+      }
     },
     {
       "slug": "activer-memoire-ia",

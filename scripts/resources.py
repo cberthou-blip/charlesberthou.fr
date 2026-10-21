@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlsplit
 from resource_icons import ICONS, render_icon
 
 RESOURCE_URL = 'https://charlesberthou.fr/ressources/'
-RESOURCE_DESCRIPTION = 'Découvrez les usages personnels de l’IA de Charles Berthou, leurs prompts réutilisables et ses astuces pour mieux utiliser ChatGPT au quotidien.'
+RESOURCE_DESCRIPTION = 'Des modes d’emploi issus des expériences de Charles Berthou : outils, étapes, prompts à copier et vérifications pour utiliser l’IA au quotidien.'
 EMPTY_STATE = '''<section class="resources-empty" aria-labelledby="resources-empty-title">
    <p class="eyebrow">Prochainement</p>
    <h2 id="resources-empty-title">Les premières ressources<br>sont en préparation.</h2>
@@ -45,6 +45,29 @@ def resource_url(value, root):
     raise ValueError(f'Adresse de ressource invalide ou fichier absent : {value}')
 
 
+def validate_guide(guide, root):
+    if not isinstance(guide, dict):
+        raise ValueError('Le mode d’emploi doit être un objet')
+    text(guide.get('result'), 'guide.result')
+    for field in ('preparation', 'checks'):
+        values = items(guide.get(field), 'guide.' + field)
+        if not values:
+            raise ValueError(f'Le mode d’emploi doit préciser : {field}')
+        for value in values:
+            text(value, 'guide.' + field)
+    for field, fields in (('tools', ('name', 'role')), ('steps', ('title', 'text'))):
+        values = items(guide.get(field), 'guide.' + field)
+        if not values:
+            raise ValueError(f'Le mode d’emploi doit préciser : {field}')
+        for value in values:
+            if not isinstance(value, dict):
+                raise ValueError(f'Objet attendu : guide.{field}')
+            for name in fields:
+                text(value.get(name), f'guide.{field}.{name}')
+            if field == 'tools' and 'url' in value:
+                resource_url(value['url'], root)
+
+
 def validate(data, root):
     updated = date.fromisoformat(data['updated'])
     seen = set()
@@ -70,10 +93,14 @@ def validate(data, root):
             text(item.get(field), field)
         if kind == 'astuce':
             text(item.get('try_it'), 'try_it')
-            if any(item.get(field) for field in ('paragraphs', 'prompts', 'tips', 'links', 'image')):
+            if any(item.get(field) for field in ('paragraphs', 'prompts', 'tips', 'links', 'image')) or 'guide' in item:
                 raise ValueError(f'Une astuce contient seulement son texte et « À essayer » : {slug}')
         elif 'try_it' in item:
             raise ValueError(f'« À essayer » est réservé aux astuces : {slug}')
+        if 'guide' in item:
+            validate_guide(item['guide'], root)
+            if not item.get('prompts'):
+                raise ValueError(f'Un mode d’emploi doit proposer un prompt : {slug}')
         for field in ('paragraphs', 'tips'):
             for value in items(item.get(field, []), field):
                 text(value, field)
@@ -103,6 +130,22 @@ def validate(data, root):
     return updated, published
 
 
+def render_guide(guide, prefix):
+    preparation = ''.join(f'<li>{escape(value)}</li>' for value in guide['preparation'])
+    tools = ''
+    for tool in guide['tools']:
+        name = escape(tool['name'])
+        if 'url' in tool:
+            name = f'<a href="{escape(tool["url"])}">{name}</a>'
+        tools += f'<div><dt>{name}</dt><dd>{escape(tool["role"])}</dd></div>'
+    steps = ''.join(f'<li><h5>{escape(step["title"])}</h5><p>{escape(step["text"])}</p></li>' for step in guide['steps'])
+    return f'''<p class="guide-result"><strong>À obtenir :</strong> {escape(guide['result'])}</p>
+     <a class="guide-prompt-link" href="#{prefix}-prompt-1">Aller au prompt <span aria-hidden="true">↓</span></a>
+     <section class="guide-section" aria-labelledby="{prefix}-prepare"><h4 id="{prefix}-prepare">Avant de commencer</h4><ul>{preparation}</ul></section>
+     <section class="guide-section" aria-labelledby="{prefix}-tools"><h4 id="{prefix}-tools">Les outils et leur rôle</h4><dl class="guide-tools">{tools}</dl></section>
+     <section class="guide-section" aria-labelledby="{prefix}-steps"><h4 id="{prefix}-steps">Pas à pas</h4><ol class="guide-steps">{steps}</ol></section>'''
+
+
 def render_resource(item, asset):
     """Le texte fourni reste du texte : tout HTML est échappé à la génération."""
     prefix = 'resource-' + item['slug']
@@ -116,6 +159,8 @@ def render_resource(item, asset):
    </div>
   </article>'''
     content = ''.join(f'<p>{escape(p)}</p>' for p in item.get('paragraphs', []))
+    if guide := item.get('guide'):
+        content += render_guide(guide, prefix)
     if image := item.get('image'):
         content += f'<figure class="resource-figure"><img src="{escape(asset(image["src"]))}" alt="{escape(image["alt"])}" width="{image["width"]}" height="{image["height"]}" loading="lazy" decoding="async"></figure>'
     for index, prompt in enumerate(item.get('prompts', []), 1):
@@ -126,6 +171,9 @@ def render_resource(item, asset):
       <pre id="{prompt_id}" tabindex="0" aria-labelledby="{prompt_id}-title">{escape(prompt['text'])}</pre>
       <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
      </section>'''
+    if guide := item.get('guide'):
+        checks = ''.join(f'<li>{escape(value)}</li>' for value in guide['checks'])
+        content += f'<section class="guide-section" aria-labelledby="{prefix}-checks"><h4 id="{prefix}-checks">Vérifier le résultat</h4><ul>{checks}</ul></section>'
     if tips := item.get('tips'):
         if len(tips) == 1:
             content += f'<p class="resource-tip"><strong>Mon conseil :</strong> {escape(tips[0])}</p>'
@@ -135,7 +183,7 @@ def render_resource(item, asset):
     if links := item.get('links'):
         content += '<ul class="resource-links" aria-label="Documents et liens utiles">'
         content += ''.join(f'<li><a class="text-link" href="{escape(doc["url"])}">{escape(doc["label"])} <span aria-hidden="true">→</span></a></li>' for doc in links) + '</ul>'
-    label = 'Voir le prompt' if len(item.get('prompts', [])) == 1 else 'Voir la méthode et les prompts' if item.get('prompts') else 'Lire la ressource'
+    label = 'Voir le mode d’emploi' if item.get('guide') else 'Voir le prompt' if len(item.get('prompts', [])) == 1 else 'Voir la méthode et les prompts' if item.get('prompts') else 'Lire la ressource'
     return f'''<article class="resource-entry" id="{prefix}" aria-labelledby="{prefix}-title">
    {heading}
    <div class="resource-copy">{summary}
@@ -150,7 +198,7 @@ def render_collection(published, asset):
     if not published:
         return EMPTY_STATE
     groups = (
-        ('usage', 'cas-usage', 'Cas d’usage', 'Prompts reconstruits à partir de mes expériences, à adapter à votre situation.'),
+        ('usage', 'cas-usage', 'Modes d’emploi', 'Des méthodes adaptées de mes expériences, avec leurs étapes et un prompt pour démarrer.'),
         ('astuce', 'astuces', 'Astuces', 'Six habitudes pour mieux utiliser ChatGPT. Les fonctions et leurs réglages varient selon le compte et l’appareil.'),
     )
     navigation, sections = [], []

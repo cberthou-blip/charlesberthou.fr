@@ -8,14 +8,15 @@ const source = fs.readFileSync(path.join(__dirname, '../assets/passage/resources
 
 function setup(clipboard, hash = '') {
   const feedback = { textContent: '' };
-  const prompt = { textContent: 'Ligne une\nLigne deux & suite' };
+  const prompt = { textContent: 'Ligne une\nLigne deux & suite', scrolled: false,
+    closest: () => entry, scrollIntoView() { this.scrolled = true; } };
   const details = { open: false };
   const button = {
     hidden: true, disabled: false, dataset: { copy: 'prompt' },
     addEventListener(name, handler) { this[name] = handler; },
     closest() { return { querySelector: () => feedback }; },
   };
-  const entry = { classList: { contains: name => name === 'resource-entry' }, querySelector: () => details };
+  const entry = { closest: () => entry, querySelector: () => details };
   const document = {
     getElementById: id => id === 'prompt' ? prompt : id === 'resource-test' ? entry : null,
     querySelectorAll: () => [button],
@@ -49,4 +50,10 @@ test('sans API de copie, le lien direct ouvre encore la ressource', () => {
   assert.equal(ui.button.hidden, true);
   assert.equal(ui.details.open, true);
   assert.doesNotThrow(() => setup(undefined, '#%not-valid'));
+});
+
+test('un lien vers le prompt ouvre son mode d’emploi et rejoint le texte', () => {
+  const ui = setup(undefined, '#prompt');
+  assert.equal(ui.details.open, true);
+  assert.equal(ui.prompt.scrolled, true);
 });

@@ -33,7 +33,7 @@ class Document(HTMLParser):
             self._prompt = ''
         if 'id' in attrs:
             self.ids.append(attrs['id'])
-        if tag in ('h1', 'h2', 'h3', 'h4'):
+        if tag in ('h1', 'h2', 'h3', 'h4', 'h5'):
             self.headings.append(tag)
         if tag == 'a':
             self.links.append(attrs.get('href', ''))
@@ -106,6 +106,42 @@ class ResourcesTest(unittest.TestCase):
             with self.subTest(field=field, value=value), self.assertRaises(ValueError):
                 resources.validate(self.data({**self.item, field: value}), ROOT)
 
+    def guide(self):
+        return {
+            'result': 'Un résultat à vérifier', 'preparation': ['Un document'],
+            'tools': [{'name': 'Outil', 'role': 'Lire le document', 'url': 'https://example.com/'}],
+            'steps': [{'title': 'Première étape', 'text': 'Contrôler la source'}],
+            'checks': ['Le résultat correspond à la source'],
+        }
+
+    def test_guides_reject_incomplete_instructions_and_unsafe_links(self):
+        base = self.guide()
+        invalid = [None, {}, {**base, 'steps': []}, {**base, 'preparation': []},
+                   {**base, 'checks': ['']}, {**base, 'tools': [{'name': 'Outil'}]},
+                   {**base, 'steps': [{'title': 'Étape', 'text': 12}]},
+                   {**base, 'tools': [{'name': 'Outil', 'role': 'Lire', 'url': 'javascript:alert(1)'}]}]
+        for guide in invalid:
+            with self.subTest(guide=guide), self.assertRaises(ValueError):
+                resources.validate(self.data({**self.item, 'guide': guide}), ROOT)
+        with self.assertRaises(ValueError):
+            resources.validate(self.data({**self.item, 'guide': base, 'prompts': []}), ROOT)
+
+    def test_guide_text_is_escaped_and_readable_without_javascript(self):
+        guide = self.guide()
+        guide['steps'][0]['text'] = '<script>alert(1)</script> & source'
+        guide['tools'][0]['name'] = '<img src=x onerror=alert(1)>'
+        item = {**self.item, 'guide': guide}
+        resources.validate(self.data(item), ROOT)
+        html = resources.render_resource(item, lambda path: path)
+        self.assertNotIn('<script>', html)
+        self.assertNotIn('<img', html)
+        self.assertIn('&lt;script&gt;alert(1)&lt;/script&gt; &amp; source', html)
+        self.assertIn('Voir le mode d’emploi', html)
+        self.assertIn('<ol class="guide-steps">', html)
+        doc = Document(html)
+        self.assertTrue(set(doc.references) <= set(doc.ids))
+        self.assertTrue(all(href[1:] in doc.ids for href in doc.links if href.startswith('#')))
+
     def test_astuce_is_visible_and_escaped_without_a_disclosure(self):
         item = {'slug': 'conseil', 'published': True, 'kind': 'astuce', 'icon': 'mic',
                 'title': 'Dicter', 'summary': 'Un conseil bref',
@@ -116,7 +152,8 @@ class ResourcesTest(unittest.TestCase):
         self.assertNotIn('<script>', html)
         self.assertIn('&lt;script&gt;ce besoin&lt;/script&gt; &amp;', html)
         self.assertIn('aria-hidden="true"', html)
-        for invalid in ({**item, 'try_it': ''}, {**item, 'prompts': self.item['prompts']}):
+        for invalid in ({**item, 'try_it': ''}, {**item, 'prompts': self.item['prompts']},
+                        {**item, 'guide': self.guide()}):
             with self.assertRaises(ValueError):
                 resources.validate(self.data(invalid), ROOT)
 
@@ -127,10 +164,12 @@ class ResourcesTest(unittest.TestCase):
         astuces = [item for item in published if item['kind'] == 'astuce']
         self.assertEqual((len(usages), len(astuces)), (10, 6))
         self.assertTrue(all(len(item['prompts']) == 1 and len(item['tips']) == 1 for item in usages))
+        self.assertTrue(all(item['guide']['steps'] and item['guide']['checks'] for item in usages))
         page = build.build()['ressources/index.html']
         doc = Document(page)
         self.assertEqual(doc.prompts, [item['prompts'][0]['text'] for item in usages])
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'details']), 10)
+        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'ol' and attrs.get('class') == 'guide-steps']), 10)
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 16)
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'svg']), 16)
         self.assertFalse(any(tag in ('img', 'video', 'audio', 'iframe') for tag, _ in doc.tags))

@@ -163,7 +163,7 @@ def build():
     resource_content = Template((ROOT / 'templates/resources.html').read_text(encoding='utf-8')).substitute(
         resources_content=resources.render_collection(published, asset))
     resource_page = render_page(resource_content, **common,
-        title='Ressources IA : usages, prompts et astuces | Le Passage IA',
+        title='Ressources IA : modes d’emploi et prompts | Le Passage IA',
         description=resources.RESOURCE_DESCRIPTION if published else 'Les ressources du Passage IA sont en préparation : usages personnels de l’IA, prompts et conseils de Charles Berthou.',
         canonical=resources.RESOURCE_URL,
         robots='index, follow, max-image-preview:large' if published else 'noindex, follow',
@@ -182,7 +182,7 @@ Ce site est le relais de la newsletter. Les articles et l’abonnement sont acce
 - [{author['name']}]({author['url']})
 '''
     if published:
-        llms += f'\n## Ressources\n\nDes usages personnels de l’IA, des prompts et des conseils : [Ressources]({resources.RESOURCE_URL})\n'
+        llms += f'\n## Ressources\n\nDes modes d’emploi, outils, étapes et prompts issus de mes usages personnels de l’IA : [Ressources]({resources.RESOURCE_URL})\n'
     resources_full = '\n## Ressources\n\n' + '\n'.join(
         f'- [{item["title"]}]({resources.RESOURCE_URL}#resource-{item["slug"]}) : {item["summary"]}' for item in published) + '\n' if published else ''
     outputs = {

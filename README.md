@@ -33,11 +33,12 @@ L’accueil fonctionne sans JavaScript, formulaire, traceur ni contenu tiers int
 
 ## Modifier les ressources
 
-La source est `content/resources.json`. La version du 21 octobre 2026 contient 10 cas d’usage, chacun avec un prompt intégral et un conseil, et 6 astuces directement lisibles. Le contenu public provient du document éditorial fourni par Charles. Les prompts sont des modèles reconstruits à partir de ses expériences, sans être présentés comme des copies historiques. Aucun média de réalisation ni commentaire interne n’est publié.
+La source est `content/resources.json`. La version du 21 octobre 2026 contient 10 modes d’emploi, chacun avec ses préparatifs, outils, étapes, prompt intégral, vérifications et conseil, ainsi que 6 astuces directement lisibles. Les résumés racontent les expériences documentées de Charles ; les modes d’emploi et prompts sont des adaptations pour le lecteur, sans être présentés comme des copies historiques. Aucun média de réalisation ni commentaire interne n’est publié.
 
 Chaque entrée possède un `slug` unique et stable, un booléen `published`, un `kind` (`usage` ou `astuce`), un `title`, un `summary` et un `icon` choisi dans `scripts/resource_icons.py`. Les SVG décoratifs sont locaux, homogènes et masqués aux technologies d’assistance ; aucune bibliothèque d’icônes n’est chargée. Pour compatibilité, l’absence de `kind` signifie `usage` et `icon` reste facultatif.
 
-- Un cas d’usage possède `prompts` (objets `title` et `text`) et `tips` (un conseil dans la sélection actuelle). Les champs historiques optionnels `paragraphs`, `links` et `image` restent compatibles, mais les fiches actuelles sont exclusivement textuelles
+- Un cas d’usage possède `prompts` (objets `title` et `text`), `tips` (un conseil dans la sélection actuelle) et un objet `guide`. Celui-ci contient `result` (texte), `preparation` et `checks` (listes de textes), `tools` (objets `name`, `role`, `url` facultative vers une documentation) et `steps` (objets `title`, `text`). Ces listes doivent être non vides et un guide doit avoir au moins un prompt. Les anciens cas sans `guide` restent compatibles
+- Les champs historiques optionnels `paragraphs`, `links` et `image` restent compatibles, mais les fiches actuelles sont exclusivement textuelles
 - Une astuce possède un texte `try_it` affiché sous « À essayer ». Les champs de contenu dépliable et les médias y sont refusés
 - Les types et pictogrammes inconnus, les slugs dupliqués, les textes vides et les adresses non sûres bloquent la génération
 
@@ -49,11 +50,13 @@ Chaque entrée possède un `slug` unique et stable, un booléen `published`, un 
 
 Tout contenu éditorial est du texte brut, échappé lors de la génération. Les sauts de ligne des prompts sont préservés. Les liens acceptent HTTPS ou un fichier local existant dans `assets/resources/`. Les documents s’ouvrent dans le même onglet. Aucune dépendance, aucun rendu de contenu côté client et aucun service tiers ne sont ajoutés.
 
-Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé sans effacer le prompt.
+Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux « Voir le mode d’emploi » utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Un lien dans le panneau rejoint le prompt ; avec JavaScript, une ancre vers un prompt ouvre aussi le panneau concerné. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé sans effacer le prompt.
 
-Deux liens de rubrique mènent à `#cas-usage` et `#astuces`. Les 16 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Sur ordinateur, les titres et les textes occupent deux colonnes dans chaque ligne ; à 900 px et en dessous, ils se superposent. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
+Deux liens de rubrique, « Modes d’emploi » et « Astuces », mènent à `#cas-usage` et `#astuces`. Les 16 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Sur ordinateur, les titres et les textes occupent deux colonnes dans chaque ligne ; à 900 px et en dessous, ils se superposent. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
 
 Les indications produit ont été vérifiées le 21 octobre 2026 dans la documentation officielle : [mémoire](https://learn.chatgpt.com/docs/customization/memories), [modèles et niveaux de réflexion](https://learn.chatgpt.com/docs/models), [dictée](https://learn.chatgpt.com/docs/prompting), [tâches planifiées et connexions](https://learn.chatgpt.com/training/walkthroughs/scheduled-tasks). Les textes conservent les réserves sur la disponibilité selon le compte, la plateforme et les permissions. Les valeurs « Moyen » et « Élevé » sont conditionnelles, sans promesse d’un sélecteur identique partout.
+
+Les modes d’emploi renvoient également aux documentations officielles consultées pour les [fichiers et projets](https://learn.chatgpt.com/docs/use-chatgpt), la [création de documents](https://learn.chatgpt.com/docs/artifacts-viewer), les [plugins](https://learn.chatgpt.com/fr-FR/docs/plugins), les [images](https://learn.chatgpt.com/docs/image-generation) et la [compilation iOS avec EAS](https://docs.expo.dev/tutorial/eas/ios-development-build-for-devices/). Les outils facultatifs sont signalés ; aucune connexion, tâche ou action externe n’est supposée active. Le parcours de l’application distingue les dépendances gratuites des prérequis de signature Apple.
 
 `published: false` ou l’absence de ce champ exclut l’entrée de toutes les sorties générées. Attention : le dépôt et ses sources sont publics ; n’y placer que des éléments destinés à être publics, même en brouillon.
 
