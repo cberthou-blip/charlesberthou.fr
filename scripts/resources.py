@@ -56,6 +56,10 @@ def validate_guide(guide, root):
             text(guide['start'].get(field), 'guide.start.' + field)
     if 'extension' in guide:
         text(guide['extension'], 'guide.extension')
+    if 'extension_title' in guide:
+        text(guide['extension_title'], 'guide.extension_title')
+        if 'extension' not in guide:
+            raise ValueError('Le titre du prolongement doit accompagner son contenu')
     for field in ('preparation', 'checks'):
         values = items(guide.get(field), 'guide.' + field)
         if not values:
@@ -188,7 +192,6 @@ def render_resource(item, asset):
         content += f'<section class="guide-experience" aria-labelledby="{prefix}-experience"><h4 id="{prefix}-experience">Ce que j’ai réalisé</h4><p>{escape(experience)}</p></section>'
     if guide := item.get('guide'):
         content += f'<p class="guide-result"><strong>À obtenir :</strong> {escape(guide["result"])}</p>'
-        content += render_start(guide, prefix)
     if image := item.get('image'):
         content += f'<figure class="resource-figure"><img src="{escape(asset(image["src"]))}" alt="{escape(image["alt"])}" width="{image["width"]}" height="{image["height"]}" loading="lazy" decoding="async"></figure>'
     for index, prompt in enumerate(item.get('prompts', []), 1):
@@ -199,16 +202,18 @@ def render_resource(item, asset):
       <details class="prompt-disclosure"><summary><span class="when-closed">Lire le prompt</span><span class="when-open">Masquer le prompt</span><span class="visually-hidden"> : {escape(prompt.get('title', 'Prompt à adapter'))}</span></summary>
        <pre id="{prompt_id}-text" tabindex="0" aria-labelledby="{prompt_id}-title">{escape(prompt['text'])}</pre>
       </details>
-      <p class="prompt-instruction">Collez ce texte dans votre conversation, puis ajoutez vos informations et vos documents.</p>
+      <p class="prompt-instruction">Collez ce texte dans ChatGPT ou votre assistant IA, puis répondez à ses questions.</p>
       <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
      </section>'''
     if guide := item.get('guide'):
+        content += render_start(guide, prefix)
         content += render_guide(guide, prefix)
     if guide := item.get('guide'):
         checks = ''.join(f'<li>{escape(value)}</li>' for value in guide['checks'])
         content += f'<section class="guide-section" aria-labelledby="{prefix}-checks"><h4 id="{prefix}-checks">{render_icon("check-circle", "section-icon")}Les points à vérifier</h4><ul>{checks}</ul></section>'
         if extension := guide.get('extension'):
-            content += f'<section class="guide-extension" aria-labelledby="{prefix}-extension"><h4 id="{prefix}-extension">Prolongement à mettre en place</h4><p>{escape(extension)}</p></section>'
+            title = escape(guide.get('extension_title', 'Pour poursuivre'))
+            content += f'<section class="guide-extension" aria-labelledby="{prefix}-extension"><h4 id="{prefix}-extension">{title}</h4><p>{escape(extension)}</p></section>'
     if tips := item.get('tips'):
         if len(tips) == 1:
             content += f'<p class="resource-tip"><strong>Mon conseil :</strong> {escape(tips[0])}</p>'
@@ -236,7 +241,7 @@ def render_collection(published, asset):
         return EMPTY_STATE
     groups = (
         ('usage', 'cas-usage', 'Modes d’emploi', ''),
-        ('astuce', 'astuces', 'Astuces', 'Quelques habitudes pour préciser les demandes, vérifier les réponses et reprendre le travail dans la durée. Les fonctions disponibles varient selon le compte et l’appareil.'),
+        ('astuce', 'astuces', 'Astuces', 'Quelques habitudes pour mieux utiliser l’IA. Les fonctions disponibles varient selon le compte et l’appareil.'),
     )
     navigation, sections = [], []
     for kind, anchor, title, intro in groups:

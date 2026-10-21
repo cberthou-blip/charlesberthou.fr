@@ -120,6 +120,8 @@ class ResourcesTest(unittest.TestCase):
                    {**base, 'checks': ['']}, {**base, 'tools': [{'name': 'Outil'}]},
                    {**base, 'start': None}, {**base, 'start': {'where': 'Ici'}},
                    {**base, 'extension': ''},
+                   {**base, 'extension_title': 'Un titre sans contenu'},
+                   {**base, 'extension': 'Un suivi', 'extension_title': ''},
                    {**base, 'steps': [{'title': 'Étape', 'text': 12}]},
                    {**base, 'tools': [{'name': 'Outil', 'role': 'Lire', 'url': 'javascript:alert(1)'}]}]
         for guide in invalid:
@@ -134,6 +136,7 @@ class ResourcesTest(unittest.TestCase):
         guide['tools'][0]['name'] = '<img src=x onerror=alert(1)>'
         guide['start'] = {'where': '<script>ici</script>', 'access': 'Compte & documents'}
         guide['extension'] = '<img src=x> & suite'
+        guide['extension_title'] = '<b>Planifier</b> & vérifier'
         item = {**self.item, 'guide': guide}
         resources.validate(self.data(item), ROOT)
         html = resources.render_resource(item, lambda path: path)
@@ -144,6 +147,7 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('<ol class="guide-steps">', html)
         self.assertIn('&lt;script&gt;ici&lt;/script&gt;', html)
         self.assertIn('&lt;img src=x&gt; &amp; suite', html)
+        self.assertIn('&lt;b&gt;Planifier&lt;/b&gt; &amp; vérifier', html)
         doc = Document(html)
         self.assertTrue(set(doc.references) <= set(doc.ids))
         self.assertTrue(all(href[1:] in doc.ids for href in doc.links if href.startswith('#') and href != '#choisir-usage'))
@@ -214,6 +218,7 @@ class ResourcesTest(unittest.TestCase):
                 self.assertNotIn(resources.RESOURCE_URL, empty['sitemap.xml'])
                 self.assertNotIn('resources.js', empty['ressources/index.html'])
                 self.assertNotIn('http-equiv="refresh"', empty['ressources/index.html'])
+                self.assertNotIn('home-resources-title', empty['index.html'])
                 source.write_text(json.dumps(self.data(self.item)), encoding='utf-8')
                 populated = build.build()
                 page = populated['ressources/index.html']
@@ -221,6 +226,7 @@ class ResourcesTest(unittest.TestCase):
                 self.assertIn(resources.RESOURCE_URL, populated['sitemap.xml'])
                 self.assertIn('#resource-exemple', populated['llms-full.txt'])
                 self.assertIn('resources.js', page)
+                self.assertIn('home-resources-title', populated['index.html'])
                 self.assertNotIn('Les premières ressources', page)
                 self.assertIn('"numberOfItems": 1', page)
                 self.assertIn('"@type": "CreativeWork"', page)

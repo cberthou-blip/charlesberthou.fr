@@ -2,6 +2,14 @@
 
 Site statique publié sur GitHub Pages depuis la branche `main`. L’accueil relaie la newsletter de Charles Berthou et donne accès à ses ressources pratiques. Les articles et l’abonnement sont hébergés sur LinkedIn.
 
+L’accueil présente le dernier article, une entrée vers les expériences et leurs modes d’emploi, puis les autres articles. Les métadonnées, le pied de page et les fichiers `llms` décrivent ces deux dimensions. Le bloc Ressources disparaît si aucun cas d’usage n’est publié.
+
+## Intégration prochaine des articles
+
+Les textes complets ne sont pas encore présents dans `content/editions.json` : ce fichier contient les titres, résumés, images et destinations LinkedIn. Leur intégration au site est une phase distincte. Prévoir une page `/articles/<slug>/` pour chaque texte validé, avec auteur, dates, illustration, corps du texte, sources et liens utiles vers les ressources. La lecture doit rester dans le même onglet ; LinkedIn devient un lien secondaire sur les articles intégrés. Les autres articles conservent leur destination actuelle.
+
+Lors de cette intégration, adapter le générateur qui impose actuellement une URL LinkedIn, puis ajouter les pages au sitemap et aux données structurées `Article`. Ne pas fabriquer de page de lecture à partir d’un résumé ni annoncer un texte complet absent. La page d’accueil conserve sa structure, avec le dernier article, les ressources puis les autres lectures.
+
 ## Modifier un article
 
 La source éditoriale unique est `content/editions.json`.
@@ -50,7 +58,7 @@ Chaque entrée possède un `slug` unique et stable, un booléen `published`, un 
 
 Tout contenu éditorial est du texte brut, échappé lors de la génération. Les sauts de ligne des prompts sont préservés. Les liens acceptent HTTPS ou un fichier local existant dans `assets/resources/`. Les documents s’ouvrent dans le même onglet. Aucune dépendance, aucun rendu de contenu côté client et aucun service tiers ne sont ajoutés.
 
-Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux « Ouvrir le guide » utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Le résultat est suivi d’une entrée courte « Pour démarrer » : environnement de départ et éléments à fournir. Le volet natif « Installation et accès » regroupe les prérequis techniques et les outils. Viennent ensuite la copie du prompt, les étapes et les points à vérifier. Les étapes distinguent les actions déléguées à l’IA, les validations du lecteur et la réutilisation du travail. Le texte intégral du prompt possède son propre panneau « Lire le prompt », fermé au départ et utilisable sans JavaScript. Les anciennes ancres vers les prompts ouvrent les deux panneaux et rejoignent le bloc complet, bouton compris. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé en dépliant le texte pour une sélection manuelle. Le bouton « Refermer le guide » en fin de fiche rend le focus au résumé et revient au titre ; il apparaît seulement avec JavaScript.
+Les ressources restent sur une seule page, avec des liens directs stables comme `/ressources/#resource-identifiant`. Les panneaux « Ouvrir le guide » utilisent `details` / `summary` et fonctionnent au clavier et sans JavaScript. Le résultat tient en une phrase et décrit le livrable, tandis que le résumé conserve le retour d’expérience. La copie du prompt vient immédiatement après ce résultat. L’entrée « Pour démarrer » réunit ensuite l’environnement de départ et les éléments à fournir. Le volet natif « Installation et accès » regroupe les prérequis techniques et les outils, avant les étapes et les points à vérifier. Les étapes distinguent les actions déléguées à l’IA, les validations du lecteur et la réutilisation du travail. Le texte intégral du prompt possède son propre panneau « Lire le prompt », fermé au départ et utilisable sans JavaScript. Les anciennes ancres vers les prompts ouvrent les deux panneaux et rejoignent le bloc complet, bouton compris. Le bouton de copie apparaît seulement lorsque l’API du presse-papiers est disponible ; le texte reste sélectionnable, et un échec de copie est annoncé en dépliant le texte pour une sélection manuelle. Le bouton « Refermer le guide » en fin de fiche rend le focus au résumé et revient au titre ; il apparaît seulement avec JavaScript.
 
 Le sommaire « Choisir un usage » (`#choisir-usage`), toujours visible, donne accès aux dix guides ; un lien voisin mène aux astuces. Un lien en fin de guide revient à ce sommaire. L’ancre historique `#cas-usage` est conservée, ainsi que les titres de section pour les technologies d’assistance. Les 17 fiches gardent le préfixe `#resource-` pour leurs liens partageables. Titres, résumés, boutons et guides partagent une seule colonne de lecture, centrée sur ordinateur et adaptée à la largeur disponible sur mobile. Aucun texte n’est tronqué et aucune hauteur n’est imposée.
 
@@ -101,6 +109,25 @@ Les actions d’ouverture et de navigation sont bordées ; la copie du prompt es
 
 Le sommaire des dix usages reste visible, avec des intitulés courts. Chaque fiche reste centrée sur une largeur de lecture de 70 caractères environ sur ordinateur, dans les deux états du guide : l’ouverture ne déplace pas le bouton. Sur mobile, il suit la largeur disponible. La liste du sommaire adapte son nombre de colonnes, y compris lorsque le texte est agrandi.
 
-Les résumés présentent les réalisations effectives. Chaque guide précise ensuite le résultat à reproduire. L’environnement de départ (`guide.start.where`) et les deux éléments de `guide.preparation` sont réunis sous « Pour démarrer ». Les accès nécessaires (`guide.start.access`) et `guide.tools` sont accessibles dans le volet « Installation et accès », avant le prompt et les étapes. Les ancres historiques `-start`, `-prepare` et `-tools` sont conservées. Le champ facultatif `guide.extension` décrit un prolongement à configurer séparément, sans le présenter comme déjà actif. Les anciennes ancres des expériences renvoient aux résumés qui en reprennent le contenu.
+Les résumés présentent les réalisations effectives. Chaque guide précise ensuite le résultat à reproduire. L’environnement de départ (`guide.start.where`) et les deux éléments de `guide.preparation` sont réunis sous « Pour démarrer ». Les accès nécessaires (`guide.start.access`) et `guide.tools` sont accessibles dans le volet « Installation et accès », après le prompt et avant les étapes. Les ancres historiques `-start`, `-prepare` et `-tools` sont conservées. Le champ facultatif `guide.extension` décrit un prolongement à configurer séparément, sans le présenter comme déjà actif. Son titre concret peut être renseigné dans `guide.extension_title` ; un titre sans contenu ou vide est refusé. Les anciennes ancres des expériences renvoient aux résumés qui en reprennent le contenu.
 
 La revue de lecture vérifie que l’on peut identifier les prérequis, la première action et le résultat de chaque étape. Elle complète les tests d’interface, sans constituer un test d’usage auprès d’un lecteur débutant. Le parcours d’installation iOS précise la distribution interne EAS, le compte Apple Developer Program payant et l’enregistrement de l’appareil, conformément à la [documentation Expo](https://docs.expo.dev/build/internal-distribution/).
+
+Les titres de fiches nomment la démarche complète et le résultat ; les libellés du sommaire restent plus courts pour orienter la lecture. Les prompts adaptés précisent les livrables intermédiaires : quatre onglets pour les courses, inventaire sourcé et tableau de collecte pour le livre, découpage par case pour la BD, comparatif tarifaire et suivi pour l’énergie, fiches quotidiennes pour le séjour, chronologie et synthèse pour la santé, classeur de scénarios pour les finances, parcours vérifiables pour l’application, fiche de décision pour le Conseil et comparaison des clauses pour les mails. Ces précisions sont des consignes de reproduction, pas de nouveaux résultats attribués à Charles. Leur exécution complète sur des données de lecteur n’a pas été testée dans cette révision.
+
+
+## Essai de lecture sur téléphone
+
+Ce scénario reste à faire avec un lecteur débutant sur un iPhone réel. Les vérifications techniques et la relecture par un agent UX ne constituent pas cet essai. Les captures fournies par Charles permettent de contrôler le rendu, mais pas les interactions tactiles ou le presse-papiers iOS.
+
+Donner au lecteur cette seule consigne : « Depuis la page Ressources, trouvez comment préparer les menus et les courses. Récupérez le prompt dans votre assistant, puis expliquez ce que vous devez fournir et ce que vous validerez. Revenez ensuite choisir un autre usage. »
+
+Observer sans guider pendant cinq minutes, en utilisant uniquement des données fictives et sans lancer d’achat :
+
+1. Le lecteur trouve le guide et comprend le résultat attendu
+2. Il distingue « Copier le prompt » et « Lire le prompt », puis colle le texte complet dans une conversation ou une note
+3. Il retrouve les éléments à fournir et les accès nécessaires pour le panier
+4. Il comprend la préparation initiale, le cycle hebdomadaire et la validation du paiement
+5. Il revient au sommaire et ouvre un autre usage
+
+Noter les hésitations, les erreurs et les paroles du lecteur. Sur l’iPhone, vérifier en particulier la copie, le retour depuis l’assistant, le dépliage tactile, la fermeture du guide et la position après retour au sommaire. Corriger les obstacles observés avant d’affirmer que le parcours a été validé auprès d’un utilisateur.

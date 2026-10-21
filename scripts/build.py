@@ -88,6 +88,16 @@ def render_card(e):
  </article>'''
 
 
+def render_resources_feature(published):
+    if not any(item.get('kind', 'usage') == 'usage' for item in published):
+        return ''
+    return '''<section class="home-resources shell" aria-labelledby="home-resources-title">
+  <div class="home-resources-copy"><h2 id="home-resources-title">Des projets menés avec l’IA</h2>
+   <p>Préparer un panier de courses, mener une enquête familiale, créer une application : mes expériences, avec les étapes, les outils et les prompts pour les adapter.</p></div>
+  <a class="button" href="/ressources/">Explorer les ressources <span class="arrow" aria-hidden="true">→</span></a>
+ </section>'''
+
+
 def render_page(content, *, head, title, description, canonical, robots,
                 author, newsletter, year, schema=None, scripts='', resource_page=False):
     structured = '' if schema is None else '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
@@ -132,6 +142,7 @@ def build():
     editions = sorted(editions, key=lambda e: e['date'], reverse=True)
     visible = editions[:6]
     latest = visible[0]
+    site_description = 'Des réflexions sur l’intelligence artificielle, le travail et la société, et des usages expliqués pas à pas. Articles et ressources de ' + author['name'] + '.'
     head = f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#102f38">
@@ -143,21 +154,24 @@ def build():
     schema = {
         '@context': 'https://schema.org', '@type': 'CollectionPage',
         'name': 'Le Passage IA | ' + author['name'], 'url': 'https://charlesberthou.fr/',
-        'description': 'La newsletter de Charles Berthou sur l’intelligence artificielle, le travail et la société. Retrouvez les articles du Passage IA sur LinkedIn.',
+        'description': site_description,
         'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author},
         'mainEntity': {'@type': 'ItemList', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'item': {
                 '@type': 'Article', 'headline': e['title'], 'url': e['url'],
                 'datePublished': e['date'], 'author': {'@type': 'Person', 'name': author['name']}}}
             for i, e in enumerate(visible)]}}
+    if published:
+        schema['hasPart'] = {'@type': 'CollectionPage', 'name': 'Ressources', 'url': resources.RESOURCE_URL}
     content = Template((ROOT / 'templates/index.html').read_text(encoding='utf-8')).substitute(
         latest_date=latest['date'], latest_date_label=date_label(latest['date']),
         feature=render_feature(latest), cards='\n'.join(map(render_card, visible[1:])),
-        all_editions=link(newsletter, 'Tous les articles'))
+        all_editions=link(newsletter, 'Tous les articles'),
+        resources_feature=render_resources_feature(published))
     common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
     page = render_page(content, **common,
-        title='Le Passage IA | La newsletter de ' + author['name'],
-        description='L’intelligence artificielle, à hauteur humaine. Retrouvez les articles du Passage IA, la newsletter de ' + author['name'] + ' sur le travail, les organisations et la société.',
+        title='Le Passage IA | ' + author['name'],
+        description=site_description,
         canonical='https://charlesberthou.fr/', robots='index, follow, max-image-preview:large', schema=schema)
     resource_content = Template((ROOT / 'templates/resources.html').read_text(encoding='utf-8')).substitute(
         resources_content=resources.render_collection(published, asset))
@@ -173,9 +187,9 @@ def build():
         sitemap_entries.append((resources.RESOURCE_URL, resources_updated))
     llms = f'''# Le Passage IA
 
-> La newsletter de {author['name']} sur l’intelligence artificielle, le travail, les organisations et la société.
+> Les articles et les usages de l’IA de {author['name']}, sur le travail, les organisations, la société et le quotidien.
 
-Ce site est le relais de la newsletter. Les articles et l’abonnement sont accessibles sur LinkedIn.
+Ce site présente les articles du Passage IA, actuellement accessibles sur LinkedIn, où l’abonnement à la newsletter est proposé.
 
 - [Newsletter Le Passage IA]({newsletter})
 - [{author['name']}]({author['url']})

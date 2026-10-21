@@ -65,6 +65,12 @@ em { font-weight: 400; }
 .feature-link:hover .text-link { color: var(--gold-text); }
 .text-link { display: inline-flex; align-items: center; gap: 1.25rem; max-width: 100%; min-height: 44px; font-size: .875rem; font-weight: 500; border-bottom: 1px solid currentColor; line-height: 1.5; padding-block: .625rem; transition: color .2s; }
 .text-link:hover { color: var(--gold-text); }
+.home-resources { margin-top: clamp(2.25rem, 5vw, 4rem); padding-block: clamp(1.75rem, 3vw, 2.5rem); border-block: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem 3rem; }
+.home-resources-copy { flex: 1 1 30rem; min-width: 0; max-width: 65ch; }
+.home-resources h2 { font-size: clamp(2rem, 1.5rem + 1.5vw, 2.75rem); line-height: 1.15; letter-spacing: -.02em; }
+.home-resources p { margin-top: .75rem; line-height: 1.7; color: var(--muted); }
+.home-resources .button { max-width: 100%; }
+.home-resources + .editions { padding-top: clamp(2.25rem, 4vw, 3.25rem); }
 .editions { padding-block: 5rem 3rem; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; margin-bottom: 2.125rem; }
 .section-heading h2 { min-width: 0; max-width: 100%; font-size: 2.375rem; line-height: 1.15; letter-spacing: -.025em; }
@@ -94,17 +100,19 @@ em { font-weight: 400; }
 .return-page { padding-block: 6.25rem; max-width: 50rem; }
 .return-page h1 { font-size: 4rem; margin: 1.5625rem 0; line-height: 1.1; overflow-wrap: anywhere; }
 .return-page > p:not(.eyebrow) { line-height: 1.8; color: var(--muted); margin-bottom: 1.875rem; }
-.resources-heading { padding-block: clamp(1.75rem, 4vw, 3rem) 1.25rem; }
-.resources-heading h1 { font-size: clamp(2.75rem, 1.5rem + 6vw, 6rem); letter-spacing: -.04em; line-height: 1.08; margin-bottom: 1rem; overflow-wrap: anywhere; }
+.resources-heading { padding-block: clamp(1.25rem, 3vw, 2.25rem) 1rem; }
+.resources-heading h1 { font-size: clamp(2.75rem, 1.5rem + 6vw, 6rem); letter-spacing: -.04em; line-height: 1.08; margin-bottom: .75rem; overflow-wrap: anywhere; }
 .resources-heading h1 > span { color: var(--gold); }
 .resources-intro { max-width: 42rem; font-size: 1.125rem; line-height: 1.75; color: var(--muted); }
-.resources-position { max-width: 48rem; margin-top: 1rem; font-size: .9375rem; line-height: 1.7; color: var(--muted); }
+.resources-position { max-width: 48rem; margin-top: .75rem; font-size: .9375rem; line-height: 1.7; color: var(--muted); }
 .resources-content { padding-bottom: clamp(3rem, 6vw, 5rem); }
 .resources-nav { margin-bottom: 1.5rem; }
 .resources-index { min-width: 0; scroll-margin-top: 2rem; }
 .resources-index-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .25rem; }
 .resources-index-heading h2 { display: flex; align-items: center; gap: .5rem; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.5; letter-spacing: 0; }
 .resources-index ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, max(9rem, calc((100% - 1rem) / 2))), 1fr)); gap: .125rem 1rem; list-style: none; margin: 0; padding: 0; }
+.resources-index li { display: flex; min-width: 0; }
+.resources-index li > a { width: 100%; }
 .resources-index ul a { display: flex; align-items: center; min-height: 44px; padding: .625rem .125rem; border-bottom: 1px solid var(--rule); font-size: .9375rem; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
 .resources-index ul a:hover { color: var(--gold-text); text-decoration: underline; text-underline-offset: .2em; }
 .resource-group + .resource-group { margin-top: clamp(2rem, 5vw, 4rem); }
