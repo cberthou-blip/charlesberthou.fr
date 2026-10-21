@@ -142,24 +142,24 @@ def validate(data, root):
 
 
 def render_start(guide, prefix):
-    start = ''
-    if setup := guide.get('start'):
-        start = f'''<section class="guide-start" aria-labelledby="{prefix}-start"><h4 id="{prefix}-start">Avant de commencer</h4>
-     <p>{escape(setup['where'])}</p><p>{escape(setup['access'])}</p></section>'''
+    setup = guide.get('start')
+    where = f'<p>{escape(setup["where"])}</p>' if setup else ''
+    access = f'<p>{escape(setup["access"])}</p>' if setup else ''
+    preparation = ''.join(f'<li>{escape(value)}</li>' for value in guide['preparation'])
+    start = f'''<section class="guide-start" aria-labelledby="{prefix}-start"><h4 id="{prefix}-start">Pour démarrer</h4>
+     {where}<ul id="{prefix}-prepare">{preparation}</ul></section>'''
     tools = ''
     for tool in guide['tools']:
         name = escape(tool['name'])
         if 'url' in tool:
             name = f'<a href="{escape(tool["url"])}">{name}</a>'
         tools += f'<div><dt>{name}</dt><dd>{escape(tool["role"])}</dd></div>'
-    return start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Configurer les outils</summary><dl class="guide-tools">{tools}</dl></details>'
+    return start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Installation et accès</summary>{access}<dl class="guide-tools">{tools}</dl></details>'
 
 
 def render_guide(guide, prefix):
-    preparation = ''.join(f'<li>{escape(value)}</li>' for value in guide['preparation'])
     steps = ''.join(f'<li><h5>{escape(step["title"])}</h5><p>{escape(step["text"])}</p></li>' for step in guide['steps'])
-    return f'''<section class="guide-section" aria-labelledby="{prefix}-prepare"><h4 id="{prefix}-prepare">À préparer</h4><ul>{preparation}</ul></section>
-     <section class="guide-section" aria-labelledby="{prefix}-steps"><h4 id="{prefix}-steps">{render_icon('list', 'section-icon')}Les étapes</h4><ol class="guide-steps">{steps}</ol></section>'''
+    return f'<section class="guide-section" aria-labelledby="{prefix}-steps"><h4 id="{prefix}-steps">{render_icon("list", "section-icon")}Les étapes</h4><ol class="guide-steps">{steps}</ol></section>'
 
 
 def render_links(links):

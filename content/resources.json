@@ -11,7 +11,7 @@
       "prompts": [
         {
           "title": "Organiser les repas et les achats jusqu’au panier drive",
-          "text": "Aide-moi à organiser les repas et les courses du foyer, jusqu’à un panier drive prêt à payer. Le travail doit pouvoir être repris chaque semaine.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nUtilise les fichiers et connexions disponibles. Demande le contexte manquant : personnes présentes, goûts, restrictions, budget, temps de cuisine, références préférées et stocks confirmés.\n\n1. Constitue une base avec les préférences, produits habituels, dates d’achat et menus précédents. Repère les achats récurrents et les stocks à vérifier\n2. Propose sept jours de menus en variant les plats et en réutilisant les ingrédients. Précise quantités, temps de préparation et restes prévus. Attends ma validation\n3. Prépare une liste unique. Ajoute les réapprovisionnements hors recettes, déduis les stocks confirmés et adapte les quantités aux formats vendus\n4. Après mon accord, remplis le panier dans le bon magasin avec la connexion disponible ou @Chrome. Fais valider les substitutions importantes. Vérifie les prix et la disponibilité dans le site\n5. Relis le panier enregistré : références, quantités, montant, frais et créneau. Présente les écarts, puis arrête-toi avant confirmation de commande et paiement\n6. Après confirmation de l’achat, actualise l’historique. Recueille les restes et les repas appréciés pour préparer la suite\n\nSi un accès manque, indique l’étape à effectuer manuellement et fournis une liste utilisable. Distingue les actions proposées de celles effectivement réalisées.\n\nAprès un premier cycle réussi, propose séparément une tâche hebdomadaire. Précise les accès nécessaires, notamment à mon ordinateur pour Chrome. Fais-moi choisir son horaire et son périmètre, puis vérifie son enregistrement et explique comment contrôler sa première exécution. Ne présente pas un suivi comme actif avant cette vérification."
+          "text": "Aide-moi à organiser les repas et les courses du foyer, jusqu’à un panier drive prêt à payer. Le travail doit pouvoir être repris chaque semaine.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nUtilise les fichiers et connexions disponibles. Demande le contexte manquant : personnes présentes, goûts, restrictions, budget, temps de cuisine, références préférées et stocks confirmés.\n\n1. Constitue une base avec les préférences, produits habituels, dates d’achat et menus précédents. Repère les achats récurrents et les stocks à vérifier\n2. Propose sept jours de menus en variant les plats et en réutilisant les ingrédients. Précise quantités, temps de préparation et restes prévus. Attends ma validation\n3. Prépare une liste unique. Ajoute les réapprovisionnements hors recettes, déduis les stocks confirmés et adapte les quantités aux formats vendus\n4. Après mon accord, remplis le panier dans le bon magasin avec la connexion disponible ou @Chrome. Fais valider les substitutions importantes. Vérifie les prix et la disponibilité dans le site\n5. Relis le panier enregistré : références, quantités, montant, frais et créneau. Présente les écarts, puis arrête-toi avant confirmation de commande et paiement\n6. Après confirmation de l’achat, actualise l’historique. Recueille les restes et les repas appréciés pour préparer la suite\n\nSi un accès manque, indique l’étape à effectuer manuellement et fournis une liste utilisable. Distingue les actions proposées de celles effectivement réalisées.\n\nAprès un premier cycle réussi, propose séparément une tâche hebdomadaire. Précise les accès nécessaires, notamment à mon ordinateur pour Chrome. Fais-moi choisir son horaire et son périmètre, puis vérifie son enregistrement et explique comment contrôler sa première exécution. Ne présente pas un suivi comme actif avant cette vérification."
         }
       ],
       "tips": [
@@ -20,56 +20,55 @@
       "guide": {
         "result": "Un premier cycle complet : menus validés, liste consolidée, panier contrôlé et historique à reprendre la semaine suivante.",
         "preparation": [
-          "Les goûts, restrictions, personnes présentes, budget et temps de cuisine",
-          "Des menus et tickets récents, complétés par le stock réellement disponible",
-          "Un fichier Excel ou Google Sheets, même vide, pour conserver le suivi"
+          "Quelques tickets et menus récents, les goûts, restrictions, personnes présentes et le budget",
+          "Le stock confirmé et le temps de cuisine ; un fichier Excel ou Google Sheets, même vide, pour le suivi"
         ],
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Gardez une conversation dédiée, ou créez un projet pour réunir les échanges. Ajoutez les documents avec le bouton de fichiers, puis vérifiez que l’assistant peut les lire et citer leur contenu.",
+            "role": "Gardez une conversation dédiée ou un projet. Joignez les tickets avec le bouton de fichiers et vérifiez leur lecture.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Tableur et messagerie",
-            "role": "Conservez la base dans Google Sheets ou Excel. Pour relire le fichier, joignez un export ou connectez le service dans les plugins de Work. Vérifiez le nom du fichier et l’onglet utilisé avant toute modification.",
+            "role": "Joignez un export Excel ou connectez Google Sheets dans les plugins de Work. La messagerie peut fournir les confirmations de commande autorisées.",
             "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
           },
           {
             "name": "Chrome ou connexion au drive",
-            "role": "Sur ordinateur, configurez l’extension officielle, ouvrez le magasin dans votre profil Chrome et sélectionnez @Chrome dans Work. Testez d’abord la lecture du panier. Une connexion propre au drive peut convenir si elle est proposée.",
+            "role": "Configurez l’extension officielle, ouvrez le drive dans votre profil Chrome et sélectionnez @Chrome dans Work. Testez la lecture du panier avant son remplissage.",
             "url": "https://learn.chatgpt.com/docs/chrome-extension"
           },
           {
             "name": "Tâche hebdomadaire, facultative",
-            "role": "Après un premier cycle, demandez une tâche avec son horaire et ses sources. Vérifiez son enregistrement et son premier résultat. Les actions dans votre navigateur local dépendent de l’accès à votre ordinateur.",
+            "role": "Une tâche peut lancer la préparation à heure fixe. Vérifiez les accès et les exécutions ; l’utilisation du navigateur local dépend de la disponibilité de l’ordinateur.",
             "url": "https://learn.chatgpt.com/docs/automations"
           }
         ],
         "steps": [
           {
-            "title": "Partir de vos achats réels",
-            "text": "Collez le prompt et joignez quelques tickets lisibles avec le bouton d’ajout de fichiers. Précisez les personnes présentes et leurs goûts. L’IA doit d’abord produire un tableau des produits, formats, quantités et dates. Corrigez les lectures incertaines avant de conserver cette base dans votre tableur."
+            "title": "Une fois : constituer la base du foyer",
+            "text": "L’IA extrait des tickets les produits, formats, quantités et dates, puis organise goûts, menus et achats récurrents dans le tableur. Vous corrigez les lectures incertaines et confirmez le stock actuel. Les anciens tickets renseignent les habitudes, pas le contenu des placards."
           },
           {
-            "title": "Repérer ce qui revient chaque semaine",
-            "text": "Les tickets font apparaître les achats habituels, y compris les produits ménagers. Ils ne disent toutefois pas ce qu’il reste dans les placards. Confirmez les stocks et signalez les achats occasionnels : l’assistant pourra alors proposer les réapprovisionnements utiles."
+            "title": "Chaque semaine : ajuster les menus",
+            "text": "Vous indiquez les absences, les restes et le temps disponible. L’IA reprend la base, varie les plats selon les semaines précédentes et propose sept jours de repas. Vous demandez les changements utiles, puis validez les menus."
           },
           {
-            "title": "Valider les menus",
-            "text": "Indiquez les absences, le temps disponible et les ingrédients à utiliser. L’IA peut varier les plats en tenant compte des semaines précédentes et prévoir les restes. Remplacez les repas qui ne conviennent pas, puis validez les sept jours avant de calculer les courses."
+            "title": "Laisser l’IA calculer les achats",
+            "text": "Elle regroupe les ingrédients, déduit les stocks confirmés et ajoute les réapprovisionnements habituels, y compris les produits ménagers. Elle convertit ensuite les quantités en formats vendus. Vous vérifiez les achats inhabituels et les écarts de budget."
           },
           {
-            "title": "Passer des recettes aux produits vendus",
-            "text": "Demandez une liste regroupée par rayon, avec les quantités totales et les achats récurrents. L’assistant doit déduire les stocks confirmés, puis convertir les besoins en formats vendus. Pour chaque ligne, vous devez pouvoir retrouver la recette ou le besoin qui justifie l’achat."
+            "title": "Lui confier le panier",
+            "text": "Connectez-vous au drive dans Chrome et choisissez le magasin. Dans Work, sélectionnez @Chrome et demandez de remplir le panier à partir de la liste. L’assistant recherche les références et ajoute les quantités ; il vous soumet les substitutions importantes."
           },
           {
-            "title": "Confier le panier au navigateur",
-            "text": "Ouvrez le drive dans Chrome, connectez-vous et choisissez le magasin. Dans la conversation Work, sélectionnez @Chrome et demandez de remplir le panier avec la liste validée. Faites préciser les substitutions importantes. Relisez dans le site les références, quantités, prix, frais et créneau avant de payer vous-même."
+            "title": "Vérifier la commande et payer",
+            "text": "L’IA récapitule le panier et les écarts avec la liste. Vous relisez sur le site les produits, quantités, prix, frais et créneau, puis validez le paiement vous-même. Conservez la confirmation pour distinguer le panier préparé de la commande passée."
           },
           {
-            "title": "Préparer la semaine suivante",
-            "text": "Une fois la commande confirmée, joignez le ticket définitif ou autorisez sa lecture dans la messagerie. L’assistant pourra enregistrer les achats effectifs. Ajoutez les restes, les portions excessives et les repas appréciés : ces retours rendent les propositions suivantes plus pertinentes."
+            "title": "Reprendre sans tout reconfigurer",
+            "text": "Joignez le ticket définitif ou autorisez sa lecture dans la messagerie. Ajoutez les restes, les repas appréciés et les portions à revoir. L’assistant actualise la base : la semaine suivante, vous repartez de l’étape 2 avec ces retours, sans ressaisir les habitudes du foyer."
           }
         ],
         "checks": [
@@ -78,10 +77,10 @@
           "Le suivi distingue stock confirmé, panier préparé et commande passée"
         ],
         "start": {
-          "where": "Sur ordinateur, ouvrez une conversation dans le mode Work de ChatGPT, s’il est proposé dans votre compte. Vous pourrez y analyser les tickets et préparer les courses, puis utiliser le navigateur.",
-          "access": "Pour remplir le panier, il faut un accès au drive et l’extension ChatGPT dans Chrome, ou une connexion compatible avec le magasin. Sans cet accès, la méthode produit des menus et une liste de courses à utiliser vous-même."
+          "where": "Sur ordinateur, ouvrez une conversation dans Work, si ce mode est disponible, puis collez le prompt. Commencez avec les éléments suivants ; l’assistant demandera ce qui manque.",
+          "access": "Le remplissage du panier demande un accès au drive via Chrome et l’extension officielle, ou une connexion compatible. Sinon, utilisez vous-même la liste produite."
         },
-        "extension": "Pour automatiser la préparation hebdomadaire, commencez par réussir un cycle complet. Demandez ensuite une tâche avec un horaire, les fichiers à relire et les validations à conserver. Vérifiez sa présence dans la liste des tâches et sa première exécution. Le remplissage du panier dépend des accès effectivement disponibles ; avec Chrome sur votre ordinateur, celui-ci doit rester accessible. Le paiement reste à votre main."
+        "extension": "Après un cycle réussi, demandez une tâche hebdomadaire avec son horaire, les fichiers à relire et les validations à conserver. Vérifiez son enregistrement et sa première exécution. Elle peut lancer la préparation ; le panier dépend des accès disponibles et le paiement reste à votre main."
       },
       "short_title": "Menus et courses"
     },
@@ -95,7 +94,7 @@
       "prompts": [
         {
           "title": "Conduire une enquête familiale jusqu’au livre illustré",
-          "text": "Aide-moi à créer un livre de mémoire familiale, depuis les archives disponibles jusqu’à un document illustré prêt à imprimer.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nDemande le destinataire, les périodes à couvrir, le ton, les sujets sensibles et le format souhaité. Inventorie les documents, photos et enregistrements accessibles, puis établis une chronologie sourcée.\n\n1. Relève les questions ouvertes et propose des pistes documentaires ou des contacts. Indique la source des coordonnées et l’objet de chaque demande\n2. Prépare des messages personnalisés pour recueillir souvenirs, corrections, photos et documents. Présente les destinataires et les textes avant envoi\n3. Après mon autorisation, effectue les envois disponibles dans la messagerie. Pour un formulaire, utilise @Chrome si cet accès existe et attends mon accord avant transmission. Vérifie les actions réalisées et tiens un tableau des réponses, relances et autorisations de reproduction\n4. Classe les contributions, rapproche-les des archives et signale les contradictions. Distingue faits établis, souvenirs et hypothèses\n5. Propose un plan et une répartition des textes et images. Après validation, rédige chapitre par chapitre, en préservant la voix des témoins et l’exactitude des citations\n6. Produis un document modifiable et un PDF illustré. Contrôle les légendes, crédits, répétitions, dates et pages. Applique les spécifications d’impression que je fournirai\n\nConserve les originaux et les corrections. Signale les informations manquantes sans les compléter par une invention. Termine chaque étape par la prochaine action utile. Toute dépense ou commande reste soumise à mon accord."
+          "text": "Aide-moi à créer un livre de mémoire familiale, depuis les archives disponibles jusqu’à un document illustré prêt à imprimer.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nDemande le destinataire, les périodes à couvrir, le ton, les sujets sensibles et le format souhaité. Inventorie les documents, photos et enregistrements accessibles, puis établis une chronologie sourcée.\n\n1. Relève les questions ouvertes et propose des pistes documentaires ou des contacts. Indique la source des coordonnées et l’objet de chaque demande\n2. Prépare des messages personnalisés pour recueillir souvenirs, corrections, photos et documents. Présente les destinataires et les textes avant envoi\n3. Après mon autorisation, effectue les envois disponibles dans la messagerie. Pour un formulaire, utilise @Chrome si cet accès existe et attends mon accord avant transmission. Vérifie les actions réalisées et tiens un tableau des réponses, relances et autorisations de reproduction\n4. Classe les contributions, rapproche-les des archives et signale les contradictions. Distingue faits établis, souvenirs et hypothèses\n5. Propose un plan et une répartition des textes et images. Après validation, rédige chapitre par chapitre, en préservant la voix des témoins et l’exactitude des citations\n6. Produis un document modifiable et un PDF illustré. Contrôle les légendes, crédits, répétitions, dates et pages. Applique les spécifications d’impression que je fournirai\n\nConserve les originaux et les corrections. Signale les informations manquantes sans les compléter par une invention. Termine chaque étape par la prochaine action utile. Toute dépense ou commande reste soumise à mon accord."
         }
       ],
       "tips": [
@@ -104,59 +103,58 @@
       "guide": {
         "result": "Un livre illustré, accompagné d’archives organisées et de témoignages reliés à leurs sources.",
         "preparation": [
-          "Les papiers, photos, enregistrements et contacts déjà disponibles",
-          "Le destinataire, les périodes à couvrir, le ton et les sujets à traiter avec discrétion",
-          "Un dossier pour les contributions et une messagerie pour les demandes autorisées"
+          "Les papiers, photos, enregistrements et contacts disponibles, avec leurs originaux conservés",
+          "Le destinataire, les périodes à couvrir, le ton, le format et les sujets à traiter avec discrétion"
         ],
         "tools": [
           {
             "name": "ChatGPT : projet et archives",
-            "role": "Gardez une conversation dédiée, ou créez un projet pour réunir les échanges. Ajoutez les documents avec le bouton de fichiers, puis vérifiez que l’assistant peut les lire et citer leur contenu.",
+            "role": "Une conversation dédiée ou un projet réunit les échanges et les archives. Vérifiez que les documents joints sont lisibles.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Recherche web et messagerie",
-            "role": "La recherche retrouve les interlocuteurs possibles. La messagerie connectée permet de préparer les demandes, d’envoyer celles autorisées et de suivre les réponses.",
+            "role": "Dans les plugins de Work, connectez la messagerie choisie et testez la lecture d’un échange. Les droits d’envoi doivent être vérifiés séparément.",
             "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
           },
           {
             "name": "Tableur de collecte",
-            "role": "Le tableau rassemble contacts, demandes, relances, pièces reçues et autorisations de reproduction. Un dossier partagé peut accueillir les contributions."
+            "role": "L’IA y suit contacts, demandes, réponses, relances et droits de reproduction. Un dossier partagé peut accueillir les contributions."
           },
           {
             "name": "ChatGPT Work : documents",
-            "role": "Dans Work, joignez les textes et images validés, puis demandez un fichier modifiable et un PDF au format choisi. Téléchargez et ouvrez les fichiers pour contrôler leur rendu.",
+            "role": "Work permet de demander un document modifiable et un PDF. Les fichiers téléchargés doivent être ouverts pour contrôler leur rendu.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           }
         ],
         "steps": [
           {
-            "title": "Établir ce que les archives racontent",
-            "text": "Collez le prompt, puis joignez les premiers papiers, photos et transcriptions. Précisez à qui le livre est destiné. L’assistant doit produire un inventaire et une chronologie, en rattachant chaque fait à une pièce. Les périodes vides deviennent les premières questions de l’enquête."
+            "title": "Constituer le fonds de départ",
+            "text": "L’IA inventorie les pièces et établit une chronologie sourcée. Vous corrigez les noms, dates et liens familiaux mal compris. Ce fonds sert de référence à toute l’enquête ; les périodes peu documentées deviennent des questions à explorer."
           },
           {
-            "title": "Retrouver les témoins et les archives manquantes",
-            "text": "Les noms, lieux et organisations relevés orientent la recherche. Demandez pour chaque piste un interlocuteur, des coordonnées vérifiables et l’objet de la demande. Vous obtenez un tableau de contacts motivés, que vous pouvez corriger avant toute sollicitation."
+            "title": "Rechercher les témoins et les archives",
+            "text": "À partir des noms, lieux et organisations relevés, l’assistant recherche des interlocuteurs et vérifie leurs coordonnées. Il propose un tableau indiquant la source et l’objet de chaque demande. Vous choisissez les personnes et organismes à solliciter."
           },
           {
             "title": "Organiser la collecte",
-            "text": "L’IA prépare un message adapté à chaque destinataire et quelques questions ouvertes. Après validation des textes et des contacts, autorisez les envois disponibles dans la messagerie. Un tableau suit les demandes, réponses et relances ; il consigne aussi l’accord pour citer un témoignage ou reproduire une photo."
+            "text": "L’IA personnalise les messages et prépare les questions. Vous validez les destinataires et les textes, puis autorisez les envois. L’assistant les effectue si la messagerie le permet et tient le suivi des réponses, relances et autorisations de reproduction."
           },
           {
-            "title": "Rapprocher les versions",
-            "text": "Ajoutez les contributions reçues au dossier. Un souvenir peut préciser une archive ou la contredire. L’assistant doit relever ces écarts, conserver les propos originaux et identifier ce qui reste incertain. Les demandes de précision suivantes partent de ces questions concrètes."
+            "title": "Rapprocher les contributions",
+            "text": "L’assistant classe les réponses accessibles ou que vous lui transmettez, conserve les propos originaux et relève les contradictions avec les archives. Vous examinez les incertitudes et validez les demandes de précision. Chaque contribution enrichit le fonds existant."
           },
           {
-            "title": "Construire et écrire le livre",
-            "text": "Choisissez le plan et les images avec l’IA, puis avancez chapitre par chapitre. Relisez les citations sur leurs sources et corrigez les formulations qui éloignent le récit de la personne évoquée. Chaque chapitre doit conserver ses références pour faciliter les vérifications."
+            "title": "Écrire chapitre par chapitre",
+            "text": "L’IA propose le plan, répartit textes et images, puis rédige après votre validation. Vous relisez les citations sur leurs sources et ajustez le ton. Les références restent attachées aux chapitres pour faciliter les corrections."
           },
           {
             "title": "Passer du manuscrit à l’épreuve",
-            "text": "Dans Work, fournissez le manuscrit validé, les images et les spécifications de l’imprimeur. Demandez un document modifiable et un PDF au bon format. Contrôlez les pages, légendes, marges et crédits. Relisez une épreuve avant de commander l’impression."
+            "text": "Vous fournissez les spécifications de l’imprimeur. Dans Work, l’IA compose le manuscrit et les images validés, puis livre le fichier modifiable et le PDF. Vous contrôlez pages, légendes, marges et crédits, puis relisez une épreuve avant la commande."
           },
           {
-            "title": "Conserver une mémoire qui reste consultable",
-            "text": "Rangez les originaux, témoignages et versions du livre dans des dossiers identifiés. Un index relie les personnes, dates et pièces. Ce fonds permet à la famille de retrouver une source ou d’ajouter un souvenir sans reprendre toute l’enquête."
+            "title": "Garder un fonds consultable",
+            "text": "L’assistant crée un index reliant personnes, dates et pièces. Vous conservez les originaux et les versions du livre. Un nouveau souvenir peut alors être ajouté et rattaché au bon passage sans reprendre toute l’enquête."
           }
         ],
         "checks": [
@@ -165,8 +163,8 @@
           "Le livre est relu page par page et l’épreuve contrôlée avant impression"
         ],
         "start": {
-          "where": "Créez une conversation consacrée au livre et ajoutez quelques documents pour commencer. ChatGPT peut aider à conduire l’enquête et à écrire ; Work permet aussi de préparer les fichiers de mise en page.",
-          "access": "La recherche web sert à retrouver des interlocuteurs. Une messagerie connectée permet les envois autorisés ; sans connexion, vous envoyez les textes préparés. Conservez les originaux dans un dossier distinct du manuscrit."
+          "where": "Ouvrez une conversation consacrée au livre, collez le prompt et joignez quelques archives. Vous pourrez enrichir le dossier au fil de l’enquête.",
+          "access": "Une messagerie connectée permet les envois autorisés ; sinon, vous envoyez les textes préparés. Work sert à produire les fichiers du livre."
         }
       },
       "short_title": "Livre de mémoire"
@@ -181,7 +179,7 @@
       "prompts": [
         {
           "title": "Produire une BD du scénario au PDF",
-          "text": "Aide-moi à réaliser une bande dessinée complète, avec un PDF final et les fichiers permettant de la corriger.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nSujet : [sujet]. Public : [public]. Ton : [ton]. Longueur : [nombre de planches]. Format : [écran ou impression]. Demande les précisions utiles, puis propose une intrigue avec un début, un enjeu et une fin.\n\n1. Après validation du synopsis, écris le découpage case par case : action, personnages, lieu, cadrage et texte exact. Distingue les faits documentés de la fiction\n2. Prépare les références des personnages et des lieux, la palette et les règles de continuité. Fais valider les premières représentations\n3. Produis une planche d’essai avec les cases et les zones de texte. Attends mes corrections avant de poursuivre\n4. Génère les autres planches avec ces références. Repère et corrige les incohérences de personnages, d’objets, de gestes ou de perspective\n5. Pose le lettrage séparément si les outils le permettent. Vérifie les dialogues, leur attribution et leur lisibilité au format final\n6. Assemble la couverture et les planches en PDF. Ouvre le rendu pour contrôler chaque page et livre les sources de composition\n\nConserve le scénario, les références et les corrections. Si un outil manque, précise l’étape de fabrication à terminer."
+          "text": "Aide-moi à réaliser une bande dessinée complète, avec un PDF final et les fichiers permettant de la corriger.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nSujet : [sujet]. Public : [public]. Ton : [ton]. Longueur : [nombre de planches]. Format : [écran ou impression]. Demande les précisions utiles, puis propose une intrigue avec un début, un enjeu et une fin.\n\n1. Après validation du synopsis, écris le découpage case par case : action, personnages, lieu, cadrage et texte exact. Distingue les faits documentés de la fiction\n2. Prépare les références des personnages et des lieux, la palette et les règles de continuité. Fais valider les premières représentations\n3. Produis une planche d’essai avec les cases et les zones de texte. Attends mes corrections avant de poursuivre\n4. Génère les autres planches avec ces références. Repère et corrige les incohérences de personnages, d’objets, de gestes ou de perspective\n5. Pose le lettrage séparément si les outils le permettent. Vérifie les dialogues, leur attribution et leur lisibilité au format final\n6. Assemble la couverture et les planches en PDF. Ouvre le rendu pour contrôler chaque page et livre les sources de composition\n\nConserve le scénario, les références et les corrections. Si un outil manque, précise l’étape de fabrication à terminer."
         }
       ],
       "tips": [
@@ -190,51 +188,50 @@
       "guide": {
         "result": "Un album complet en PDF, avec les fichiers nécessaires pour corriger les images et les textes.",
         "preparation": [
-          "Le sujet, le public, le ton, le nombre de planches et le format final",
-          "Les personnages, lieux et références visuelles utilisables",
-          "Les faits documentés à respecter si le récit s’inspire du réel"
+          "Le sujet, le public, le ton, le nombre de planches et le format de lecture",
+          "Les personnages, références visuelles utilisables et faits documentés à respecter"
         ],
         "tools": [
           {
             "name": "ChatGPT : scénario et découpage",
-            "role": "La conversation sert à construire l’intrigue et à décrire chaque case : action, cadrage, personnages et dialogue.",
+            "role": "La conversation construit l’intrigue puis le découpage : action, cadrage, personnages et dialogue de chaque case.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Création et retouche d’images",
-            "role": "La génération produit les références visuelles et les planches. La retouche permet de corriger les éléments qui rompent la continuité.",
+            "role": "La génération crée les références et les planches ; la retouche corrige les incohérences. Prévoyez plusieurs essais.",
             "url": "https://learn.chatgpt.com/docs/image-generation"
           },
           {
             "name": "ChatGPT Work : composition",
-            "role": "Dans Work, fournissez les planches et le texte exact du scénario. Demandez une composition avec textes modifiables, un PDF et les sources. Vérifiez le rendu exporté avant de poursuivre.",
+            "role": "Demandez une composition avec textes modifiables, un PDF et les sources. Vérifiez cette possibilité sur une planche avant de produire l’album.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           }
         ],
         "steps": [
           {
-            "title": "Écrire une histoire qui tient debout",
-            "text": "Collez le prompt et décrivez le sujet, le public et la longueur envisagée. Validez une intrigue avec un début, un enjeu et une fin. L’IA peut ensuite détailler chaque case : action, personnages, cadrage et dialogue exact. Ce découpage sert de référence à toute la fabrication."
+            "title": "Fixer l’histoire avant de dessiner",
+            "text": "L’IA propose une intrigue avec un début, un enjeu et une fin. Vous validez le synopsis ; elle détaille ensuite les cases et les dialogues. Ce découpage devient la référence de fabrication."
           },
           {
-            "title": "Donner une identité stable aux personnages",
-            "text": "Avec la génération d’images, préparez une fiche par personnage : visage, silhouette, tenue et accessoires. Fixez quelques références de lieux et une palette. Joignez ces éléments aux demandes suivantes pour limiter les variations entre les planches."
+            "title": "Créer les références une fois",
+            "text": "L’assistant génère les fiches des personnages, les lieux et une palette. Vous choisissez les représentations à conserver. Ces références sont réutilisées pour chaque planche afin de stabiliser visages, silhouettes, vêtements et accessoires."
           },
           {
-            "title": "Achever une planche d’essai",
-            "text": "Produisez une première page jusqu’aux bulles et au lettrage. Examinez-la au format de lecture prévu : personnages reconnaissables, ordre des cases, attribution des répliques et taille des textes. Les corrections de cette page deviennent les règles pour les suivantes."
+            "title": "Valider une planche complète",
+            "text": "L’IA produit une première page, jusqu’aux bulles et au lettrage. Vous la relisez au format final : ordre des cases, personnages reconnaissables et répliques lisibles. Les corrections retenues fixent les règles des pages suivantes."
           },
           {
-            "title": "Construire l’album progressivement",
-            "text": "Générez les planches une à une avec le découpage et les références validés. Repérez les changements de vêtements, d’objets ou de gestes. Pour corriger, désignez la case et le défaut précis ; vérifiez aussi les zones voisines, qu’une retouche peut modifier."
+            "title": "Produire et corriger les planches",
+            "text": "L’assistant génère les pages à partir du découpage et des références validés. Vous désignez la case et le défaut à corriger. Après retouche, vérifiez aussi les zones voisines et la continuité des objets, gestes et tenues."
           },
           {
-            "title": "Garder les dialogues modifiables",
-            "text": "Dans l’outil de composition, ajoutez les textes séparément des dessins lorsque cela est possible. Cette séparation permet de corriger une phrase sans régénérer la planche. Comparez chaque réplique au scénario, puis vérifiez les accents, les bulles et leur ordre de lecture."
+            "title": "Séparer le texte du dessin",
+            "text": "Dans l’outil de composition, l’IA pose les dialogues dans des zones modifiables, si cette fonction est disponible. Vous comparez les répliques au scénario et contrôlez accents, attribution et ordre de lecture. Une phrase pourra ensuite être corrigée sans régénérer le dessin."
           },
           {
-            "title": "Assembler et relire le PDF",
-            "text": "Ajoutez la couverture, la pagination et les crédits utiles. Ouvrez le PDF exporté et relisez toutes les pages, sur téléphone si c’est le support visé. Conservez le scénario, les références, les images et le fichier de composition : l’album doit rester corrigeable."
+            "title": "Assembler et conserver l’album",
+            "text": "L’assistant ajoute couverture, pagination et crédits, puis exporte le PDF. Vous ouvrez chaque page sur le support prévu. Conservez scénario, références, images et composition pour demander ensuite une correction ciblée ou poursuivre avec un nouvel épisode."
           }
         ],
         "checks": [
@@ -243,8 +240,8 @@
           "Toutes les pages sont présentes et les fichiers sources permettent une correction"
         ],
         "start": {
-          "where": "Commencez dans une conversation ChatGPT pour écrire le scénario. La création des planches demande la génération d’images ; leur assemblage et le lettrage séparé nécessitent un outil de composition, accessible notamment dans Work.",
-          "access": "Vérifiez ces fonctions dans votre compte avant de lancer l’album. Si la composition n’est pas disponible, conservez les images et les dialogues pour les assembler dans votre outil de mise en page. Prévoyez plusieurs corrections."
+          "where": "Collez le prompt dans une conversation. Commencez par le scénario ; les références et la première planche permettront ensuite de fixer le style.",
+          "access": "Vérifiez l’accès à la génération d’images et à un outil de composition, notamment dans Work. Sinon, les dessins et dialogues devront être assemblés dans votre outil de mise en page."
         }
       },
       "short_title": "Bande dessinée"
@@ -259,7 +256,7 @@
       "prompts": [
         {
           "title": "Analyser, choisir une offre et préparer le changement de fournisseur",
-          "text": "Aide-moi à réduire durablement mes dépenses d’énergie, depuis l’analyse des factures jusqu’à la préparation des démarches et au suivi des résultats.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nUtilise douze mois de factures et les relevés disponibles. Demande les précisions manquantes sur le logement, les équipements, la puissance, les horaires et le confort à préserver.\n\n1. Reconstitue la consommation et le coût annuel. Sépare abonnement, énergie, taxes et régularisations. Vérifie les totaux sur les factures\n2. Analyse les usages et les options tarifaires. Vérifie les contraintes techniques avant de suggérer une baisse de puissance ou un réglage\n3. Recherche les offres actuellement accessibles à mon profil. Compare leur coût annuel complet sur les mêmes volumes. Indique sources, date, durée des prix, conditions de révision et hypothèses. Justifie le choix proposé\n4. Après mon choix, prépare les démarches. Avec @Chrome si disponible, renseigne les champs à partir des données validées. Présente l’offre, la puissance, l’option, la date d’effet et les engagements. Attends mon accord avant souscription, signature, mandat ou résiliation\n5. Propose des actions sur les consommations, avec coût, effort et gain estimé. Sépare les gains tarifaires des économies d’énergie\n6. Après réalisation de la démarche, vérifie la confirmation et la date d’effet. Prépare le suivi des premières factures et une revue avant les échéances contractuelles\n\nDistingue économies estimées et mesurées. Si une action reste manuelle, indique précisément ce qu’il faut faire."
+          "text": "Aide-moi à réduire durablement mes dépenses d’énergie, depuis l’analyse des factures jusqu’à la préparation des démarches et au suivi des résultats.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nUtilise douze mois de factures et les relevés disponibles. Demande les précisions manquantes sur le logement, les équipements, la puissance, les horaires et le confort à préserver.\n\n1. Reconstitue la consommation et le coût annuel. Sépare abonnement, énergie, taxes et régularisations. Vérifie les totaux sur les factures\n2. Analyse les usages et les options tarifaires. Vérifie les contraintes techniques avant de suggérer une baisse de puissance ou un réglage\n3. Recherche les offres actuellement accessibles à mon profil. Compare leur coût annuel complet sur les mêmes volumes. Indique sources, date, durée des prix, conditions de révision et hypothèses. Justifie le choix proposé\n4. Après mon choix, prépare les démarches. Avec @Chrome si disponible, renseigne les champs à partir des données validées. Présente l’offre, la puissance, l’option, la date d’effet et les engagements. Attends mon accord avant souscription, signature, mandat ou résiliation\n5. Propose des actions sur les consommations, avec coût, effort et gain estimé. Sépare les gains tarifaires des économies d’énergie\n6. Après réalisation de la démarche, vérifie la confirmation et la date d’effet. Prépare le suivi des premières factures et une revue avant les échéances contractuelles\n\nDistingue économies estimées et mesurées. Si une action reste manuelle, indique précisément ce qu’il faut faire."
         }
       ],
       "tips": [
@@ -268,55 +265,54 @@
       "guide": {
         "result": "Une offre adaptée à votre consommation, des démarches préparées et un suivi des dépenses réelles.",
         "preparation": [
-          "Douze mois de factures et, si possible, les relevés de consommation",
-          "La puissance souscrite, l’option tarifaire, les équipements et les horaires d’utilisation",
-          "Les contraintes du logement et le confort à préserver"
+          "Douze mois de factures et les relevés disponibles, avec puissance et option tarifaire",
+          "Les équipements, leurs horaires d’utilisation et le confort à préserver"
         ],
         "tools": [
           {
             "name": "ChatGPT : analyse de fichiers",
-            "role": "L’analyse reconstitue les consommations et le coût annuel à partir des factures, puis compare les scénarios.",
+            "role": "Les fichiers joints servent à reconstituer consommation et coût annuel, puis à calculer les scénarios.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Recherche web",
-            "role": "La recherche consulte les offres et leurs conditions à la date de comparaison. Les grilles des fournisseurs restent les références à vérifier."
+            "role": "Les offres sont vérifiées dans les grilles officielles des fournisseurs, avec leurs conditions et leur date."
           },
           {
             "name": "Tableur",
-            "role": "Le classeur conserve les calculs, hypothèses et sources. Il sert ensuite à comparer les estimations aux factures reçues.",
+            "role": "Le classeur conserve formules, hypothèses et sources pour comparer ensuite les estimations aux factures.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           },
           {
             "name": "Chrome avec l’extension ChatGPT",
-            "role": "L’extension officielle relie le navigateur à Work ou Codex sur ordinateur. Testez la lecture de la page ouverte avant de confier un formulaire. Vous gardez la validation des engagements et du paiement.",
+            "role": "Installez l’extension officielle, ouvrez le site dans Chrome et sélectionnez @Chrome dans Work. Testez la lecture de la page avant de confier les champs.",
             "url": "https://learn.chatgpt.com/docs/chrome-extension"
           }
         ],
         "steps": [
           {
-            "title": "Retrouver le coût d’une année complète",
-            "text": "Collez le prompt avec douze mois de factures. L’IA doit reconstituer les volumes consommés et le total payé, en séparant abonnement, énergie, taxes et régularisations. Vérifiez les totaux sur les pièces : les mensualités seules peuvent donner une image trompeuse du coût annuel."
+            "title": "Établir la référence une fois",
+            "text": "L’IA rapproche douze mois de factures et sépare abonnement, énergie, taxes et régularisations. Vous vérifiez les totaux sur les pièces. Le tableur conserve cette année de référence, plus fiable qu’une comparaison des seules mensualités."
           },
           {
-            "title": "Comprendre ce qui explique la dépense",
-            "text": "Décrivez le logement, les équipements et les horaires d’utilisation. L’assistant peut examiner les pointes de consommation, les heures creuses et les usages simultanés. Les propositions de puissance ou de réglage doivent tenir compte des contraintes techniques et du confort que vous souhaitez préserver."
+            "title": "Repérer les leviers adaptés au logement",
+            "text": "L’assistant examine puissance, pointes de consommation, heures creuses et usages simultanés. Il propose des réglages compatibles avec les données fournies. Vous confirmez les contraintes techniques et le confort à préserver avant de retenir les actions."
           },
           {
-            "title": "Comparer sur la même base",
-            "text": "Demandez les offres accessibles à votre profil, avec leurs grilles tarifaires et leur date. Le tableur doit appliquer les mêmes volumes à chaque offre et intégrer l’abonnement, les taxes et les conditions. Vous pourrez ainsi voir pourquoi une offre devient préférable et dans quelles circonstances elle cesserait de l’être."
+            "title": "Comparer les offres sur vos usages",
+            "text": "L’IA recherche les offres accessibles et applique les mêmes volumes à leurs grilles datées. Elle intègre abonnement, taxes et conditions dans le coût annuel. Vous examinez l’offre recommandée et les hypothèses qui pourraient changer le classement."
           },
           {
             "title": "Préparer le changement de fournisseur",
-            "text": "Après votre choix, ouvrez le site du fournisseur. Si l’accès Chrome est configuré, l’IA peut renseigner les champs à partir des données validées. Relisez le point de livraison, la puissance, l’option, les prix et la date d’effet. Confirmez vous-même les engagements, puis conservez l’accusé de souscription."
+            "text": "Après votre choix, l’assistant peut renseigner le formulaire dans Chrome avec les données validées. Vous relisez point de livraison, puissance, option, prix et date d’effet, puis confirmez les engagements. L’accusé de souscription rejoint le dossier."
           },
           {
-            "title": "Agir aussi sur les usages",
-            "text": "Le tarif explique une partie de la facture. Examinez également la programmation du chauffage, de l’eau chaude ou des appareils. Retenez quelques actions compatibles avec votre quotidien, en distinguant réglages immédiats et investissements. Notez la consommation de départ pour pouvoir évaluer leur effet."
+            "title": "Appliquer les réglages retenus",
+            "text": "L’IA établit un plan pour le chauffage, l’eau chaude et les appareils, en séparant réglages immédiats et investissements. Vous choisissez et appliquez les actions adaptées. L’assistant consigne leurs dates et la consommation de départ pour en évaluer l’effet."
           },
           {
-            "title": "Mesurer ce qui a changé",
-            "text": "Joignez les premières factures au tableur initial. L’assistant doit distinguer l’effet du nouveau prix et celui des volumes consommés, en tenant compte de la période et des usages. Une simulation favorable devient une économie constatée seulement lorsque les données permettent de la mesurer."
+            "title": "À chaque facture : mesurer et ajuster",
+            "text": "Vous ajoutez la nouvelle facture au dossier. L’IA reprend le tableur et distingue l’effet du prix de celui des volumes, selon la période et les usages. Vous vérifiez les écarts avant de modifier les réglages ; les économies restent estimées tant qu’elles ne sont pas mesurées."
           }
         ],
         "checks": [
@@ -325,8 +321,8 @@
           "Les économies annoncées restent estimées tant qu’elles ne sont pas mesurées"
         ],
         "start": {
-          "where": "Dans ChatGPT, joignez les factures et utilisez la recherche web pour consulter les offres actuelles. Work permet de conserver les calculs dans un tableur et, avec un accès au navigateur, de préparer les démarches.",
-          "access": "La comparaison ne nécessite pas d’accès à votre compte client. Pour renseigner les formulaires, ouvrez vous-même ce compte dans Chrome et activez l’extension si elle est disponible. Vous relisez et confirmez le contrat."
+          "where": "Dans ChatGPT, collez le prompt et joignez vos factures. L’IA commence par établir le coût de référence avant de rechercher des offres.",
+          "access": "Les factures suffisent pour comparer. Work permet de produire le tableur ; Chrome et l’extension officielle peuvent préparer les formulaires. Vous confirmez les engagements."
         },
         "extension": "Une revue peut être programmée avant la fin d’un prix garanti ou à une échéance choisie. Elle devra relire les factures récentes et les offres du moment. Vérifiez l’accès aux documents et l’existence de la tâche ; le changement de fournisseur déjà réalisé ne suffit pas à activer ce suivi."
       },
@@ -342,7 +338,7 @@
       "prompts": [
         {
           "title": "Construire et ajuster tout un séjour familial",
-          "text": "Aide-moi à concevoir un séjour familial sur mesure et à l’adapter pendant les vacances.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nDestination : [lieu]. Dates : [dates]. Participants et âges : [personnes]. Mobilité : [véhicule, marche, poussette, contraintes]. Budget : [budget]. Utilise les préférences déjà connues et demande ce qui manque.\n\n1. Établis les envies et contraintes de chacun, puis les habitudes communes : repas, repos, trajets et marche. Fais valider ce cadre\n2. Recherche des sorties et visites adaptées, dont des lieux que nous pourrions ne pas connaître. Précise leur intérêt, les âges admis, la durée, le prix et la source\n3. Regroupe les activités par secteur. Propose des journées avec une activité principale, des trajets réalistes, des repas et des pauses. Prévois une alternative en cas de pluie, de chaleur ou de fatigue\n4. Vérifie l’ouverture, l’accessibilité et les réservations sur les sources officielles. Date les informations et actualise la météo à l’approche de chaque journée\n5. Après mes choix, prépare un carnet court avec les liens utiles. Si nécessaire et disponible, renseigne les réservations avec @Chrome, puis attends ma confirmation avant envoi ou paiement\n6. Pendant le séjour, adapte la suite aux visites réalisées, aux retours de chacun et à la position que je te communique. Vérifie les données accessibles sans supposer une localisation automatique\n7. Conserve les préférences confirmées et les découvertes appréciées pour les prochains séjours\n\nCommence par une sélection courte et explique pourquoi elle nous convient. Distingue propositions et réservations confirmées."
+          "text": "Aide-moi à concevoir un séjour familial sur mesure et à l’adapter pendant les vacances.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nDestination : [lieu]. Dates : [dates]. Participants et âges : [personnes]. Mobilité : [véhicule, marche, poussette, contraintes]. Budget : [budget]. Utilise les préférences déjà connues et demande ce qui manque.\n\n1. Établis les envies et contraintes de chacun, puis les habitudes communes : repas, repos, trajets et marche. Fais valider ce cadre\n2. Recherche des sorties et visites adaptées, dont des lieux que nous pourrions ne pas connaître. Précise leur intérêt, les âges admis, la durée, le prix et la source\n3. Regroupe les activités par secteur. Propose des journées avec une activité principale, des trajets réalistes, des repas et des pauses. Prévois une alternative en cas de pluie, de chaleur ou de fatigue\n4. Vérifie l’ouverture, l’accessibilité et les réservations sur les sources officielles. Date les informations et actualise la météo à l’approche de chaque journée\n5. Après mes choix, prépare un carnet court avec les liens utiles. Si nécessaire et disponible, renseigne les réservations avec @Chrome, puis attends ma confirmation avant envoi ou paiement\n6. Pendant le séjour, adapte la suite aux visites réalisées, aux retours de chacun et à la position que je te communique. Vérifie les données accessibles sans supposer une localisation automatique\n7. Conserve les préférences confirmées et les découvertes appréciées pour les prochains séjours\n\nCommence par une sélection courte et explique pourquoi elle nous convient. Distingue propositions et réservations confirmées."
         }
       ],
       "tips": [
@@ -351,55 +347,54 @@
       "guide": {
         "result": "Un programme de séjour adapté à la famille, avec des parcours réalistes et des alternatives pour chaque journée.",
         "preparation": [
-          "Les dates, le lieu de séjour, le budget et les moyens de déplacement",
-          "Les âges, envies et contraintes de chaque participant",
-          "Les habitudes de repas et de repos, ainsi que les limites de marche et de trajet"
+          "Les dates, l’hébergement, le budget et les moyens de déplacement",
+          "Les âges, envies, mobilité et habitudes de repas et de repos de chacun"
         ],
         "tools": [
           {
             "name": "ChatGPT : projet et mémoire",
-            "role": "Gardez une conversation dédiée, ou créez un projet pour réunir les échanges. Ajoutez les documents avec le bouton de fichiers, puis vérifiez que l’assistant peut les lire et citer leur contenu.",
+            "role": "Une conversation dédiée ou un projet conserve le profil familial, les choix et les retours.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Recherche web et cartes",
-            "role": "La recherche identifie les sorties et vérifie horaires, accès et conditions. Les cartes permettent de comparer les trajets."
+            "role": "Les sites officiels vérifient horaires, tarifs et accès ; les cartes permettent de contrôler les trajets."
           },
           {
             "name": "ChatGPT Work : carnet de séjour",
-            "role": "Un document court réunit programme, adresses publiques, liens et alternatives, pour une consultation sur téléphone.",
+            "role": "Un document court réunit programme, adresses, liens et alternatives pour le téléphone.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           },
           {
             "name": "Chrome, facultatif",
-            "role": "L’extension officielle relie le navigateur à Work ou Codex sur ordinateur. Testez la lecture de la page ouverte avant de confier un formulaire. Vous gardez la validation des engagements et du paiement.",
+            "role": "Sur ordinateur, l’extension officielle et @Chrome dans Work peuvent préparer les réservations. Vous confirmez les conditions et le paiement.",
             "url": "https://learn.chatgpt.com/docs/chrome-extension"
           }
         ],
         "steps": [
           {
-            "title": "Recueillir les attentes de chacun",
-            "text": "Collez le prompt avec les dates, le lieu, les participants et leurs âges. Précisez les envies, les contraintes de marche, les temps de repos et le budget. L’assistant doit faire ressortir les attentes compatibles et les points à arbitrer avant de proposer des journées."
+            "title": "Définir le profil familial une fois",
+            "text": "L’IA rassemble les attentes et contraintes de chacun, puis signale les arbitrages nécessaires. Vous corrigez ce profil avant les propositions. Il sert pendant tout le séjour, avec des activités adaptées aux différents âges."
           },
           {
-            "title": "Découvrir des sorties auxquelles vous n’auriez pas pensé",
-            "text": "Demandez une sélection courte, avec l’intérêt de chaque lieu pour les différents membres de la famille. La recherche doit vérifier l’ouverture, les âges admis, les prix et l’accès sur les sites officiels. Écartez les propositions séduisantes qui correspondent mal au rythme familial."
+            "title": "Découvrir d’autres possibilités",
+            "text": "L’assistant recherche une sélection courte, explique l’intérêt de chaque lieu pour la famille et vérifie ouverture, prix et accès. Vous retenez les idées qui vous attirent, y compris celles que vous ne connaissiez pas."
           },
           {
-            "title": "Dessiner des journées réalistes",
-            "text": "À partir de votre hébergement, regroupez les visites par secteur et vérifiez les trajets dans une carte. Prévoyez stationnement, repas et pauses. Une activité principale, complétée par quelques options proches, laisse de la place aux découvertes et aux imprévus."
+            "title": "Composer des journées réalistes",
+            "text": "À partir de l’hébergement, l’IA regroupe les visites par secteur, estime les trajets et prévoit stationnement, repas et pauses. Vous vérifiez le rythme sur une carte. Une activité principale et quelques options proches laissent une marge aux imprévus."
           },
           {
-            "title": "Prévoir une autre option",
-            "text": "Pour chaque journée, gardez une version courte et une solution en cas de pluie ou de chaleur. Actualisez la météo et les horaires à l’approche de la sortie. Si une réservation est nécessaire, vérifiez les participants et les conditions avant de la confirmer ; Chrome peut en préparer les champs lorsqu’il est disponible."
+            "title": "Prévoir les alternatives et réservations",
+            "text": "L’assistant prépare une version courte et une solution pluie ou chaleur. Il actualise météo et horaires avant la sortie. Vous validez les réservations et leurs conditions ; Chrome peut préparer les champs si l’accès est disponible."
           },
           {
-            "title": "Adapter le programme sur place",
-            "text": "Indiquez ce que vous avez fait, ce qui a plu et le temps restant. Par exemple, une matinée fatigante peut conduire à remplacer une visite par une sortie courte à proximité. L’IA doit réorganiser la suite à partir de votre situation actuelle et des informations vérifiées."
+            "title": "Chaque jour : adapter la suite",
+            "text": "Vous indiquez le lieu de départ, le temps restant, la fatigue et les sorties appréciées. L’IA réorganise le programme avec ces retours et les informations vérifiées. Vous choisissez parmi les options adaptées à la situation du moment."
           },
           {
-            "title": "Garder ce que le séjour a appris",
-            "text": "À la fin des vacances, demandez un carnet bref des sorties appréciées et des préférences confirmées. Corrigez-le avant de le conserver. Il constituera une base pour le prochain séjour, à actualiser selon l’âge des enfants et les nouvelles envies."
+            "title": "Conserver les préférences confirmées",
+            "text": "L’assistant résume les expériences appréciées dans le carnet. Vous corrigez ce bilan et le gardez pour les prochains séjours. Les âges, envies et contraintes pourront évoluer sans devoir reconstruire le profil familial."
           }
         ],
         "checks": [
@@ -408,8 +403,8 @@
           "Le carnet distingue les idées, les réservations et les sorties effectuées"
         ],
         "start": {
-          "where": "Une conversation ChatGPT avec recherche web suffit pour préparer et ajuster le séjour, y compris depuis le téléphone. Gardez la même conversation pour retrouver les choix et les retours de la famille.",
-          "access": "Indiquez votre lieu de départ ou partagez la position utile à la demande. L’assistant n’a pas à supposer un suivi de localisation. Un agenda connecté ou Chrome pour préparer une réservation reste facultatif."
+          "where": "Ouvrez une conversation dédiée au séjour, y compris sur téléphone, puis collez le prompt. Gardez ce fil pour les ajustements quotidiens.",
+          "access": "La recherche web vérifie sorties et météo. Vous indiquez le lieu utile à chaque demande, sans suivi de position présumé. Agenda et navigateur pour les réservations sont facultatifs."
         }
       },
       "short_title": "Séjour familial"
@@ -424,7 +419,7 @@
       "prompts": [
         {
           "title": "Croiser un dossier de santé et préparer la consultation",
-          "text": "Aide-moi à organiser mon dossier de santé, à comprendre les informations disponibles et à préparer un échange précis avec un professionnel.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nQuestion : [question]. Objectif ou prochain rendez-vous : [objectif]. Pièces choisies : [bilans, comptes rendus, traitements déclarés, symptômes, mesures de santé ou d’activité]. Vérifie les accès disponibles, y compris pour les données du smartphone.\n\n1. Inventorie les pièces et établis une chronologie. Conserve dates, unités, intervalles du laboratoire et sources. Sépare observations personnelles, données d’appareils et conclusions médicales\n2. Explique les bilans et leur évolution. Rapproche les informations sans déduire une cause de leur seule coexistence. Présente les hypothèses comme des questions à discuter avec le médecin\n3. Pour l’imagerie, appuie-toi sur le compte rendu du radiologue. L’interprétation des clichés doit rester confiée au professionnel\n4. Recherche les publications pertinentes et précise date, type d’étude, population et limites. Pour les essais cliniques, indique identifiant, statut, centres et critères, sans présumer mon éligibilité ou un bénéfice\n5. Prépare les questions sur le parcours de soins, les spécialités possibles et les documents utiles. Les examens et traitements restent à décider avec le médecin\n6. Rédige une synthèse d’une page : motif, chronologie, symptômes, traitements déclarés, résultats importants et questions prioritaires. Relie les faits aux pièces\n7. Si nécessaire, recherche un professionnel, vérifie ses coordonnées officielles et prépare un message. Présente destinataire, texte et pièces avant tout envoi autorisé\n8. Après consultation, actualise le dossier à partir du compte rendu. Si je le souhaite, propose une tâche pour préparer le prochain rendez-vous, avec un accès et un fonctionnement vérifiés\n\nNe pose pas de diagnostic et ne propose pas de modifier un traitement. Cette aide ne constitue pas une surveillance médicale et ne doit pas retarder une consultation ou une prise en charge urgente."
+          "text": "Aide-moi à organiser mon dossier de santé, à comprendre les informations disponibles et à préparer un échange précis avec un professionnel.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nQuestion : [question]. Objectif ou prochain rendez-vous : [objectif]. Pièces choisies : [bilans, comptes rendus, traitements déclarés, symptômes, mesures de santé ou d’activité]. Vérifie les accès disponibles, y compris pour les données du smartphone.\n\n1. Inventorie les pièces et établis une chronologie. Conserve dates, unités, intervalles du laboratoire et sources. Sépare observations personnelles, données d’appareils et conclusions médicales\n2. Explique les bilans et leur évolution. Rapproche les informations sans déduire une cause de leur seule coexistence. Présente les hypothèses comme des questions à discuter avec le médecin\n3. Pour l’imagerie, appuie-toi sur le compte rendu du radiologue. L’interprétation des clichés doit rester confiée au professionnel\n4. Recherche les publications pertinentes et précise date, type d’étude, population et limites. Pour les essais cliniques, indique identifiant, statut, centres et critères, sans présumer mon éligibilité ou un bénéfice\n5. Prépare les questions sur le parcours de soins, les spécialités possibles et les documents utiles. Les examens et traitements restent à décider avec le médecin\n6. Rédige une synthèse d’une page : motif, chronologie, symptômes, traitements déclarés, résultats importants et questions prioritaires. Relie les faits aux pièces\n7. Si nécessaire, recherche un professionnel, vérifie ses coordonnées officielles et prépare un message. Présente destinataire, texte et pièces avant tout envoi autorisé\n8. Après consultation, actualise le dossier à partir du compte rendu. Si je le souhaite, propose une tâche pour préparer le prochain rendez-vous, avec un accès et un fonctionnement vérifiés\n\nNe pose pas de diagnostic et ne propose pas de modifier un traitement. Cette aide ne constitue pas une surveillance médicale et ne doit pas retarder une consultation ou une prise en charge urgente."
         }
       ],
       "tips": [
@@ -433,64 +428,63 @@
       "guide": {
         "result": "Un dossier organisé, des questions documentées et une synthèse courte pour le professionnel de santé.",
         "preparation": [
-          "Les bilans, comptes rendus et traitements que vous choisissez de partager",
-          "Une chronologie des symptômes et les mesures utiles de santé ou d’activité",
-          "La question à explorer et le rendez-vous à préparer"
+          "Les bilans, comptes rendus et traitements déclarés, avec leurs dates",
+          "La chronologie des symptômes, les mesures de santé ou d’activité et votre question"
         ],
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Gardez une conversation dédiée, ou créez un projet pour réunir les échanges. Ajoutez les documents avec le bouton de fichiers, puis vérifiez que l’assistant peut les lire et citer leur contenu.",
+            "role": "Une conversation ou un projet réunit les documents choisis. Vérifiez la lecture des valeurs, unités et références.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "Exports de santé et d’activité",
-            "role": "Les mesures sont apportées par un export choisi ou une connexion disponible. L’accès aux données du smartphone doit être établi."
+            "role": "Fournissez les mesures utiles par export ou connexion disponible ; l’accès au smartphone n’est pas présumé."
           },
           {
             "name": "Publications et registres d’essais",
-            "role": "PubMed et les registres d’essais permettent de documenter une question avec des sources datées, leurs populations étudiées et leurs limites.",
+            "role": "PubMed et les registres d’essais documentent la question avec des sources datées, leurs populations et leurs limites.",
             "url": "https://clinicaltrials.gov/study-basics/learn-about-studies"
           },
           {
             "name": "Annuaire, messagerie et Chrome",
-            "role": "Un annuaire officiel aide à vérifier les coordonnées du professionnel. La messagerie ou @Chrome permettent de préparer un contact, avec les pièces retenues.",
+            "role": "Un annuaire officiel vérifie les coordonnées. La messagerie ou @Chrome permettent un contact autorisé avec les seules pièces retenues.",
             "url": "https://learn.chatgpt.com/docs/chrome-extension"
           },
           {
             "name": "Agenda et tâches, facultatifs",
-            "role": "Une tâche peut préparer un rendez-vous à partir des documents accessibles. Son fonctionnement doit être testé ; elle ne constitue pas une surveillance médicale.",
+            "role": "Une tâche documentaire peut préparer un rendez-vous. Configurez et testez son fonctionnement avant de compter sur son résultat.",
             "url": "https://learn.chatgpt.com/docs/automations"
           }
         ],
         "steps": [
           {
-            "title": "Construire une chronologie vérifiable",
-            "text": "Collez le prompt avec le motif du prochain échange médical. Ajoutez les comptes rendus, bilans et traitements déclarés. L’IA doit relever dates, unités, valeurs de référence et sources. Comparez ce relevé aux originaux avant de lui ajouter vos symptômes et mesures personnelles."
+            "title": "Constituer le dossier de référence",
+            "text": "L’IA organise les documents, symptômes et mesures dans une chronologie, avec dates, unités, valeurs de référence et sources. Vous comparez ce relevé aux originaux et corrigez les erreurs avant toute mise en relation."
           },
           {
-            "title": "Comprendre les résultats et leurs limites",
-            "text": "Demandez une explication des bilans et de leur évolution, en les rapprochant de la chronologie. Les hypothèses doivent devenir des questions à discuter avec le médecin. J’ai aussi expérimenté la prélecture de clichés ; pour reproduire la démarche, partez du compte rendu, ChatGPT n’étant pas adapté à l’interprétation des images médicales spécialisées."
+            "title": "Mettre les données en perspective",
+            "text": "L’assistant explique l’évolution des bilans et rapproche les éléments pour préparer des questions au médecin. J’ai aussi expérimenté la prélecture de clichés ; pour reproduire la démarche, utilisez le compte rendu, ChatGPT n’étant pas adapté aux images médicales spécialisées."
           },
           {
-            "title": "Explorer la littérature sur une question précise",
-            "text": "Confiez à la recherche web une question issue du dossier. Pour chaque publication, demandez la date, le type d’étude, la population et les limites. Un essai clinique doit être identifié dans un registre, avec son statut et ses centres. Sa présence ne suffit pas à établir votre éligibilité ou son bénéfice."
+            "title": "Documenter une question précise",
+            "text": "L’IA recherche publications et essais enregistrés, avec dates, type d’étude, population, limites et statut des essais. Vous examinez ces pistes avec le professionnel. Une étude ne suffit pas à établir un bénéfice personnel ou une éligibilité."
           },
           {
-            "title": "Préparer les questions sur le parcours de soins",
-            "text": "L’assistant peut organiser les points à clarifier, les spécialités éventuellement concernées et les documents à apporter. Faites apparaître ce qui manque pour comprendre la situation. Présentez ces pistes au médecin, qui décidera de l’orientation, des examens et des traitements."
+            "title": "Préparer l’échange sur le parcours de soins",
+            "text": "L’assistant classe les questions, les documents manquants et les spécialités à discuter. Vous soumettez ces pistes au médecin, qui décide des orientations, examens et traitements."
           },
           {
-            "title": "Rédiger une page utile au professionnel",
-            "text": "Rassemblez le motif, les dates importantes, les symptômes, les traitements déclarés et les questions prioritaires. Demandez une synthèse d’une page avec des renvois aux pièces. Relisez chaque information : le professionnel doit pouvoir retrouver rapidement les faits utiles et leurs sources."
+            "title": "Obtenir une synthèse d’une page",
+            "text": "L’IA rassemble motif, dates, symptômes, traitements déclarés et questions prioritaires, avec renvois aux pièces. Vous relisez chaque information avant de transmettre la synthèse au professionnel."
           },
           {
-            "title": "Trouver le bon contact",
-            "text": "Après clarification de la spécialité, recherchez un professionnel et vérifiez ses coordonnées dans un annuaire officiel ou sur le site de l’établissement. Les avis publics renseignent l’expérience des patients, sans établir la qualité médicale. Relisez le message, le destinataire et les pièces avant tout envoi autorisé."
+            "title": "Rechercher et contacter un professionnel",
+            "text": "Après clarification de la spécialité, l’assistant recherche les coordonnées et les vérifie dans un annuaire officiel. Les avis publics ne prouvent pas la qualité médicale. Il prépare le contact ; vous validez destinataire, texte et pièces avant l’envoi autorisé."
           },
           {
-            "title": "Actualiser le dossier après le rendez-vous",
-            "text": "Ajoutez le compte rendu et les consignes reçues. L’assistant peut corriger la synthèse et préparer les questions restées ouvertes. Conservez les versions datées pour distinguer une ancienne hypothèse d’une conclusion médicale ultérieure."
+            "title": "Après chaque rendez-vous : actualiser",
+            "text": "Vous ajoutez le compte rendu et les consignes reçues. L’IA actualise la synthèse datée et les questions ouvertes. Les anciennes hypothèses restent distinctes des conclusions médicales ; le prochain échange repart de ce dossier corrigé."
           }
         ],
         "checks": [
@@ -500,8 +494,8 @@
           "La démarche ne modifie aucun traitement et ne retarde pas une consultation ou une prise en charge urgente"
         ],
         "start": {
-          "where": "Ouvrez une conversation dédiée et joignez uniquement les documents utiles à votre question. L’analyse de fichiers sert à préparer le dossier ; la recherche web permet de consulter les publications et les coordonnées professionnelles.",
-          "access": "Les données du smartphone doivent être fournies par un export choisi ou une connexion vérifiée. Pour les images médicales, utilisez le compte rendu du radiologue. Une messagerie connectée est facultative pour préparer le contact."
+          "where": "Ouvrez une conversation dédiée, collez le prompt et partagez seulement les documents utiles à la question ou au rendez-vous à préparer.",
+          "access": "Les données du smartphone proviennent d’un export choisi ou d’une connexion vérifiée. Pour l’imagerie, utilisez le compte rendu du radiologue. La messagerie pour le contact est facultative."
         },
         "extension": "Une tâche peut préparer un prochain rendez-vous ou une veille documentaire à partir de sources choisies. Elle doit être configurée et testée séparément. Ce suivi documentaire ne constitue pas une surveillance médicale et ne remplace pas une consultation, notamment en cas de symptômes nouveaux ou urgents."
       },
@@ -523,7 +517,7 @@
       "prompts": [
         {
           "title": "Relier budget, patrimoine, investissements et décisions de revente",
-          "text": "Aide-moi à comparer des choix financiers à partir de mes projets de vie et de mes objectifs patrimoniaux. Commence par la décision prioritaire et traite les volets utiles.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nObjectifs et horizons : [projets]. Contraintes : [budget, réserve, effort mensuel, risque accepté]. Sources : [exports, situation patrimoniale, crédits, annonces, factures ou données du véhicule]. Vérifie leurs dates et les accès disponibles.\n\n1. Établis la situation de référence : actifs, dettes, revenus, charges et capacité d’épargne. Rapproche les flux, rattache les remboursements et élimine les doublons. Sépare montants vérifiés et estimations\n2. Construis des scénarios central, prudent et défavorable sur un horizon commun. Explicite les hypothèses et montre leur effet sur la trésorerie, le patrimoine net et la marge de sécurité\n3. Pour la fiscalité, consulte les règles officielles applicables à ma situation et à l’année. Compare coûts, engagements et effets à la sortie. Indique les points à valider avec un professionnel qualifié\n4. Pour un projet locatif, recherche des biens selon les critères retenus et conserve liens et dates. Calcule coût total, rendement net et trésorerie après dette, avec loyers justifiés, charges, gestion, vacance, entretien, travaux, financement, fiscalité et revente. Ajoute un scénario défavorable. Si une donnée manque, indique le seuil nécessaire à la viabilité\n5. Pour un véhicule, compare conserver ou revendre maintenant, dans un an et dans deux ans, avec le coût d’un remplacement éventuel. Recherche des comparables et distingue prix affiché, estimation nette et offre réelle. Intègre achat, intérêts, assurance, entretien, énergie et frais, moins revente nette, sans compter deux fois le capital du prêt\n6. Livre un classeur modifiable avec formules, sources, dates et hypothèses. Termine par les arbitrages prioritaires et les informations qui pourraient changer la conclusion\n\nPrésente les données à leur date de consultation. Réserve « temps réel » à un flux vérifié. Les projections ne garantissent aucun rendement, avantage fiscal ou prix de revente. Toute transaction ou transmission de document demande mon autorisation."
+          "text": "Aide-moi à comparer des choix financiers à partir de mes projets de vie et de mes objectifs patrimoniaux. Commence par la décision prioritaire et traite les volets utiles.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nObjectifs et horizons : [projets]. Contraintes : [budget, réserve, effort mensuel, risque accepté]. Sources : [exports, situation patrimoniale, crédits, annonces, factures ou données du véhicule]. Vérifie leurs dates et les accès disponibles.\n\n1. Établis la situation de référence : actifs, dettes, revenus, charges et capacité d’épargne. Rapproche les flux, rattache les remboursements et élimine les doublons. Sépare montants vérifiés et estimations\n2. Construis des scénarios central, prudent et défavorable sur un horizon commun. Explicite les hypothèses et montre leur effet sur la trésorerie, le patrimoine net et la marge de sécurité\n3. Pour la fiscalité, consulte les règles officielles applicables à ma situation et à l’année. Compare coûts, engagements et effets à la sortie. Indique les points à valider avec un professionnel qualifié\n4. Pour un projet locatif, recherche des biens selon les critères retenus et conserve liens et dates. Calcule coût total, rendement net et trésorerie après dette, avec loyers justifiés, charges, gestion, vacance, entretien, travaux, financement, fiscalité et revente. Ajoute un scénario défavorable. Si une donnée manque, indique le seuil nécessaire à la viabilité\n5. Pour un véhicule, compare conserver ou revendre maintenant, dans un an et dans deux ans, avec le coût d’un remplacement éventuel. Recherche des comparables et distingue prix affiché, estimation nette et offre réelle. Intègre achat, intérêts, assurance, entretien, énergie et frais, moins revente nette, sans compter deux fois le capital du prêt\n6. Livre un classeur modifiable avec formules, sources, dates et hypothèses. Termine par les arbitrages prioritaires et les informations qui pourraient changer la conclusion\n\nPrésente les données à leur date de consultation. Réserve « temps réel » à un flux vérifié. Les projections ne garantissent aucun rendement, avantage fiscal ou prix de revente. Toute transaction ou transmission de document demande mon autorisation."
         }
       ],
       "tips": [
@@ -532,59 +526,58 @@
       "guide": {
         "result": "Des scénarios chiffrés, comparables et reliés à vos objectifs, avec leurs hypothèses et leurs limites.",
         "preparation": [
-          "Les projets, leurs échéances et la réserve de sécurité à préserver",
-          "Une situation datée des revenus, charges, actifs et dettes, avec les justificatifs utiles",
-          "Les critères du projet étudié : placement, bien locatif ou véhicule"
+          "L’objectif, l’échéance, l’effort mensuel acceptable et la réserve à préserver",
+          "Une situation datée des revenus, charges, actifs et dettes, avec les pièces du projet étudié"
         ],
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Gardez une conversation dédiée, ou créez un projet pour réunir les échanges. Ajoutez les documents avec le bouton de fichiers, puis vérifiez que l’assistant peut les lire et citer leur contenu.",
+            "role": "Joignez les justificatifs dans une conversation dédiée ou un projet. Limitez les données partagées au périmètre étudié.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
             "name": "ChatGPT Work : tableur",
-            "role": "Le classeur conserve formules, sources, hypothèses et projections. Les données constatées restent distinctes des estimations.",
+            "role": "Le classeur conserve formules, sources et hypothèses ; il distingue montants constatés et estimations.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           },
           {
             "name": "Recherche web et sources officielles",
-            "role": "La recherche actualise annonces, comparables et règles fiscales. La date et l’applicabilité de chaque information doivent être vérifiées."
+            "role": "Les sources officielles actualisent fiscalité, annonces et comparables, avec leur date et leur applicabilité."
           },
           {
             "name": "Services connectés, facultatifs",
-            "role": "Les connexions peuvent retrouver les pièces autorisées. Leur fréquence de mise à jour doit être connue ; l’accès à des documents ne constitue pas un flux de marché en temps réel.",
+            "role": "Les connexions retrouvent les pièces autorisées. Vérifiez leur date et leur fréquence de mise à jour.",
             "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
           }
         ],
         "steps": [
           {
-            "title": "Choisir l’arbitrage à éclairer",
-            "text": "Collez le prompt et nommez la décision : investir, préparer un projet de vie ou revendre un véhicule, par exemple. Précisez l’horizon, l’effort mensuel acceptable et la réserve à préserver. Ces contraintes donnent un sens aux calculs et évitent de multiplier les simulations sans objectif."
+            "title": "Fixer les objectifs une fois",
+            "text": "Vous précisez le projet de vie ou l’arbitrage : investir, financer un projet, revendre un véhicule. L’IA traduit horizon, effort mensuel et réserve de sécurité en critères de comparaison. Vous validez ce cadre avant les calculs."
           },
           {
-            "title": "Rapprocher les données de départ",
-            "text": "Joignez les documents à une même date. L’assistant doit reconstituer actifs, dettes, revenus et charges, puis éliminer les virements internes et doublons. Les remboursements doivent être rattachés aux dépenses concernées. Les montants inconnus restent visibles, avec leur incidence sur l’analyse."
+            "title": "Établir la situation de référence",
+            "text": "L’assistant rapproche actifs, dettes, revenus et charges à une même date, écarte les doublons et rattache les remboursements aux dépenses. Vous contrôlez les totaux et renseignez les montants manquants."
           },
           {
-            "title": "Comparer des trajectoires",
-            "text": "Demandez un scénario central, un prudent et un défavorable sur le même horizon. Le classeur doit montrer l’effet des hypothèses sur la trésorerie, le patrimoine net et la marge de sécurité. Modifiez une hypothèse importante pour comprendre ce qui pourrait faire changer la décision."
+            "title": "Comparer plusieurs trajectoires",
+            "text": "L’IA construit des scénarios central, prudent et défavorable sur le même horizon, avec trésorerie, patrimoine net et marge de sécurité. Vous faites varier une hypothèse décisive pour comprendre ce qui change la conclusion."
           },
           {
-            "title": "Examiner les conséquences fiscales",
-            "text": "Pour le projet concerné, demandez les règles officielles applicables à l’année et à votre situation. Comparez le coût, les conditions, la durée d’engagement et la fiscalité de sortie. Les options retenues doivent être validées avec un professionnel qualifié avant leur application."
+            "title": "Examiner la fiscalité du projet",
+            "text": "L’assistant recherche les règles officielles applicables à l’année et à votre situation, puis compare coûts, conditions et fiscalité de sortie. Vous faites valider les options retenues par un professionnel qualifié avant application."
           },
           {
-            "title": "Étudier un bien locatif",
-            "text": "Fixez secteur, budget et contraintes de gestion avant la recherche d’annonces. Pour chaque bien retenu, calculez coût total, rendement net et trésorerie après dette. Intégrez vacance, entretien, travaux, charges, fiscalité et revente. Un loyer justifié et un scénario défavorable sont nécessaires pour apprécier la solidité du projet."
+            "title": "Pour un bien locatif : chercher et chiffrer",
+            "text": "Vous fixez secteur, budget et contraintes de gestion. L’IA recherche des annonces et calcule coût total, rendement net et trésorerie après dette, avec vacance, travaux, charges, fiscalité et revente. Vous vérifiez le loyer de référence et le scénario défavorable."
           },
           {
-            "title": "Choisir quand revendre un véhicule",
-            "text": "Recherchez des modèles comparables en version, kilométrage et état. Comparez conserver ou revendre maintenant, dans un an et dans deux ans, en intégrant le remplacement éventuel. Le calcul rapproche achat, entretien, énergie, financement et revente nette. Un prix d’annonce reste distinct d’une offre réellement obtenue."
+            "title": "Pour un véhicule : comparer les dates de revente",
+            "text": "L’IA recherche des modèles comparables et chiffre conserver ou revendre maintenant, dans un an et dans deux ans, remplacement compris. Elle intègre achat, entretien, énergie, financement et revente nette. Vous confrontez les prix d’annonce aux offres réellement obtenues."
           },
           {
-            "title": "Conserver une analyse actualisable",
-            "text": "Gardez les formules, sources et hypothèses dans le classeur. À l’arrivée d’une nouvelle offre ou d’un changement de situation, actualisez les seules données concernées et demandez ce qui modifie la conclusion. Les projections ne garantissent ni rendement, ni avantage fiscal, ni prix de revente."
+            "title": "À chaque changement : reprendre le classeur",
+            "text": "Vous fournissez la nouvelle offre ou les données modifiées. L’assistant recalcule les scénarios et explique ce qui affecte la conclusion. Vous décidez de la suite ; les projections ne garantissent aucun rendement, avantage fiscal ou prix de revente."
           }
         ],
         "checks": [
@@ -594,8 +587,8 @@
           "Les décisions fiscales ou d’investissement importantes sont vérifiées avec un professionnel qualifié"
         ],
         "start": {
-          "where": "Partez d’une question dans ChatGPT, avec vos fichiers de budget ou de patrimoine. Work peut produire un classeur modifiable ; la recherche web sert à actualiser les règles, annonces et comparables utiles.",
-          "access": "Un export de vos documents suffit pour commencer. Une connexion à vos comptes bancaires n’est pas nécessaire. Les données consultées ont une date ; elles ne constituent pas un flux de marché en temps réel."
+          "where": "Dans ChatGPT, collez le prompt avec une décision précise et vos documents. Commencez par un seul arbitrage pour rendre les calculs utiles.",
+          "access": "Des exports suffisent ; aucune connexion bancaire n’est nécessaire. Work produit le classeur et la recherche web actualise les sources datées, sans constituer un flux de marché en temps réel."
         }
       },
       "links": [
@@ -616,7 +609,7 @@
       "prompts": [
         {
           "title": "Créer son propre outil de collection et l’installer",
-          "text": "Aide-moi à créer une application de collection adaptée à mes habitudes, puis à l’installer sur mon téléphone.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nCollections : [éléments]. Limites des outils actuels : [limites]. Trois actions prioritaires : [actions]. Contraintes : [appareil, budget, données et connexions].\n\n1. Précise les catégories, recherches, statuts et règles de progression. Prévois l’historique et les notes si utiles. Propose les écrans et les critères de réussite\n2. Vérifie l’environnement. Pour une installation sur iPhone sans Mac, examine React Native, Expo et EAS Build. Explique les comptes, la signature Apple, les coûts et les conditions d’installation avant engagement\n3. Crée une première version avec stockage local et export. Conserve le code dans le dépôt privé autorisé\n4. Ajoute les fonctions retenues : import, métadonnées, scan, progression ou rappels. Vérifie les accès et les limites des dépendances\n5. Teste les fonctions, les doublons, la fermeture et la réouverture. Vérifie export, restauration et conservation des données après mise à jour, avec des données fictives\n6. Configure une compilation de distribution interne pour l’iPhone enregistré, puis fournis le lien ou le QR code d’installation après réussite. Corrige les erreurs à partir des journaux, puis adapte l’interface à mes essais sur téléphone\n\nDistingue code produit, tests exécutés, compilation réussie et installation vérifiée. Livre les sources, les coûts connus et les instructions de sauvegarde et de mise à jour. Aucun secret ne doit apparaître dans le dépôt."
+          "text": "Aide-moi à créer une application de collection adaptée à mes habitudes, puis à l’installer sur mon téléphone.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nCollections : [éléments]. Limites des outils actuels : [limites]. Trois actions prioritaires : [actions]. Contraintes : [appareil, budget, données et connexions].\n\n1. Précise les catégories, recherches, statuts et règles de progression. Prévois l’historique et les notes si utiles. Propose les écrans et les critères de réussite\n2. Vérifie l’environnement. Pour une installation sur iPhone sans Mac, examine React Native, Expo et EAS Build. Explique les comptes, la signature Apple, les coûts et les conditions d’installation avant engagement\n3. Crée une première version avec stockage local et export. Conserve le code dans le dépôt privé autorisé\n4. Ajoute les fonctions retenues : import, métadonnées, scan, progression ou rappels. Vérifie les accès et les limites des dépendances\n5. Teste les fonctions, les doublons, la fermeture et la réouverture. Vérifie export, restauration et conservation des données après mise à jour, avec des données fictives\n6. Configure une compilation de distribution interne pour l’iPhone enregistré, puis fournis le lien ou le QR code d’installation après réussite. Corrige les erreurs à partir des journaux, puis adapte l’interface à mes essais sur téléphone\n\nDistingue code produit, tests exécutés, compilation réussie et installation vérifiée. Livre les sources, les coûts connus et les instructions de sauvegarde et de mise à jour. Aucun secret ne doit apparaître dans le dépôt."
         }
       ],
       "tips": [
@@ -625,58 +618,57 @@
       "guide": {
         "result": "Une application personnelle utilisable sur téléphone, avec son code et un moyen de sauvegarder les données.",
         "preparation": [
-          "Les collections à organiser, les données existantes et les limites des outils déjà essayés",
-          "Trois actions prioritaires à réaliser dans l’application",
-          "L’appareil, le budget et les comptes nécessaires à la compilation et à l’installation"
+          "Quelques éléments de votre collection et trois actions prioritaires à réaliser",
+          "L’appareil visé, le budget et les limites des outils déjà essayés"
         ],
         "tools": [
           {
             "name": "ChatGPT Work ou Codex",
-            "role": "L’assistant peut produire le code, exécuter les vérifications disponibles et corriger les erreurs à partir des essais.",
+            "role": "L’assistant écrit le code, exécute les vérifications disponibles et corrige à partir de vos essais.",
             "url": "https://learn.chatgpt.com/docs/get-started-with-work"
           },
           {
             "name": "React Native et Expo",
-            "role": "Ces outils permettent de construire l’interface et les fonctions de l’application dans un même projet."
+            "role": "Ces outils réunissent interface et fonctions de l’application dans un même projet."
           },
           {
             "name": "GitHub",
-            "role": "Un dépôt privé conserve le code et ses versions. Les données personnelles et les secrets restent en dehors du dépôt."
+            "role": "Un dépôt privé conserve le code et ses versions, sans données personnelles ni secrets."
           },
           {
             "name": "Expo EAS Build",
-            "role": "EAS compile le projet à distance. Le parcours iOS de distribution interne exige un compte Apple Developer Program payant et un appareil enregistré. L’IA prépare le projet ; vous effectuez les connexions et validez les coûts.",
+            "role": "EAS compile à distance. La distribution interne iOS exige Apple Developer Program et un appareil enregistré. Vous effectuez les connexions ; l’assistant prépare la configuration.",
             "url": "https://docs.expo.dev/build/internal-distribution/"
           }
         ],
         "steps": [
           {
-            "title": "Décrire trois usages essentiels",
-            "text": "Collez le prompt et donnez quelques éléments de votre collection. Expliquez ce que vous voulez ajouter, retrouver ou suivre. L’IA doit proposer les écrans et les règles de classement correspondants. Choisissez une première version assez simple pour être essayée rapidement."
+            "title": "Définir la première version",
+            "text": "Vous expliquez ce que vous voulez ajouter, retrouver et suivre. L’IA propose les écrans et règles de classement à partir de quelques exemples. Vous retenez trois usages à essayer avant d’ajouter des fonctions."
           },
           {
-            "title": "Obtenir une première version utilisable",
-            "text": "Demandez à Work ou Codex de créer le projet Expo avec React Native, stockage local et export des données. Faites préciser les comptes et coûts avant engagement. Demandez un lien d’aperçu sur ordinateur et les fonctions testables, puis ouvrez-le pour essayer cette version. Le code doit être conservé dans le dépôt autorisé."
+            "title": "Confier la création du projet",
+            "text": "L’assistant crée le projet Expo et React Native, le stockage local et l’export, puis conserve le code dans le dépôt autorisé. Il fournit un lien d’aperçu et précise les fonctions testables. Vous ouvrez ce lien pour essayer la première version."
           },
           {
-            "title": "Ajouter les fonctions à partir des essais",
-            "text": "Dans cet aperçu, testez l’ajout, la recherche et le suivi sur quelques éléments familiers. Décrivez les difficultés avec une capture et le résultat attendu. Ajoutez ensuite les imports, métadonnées, scans ou rappels utiles. Les fonctions liées au téléphone devront être essayées sur l’iPhone après installation."
+            "title": "Faire corriger à partir des essais",
+            "text": "Vous testez ajout, recherche et suivi, puis décrivez les difficultés avec une capture et le résultat attendu. L’IA corrige et ajoute les imports, métadonnées, scans ou rappels retenus. Les fonctions du téléphone seront testées après installation."
           },
           {
-            "title": "Vérifier que les données se conservent",
-            "text": "Avec des données fictives, ajoutez et modifiez des éléments, puis fermez et rouvrez l’application. Exportez une sauvegarde et restaurez-la dans une version de test. Les doublons, caractères accentués et dates doivent survivre à ce cycle avant d’y confier votre collection."
+            "title": "Valider la conservation des données",
+            "text": "L’IA prépare les vérifications de sauvegarde. Vous ajoutez et modifiez des données fictives, fermez puis rouvrez l’application, exportez et restaurez une copie de test. Contrôlez doublons, accents et dates avant d’importer votre collection."
           },
           {
-            "title": "Préparer l’installation sur iPhone",
-            "text": "Demandez à l’assistant de configurer une version de distribution interne avec EAS Build et de vous guider dans l’enregistrement de l’iPhone auprès d’Apple. Effectuez vous-même les connexions demandées. L’assistant doit vérifier que l’appareil figure dans la configuration de signature avant de lancer la compilation."
+            "title": "Configurer l’installation une fois",
+            "text": "L’assistant prépare la distribution interne EAS Build et vous guide pour enregistrer l’iPhone auprès d’Apple. Vous effectuez les connexions et validez les coûts. Il vérifie l’appareil dans la configuration de signature, puis lance la compilation."
           },
           {
-            "title": "Installer puis essayer sur le téléphone",
-            "text": "Une fois la compilation réussie, ouvrez son lien d’installation ou son QR code depuis l’iPhone enregistré. Suivez les indications d’installation, puis essayez l’application. En cas d’erreur, transmettez le message exact ou le journal de compilation pour obtenir une correction ciblée."
+            "title": "Installer et essayer sur iPhone",
+            "text": "Après compilation, vous ouvrez le lien ou QR code sur l’iPhone enregistré et suivez l’installation. Testez clavier, navigation, fonctions du téléphone et modes clair et sombre. Transmettez les messages d’erreur précis pour que l’IA corrige."
           },
           {
-            "title": "Faire évoluer sans perdre la collection",
-            "text": "Testez le clavier, la navigation et les modes clair et sombre sur le téléphone. Après chaque correction, installez la nouvelle version et vérifiez la conservation des données. Gardez une sauvegarde et le code de la version précédente pour pouvoir revenir sur un changement."
+            "title": "À chaque version : préserver la collection",
+            "text": "L’assistant modifie le projet existant et prépare la nouvelle version. Vous sauvegardez, installez puis vérifiez vos données. Conservez le code précédent et une sauvegarde exploitable pour revenir sur un changement."
           }
         ],
         "checks": [
@@ -685,8 +677,8 @@
           "Le code est conservé, les coûts connus et les mises à jour préservent les données"
         ],
         "start": {
-          "where": "Sur ordinateur, utilisez Work ou Codex pour créer et exécuter le code. Ce parcours repose sur React Native et Expo pour l’application, puis EAS Build pour la compilation à distance.",
-          "access": "L’installation iPhone décrite demande un compte Expo, l’inscription payante Apple Developer Program et l’enregistrement de l’appareil. Vérifiez aussi les conditions d’Expo. Un dépôt GitHub privé permet de conserver les versions du code. Sans ces accès, commencez par un prototype consultable sur le web."
+          "where": "Sur ordinateur, collez le prompt dans Work ou Codex. Commencez par un aperçu testable. Le parcours iPhone décrit ensuite nécessite un compte Apple Developer Program payant.",
+          "access": "Le parcours utilise React Native, Expo et EAS Build. L’installation demande un compte Expo et l’enregistrement de l’iPhone. Un dépôt GitHub privé conserve le code. Vérifiez les conditions et coûts avant l’installation."
         }
       },
       "short_title": "Application"
@@ -701,7 +693,7 @@
       "prompts": [
         {
           "title": "Convoquer un Conseil de cinq rôles pour un arbitrage",
-          "text": "Je convoque le Conseil sur la décision suivante : [question].\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nObjectif : [objectif]. Préférence actuelle : [avis]. Contraintes et échéance : [éléments]. Conséquences d’une erreur : [éléments]. Documents : [sources]. Utilise le contexte pertinent déjà accessible et demande les informations manquantes.\n\nCe protocole utilise cinq perspectives dans la même conversation. Il s’active seulement à ma demande et reste distinct de mes autres consignes de conseil. N’annonce pas d’agents indépendants sans dispositif qui les exécute réellement.\n\n1. Prépare un dossier neutre : faits établis, hypothèses, contraintes, alternatives et inconnues. Vérifie les faits externes qui peuvent modifier le choix\n2. Formule cinq avis courts :\n   • Le Contradicteur examine les objections, les preuves insuffisantes et les causes d’échec\n   • Le Penseur fondamental revient à l’objectif et vérifie si le problème est bien posé\n   • L’Explorateur propose les options encore peu examinées et leurs conditions de réussite\n   • Le Regard extérieur repère les biais et les conséquences pour les autres\n   • Le Pragmatique évalue les moyens, les coûts, les délais et la première action\n3. Confronte les arguments. Relève les désaccords décisifs et les hypothèses fragiles communes, puis fais réviser les positions concernées\n4. Vérifie l’inconnue susceptible de changer le choix par une source, un calcul ou un essai proportionné\n5. Fais arbitrer le président sur la solidité des arguments. Il peut retenir une position minoritaire ou une conclusion provisoire. Précise les compromis et les incertitudes restantes\n6. Termine par une première action et les conditions de réexamen. Après mon choix, applique les corrections autorisées et vérifie leur résultat\n\nPrésente les cinq avis, la confrontation et la conclusion de manière directe, proportionnée à l’enjeu. La décision finale m’appartient."
+          "text": "Je convoque le Conseil sur la décision suivante : [question].\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nObjectif : [objectif]. Préférence actuelle : [avis]. Contraintes et échéance : [éléments]. Conséquences d’une erreur : [éléments]. Documents : [sources]. Utilise le contexte pertinent déjà accessible et demande les informations manquantes.\n\nCe protocole utilise cinq perspectives dans la même conversation. Il s’active seulement à ma demande et reste distinct de mes autres consignes de conseil. N’annonce pas d’agents indépendants sans dispositif qui les exécute réellement.\n\n1. Prépare un dossier neutre : faits établis, hypothèses, contraintes, alternatives et inconnues. Vérifie les faits externes qui peuvent modifier le choix\n2. Formule cinq avis courts :\n   • Le Contradicteur examine les objections, les preuves insuffisantes et les causes d’échec\n   • Le Penseur fondamental revient à l’objectif et vérifie si le problème est bien posé\n   • L’Explorateur propose les options encore peu examinées et leurs conditions de réussite\n   • Le Regard extérieur repère les biais et les conséquences pour les autres\n   • Le Pragmatique évalue les moyens, les coûts, les délais et la première action\n3. Confronte les arguments. Relève les désaccords décisifs et les hypothèses fragiles communes, puis fais réviser les positions concernées\n4. Vérifie l’inconnue susceptible de changer le choix par une source, un calcul ou un essai proportionné\n5. Fais arbitrer le président sur la solidité des arguments. Il peut retenir une position minoritaire ou une conclusion provisoire. Précise les compromis et les incertitudes restantes\n6. Termine par une première action et les conditions de réexamen. Après mon choix, applique les corrections autorisées et vérifie leur résultat\n\nPrésente les cinq avis, la confrontation et la conclusion de manière directe, proportionnée à l’enjeu. La décision finale m’appartient."
         }
       ],
       "tips": [
@@ -710,53 +702,52 @@
       "guide": {
         "result": "Une décision argumentée, ses compromis et une première action, après examen des principales objections.",
         "preparation": [
-          "La décision, son objectif et votre préférence actuelle",
-          "Les contraintes, l’échéance et les conséquences d’une erreur",
-          "Les faits établis, les documents utiles et les questions ouvertes"
+          "L’objectif, les alternatives, votre préférence actuelle et l’échéance",
+          "Les contraintes, les conséquences d’une erreur et les faits documentés"
         ],
         "tools": [
           {
             "name": "ChatGPT : conversation et raisonnement",
-            "role": "Une conversation permet d’examiner successivement cinq rôles et de confronter leurs arguments. Ce fonctionnement ne crée pas cinq agents indépendants."
+            "role": "Le modèle examine les cinq perspectives, confronte les objections et formule l’arbitrage."
           },
           {
             "name": "Projet ou consigne enregistrée",
-            "role": "Le protocole peut être conservé et activé explicitement avec « Je convoque le Conseil »."
+            "role": "Conservez le protocole pour le rappeler avec « Je convoque le Conseil »."
           },
           {
             "name": "Recherche et documents",
-            "role": "Les sources, calculs et essais servent à vérifier les faits qui déterminent le choix."
+            "role": "Sources, calculs et essais vérifient les faits qui déterminent le choix."
           },
           {
             "name": "Work ou Codex, selon le besoin",
-            "role": "Ces outils peuvent prolonger l’analyse par un calcul, un prototype ou une correction autorisée, puis en vérifier le résultat.",
+            "role": "Une vérification peut prendre la forme d’un calcul ou d’un prototype autorisé.",
             "url": "https://learn.chatgpt.com/docs/get-started-with-work"
           }
         ],
         "steps": [
           {
-            "title": "Présenter un dossier commun",
-            "text": "Décrivez l’objectif, les contraintes, l’échéance et les alternatives. Signalez votre préférence sans la présenter comme une conclusion. L’assistant doit distinguer faits établis, hypothèses et informations manquantes ; les cinq rôles partiront de ce même dossier."
+            "title": "Installer le protocole une fois",
+            "text": "Enregistrez le prompt dans les instructions d’un projet, ou conservez-le dans un document à joindre aux nouvelles conversations. Son activation reste explicite : « Je convoque le Conseil ». L’assistant reprend alors les rôles et le déroulement."
           },
           {
-            "title": "Attribuer un travail différent à chaque rôle",
-            "text": "Le Contradicteur cherche les fragilités. Le Penseur fondamental revient à l’objectif. L’Explorateur ouvre d’autres options. Le Regard extérieur examine les biais et les effets sur autrui. Le Pragmatique évalue les moyens et l’exécution. Ces rôles sont définis dans le prompt."
+            "title": "Présenter le dossier de la décision",
+            "text": "Vous apportez objectif, contraintes, alternatives et préférence actuelle. L’IA distingue faits, hypothèses et informations manquantes. Vous corrigez ce dossier commun avant le débat."
           },
           {
-            "title": "Obtenir des positions argumentées",
-            "text": "Chaque rôle doit donner un avis, ses raisons et une limite de sa propre proposition. Une différence de ton ne suffit pas : cherchez des désaccords sur les hypothèses, les critères ou les conséquences. Si les réponses se ressemblent, demandez de préciser le point de divergence."
+            "title": "Confier un angle à chaque rôle",
+            "text": "Le Contradicteur cherche les fragilités ; le Penseur fondamental revient à l’objectif ; l’Explorateur propose d’autres options ; le Regard extérieur examine biais et effets sur autrui ; le Pragmatique évalue l’exécution. Vous pouvez demander de préciser un avis trop général."
           },
           {
-            "title": "Faire porter le débat sur les points décisifs",
-            "text": "L’assistant confronte les objections et révise les positions fragiles. Il doit identifier l’information qui pourrait changer le choix, puis proposer une vérification proportionnée : source, calcul ou essai. Cette étape évite qu’un débat bien formulé repose sur une erreur commune."
+            "title": "Faire examiner les désaccords",
+            "text": "L’assistant confronte les positions, leurs limites et les objections. Il identifie les faits qui pourraient changer le choix et propose une source, un calcul ou un essai pour les vérifier. Vous apportez ou faites rechercher les éléments manquants."
           },
           {
-            "title": "Obtenir un arbitrage et agir",
-            "text": "Le président formule une conclusion motivée, qui peut retenir une position minoritaire. Il précise les compromis, les incertitudes et la première action. Vous décidez ensuite de la suite ; si une donnée essentielle manque, la conclusion doit rester provisoire."
+            "title": "Arbitrer puis décider",
+            "text": "Le président formule une conclusion motivée, y compris minoritaire, avec compromis, incertitudes et première action. Vous décidez de la suite. Si une donnée essentielle manque, l’arbitrage reste provisoire."
           },
           {
-            "title": "Réutiliser le protocole à bon escient",
-            "text": "Conservez le prompt dans une consigne ou un projet si vous souhaitez le reprendre. Demandez son activation uniquement avec « Je convoque le Conseil ». Après l’action, confrontez le résultat aux hypothèses retenues pour améliorer vos décisions suivantes."
+            "title": "Revenir sur le résultat",
+            "text": "Après l’action, vous décrivez ce qui s’est passé. L’IA compare le résultat aux hypothèses et propose les points à réexaminer. Pour une nouvelle décision, le protocole reste disponible ; seul le dossier change."
           }
         ],
         "checks": [
@@ -765,8 +756,8 @@
           "La conclusion précise les compromis, la première action et les conditions de réexamen"
         ],
         "start": {
-          "where": "Une conversation ChatGPT suffit. Collez le prompt avec une décision concrète et les documents utiles. Aucune installation ni connexion particulière n’est nécessaire pour obtenir les cinq avis et leur confrontation.",
-          "access": "La recherche web, les calculs ou un prototype servent ensuite à vérifier les faits décisifs. Les cinq rôles partagent le même modèle : leur accord ne constitue pas une vérification indépendante."
+          "where": "Une conversation suffit. Collez le prompt avec une décision concrète ; les cinq rôles et le déroulement du débat y sont déjà définis.",
+          "access": "Aucune installation particulière n’est requise. Les cinq rôles partagent un même modèle ; leur accord ne constitue pas une vérification indépendante."
         }
       },
       "short_title": "Décisions"
@@ -781,7 +772,7 @@
       "prompts": [
         {
           "title": "Suivre mes mails, comparer les pièces et préparer les prochaines actions",
-          "text": "Aide-moi à suivre un dossier administratif ou commercial dans ma messagerie, jusqu’aux échanges et relances autorisés.\n\nAvant de commencer, indique les outils auxquels tu as réellement accès et ce qui manque pour mener cette tâche à son terme. Guide-moi dans la première action utile, puis avance étape par étape, en attendant les validations demandées.\n\nDossier : [objet, correspondant, objectif, échéance]. Références : [contrats, devis, factures, documents]. Utilise les sources auxquelles je t’ai donné accès et précise les actions que je souhaite déléguer.\n\n1. Vérifie l’accès aux messages et pièces jointes. Reconstitue la chronologie, les engagements et les questions ouvertes, avec leurs sources\n2. Pour un devis d’assurance, compare les contrats existants : garanties, plafonds, franchises, exclusions, assistance, valeur assurée, durée et coût. Relève les manques, doublons et points ambigus\n3. Prépare la réponse utile : question, demande de précision, amélioration ou contre-proposition. Appuie-la sur les pièces et les limites que j’ai fixées\n4. Présente texte, destinataires et pièces jointes. Après mon autorisation, effectue l’envoi si l’action est disponible et vérifie son résultat. Toute acceptation ou signature demande mon accord explicite\n5. Tiens le suivi des échanges : action effectuée, réponse attendue, échéance et prochaine étape. À chaque réponse, actualise le dossier sans redemander le contexte déjà disponible\n\nAprès un premier essai, propose une tâche à réception des mails pertinents si disponible, ou une revue à heure fixe. Fais-moi choisir le périmètre et le rythme. Réserve les notifications aux décisions, échéances et blocages utiles.\n\nDistingue analyse, brouillon, envoi, réponse et engagement accepté. Confirme la configuration avant de présenter un suivi comme actif."
+          "text": "Aide-moi à suivre un dossier administratif ou commercial dans ma messagerie, jusqu’aux échanges et relances autorisés.\n\nVérifie tes accès, signale ce qui manque, puis guide-moi étape par étape. Attends les validations précisées ci-dessous.\n\nDossier : [objet, correspondant, objectif, échéance]. Références : [contrats, devis, factures, documents]. Utilise les sources auxquelles je t’ai donné accès et précise les actions que je souhaite déléguer.\n\n1. Vérifie l’accès aux messages et pièces jointes. Reconstitue la chronologie, les engagements et les questions ouvertes, avec leurs sources\n2. Pour un devis d’assurance, compare les contrats existants : garanties, plafonds, franchises, exclusions, assistance, valeur assurée, durée et coût. Relève les manques, doublons et points ambigus\n3. Prépare la réponse utile : question, demande de précision, amélioration ou contre-proposition. Appuie-la sur les pièces et les limites que j’ai fixées\n4. Présente texte, destinataires et pièces jointes. Après mon autorisation, effectue l’envoi si l’action est disponible et vérifie son résultat. Toute acceptation ou signature demande mon accord explicite\n5. Tiens le suivi des échanges : action effectuée, réponse attendue, échéance et prochaine étape. À chaque réponse, actualise le dossier sans redemander le contexte déjà disponible\n\nAprès un premier essai, propose une tâche à réception des mails pertinents si disponible, ou une revue à heure fixe. Fais-moi choisir le périmètre et le rythme. Réserve les notifications aux décisions, échéances et blocages utiles.\n\nDistingue analyse, brouillon, envoi, réponse et engagement accepté. Confirme la configuration avant de présenter un suivi comme actif."
         }
       ],
       "tips": [
@@ -790,56 +781,55 @@
       "guide": {
         "result": "Un dossier suivi dans la durée, des réponses préparées et des échanges effectués dans le périmètre autorisé.",
         "preparation": [
-          "Un dossier précis, son objectif, le correspondant et l’échéance",
-          "Les devis, contrats, factures et échanges de référence",
-          "Les accès utiles et les actions que vous souhaitez déléguer"
+          "L’objectif, le correspondant, l’échéance et les actions à déléguer",
+          "Le mail concerné, les devis, contrats et échanges de référence"
         ],
         "tools": [
           {
             "name": "Messagerie et documents connectés",
-            "role": "Dans Work, ouvrez Personnaliser (Customize), puis Plugins, et choisissez votre messagerie. Connectez le compte voulu et vérifiez la lecture d’un mail précis avec sa pièce jointe. L’envoi demande un accès distinct lorsqu’il est proposé.",
+            "role": "Dans Personnaliser (Customize) > Plugins, connectez votre messagerie et testez la lecture d’un mail avec sa pièce jointe. Vérifiez séparément les possibilités d’envoi.",
             "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
           },
           {
             "name": "ChatGPT Work",
-            "role": "L’assistant rapproche les pièces, compare les clauses, prépare les réponses et peut effectuer les actions disponibles et autorisées.",
+            "role": "L’assistant rapproche les pièces, prépare les réponses et effectue les actions disponibles et autorisées.",
             "url": "https://learn.chatgpt.com/docs/get-started-with-work"
           },
           {
             "name": "Dot, selon disponibilité",
-            "role": "Le dot peut rechercher le contexte et préparer des analyses de manière proactive. Cette recherche ne déclenche pas à elle seule des envois ou des modifications.",
+            "role": "Le dot peut anticiper l’analyse du dossier. Cette recherche proactive ne déclenche pas à elle seule un envoi.",
             "url": "https://learn.chatgpt.com/docs/dots/tasks-and-memory"
           },
           {
             "name": "Tâche sur événement ou planifiée",
-            "role": "Selon le compte, une tâche peut analyser les mails pertinents à leur réception ou à heure fixe. Son périmètre et ses exécutions doivent être vérifiés.",
+            "role": "Selon le compte, une tâche analyse les mails pertinents à réception ou à heure fixe. Vérifiez son périmètre et ses exécutions.",
             "url": "https://learn.chatgpt.com/docs/automations"
           }
         ],
         "steps": [
           {
-            "title": "Délimiter ce que vous déléguez",
-            "text": "Collez le prompt avec le dossier, le correspondant, l’objectif et l’échéance. Précisez les actions autorisées : lire, comparer, préparer une réponse ou envoyer un message validé. L’assistant doit vérifier ses accès avant de décrire une action comme réalisable."
+            "title": "Une fois : définir la délégation",
+            "text": "Vous précisez l’objectif, les limites de négociation et les actions autorisées : lire, comparer, préparer, envoyer un texte validé. L’IA vérifie ses accès et conserve ce cadre avec les contrats de référence."
           },
           {
-            "title": "Reconstituer le dossier",
-            "text": "Demandez de retrouver le mail concerné, ses pièces jointes et les échanges antérieurs. Ajoutez les contrats de référence. Vous devez obtenir une chronologie avec les engagements, les questions ouvertes et les documents manquants. Un document disponible dans un espace client peut aussi être récupéré par le navigateur autorisé."
+            "title": "Laisser l’assistant reconstituer le dossier",
+            "text": "Il retrouve le mail, les pièces et les échanges accessibles, puis établit chronologie, engagements et questions ouvertes. Vous complétez les documents manquants. Un accès au navigateur autorisé peut aussi servir à récupérer une pièce dans l’espace client."
           },
           {
-            "title": "Comparer ce qui compte dans le devis",
-            "text": "Pour une assurance, rapprochez garanties, plafonds, franchises, exclusions, assistance, durée et coût. Chaque ligne du tableau doit renvoyer à une clause ou une page. Les doublons et garanties absentes deviennent des questions précises à poser, plutôt qu’une appréciation générale du devis."
+            "title": "Comparer le devis aux contrats existants",
+            "text": "Pour une assurance, l’IA rapproche garanties, plafonds, franchises, exclusions, assistance, durée et coût, avec renvois aux clauses. Vous examinez les doublons, lacunes et points incertains ; ils deviennent les questions ou arguments de négociation."
           },
           {
-            "title": "Préparer et conduire l’échange",
-            "text": "L’IA peut rédiger une demande de précision ou une contre-proposition fondée sur les pièces. Relisez les arguments, le destinataire et les documents joints. Après l’envoi autorisé, vérifiez le message dans la messagerie et notez la réponse attendue. Un brouillon ne prouve pas qu’un mail a été envoyé."
+            "title": "Lui confier la préparation de la réponse",
+            "text": "L’assistant rédige une demande de précision ou une contre-proposition fondée sur les pièces. Vous validez arguments, destinataire et documents joints. Après l’envoi autorisé, il vérifie sa réalisation et consigne la réponse attendue."
           },
           {
-            "title": "Poursuivre à partir de la réponse reçue",
-            "text": "Le nouveau message doit actualiser le tableau et les points à négocier. L’assistant peut préparer la prochaine réponse avec le contexte conservé. Fixez les limites de la négociation ; toute acceptation engageante ou signature reste soumise à votre décision explicite."
+            "title": "À chaque réponse : reprendre la négociation",
+            "text": "L’IA actualise le tableau, relève les nouveaux engagements et prépare la suite avec le contexte conservé. Vous arbitrez les concessions ; une acceptation engageante ou une signature reste soumise à votre décision explicite."
           },
           {
-            "title": "Mettre le suivi à l’épreuve",
-            "text": "Après ce premier essai, demandez un suivi sur les seuls mails pertinents. Selon les outils disponibles, il peut s’appuyer sur un assistant proactif, une tâche à réception ou une revue à heure fixe. Contrôlez le premier résultat et les doublons avant d’élargir le périmètre."
+            "title": "Activer un suivi limité et vérifiable",
+            "text": "Après ce premier essai, configurez le suivi des seuls mails pertinents : assistant proactif, tâche à réception ou revue planifiée selon disponibilité. L’IA prépare l’analyse à partir du dossier. Vous contrôlez le premier résultat et les doublons avant d’élargir le périmètre."
           }
         ],
         "checks": [
@@ -848,8 +838,8 @@
           "Le suivi dispose d’un horaire ou d’un déclencheur effectif, avec un historique des actions"
         ],
         "start": {
-          "where": "Dans Work, reliez la messagerie et les documents utiles, puis ouvrez une conversation pour un seul dossier. Commencez sur un mail déjà reçu pour vérifier la lecture du message et de ses pièces jointes.",
-          "access": "Les droits de lecture et d’envoi dépendent de la connexion. Sans accès à la messagerie, joignez les pièces et copiez les échanges : l’analyse et les brouillons restent possibles. Le suivi proactif demande une configuration supplémentaire."
+          "where": "Dans Work, ouvrez une conversation pour un seul dossier et collez le prompt. Commencez par un mail reçu et ses pièces jointes.",
+          "access": "Connectez la messagerie et vérifiez les droits de lecture et d’envoi. Sans connexion, copiez les échanges et joignez les pièces ; vous transmettrez les réponses préparées."
         }
       },
       "short_title": "Mails et démarches"
