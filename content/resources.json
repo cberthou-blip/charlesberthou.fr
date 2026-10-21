@@ -319,71 +319,75 @@
       "published": true,
       "kind": "usage",
       "icon": "users-round",
-      "title": "Concevoir des expériences familiales sur mesure",
-      "summary": "J’ai utilisé l’IA pour préparer des séjours adaptés à ma famille et découvrir des expériences que je n’aurais pas trouvées seul. Elle croise goûts, âges, trajets et temps disponible pour construire un programme réaliste. Je suis aussi allé jusqu’au quiz animé question par question et à une petite application web testable : un contenu conçu pour les participants, puis ajusté à leurs réactions.",
+      "title": "Composer un séjour familial sur mesure",
+      "summary": "Pour notre séjour d’été dans le sud, autour d’Avignon, l’IA a construit un programme adapté aux envies de chacun et à des enfants d’âges différents. Elle a proposé des sorties et visites que nous ne connaissions pas, puis ajusté les parcours à notre point de départ, à la mobilité, à la météo et à nos habitudes. Pendant le séjour, chaleur, fatigue et découvertes ont fait évoluer les journées. Le résultat : des choix plus faciles et un programme qui suivait le rythme réel de la famille.",
       "prompts": [
         {
-          "title": "Concevoir et préparer une expérience familiale",
-          "text": "Je veux une expérience familiale conçue pour nous et prête à utiliser, sous la forme d’une sortie, d’un séjour, d’un jeu ou d’un quiz interactif.\n\nCommence par me demander les participants, âges, centres d’intérêt, envies, activités déjà faites, lieu, date, durée, budget et contraintes. Utilise le contexte que j’ai déjà fourni sans inventer de préférences.\n\n1. Propose trois idées au maximum, en expliquant pourquoi elles nous correspondent. Cherche aussi des expériences moins évidentes\n2. Après mon choix, prépare le déroulement complet : séquences, trajets ou matériel, pauses, adaptations par âge et plan B\n3. Pour une sortie, vérifie horaires, tarifs, conditions d’âge et réservation dans les sources officielles. Prépare un carnet court pour téléphone et les liens utiles. Aucune réservation ou dépense sans ma validation\n4. Pour un quiz, anime une question à la fois, attends la réponse, donne un indice si nécessaire puis explique la solution. Adapte la difficulté et alterne les participants\n5. Si je choisis une version interactive, crée une petite application testable avec questions, réponses, score, progression et redémarrage. Utilise des données fictives pour les essais et contrôle le parcours complet\n6. Après l’expérience, recueille ce qui a plu et ce qui doit changer. Propose une mise à jour des préférences pour préparer la prochaine activité\n\nLivre un résultat directement utilisable. Distingue clairement ce qui a été vérifié, préparé, réservé ou effectivement testé."
+          "title": "Construire et ajuster tout un séjour familial",
+          "text": "Je veux que tu m’aides à concevoir l’ensemble d’un séjour familial sur mesure, puis à l’adapter pendant les vacances.\n\nDestination et lieu de départ : [lieu]. Dates : [dates]. Participants et âges : [personnes]. Mobilité : [véhicule, marche, poussette, contraintes]. Budget : [budget]. Utilise les préférences déjà connues et demande seulement ce qui manque.\n\n1. Établis une fiche par participant : envies, exigences, activités appréciées ou refusées, autonomie et rythme. Ajoute les habitudes communes, horaires de repas, repos, durée maximale de trajet et de marche. Fais valider ce cadre\n2. Recherche des sorties et visites que nous pourrions ne pas connaître. Pour chaque proposition, explique à qui elle convient, son intérêt, ses limites d’âge ou d’accès, sa durée, son coût et la source consultée. Écarte les options incompatibles avec nos contraintes\n3. Regroupe les activités par secteur pour limiter les déplacements. Prépare un programme jour par jour avec une activité principale, trajets réalistes, stationnement, repas, pauses et retour. Prévois des alternatives simples selon la chaleur, la pluie ou la fatigue\n4. Vérifie horaires, ouverture, accessibilité et conditions de réservation sur les sources officielles. Date les informations ; indique ce qui reste à confirmer. Actualise la météo à l’approche de chaque journée\n5. Après mes choix, produis un carnet court utilisable sur téléphone avec liens utiles. Si nécessaire et disponible, utilise @Chrome pour préparer les champs de réservation, puis présente le récapitulatif avant ma confirmation ou un paiement\n6. Pendant le séjour, tiens compte de ce que nous avons déjà fait, des réactions de chacun, de notre position et du temps restant que je te communique. Ajuste la suite sans surcharger le programme. Ne suppose ni localisation ni météo en direct sans source accessible\n7. À la fin, conserve les préférences confirmées, les sorties appréciées et les limites découvertes pour les prochains séjours\n\nCommence par quelques propositions réellement adaptées. Ne présente jamais une activité, une réservation ou une visite comme effectuée sans confirmation."
         }
       ],
       "tips": [
-        "Donnez aussi ce qui a déçu ou ce que vous avez déjà fait. Ce contexte aide davantage qu’une demande générale d’idées originales."
+        "Décrivez ce qui rend une journée agréable pour chacun, puis racontez ce qui s’est réellement passé. Ces retours permettent d’améliorer la suite du séjour et de préparer les prochaines vacances."
       ],
       "guide": {
-        "result": "une expérience prête à vivre : programme réaliste et informations vérifiées pour une sortie, ou jeu personnalisé utilisable immédiatement.",
+        "result": "un séjour complet et ajustable : découvertes adaptées à chacun, parcours cohérents, carnet pratique et solutions de repli selon les conditions du jour.",
         "preparation": [
-          "Les participants, âges, centres d’intérêt, activités déjà appréciées et envies du moment",
-          "La date, le lieu de départ, le temps disponible, le budget et les contraintes pratiques",
-          "Le résultat souhaité : programme de sortie, carnet de séjour, quiz animé ou jeu interactif"
+          "Les dates, le lieu de séjour, les participants, leurs âges, leurs envies et les exigences propres à chacun",
+          "Le budget, les moyens de transport, la marche acceptable, les besoins de repos et les habitudes de repas",
+          "Les activités déjà connues ou réservées, les contraintes d’accès et les informations de localisation que vous souhaitez partager"
         ],
         "tools": [
           {
-            "name": "ChatGPT : contexte et conversation",
-            "role": "Pour personnaliser les propositions, animer un quiz question par question et adapter le niveau aux réactions. Conservez les préférences dans un projet.",
+            "name": "ChatGPT : projet, mémoire et conversation",
+            "role": "Pour conserver le cadre familial, les choix et les retours de chaque journée. Vérifiez les préférences mémorisées au début du séjour.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
-            "name": "Recherche web et Chrome, pour les sorties",
-            "role": "Pour vérifier trajets, horaires et conditions, puis préparer les champs d’une réservation dans une page autorisée. Relisez le récapitulatif avant confirmation ou paiement.",
-            "url": "https://learn.chatgpt.com/training/walkthroughs/using-your-computer-and-browser"
+            "name": "Recherche web et cartes",
+            "role": "Pour découvrir des lieux, vérifier les sources officielles et comparer les trajets. Horaires, météo et conditions d’accès doivent être actualisés."
           },
           {
-            "name": "ChatGPT Work ou Codex",
-            "role": "Pour créer un carnet utilisable sur téléphone, un support imprimable ou une petite application interactive avec questions, scores et progression.",
-            "url": "https://learn.chatgpt.com/docs/get-started-with-work"
+            "name": "ChatGPT Work : carnet de séjour",
+            "role": "Pour réunir programme, liens, adresses publiques et alternatives dans un document lisible sur téléphone.",
+            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+          },
+          {
+            "name": "Chrome avec l’extension ChatGPT, facultatif",
+            "role": "Pour préparer un formulaire de réservation sur le site choisi. Le prix, les participants, la date et les conditions restent à relire avant confirmation.",
+            "url": "https://learn.chatgpt.com/docs/chrome-extension"
           }
         ],
         "steps": [
           {
-            "title": "Décrire les personnes et le moment",
-            "text": "Copiez le prompt en donnant les goûts et les contraintes réelles, y compris la fatigue, la météo ou les activités déjà faites. Demandez quelques propositions expliquées plutôt qu’une longue liste générique."
+            "title": "Décrire la famille, personne par personne",
+            "text": "Copiez le prompt et faites établir les envies, contraintes et rythmes de chacun. Précisez ce qui convient au plus jeune et ce qui intéresse les plus grands. Demandez de faire apparaître les incompatibilités avant de proposer un programme."
           },
           {
-            "title": "Chercher ce qui vous correspond vraiment",
-            "text": "Pour une sortie, faites chercher au-delà des attractions les plus connues et expliquer le lien avec vos critères. Demandez les sources, temps de trajet, conditions d’âge et contraintes de réservation. Retenez une proposition réalisable."
+            "title": "Découvrir au-delà des lieux déjà connus",
+            "text": "Demandez des propositions expliquées : pourquoi cette visite convient à votre famille, ce que chacun peut y trouver et les limites à prévoir. Faites vérifier âges, durée, prix, accessibilité et ouverture sur les sites des lieux."
           },
           {
-            "title": "Transformer l’idée en déroulement",
-            "text": "Faites préparer horaires, déplacements, pauses, matériel et plan B. Demandez un carnet court pour le téléphone. Si une réservation est utile, faites préparer les liens et informations, puis vérifiez le prix et les conditions avant confirmation."
+            "title": "Construire des journées cohérentes",
+            "text": "Faites regrouper les visites par secteur depuis votre lieu de séjour, avec trajets, stationnement, marche, repas et pauses. Dans notre séjour, la chaleur et la fatigue conduisaient à privilégier une sortie principale le matin, puis un après-midi plus calme."
           },
           {
-            "title": "Fabriquer le jeu si c’est le bon format",
-            "text": "Pour un quiz, demandez une question à la fois, des niveaux adaptés et des indices avant la solution. Pour une application, faites produire une version testable avec règles, questions, réponses, score et bouton pour recommencer. Testez-la avant de la proposer aux participants."
+            "title": "Préparer les alternatives et les réservations",
+            "text": "Pour chaque journée, demandez une version courte et une solution adaptée à la pluie ou à la chaleur. Actualisez la météo et les horaires à l’approche de la sortie. Faites préparer les réservations utiles avec @Chrome si disponible, puis vérifiez le récapitulatif avant de confirmer."
           },
           {
-            "title": "Adapter pendant l’expérience",
-            "text": "Indiquez les réactions ou le temps restant. Faites raccourcir une activité, changer de difficulté ou réorganiser la suite. Dans un jeu, demandez d’alterner les participants et de ne révéler les réponses qu’après leur tentative."
+            "title": "Ajuster pendant le séjour",
+            "text": "Indiquez les visites réalisées, ce qui a plu, la fatigue et le temps disponible. Demandez de réorganiser la suite à partir de votre position communiquée et des conditions vérifiées. Retirez une étape plutôt que de chercher à tout maintenir."
           },
           {
-            "title": "Réutiliser les préférences acquises",
-            "text": "Après l’expérience, conservez ce qui a plu et les contraintes découvertes. Faites actualiser le contexte familial et préparer une prochaine proposition différente, en évitant les activités déjà faites."
+            "title": "Conserver ce que le séjour a appris",
+            "text": "Gardez le carnet et une courte fiche des préférences confirmées. Faites distinguer les contraintes temporaires des habitudes durables. Cette base sert aux prochains séjours, en tenant compte de l’âge nouveau des enfants."
           }
         ],
         "checks": [
-          "L’expérience tient dans le temps et le budget disponibles, avec des adaptations pour chacun",
-          "Les informations de sortie et réservations sont vérifiées à la bonne date",
-          "Le jeu a été essayé, les réponses contrôlées et les données des participants restent privées"
+          "Chaque participant trouve des activités adaptées ; les limites d’âge, de marche et de mobilité sont respectées",
+          "Trajets, pauses, ouverture et météo ont été vérifiés à une date pertinente, avec une solution de repli",
+          "Le carnet distingue les idées, les réservations confirmées et les sorties réellement effectuées"
         ]
       }
     },
@@ -392,176 +396,202 @@
       "published": true,
       "kind": "usage",
       "icon": "heart-pulse",
-      "title": "Construire un assistant santé proactif",
-      "summary": "Mon usage consiste à rapprocher les documents et observations de mon parcours de santé, à les organiser dans le temps et à éclairer les questions à poser en consultation. Le croisement avec des recherches documentées aide à préparer les échanges avec les professionnels. La préparation proactive des rendez-vous et le suivi des nouvelles pièces restent un prolongement à configurer et à éprouver.",
+      "title": "Croiser ses données et préparer son parcours de santé",
+      "summary": "J’ai utilisé l’IA pour comprendre mes bilans sanguins et rapprocher symptômes, antécédents, activité et données de santé transmises depuis mon smartphone. J’ai aussi expérimenté une prélecture de clichés radiologiques, sans en faire une interprétation médicale de référence. Le travail a inclus l’étude de publications et d’essais cliniques, des pistes de parcours à discuter, une synthèse précise pour le médecin, puis la recherche d’un professionnel, de ses avis publics et d’un moyen de le contacter.",
       "prompts": [
         {
-          "title": "Organiser mon suivi et préparer mes rendez-vous",
-          "text": "Je veux construire un assistant d’organisation de mon parcours de santé : dossier à jour, préparation des rendez-vous et suivi des points à discuter avec les professionnels.\n\nCommence par inventorier les documents réellement accessibles et me demander le besoin précis. Utilise uniquement les informations que je choisis de partager.\n\n1. Crée une chronologie sourcée avec événements, mesures, examens, traitements déclarés et consignes reçues. Conserve les unités et dates exactes. Signale les lectures incertaines\n2. Distingue les faits documentés, mes observations et les questions ouvertes. Ne pose pas de diagnostic et ne propose pas de modifier un traitement\n3. Pour le prochain rendez-vous, prépare une page : motif, changements depuis la dernière consultation, documents utiles et cinq questions prioritaires. Explique les termes difficiles simplement. Si une recherche documentaire aide à préparer une question, cite des sources médicales identifiées et datées, distingue les résultats des études de leur application possible à mon cas, et formule les points à discuter avec le professionnel\n4. Après chaque nouveau document, propose une mise à jour en indiquant ce qui a changé et sur quelle source tu t’appuies. Conserve l’historique\n5. Après un essai réussi, propose une routine de préparation ou de revue documentaire. Vérifie les connexions et fais-moi choisir le rythme avant de la créer. Indique la tâche enregistrée, ses sources et comment contrôler son exécution\n\nNe suppose jamais que tu disposes de tout mon dossier, que tu surveilles ma santé en continu ou que tu peux détecter une urgence. Les décisions médicales restent à discuter avec les professionnels. Livre un tableau modifiable et une synthèse courte que je peux relire."
+          "title": "Croiser un dossier de santé et préparer la consultation",
+          "text": "Aide-moi à organiser et comprendre mon dossier de santé, à documenter mes questions et à préparer un échange précis avec un professionnel.\n\nQuestion à explorer : [question]. Prochain rendez-vous ou objectif : [objectif]. Documents et données que je choisis de partager : [bilans, comptes rendus, historique, traitements déclarés, symptômes, exports d’activité ou de santé]. Vérifie les accès réels ; ne suppose aucune connexion automatique à mon smartphone.\n\n1. Inventorie les pièces et crée une chronologie. Conserve date, unité, intervalle de référence du laboratoire et source de chaque mesure. Sépare observations personnelles, données d’appareils et conclusions médicales\n2. Explique les bilans et leur évolution avec leurs limites. Mets en regard symptômes, activité, sommeil ou traitements déclarés sans déduire une causalité de leur coexistence. Formule les hypothèses comme des questions à discuter ; ne pose pas de diagnostic et ne propose pas de modifier un traitement\n3. Pour l’imagerie, explique le compte rendu du radiologue et prépare les questions utiles. Ne conclus pas à la présence ou à l’absence d’une maladie à partir des seuls clichés. Signale les pièces illisibles ou manquantes\n4. Recherche les recommandations et publications pertinentes à la date de la demande. Cite les sources, leur date, le type d’étude, la population et les limites. Pour les essais cliniques, donne l’identifiant du registre, le statut actualisé, les centres et critères publiés ; ne déduis ni mon éligibilité ni l’efficacité du traitement étudié\n5. Prépare des options d’orientation à discuter avec le médecin : questions à clarifier, spécialités potentiellement concernées et documents utiles. Ne prescris aucun examen et ne présente pas cette préparation comme une prise en charge\n6. Rédige une synthèse d’une page : motif, chronologie, symptômes décrits, traitements déclarés, résultats utiles et cinq questions prioritaires. Joins la liste des pièces et sépare les faits des hypothèses\n7. Si je le demande, recherche des professionnels selon la spécialité discutée, la localisation et mes contraintes. Vérifie identité, spécialité et coordonnées sur des sources officielles. Résume les avis publics comme des retours d’expérience, sans en déduire la compétence médicale. Prépare un contact bref ; fais valider destinataire, texte et seules pièces nécessaires avant envoi\n8. Après la consultation, actualise le dossier avec le compte rendu et les consignes reçues. Une routine de préparation peut être configurée après essai, avec mes sources et mon rythme validés\n\nNe présente pas ce dossier comme une surveillance médicale. Il ne doit pas retarder une consultation ni une prise en charge urgente. Termine par la synthèse et les points à vérifier avec le professionnel."
         }
       ],
       "tips": [
-        "Un dossier court, daté et vérifié est plus utile qu’une accumulation de comptes rendus résumés. Faites ressortir ce qui a changé et les questions à poser."
+        "Le livrable le plus utile est une page vérifiée qui aide le professionnel à comprendre rapidement la situation. Pour l’imagerie, appuyez-vous sur son compte rendu : ChatGPT n’est pas adapté à l’interprétation d’images médicales spécialisées."
       ],
       "guide": {
-        "result": "un dossier chronologique, une synthèse de consultation et une routine pour préparer les échéances et actualiser les documents, sans surveillance médicale automatique.",
+        "result": "un dossier croisé et sourcé, une revue documentaire ciblée, des pistes à discuter, une synthèse de consultation et une prise de contact préparée avec le professionnel choisi.",
         "preparation": [
-          "Les documents utiles et datés que vous choisissez de partager, en limitant les données au besoin",
-          "Vos observations, les traitements déclarés et les consignes écrites des professionnels",
-          "Les rendez-vous ou échéances à préparer et le dossier dans lequel conserver les mises à jour"
+          "Les bilans, comptes rendus médicaux et radiologiques, antécédents et traitements déclarés, avec leurs dates",
+          "Une chronologie des symptômes et les exports d’activité, sommeil ou mesures du smartphone que vous choisissez de transmettre",
+          "La question à éclairer, les rendez-vous connus et vos contraintes pour rechercher un professionnel ; retirez les identifiants inutiles"
         ],
         "tools": [
           {
-            "name": "ChatGPT : projet et lecture de fichiers",
-            "role": "Pour organiser les pièces, expliquer le vocabulaire et comparer des documents datés. Gardez les originaux et vérifiez chaque information extraite.",
+            "name": "ChatGPT : projet, fichiers et tableaux",
+            "role": "Pour rapprocher les documents, expliquer leur vocabulaire et construire une chronologie vérifiable, en conservant les originaux.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
-            "name": "Recherche documentaire sourcée",
-            "role": "Pour retrouver des publications ou recommandations pertinentes à une question de consultation. Demandez auteur, date, source et limites d’application à votre situation ; discutez-en avec le professionnel."
+            "name": "Exports de santé et d’activité",
+            "role": "Pour apporter les mesures du smartphone ou d’autres appareils. Transmettez un export utile ou utilisez une connexion réellement disponible ; un accès au téléphone n’est jamais supposé."
           },
           {
-            "name": "ChatGPT Work : tableau et synthèse",
-            "role": "Pour produire une chronologie, un tableau de suivi et une page à apporter en consultation.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "name": "Recherche web, PubMed et registres d’essais",
+            "role": "Pour retrouver des publications, recommandations et essais datés. Distinguez résultats publiés, étude en cours et applicabilité à votre situation.",
+            "url": "https://clinicaltrials.gov/study-basics/learn-about-studies"
           },
           {
-            "name": "Agenda ou dossier connecté, facultatifs",
-            "role": "Pour retrouver les rendez-vous et pièces que vous autorisez à consulter. Vérifiez le périmètre exact de la connexion.",
-            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+            "name": "Annuaire officiel, messagerie et Chrome",
+            "role": "Pour vérifier le professionnel, retrouver ses coordonnées et préparer un contact. Choisissez le destinataire et les informations à transmettre avant envoi.",
+            "url": "https://learn.chatgpt.com/docs/chrome-extension"
           },
           {
-            "name": "Tâches planifiées, facultatives",
-            "role": "Pour préparer une échéance ou demander une revue des nouveaux documents. Testez la tâche et ses sources ; elle ne détecte pas une urgence ni un problème médical.",
+            "name": "Agenda et tâches planifiées, facultatifs",
+            "role": "Pour préparer un rendez-vous connu ou relire les nouvelles pièces, après configuration et essai. Cette routine organise les documents ; elle ne surveille pas l’état de santé.",
             "url": "https://learn.chatgpt.com/docs/automations"
           }
         ],
         "steps": [
           {
-            "title": "Créer un dossier de référence",
-            "text": "Ouvrez un projet dédié et copiez le prompt. Joignez les documents utiles, puis faites établir un inventaire avec dates et auteurs. Demandez ce qui n’a pas pu être lu ou manque, sans supposer que l’IA dispose de tout votre dossier."
+            "title": "Rassembler les données dans un même dossier",
+            "text": "Créez un projet et copiez le prompt. Joignez les pièces utiles et les exports choisis. Faites relever source, date, unité et intervalle du laboratoire ; vérifiez les valeurs sur les originaux. Un relevé d’activité et une conclusion médicale doivent rester identifiables séparément."
           },
           {
-            "title": "Construire une chronologie vérifiée",
-            "text": "Faites organiser événements, mesures, examens et consignes dans un tableau sourcé. Vérifiez unités, dates et noms sur les originaux. Distinguez vos observations des conclusions écrites par les professionnels."
+            "title": "Comprendre et croiser les observations",
+            "text": "Faites expliquer les bilans et comparer leur évolution. Ajoutez la chronologie des symptômes, de l’activité et des événements pertinents. Demandez les questions que ces rapprochements soulèvent, avec les informations manquantes. Pour les clichés radiologiques, faites expliquer le compte rendu et réservez leur interprétation au professionnel."
           },
           {
-            "title": "Préparer un rendez-vous",
-            "text": "Demandez une page : motif, changements depuis la dernière consultation, documents pertinents et questions prioritaires. Faites expliquer les termes difficiles et repérer les points à clarifier avec le soignant, sans transformer une différence de résultat en diagnostic. Si une question appelle une recherche, demandez des sources médicales identifiées et datées ainsi que leurs limites, puis faites valider leur pertinence avec le professionnel."
+            "title": "Explorer la littérature et les essais en cours",
+            "text": "Posez une question précise et faites dater la recherche. Demandez références, type d’étude, population et limites. Pour un essai, vérifiez identifiant, recrutement, centres et critères ; son existence ne prouve ni un bénéfice ni votre éligibilité. Faites discuter les pistes pertinentes avec le médecin."
           },
           {
-            "title": "Tenir le dossier à jour",
-            "text": "Après la consultation, ajoutez le compte rendu et les consignes reçues. Faites mettre à jour le tableau et conserver les anciennes versions. Rapprochez les nouvelles informations des précédentes en citant les dates et les sources."
+            "title": "Préparer les options de parcours",
+            "text": "Demandez les questions à résoudre, les spécialités potentiellement concernées et les documents à apporter. Faites préciser ce qui dépend de l’avis du médecin. Les examens et traitements restent à décider avec lui ; une hypothèse de l’IA ne suffit pas à orienter seul le parcours."
           },
           {
-            "title": "Configurer la préparation proactive",
-            "text": "Après un essai manuel, choisissez une routine, par exemple préparer le dossier quelques jours avant un rendez-vous connu ou faire une revue mensuelle. Précisez les sources accessibles, le résultat attendu et quand vous notifier. Vérifiez l’existence de la tâche et son premier résultat."
+            "title": "Produire une page utile au médecin",
+            "text": "Faites rédiger motif, chronologie, symptômes, traitements déclarés, résultats importants et questions prioritaires. Relisez chaque ligne et joignez les pièces de référence. La synthèse doit permettre au professionnel de retrouver les faits sans parcourir toute la conversation."
           },
           {
-            "title": "Utiliser la synthèse avec le professionnel",
-            "text": "Relisez le document et apportez-le en consultation avec les pièces originales utiles. Faites corriger ensuite les informations inexactes. Les décisions de traitement ou d’examen se prennent avec le professionnel, pas à partir de la seule synthèse."
+            "title": "Trouver et contacter le bon interlocuteur",
+            "text": "Après clarification de la spécialité, faites rechercher des professionnels selon vos contraintes et vérifier leurs coordonnées dans un annuaire officiel ou sur le site de l’établissement. Les avis publics renseignent l’expérience des patients, sans établir la qualité médicale. Faites préparer le message ou le formulaire, puis validez destinataire, contenu et pièces avant transmission."
+          },
+          {
+            "title": "Actualiser après la consultation",
+            "text": "Ajoutez le compte rendu et les consignes reçues, corrigez la synthèse et conservez l’historique. Pour préparer un prochain rendez-vous, une tâche peut être configurée avec des sources accessibles et un résultat attendu ; testez sa première exécution."
           }
         ],
         "checks": [
-          "Les informations sont datées, sourcées et vérifiées sur les documents originaux",
-          "Le dossier distingue observations, consignes médicales et questions ouvertes",
-          "La routine est une aide d’organisation ; elle ne remplace ni consultation, ni surveillance médicale, ni prise en charge d’une urgence"
+          "Dates, unités et valeurs concordent avec les originaux ; faits, hypothèses et consignes médicales sont distincts",
+          "Les sources scientifiques et le statut des essais sont datés, sans affirmation d’éligibilité ou d’efficacité non établie",
+          "La synthèse est relue et les données transmises au bon destinataire se limitent au nécessaire",
+          "Aucune lecture de cliché, hypothèse ou routine ne remplace un avis médical, ne modifie un traitement ou ne retarde une consultation"
         ]
-      }
+      },
+      "links": [
+        {
+          "label": "Limites de ChatGPT pour les images médicales",
+          "url": "https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq"
+        }
+      ]
     },
     {
       "slug": "comprendre-finances-foyer",
       "published": true,
       "kind": "usage",
       "icon": "wallet",
-      "title": "Comprendre et piloter les finances du foyer",
-      "summary": "J’ai croisé relevés, factures et versements avec l’IA pour comprendre le coût réel de certains services du foyer. Elle aide à retrouver l’origine des flux, isoler les virements internes et rattacher les remboursements aux bonnes dépenses. Le résultat est un tableau vérifiable qui rend visibles les charges récurrentes, les écarts à résoudre et les éléments utiles pour préparer les démarches.",
+      "title": "Piloter ses finances et ses projets patrimoniaux",
+      "summary": "J’utilise l’IA pour rapprocher budget, patrimoine et projets de vie, puis comparer des choix à partir de données actualisées. Le travail a porté sur des projections personnelles, des pistes d’optimisation fiscale, la recherche de biens locatifs et leur rentabilité. J’ai aussi étudié le coût de possession d’un véhicule, sa décote et sa valeur marchande pour comparer plusieurs moments de revente. L’intérêt est de relier chaque décision à mes objectifs, à mes contraintes et à ce qu’elle change dans le temps.",
       "prompts": [
         {
-          "title": "Construire un budget vérifiable et le tenir à jour",
-          "text": "Je veux comprendre et piloter les finances du foyer à partir de mes documents réels, puis disposer d’un classeur réutilisable chaque mois.\n\nPériode : [période]. Comptes : [périmètre]. Questions prioritaires : [questions]. Inventorie les pièces disponibles et les mois manquants. Vérifie les sources connectées avant de chercher des justificatifs.\n\n1. Extrais les opérations avec date, libellé, montant, compte, catégorie et source. Contrôle les totaux sur les relevés\n2. Repère les doublons et isole les virements internes. Rapproche paiements, factures et remboursements sans déduire automatiquement une aide générale d’une charge particulière\n3. Calcule les coûts nets des services étudiés, avec objet et période des remboursements. Garde les rapprochements incertains à part\n4. Distingue charges fixes, variables et dépenses périodiques. Prépare un budget prévisionnel avec les hypothèses visibles, puis une comparaison prévu/réalisé\n5. Liste les anomalies et démarches utiles, avec leur justificatif. Prépare les demandes de précision ou de remboursement ; aucun envoi ni mouvement d’argent sans mon autorisation\n6. Livre un classeur modifiable avec opérations, catégories, rapprochements, budget et contrôles. Utilise des formules vérifiables et un contrôle du solde initial + entrées − sorties = solde final\n\nPrévois l’ajout des prochains mois sans doublon et un journal des corrections. Ne force aucun classement pour équilibrer les comptes. Termine par les décisions utiles, les pièces manquantes et les écarts encore inexpliqués."
+          "title": "Relier budget, patrimoine, investissements et décisions de revente",
+          "text": "Aide-moi à comparer des choix financiers en fonction de mes projets de vie et de mes ambitions patrimoniales. Commence par la décision prioritaire ; traite ensuite seulement les volets utiles.\n\nObjectifs et horizons : [projets]. Contraintes : [budget, réserve de sécurité, effort mensuel, risque accepté]. Sources que je choisis de partager : [exports anonymisés, synthèse patrimoniale, crédits, annonces, factures ou données du véhicule]. Vérifie leur date et leurs limites d’accès.\n\n1. Établis une situation de référence : actifs, dettes, revenus, charges et capacité d’épargne. Rapproche les flux, évite les doublons et rattache les remboursements aux bonnes dépenses. Distingue montants vérifiés et estimations\n2. Construis des projections sur mes horizons avec trois scénarios : central, prudent et défavorable. Explicite revenus, inflation, taux, charges, valeur des actifs et événements de vie. Montre trésorerie, patrimoine net, marges de sécurité et hypothèses qui changent le choix\n3. Pour la fiscalité, recherche les règles officielles en vigueur selon ma résidence fiscale, l’année et ma situation. Compare les options légalement applicables, leurs coûts, engagements et effets à la sortie. Signale les points à valider avec un professionnel qualifié avant mise en œuvre\n4. Pour un investissement locatif, recherche des biens correspondant aux critères validés. Date chaque annonce et conserve son lien. Analyse prix total d’acquisition, loyers justifiés, charges, gestion, vacance, entretien, travaux, financement, fiscalité et revente. Sépare rendement brut, rendement net et trésorerie après dette ; ajoute un scénario défavorable. Si une donnée manque, donne un seuil de viabilité, sans inventer un loyer\n5. Pour le véhicule, compare garder ou revendre maintenant, dans un an et dans deux ans sur un horizon commun, avec le coût du véhicule de remplacement éventuel. Recherche des annonces comparables : version, âge, kilométrage et état. Distingue prix affiché, estimation de revente nette et offre réelle. Calcule coût de possession et décote, avec acquisition, intérêts, assurance, entretien, énergie et frais, moins revente nette ; ne compte pas deux fois le capital du prêt\n6. Livre un classeur modifiable avec sources, dates, formules, hypothèses et scénarios. Termine par les arbitrages prioritaires, les informations manquantes et ce qui ferait changer la recommandation\n\nPrésente les données comme actualisées à la date de consultation. N’emploie « temps réel » que pour un flux réellement disponible et vérifié. Une projection reste une estimation, sans garantie de rendement, d’économie fiscale ou de prix de revente. Ne passe aucun ordre, n’engage aucune transaction et ne transmets aucun document sans autorisation explicite."
         }
       ],
       "tips": [
-        "Commencez par une période complète et un coût concret à comprendre. Validez les rapprochements avant d’étendre le suivi à tous les comptes et à toute l’année."
+        "Comparez chaque projet à une situation de référence sur le même horizon. Une réduction d’impôt, un rendement brut ou une cote automobile ne suffisent pas : regardez le coût total, la trésorerie, les risques et les possibilités de sortie."
       ],
       "guide": {
-        "result": "un budget rapproché des pièces, des coûts nets expliqués, les anomalies à résoudre et un tableau que vous pourrez actualiser chaque mois.",
+        "result": "une vision personnalisée du budget et du patrimoine, des scénarios de vie chiffrés et des comparaisons documentées pour investir, conserver ou revendre.",
         "preparation": [
-          "Les relevés ou exports des comptes concernés sur une même période, avec les soldes de début et de fin",
-          "Les factures, contrats et justificatifs de remboursements utiles, en masquant les identifiants inutiles",
-          "Vos questions prioritaires : coût net d’un service, dépenses récurrentes, écarts ou budget à venir"
+          "Vos objectifs, horizons, projets de vie, niveau de risque accepté, réserve de sécurité et effort mensuel possible",
+          "Une synthèse datée des actifs, dettes, revenus et charges, complétée par les justificatifs utiles et anonymisés",
+          "Selon la décision : situation fiscale, critères immobiliers, annonces, ou version, kilométrage, historique et coûts du véhicule"
         ],
         "tools": [
           {
-            "name": "ChatGPT : fichiers et analyse",
-            "role": "Pour extraire les opérations et rapprocher plusieurs pièces, en conservant les sources et le degré de certitude.",
+            "name": "ChatGPT : projet, fichiers et analyse",
+            "role": "Pour relier les données à vos objectifs, rapprocher les pièces et comparer des scénarios dont les hypothèses restent visibles.",
             "url": "https://learn.chatgpt.com/docs/use-chatgpt"
           },
           {
-            "name": "ChatGPT Work : classeur de suivi",
-            "role": "Pour produire des onglets opérations, catégories, rapprochements, budget et contrôles, avec des formules consultables.",
+            "name": "ChatGPT Work : classeur de projection",
+            "role": "Pour conserver les formules, les sources, les scénarios et la comparaison entre prévu et réalisé.",
             "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
           },
           {
-            "name": "Gmail ou Google Drive, facultatifs",
-            "role": "Pour retrouver une facture ou une confirmation de remboursement dans les services autorisés. Une connexion à la messagerie ne donne pas automatiquement accès à la banque.",
+            "name": "Recherche web et sources officielles",
+            "role": "Pour actualiser annonces, comparables et règles fiscales, en vérifiant dates et applicabilité. Les prix affichés restent distincts des prix réellement obtenus."
+          },
+          {
+            "name": "Documents et services connectés, facultatifs",
+            "role": "Pour retrouver les pièces autorisées. Précisez la fréquence de mise à jour ; un accès à des fichiers ou des mails ne constitue pas un flux bancaire ou boursier en temps réel.",
             "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
           }
         ],
         "steps": [
           {
-            "title": "Définir la période et contrôler les pièces",
-            "text": "Joignez les documents et copiez le prompt. Faites inventorier les comptes, mois et justificatifs. Demandez les manques avant de conclure sur une dépense annuelle ou un coût net."
+            "title": "Relier les chiffres aux projets de vie",
+            "text": "Copiez le prompt et décrivez vos objectifs, horizons et contraintes. Faites préciser la réserve à préserver, l’effort mensuel acceptable et les compromis. Choisissez une décision prioritaire pour éviter une analyse générale sans débouché."
           },
           {
-            "title": "Constituer une base d’opérations",
-            "text": "Faites extraire date, libellé, montant, compte, catégorie et source. Contrôlez les totaux par compte et quelques lignes sur les originaux. Gardez une colonne pour les rapprochements et une autre pour les incertitudes."
+            "title": "Vérifier la situation de départ",
+            "text": "Faites rapprocher actifs, dettes, revenus et charges sur une date commune. Isolez virements internes et doublons ; rattachez les remboursements aux bonnes dépenses. Gardez les valorisations estimées et les pièces manquantes visibles."
           },
           {
-            "title": "Rapprocher sans compter deux fois",
-            "text": "Demandez d’isoler les transferts entre vos comptes et les doublons entre relevés et factures. Rattachez chaque remboursement à la dépense et à la période concernées. Une aide générale reste distincte du remboursement affecté à un service."
+            "title": "Construire des projections comparables",
+            "text": "Demandez des scénarios central, prudent et défavorable sur vos horizons. Faites varier revenus, charges, inflation, financement et événements de vie. Comparez trésorerie, patrimoine net et marge de sécurité ; vérifiez les formules et les hypothèses décisives."
           },
           {
-            "title": "Passer du constat au budget",
-            "text": "Faites calculer charges fixes, variables et dépenses périodiques à provisionner. Demandez le coût net des services étudiés avec les pièces qui le justifient. Construisez ensuite un budget prévisionnel et séparez les montants certains des hypothèses."
+            "title": "Étudier les pistes fiscales applicables",
+            "text": "Faites vérifier les règles de l’année et de votre résidence fiscale sur les sources officielles. Comparez conditions, coûts, durée d’engagement et fiscalité de sortie. Faites valider les options par un professionnel qualifié avant de les appliquer."
           },
           {
-            "title": "Résoudre les anomalies et préparer les actions",
-            "text": "Pour chaque prélèvement inexpliqué, écart ou remboursement attendu, demandez la pièce manquante et la prochaine démarche. Faites préparer les demandes de précision ou de remboursement, puis vérifiez et autorisez les envois utiles."
+            "title": "Chercher et analyser un bien locatif",
+            "text": "Fixez localisation, budget, état, contraintes de gestion et objectifs. Faites rechercher des annonces datées, puis calculer coût total, rendement net et trésorerie après financement. Incluez vacance, travaux, charges, fiscalité et revente ; exigez les justificatifs des loyers et un scénario défavorable avant d’aller plus loin."
           },
           {
-            "title": "Actualiser avec une méthode stable",
-            "text": "Exportez le classeur avec ses formules. Chaque mois, ajoutez les nouvelles opérations sans écraser les précédentes. Faites rapprocher les soldes, comparer prévu et réalisé et signaler seulement les écarts significatifs. Une revue planifiée peut être ajoutée après ce premier cycle."
+            "title": "Arbitrer la durée de conservation du véhicule",
+            "text": "Faites comparer des véhicules réellement similaires et distinguer cote, prix d’annonce et offre de reprise. Projetez décote, kilométrage, entretien, énergie et financement. Comparez conserver ou revendre à plusieurs dates sur le même horizon, en intégrant le remplacement éventuel. Séparez ce coût économique d’un amortissement fiscal."
+          },
+          {
+            "title": "Actualiser et décider",
+            "text": "Conservez un classeur avec formules et sources datées. À chaque changement important, faites actualiser les données et expliquer ce qui modifie la recommandation. Une estimation de revente ou de rendement ne devient un résultat qu’après vérification effective."
           }
         ],
         "checks": [
-          "Solde initial, entrées et sorties retrouvent le solde final de chaque compte",
-          "Les transferts internes, remboursements et doublons sont traités explicitement",
-          "Les écarts non expliqués restent visibles et les prévisions sont distinctes des dépenses réelles"
+          "Les comptes sont rapprochés, les valeurs datées et les hypothèses séparées des montants constatés",
+          "Les scénarios utilisent un même horizon et intègrent coûts, fiscalité, financement, risques et sortie sans doubles comptes",
+          "Loyers, prix de vente et économies fiscales estimés ne sont pas présentés comme garantis ou déjà réalisés",
+          "La fréquence des sources est connue ; les choix fiscaux ou d’investissement importants sont vérifiés avec un professionnel qualifié"
         ]
-      }
+      },
+      "links": [
+        {
+          "label": "Repères de l’ESMA sur l’IA et l’investissement",
+          "url": "https://www.esma.europa.eu/document/warning-use-ai-investing"
+        }
+      ]
     },
     {
       "slug": "creer-application-personnelle",
       "published": true,
       "kind": "usage",
       "icon": "smartphone",
-      "title": "Créer son application iPhone",
-      "summary": "J’ai décrit mon besoin pour Collection, puis fait concevoir, coder, tester et compiler cette application de films, séries et bandes dessinées avec l’IA. Elle a été installée sur iPhone sans Mac, avec stockage local, import et sauvegarde. Les retours d’usage ont servi à revoir l’interface et les parcours. Le code conservé dans GitHub permet de poursuivre son évolution.",
+      "title": "Créer une application de collection à sa mesure",
+      "summary": "J’ai fait créer Collection pour organiser mes films, séries et bandes dessinées selon mes propres besoins : retrouver mes œuvres, distinguer ce que je possède, ai vu ou souhaite découvrir, et suivre ma progression. L’IA a traduit ces habitudes en écrans et en fonctions, puis produit, testé et compilé le code. L’application a été installée sur mon iPhone, sans Mac. Son stockage local, son import et sa sauvegarde permettent de conserver mes données ; le code reste disponible pour faire évoluer l’outil.",
       "prompts": [
         {
-          "title": "Créer et installer une application personnelle",
-          "text": "Je veux créer une application iPhone personnelle et aller jusqu’à son installation, avec ton aide pour le code, les tests et les corrections.\n\nBesoin : [besoin]. Trois parcours essentiels : [parcours]. Contraintes : [appareils, budget, données, connexions]. Je souhaite commencer par une version utile, puis la faire évoluer.\n\n1. Clarifie les parcours, propose les écrans et les critères de réussite. Distingue indispensable et évolutions\n2. Vérifie l’environnement disponible. Pour un parcours sans Mac, étudie React Native avec Expo et EAS Build. Explique les comptes, la signature Apple, les coûts et l’installation privée avant tout engagement\n3. Crée le projet, conserve le code dans un dépôt privé autorisé et développe les parcours avec stockage local et export des données\n4. Ajoute les fonctions retenues, comme recherche, import, scan ou rappels, en vérifiant les dépendances. Pour un import, contrôle les correspondances et les doublons sur un échantillon\n5. Exécute les vérifications possibles et décris les essais à faire sur l’appareil. Teste notamment fermeture/réouverture, export/restauration et conservation des données après mise à jour\n6. Prépare la compilation iOS, accompagne l’installation et corrige les erreurs à partir des journaux. Après mes essais, améliore les parcours et l’interface, puis conserve une version fonctionnelle\n\nUtilise des données fictives pour les tests. N’inscris aucun secret dans le dépôt. Distingue code produit, tests exécutés, compilation réussie et application testée sur le téléphone. Livre les sources et un mode d’emploi pour sauvegarder, installer et mettre à jour."
+          "title": "Créer son propre outil de collection et l’installer",
+          "text": "Je veux créer une application personnelle de collection adaptée à mes habitudes, puis l’installer sur mon iPhone.\n\nCollections : [films, séries, bandes dessinées ou autres]. Ce que les outils actuels ne permettent pas bien : [limites]. Trois parcours prioritaires : [parcours]. Contraintes : [appareil, budget, données et connexions].\n\n1. Clarifie mes catégories, critères de recherche, statuts et règles de progression. Prévois, si utile, historique, dates, notes et plusieurs visionnages ou lectures. Propose les écrans et les critères de réussite pour les trois parcours prioritaires\n2. Vérifie l’environnement. Pour un parcours sans Mac, étudie React Native, Expo et EAS Build. Explique les comptes, la signature Apple, les coûts et les conditions d’installation privée avant engagement\n3. Crée le projet, conserve le code dans un dépôt privé autorisé et développe une première version avec stockage local et export des données\n4. Ajoute les fonctions retenues : import d’historique, métadonnées, scan, suivi de progression ou rappels. Vérifie les accès et dépendances ; n’annonce pas une intégration qui n’est pas disponible\n5. Teste ajout, modification, recherche, progression et doublons. Vérifie fermeture/réouverture, export/restauration et conservation des données après mise à jour. Utilise des données fictives pour ces essais\n6. Prépare la compilation et accompagne l’installation. Corrige les erreurs à partir des journaux. Après mes essais sur téléphone, adapte l’interface et les parcours à mes retours\n\nDistingue code produit, essais exécutés, compilation réussie et application testée sur l’appareil. Livre les sources, les coûts connus et un mode d’emploi pour sauvegarder, installer et faire évoluer l’application. N’inscris aucun secret dans le dépôt."
         }
       ],
       "tips": [
-        "Demandez une application que vous pouvez essayer tôt. Les retours d’usage sur le téléphone, puis une sauvegarde réellement restaurée, comptent davantage qu’une liste de fonctions annoncées."
+        "Partez de ce que les outils existants vous obligent à contourner : classement, recherche, progression, historique ou export. Faites essayer très tôt ces parcours avec quelques œuvres familières."
       ],
       "guide": {
-        "result": "une application personnelle installée sur votre téléphone, avec ses données conservées, une sauvegarde testée et un code que vous pouvez faire évoluer.",
+        "result": "un outil de collection adapté à vos catégories, habitudes et critères, installé sur votre téléphone, avec vos données récupérables et un code que vous pouvez faire évoluer.",
         "preparation": [
-          "Le besoin concret, trois parcours prioritaires et des données fictives pour les premiers essais",
+          "Vos catégories de collection, vos règles de classement et trois parcours prioritaires, avec quelques exemples fictifs ou anonymisés",
           "Un iPhone, un accès à ChatGPT Work ou Codex et des comptes GitHub et Expo pour le parcours décrit",
           "Les prérequis de signature Apple et de compilation à vérifier avant de commencer ; certains services ou comptes peuvent être payants"
         ],
@@ -588,7 +618,7 @@
         "steps": [
           {
             "title": "Décrire ce que l’application doit permettre",
-            "text": "Copiez le prompt et racontez trois actions concrètes. Pour Collection : ajouter une œuvre, retrouver sa fiche, suivre son statut ou sa progression. Faites produire les écrans et les critères qui permettront de vérifier chaque action."
+            "text": "Décrivez vos collections, ce que vous souhaitez retrouver et les limites des outils déjà essayés. Pour Collection : possédé, vu ou souhaité, progression par épisode ou tome, historique et notes. Choisissez trois parcours prioritaires et faites dessiner leurs écrans avant d’élargir les fonctions."
           },
           {
             "title": "Faire créer le socle et conserver le code",
@@ -596,7 +626,7 @@
           },
           {
             "title": "Construire les fonctions utiles",
-            "text": "Faites développer les parcours de base, puis les fonctions qui apportent un vrai service : recherche, scan, import d’historique ou rappels. Pour un import, donnez un fichier d’exemple anonymisé et vérifiez le rapprochement ainsi que les doublons."
+            "text": "Construisez d’abord ajout, recherche, classement et progression selon vos règles. Ajoutez ensuite les fonctions retenues : import d’historique, métadonnées, scan ou rappels. Avec un fichier anonymisé, faites vérifier les correspondances et doublons ; demandez les limites exactes des services utilisés."
           },
           {
             "title": "Tester les données autant que les écrans",
@@ -623,69 +653,73 @@
       "published": true,
       "kind": "usage",
       "icon": "scale",
-      "title": "Mettre ses décisions à l’épreuve",
-      "summary": "Je demande à l’IA de contester ses propositions, de vérifier les faits qui changent le choix, puis d’appliquer les corrections retenues. Cette méthode a servi à faire évoluer mes projets et ce site jusqu’aux essais du résultat. Elle produit une solution révisée, des critères de réussite et une trace des compromis, avec la possibilité de revenir sur une décision si les faits changent.",
+      "title": "Décider avec un Conseil à cinq rôles",
+      "summary": "J’ai créé « Le Conseil » pour examiner une décision à travers cinq rôles : le Contradicteur, le Penseur fondamental, l’Explorateur, le Regard extérieur et le Pragmatique. Chacun apporte ses arguments, puis une confrontation fait ressortir les désaccords et oblige à réviser les positions fragiles. Un arbitrage final propose une décision et une première action. Dans le dispositif utilisé ici, ces cinq perspectives sont jouées par un même modèle ; elles ne constituent pas cinq agents indépendants.",
       "prompts": [
         {
-          "title": "Challenger une décision et vérifier la solution retenue",
-          "text": "Aide-moi à mettre une décision à l’épreuve, puis à aller jusqu’à une solution vérifiée.\n\nDécision : [décision]. Objectif : [objectif]. Préférence actuelle : [avis]. Contraintes et échéance : [contraintes]. Sources et essais disponibles : [éléments].\n\n1. Reformule le problème et propose des critères de réussite observables\n2. Sépare faits sourcés, hypothèses et inconnues. Compare au moins une option simple et une alternative crédible\n3. Présente les objections les plus fortes à ta recommandation, les conditions d’échec et les compromis. Examine les angles utilisateur, exécution, budget et maintien dans le temps\n4. Identifie les inconnues qui changeraient le choix et propose une vérification proportionnée : source, calcul, prototype ou essai. Réalise les vérifications accessibles et restitue les résultats observés\n5. Révise ta recommandation et explique ce qui a changé. Après validation du choix, applique les corrections ou prépare l’action concrète autorisée, puis contrôle les critères de réussite\n6. Termine par une note courte : décision, preuves, compromis, risques restants, prochaine étape et conditions de réexamen\n\nNe simule pas un accord entre experts indépendants. Ne déclare pas une solution validée sur la seule base d’une autocritique. Signale les vérifications qui restent à faire et garde une trace des décisions."
+          "title": "Convoquer un Conseil de cinq rôles pour un arbitrage",
+          "text": "Je convoque le Conseil sur la décision suivante : [question].\n\nObjectif réel : [objectif]. Préférence actuelle : [avis]. Contraintes, échéance et conséquences d’une erreur : [éléments]. Documents et contexte : [sources]. Mobilise les informations pertinentes déjà accessibles, puis demande seulement ce qui manque pour décider.\n\nLe Conseil utilise cinq perspectives dans cette conversation. Ne prétends pas lancer des agents ou modèles indépendants sans système qui les exécute réellement. Ce protocole s’active seulement quand je le demande et reste distinct de mes autres consignes de conseil.\n\n1. Instruis un dossier neutre : question commune, faits établis, hypothèses, contraintes, alternatives et informations manquantes. Vérifie les faits externes qui peuvent changer le choix\n2. Produis cinq avis brefs et réellement distincts :\n   • Le Contradicteur cherche la meilleure objection, les preuves insuffisantes et les causes d’échec\n   • Le Penseur fondamental revient aux objectifs et aux mécanismes ; il vérifie si le problème est bien posé\n   • L’Explorateur cherche les options ignorées, les opportunités et leurs conditions de validité\n   • Le Regard extérieur repère les habitudes, les biais de proximité et les effets sur les autres personnes\n   • Le Pragmatique examine ressources, coûts, délais, dépendances et première action réalisable\n3. Confronte les arguments : relève deux ou trois désaccords décisifs, les contraintes oubliées et les hypothèses fragiles communes. Fais corriger les positions affectées ; ne fabrique ni unanimité ni verbatim d’agents indépendants\n4. Si une inconnue peut changer le choix, recherche une source, effectue un calcul ou propose un essai proportionné. Distingue le résultat observé de ce qui reste à vérifier\n5. Fais arbitrer le président du Conseil sur la solidité des arguments, sans vote majoritaire. Il peut retenir une position minoritaire ou rendre un verdict provisoire. Explique le choix, les compromis et les incertitudes susceptibles de le renverser\n6. Termine par une première action concrète et les conditions de réexamen. Après mon choix, applique les corrections autorisées et vérifie leur résultat lorsque c’est possible\n\nRestitution : cinq avis courts, confrontation, verdict motivé et première action. Reste direct et proportionné à l’enjeu, sans mise en scène. La décision finale m’appartient."
         }
       ],
       "tips": [
-        "Demandez ce qui ferait changer la conclusion, puis vérifiez ce point. Un « challenge » utile produit une correction, un test ou une décision mieux étayée."
+        "Demandez quel fait ferait basculer le verdict, puis vérifiez-le. La valeur du Conseil tient aux objections qu’il traite et aux choix qu’il éclaire ; le nombre de rôles ne garantit pas la justesse."
       ],
       "guide": {
-        "result": "une décision argumentée, un plan d’action et des critères de vérification, avec les raisons de maintenir, modifier ou abandonner l’option retenue.",
+        "result": "cinq analyses différenciées, une confrontation des désaccords, un arbitrage motivé et une première action, avec les faits qui pourraient modifier le verdict.",
         "preparation": [
-          "La décision, l’objectif, l’échéance et les contraintes qui ne peuvent pas changer",
-          "Votre préférence initiale, les documents disponibles et les résultats d’essais éventuels",
-          "Les critères de réussite et le coût acceptable d’une erreur ou d’un changement"
+          "La décision à prendre, l’objectif réel, votre préférence initiale et les alternatives déjà envisagées",
+          "Les contraintes, l’échéance, les conséquences d’une erreur et les documents utiles",
+          "Les critères de choix et les inconnues qui pourraient changer la conclusion"
         ],
         "tools": [
           {
-            "name": "ChatGPT : raisonnement et itérations",
-            "role": "Pour comparer les options, formuler les objections et reprendre une conclusion en explicitant ce qui change."
+            "name": "ChatGPT : cinq rôles et raisonnement",
+            "role": "Pour appliquer successivement cinq perspectives puis les confronter. Cette version fonctionne dans une conversation ; elle ne suppose pas cinq agents indépendants."
+          },
+          {
+            "name": "Projet ou consigne réutilisable",
+            "role": "Pour conserver les rôles et le protocole, avec activation explicite par « Je convoque le Conseil ». Gardez-le distinct des autres modes de conseil."
           },
           {
             "name": "Recherche et documents",
-            "role": "Pour vérifier les faits décisifs. Plusieurs points de vue simulés par le modèle ne constituent pas des sources indépendantes."
+            "role": "Pour vérifier les faits qui déterminent le verdict. Plusieurs avis produits par un même modèle peuvent partager la même erreur."
           },
           {
-            "name": "ChatGPT Work ou Codex, selon le projet",
-            "role": "Pour traduire la décision en livrable ou prototype, exécuter les vérifications disponibles et corriger à partir des résultats.",
+            "name": "ChatGPT Work ou Codex, selon la décision",
+            "role": "Pour réaliser un calcul, un prototype ou une correction, puis contrôler le résultat plutôt que s’arrêter à la recommandation.",
             "url": "https://learn.chatgpt.com/docs/get-started-with-work"
           }
         ],
         "steps": [
           {
-            "title": "Poser le problème et les critères",
-            "text": "Copiez le prompt, votre préférence et vos contraintes. Faites reformuler le résultat attendu et les critères qui permettront de juger la solution. Demandez une option simple à comparer à l’option ambitieuse."
+            "title": "Poser une question commune et neutre",
+            "text": "Copiez le prompt avec votre contexte. Faites distinguer objectif, préférence, faits, hypothèses et contraintes. Donnez les mêmes éléments aux cinq rôles et demandez des alternatives crédibles, sans orienter d’emblée le verdict."
           },
           {
-            "title": "Rendre les hypothèses visibles",
-            "text": "Faites classer les éléments en faits sourcés, hypothèses et inconnues. Vérifiez ce qui concerne coûts, délais, accès et capacités techniques. Écartez les comparaisons qui utilisent des périmètres différents."
+            "title": "Installer les cinq rôles",
+            "text": "Le Contradicteur teste les fragilités ; le Penseur fondamental questionne le problème ; l’Explorateur ouvre des options ; le Regard extérieur examine les biais et effets sur autrui ; le Pragmatique évalue l’exécution. Conservez ces fonctions dans la consigne réutilisable."
           },
           {
-            "title": "Chercher les objections décisives",
-            "text": "Demandez ce qui pourrait faire échouer chaque option, le meilleur argument contre la recommandation et les compromis cachés. Utilisez, si utile, plusieurs angles : utilisateur, exécution, budget, maintenance."
+            "title": "Obtenir cinq positions différenciées",
+            "text": "Demandez à chaque rôle une position, ses meilleurs arguments et une réserve sur sa propre proposition. Refusez cinq reformulations de la même réponse. Un désaccord doit porter sur une hypothèse, un critère ou une conséquence identifiable."
           },
           {
-            "title": "Tester ce qui fait basculer le choix",
-            "text": "Retenez les deux ou trois inconnues les plus importantes. Faites rechercher une source, produire un prototype ou exécuter un essai concret. Comparez résultat attendu et observé ; une nouvelle formulation de l’avis ne remplace pas ce contrôle."
+            "title": "Organiser la confrontation",
+            "text": "Faites examiner les objections des autres rôles et corriger les positions fragiles. Demandez quel désaccord change réellement le choix et ce que les cinq regards ont pu manquer. Vérifiez les faits décisifs par une source, un calcul ou un essai accessible."
           },
           {
-            "title": "Réviser puis agir",
-            "text": "Demandez une recommandation actualisée, ses raisons et la prochaine action. Pour un livrable, faites appliquer les corrections et vérifier les critères convenus. Si une condition essentielle manque, conservez-la comme blocage explicite."
+            "title": "Arbitrer sur les arguments",
+            "text": "Demandez au président une conclusion motivée, les compromis et les conditions qui feraient changer d’avis. Une position minoritaire peut l’emporter. Si les données essentielles manquent, obtenez un verdict provisoire et la vérification prioritaire."
           },
           {
-            "title": "Garder la trace de la décision",
-            "text": "Conservez une note courte : option retenue, preuves, compromis, risques restants et date de réexamen. Définissez les événements qui justifieraient de revoir le choix, pour éviter de repartir de zéro."
+            "title": "Transformer le verdict en action",
+            "text": "Retenez une première action observable. Pour un livrable, faites appliquer les corrections autorisées puis tester le résultat. Conservez la décision, ses raisons et les conditions de réexamen pour éviter de repartir de zéro."
           }
         ],
         "checks": [
-          "La recommandation respecte les contraintes et explique le poids des critères",
-          "Les faits décisifs ont été vérifiés par des sources ou des essais identifiés",
-          "Les corrections ont été appliquées et contrôlées, ou les blocages restent clairement visibles"
+          "Les cinq rôles apportent des arguments distincts et leurs désaccords sont réellement examinés",
+          "Les faits décisifs sont vérifiés ; aucune indépendance entre agents ni unanimité n’est inventée",
+          "Le verdict respecte les contraintes, justifie les compromis et donne une première action avec ses conditions de réexamen"
         ]
       }
     },
