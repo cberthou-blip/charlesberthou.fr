@@ -45,6 +45,8 @@ Après une modification des styles ou du modèle, relancer la génération. Les 
 
 L’accueil fonctionne sans JavaScript, formulaire, traceur ni contenu tiers intégré. Le titre, l’image et le lien de lecture de l’article principal constituent une seule zone cliquable. Les ouvertures LinkedIn sont décrites pour les technologies d’assistance.
 
+Le bouton d’abonnement en tête de page et le lien de profil LinkedIn en pied de page ont été retirés le 22 octobre 2026. Le lien d’abonnement du pied de page reste disponible. Les ressources ne comportent plus de liens vers la documentation ChatGPT ; les explications, outils et prompts sont conservés.
+
 ## Modifier les ressources
 
 La source est `content/resources.json`. La version du 21 octobre 2026 contient 10 modes d’emploi, chacun avec ses préparatifs, outils, étapes, prompt intégral, vérifications et conseil, ainsi que 7 astuces directement lisibles. Les résumés présentent l’usage et le résultat documenté. Le champ historique facultatif `experience` reste compatible avec le rendu. Les modes d’emploi et prompts sont des adaptations pour le lecteur, sans être présentés comme des copies historiques. Aucun média de réalisation ni commentaire interne n’est publié.

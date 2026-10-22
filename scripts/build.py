@@ -114,9 +114,7 @@ def render_page(content, *, head, title, description, canonical, robots,
         share_image=escape(articles.SITE_URL + (edition['image']['src'] if edition else '/assets/passage/partage.jpg')),
         share_image_alt=escape(edition['alt'] if edition else 'Un passage entre l’histoire du travail et le monde numérique'),
         extra_meta=f'<meta property="article:published_time" content="{edition["date"]}">\n<meta property="article:author" content="{escape(author["url"])}">' if edition else '',
-        newsletter_url=escape(newsletter),
-        footer_subscribe=link(newsletter, 'S’abonner'),
-        footer_author=link(author['url'], 'Profil LinkedIn'))
+        footer_subscribe=link(newsletter, 'S’abonner'))
 
 
 def build():

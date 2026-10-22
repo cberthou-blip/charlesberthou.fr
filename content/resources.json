@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "resources": [
     {
       "slug": "organiser-repas-courses",
@@ -26,23 +26,19 @@
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Gardez une conversation dédiée ou un projet. Joignez les tickets avec le bouton de fichiers et vérifiez leur lecture.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Gardez une conversation dédiée ou un projet. Joignez les tickets avec le bouton de fichiers et vérifiez leur lecture."
           },
           {
             "name": "Tableur et messagerie",
-            "role": "Joignez un export Excel ou connectez Google Sheets dans les plugins de Work. La messagerie peut fournir les confirmations de commande autorisées.",
-            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+            "role": "Joignez un export Excel ou connectez Google Sheets dans les plugins de Work. La messagerie peut fournir les confirmations de commande autorisées."
           },
           {
             "name": "Chrome ou connexion au drive",
-            "role": "Configurez l’extension officielle, ouvrez le drive dans votre profil Chrome et sélectionnez @Chrome dans Work. Testez la lecture du panier avant son remplissage.",
-            "url": "https://learn.chatgpt.com/docs/chrome-extension"
+            "role": "Configurez l’extension officielle, ouvrez le drive dans votre profil Chrome et sélectionnez @Chrome dans Work. Testez la lecture du panier avant son remplissage."
           },
           {
             "name": "Tâche hebdomadaire, facultative",
-            "role": "Une tâche peut lancer la préparation à heure fixe. Vérifiez les accès et les exécutions ; l’utilisation du navigateur local dépend de la disponibilité de l’ordinateur.",
-            "url": "https://learn.chatgpt.com/docs/automations"
+            "role": "Une tâche peut lancer la préparation à heure fixe. Vérifiez les accès et les exécutions ; l’utilisation du navigateur local dépend de la disponibilité de l’ordinateur."
           }
         ],
         "steps": [
@@ -110,13 +106,11 @@
         "tools": [
           {
             "name": "ChatGPT : projet et archives",
-            "role": "Une conversation dédiée ou un projet réunit les échanges et les archives. Vérifiez que les documents joints sont lisibles.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Une conversation dédiée ou un projet réunit les échanges et les archives. Vérifiez que les documents joints sont lisibles."
           },
           {
             "name": "Recherche web et messagerie",
-            "role": "Dans les plugins de Work, connectez la messagerie choisie et testez la lecture d’un échange. Les droits d’envoi doivent être vérifiés séparément.",
-            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+            "role": "Dans les plugins de Work, connectez la messagerie choisie et testez la lecture d’un échange. Les droits d’envoi doivent être vérifiés séparément."
           },
           {
             "name": "Tableur de collecte",
@@ -124,8 +118,7 @@
           },
           {
             "name": "ChatGPT Work : documents",
-            "role": "Work permet de demander un document modifiable et un PDF. Les fichiers téléchargés doivent être ouverts pour contrôler leur rendu.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "role": "Work permet de demander un document modifiable et un PDF. Les fichiers téléchargés doivent être ouverts pour contrôler leur rendu."
           }
         ],
         "steps": [
@@ -195,18 +188,15 @@
         "tools": [
           {
             "name": "ChatGPT : scénario et découpage",
-            "role": "La conversation construit l’intrigue puis le découpage : action, cadrage, personnages et dialogue de chaque case.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "La conversation construit l’intrigue puis le découpage : action, cadrage, personnages et dialogue de chaque case."
           },
           {
             "name": "Création et retouche d’images",
-            "role": "La génération crée les références et les planches ; la retouche corrige les incohérences. Prévoyez plusieurs essais.",
-            "url": "https://learn.chatgpt.com/docs/image-generation"
+            "role": "La génération crée les références et les planches ; la retouche corrige les incohérences. Prévoyez plusieurs essais."
           },
           {
             "name": "ChatGPT Work : composition",
-            "role": "Demandez une composition avec textes modifiables, un PDF et les sources. Vérifiez cette possibilité sur une planche avant de produire l’album.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "role": "Demandez une composition avec textes modifiables, un PDF et les sources. Vérifiez cette possibilité sur une planche avant de produire l’album."
           }
         ],
         "steps": [
@@ -272,8 +262,7 @@
         "tools": [
           {
             "name": "ChatGPT : analyse de fichiers",
-            "role": "Les fichiers joints servent à reconstituer consommation et coût annuel, puis à calculer les scénarios.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Les fichiers joints servent à reconstituer consommation et coût annuel, puis à calculer les scénarios."
           },
           {
             "name": "Recherche web",
@@ -281,13 +270,11 @@
           },
           {
             "name": "Tableur",
-            "role": "Le classeur conserve formules, hypothèses et sources pour comparer ensuite les estimations aux factures.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "role": "Le classeur conserve formules, hypothèses et sources pour comparer ensuite les estimations aux factures."
           },
           {
             "name": "Chrome avec l’extension ChatGPT",
-            "role": "Installez l’extension officielle, ouvrez le site dans Chrome et sélectionnez @Chrome dans Work. Testez la lecture de la page avant de confier les champs.",
-            "url": "https://learn.chatgpt.com/docs/chrome-extension"
+            "role": "Installez l’extension officielle, ouvrez le site dans Chrome et sélectionnez @Chrome dans Work. Testez la lecture de la page avant de confier les champs."
           }
         ],
         "steps": [
@@ -355,8 +342,7 @@
         "tools": [
           {
             "name": "ChatGPT : projet et mémoire",
-            "role": "Une conversation dédiée ou un projet conserve le profil familial, les choix et les retours.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Une conversation dédiée ou un projet conserve le profil familial, les choix et les retours."
           },
           {
             "name": "Recherche web et cartes",
@@ -364,13 +350,11 @@
           },
           {
             "name": "ChatGPT Work : carnet de séjour",
-            "role": "Un document court réunit programme, adresses, liens et alternatives pour le téléphone.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "role": "Un document court réunit programme, adresses, liens et alternatives pour le téléphone."
           },
           {
             "name": "Chrome, facultatif",
-            "role": "Sur ordinateur, l’extension officielle et @Chrome dans Work peuvent préparer les réservations. Vous confirmez les conditions et le paiement.",
-            "url": "https://learn.chatgpt.com/docs/chrome-extension"
+            "role": "Sur ordinateur, l’extension officielle et @Chrome dans Work peuvent préparer les réservations. Vous confirmez les conditions et le paiement."
           }
         ],
         "steps": [
@@ -436,8 +420,7 @@
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Une conversation ou un projet réunit les documents choisis. Vérifiez la lecture des valeurs, unités et références.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Une conversation ou un projet réunit les documents choisis. Vérifiez la lecture des valeurs, unités et références."
           },
           {
             "name": "Exports de santé et d’activité",
@@ -450,13 +433,11 @@
           },
           {
             "name": "Annuaire, messagerie et Chrome",
-            "role": "Un annuaire officiel vérifie les coordonnées. La messagerie ou @Chrome permettent un contact autorisé avec les seules pièces retenues.",
-            "url": "https://learn.chatgpt.com/docs/chrome-extension"
+            "role": "Un annuaire officiel vérifie les coordonnées. La messagerie ou @Chrome permettent un contact autorisé avec les seules pièces retenues."
           },
           {
             "name": "Agenda et tâches, facultatifs",
-            "role": "Une tâche documentaire peut préparer un rendez-vous. Configurez et testez son fonctionnement avant de compter sur son résultat.",
-            "url": "https://learn.chatgpt.com/docs/automations"
+            "role": "Une tâche documentaire peut préparer un rendez-vous. Configurez et testez son fonctionnement avant de compter sur son résultat."
           }
         ],
         "steps": [
@@ -502,12 +483,6 @@
         "extension": "Une tâche peut préparer un prochain rendez-vous ou une veille documentaire à partir de sources choisies. Elle doit être configurée et testée séparément. Ce suivi documentaire ne constitue pas une surveillance médicale et ne remplace pas une consultation, notamment en cas de symptômes nouveaux ou urgents.",
         "extension_title": "Préparer les prochains rendez-vous"
       },
-      "links": [
-        {
-          "label": "Limites de ChatGPT pour les images médicales",
-          "url": "https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq"
-        }
-      ],
       "short_title": "Assistant santé personnel"
     },
     {
@@ -535,13 +510,11 @@
         "tools": [
           {
             "name": "ChatGPT : projet et fichiers",
-            "role": "Joignez les justificatifs dans une conversation dédiée ou un projet. Limitez les données partagées au périmètre étudié.",
-            "url": "https://learn.chatgpt.com/docs/use-chatgpt"
+            "role": "Joignez les justificatifs dans une conversation dédiée ou un projet. Limitez les données partagées au périmètre étudié."
           },
           {
             "name": "ChatGPT Work : tableur",
-            "role": "Le classeur conserve formules, sources et hypothèses ; il distingue montants constatés et estimations.",
-            "url": "https://learn.chatgpt.com/docs/artifacts-viewer"
+            "role": "Le classeur conserve formules, sources et hypothèses ; il distingue montants constatés et estimations."
           },
           {
             "name": "Recherche web et sources officielles",
@@ -549,8 +522,7 @@
           },
           {
             "name": "Services connectés, facultatifs",
-            "role": "Les connexions retrouvent les pièces autorisées. Vérifiez leur date et leur fréquence de mise à jour.",
-            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+            "role": "Les connexions retrouvent les pièces autorisées. Vérifiez leur date et leur fréquence de mise à jour."
           }
         ],
         "steps": [
@@ -627,8 +599,7 @@
         "tools": [
           {
             "name": "ChatGPT Work ou Codex",
-            "role": "L’assistant écrit le code, exécute les vérifications disponibles et corrige à partir de vos essais.",
-            "url": "https://learn.chatgpt.com/docs/get-started-with-work"
+            "role": "L’assistant écrit le code, exécute les vérifications disponibles et corrige à partir de vos essais."
           },
           {
             "name": "React Native et Expo",
@@ -723,8 +694,7 @@
           },
           {
             "name": "Work ou Codex, selon le besoin",
-            "role": "Une vérification peut prendre la forme d’un calcul ou d’un prototype autorisé.",
-            "url": "https://learn.chatgpt.com/docs/get-started-with-work"
+            "role": "Une vérification peut prendre la forme d’un calcul ou d’un prototype autorisé."
           }
         ],
         "steps": [
@@ -790,23 +760,19 @@
         "tools": [
           {
             "name": "Messagerie et documents connectés",
-            "role": "Dans Personnaliser (Customize) > Plugins, connectez votre messagerie et testez la lecture d’un mail avec sa pièce jointe. Vérifiez séparément les possibilités d’envoi.",
-            "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
+            "role": "Dans Personnaliser (Customize) > Plugins, connectez votre messagerie et testez la lecture d’un mail avec sa pièce jointe. Vérifiez séparément les possibilités d’envoi."
           },
           {
             "name": "ChatGPT Work",
-            "role": "L’assistant rapproche les pièces, prépare les réponses et effectue les actions disponibles et autorisées.",
-            "url": "https://learn.chatgpt.com/docs/get-started-with-work"
+            "role": "L’assistant rapproche les pièces, prépare les réponses et effectue les actions disponibles et autorisées."
           },
           {
             "name": "Dot, selon disponibilité",
-            "role": "Le dot peut anticiper l’analyse du dossier. Cette recherche proactive ne déclenche pas à elle seule un envoi.",
-            "url": "https://learn.chatgpt.com/docs/dots/tasks-and-memory"
+            "role": "Le dot peut anticiper l’analyse du dossier. Cette recherche proactive ne déclenche pas à elle seule un envoi."
           },
           {
             "name": "Tâche sur événement ou planifiée",
-            "role": "Selon le compte, une tâche analyse les mails pertinents à réception ou à heure fixe. Vérifiez son périmètre et ses exécutions.",
-            "url": "https://learn.chatgpt.com/docs/automations"
+            "role": "Selon le compte, une tâche analyse les mails pertinents à réception ou à heure fixe. Vérifiez son périmètre et ses exécutions."
           }
         ],
         "steps": [
@@ -863,13 +829,7 @@
       "icon": "plug",
       "title": "Relier les documents et les outils",
       "summary": "Une connexion évite de joindre les mêmes documents à chaque échange. Dans Work, ouvrez Personnaliser > Plugins pour connecter le service ; sans connexion, joignez un export.",
-      "try_it": "« Retrouve les pièces utiles à ce dossier. Indique celles que tu as pu lire et celles qui manquent. »",
-      "links": [
-        {
-          "label": "Connecter un outil dans Work",
-          "url": "https://learn.chatgpt.com/fr-FR/docs/plugins"
-        }
-      ]
+      "try_it": "« Retrouve les pièces utiles à ce dossier. Indique celles que tu as pu lire et celles qui manquent. »"
     },
     {
       "slug": "agir-dans-chrome",
@@ -878,13 +838,7 @@
       "icon": "browser",
       "title": "Faire agir l’IA dans Chrome",
       "summary": "L’extension officielle permet d’agir dans les pages web sur ordinateur. Une fois installée, ouvrez le site dans le même profil Chrome et sélectionnez @Chrome dans Work ou Codex, si disponible.",
-      "try_it": "« Renseigne les champs avec mes données validées. Présente le récapitulatif avant tout envoi, signature ou paiement. »",
-      "links": [
-        {
-          "label": "Installer et utiliser l’extension ChatGPT",
-          "url": "https://learn.chatgpt.com/docs/chrome-extension"
-        }
-      ]
+      "try_it": "« Renseigne les champs avec mes données validées. Présente le récapitulatif avant tout envoi, signature ou paiement. »"
     },
     {
       "slug": "choisir-niveau-reflexion",
@@ -920,13 +874,7 @@
       "icon": "calendar-clock",
       "title": "Préparer les tâches récurrentes",
       "summary": "Après un essai réussi, planifiez la préparation à l’horaire utile. Vérifiez l’enregistrement et la première exécution ; fichiers et outils doivent rester accessibles, ainsi que l’ordinateur si la tâche l’utilise.",
-      "try_it": "« Propose une tâche pour [objectif], avec sources, fréquence et notifications utiles. Attends mon choix avant de la créer. »",
-      "links": [
-        {
-          "label": "Configurer et vérifier une tâche",
-          "url": "https://learn.chatgpt.com/docs/automations"
-        }
-      ]
+      "try_it": "« Propose une tâche pour [objectif], avec sources, fréquence et notifications utiles. Attends mon choix avant de la créer. »"
     }
   ]
 }
