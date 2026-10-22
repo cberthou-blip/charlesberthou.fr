@@ -67,7 +67,7 @@
       feedback.textContent = '';
       try {
         await navigator.clipboard.writeText(prompt.textContent);
-        feedback.textContent = 'Prompt copié. Collez-le dans votre conversation.';
+        feedback.textContent = 'Prompt copié. Collez-le dans votre assistant IA pour commencer.';
       } catch {
         button.closest('.resource-prompt').querySelector('.prompt-disclosure').open = true;
         feedback.textContent = 'La copie automatique est indisponible. Sélectionnez le texte du prompt pour le copier.';

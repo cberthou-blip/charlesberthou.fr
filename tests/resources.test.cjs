@@ -48,7 +48,7 @@ test('la copie conserve intégralement le prompt et annonce le résultat', async
   assert.equal(ui.button.hidden, false);
   await ui.button.click();
   assert.equal(copied, ui.prompt.textContent);
-  assert.equal(ui.feedback.textContent, 'Prompt copié. Collez-le dans votre conversation.');
+  assert.equal(ui.feedback.textContent, 'Prompt copié. Collez-le dans votre assistant IA pour commencer.');
   assert.equal(ui.button.disabled, false);
   assert.equal(ui.promptDetails.open, false);
 });

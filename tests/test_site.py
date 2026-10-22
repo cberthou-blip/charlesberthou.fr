@@ -193,7 +193,7 @@ class ResourcesTest(unittest.TestCase):
             self.assertEqual(guide_doc.prompts, [prompt['text'] for prompt in item['prompts']])
             self.assertIn('<ol class="guide-steps">', guide)
             self.assertNotIn('<details class="resource-details">', guide)
-            self.assertLess(guide.index('Avant de commencer'), guide.index('Copier le prompt'))
+            self.assertLess(guide.index('Pour démarrer'), guide.index('Copier le prompt'))
             self.assertIn(resources.path(item), doc.links)
             self.assertIn(resources.public_url(item), outputs['sitemap.xml'])
             self.assertIn(resources.public_url(item), outputs['llms-full.txt'])

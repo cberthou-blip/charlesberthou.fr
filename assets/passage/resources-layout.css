@@ -1,25 +1,69 @@
-/* Rubrique Ressources uniquement : mêmes couleurs, polices et composants. */
+/* Rubrique Ressources uniquement : palette et typographies du site conservées. */
 .resources-catalog .resources-catalog-nav { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .75rem 2rem; }
 .resources-catalog .resources-index { flex: 1 1 14rem; }
 .resources-catalog .resources-index > summary { width: fit-content; min-height: 44px; padding-block: .625rem; font-size: .875rem; font-weight: 500; border-bottom: 1px solid currentColor; cursor: pointer; }
 .resources-catalog .resources-index ul { margin-top: .75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
-.resources-catalog .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); column-gap: clamp(2rem, 4vw, 4rem); }
+.resources-catalog .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: clamp(1.25rem, 3vw, 2rem); }
 .resources-catalog .resource-entry { position: relative; min-width: 0; grid-template-columns: minmax(0, 1fr); align-content: start; }
-.resources-catalog .resource-card { grid-template-rows: auto 1fr auto; }
-.resources-catalog .resource-guide-link { justify-self: start; align-self: end; gap: 1.25rem; }
+.resources-catalog .resource-card { display: flex; padding: 0; border: 0; }
+.resources-catalog .resource-card-link { display: grid; grid-template-rows: auto 1fr auto; gap: 1.25rem; width: 100%; min-width: 0; padding: clamp(1.25rem, 2.5vw, 2rem); border: 1px solid var(--rule); transition: background .2s, border-color .2s; }
+.resources-catalog .resource-card-heading { min-width: 0; }
+.resources-catalog .resource-card-heading h3 { font-size: clamp(1.75rem, 1.3rem + 1.25vw, 2.375rem); line-height: 1.2; letter-spacing: -.015em; text-wrap: pretty; }
+.resources-catalog .resource-card .resource-icon { display: block; width: 2.5rem; height: 2.5rem; margin: 0 0 1rem; }
+.resources-catalog .resource-guide-link { justify-self: start; align-self: end; gap: 1.5rem; }
+.resources-page .resource-button-secondary { background: transparent; color: var(--ink); border-color: var(--ink); border-radius: 2px; }
+.resources-page .resource-button-secondary:hover, .resources-page .resource-button-secondary:active { background: var(--ink); color: var(--paper); }
+.resources-catalog .resource-card-link:focus-visible { border-color: var(--ink); }
+.resources-catalog .resource-card-link:focus-visible .resource-guide-link,
+.resources-catalog .resource-card-link:active .resource-guide-link { background: var(--ink); color: var(--paper); }
 .resources-catalog .resource-anchor { position: absolute; top: 0; width: 0; height: 0; scroll-margin-top: 2rem; }
 .resources-catalog .resource-group-heading { width: 100%; }
+.resources-catalog .resource-astuce { padding-block: 1.5rem; }
+.resources-catalog .resource-astuce .resource-icon { flex-basis: 2rem; width: 2rem; height: 2rem; margin-top: .125rem; }
+.resources-catalog .resource-try { padding-left: 1rem; border-left: 2px solid var(--gold); }
 .resources-catalog .resource-astuce .resource-links { margin-block: .5rem 0; }
 .resource-guide-page .guide-document { display: block; border: 0; padding: 0; }
+.resource-guide-page .guide-heading-mark { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--gold-text); }
+.resource-guide-page .guide-heading-mark .resource-icon { flex-basis: 2.5rem; width: 2.5rem; height: 2.5rem; margin: 0; }
 .resource-guide-page .resource-body { padding-top: 0; }
-.resource-guide-page .resource-body h2 { display: flex; align-items: center; gap: .5rem; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
+.resource-guide-page .resource-body > * + * { margin-top: 2rem; }
+.resource-guide-page .resource-body h2 { display: flex; align-items: center; gap: .75rem; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
 .resource-guide-page .resource-body h2.visually-hidden { display: block; }
-.resource-guide-page .guide-steps h3 { margin: 0 0 .25rem; font: inherit; font-weight: 600; }
-.resource-guide-page .guide-access > p { color: var(--muted); margin-top: .625rem; }
+.resource-guide-page .resource-body .section-icon { flex-basis: 1.5rem; width: 1.5rem; height: 1.5rem; }
+.resource-guide-page .guide-result { padding: 1.25rem 1.5rem; border-left: 2px solid var(--gold); background: var(--paper-deep); }
+.resource-guide-page .guide-result strong { display: block; margin-bottom: .375rem; }
+.resource-guide-page .guide-preparation { padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.resource-guide-page .guide-access > p { color: var(--muted); margin-top: .75rem; }
+.resource-guide-page .guide-start { margin-top: 1rem; }
+.resource-guide-page .guide-tools-disclosure { margin-top: 1rem; }
+.resource-guide-page .resource-prompt { border: 1px solid var(--rule); gap: .75rem 1rem; }
+.resource-guide-page .prompt-kicker { flex-basis: 100%; color: var(--gold-text); margin-bottom: .25rem; }
+.resource-guide-page .resource-body summary { width: fit-content; max-width: 100%; min-height: 48px; line-height: 1.5; font-size: .875rem; font-weight: 500; cursor: pointer; }
+.resource-guide-page .guide-section { padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.resource-guide-page .guide-steps { padding-left: 2.75rem; margin-top: 1.5rem; list-style-type: decimal-leading-zero; }
+.resource-guide-page .guide-steps li { padding-left: .375rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+.resource-guide-page .guide-steps li + li { margin-top: 1.5rem; }
+.resource-guide-page .guide-steps li:last-child { padding-bottom: 0; border-bottom: 0; }
+.resource-guide-page .guide-steps li::marker { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: var(--gold-text); }
+.resource-guide-page .guide-steps h3 { margin: 0 0 .5rem; font: inherit; font-weight: 600; }
+.resource-guide-page .guide-section ul li::marker { color: var(--gold-text); }
+.resource-guide-page .guide-extension { padding-block: .5rem; }
 .resource-guide-page .guide-extension h2 { color: var(--ink); }
 .resource-guide-page .guide-extension h2 + p { margin-top: .5rem; }
-.resource-guide-page .guide-navigation { margin-top: 2rem; }
-.resource-guide-page .resource-body summary { width: fit-content; max-width: 100%; min-height: 44px; line-height: 1.5; font-size: .875rem; font-weight: 500; cursor: pointer; }
+.resource-guide-page .resource-tip { padding: 1.25rem 1.5rem; background: var(--paper-deep); }
+.resource-guide-page .guide-navigation { align-items: center; justify-content: space-between; gap: 1.25rem 2rem; margin-top: 2.5rem; padding-top: 1.5rem; }
+.resource-guide-page .guide-navigation .guide-next { justify-content: space-between; border: 0; border-bottom: 1px solid var(--rule); padding: .5rem 0; border-radius: 0; }
+.resource-guide-page .guide-next-label { display: block; margin-bottom: .125rem; font-size: .75rem; font-weight: 400; color: var(--muted); }
+@media (hover: hover) {
+  .resources-catalog .resource-card-link:hover { background: var(--paper-deep); border-color: var(--ink); }
+  .resources-catalog .resource-card-link:hover .resource-guide-link { background: var(--ink); color: var(--paper); }
+}
 @media (max-width: 480px) {
-  .resources-catalog .resource-guide-link { min-height: 48px; }
+  .resources-catalog .resource-card-link { padding: 1.25rem; }
+  .resources-catalog .resource-guide-link, .resource-guide-page .guide-all { width: 100%; min-height: 48px; }
+  .resource-guide-page .guide-result, .resource-guide-page .resource-tip { padding: 1rem 1.125rem; }
+  .resource-guide-page .guide-steps { padding-left: 2.25rem; }
+  .resource-guide-page .guide-steps li { padding-left: .125rem; }
+  .resource-guide-page .guide-navigation { align-items: stretch; }
+  .resource-guide-page .guide-next { flex: 1 1 100%; }
 }

@@ -160,7 +160,12 @@ def render_start(guide, prefix, standalone=False):
             name = f'<a href="{escape(tool["url"])}">{name}</a>'
         tools += f'<div><dt>{name}</dt><dd>{escape(tool["role"])}</dd></div>'
     if standalone:
-        return f'<section class="guide-access" aria-labelledby="{prefix}-access"><h4 id="{prefix}-access">Avant de commencer</h4>{access}</section>' + start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Les outils et leurs accès</summary><dl class="guide-tools">{tools}</dl></details>'
+        return f'''<section class="guide-preparation" aria-labelledby="{prefix}-start">
+     <h4 id="{prefix}-start">Pour démarrer</h4>
+     <div class="guide-access" id="{prefix}-access">{access}</div>
+     <div class="guide-start">{where}<ul id="{prefix}-prepare">{preparation}</ul></div>
+     <details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Les outils et leurs accès</summary><dl class="guide-tools">{tools}</dl></details>
+    </section>'''
     return start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Installation et accès</summary>{access}<dl class="guide-tools">{tools}</dl></details>'
 
 
@@ -203,6 +208,7 @@ def render_resource(item, asset, standalone=False):
         prompt_id = f'{prefix}-prompt-{index}'
         content += f'''<section class="resource-prompt" id="{prompt_id}" aria-labelledby="{prompt_id}-title">
       <h4 class="visually-hidden" id="{prompt_id}-title">{escape(prompt.get('title', 'Prompt à adapter'))}</h4>
+      <p class="prompt-kicker eyebrow">À vous d’essayer</p>
       <button class="button button-copy" type="button" data-copy="{prompt_id}-text" aria-describedby="{prompt_id}-title" hidden>{render_icon('copy', 'action-icon')}Copier le prompt</button>
       <details class="prompt-disclosure"><summary><span class="when-closed">Lire le prompt</span><span class="when-open">Masquer le prompt</span><span class="visually-hidden"> : {escape(prompt.get('title', 'Prompt à adapter'))}</span></summary>
        <pre id="{prompt_id}-text" tabindex="0" aria-labelledby="{prompt_id}-title">{escape(prompt['text'])}</pre>
@@ -231,7 +237,7 @@ def render_resource(item, asset, standalone=False):
         content = content.replace('<h4', '<h2').replace('</h4>', '</h2>').replace('<h5', '<h3').replace('</h5>', '</h3>')
         lead_anchor = '' if item.get('experience') else f' id="{prefix}-experience"'
         return f'''<article class="resource-entry guide-document" id="{prefix}" aria-labelledby="{prefix}-title">
-    <header class="article-heading"><p class="eyebrow">{escape(item.get('short_title', 'Mode d’emploi'))}</p>
+    <header class="article-heading"><div class="guide-heading-mark">{render_icon(item.get('icon'))}<p class="eyebrow">Mode d’emploi</p></div>
      <h1 id="{prefix}-title">{escape(item['title'])}</h1>
      <p class="article-lead"{lead_anchor}>{escape(item['summary'])}</p>
     </header>
@@ -267,9 +273,11 @@ def render_card(item, asset):
     aliases = ''.join(f'<span class="resource-anchor" id="{anchor}" aria-hidden="true"></span>' for anchor in ids
                       if anchor not in (prefix, prefix + '-title', prefix + '-experience'))
     return f'''<article class="resource-entry resource-card" id="{prefix}" aria-labelledby="{prefix}-title">
-    {aliases}<h3 id="{prefix}-title"><a href="{path(item)}">{render_icon(item.get('icon'))}<span>{escape(item['title'])}</span></a></h3>
-    <div class="resource-copy"><p class="resource-summary" id="{prefix}-experience">{escape(item['summary'])}</p></div>
-    <a class="text-link resource-guide-link" href="{path(item)}" aria-labelledby="{prefix}-read {prefix}-title"><span id="{prefix}-read">Consulter le guide</span><span aria-hidden="true">→</span></a>
+    {aliases}<a class="resource-card-link" href="{path(item)}" aria-labelledby="{prefix}-read {prefix}-title">
+     <div class="resource-card-heading">{render_icon(item.get('icon'))}<h3 id="{prefix}-title">{escape(item['title'])}</h3></div>
+     <div class="resource-copy"><p class="resource-summary" id="{prefix}-experience">{escape(item['summary'])}</p></div>
+     <span class="button resource-button-secondary resource-guide-link"><span id="{prefix}-read">Voir comment faire</span><span class="arrow" aria-hidden="true">→</span></span>
+    </a>
    </article>'''
 
 
