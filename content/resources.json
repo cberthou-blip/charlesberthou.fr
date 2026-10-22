@@ -81,7 +81,8 @@
       },
       "short_title": "Menus et courses",
       "topic": "quotidien",
-      "summary_highlight": "préparé les menus, calculé les achats et rempli le panier"
+      "summary_highlight": "préparé les menus, calculé les achats et rempli le panier",
+      "meta_description": "Préparer ses menus, calculer les courses et organiser un panier drive avec l’IA. Un guide pas à pas et un prompt à adapter aux goûts du foyer."
     },
     {
       "slug": "transmettre-memoire-familiale",
@@ -165,7 +166,8 @@
       },
       "short_title": "Mémoire familiale",
       "topic": "creation",
-      "summary_highlight": "un livre illustré de 88 pages"
+      "summary_highlight": "un livre illustré de 88 pages",
+      "meta_description": "Transformer archives et témoignages en livre de mémoire familiale avec l’IA. Méthode, étapes et prompt pour écrire un récit sourcé et illustré."
     },
     {
       "slug": "creer-bande-dessinee-ia",
@@ -241,7 +243,8 @@
       },
       "short_title": "Bande dessinée",
       "topic": "creation",
-      "summary_highlight": "du scénario au PDF"
+      "summary_highlight": "du scénario au PDF",
+      "meta_description": "Créer une bande dessinée avec l’IA, du scénario au PDF : personnages, découpage, images et lettrage. Guide complet et prompt à adapter."
     },
     {
       "slug": "reduire-depenses-energetiques",
@@ -323,7 +326,8 @@
       },
       "short_title": "Dépenses d’énergie",
       "topic": "quotidien",
-      "summary_highlight": "comparé les offres sur ma consommation réelle"
+      "summary_highlight": "comparé les offres sur ma consommation réelle",
+      "meta_description": "Analyser ses factures, comparer les offres et préparer un changement de fournisseur avec l’IA. Guide et prompt pour réduire ses dépenses d’énergie."
     },
     {
       "slug": "experiences-familiales-sur-mesure",
@@ -403,7 +407,8 @@
       },
       "short_title": "Séjour en famille",
       "topic": "quotidien",
-      "summary_highlight": "parcours adaptés aux enfants d’âges différents"
+      "summary_highlight": "parcours adaptés aux enfants d’âges différents",
+      "meta_description": "Organiser un séjour en famille avec l’IA : sorties, trajets et programme adapté aux enfants. Étapes et prompt pour ajuster chaque journée."
     },
     {
       "slug": "assistant-personnel-sante",
@@ -495,7 +500,8 @@
       },
       "short_title": "Assistant santé",
       "topic": "decisions",
-      "summary_highlight": "préparer les consultations"
+      "summary_highlight": "préparer les consultations",
+      "meta_description": "Organiser ses documents de santé avec l’IA et préparer ses consultations. Guide et prompt pour construire une synthèse à discuter avec ses soignants."
     },
     {
       "slug": "comprendre-finances-foyer",
@@ -586,7 +592,8 @@
       ],
       "short_title": "Budget et patrimoine",
       "topic": "decisions",
-      "summary_highlight": "comparer plusieurs trajectoires"
+      "summary_highlight": "comparer plusieurs trajectoires",
+      "meta_description": "Relier budget, patrimoine et projets du foyer avec l’IA. Guide et prompt pour comparer des scénarios, vérifier les hypothèses et préparer ses choix."
     },
     {
       "slug": "creer-application-personnelle",
@@ -671,7 +678,8 @@
       },
       "short_title": "Application personnelle",
       "topic": "creation",
-      "summary_highlight": "installée sur mon iPhone, sans Mac"
+      "summary_highlight": "installée sur mon iPhone, sans Mac",
+      "meta_description": "Créer une application personnelle avec l’IA, du besoin à l’installation sur iPhone. Guide, outils et prompt pour avancer avec un code conservé."
     },
     {
       "slug": "mettre-decisions-epreuve",
@@ -751,7 +759,8 @@
       },
       "short_title": "Aide à la décision",
       "topic": "decisions",
-      "summary_highlight": "un arbitrage avec une première action"
+      "summary_highlight": "un arbitrage avec une première action",
+      "meta_description": "Examiner une décision avec cinq perspectives dans une conversation IA. Guide et prompt pour confronter les arguments et définir une première action."
     },
     {
       "slug": "intermediaire-ia-pour-mes-mails",
@@ -831,7 +840,8 @@
       },
       "short_title": "Suivi des mails",
       "topic": "quotidien",
-      "summary_highlight": "anticipé la réponse à préparer"
+      "summary_highlight": "anticipé la réponse à préparer",
+      "meta_description": "Suivre ses mails avec l’IA, rapprocher devis et contrats, puis préparer ses réponses. Guide et prompt pour conserver le contexte de ses démarches."
     },
     {
       "slug": "activer-memoire-ia",

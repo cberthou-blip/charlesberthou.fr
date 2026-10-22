@@ -20,6 +20,10 @@ ARROW = '<span class="arrow" aria-hidden="true">↗</span>'
 INTERNAL_ARROW = '<span class="arrow" aria-hidden="true">→</span>'
 LEGACY = ('outils-ia', 'outils-ia/maturite-ia', 'outils-ia/cas-usage',
           'outils-ia/roi-ia', 'outils-ia/registre-ia', 'contact')
+REDIRECTS = {**{path: '/' for path in LEGACY}, 'outils-ia': '/ressources/',
+             'outils-ia/cas-usage': '/ressources/', 'blog': '/articles/'}
+AUTHOR_ID = articles.SITE_URL + '/#author'
+WEBSITE_ID = articles.SITE_URL + '/#website'
 
 
 def linkedin_url(value):
@@ -43,21 +47,27 @@ def date_label(value):
     return f'{d.day} {MONTHS[d.month - 1]} {d.year}'
 
 
-def image_tag(edition, featured=False):
+def image_tag(edition, featured=False, article=False):
     image = edition['image']
     for key in ('width', 'height'):
         if not isinstance(image[key], int) or image[key] <= 0:
             raise ValueError(f'Dimension invalide : {edition["slug"]}')
     attrs = f'src="{escape(asset(image["src"]))}" width="{image["width"]}" height="{image["height"]}" alt="{escape(edition["alt"])}" decoding="async"'
+    if image.get('srcset'):
+        sources = []
+        for source in image['srcset'].split(','):
+            path, width = source.strip().split()
+            if not re.fullmatch(r'\d+w', width):
+                raise ValueError('Descripteur srcset invalide')
+            sources.append(asset(path) + ' ' + width)
+        if article:
+            sizes = '(max-width: 480px) calc(100vw - 36px), (max-width: 760px) min(44rem, calc(100vw - 40px)), 44rem'
+        elif featured:
+            sizes = '(max-width: 480px) calc(100vw - 36px), (max-width: 760px) calc(100vw - 40px), (max-width: 900px) calc(100vw - 64px), (max-width: 1100px) calc((100vw - 64px) * 5 / 9), min(768px, calc((100vw - 112px) * .6))'
+        else:
+            sizes = '(max-width: 480px) calc(100vw - 36px), (max-width: 640px) calc(100vw - 40px), (max-width: 760px) calc((100vw - 60px) / 2), (max-width: 1100px) calc((100vw - 88px) / 2), min(407px, calc((100vw - 172px) / 3))'
+        attrs += f' srcset="{escape(", ".join(sources))}" sizes="{sizes}"'
     if featured:
-        if image.get('srcset'):
-            sources = []
-            for source in image['srcset'].split(','):
-                path, width = source.strip().split()
-                if not re.fullmatch(r'\d+w', width):
-                    raise ValueError('Descripteur srcset invalide')
-                sources.append(asset(path) + ' ' + width)
-            attrs += f' srcset="{escape(", ".join(sources))}" sizes="(max-width: 900px) 96vw, (max-width: 1100px) 54vw, 60vw"'
         attrs += ' fetchpriority="high"'
     else:
         attrs += ' loading="lazy"'
@@ -103,6 +113,18 @@ def render_resources_feature(published):
 def render_page(content, *, head, title, description, canonical, robots,
                 author, newsletter, year, schema=None, scripts='', resource_page=False,
                 article_section=None, edition=None):
+    if schema is not None:
+        graph = schema.get('@graph', [{key: value for key, value in schema.items() if key != '@context'}])
+        for node in graph:
+            if node.get('@type') in ('CollectionPage', 'WebPage'):
+                node.setdefault('@id', canonical + '#page')
+                node.setdefault('isPartOf', {'@id': WEBSITE_ID})
+        graph += [
+            {'@type': 'WebSite', '@id': WEBSITE_ID, 'url': articles.SITE_URL + '/',
+             'name': 'Le Passage IA', 'inLanguage': 'fr-FR', 'publisher': {'@id': AUTHOR_ID}},
+            {'@type': 'Person', '@id': AUTHOR_ID, **author, 'sameAs': [author['url']]},
+        ]
+        schema = {'@context': 'https://schema.org', '@graph': graph}
     structured = '' if schema is None else '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return Template((ROOT / 'templates/page.html').read_text(encoding='utf-8')).substitute(
         head=head, title=escape(title), description=escape(description),
@@ -113,7 +135,7 @@ def render_page(content, *, head, title, description, canonical, robots,
         og_type='article' if edition else 'website',
         share_image=escape(articles.SITE_URL + (edition['image']['src'] if edition else '/assets/passage/partage.jpg')),
         share_image_alt=escape(edition['alt'] if edition else 'Un passage entre l’histoire du travail et le monde numérique'),
-        extra_meta=f'<meta property="article:published_time" content="{edition["date"]}">\n<meta property="article:author" content="{escape(author["url"])}">' if edition else '',
+        extra_meta=f'<meta property="article:published_time" content="{edition["date"]}">\n<meta property="article:modified_time" content="{edition["integrated"]}">\n<meta property="article:author" content="{escape(author["url"])}">' if edition else '',
         footer_subscribe=link(newsletter, 'S’abonner'))
 
 
@@ -124,7 +146,7 @@ def build():
     resources_updated, published = resources.validate(resource_data, ROOT)
     site_updated = max(updated, resources_updated)
     newsletter = linkedin_url(data['newsletter_url'])
-    author = data['author']
+    author = {'@id': AUTHOR_ID, **data['author']}
     linkedin_url(author['url'])
     editions = data['editions']
     if not editions:
@@ -170,7 +192,7 @@ def build():
         'mainEntity': {'@type': 'ItemList', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'item': {
                 '@type': 'Article', 'headline': e['title'], 'url': articles.SITE_URL + articles.path(e),
-                'datePublished': e['date'], 'author': {'@type': 'Person', 'name': author['name']}}}
+                'datePublished': e['date'], 'author': {'@type': 'Person', **author}}}
             for i, e in enumerate(visible)]}}
     if published:
         schema['hasPart'] = {'@type': 'CollectionPage', 'name': 'Ressources', 'url': resources.RESOURCE_URL}
@@ -201,12 +223,15 @@ def build():
         following = usages[(i + 1) % len(usages)]
         url = resources.public_url(item)
         guide_content = guide_template.substitute(
-            slug=item['slug'], guide_content=resources.render_resource(item, asset, standalone=True),
+            slug=item['slug'], guide_content=resources.render_resource(
+                item, asset, standalone=True,
+                byline=f'<p class="article-byline"><span>{escape(author["name"])}</span><span>Mis à jour le <time datetime="{resources_updated.isoformat()}">{date_label(resources_updated.isoformat())}</time></span></p>'),
             next_url=resources.path(following), next_title=escape(following.get('short_title', following['title'])))
         guide_schema = {'@context': 'https://schema.org', '@graph': [
             {'@type': 'CreativeWork', '@id': url + '#guide', 'url': url,
              'name': item['title'], 'description': item['summary'],
              'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author},
+             'dateModified': resources_updated.isoformat(), 'mainEntityOfPage': url,
              'isPartOf': {'@type': 'CollectionPage', 'url': resources.RESOURCE_URL, 'name': 'Ressources'}},
             {'@type': 'BreadcrumbList', 'itemListElement': [
                 {'@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': articles.SITE_URL + '/'},
@@ -214,7 +239,7 @@ def build():
                 {'@type': 'ListItem', 'position': 3, 'name': item['title'], 'item': url}]}]}
         guide_pages[resources.path(item).lstrip('/') + 'index.html'] = render_page(
             guide_content, **resource_common, title=item['title'] + ' | Le Passage IA',
-            description=item['summary'], canonical=url,
+            description=item.get('meta_description', item['summary']), canonical=url,
             robots='index, follow, max-image-preview:large', schema=guide_schema, resource_page=True,
             scripts=f'<script src="{asset("/assets/passage/resources.js")}" defer></script>')
     archive_description = 'Tous les articles du Passage IA, par Charles Berthou : intelligence artificielle, travail, société, progrès et responsabilité.'
@@ -240,13 +265,15 @@ def build():
         article_content = article_template.substitute(
             theme=escape(e['theme']), article_title=escape(e['title']), author_name=escape(author['name']),
             date=e['date'], date_label=date_label(e['date']), minutes=body['minutes'],
-            summary=escape(e['summary']), image=image_tag(e, True), body=body['html'],
+            modified=e['integrated'], modified_label=date_label(e['integrated']),
+            summary=escape(e['summary']), image=image_tag(e, True, article=True), body=body['html'],
             references=references[e['slug']]['html'],
             source_link=link(e['url'], 'Publication d’origine sur LinkedIn'),
             next_url=articles.path(next_edition), next_title=escape(next_edition['title']))
         article_schema = {'@context': 'https://schema.org', '@graph': [
             {'@type': 'Article', '@id': url + '#article', 'url': url, 'mainEntityOfPage': url,
              'headline': e['title'], 'description': e['summary'], 'datePublished': e['date'],
+             'dateModified': e['integrated'],
              'author': {'@type': 'Person', **author}, 'inLanguage': 'fr-FR',
              'image': articles.SITE_URL + e['image']['src'], 'wordCount': body['words'],
              'sameAs': e['url'], 'isPartOf': {'@type': 'CollectionPage', 'url': articles.ARCHIVE_URL, 'name': 'Le Passage IA'}},
@@ -275,8 +302,11 @@ Les articles complets du Passage IA sont lisibles sur ce site. Ils sont égaleme
 '''
     if published:
         llms += f'\n## Ressources\n\nDes modes d’emploi, outils, étapes et prompts issus de mes usages personnels de l’IA : [Ressources]({resources.RESOURCE_URL})\n'
-    resources_full = '\n## Ressources\n\n' + '\n'.join(
-        f'- [{item["title"]}]({resources.public_url(item)}) : {item["summary"]}' for item in published) + '\n' if published else ''
+    if published:
+        llms += '\n' + '\n'.join(f'- [{item["title"]}]({resources.public_url(item)})' for item in usages) + '\n'
+    llms += '\n## Texte intégral\n\n- [Articles, guides et prompts](' + articles.SITE_URL + '/llms-full.txt)\n'
+    resources_full = ('\n## Ressources\n\nAuteur : ' + author['name'] + '\nMise à jour : '
+                      + resources_updated.isoformat() + '\n\n' + '\n\n'.join(resources.render_text(item) for item in published) + '\n') if published else ''
     outputs = {
         'index.html': page,
         'articles/index.html': archive_page,
@@ -285,16 +315,16 @@ Les articles complets du Passage IA sont lisibles sur ce site. Ils sont égaleme
         **guide_pages,
         'llms.txt': llms,
         'llms-full.txt': llms + '\n## Articles\n\n' + '\n\n'.join(
-            f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}{references[e["slug"]]["text"]}'
+            f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nMise à jour : {e["integrated"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}{references[e["slug"]]["text"]}'
             for e in editions) + '\n' + resources_full,
         'sitemap.xml': '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'  <url><loc>{url}</loc><lastmod>{modified.isoformat()}</lastmod></url>' for url, modified in sitemap_entries) + '\n</urlset>\n',
         '404.html': render_page('<main id="contenu" class="return-page shell" tabindex="-1"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles et les ressources du Passage IA.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main>', **common,
             title='Page introuvable | Le Passage IA', description='Retrouvez les articles et les ressources du Passage IA.',
-            canonical='https://charlesberthou.fr/404.html', robots='noindex, follow',
-            scripts='<script src="/assets/passage/redirect.js" defer></script>'),
+            canonical='https://charlesberthou.fr/404.html', robots='noindex, follow'),
     }
-    redirect = f'<!doctype html><html lang="fr"><head>{head}<title>Le Passage IA | {escape(author["name"])}</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="https://charlesberthou.fr/"><meta http-equiv="refresh" content="0; url=/"></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA</p><h1>Retrouvez la newsletter.</h1><p><a class="text-link" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></p></main></body></html>\n'
-    for path in LEGACY:
+    for path, target in REDIRECTS.items():
+        label = 'Retrouver les ressources' if target == '/ressources/' else 'Retrouver les articles' if target == '/articles/' else 'Revenir à l’accueil'
+        redirect = f'<!doctype html><html lang="fr"><head>{head}<title>Page déplacée | Le Passage IA</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="{articles.SITE_URL}{target}"><meta http-equiv="refresh" content="0; url={target}"></head><body><main class="return-page shell"><p class="eyebrow">Le Passage IA</p><h1>Le chemin a changé.</h1><p><a class="text-link" href="{target}">{label} <span aria-hidden="true">→</span></a></p></main></body></html>\n'
         outputs[path + '/index.html'] = redirect
     return outputs
 

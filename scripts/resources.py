@@ -116,6 +116,8 @@ def validate(data, root):
                 raise ValueError(f'Le passage mis en évidence doit figurer une seule fois dans le résumé : {slug}')
         if 'short_title' in item:
             text(item['short_title'], 'short_title')
+        if 'meta_description' in item:
+            text(item['meta_description'], 'meta_description')
         if 'experience' in item:
             text(item['experience'], 'experience')
         if kind == 'astuce':
@@ -193,7 +195,7 @@ def render_links(links):
         for doc in links) + '</ul>'
 
 
-def render_resource(item, asset, standalone=False):
+def render_resource(item, asset, standalone=False, byline=''):
     """Le texte fourni reste du texte : tout HTML est échappé à la génération."""
     prefix = 'resource-' + item['slug']
     heading = f'<h3 id="{prefix}-title"><a href="#{prefix}">{render_icon(item.get("icon"))}<span>{escape(item["title"])}</span></a></h3>'
@@ -262,6 +264,7 @@ def render_resource(item, asset, standalone=False):
         return f'''<article class="resource-entry guide-document" id="{prefix}" aria-labelledby="{prefix}-title">
     <header class="article-heading"><div class="guide-heading-mark">{render_icon(item.get('icon'))}<p class="eyebrow">Mode d’emploi</p></div>
      <h1 id="{prefix}-title">{escape(item['title'])}</h1>
+     {byline}
      <p class="article-lead"{lead_anchor}>{escape(item['summary'])}</p>
     </header>
     <div class="resource-body">{content}</div>
@@ -287,6 +290,35 @@ def path(item):
 
 def public_url(item):
     return RESOURCE_URL + ('#resource-' + item['slug'] if item.get('kind') == 'astuce' else item['slug'] + '/')
+
+
+def render_text(item):
+    """Version textuelle des contenus publics, avec les prompts intégraux."""
+    sections = ['### ' + item['title'], 'Source : ' + public_url(item), item['summary']]
+    if item.get('experience'):
+        sections.append(item['experience'])
+    sections.extend(item.get('paragraphs', []))
+    if guide := item.get('guide'):
+        sections.extend(['Résultat attendu\n' + guide['result'], 'Pour démarrer'])
+        if start := guide.get('start'):
+            sections.extend([start['where'], start['access']])
+        sections.append('\n'.join('- ' + value for value in guide['preparation']))
+        sections.append('Outils\n' + '\n'.join('- ' + tool['name'] + ' : ' + tool['role']
+                        + (' (' + tool['url'] + ')' if tool.get('url') else '') for tool in guide['tools']))
+        sections.append('Étapes\n' + '\n\n'.join(f'{i}. {step["title"]}\n{step["text"]}'
+                        for i, step in enumerate(guide['steps'], 1)))
+        sections.append('À vérifier\n' + '\n'.join('- ' + value for value in guide['checks']))
+        if guide.get('extension'):
+            sections.append(guide.get('extension_title', 'Pour aller plus loin') + '\n' + guide['extension'])
+    for prompt in item.get('prompts', []):
+        sections.append(prompt.get('title', 'Prompt à adapter') + '\n\n' + prompt['text'])
+    if item.get('try_it'):
+        sections.append('À essayer\n' + item['try_it'])
+    if item.get('tips'):
+        sections.append('Conseil\n' + '\n'.join(item['tips']))
+    for link in item.get('links', []):
+        sections.append(f'[{link["label"]}]({link["url"]})')
+    return '\n\n'.join(sections)
 
 
 def render_card(item, asset):

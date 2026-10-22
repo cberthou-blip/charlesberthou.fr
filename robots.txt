@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /content/
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /tests/
+Disallow: /README.md
 Sitemap: https://charlesberthou.fr/sitemap.xml

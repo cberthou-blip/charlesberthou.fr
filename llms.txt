@@ -11,3 +11,18 @@ Les articles complets du Passage IA sont lisibles sur ce site. Ils sont égaleme
 ## Ressources
 
 Des modes d’emploi, outils, étapes et prompts issus de mes usages personnels de l’IA : [Ressources](https://charlesberthou.fr/ressources/)
+
+- [Automatiser les menus et la commande des courses](https://charlesberthou.fr/ressources/organiser-repas-courses/)
+- [Réduire ses dépenses d’énergie](https://charlesberthou.fr/ressources/reduire-depenses-energetiques/)
+- [Organiser un séjour en famille](https://charlesberthou.fr/ressources/experiences-familiales-sur-mesure/)
+- [Déléguer le suivi de ses mails](https://charlesberthou.fr/ressources/intermediaire-ia-pour-mes-mails/)
+- [Écrire une mémoire familiale](https://charlesberthou.fr/ressources/transmettre-memoire-familiale/)
+- [Créer une bande dessinée](https://charlesberthou.fr/ressources/creer-bande-dessinee-ia/)
+- [Créer son application](https://charlesberthou.fr/ressources/creer-application-personnelle/)
+- [Créer son assistant santé](https://charlesberthou.fr/ressources/assistant-personnel-sante/)
+- [Piloter le budget et le patrimoine du foyer](https://charlesberthou.fr/ressources/comprendre-finances-foyer/)
+- [Mettre ses décisions à l’épreuve](https://charlesberthou.fr/ressources/mettre-decisions-epreuve/)
+
+## Texte intégral
+
+- [Articles, guides et prompts](https://charlesberthou.fr/llms-full.txt)
