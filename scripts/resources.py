@@ -9,6 +9,11 @@ from resource_icons import ICONS, render_icon
 
 RESOURCE_URL = 'https://charlesberthou.fr/ressources/'
 RESOURCE_DESCRIPTION = 'Des usages réels de l’IA, du projet au résultat : courses, livre, énergie, mails et applications. Modes d’emploi et prompts de Charles Berthou.'
+USAGE_TOPICS = (
+    ('quotidien', 'Organiser son quotidien'),
+    ('creation', 'Créer et transmettre'),
+    ('decisions', 'Préparer ses décisions'),
+)
 EMPTY_STATE = '''<section class="resources-empty" aria-labelledby="resources-empty-title">
    <p class="eyebrow">Prochainement</p>
    <h2 id="resources-empty-title">Les premières ressources<br>sont en préparation.</h2>
@@ -103,6 +108,12 @@ def validate(data, root):
             raise ValueError(f'Pictogramme inconnu : {slug}')
         for field in ('title', 'summary'):
             text(item.get(field), field)
+        if 'topic' in item and (kind != 'usage' or not isinstance(item['topic'], str) or item['topic'] not in dict(USAGE_TOPICS)):
+            raise ValueError(f'Thème de ressource inconnu : {slug}')
+        if 'summary_highlight' in item:
+            highlight = text(item['summary_highlight'], 'summary_highlight')
+            if item['summary'].count(highlight) != 1:
+                raise ValueError(f'Le passage mis en évidence doit figurer une seule fois dans le résumé : {slug}')
         if 'short_title' in item:
             text(item['short_title'], 'short_title')
         if 'experience' in item:
@@ -206,7 +217,7 @@ def render_resource(item, asset, standalone=False):
         content += f'<figure class="resource-figure"><img src="{escape(asset(image["src"]))}" alt="{escape(image["alt"])}" width="{image["width"]}" height="{image["height"]}" loading="lazy" decoding="async"></figure>'
     for index, prompt in enumerate(item.get('prompts', []), 1):
         prompt_id = f'{prefix}-prompt-{index}'
-        content += f'''<section class="resource-prompt" id="{prompt_id}" aria-labelledby="{prompt_id}-title">
+        content += f'''<section class="resource-prompt" id="{prompt_id}" aria-labelledby="{prompt_id}-title" data-copy-scope>
       <h4 class="visually-hidden" id="{prompt_id}-title">{escape(prompt.get('title', 'Prompt à adapter'))}</h4>
       <p class="prompt-kicker eyebrow">À vous d’essayer</p>
       <button class="button button-copy" type="button" data-copy="{prompt_id}-text" aria-describedby="{prompt_id}-title" hidden>{render_icon('copy', 'action-icon')}Copier le prompt</button>
@@ -234,6 +245,18 @@ def render_resource(item, asset, standalone=False):
             content += ''.join(f'<li>{escape(tip)}</li>' for tip in tips) + '</ul></section>'
     content += render_links(item.get('links'))
     if standalone:
+        if item.get('prompts'):
+            actions = ''
+            for index, prompt in enumerate(item['prompts'], 1):
+                prompt_id = f'{prefix}-prompt-{index}'
+                actions += f'''<div class="guide-action" data-copy-scope>
+      <div class="guide-action-controls">
+       <button class="button button-copy" type="button" data-copy="{prompt_id}-text" aria-describedby="{prompt_id}-title" hidden>{render_icon('copy', 'action-icon')}Copier le prompt</button>
+       <a class="text-link" href="#{prompt_id}">Relire le prompt<span class="visually-hidden"> : {escape(prompt.get('title', 'Prompt à adapter'))}</span></a>
+      </div>
+      <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+     </div>'''
+            content += f'<section class="guide-finish" aria-labelledby="{prefix}-try-title"><h4 id="{prefix}-try-title">À vous d’essayer</h4>{actions}</section>'
         content = content.replace('<h4', '<h2').replace('</h4>', '</h2>').replace('<h5', '<h3').replace('</h5>', '</h3>')
         lead_anchor = '' if item.get('experience') else f' id="{prefix}-experience"'
         return f'''<article class="resource-entry guide-document" id="{prefix}" aria-labelledby="{prefix}-title">
@@ -272,13 +295,32 @@ def render_card(item, asset):
     ids = re.findall(r'\bid="([^"]+)"', guide)
     aliases = ''.join(f'<span class="resource-anchor" id="{anchor}" aria-hidden="true"></span>' for anchor in ids
                       if anchor not in (prefix, prefix + '-title', prefix + '-experience'))
+    summary = escape(item['summary'])
+    if highlight := item.get('summary_highlight'):
+        before, _, after = item['summary'].partition(highlight)
+        summary = escape(before) + '<strong>' + escape(highlight) + '</strong>' + escape(after)
     return f'''<article class="resource-entry resource-card" id="{prefix}" aria-labelledby="{prefix}-title">
     {aliases}<a class="resource-card-link" href="{path(item)}" aria-labelledby="{prefix}-read {prefix}-title">
      <div class="resource-card-heading">{render_icon(item.get('icon'))}<h3 id="{prefix}-title">{escape(item['title'])}</h3></div>
-     <div class="resource-copy"><p class="resource-summary" id="{prefix}-experience">{escape(item['summary'])}</p></div>
-     <span class="button resource-button-secondary resource-guide-link"><span id="{prefix}-read">Voir comment faire</span><span class="arrow" aria-hidden="true">→</span></span>
+     <div class="resource-copy"><p class="resource-summary" id="{prefix}-experience">{summary}</p></div>
+     <span class="button resource-button-secondary resource-guide-link"><span id="{prefix}-read">Consulter le guide</span><span class="arrow" aria-hidden="true">→</span></span>
     </a>
    </article>'''
+
+
+def usage_groups(published):
+    usages = [item for item in published if item.get('kind', 'usage') == 'usage']
+    groups = [(slug, title, [item for item in usages if item.get('topic') == slug])
+              for slug, title in USAGE_TOPICS]
+    groups = [group for group in groups if group[2]]
+    ungrouped = [item for item in usages if not item.get('topic')]
+    if ungrouped:
+        groups.append(('autres-usages', 'Autres usages' if groups else 'Modes d’emploi', ungrouped))
+    return groups
+
+
+def ordered_usages(published):
+    return [item for _, _, entries in usage_groups(published) for item in entries]
 
 
 def render_collection(published, asset):
@@ -290,13 +332,22 @@ def render_collection(published, asset):
     )
     navigation, sections = [], []
     for kind, anchor, title, intro in groups:
-        entries = [item for item in published if item.get('kind', 'usage') == kind]
+        entries = ordered_usages(published) if kind == 'usage' else [item for item in published if item.get('kind', 'usage') == kind]
         if not entries:
             continue
         if kind == 'usage':
             links = ''.join(f'<li><a href="{path(item)}">{escape(item.get("short_title", item["title"]))}</a></li>' for item in entries)
             tips_link = '<a class="text-link" href="#astuces">Astuces</a>' if any(item.get('kind') == 'astuce' for item in published) else ''
             navigation.append(f'<div class="resources-catalog-nav" id="choisir-usage" tabindex="-1" aria-labelledby="usage-index-title"><details class="resources-index"><summary id="usage-index-title">Choisir un usage</summary><ul>{links}</ul></details>{tips_link}</div>')
+            topics = []
+            for topic, topic_title, topic_entries in usage_groups(published):
+                cards = '\n'.join(render_card(item, asset) for item in topic_entries)
+                topics.append(f'''<section class="resource-topic" id="{topic}" aria-labelledby="{topic}-title">
+    <header class="resource-group-heading"><h2 id="{topic}-title">{topic_title}</h2></header>
+    <div class="resources-grid" data-count="{len(topic_entries)}">{cards}</div>
+   </section>''')
+            sections.append('<div class="resource-group" id="cas-usage">' + '\n'.join(topics) + '</div>')
+            continue
         elif not any(item.get('kind', 'usage') == 'usage' for item in published):
             navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
         body = '\n'.join(render_card(item, asset) if kind == 'usage' else render_resource(item, asset) for item in entries)

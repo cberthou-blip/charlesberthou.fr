@@ -79,7 +79,9 @@
         "extension": "Après un cycle réussi, demandez une tâche hebdomadaire avec son horaire, les fichiers à relire et les validations à conserver. Vérifiez son enregistrement et sa première exécution. Elle peut lancer la préparation ; le panier dépend des accès disponibles et le paiement reste à votre main.",
         "extension_title": "Automatiser la préparation chaque semaine"
       },
-      "short_title": "Menus et courses"
+      "short_title": "Menus et courses",
+      "topic": "quotidien",
+      "summary_highlight": "préparé les menus, calculé les achats et rempli le panier"
     },
     {
       "slug": "transmettre-memoire-familiale",
@@ -161,7 +163,9 @@
           "access": "Une messagerie connectée permet les envois autorisés ; sinon, vous envoyez les textes préparés. Work sert à produire les fichiers du livre."
         }
       },
-      "short_title": "Mémoire familiale"
+      "short_title": "Mémoire familiale",
+      "topic": "creation",
+      "summary_highlight": "un livre illustré de 88 pages"
     },
     {
       "slug": "creer-bande-dessinee-ia",
@@ -235,7 +239,9 @@
           "access": "Vérifiez l’accès à la génération d’images et à un outil de composition, notamment dans Work. Sinon, les dessins et dialogues devront être assemblés dans votre outil de mise en page."
         }
       },
-      "short_title": "Bande dessinée"
+      "short_title": "Bande dessinée",
+      "topic": "creation",
+      "summary_highlight": "du scénario au PDF"
     },
     {
       "slug": "reduire-depenses-energetiques",
@@ -315,7 +321,9 @@
         "extension": "Une revue peut être programmée avant la fin d’un prix garanti ou à une échéance choisie. Elle devra relire les factures récentes et les offres du moment. Vérifiez l’accès aux documents et l’existence de la tâche ; le changement de fournisseur déjà réalisé ne suffit pas à activer ce suivi.",
         "extension_title": "Programmer la prochaine comparaison des offres"
       },
-      "short_title": "Dépenses d’énergie"
+      "short_title": "Dépenses d’énergie",
+      "topic": "quotidien",
+      "summary_highlight": "comparé les offres sur ma consommation réelle"
     },
     {
       "slug": "experiences-familiales-sur-mesure",
@@ -393,7 +401,9 @@
           "access": "La recherche web vérifie sorties et météo. Vous indiquez le lieu utile à chaque demande, sans suivi de position présumé. Agenda et navigateur pour les réservations sont facultatifs."
         }
       },
-      "short_title": "Séjour en famille"
+      "short_title": "Séjour en famille",
+      "topic": "quotidien",
+      "summary_highlight": "parcours adaptés aux enfants d’âges différents"
     },
     {
       "slug": "assistant-personnel-sante",
@@ -483,7 +493,9 @@
         "extension": "Une tâche peut préparer un prochain rendez-vous ou une veille documentaire à partir de sources choisies. Elle doit être configurée et testée séparément. Ce suivi documentaire ne constitue pas une surveillance médicale et ne remplace pas une consultation, notamment en cas de symptômes nouveaux ou urgents.",
         "extension_title": "Préparer les prochains rendez-vous"
       },
-      "short_title": "Assistant santé"
+      "short_title": "Assistant santé",
+      "topic": "decisions",
+      "summary_highlight": "préparer les consultations"
     },
     {
       "slug": "comprendre-finances-foyer",
@@ -572,7 +584,9 @@
           "url": "https://www.esma.europa.eu/document/warning-use-ai-investing"
         }
       ],
-      "short_title": "Budget et patrimoine"
+      "short_title": "Budget et patrimoine",
+      "topic": "decisions",
+      "summary_highlight": "comparer plusieurs trajectoires"
     },
     {
       "slug": "creer-application-personnelle",
@@ -655,7 +669,9 @@
           "access": "Le parcours utilise React Native, Expo et EAS Build. L’installation demande un compte Expo et l’enregistrement de l’iPhone. Un dépôt GitHub privé conserve le code. Vérifiez les conditions et coûts avant l’installation."
         }
       },
-      "short_title": "Application personnelle"
+      "short_title": "Application personnelle",
+      "topic": "creation",
+      "summary_highlight": "installée sur mon iPhone, sans Mac"
     },
     {
       "slug": "mettre-decisions-epreuve",
@@ -733,7 +749,9 @@
           "access": "Aucune installation particulière n’est requise. Les cinq rôles partagent un même modèle ; leur accord ne constitue pas une vérification indépendante."
         }
       },
-      "short_title": "Aide à la décision"
+      "short_title": "Aide à la décision",
+      "topic": "decisions",
+      "summary_highlight": "un arbitrage avec une première action"
     },
     {
       "slug": "intermediaire-ia-pour-mes-mails",
@@ -811,7 +829,9 @@
           "access": "Connectez la messagerie et vérifiez les droits de lecture et d’envoi. Sans connexion, copiez les échanges et joignez les pièces ; vous transmettrez les réponses préparées."
         }
       },
-      "short_title": "Suivi des mails"
+      "short_title": "Suivi des mails",
+      "topic": "quotidien",
+      "summary_highlight": "anticipé la réponse à préparer"
     },
     {
       "slug": "activer-memoire-ia",

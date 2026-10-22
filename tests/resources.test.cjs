@@ -24,22 +24,26 @@ function setup(clipboard, hash = '') {
     scrollIntoView() { this.scrolled = true; } };
   const promptDetails = { open: false, parentElement: promptBlock };
   const prompt = { textContent: 'Ligne une\nLigne deux & suite',
+    focused: false, focus() { this.focused = true; },
     closest: selector => selector === '.resource-entry' ? entry : selector === 'details' ? promptDetails : promptBlock };
   const button = {
     hidden: true, disabled: false, dataset: { copy: 'prompt-text' },
     addEventListener(name, handler) { this[name] = handler; },
     closest: () => promptBlock,
   };
+  const bottomFeedback = { textContent: '' };
+  const bottomScope = { querySelector: () => bottomFeedback };
+  const bottomButton = { ...button, closest: () => bottomScope };
   const close = { hidden: true, closest: () => details,
     addEventListener(name, handler) { this[name] = handler; } };
   const document = {
     getElementById: id => ({ prompt: promptBlock, 'prompt-text': prompt, 'resource-test': entry, 'choisir-usage': index }[id] || null),
-    querySelectorAll: selector => selector === '.guide-close' ? [close] : [button],
+    querySelectorAll: selector => selector === '.guide-close' ? [close] : [button, bottomButton],
     addEventListener(name, handler) { this[name] = handler; },
   };
   const window = { location: { hash }, addEventListener(name, handler) { this[name] = handler; } };
   vm.runInNewContext(source, { document, window, navigator: { clipboard } });
-  return { button, close, feedback, prompt, details, promptDetails, promptBlock, summary, index, entry, window, document };
+  return { button, bottomButton, bottomFeedback, close, feedback, prompt, details, promptDetails, promptBlock, summary, index, entry, window, document };
 }
 
 test('la copie conserve intégralement le prompt et annonce le résultat', async () => {
@@ -63,9 +67,31 @@ test('un refus du presse-papiers conserve le texte et permet de réessayer', asy
   assert.equal(ui.promptDetails.open, true);
 });
 
+test('la copie en fin de guide utilise le prompt original et annonce le résultat sur place', async () => {
+  const copied = [];
+  const ui = setup({ writeText: async text => copied.push(text) });
+  await ui.button.click();
+  await ui.bottomButton.click();
+  assert.deepEqual(copied, [ui.prompt.textContent, ui.prompt.textContent]);
+  assert.match(ui.bottomFeedback.textContent, /^Prompt copié/);
+  assert.equal(ui.bottomButton.disabled, false);
+  assert.equal(ui.promptBlock.scrolled, false);
+});
+
+test('un refus de copie en bas rejoint le texte original et y place le focus', async () => {
+  const ui = setup({ writeText: async () => { throw new Error('refused'); } });
+  await ui.bottomButton.click();
+  assert.equal(ui.promptDetails.open, true);
+  assert.equal(ui.promptBlock.scrolled, true);
+  assert.equal(ui.prompt.focused, true);
+  assert.match(ui.bottomFeedback.textContent, /Sélectionnez le texte/);
+  assert.equal(ui.bottomButton.disabled, false);
+});
+
 test('sans API de copie, le lien direct ouvre encore la ressource', () => {
   const ui = setup(undefined, '#resource-test');
   assert.equal(ui.button.hidden, true);
+  assert.equal(ui.bottomButton.hidden, true);
   assert.equal(ui.details.open, true);
   assert.doesNotThrow(() => setup(undefined, '#%not-valid'));
 });

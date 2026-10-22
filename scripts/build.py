@@ -195,7 +195,7 @@ def build():
         schema=resources.structured_data(published, author), resource_page=True,
         scripts=f'<script src="{asset("/assets/passage/resources-catalog.js")}" defer></script>' if published else '')
     guide_pages = {}
-    usages = [item for item in published if item.get('kind', 'usage') == 'usage']
+    usages = resources.ordered_usages(published)
     guide_template = Template((ROOT / 'templates/resource-guide.html').read_text(encoding='utf-8'))
     for i, item in enumerate(usages):
         following = usages[(i + 1) % len(usages)]

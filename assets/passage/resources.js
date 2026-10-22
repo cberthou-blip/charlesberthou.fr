@@ -61,16 +61,22 @@
     button.hidden = false;
     button.addEventListener('click', async () => {
       const prompt = document.getElementById(button.dataset.copy);
-      const feedback = button.closest('.resource-prompt').querySelector('.copy-feedback');
-      if (!prompt || !feedback) return;
+      const scope = button.closest('[data-copy-scope]');
+      const feedback = scope?.querySelector('.copy-feedback');
+      const promptBlock = prompt?.closest('.resource-prompt');
+      if (!prompt || !feedback || !promptBlock) return;
       button.disabled = true;
       feedback.textContent = '';
       try {
         await navigator.clipboard.writeText(prompt.textContent);
         feedback.textContent = 'Prompt copié. Collez-le dans votre assistant IA pour commencer.';
       } catch {
-        button.closest('.resource-prompt').querySelector('.prompt-disclosure').open = true;
+        promptBlock.querySelector('.prompt-disclosure').open = true;
         feedback.textContent = 'La copie automatique est indisponible. Sélectionnez le texte du prompt pour le copier.';
+        if (scope !== promptBlock) {
+          promptBlock.scrollIntoView({ block: 'start' });
+          prompt.focus({ preventScroll: true });
+        }
       } finally {
         button.disabled = false;
       }
