@@ -182,19 +182,43 @@ def build():
         all_editions=f'<a class="text-link" href="/articles/">Tous les articles {INTERNAL_ARROW}</a>',
         resources_feature=render_resources_feature(published))
     common = dict(head=head, author=author, newsletter=newsletter, year=site_updated.year)
+    resource_common = {**common, 'head': head + f'\n<link rel="stylesheet" href="{asset("/assets/passage/resources-layout.css")}">'}
     page = render_page(content, **common,
         title='Le Passage IA | ' + author['name'],
         description=site_description,
         canonical='https://charlesberthou.fr/', robots='index, follow, max-image-preview:large', schema=schema)
     resource_content = Template((ROOT / 'templates/resources.html').read_text(encoding='utf-8')).substitute(
         resources_content=resources.render_collection(published, asset))
-    resource_page = render_page(resource_content, **common,
+    resource_page = render_page(resource_content, **resource_common,
         title='Ressources IA : modes d’emploi et prompts | Le Passage IA',
         description=resources.RESOURCE_DESCRIPTION if published else 'Les ressources du Passage IA sont en préparation : usages personnels de l’IA, prompts et conseils de Charles Berthou.',
         canonical=resources.RESOURCE_URL,
         robots='index, follow, max-image-preview:large' if published else 'noindex, follow',
         schema=resources.structured_data(published, author), resource_page=True,
-        scripts=f'<script src="{asset("/assets/passage/resources.js")}" defer></script>' if published else '')
+        scripts=f'<script src="{asset("/assets/passage/resources-catalog.js")}" defer></script>' if published else '')
+    guide_pages = {}
+    usages = [item for item in published if item.get('kind', 'usage') == 'usage']
+    guide_template = Template((ROOT / 'templates/resource-guide.html').read_text(encoding='utf-8'))
+    for i, item in enumerate(usages):
+        following = usages[(i + 1) % len(usages)]
+        url = resources.public_url(item)
+        guide_content = guide_template.substitute(
+            slug=item['slug'], guide_content=resources.render_resource(item, asset, standalone=True),
+            next_url=resources.path(following), next_title=escape(following.get('short_title', following['title'])))
+        guide_schema = {'@context': 'https://schema.org', '@graph': [
+            {'@type': 'CreativeWork', '@id': url + '#guide', 'url': url,
+             'name': item['title'], 'description': item['summary'],
+             'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author},
+             'isPartOf': {'@type': 'CollectionPage', 'url': resources.RESOURCE_URL, 'name': 'Ressources'}},
+            {'@type': 'BreadcrumbList', 'itemListElement': [
+                {'@type': 'ListItem', 'position': 1, 'name': 'Accueil', 'item': articles.SITE_URL + '/'},
+                {'@type': 'ListItem', 'position': 2, 'name': 'Ressources', 'item': resources.RESOURCE_URL},
+                {'@type': 'ListItem', 'position': 3, 'name': item['title'], 'item': url}]}]}
+        guide_pages[resources.path(item).lstrip('/') + 'index.html'] = render_page(
+            guide_content, **resource_common, title=item['title'] + ' | Le Passage IA',
+            description=item['summary'], canonical=url,
+            robots='index, follow, max-image-preview:large', schema=guide_schema, resource_page=True,
+            scripts=f'<script src="{asset("/assets/passage/resources.js")}" defer></script>')
     archive_description = 'Tous les articles du Passage IA, par Charles Berthou : intelligence artificielle, travail, société, progrès et responsabilité.'
     archive_schema = {
         '@context': 'https://schema.org', '@type': 'CollectionPage',
@@ -240,6 +264,7 @@ def build():
     sitemap_entries += [(articles.SITE_URL + articles.path(e), date.fromisoformat(e['integrated'])) for e in editions]
     if published:
         sitemap_entries.append((resources.RESOURCE_URL, resources_updated))
+        sitemap_entries += [(resources.public_url(item), resources_updated) for item in usages]
     llms = f'''# Le Passage IA
 
 > Les articles et les usages de l’IA de {author['name']}, sur le travail, les organisations, la société et le quotidien.
@@ -253,12 +278,13 @@ Les articles complets du Passage IA sont lisibles sur ce site. Ils sont égaleme
     if published:
         llms += f'\n## Ressources\n\nDes modes d’emploi, outils, étapes et prompts issus de mes usages personnels de l’IA : [Ressources]({resources.RESOURCE_URL})\n'
     resources_full = '\n## Ressources\n\n' + '\n'.join(
-        f'- [{item["title"]}]({resources.RESOURCE_URL}#resource-{item["slug"]}) : {item["summary"]}' for item in published) + '\n' if published else ''
+        f'- [{item["title"]}]({resources.public_url(item)}) : {item["summary"]}' for item in published) + '\n' if published else ''
     outputs = {
         'index.html': page,
         'articles/index.html': archive_page,
         **article_pages,
         'ressources/index.html': resource_page,
+        **guide_pages,
         'llms.txt': llms,
         'llms-full.txt': llms + '\n## Articles\n\n' + '\n\n'.join(
             f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}{references[e["slug"]]["text"]}'

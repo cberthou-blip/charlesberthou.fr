@@ -2,6 +2,8 @@
 import copy
 from html.parser import HTMLParser
 import json
+import re
+import shutil
 from pathlib import Path
 import sys
 import tempfile
@@ -183,10 +185,18 @@ class ResourcesTest(unittest.TestCase):
                             and item['guide']['start']['access'] for item in usages))
         page = build.build()['ressources/index.html']
         doc = Document(page)
-        self.assertEqual(doc.prompts, [item['prompts'][0]['text'] for item in usages])
-        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'resource-details']), 10)
-        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'details' and attrs.get('class') == 'prompt-disclosure']), 10)
-        self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'ol' and attrs.get('class') == 'guide-steps']), 10)
+        self.assertEqual(doc.prompts, [])
+        outputs = build.build()
+        for item in usages:
+            guide = outputs[resources.path(item).lstrip('/') + 'index.html']
+            guide_doc = Document(guide)
+            self.assertEqual(guide_doc.prompts, [prompt['text'] for prompt in item['prompts']])
+            self.assertIn('<ol class="guide-steps">', guide)
+            self.assertNotIn('<details class="resource-details">', guide)
+            self.assertLess(guide.index('Avant de commencer'), guide.index('Copier le prompt'))
+            self.assertIn(resources.path(item), doc.links)
+            self.assertIn(resources.public_url(item), outputs['sitemap.xml'])
+            self.assertIn(resources.public_url(item), outputs['llms-full.txt'])
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 17)
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'svg' and attrs.get('class') == 'resource-icon']), 17)
         self.assertTrue(all(attrs.get('aria-hidden') == 'true' and attrs.get('focusable') == 'false'
@@ -195,21 +205,38 @@ class ResourcesTest(unittest.TestCase):
         self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags if tag == 'details'))
         self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 17)
         self.assertIn('cas-usage', doc.ids)
-        self.assertIn('#choisir-usage', doc.links)
         self.assertIn('#astuces', doc.links)
         self.assertIn('tabindex="-1" aria-labelledby="usage-index-title"', page)
         self.assertFalse(any(tag == 'details' and attrs.get('id') == 'choisir-usage' for tag, attrs in doc.tags))
         for internal in ('État interne', 'Résultat final visé', 'Précision interne', 'Mission pour Work'):
             self.assertNotIn(internal, page)
 
+    def test_old_deep_links_reach_the_exact_guide_content(self):
+        outputs = build.build()
+        catalog = outputs['ressources/index.html']
+        doc = Document(catalog)
+        mapping = json.loads(re.search(r'<script type="application/json" id="resource-guide-links">(.*?)</script>', catalog).group(1))
+        _, published = resources.validate(json.loads((ROOT / 'content/resources.json').read_text()), ROOT)
+        for item in published:
+            if item['kind'] != 'usage':
+                continue
+            previous = Document(resources.render_resource(item, lambda value: value))
+            guide = Document(outputs[resources.path(item).lstrip('/') + 'index.html'])
+            for anchor in previous.ids:
+                with self.subTest(anchor=anchor):
+                    self.assertIn(anchor, doc.ids)
+                    if anchor != 'resource-' + item['slug']:
+                        self.assertEqual(mapping[anchor], resources.path(item) + '#' + anchor)
+                        self.assertIn(anchor, guide.ids)
+
     def test_publication_controls_indexing_and_machine_readable_content(self):
         # Le générateur réel travaille sur une source temporaire, jamais sur le contenu publié.
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             for name in ('templates', 'assets'):
-                (root / name).symlink_to(ROOT / name, target_is_directory=True)
+                shutil.copytree(ROOT / name, root / name)
             (root / 'content').mkdir()
-            (root / 'content/articles').symlink_to(ROOT / 'content/articles', target_is_directory=True)
+            shutil.copytree(ROOT / 'content/articles', root / 'content/articles')
             (root / 'content/editions.json').write_bytes((ROOT / 'content/editions.json').read_bytes())
             source = root / 'content/resources.json'
             with patch.object(build, 'ROOT', root):
@@ -217,7 +244,8 @@ class ResourcesTest(unittest.TestCase):
                 empty = build.build()
                 self.assertIn('content="noindex, follow"', empty['ressources/index.html'])
                 self.assertNotIn(resources.RESOURCE_URL, empty['sitemap.xml'])
-                self.assertNotIn('resources.js', empty['ressources/index.html'])
+                self.assertNotIn('resources-catalog.js', empty['ressources/index.html'])
+                self.assertFalse(any(name.startswith('ressources/') and name != 'ressources/index.html' for name in empty))
                 self.assertNotIn('http-equiv="refresh"', empty['ressources/index.html'])
                 self.assertNotIn('home-resources-title', empty['index.html'])
                 source.write_text(json.dumps(self.data(self.item)), encoding='utf-8')
@@ -225,8 +253,9 @@ class ResourcesTest(unittest.TestCase):
                 page = populated['ressources/index.html']
                 self.assertIn('content="index, follow, max-image-preview:large"', page)
                 self.assertIn(resources.RESOURCE_URL, populated['sitemap.xml'])
-                self.assertIn('#resource-exemple', populated['llms-full.txt'])
-                self.assertIn('resources.js', page)
+                self.assertIn('/ressources/exemple/', populated['llms-full.txt'])
+                self.assertIn('resources-catalog.js', page)
+                self.assertIn('ressources/exemple/index.html', populated)
                 self.assertIn('home-resources-title', populated['index.html'])
                 self.assertNotIn('Les premières ressources', page)
                 self.assertIn('"numberOfItems": 1', page)
@@ -238,7 +267,7 @@ class ResourcesTest(unittest.TestCase):
     def test_navigation_and_accessibility_references(self):
         outputs = build.build()
         documents = {path: Document(html) for path, html in outputs.items()
-                     if path in ('index.html', 'ressources/index.html', '404.html') or path.startswith('articles/')}
+                     if path in ('index.html', '404.html') or path.startswith(('articles/', 'ressources/'))}
         for path, doc in documents.items():
             with self.subTest(page=path):
                 self.assertEqual(doc.headings.count('h1'), 1)
@@ -251,8 +280,12 @@ class ResourcesTest(unittest.TestCase):
                         self.assertIn(href[2:], documents['index.html'].ids)
                     elif href.startswith('#'):
                         self.assertIn(href[1:], doc.ids)
-                    elif href.startswith('/articles/'):
-                        self.assertIn(href.lstrip('/') + 'index.html', documents)
+                    elif href.startswith(('/articles/', '/ressources/')):
+                        target, _, anchor = href.partition('#')
+                        target_path = target.lstrip('/') + 'index.html'
+                        self.assertIn(target_path, documents)
+                        if anchor:
+                            self.assertIn(anchor, documents[target_path].ids)
 
 
 if __name__ == '__main__':

@@ -1,7 +1,8 @@
 """Validation et HTML des ressources, en amélioration progressive et sans dépendance."""
 from datetime import date
 from html import escape
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import json
 import re
 from urllib.parse import unquote, urlsplit
 from resource_icons import ICONS, render_icon
@@ -36,7 +37,7 @@ def resource_url(value, root):
         raise ValueError('L’adresse de ressource contient un espace ou caractère de contrôle')
     if parsed.scheme == 'https' and parsed.hostname and not parsed.username and not parsed.password:
         return value
-    path = Path(unquote(parsed.path))
+    path = PurePosixPath(unquote(parsed.path))
     if (not parsed.scheme and not parsed.netloc and value.startswith('/assets/resources/')
             and '..' not in path.parts and '\\' not in str(path)):
         file = (root / str(path).lstrip('/')).resolve()
@@ -145,7 +146,7 @@ def validate(data, root):
     return updated, published
 
 
-def render_start(guide, prefix):
+def render_start(guide, prefix, standalone=False):
     setup = guide.get('start')
     where = f'<p>{escape(setup["where"])}</p>' if setup else ''
     access = f'<p>{escape(setup["access"])}</p>' if setup else ''
@@ -158,6 +159,8 @@ def render_start(guide, prefix):
         if 'url' in tool:
             name = f'<a href="{escape(tool["url"])}">{name}</a>'
         tools += f'<div><dt>{name}</dt><dd>{escape(tool["role"])}</dd></div>'
+    if standalone:
+        return f'<section class="guide-access" aria-labelledby="{prefix}-access"><h4 id="{prefix}-access">Avant de commencer</h4>{access}</section>' + start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Les outils et leurs accès</summary><dl class="guide-tools">{tools}</dl></details>'
     return start + f'<details class="guide-tools-disclosure" id="{prefix}-tools"><summary>Installation et accès</summary>{access}<dl class="guide-tools">{tools}</dl></details>'
 
 
@@ -174,7 +177,7 @@ def render_links(links):
         for doc in links) + '</ul>'
 
 
-def render_resource(item, asset):
+def render_resource(item, asset, standalone=False):
     """Le texte fourni reste du texte : tout HTML est échappé à la génération."""
     prefix = 'resource-' + item['slug']
     heading = f'<h3 id="{prefix}-title"><a href="#{prefix}">{render_icon(item.get("icon"))}<span>{escape(item["title"])}</span></a></h3>'
@@ -192,6 +195,8 @@ def render_resource(item, asset):
         content += f'<section class="guide-experience" aria-labelledby="{prefix}-experience"><h4 id="{prefix}-experience">Ce que j’ai réalisé</h4><p>{escape(experience)}</p></section>'
     if guide := item.get('guide'):
         content += f'<p class="guide-result"><strong>À obtenir :</strong> {escape(guide["result"])}</p>'
+        if standalone:
+            content += render_start(guide, prefix, standalone=True)
     if image := item.get('image'):
         content += f'<figure class="resource-figure"><img src="{escape(asset(image["src"]))}" alt="{escape(image["alt"])}" width="{image["width"]}" height="{image["height"]}" loading="lazy" decoding="async"></figure>'
     for index, prompt in enumerate(item.get('prompts', []), 1):
@@ -206,7 +211,8 @@ def render_resource(item, asset):
       <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
      </section>'''
     if guide := item.get('guide'):
-        content += render_start(guide, prefix)
+        if not standalone:
+            content += render_start(guide, prefix)
         content += render_guide(guide, prefix)
     if guide := item.get('guide'):
         checks = ''.join(f'<li>{escape(value)}</li>' for value in guide['checks'])
@@ -221,6 +227,16 @@ def render_resource(item, asset):
             content += '<section class="resource-tips"><h4>Mes conseils</h4><ul>'
             content += ''.join(f'<li>{escape(tip)}</li>' for tip in tips) + '</ul></section>'
     content += render_links(item.get('links'))
+    if standalone:
+        content = content.replace('<h4', '<h2').replace('</h4>', '</h2>').replace('<h5', '<h3').replace('</h5>', '</h3>')
+        lead_anchor = '' if item.get('experience') else f' id="{prefix}-experience"'
+        return f'''<article class="resource-entry guide-document" id="{prefix}" aria-labelledby="{prefix}-title">
+    <header class="article-heading"><p class="eyebrow">{escape(item.get('short_title', 'Mode d’emploi'))}</p>
+     <h1 id="{prefix}-title">{escape(item['title'])}</h1>
+     <p class="article-lead"{lead_anchor}>{escape(item['summary'])}</p>
+    </header>
+    <div class="resource-body">{content}</div>
+   </article>'''
     label = 'Ouvrir le guide' if item.get('guide') else 'Voir le prompt' if len(item.get('prompts', [])) == 1 else 'Voir la méthode et les prompts' if item.get('prompts') else 'Lire la ressource'
     close_label = 'Refermer le guide' if item.get('guide') else 'Refermer la ressource'
     content += f'''<div class="guide-navigation">
@@ -236,6 +252,27 @@ def render_resource(item, asset):
   </article>'''
 
 
+def path(item):
+    return '/ressources/' + item['slug'] + '/'
+
+
+def public_url(item):
+    return RESOURCE_URL + ('#resource-' + item['slug'] if item.get('kind') == 'astuce' else item['slug'] + '/')
+
+
+def render_card(item, asset):
+    prefix = 'resource-' + item['slug']
+    guide = render_resource(item, asset, standalone=True)
+    ids = re.findall(r'\bid="([^"]+)"', guide)
+    aliases = ''.join(f'<span class="resource-anchor" id="{anchor}" aria-hidden="true"></span>' for anchor in ids
+                      if anchor not in (prefix, prefix + '-title', prefix + '-experience'))
+    return f'''<article class="resource-entry resource-card" id="{prefix}" aria-labelledby="{prefix}-title">
+    {aliases}<h3 id="{prefix}-title"><a href="{path(item)}">{render_icon(item.get('icon'))}<span>{escape(item['title'])}</span></a></h3>
+    <div class="resource-copy"><p class="resource-summary" id="{prefix}-experience">{escape(item['summary'])}</p></div>
+    <a class="text-link resource-guide-link" href="{path(item)}" aria-labelledby="{prefix}-read {prefix}-title"><span id="{prefix}-read">Consulter le guide</span><span aria-hidden="true">→</span></a>
+   </article>'''
+
+
 def render_collection(published, asset):
     if not published:
         return EMPTY_STATE
@@ -249,18 +286,27 @@ def render_collection(published, asset):
         if not entries:
             continue
         if kind == 'usage':
-            links = ''.join(f'<li><a href="#resource-{item["slug"]}">{escape(item.get("short_title", item["title"]))}</a></li>' for item in entries)
+            links = ''.join(f'<li><a href="{path(item)}">{escape(item.get("short_title", item["title"]))}</a></li>' for item in entries)
             tips_link = '<a class="text-link" href="#astuces">Astuces</a>' if any(item.get('kind') == 'astuce' for item in published) else ''
-            navigation.append(f'<div class="resources-index" id="choisir-usage" tabindex="-1" aria-labelledby="usage-index-title"><div class="resources-index-heading"><h2 id="usage-index-title">Choisir un usage</h2>{tips_link}</div><ul>{links}</ul></div>')
+            navigation.append(f'<div class="resources-catalog-nav" id="choisir-usage" tabindex="-1" aria-labelledby="usage-index-title"><details class="resources-index"><summary id="usage-index-title">Choisir un usage</summary><ul>{links}</ul></details>{tips_link}</div>')
         elif not any(item.get('kind', 'usage') == 'usage' for item in published):
             navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
-        body = '\n'.join(render_resource(item, asset) for item in entries)
+        body = '\n'.join(render_card(item, asset) if kind == 'usage' else render_resource(item, asset) for item in entries)
         heading = f'<header class="resource-group-heading"><h2 id="{anchor}-title">{title}</h2><p>{intro}</p></header>' if intro else f'<h2 class="visually-hidden" id="{anchor}-title">{title}</h2>'
         sections.append(f'''<section class="resource-group" id="{anchor}" aria-labelledby="{anchor}-title">
    {heading}
-   {body}
+   <div class="resources-grid">{body}</div>
   </section>''')
-    return '<nav class="resources-nav" aria-label="Rubriques des ressources">' + ''.join(navigation) + '</nav>\n' + '\n'.join(sections)
+    legacy = {}
+    for item in published:
+        if item.get('kind', 'usage') != 'usage':
+            continue
+        prefix = 'resource-' + item['slug']
+        for anchor in re.findall(r'\bid="([^"]+)"', render_resource(item, asset, standalone=True)):
+            if anchor != prefix:
+                legacy[anchor] = path(item) + '#' + anchor
+    mapping = json.dumps(legacy, ensure_ascii=False).replace('<', '\\u003c')
+    return '<nav class="resources-nav" aria-label="Rubriques des ressources">' + ''.join(navigation) + '</nav>\n' + '\n'.join(sections) + f'\n<script type="application/json" id="resource-guide-links">{mapping}</script>'
 
 
 def structured_data(published, author):
@@ -279,7 +325,7 @@ def structured_data(published, author):
             {'@type': 'ListItem', 'position': i + 1, 'item': {
                 '@type': 'CreativeWork', 'name': item['title'], 'description': item['summary'],
                 'genre': 'Astuce' if item.get('kind') == 'astuce' else 'Cas d’usage',
-                'url': RESOURCE_URL + '#resource-' + item['slug'],
+                'url': public_url(item),
                 'inLanguage': 'fr-FR', 'author': {'@type': 'Person', **author}}}
             for i, item in enumerate(published)]}
     return {'@context': 'https://schema.org', '@graph': [page, {

@@ -1,0 +1,25 @@
+/* Rubrique Ressources uniquement : mêmes couleurs, polices et composants. */
+.resources-catalog .resources-catalog-nav { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .75rem 2rem; }
+.resources-catalog .resources-index { flex: 1 1 14rem; }
+.resources-catalog .resources-index > summary { width: fit-content; min-height: 44px; padding-block: .625rem; font-size: .875rem; font-weight: 500; border-bottom: 1px solid currentColor; cursor: pointer; }
+.resources-catalog .resources-index ul { margin-top: .75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.resources-catalog .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); column-gap: clamp(2rem, 4vw, 4rem); }
+.resources-catalog .resource-entry { position: relative; min-width: 0; grid-template-columns: minmax(0, 1fr); align-content: start; }
+.resources-catalog .resource-card { grid-template-rows: auto 1fr auto; }
+.resources-catalog .resource-guide-link { justify-self: start; align-self: end; gap: 1.25rem; }
+.resources-catalog .resource-anchor { position: absolute; top: 0; width: 0; height: 0; scroll-margin-top: 2rem; }
+.resources-catalog .resource-group-heading { width: 100%; }
+.resources-catalog .resource-astuce .resource-links { margin-block: .5rem 0; }
+.resource-guide-page .guide-document { display: block; border: 0; padding: 0; }
+.resource-guide-page .resource-body { padding-top: 0; }
+.resource-guide-page .resource-body h2 { display: flex; align-items: center; gap: .5rem; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
+.resource-guide-page .resource-body h2.visually-hidden { display: block; }
+.resource-guide-page .guide-steps h3 { margin: 0 0 .25rem; font: inherit; font-weight: 600; }
+.resource-guide-page .guide-access > p { color: var(--muted); margin-top: .625rem; }
+.resource-guide-page .guide-extension h2 { color: var(--ink); }
+.resource-guide-page .guide-extension h2 + p { margin-top: .5rem; }
+.resource-guide-page .guide-navigation { margin-top: 2rem; }
+.resource-guide-page .resource-body summary { width: fit-content; max-width: 100%; min-height: 44px; line-height: 1.5; font-size: .875rem; font-weight: 500; cursor: pointer; }
+@media (max-width: 480px) {
+  .resources-catalog .resource-guide-link { min-height: 48px; }
+}
