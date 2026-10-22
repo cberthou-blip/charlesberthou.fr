@@ -65,6 +65,14 @@ Le Passage IA, à hauteur humaine
 
 Recherche et analyse avec GPT-6 Astra
 
+Sources et repères
+
+- [Télérama / AFP — Retrait du roman de la sélection Goncourt (25 septembre 2026)](https://www.telerama.fr/livre/l-academie-goncourt-retire-le-roman-de-thelyson-orelien-de-sa-selection-7033080.php) : Le contexte de l’affaire Thélyson Orélien
+- [Commission européenne — Transparence des systèmes d’IA (2 août 2026)](https://commission.europa.eu/news-and-media/news/safer-and-more-transparent-ai-2026-08-02_en) : L’entrée en application des obligations de transparence
+- [Celniker et al. — The moralization of effort (2023)](https://pubmed.ncbi.nlm.nih.gov/35901413/) : Les expériences sur la valeur morale attribuée à l’effort
+- [Michael Young — The Rise of the Meritocracy](https://www.routledge.com/The-Rise-of-the-Meritocracy/Young/p/book/9781560007043) : La satire à l’origine du terme « méritocratie », parue en 1958
+- [John Maynard Keynes — Economic Possibilities for our Grandchildren (1930)](https://la.utexas.edu/users/hcleaver/368/368keynesgrandchildren.html) : Le texte évoquant une semaine de quinze heures
+
 ### « On n’arrête pas le progrès », n’est-ce pas ?
 
 Auteur : Charles Berthou
@@ -107,6 +115,15 @@ Peut-être n’arrête-on pas le progrès….
 Alors, qu’allons-nous choisir d’en faire ?
 
 Rédaction humaine, appui documentaire avec GPT-5.6 Sol X Opus 5 Max
+
+Sources et repères
+
+- [Pacing the Frontier (juillet 2026)](https://www.pacingthefrontier.com/) : La déclaration signée par 1 386 salariés de laboratoires d’IA
+- [OpenAI — Incident de sécurité lors de l’évaluation de modèles (21 juillet 2026)](https://openai.com/index/hugging-face-model-evaluation-security-incident/) : Le premier compte rendu de l’incident impliquant Hugging Face
+- [OpenAI — The Hugging Face incident and the road ahead (26 août 2026)](https://openai.com/index/hugging-face-incident-and-the-road-ahead/) : Les résultats de l’enquête et le rapport technique
+- [Stanford HAI — AI Index 2026, performances techniques](https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance) : La comparaison des meilleurs modèles américains et chinois en mars 2026
+- [Anthropic — Levée de fonds de série H (28 mai 2026)](https://www.anthropic.com/news/series-h) : La valorisation annoncée de 965 milliards de dollars
+- [Reuters Breakingviews — Projet de financement d’OpenAI (16 septembre 2026)](https://www.breakingviews.com/columns/breaking-view/openai-plays-15-trln-chicken-with-chatbot-frenzy-2026-09-16/) : La valorisation de 1 500 milliards de dollars alors envisagée
 
 ### Qui regarde encore le compteur ?
 
@@ -201,6 +218,13 @@ Un compteur saura toujours mesurer ce qui a été consommé mais il ne dira jama
 
 Rédaction humaine, appui documentaire avec GPT-5.6 Sol X Opus 5 Max
 
+Sources et repères
+
+- [OpenAI — Understanding and counting tokens](https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens) : Ce que mesure un token et les différentes catégories d’usage
+- [Anthropic — How we built our multi-agent research system (2025)](https://www.anthropic.com/research/multi-agent-research-system) : Le fonctionnement des agents de recherche et leur consommation de tokens
+- [OCDE — Artificial Intelligence markets (10 juillet 2026)](https://www.oecd.org/en/publications/artificial-intelligence-markets_d531d73f-en.html) : La concurrence entre modèles et les dépendances dans la chaîne de valeur
+- [FinOps Foundation — Token Economics: The Atomic Unit of AI Value (2026)](https://www.finops.org/insights/token-economics-the-atomic-unit-of-ai-value/) : Le lien entre consommation de tokens, coûts et utilité des résultats
+
 ### L’intelligence a soif : ce que l’IA vaut en eau
 
 Auteur : Charles Berthou
@@ -274,6 +298,16 @@ L’intelligence artificielle aura besoin d’eau. À nous de savoir pourquoi no
 
 Rédaction humaine, appui documentaire avec GPT-5.6 Sol
 
+Sources et repères
+
+- [OMS / UNICEF — Accès à l’eau potable (2025)](https://www.unicef.org/press-releases/fast-facts-1-4-people-globally-still-lack-access-safe-drinking-water-who-unicef) : Les inégalités d’accès à une eau potable gérée en toute sécurité
+- [Météo-France — Le climat futur en France (2025)](https://meteofrance.com/changement-climatique/le-climat-futur-en-france-a-quoi-sadapter) : La trajectoire de réchauffement et les projections de sécheresse
+- [FAO — Agricultural water management](https://www.fao.org/land-water/water/agricultural-water-management/water-accounting/en) : La place de l’agriculture dans les prélèvements mondiaux d’eau douce
+- [Berkeley Lab — United States Data Center Energy Usage Report (2024, PDF)](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf) : L’eau consommée directement et via la production d’électricité aux États-Unis
+- [Google — Mesure de l’empreinte de l’inférence (22 août 2025)](https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference) : L’estimation de 0,26 mL pour une requête textuelle médiane à Gemini
+- [Mistral AI — Analyse environnementale de ses modèles (22 juillet 2025)](https://mistral.ai/fr/news/our-contribution-to-a-global-environmental-standard-for-ai/) : L’estimation de 45 mL pour une réponse de 400 tokens, selon un périmètre différent
+- [Sénat — Question écrite sur l’eau des centres de données (2024–2025)](https://www.senat.fr/questions/base/2024/qSEQ241102239.html) : La question du décret prévu par la loi de 2021 et la réponse du gouvernement
+
 ### L’humanité a toujours tremblé devant sa propre lumière
 
 Auteur : Charles Berthou
@@ -289,7 +323,7 @@ Pour ma part, je l'ai prise. Je travaille dans un secteur vieux de plusieurs si�
 
 Déjà vu mais jamais à cette vitesse
 
-Au 19e siècle, la machine à vapeur a multiplié la force physique de l'homme et a fait entré le monde dans l'ère industrielle. Dans les 90's, internet a transformé la circulation de l'information, réduit les distances et rebattu les cartes économiques. Blockbuster, Kodak, ou les libraires ne diront pas le contraire...
+Au 19e siècle, la machine à vapeur a multiplié la force physique de l'homme et a fait entrer le monde dans l'ère industrielle. Dans les 90's, internet a transformé la circulation de l'information, réduit les distances et rebattu les cartes économiques. Blockbuster, Kodak, ou les libraires ne diront pas le contraire...
 
 Ces deux révolutions avaient un point commun : elles laissaient intact le monopole cognitif de l'Homme. La machine pouvait tisser, souder, calculer selon des règles prédéfinies, mais ne raisonnait pas, ne reformulait pas et ne créait pas en situation d'incertitude. Cela restait notre domaine.
 
@@ -299,7 +333,7 @@ En 1950, Wiener écrivait que les machines finiraient par défier non seulement 
 
 Ni catastrophisme ni déni : regardons le réel
 
-D'un côté, les alarmistes annoncent des destructions massives d'emplois. Goldman Sachs évoque 300 millions d'emplois potentiellement exposés dans le monde. McKinsey chiffre à plus de 27% les heures travaillées en Europe susceptibles d'être automatisées d'ici 2030.
+D'un côté, les alarmistes annoncent des destructions massives d'emplois. Goldman Sachs évoque 300 millions d'emplois potentiellement exposés dans le monde. McKinsey chiffre à environ 27 % les heures travaillées en Europe susceptibles d'être automatisées d'ici 2030.
 
 Ces chiffres sont utiles : ils forcent la prise de conscience là où la complaisance pourrait s'installer. Mais ils entretiennent également une confusion : automatiser des tâches ne signifie pas supprimer automatiquement des métiers. De l'autre côté, les sceptiques rappellent que toutes les révolutions technologiques ont provoqué des peurs comparables et que l'emploi a toujours fini par rebondir. Ils ont raison sur le principe mais ils sous-estiment un facteur majeur : la vitesse.
 
@@ -309,7 +343,7 @@ Le Forum économique mondial projette la création de 170 millions de nouveaux p
 
 Les organisations face à leurs choix
 
-Dans les organisations, le constat est sans appel : seulement 6% des grandes entreprises ont effectué un déploiement d'IA à grande échelle, et moins d'un tiers des PME a véritablement engagé le sujet. On expérimente, on pilote et on teste avec beaucoup de prudence.
+Dans les organisations, les déploiements restent progressifs : Capgemini relevait que 6 % des grandes organisations interrogées avaient intégré l'IA générative dans certaines ou la plupart de leurs fonctions ou implantations en 2023, puis 24 % en 2024. En France, 32 % des PME et ETI déclaraient utiliser l'IA selon l'étude Bpifrance Le Lab de juin 2025. On expérimente, on pilote et on teste avec beaucoup de prudence.
 
 Cette inertie n'est ni de la lâcheté ni de l'ignorance. C'est une réaction humaine classique face à un changement profond. Machiavel l'a d'ailleurs théorisé ainsi :
 
@@ -319,7 +353,15 @@ Le sujet est donc humain, organisationnel et culturel.
 
 Il faut imaginer l'homme heureux
 
-Imaginons : - un médecin libéré des tâches administratives rendu à sa mission première : soigner, écouter, décider avec toute la finesse que l'expérience humaine seule peut conférer; - un conseiller bancaire déchargé de la conformité, capable de consacrer l'intégralité de son attention à comprendre la situation de son client, à construire une relation de confiance que l'algorithme ne pourra jamais remplacer; - une PME accédant pour la première fois à des capacités d'analyse et de veille comparables à celles des grandes entreprises; - un enfant apprenant à son rythme, avec un tuteur infiniment patient qui ne se lasse jamais et ne compare pas...
+Imaginons :
+
+un médecin libéré des tâches administratives rendu à sa mission première : soigner, écouter, décider avec toute la finesse que l'expérience humaine seule peut conférer
+
+un conseiller bancaire déchargé de la conformité, capable de consacrer l'intégralité de son attention à comprendre la situation de son client, à construire une relation de confiance que l'algorithme ne pourra jamais remplacer
+
+une PME accédant pour la première fois à des capacités d'analyse et de veille comparables à celles des grandes entreprises
+
+un enfant apprenant à son rythme, avec un tuteur infiniment patient qui ne se lasse jamais et ne compare pas
 
 Cela existe déjà, certes de façon inégale, mais réelle.
 
@@ -344,6 +386,17 @@ Les grandes transformations de l'humanité n'ont jamais été stoppées. Elles o
 La pilule rouge est sur la table. La question qui demeure est de savoir qui aura la lucidité de la saisir ?
 
 Rédaction humaine, appui éditorial par IA : GPT-5.4
+
+Sources et repères
+
+- [Goldman Sachs — Generative AI could raise global GDP by 7% (2023)](https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent) : L’exposition à l’automatisation estimée en équivalents d’emplois à temps plein
+- [McKinsey Global Institute — A new future of work (2024)](https://www.mckinsey.com/mgi/our-research/a-new-future-of-work-the-race-to-deploy-ai-and-raise-skills-in-europe-and-beyond) : Le scénario d’automatisation d’environ 27 % des heures travaillées en Europe d’ici 2030
+- [Forum économique mondial — Future of Jobs Report 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025) : Les projections d’emploi à 2030, tous facteurs de transformation confondus
+- [Capgemini Research Institute — Generative AI in organizations 2024](https://www.capgemini.com/insights/research-library/generative-ai-in-organizations-2024/) : L’intégration de l’IA générative : 6 % des organisations interrogées en 2023, 24 % en 2024
+- [Bpifrance Le Lab — L’IA dans les PME et ETI françaises (juin 2025, PDF)](https://lelab.bpifrance.fr/storage/sites/31/2026/01/IA-dans-les-PME-et-ETI-Francaises-Revolution-Tranquille.pdf) : L’enquête sur l’adoption de l’IA par les PME et ETI
+- [ONU Climat — IA et action climatique à la COP28 (9 décembre 2023)](https://unfccc.int/news/challenge-launched-at-cop28-to-harness-artificial-intelligence-for-climate-action-in-developing) : La prise de position de Simon Stiell et les usages climatiques de l’IA
+- [ADEME — Audit énergétique en industrie (2024)](https://agirpourlatransition.ademe.fr/entreprises/aides-financieres/catalogue/2024/audit-energetique-en-industrie) : Les économies moyennes associées aux démarches d’audit et de management énergétique
+- [Google DeepMind — Optimisation du refroidissement des centres de données (2016)](https://deepmind.google/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-by-40/) : La réduction annoncée concerne l’énergie du refroidissement
 
 ### IA en entreprise : hâtez-vous lentement
 
@@ -385,6 +438,12 @@ In fine, c'est ce qui donne sa légitimité au temps de l'entreprise. Il peut se
 Le sens est là : faire de l'intelligence artificielle une technologie utile, ancrée dans le réel, au service du collectif et d'un progrès durable.
 
 Rédaction humaine, appui éditorial par IA : GPT-5.4
+
+Sources et repères
+
+- [Arcep, CGE, Arcom et ANCT — Baromètre du numérique (février 2026)](https://www.arcep.fr/actualites/actualites-et-communiques/detail/n/equipements-et-usages-du-numerique-090226.html) : Les usages de l’IA générative en France, mesurés par le CREDOC en juin 2025
+- [Apec — Les cadres et l’IA (juin 2025, PDF)](https://corporate.apec.fr/files/live/sites/corporate/files/Nos%20etudes/PDF/Omnibus%20Apec%20-%20Les%20cadres%20et%20IA.pdf) : La fréquence d’usage de l’IA et les attentes de formation des cadres
+- [Microsoft Learn — Shadow AI](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/agent-shadow-ai) : Les usages sans validation de l’organisation et les risques associés
 
 ## Ressources
 

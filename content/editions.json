@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "newsletter_url": "https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032",
   "author": {
     "name": "Charles Berthou",
@@ -21,7 +21,34 @@
         "srcset": "/assets/passage/travail-small.webp 768w, /assets/passage/travail.webp 1440w"
       },
       "body": "articles/travail.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "Télérama / AFP — Retrait du roman de la sélection Goncourt (25 septembre 2026)",
+          "url": "https://www.telerama.fr/livre/l-academie-goncourt-retire-le-roman-de-thelyson-orelien-de-sa-selection-7033080.php",
+          "note": "Le contexte de l’affaire Thélyson Orélien"
+        },
+        {
+          "title": "Commission européenne — Transparence des systèmes d’IA (2 août 2026)",
+          "url": "https://commission.europa.eu/news-and-media/news/safer-and-more-transparent-ai-2026-08-02_en",
+          "note": "L’entrée en application des obligations de transparence"
+        },
+        {
+          "title": "Celniker et al. — The moralization of effort (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35901413/",
+          "note": "Les expériences sur la valeur morale attribuée à l’effort"
+        },
+        {
+          "title": "Michael Young — The Rise of the Meritocracy",
+          "url": "https://www.routledge.com/The-Rise-of-the-Meritocracy/Young/p/book/9781560007043",
+          "note": "La satire à l’origine du terme « méritocratie », parue en 1958"
+        },
+        {
+          "title": "John Maynard Keynes — Economic Possibilities for our Grandchildren (1930)",
+          "url": "https://la.utexas.edu/users/hcleaver/368/368keynesgrandchildren.html",
+          "note": "Le texte évoquant une semaine de quinze heures"
+        }
+      ]
     },
     {
       "slug": "progres",
@@ -37,7 +64,39 @@
         "height": 539
       },
       "body": "articles/progres.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "Pacing the Frontier (juillet 2026)",
+          "url": "https://www.pacingthefrontier.com/",
+          "note": "La déclaration signée par 1 386 salariés de laboratoires d’IA"
+        },
+        {
+          "title": "OpenAI — Incident de sécurité lors de l’évaluation de modèles (21 juillet 2026)",
+          "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+          "note": "Le premier compte rendu de l’incident impliquant Hugging Face"
+        },
+        {
+          "title": "OpenAI — The Hugging Face incident and the road ahead (26 août 2026)",
+          "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+          "note": "Les résultats de l’enquête et le rapport technique"
+        },
+        {
+          "title": "Stanford HAI — AI Index 2026, performances techniques",
+          "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance",
+          "note": "La comparaison des meilleurs modèles américains et chinois en mars 2026"
+        },
+        {
+          "title": "Anthropic — Levée de fonds de série H (28 mai 2026)",
+          "url": "https://www.anthropic.com/news/series-h",
+          "note": "La valorisation annoncée de 965 milliards de dollars"
+        },
+        {
+          "title": "Reuters Breakingviews — Projet de financement d’OpenAI (16 septembre 2026)",
+          "url": "https://www.breakingviews.com/columns/breaking-view/openai-plays-15-trln-chicken-with-chatbot-frenzy-2026-09-16/",
+          "note": "La valorisation de 1 500 milliards de dollars alors envisagée"
+        }
+      ]
     },
     {
       "slug": "compteur",
@@ -53,7 +112,29 @@
         "height": 539
       },
       "body": "articles/compteur.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "OpenAI — Understanding and counting tokens",
+          "url": "https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens",
+          "note": "Ce que mesure un token et les différentes catégories d’usage"
+        },
+        {
+          "title": "Anthropic — How we built our multi-agent research system (2025)",
+          "url": "https://www.anthropic.com/research/multi-agent-research-system",
+          "note": "Le fonctionnement des agents de recherche et leur consommation de tokens"
+        },
+        {
+          "title": "OCDE — Artificial Intelligence markets (10 juillet 2026)",
+          "url": "https://www.oecd.org/en/publications/artificial-intelligence-markets_d531d73f-en.html",
+          "note": "La concurrence entre modèles et les dépendances dans la chaîne de valeur"
+        },
+        {
+          "title": "FinOps Foundation — Token Economics: The Atomic Unit of AI Value (2026)",
+          "url": "https://www.finops.org/insights/token-economics-the-atomic-unit-of-ai-value/",
+          "note": "Le lien entre consommation de tokens, coûts et utilité des résultats"
+        }
+      ]
     },
     {
       "slug": "eau",
@@ -69,7 +150,44 @@
         "height": 540
       },
       "body": "articles/eau.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "OMS / UNICEF — Accès à l’eau potable (2025)",
+          "url": "https://www.unicef.org/press-releases/fast-facts-1-4-people-globally-still-lack-access-safe-drinking-water-who-unicef",
+          "note": "Les inégalités d’accès à une eau potable gérée en toute sécurité"
+        },
+        {
+          "title": "Météo-France — Le climat futur en France (2025)",
+          "url": "https://meteofrance.com/changement-climatique/le-climat-futur-en-france-a-quoi-sadapter",
+          "note": "La trajectoire de réchauffement et les projections de sécheresse"
+        },
+        {
+          "title": "FAO — Agricultural water management",
+          "url": "https://www.fao.org/land-water/water/agricultural-water-management/water-accounting/en",
+          "note": "La place de l’agriculture dans les prélèvements mondiaux d’eau douce"
+        },
+        {
+          "title": "Berkeley Lab — United States Data Center Energy Usage Report (2024, PDF)",
+          "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+          "note": "L’eau consommée directement et via la production d’électricité aux États-Unis"
+        },
+        {
+          "title": "Google — Mesure de l’empreinte de l’inférence (22 août 2025)",
+          "url": "https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference",
+          "note": "L’estimation de 0,26 mL pour une requête textuelle médiane à Gemini"
+        },
+        {
+          "title": "Mistral AI — Analyse environnementale de ses modèles (22 juillet 2025)",
+          "url": "https://mistral.ai/fr/news/our-contribution-to-a-global-environmental-standard-for-ai/",
+          "note": "L’estimation de 45 mL pour une réponse de 400 tokens, selon un périmètre différent"
+        },
+        {
+          "title": "Sénat — Question écrite sur l’eau des centres de données (2024–2025)",
+          "url": "https://www.senat.fr/questions/base/2024/qSEQ241102239.html",
+          "note": "La question du décret prévu par la loi de 2021 et la réponse du gouvernement"
+        }
+      ]
     },
     {
       "slug": "humanite",
@@ -85,7 +203,49 @@
         "height": 397
       },
       "body": "articles/humanite.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "Goldman Sachs — Generative AI could raise global GDP by 7% (2023)",
+          "url": "https://www.goldmansachs.com/insights/articles/generative-ai-could-raise-global-gdp-by-7-percent",
+          "note": "L’exposition à l’automatisation estimée en équivalents d’emplois à temps plein"
+        },
+        {
+          "title": "McKinsey Global Institute — A new future of work (2024)",
+          "url": "https://www.mckinsey.com/mgi/our-research/a-new-future-of-work-the-race-to-deploy-ai-and-raise-skills-in-europe-and-beyond",
+          "note": "Le scénario d’automatisation d’environ 27 % des heures travaillées en Europe d’ici 2030"
+        },
+        {
+          "title": "Forum économique mondial — Future of Jobs Report 2025",
+          "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025",
+          "note": "Les projections d’emploi à 2030, tous facteurs de transformation confondus"
+        },
+        {
+          "title": "Capgemini Research Institute — Generative AI in organizations 2024",
+          "url": "https://www.capgemini.com/insights/research-library/generative-ai-in-organizations-2024/",
+          "note": "L’intégration de l’IA générative : 6 % des organisations interrogées en 2023, 24 % en 2024"
+        },
+        {
+          "title": "Bpifrance Le Lab — L’IA dans les PME et ETI françaises (juin 2025, PDF)",
+          "url": "https://lelab.bpifrance.fr/storage/sites/31/2026/01/IA-dans-les-PME-et-ETI-Francaises-Revolution-Tranquille.pdf",
+          "note": "L’enquête sur l’adoption de l’IA par les PME et ETI"
+        },
+        {
+          "title": "ONU Climat — IA et action climatique à la COP28 (9 décembre 2023)",
+          "url": "https://unfccc.int/news/challenge-launched-at-cop28-to-harness-artificial-intelligence-for-climate-action-in-developing",
+          "note": "La prise de position de Simon Stiell et les usages climatiques de l’IA"
+        },
+        {
+          "title": "ADEME — Audit énergétique en industrie (2024)",
+          "url": "https://agirpourlatransition.ademe.fr/entreprises/aides-financieres/catalogue/2024/audit-energetique-en-industrie",
+          "note": "Les économies moyennes associées aux démarches d’audit et de management énergétique"
+        },
+        {
+          "title": "Google DeepMind — Optimisation du refroidissement des centres de données (2016)",
+          "url": "https://deepmind.google/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-by-40/",
+          "note": "La réduction annoncée concerne l’énergie du refroidissement"
+        }
+      ]
     },
     {
       "slug": "entreprise",
@@ -101,7 +261,24 @@
         "height": 398
       },
       "body": "articles/entreprise.html",
-      "integrated": "2026-10-21"
+      "integrated": "2026-10-22",
+      "sources": [
+        {
+          "title": "Arcep, CGE, Arcom et ANCT — Baromètre du numérique (février 2026)",
+          "url": "https://www.arcep.fr/actualites/actualites-et-communiques/detail/n/equipements-et-usages-du-numerique-090226.html",
+          "note": "Les usages de l’IA générative en France, mesurés par le CREDOC en juin 2025"
+        },
+        {
+          "title": "Apec — Les cadres et l’IA (juin 2025, PDF)",
+          "url": "https://corporate.apec.fr/files/live/sites/corporate/files/Nos%20etudes/PDF/Omnibus%20Apec%20-%20Les%20cadres%20et%20IA.pdf",
+          "note": "La fréquence d’usage de l’IA et les attentes de formation des cadres"
+        },
+        {
+          "title": "Microsoft Learn — Shadow AI",
+          "url": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/agent-shadow-ai",
+          "note": "Les usages sans validation de l’organisation et les risques associés"
+        }
+      ]
     }
   ]
 }

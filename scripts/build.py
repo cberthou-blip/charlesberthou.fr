@@ -152,6 +152,7 @@ def build():
     editions = sorted(editions, key=lambda e: e['date'], reverse=True)
     internal_paths = {articles.path(e) for e in editions}
     bodies = {e['slug']: articles.load(e, ROOT, internal_paths) for e in editions}
+    references = {e['slug']: articles.sources(e) for e in editions}
     visible = editions[:6]
     latest = visible[0]
     site_description = 'Des réflexions sur l’intelligence artificielle, le travail et la société, et des usages expliqués pas à pas. Articles et ressources de ' + author['name'] + '.'
@@ -218,6 +219,7 @@ def build():
             theme=escape(e['theme']), article_title=escape(e['title']), author_name=escape(author['name']),
             date=e['date'], date_label=date_label(e['date']), minutes=body['minutes'],
             summary=escape(e['summary']), image=image_tag(e, True), body=body['html'],
+            references=references[e['slug']]['html'],
             source_link=link(e['url'], 'Publication d’origine sur LinkedIn'),
             next_url=articles.path(next_edition), next_title=escape(next_edition['title']))
         article_schema = {'@context': 'https://schema.org', '@graph': [
@@ -259,7 +261,7 @@ Les articles complets du Passage IA sont lisibles sur ce site. Ils sont égaleme
         'ressources/index.html': resource_page,
         'llms.txt': llms,
         'llms-full.txt': llms + '\n## Articles\n\n' + '\n\n'.join(
-            f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}'
+            f'### {e["title"]}\n\nAuteur : {author["name"]}\nDate de publication : {e["date"]}\nArticle : {articles.SITE_URL + articles.path(e)}\nPublication LinkedIn : {e["url"]}\n\n{bodies[e["slug"]]["text"]}{references[e["slug"]]["text"]}'
             for e in editions) + '\n' + resources_full,
         'sitemap.xml': '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'  <url><loc>{url}</loc><lastmod>{modified.isoformat()}</lastmod></url>' for url, modified in sitemap_entries) + '\n</urlset>\n',
         '404.html': render_page('<main id="contenu" class="return-page shell" tabindex="-1"><p class="eyebrow">Le Passage IA · 404</p><h1>Le chemin a changé.</h1><p>Cette page n’est plus disponible. Retrouvez les articles et les ressources du Passage IA.</p><a class="button" href="/">Revenir à l’accueil <span aria-hidden="true">→</span></a></main>', **common,

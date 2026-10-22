@@ -8,13 +8,15 @@ L’accueil présente le dernier article, une entrée vers les expériences et l
 
 Les six textes complets sont intégrés depuis le 21 octobre 2026. `/articles/` réunit toutes les éditions et `/articles/<slug>/` propose leur lecture dans le même onglet. Chaque page conserve le titre, la date d’origine, l’auteur, l’illustration, le texte, ses références et le crédit éditorial. La publication LinkedIn est accessible en fin de lecture. Le lien entre l’article sur le progrès et celui sur l’humanité est interne.
 
-Les textes proviennent des publications publiques de Charles sur LinkedIn : extraction HTML pour cinq articles, extraction textuelle indexée avec restitution des liens pour `humanite`. Les recommandations, commentaires, scripts et paramètres de suivi de LinkedIn sont exclus. Le texte est conservé, sans nouvelle révision factuelle des articles historiques. Les corps sont des fragments HTML locaux dans `content/articles/`, validés à la génération. Les pages sont autonomes, sans script de lecture, avec une colonne de 44 rem au maximum, une image non recadrée et une navigation en fin d’article.
+Les textes proviennent des publications publiques de Charles sur LinkedIn : extraction HTML pour cinq articles, extraction textuelle indexée avec restitution des liens pour `humanite`. Les recommandations, commentaires, scripts et paramètres de suivi de LinkedIn sont exclus. Le 22 octobre 2026, des sources et repères ont été ajoutés aux six articles ; une faute, une énumération et la contextualisation des chiffres d’adoption ont été corrigées dans `humanite`. Les corps sont des fragments HTML locaux dans `content/articles/`, validés à la génération. Les pages sont autonomes, sans script de lecture, avec une colonne de 44 rem au maximum, une image non recadrée et une navigation en fin d’article.
 
 Chaque article a une canonique locale, des métadonnées de partage avec sa propre illustration, des données structurées `Article` et un fil d’Ariane. L’archive et les six pages figurent au sitemap. `llms-full.txt` reprend les textes complets, leur auteur et leur date ; ces fichiers ne garantissent aucun classement ni citation. La durée de lecture est indicative, calculée sur 220 mots par minute.
 
 ## Modifier un article
 
 Les métadonnées éditoriales sont dans `content/editions.json` et le texte complet dans `content/articles/<slug>.html`.
+
+Le champ facultatif `sources` contient une liste d’objets `title`, `url` (HTTPS) et `note`. Ces références s’affichent en fin d’article dans « Sources et repères », replié par défaut et utilisable au clavier sans JavaScript. Elles sont également reprises avec leurs liens dans `llms-full.txt`. Les titres et notes sont du texte brut, échappé au rendu ; une source incomplète, une adresse non sûre ou dupliquée bloque la génération.
 
 1. Ajouter ou modifier les métadonnées : identifiant, titre, date ISO de publication, thème, adresse LinkedIn d’origine, résumé, alternative textuelle, image, `body` (`articles/<slug>.html`) et `integrated` (date de mise à jour locale)
 2. Placer le texte complet dans le fichier `body`, puis l’illustration WebP dans `assets/passage/` avec ses dimensions exactes

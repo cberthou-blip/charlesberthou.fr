@@ -1,4 +1,5 @@
 """Lecture et validation des textes éditoriaux, sans contenu tiers embarqué."""
+from html import escape
 from html.parser import HTMLParser
 from math import ceil
 from urllib.parse import urlsplit
@@ -9,6 +10,36 @@ ARCHIVE_URL = SITE_URL + '/articles/'
 
 def path(edition):
     return '/articles/' + edition['slug'] + '/'
+
+
+def sources(edition):
+    references = edition.get('sources', [])
+    if not isinstance(references, list):
+        raise ValueError('Liste de sources attendue : ' + edition['slug'])
+    items = []
+    text = []
+    seen = set()
+    for source in references:
+        if not isinstance(source, dict) or any(
+                not isinstance(source.get(key), str) or not source[key].strip()
+                for key in ('title', 'url', 'note')):
+            raise ValueError('Source incomplète : ' + edition['slug'])
+        href = source['url']
+        url = urlsplit(href)
+        if (url.scheme != 'https' or not url.hostname or url.username or url.password
+                or any(c.isspace() for c in href) or href in seen):
+            raise ValueError('Adresse de source invalide ou dupliquée : ' + href)
+        seen.add(href)
+        items.append(f'<li><a href="{escape(href)}">{escape(source["title"])}</a>'
+                     f'<span>{escape(source["note"])}</span></li>')
+        text.append(f'- [{source["title"]}]({href}) : {source["note"]}')
+    if not items:
+        return {'html': '', 'text': ''}
+    return {
+        'html': '<details class="article-references"><summary>Sources et repères</summary>\n<ul>\n'
+                + '\n'.join(items) + '\n</ul>\n</details>',
+        'text': '\n\nSources et repères\n\n' + '\n'.join(text),
+    }
 
 
 class ArticleBody(HTMLParser):

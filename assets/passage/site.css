@@ -113,6 +113,13 @@ em { font-weight: 400; }
 .article-body li + li { margin-top: .5rem; }
 .article-body hr { border: 0; border-top: 1px solid var(--rule); margin-block: 2rem; }
 .article-body > p:last-child { color: var(--muted); font-size: .875rem; }
+.article-references { margin-top: 2rem; padding-top: .5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; line-height: 1.65; }
+.article-references > summary { width: fit-content; min-height: 44px; padding-block: .625rem; cursor: pointer; }
+.article-references > summary:hover, .article-references a:hover { color: var(--gold-text); }
+.article-references ul { margin: .5rem 0 0; padding-left: 1.25rem; }
+.article-references li + li { margin-top: 1rem; }
+.article-references a { text-decoration: underline; text-underline-offset: .2em; }
+.article-references li > span { display: block; font-size: .8125rem; margin-top: .125rem; }
 .article-source { margin-top: 1.25rem; }
 .article-after { border-top: 1px solid var(--rule); margin-top: 2.5rem; padding-top: 1.75rem; }
 .article-next { display: block; margin-bottom: 1.25rem; }
