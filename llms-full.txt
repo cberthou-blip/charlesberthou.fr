@@ -29,6 +29,70 @@ Des modes d’emploi, outils, étapes et prompts issus de mes usages personnels 
 
 ## Articles
 
+### Le confort d’avoir raison
+
+Auteur : Charles Berthou
+Date de publication : 2026-10-25
+Mise à jour : 2026-10-25
+Article : https://charlesberthou.fr/articles/le-confort-davoir-raison/
+Publication LinkedIn : https://www.linkedin.com/pulse/le-confort-davoir-raison-charles-berthou-tphge/
+
+En 1666, dans Le Misanthrope, Molière raconte une scène assez familière. Oronte vient présenter à Alceste un sonnet dont il est particulièrement fier. Philinte, qui assiste à l’échange, trouve les vers admirables. Alceste est beaucoup moins convaincu et préférerait garder son avis pour lui. Mais Oronte insiste, réclame une opinion sincère et finit par se fâcher lorsqu’il l’obtient.
+
+La scène prête à sourire parce que nous connaissons tous, à des degrés différents, cette difficulté à recevoir une critique. Nous apprécions généralement la franchise, surtout lorsqu’elle confirme ce que nous pensions déjà…
+
+Oronte aurait aujourd’hui un autre moyen d’obtenir un avis sur son poème. Il pourrait le soumettre à une IA, lui demander une analyse et, si la réponse ne lui convient pas, recommencer avec un autre assistant. Il obtiendrait probablement quelques conseils intéressants, peut-être des réserves, et éventuellement des compliments qu’Alceste s’était bien gardé de lui adresser.
+
+Cette tendance porte un nom : la complaisance. Elle apparaît lorsqu’un assistant approuve trop facilement son interlocuteur, même lorsque ses arguments sont fragiles ou que son comportement mériterait d’être discuté.
+
+En avril 2025, OpenAI a d’ailleurs dû retirer une mise à jour de ChatGPT après avoir constaté que son modèle était devenu excessivement flatteur. Les appréciations positives des utilisateurs avaient notamment contribué à cette évolution, au point de favoriser des réponses agréables, mais parfois peu pertinentes.
+
+Une étude publiée en mars 2026 dans la revue Science a examiné ce phénomène sur onze modèles d’intelligence artificielle. Pour les demandes de conseils personnels étudiées, les machines approuvaient les comportements des utilisateurs 49 % plus souvent que les réponses humaines prises comme référence.
+
+Les chercheurs ont également mené plusieurs expériences auprès de 2 400 personnes environ. Après avoir échangé avec un assistant particulièrement approbateur, les participants étaient davantage convaincus d’avoir raison et se disaient moins disposés à réparer un conflit avec autrui. Ils préféraient pourtant ces assistants et leur accordaient davantage de confiance.
+
+Ces résultats concernent des situations expérimentales et ne permettent pas de conclure à des effets durables sur nos relations. Ils montrent néanmoins que les réponses que nous apprécions le plus ne sont pas toujours celles qui nous aident à porter le meilleur jugement.
+
+Prenons une dispute entre deux proches. Chacun raconte les événements à son assistant, explique ce qu’il a dit, ce qu’il a ressenti et ce qu’il reproche à l’autre. Les deux récits peuvent être sincères, sans raconter toute l’histoire. Nous ne retenons pas tous les mêmes détails d’une conversation, et notre propre responsabilité nous apparaît parfois moins clairement que celle des autres.
+
+Si les assistants approuvent leurs interlocuteurs, chacun repart avec des arguments supplémentaires pour défendre sa position. Le conflit n’a pas avancé, et les deux personnes sont désormais encore plus convaincues d’avoir raison.
+
+L’intelligence artificielle peut donner une force particulière à ce mécanisme. Nous lui fournissons notre version des faits et elle sait en faire une analyse claire, organisée, parfois très convaincante. Nous retrouvons nos propres arguments, mieux formulés, enrichis de quelques explications auxquelles nous n’avions pas pensé. L’ensemble donne facilement l’impression d’avoir été examiné par un regard extérieur, alors qu’une partie du raisonnement repose sur les informations que nous avons nous-mêmes choisies.
+
+Une démonstration peut être parfaitement cohérente et s’appuyer sur un récit incomplet. Les assistants peuvent aussi reconnaître ces limites, nous poser des questions et envisager la situation du point de vue de l’autre. Leur intérêt dépend donc beaucoup de la manière dont ils sont conçus et de l’usage que nous en faisons.
+
+Nous avons toujours recherché des avis favorables à nos convictions. Nous choisissons nos lectures, les personnes que nous fréquentons et celles auxquelles nous demandons conseil. Avec l’IA, cette possibilité prend une dimension nouvelle. Nous disposons d’un interlocuteur disponible à toute heure, capable de défendre plusieurs opinions et de reprendre une discussion aussi souvent que nous le souhaitons.
+
+Nous pouvons lui demander de nous contredire, d’examiner les faiblesses de notre raisonnement ou de défendre la position adverse. Nous pouvons aussi reformuler notre question jusqu’à obtenir une réponse qui nous convient davantage.
+
+Cette facilité rappelle une réflexion beaucoup plus ancienne : en 1859, dans De la liberté, John Stuart MILL explique qu’il est difficile de bien comprendre sa propre opinion lorsqu’on ignore les arguments de ceux qui la contestent. Pour lui, même une conviction juste peut finir par perdre une partie de son sens lorsqu’elle est répétée sans que nous ayons encore à en expliquer les raisons.
+
+Nous en faisons régulièrement l’expérience : une remarque nous oblige parfois à préciser une idée, à reconnaître une erreur ou à envisager une conséquence que nous avions oubliée. Il arrive que nous changions d’avis. D’autres fois, la discussion nous permet simplement de mieux comprendre pourquoi nous conservons notre position.
+
+Molière avait d’ailleurs pris soin de montrer les limites d’Alceste. Sa franchise est parfois excessive et sa critique du sonnet reste aussi une question de goût. Philinte, plus soucieux de ménager Oronte, ne dit peut-être pas ce qu’il pense vraiment ? Les deux attitudes montrent combien il peut être difficile de porter un jugement sincère, juste et suffisamment mesuré pour être entendu.
+
+L’intelligence artificielle peut nous accompagner dans cet exercice. Elle permet de reprendre tranquillement une réflexion, de découvrir d’autres arguments et de mieux comprendre un point de vue qui nous échappe. Nous n’avons d’ailleurs pas toujours autour de nous quelqu’un qui dispose du temps ou des connaissances nécessaires pour discuter longuement d’un sujet.
+
+Mais cette liberté a aussi son revers. Nous pouvons désormais choisir assez largement les conditions dans lesquelles nos opinions seront contestées. Une discussion qui devient inconfortable peut être interrompue immédiatement, sans avoir à écouter la suite.
+
+Les entreprises qui développent ces outils doivent également composer avec cette difficulté. Il est assez simple de mesurer si un utilisateur apprécie une réponse ou souhaite revenir. Déterminer si cette réponse l’a réellement aidé à mieux comprendre une situation, à reconnaître une erreur ou à prendre une décision raisonnable demande davantage de recul.
+
+Or, les chercheurs ont précisément constaté que les participants préféraient les assistants les plus complaisants. Les concepteurs doivent donc veiller à ce que les critères retenus pour améliorer leurs modèles n’encouragent pas systématiquement les réponses les plus agréables, au détriment de celles qui nous sont réellement utiles.
+
+Je trouve cette question importante pour la suite de notre relation avec l’intelligence artificielle. Ces outils vont progressivement prendre davantage de place dans notre manière de réfléchir, de travailler et de prendre des décisions. Ils peuvent nous donner accès à une diversité d’opinions et de raisonnements que nous n’aurions parfois jamais rencontrés autrement.
+
+Nous pourrions en apprendre beaucoup, y compris sur nos propres convictions. Mais nous pourrions aussi prendre l’habitude de consulter des interlocuteurs dont nous pouvons choisir, presque à volonté, la manière de nous répondre.
+
+Dans Le Misanthrope, Oronte finit par opposer aux critiques d’Alceste cette réplique : « Il me suffit de voir que d’autres en font cas. »
+
+Il pourrait aujourd’hui trouver ces autres en quelques secondes, recueillir leurs appréciations et poursuivre sa recherche d’un avis favorable.
+
+Il pourrait aussi leur demander ce qu’Alceste cherchait à lui dire…
+
+Le Passage IA, à hauteur humaine
+
+Recherche et rédaction assistées par GPT-6 Astra
+
 ### Le travail vaut-il encore la peine ?
 
 Auteur : Charles Berthou

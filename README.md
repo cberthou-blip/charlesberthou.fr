@@ -1,6 +1,6 @@
 # Le Passage IA · charlesberthou.fr
 
-Site éditorial statique de Charles Berthou, publié sur GitHub Pages depuis `main`. Il réunit six articles complets, dix guides d’usage de l’IA et sept astuces. La newsletter reste disponible sur LinkedIn.
+Site éditorial statique de Charles Berthou, publié sur GitHub Pages depuis `main`. Il réunit sept articles complets, dix guides d’usage de l’IA et sept astuces. La newsletter reste disponible sur LinkedIn.
 
 ## Structure
 
@@ -80,7 +80,7 @@ Les contrôles responsive ne remplacent pas un essai avec un lecteur sur iPhone 
 
 ## Référencement et anciennes adresses
 
-Les 19 pages éditoriales ont une canonique HTTPS unique, une description, des métadonnées de partage et des données structurées. L’auteur et le site utilisent des identifiants cohérents. Les dates de modification sont visibles dans les articles et guides et correspondent aux dates déclarées.
+Les 20 pages éditoriales ont une canonique HTTPS unique, une description, des métadonnées de partage et des données structurées. L’auteur et le site utilisent des identifiants cohérents. Les dates de modification sont visibles dans les articles et guides et correspondent aux dates déclarées.
 
 `sitemap.xml` ne contient que les pages indexables. `lastmod` reflète une modification significative et ne doit pas être avancé à chaque génération. `robots.txt` autorise les pages et leurs assets, et écarte les répertoires de sources techniques.
 

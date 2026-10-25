@@ -173,7 +173,7 @@ def build():
     internal_paths = {articles.path(e) for e in editions}
     bodies = {e['slug']: articles.load(e, ROOT, internal_paths) for e in editions}
     references = {e['slug']: articles.sources(e) for e in editions}
-    visible = editions[:6]
+    visible = editions
     latest = visible[0]
     site_description = 'Des réflexions sur l’intelligence artificielle, le travail et la société, et des usages expliqués pas à pas. Articles et ressources de ' + author['name'] + '.'
     head = f'''<meta charset="utf-8">

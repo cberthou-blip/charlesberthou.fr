@@ -1,11 +1,27 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-25",
   "newsletter_url": "https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032",
   "author": {
     "name": "Charles Berthou",
     "url": "https://fr.linkedin.com/in/charlesberthou"
   },
   "editions": [
+    {
+      "slug": "le-confort-davoir-raison",
+      "title": "Le confort d’avoir raison",
+      "date": "2026-10-25",
+      "theme": "Jugement & esprit critique",
+      "url": "https://www.linkedin.com/pulse/le-confort-davoir-raison-charles-berthou-tphge/",
+      "summary": "De Molière aux assistants conversationnels, la complaisance interroge notre manière de chercher conseil. L’IA nous aide-t-elle à mieux juger ou à conforter nos convictions ?",
+      "alt": "Un homme face à son ordinateur et à des reflets numériques de lui-même, entre un salon du XVIIe siècle et une ville contemporaine, reliés par un fil de lumière",
+      "image": {
+        "src": "/assets/passage/le-confort-davoir-raison.png",
+        "width": 1280,
+        "height": 719
+      },
+      "body": "articles/le-confort-davoir-raison.html",
+      "integrated": "2026-10-25"
+    },
     {
       "slug": "travail",
       "title": "Le travail vaut-il encore la peine ?",
