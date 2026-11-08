@@ -1,6 +1,6 @@
 # Le Passage IA · charlesberthou.fr
 
-Site éditorial statique de Charles Berthou, publié sur GitHub Pages depuis `main`. Il réunit sept articles complets, dix guides d’usage de l’IA et sept astuces. La newsletter reste disponible sur LinkedIn.
+Site éditorial statique de Charles Berthou, publié sur GitHub Pages depuis `main`. Il réunit huit articles complets, dix guides d’usage de l’IA et sept astuces. La newsletter reste disponible sur LinkedIn.
 
 ## Structure
 
@@ -48,7 +48,7 @@ Les champs obligatoires sont `slug`, `title`, `date`, `theme`, `url`, `summary`,
 
 Les fragments admettent `p`, `h2`, `h3`, `blockquote`, `ul`, `ol`, `li`, `strong`, `em`, `a`, `br` et `hr`. Les liens pointent vers une URL HTTPS ou un article local existant. Les scripts, événements, iframes et balises déséquilibrées bloquent la génération.
 
-Les textes proviennent des publications publiques de Charles sur LinkedIn, intégrées en octobre 2026. Les sources et repères ajoutés le 22 octobre précisent leur contexte. Les métadonnées conservent le lien vers la publication d’origine. La durée de lecture est indicative, à raison de 220 mots par minute.
+Les textes proviennent des publications publiques de Charles sur LinkedIn, intégrées en octobre et novembre 2026. Les sources et repères ajoutés le 22 octobre précisent leur contexte. Les métadonnées conservent le lien vers la publication d’origine. La durée de lecture est indicative, à raison de 220 mots par minute.
 
 ## Modifier une ressource
 
@@ -80,7 +80,7 @@ Les contrôles responsive ne remplacent pas un essai avec un lecteur sur iPhone 
 
 ## Référencement et anciennes adresses
 
-Les 20 pages éditoriales ont une canonique HTTPS unique, une description, des métadonnées de partage et des données structurées. L’auteur et le site utilisent des identifiants cohérents. Les dates de modification sont visibles dans les articles et guides et correspondent aux dates déclarées.
+Les 21 pages éditoriales ont une canonique HTTPS unique, une description, des métadonnées de partage et des données structurées. L’auteur et le site utilisent des identifiants cohérents. Les dates de modification sont visibles dans les articles et guides et correspondent aux dates déclarées.
 
 `sitemap.xml` ne contient que les pages indexables. `lastmod` reflète une modification significative et ne doit pas être avancé à chaque génération. `robots.txt` autorise les pages et leurs assets, et écarte les répertoires de sources techniques.
 

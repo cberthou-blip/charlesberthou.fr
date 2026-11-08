@@ -1,11 +1,27 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-11-08",
   "newsletter_url": "https://www.linkedin.com/newsletters/le-passage-ia-7476925573986988032",
   "author": {
     "name": "Charles Berthou",
     "url": "https://fr.linkedin.com/in/charlesberthou"
   },
   "editions": [
+    {
+      "slug": "fumer-en-attendant-que-lia-guerisse-le-cancer",
+      "title": "Fumer en attendant que l’IA guérisse le cancer",
+      "date": "2026-11-08",
+      "theme": "Santé & recherche médicale",
+      "url": "https://fr.linkedin.com/pulse/fumer-en-attendant-que-lia-gu%C3%A9risse-le-cancer-charles-berthou-zv3je",
+      "summary": "Détecter les cancers plus tôt, retrouver la parole, concevoir des médicaments : les avancées de l’IA en santé et les promesses encore incertaines de la longévité.",
+      "alt": "Un visage et un cerveau lumineux relient des scènes de soin à des images médicales, une double hélice d’ADN et des molécules, sur un collage bleu et doré",
+      "image": {
+        "src": "/assets/passage/fumer-en-attendant-que-lia-guerisse-le-cancer.webp",
+        "width": 1280,
+        "height": 719
+      },
+      "body": "articles/fumer-en-attendant-que-lia-guerisse-le-cancer.html",
+      "integrated": "2026-11-08"
+    },
     {
       "slug": "le-confort-davoir-raison",
       "title": "Le confort d’avoir raison",

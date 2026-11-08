@@ -29,6 +29,44 @@ Des modes d’emploi, outils, étapes et prompts issus de mes usages personnels 
 
 ## Articles
 
+### Fumer en attendant que l’IA guérisse le cancer
+
+Auteur : Charles Berthou
+Date de publication : 2026-11-08
+Mise à jour : 2026-11-08
+Article : https://charlesberthou.fr/articles/fumer-en-attendant-que-lia-guerisse-le-cancer/
+Publication LinkedIn : https://fr.linkedin.com/pulse/fumer-en-attendant-que-lia-gu%C3%A9risse-le-cancer-charles-berthou-zv3je
+
+Cancer, Alzheimer, parole retrouvée, médicaments inventés par ordinateur… L’IA accélère la recherche médicale. Dans la Silicon Valley, certains parient même sur une vie de 120 ans, voire davantage.
+
+En octobre dernier, une anecdote assez invraisemblable a circulé dans la Silicon Valley. Shyam Sankar, directeur technique de Palantir, racontait que certains chercheurs en IA auraient commencé à fumer, persuadés que la technologie guérirait bientôt le cancer. Ils accepteraient donc aujourd’hui un risque qu’ils comptent pouvoir effacer demain… Sankar n’a donné aucun nom et l’histoire reste invérifiable. Le pari semble pour le moins hasardeux, mais il illustre assez bien l’optimisme qui règne dans certains milieux technologiques américains !
+
+Il faut dire que les progrès récents leur donnent quelques arguments. Une étude suédoise menée auprès de près de 106 000 femmes a montré qu’avec l’aide de l’IA, les radiologues détectaient 80,5 % des cancers du sein présents, contre 73,8 % avec la méthode habituelle, sans davantage de fausses alertes. Plus surprenant encore, en avril 2026, la Mayo Clinic a présenté une IA capable de repérer sur d’anciens scanners des signes de cancer du pancréas jusqu’à trois ans avant son diagnostic. Pour ce cancer souvent découvert tardivement, la perspective est considérable.
+
+Du côté des traitements, les résultats commencent également à devenir intéressants. En octobre 2026, Moderna et Merck ont annoncé des avancées encourageantes contre le mélanome, un cancer de la peau. À partir de la tumeur d’un patient, des algorithmes aident à choisir des cibles pour fabriquer un traitement personnalisé à ARN messager. Une sorte de vaccin conçu sur mesure. Parmi des patients opérés, mais exposés à un risque de récidive, 82 % de ceux ayant reçu ce traitement associé à une immunothérapie étaient en vie sans rechute après deux ans, contre 70 % avec l’immunothérapie seule. L’approche reste expérimentale, mais la médecine sur mesure prend progressivement forme.
+
+Alzheimer réserve également quelques surprises. En juillet 2026, des chercheurs japonais ont identifié une protéine qui pourrait jouer le rôle d’une petite « graine » autour de laquelle se forment certaines plaques dans le cerveau. L’expérience, réalisée chez la souris sans intervention directe de l’IA, pourrait éclairer un mécanisme important de la maladie. L’IA, de son côté, s’intéresse même à notre façon de parler : en étudiant le langage de 166 personnes présentant déjà de légers troubles cognitifs, un modèle a prédit avec plus de 78 % de précision lesquelles développeraient Alzheimer dans les six années suivantes. Les résultats restent à confirmer, mais cette perspective est assez étonnante. De nouveaux tests sanguins et des traitements ralentissant modestement certaines formes précoces complètent ces avancées.
+
+Et parfois, le problème est simplement de parvenir à identifier la maladie. Certaines personnes atteintes de pathologies rares attendent plusieurs années avant d’obtenir un diagnostic. En 2026, une étude publiée dans Nature a présenté DeepRare, une IA capable de rapprocher symptômes, analyses génétiques et publications scientifiques pour suggérer des diagnostics. Le système a été évalué sur des données concernant 2 919 maladies rares. Son efficacité en consultation reste à démontrer, mais la possibilité de raccourcir ces années d’errance médicale est particulièrement intéressante.
+
+D’autres travaux sont encore plus étonnants. Une personne paralysée par une maladie neurologique a pu utiliser à domicile un implant cérébral associé à l’IA pour transformer ses tentatives de parole en texte et commander un ordinateur. En dix-neuf mois, elle a ainsi communiqué plus de 180 000 phrases, échangé avec ses proches et continué à travailler. Une autre équipe a même réussi à faire parler et bouger un avatar virtuel à partir de signaux cérébraux. Ces dispositifs restent expérimentaux, mais des patients ont déjà pu s’en servir.
+
+Dans les laboratoires, l’IA permet également de mieux comprendre le fonctionnement de notre organisme. En 2024, deux chercheurs de Google DeepMind ont reçu le prix Nobel de chimie pour AlphaFold, une IA ayant permis de prédire la forme de plus de 200 millions de protéines, essentielles au fonctionnement du vivant. En septembre 2026, Google DeepMind a présenté AlphaGenome Atlas, capable de prédire les effets possibles de neuf milliards de modifications de notre ADN. Une immense carte pour orienter les recherches, même si ces prédictions doivent encore être vérifiées expérimentalement.
+
+Et les possibilités ne s’arrêtent pas là. En 2025, le MIT a utilisé l’IA pour concevoir virtuellement plus de 36 millions de molécules susceptibles de combattre des bactéries résistantes aux antibiotiques. Certaines ont donné des résultats encourageants en laboratoire et chez la souris. En 2026, Stanford a même obtenu 16 virus fonctionnels capables d’attaquer des bactéries, à partir de plans génétiques proposés par l’IA. Plus proche des patients, le rentosertib, médicament conçu avec l’aide de l’IA contre la fibrose pulmonaire, est entré en phase III, l’une des dernières grandes étapes des essais cliniques. Son efficacité reste à établir, mais des médicaments issus de ces recherches sont déjà expérimentés chez l’être humain.
+
+Avec de telles avancées, on comprend pourquoi certains entrepreneurs de la Silicon Valley veulent désormais aller plus loin, en tentant de ralentir le vieillissement. Bryan Johnson affirme consacrer deux millions de dollars par an à sa santé. Il mesure tout, du sommeil à l’alimentation, et a même reçu du plasma sanguin de son fils avant d’abandonner l’expérience faute de résultats convaincants. Son mouvement porte un nom assez explicite : Don't Die, « Ne meurs pas ». Sam Altman, dirigeant d’OpenAI, soutient quant à lui Retro Biosciences, une entreprise qui espère prolonger de dix ans la vie en bonne santé.
+
+En 2025, OpenAI et Retro Biosciences ont utilisé l’IA pour modifier des protéines impliquées dans la reprogrammation de cellules adultes. Certains indicateurs associés à leur retour vers un état plus jeune ont été multipliés par cinquante en laboratoire. Cela ne démontre encore aucun rajeunissement humain, mais les recherches avancent. En 2026, Life Biosciences a expérimenté une autre approche chez trois patients atteints de glaucome, avec de premiers signes d’amélioration chez deux d’entre eux. Les résultats sont très préliminaires et nécessiteront beaucoup plus de recul.
+
+Ray Kurzweil va encore plus loin. Il estime que vers 2032, les progrès médicaux pourraient nous faire gagner une année d’espérance de vie à chaque année écoulée. Peter Diamandis voit lui aussi la prochaine décennie comme décisive. Certains envisagent même des vies de 150 ou 200 ans ! Ces prédictions restent évidemment très spéculatives. Le vieillissement humain demeure complexe et les tentatives de rajeunissement pourraient notamment présenter des risques de cancer.
+
+En attendant, les avancées les plus utiles seront probablement les plus simples : un cancer repéré plus tôt, un diagnostic enfin posé, une personne paralysée qui retrouve une façon de communiquer. Ces découvertes devront encore faire leurs preuves et devenir accessibles au plus grand nombre. Quant aux ingénieurs qui auraient repris la cigarette en attendant que l’IA guérisse le cancer, mieux vaut probablement ne pas suivre leur exemple. La médecine progresse vite, mais pas encore assez pour justifier un tel pari !
+
+Le Passage IA, à hauteur humaine
+
+Recherche et rédaction assistées par GPT-6 Astra
+
 ### Le confort d’avoir raison
 
 Auteur : Charles Berthou
