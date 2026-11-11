@@ -17,3 +17,30 @@
   followLegacyLink();
   window.addEventListener('hashchange', followLegacyLink);
 })();
+
+/* Copie progressive des requêtes des astuces. */
+(() => {
+  'use strict';
+  const clipboard = window.navigator?.clipboard;
+  if (typeof clipboard?.writeText !== 'function' || typeof document.querySelectorAll !== 'function') return;
+  document.querySelectorAll('.resource-try-copy[data-copy]').forEach((button) => {
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      const target = document.getElementById(button.dataset.copy);
+      const feedback = button.closest('[data-copy-scope]')?.querySelector('.copy-feedback');
+      if (!target || !feedback) return;
+      const prompt = target.textContent.trim().replace(/^«\s*/, '').replace(/\s*»$/, '');
+      button.disabled = true;
+      feedback.textContent = '';
+      try {
+        await clipboard.writeText(prompt);
+        feedback.textContent = 'Requête copiée. Collez-la dans votre assistant IA.';
+      } catch {
+        feedback.textContent = 'Copie indisponible. Sélectionnez le texte ci-dessus pour le copier.';
+        target.focus({ preventScroll: true });
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+})();

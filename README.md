@@ -60,11 +60,12 @@ Chaque entrée de `content/resources.json` possède un `slug` stable, `published
 - `meta_description` fournit un résumé propre aux résultats de recherche, sans modifier le contenu visible
 - `topic` classe les usages dans `quotidien`, `creation` ou `decisions`
 - `summary_highlight` désigne une portion exacte, présente une seule fois dans le résumé, à mettre en évidence sur la fiche
+- `catalog_summary` raccourcit facultativement la description d’une carte sans toucher au récit intégral du guide
 - Une astuce contient `try_it` et peut proposer des liens documentaires
 
 Actualiser `updated` après une modification significative. `published: false` exclut l’entrée des pages, du sitemap et des exports texte. Le dépôt reste public : aucun brouillon ne doit contenir de donnée privée.
 
-Les dix guides sont autonomes. Le catalogue présente les usages par thème, puis les astuces. Chaque guide conserve tous ses préparatifs, étapes, vérifications, conseils et prompts. Le second bouton de copie cible le même texte original. En cas d’échec, le texte est rendu accessible pour une sélection manuelle.
+Les dix guides sont autonomes. Le catalogue présente les usages par thème, puis les astuces. Chaque guide conserve tous ses préparatifs, étapes, vérifications, conseils et prompts. Le second bouton de copie cible le même texte original. Les requêtes des astuces sont également copiables, sans guillemets typographiques. En cas d’échec, le texte est rendu accessible pour une sélection manuelle.
 
 Les anciennes ancres de catalogue rejoignent les sections correspondantes des guides. Sans JavaScript, elles conduisent à la fiche et à son lien de lecture. Les anciens champs optionnels `experience`, `paragraphs`, `links` et `image` restent compatibles avec le générateur.
 

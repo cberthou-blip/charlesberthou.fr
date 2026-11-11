@@ -31,3 +31,30 @@ test('les ancres de catalogue, inconnues ou mal formées ne redirigent pas', () 
 test('le catalogue refuse une destination externe', () => {
   assert.deepEqual(visit('#test', { test: 'https://example.com' }), []);
 });
+
+test('la copie d’une astuce conserve la requête sans les guillemets', async () => {
+  let clickHandler;
+  let copied = '';
+  const feedback = { textContent: '' };
+  const target = { textContent: '« Prépare un programme simple. »' };
+  const button = {
+    hidden: true, disabled: false, dataset: { copy: 'exemple-try-text' },
+    addEventListener: (_, cb) => { clickHandler = cb; },
+    closest: () => ({ querySelector: () => feedback })
+  };
+  const document = {
+    getElementById: id => id === 'resource-guide-links' ? { textContent: '{}' }
+      : id === 'exemple-try-text' ? target : null,
+    querySelectorAll: () => [button]
+  };
+  const window = {
+    location: { hash: '', replace() {} }, addEventListener() {},
+    navigator: { clipboard: { writeText: async value => { copied = value; } } }
+  };
+  vm.runInNewContext(source, { document, window });
+  assert.equal(button.hidden, false);
+  await clickHandler();
+  assert.equal(copied, 'Prépare un programme simple.');
+  assert.match(feedback.textContent, /Requête copiée/);
+  assert.equal(button.disabled, false);
+});

@@ -110,6 +110,10 @@ def validate(data, root):
             text(item.get(field), field)
         if 'topic' in item and (kind != 'usage' or not isinstance(item['topic'], str) or item['topic'] not in dict(USAGE_TOPICS)):
             raise ValueError(f'Thème de ressource inconnu : {slug}')
+        if 'catalog_summary' in item:
+            if kind != 'usage':
+                raise ValueError('Le résumé de carte est réservé aux guides')
+            text(item['catalog_summary'], 'catalog_summary')
         if 'summary_highlight' in item:
             highlight = text(item['summary_highlight'], 'summary_highlight')
             if item['summary'].count(highlight) != 1:
@@ -205,7 +209,11 @@ def render_resource(item, asset, standalone=False, byline=''):
         return f'''<article class="resource-entry resource-astuce" id="{prefix}" aria-labelledby="{prefix}-title">
    {heading}
    <div class="resource-copy">{summary}
-    <p class="resource-try"><strong>À essayer :</strong> {escape(item['try_it'])}</p>{render_links(item.get('links'))}
+    <div class="resource-try" data-copy-scope>
+     <p class="resource-try-text"><strong>À essayer :</strong> <span id="{prefix}-try-text" tabindex="-1">{escape(item['try_it'])}</span></p>
+     <button class="resource-try-copy" type="button" data-copy="{prefix}-try-text" aria-label="Copier la requête : {escape(item['title'])}" hidden>Copier</button>
+     <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+    </div>{render_links(item.get('links'))}
    </div>
   </article>'''
     content = ''.join(f'<p>{escape(p)}</p>' for p in item.get('paragraphs', []))
@@ -327,10 +335,12 @@ def render_card(item, asset):
     ids = re.findall(r'\bid="([^"]+)"', guide)
     aliases = ''.join(f'<span class="resource-anchor" id="{anchor}" aria-hidden="true"></span>' for anchor in ids
                       if anchor not in (prefix, prefix + '-title', prefix + '-experience'))
-    summary = escape(item['summary'])
+    display_summary = item.get('catalog_summary', item['summary'])
+    summary = escape(display_summary)
     if highlight := item.get('summary_highlight'):
-        before, _, after = item['summary'].partition(highlight)
-        summary = escape(before) + '<strong>' + escape(highlight) + '</strong>' + escape(after)
+        if highlight in display_summary:
+            before, _, after = display_summary.partition(highlight)
+            summary = escape(before) + '<strong>' + escape(highlight) + '</strong>' + escape(after)
     return f'''<article class="resource-entry resource-card" id="{prefix}" aria-labelledby="{prefix}-title">
     {aliases}<a class="resource-card-link" href="{path(item)}" aria-labelledby="{prefix}-read {prefix}-title">
      <div class="resource-card-heading">{render_icon(item.get('icon'))}<h3 id="{prefix}-title">{escape(item['title'])}</h3></div>
@@ -375,7 +385,7 @@ def render_collection(published, asset):
             for topic, topic_title, topic_entries in usage_groups(published):
                 cards = '\n'.join(render_card(item, asset) for item in topic_entries)
                 topics.append(f'''<section class="resource-topic" id="{topic}" aria-labelledby="{topic}-title">
-    <header class="resource-group-heading"><h2 id="{topic}-title">{topic_title}</h2></header>
+    <header class="resource-group-heading"><h2 id="{topic}-title">{topic_title}</h2><a class="resources-back-link" href="#choisir-usage">Retour aux usages <span aria-hidden="true">↑</span></a></header>
     <div class="resources-grid" data-count="{len(topic_entries)}">{cards}</div>
    </section>''')
             sections.append('<div class="resource-group" id="cas-usage">' + '\n'.join(topics) + '</div>')

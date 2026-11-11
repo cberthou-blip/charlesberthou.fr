@@ -8,6 +8,7 @@
       "icon": "shopping-basket",
       "title": "Automatiser les menus et la commande des courses",
       "summary": "À partir des tickets de courses et des goûts du foyer, l’IA a préparé les menus, calculé les achats et rempli le panier sur le site du drive. Il me restait à vérifier la commande et à payer. Les retours servent ensuite à préparer la semaine suivante.",
+      "catalog_summary": "À partir des tickets de courses et des goûts du foyer, l’IA a préparé les menus, calculé les achats et rempli le panier du drive. Je n’avais plus qu’à vérifier et payer. Les retours facilitent la préparation suivante.",
       "prompts": [
         {
           "title": "Organiser les repas et les achats jusqu’au panier drive",
@@ -91,6 +92,7 @@
       "icon": "book-open",
       "title": "Écrire une mémoire familiale",
       "summary": "Pour créer un livre de mémoire familiale, l’IA a exploité les archives fournies, contacté une cinquantaine de personnes et d’organisations et organisé la collecte de témoignages. Ce travail a abouti à un livre illustré de 88 pages, préparé pour l’impression, avec ses sources conservées.",
+      "catalog_summary": "L’IA m’a aidé à exploiter des archives, solliciter des témoignages et organiser leur collecte pour un livre de mémoire familiale. Résultat : un livre illustré de 88 pages, préparé pour l’impression, avec ses sources.",
       "prompts": [
         {
           "title": "Conduire une enquête familiale jusqu’au livre illustré",
@@ -253,6 +255,7 @@
       "icon": "zap",
       "title": "Réduire ses dépenses d’énergie",
       "summary": "L’IA a analysé mes factures et mes usages, comparé les offres sur ma consommation réelle et accompagné les démarches jusqu’au changement de fournisseur. L’étude a aussi porté sur la puissance souscrite et les options tarifaires. Les économies estimées restent à mesurer sur les factures suivantes.",
+      "catalog_summary": "L’IA a analysé mes factures et mes usages, comparé les offres sur ma consommation réelle et accompagné le changement de fournisseur. J’ai aussi examiné la puissance souscrite et les options tarifaires. Les économies estimées restent à confirmer.",
       "prompts": [
         {
           "title": "Analyser, choisir une offre et préparer le changement de fournisseur",
@@ -417,6 +420,7 @@
       "icon": "heart-pulse",
       "title": "Créer son assistant santé",
       "summary": "J’ai rapproché bilans sanguins, symptômes et données de santé et d’activité pour préparer les consultations. L’IA a aussi aidé à explorer les publications et essais cliniques, rechercher un professionnel et préparer un contact avec une synthèse précise. Les décisions médicales restent prises avec les soignants.",
+      "catalog_summary": "J’ai rapproché bilans sanguins, symptômes et données de santé pour préparer les consultations. L’IA m’a aidé à explorer les publications et essais cliniques et à structurer mes échanges avec les professionnels. Les décisions médicales restent prises avec les soignants.",
       "prompts": [
         {
           "title": "Croiser un dossier de santé et préparer la consultation",
@@ -602,6 +606,7 @@
       "icon": "smartphone",
       "title": "Créer son application",
       "summary": "J’ai créé avec l’IA une application pour mes collections de films, séries et bandes dessinées, avec mes critères de classement et de suivi. Elle a été compilée à distance et installée sur mon iPhone, sans Mac. Le code et les données restent conservés.",
+      "catalog_summary": "Avec l’IA, j’ai créé une application pour classer mes films, séries et bandes dessinées. Elle a été compilée à distance et installée sur mon iPhone, sans Mac. J’en conserve le code et les données.",
       "prompts": [
         {
           "title": "Créer son propre outil de collection et l’installer",
