@@ -190,6 +190,12 @@ class ResourcesTest(unittest.TestCase):
         for item in usages:
             guide = outputs[resources.path(item).lstrip('/') + 'index.html']
             guide_doc = Document(guide)
+            self.assertIn('Commencer simplement', guide)
+            self.assertIn('id="resource-' + item['slug'] + '-first-step"', guide)
+            if item.get('case_result'):
+                self.assertIn('Dans mon expérience :', guide)
+            if item.get('caution'):
+                self.assertIn('À savoir :', guide)
             self.assertEqual(guide_doc.prompts, [prompt['text'] for prompt in item['prompts']])
             self.assertIn('<ol class="guide-steps">', guide)
             self.assertNotIn('<details class="resource-details">', guide)
@@ -198,6 +204,10 @@ class ResourcesTest(unittest.TestCase):
             self.assertIn(resources.public_url(item), outputs['sitemap.xml'])
             self.assertIn(resources.public_url(item), outputs['llms-full.txt'])
         self.assertEqual(len([tag for tag, _ in doc.tags if tag == 'article']), 17)
+        self.assertEqual(page.count('class="resource-card-kicker"'), 10)
+        self.assertEqual(page.count('class="resource-card-action"'), 10)
+        self.assertIn('Accès direct aux dix guides', page)
+        self.assertIn('Ou explorer par objectif', page)
         self.assertEqual(len([tag for tag, attrs in doc.tags if tag == 'svg' and attrs.get('class') == 'resource-icon']), 17)
         self.assertTrue(all(attrs.get('aria-hidden') == 'true' and attrs.get('focusable') == 'false'
                             for tag, attrs in doc.tags if tag == 'svg'))
@@ -206,9 +216,9 @@ class ResourcesTest(unittest.TestCase):
         self.assertIn('<details class="resources-index" open>', page)
         self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags
                             if tag == 'details' and attrs.get('class') == 'resource-topic-disclosure'))
-        for heading in ('Courses, énergie, séjours et mails',
-                        'Livres, BD et applications', 'Santé, budget et décisions',
-                        'Astuces pour mieux utiliser l’IA'):
+        for heading in ('Simplifier ses tâches et démarches',
+                        'Créer des contenus et des outils', 'Mieux comprendre et décider',
+                        'Progresser avec l’IA'):
             self.assertIn(heading, page)
         self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 17)
         self.assertIn('cas-usage', doc.ids)

@@ -283,3 +283,44 @@ details[open] > summary > .when-open { display: inline; }
 @media (max-width: 360px) {
   .resources-catalog .resources-index ul { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Jury Ressources : distinguer la sélection directe de l’exploration par résultat. */
+.resources-catalog .resources-explore-label {
+  margin-block: .75rem .5rem; color: var(--gold-text);
+  font-size: .8125rem; font-weight: 600; letter-spacing: .055em;
+}
+.resources-catalog .resource-card-kicker {
+  margin-bottom: .375rem; font-size: .75rem; font-weight: 600;
+  letter-spacing: .025em; color: var(--gold-text);
+}
+.resources-catalog .resource-topic-disclosure .resource-card .resource-summary {
+  display: block; overflow: visible; -webkit-line-clamp: unset;
+  line-height: 1.6;
+}
+.resources-catalog .resource-card-action {
+  display: inline-flex; align-items: center; justify-self: start; align-self: end;
+  gap: 1.25rem; padding-block: .55rem; min-height: 44px;
+  border-bottom: 1px solid var(--ink); font-size: .875rem;
+  font-weight: 600; color: var(--ink);
+}
+.resources-catalog .resource-card-link:hover .resource-card-action,
+.resources-catalog .resource-card-link:focus-visible .resource-card-action {
+  color: var(--gold-text); border-bottom-color: var(--gold-text);
+}
+.resource-guide-page .guide-onramp {
+  padding: 1.375rem 1.5rem; background: var(--paper-deep);
+  border-left: 2px solid var(--gold); line-height: 1.7;
+}
+.resource-guide-page .guide-onramp h2 { margin-bottom: .5rem; color: var(--ink); }
+.resource-guide-page .guide-onramp .text-link { margin-top: .875rem; font-size: .875rem; }
+.resource-guide-page .guide-case-result,
+.resource-guide-page .guide-caution {
+  padding-inline-start: 1rem; border-left: 2px solid var(--rule);
+  line-height: 1.65;
+}
+.resource-guide-page .guide-case-result strong,
+.resource-guide-page .guide-caution strong { color: var(--ink); }
+.resource-guide-page .guide-caution { border-left-color: var(--gold); }
+@media (max-width: 480px) {
+  .resource-guide-page .guide-onramp { padding: 1.125rem; }
+}
