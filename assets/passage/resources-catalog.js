@@ -44,3 +44,23 @@
     });
   });
 })();
+
+/* Les liens directs ouvrent la rubrique repliée correspondante. */
+(() => {
+  'use strict';
+  if (typeof document.querySelectorAll !== 'function') return;
+  function openTargetSection() {
+    let hash;
+    try { hash = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    const disclosure = target.closest?.('.resource-topic-disclosure')
+      || target.querySelector?.('.resource-topic-disclosure');
+    if (!disclosure) return;
+    disclosure.open = true;
+    if (typeof target.scrollIntoView === 'function') target.scrollIntoView({ block: 'start' });
+  }
+  openTargetSection();
+  window.addEventListener('hashchange', openTargetSection);
+})();

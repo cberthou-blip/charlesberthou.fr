@@ -58,3 +58,25 @@ test('la copie d’une astuce conserve la requête sans les guillemets', async (
   assert.match(feedback.textContent, /Requête copiée/);
   assert.equal(button.disabled, false);
 });
+
+test('une ancre vers une rubrique repliée ouvre le thème ciblé', () => {
+  let scrolled = false;
+  const pane = { open: false };
+  const section = {
+    closest: () => null,
+    querySelector: selector => selector === '.resource-topic-disclosure' ? pane : null,
+    scrollIntoView: () => { scrolled = true; }
+  };
+  const document = {
+    getElementById: id => id === 'resource-guide-links' ? { textContent: '{}' } : id === 'astuces' ? section : null,
+    querySelectorAll: () => []
+  };
+  const window = {
+    location: { hash: '#astuces', replace() {} },
+    addEventListener() {},
+    navigator: {}
+  };
+  vm.runInNewContext(source, { window, document });
+  assert.equal(pane.open, true);
+  assert.equal(scrolled, true);
+});

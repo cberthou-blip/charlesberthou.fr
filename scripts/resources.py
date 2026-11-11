@@ -14,6 +14,11 @@ USAGE_TOPICS = (
     ('creation', 'Créer et transmettre'),
     ('decisions', 'Préparer ses décisions'),
 )
+TOPIC_DESCRIPTIONS = {
+    'quotidien': 'Menus, courses, énergie, séjours et suivi des mails.',
+    'creation': 'Mémoire familiale, bande dessinée et application personnelle.',
+    'decisions': 'Santé, patrimoine et arbitrages à approfondir.',
+}
 EMPTY_STATE = '''<section class="resources-empty" aria-labelledby="resources-empty-title">
    <p class="eyebrow">Prochainement</p>
    <h2 id="resources-empty-title">Les premières ressources<br>sont en préparation.</h2>
@@ -384,19 +389,24 @@ def render_collection(published, asset):
             topics = []
             for topic, topic_title, topic_entries in usage_groups(published):
                 cards = '\n'.join(render_card(item, asset) for item in topic_entries)
+                descriptor = TOPIC_DESCRIPTIONS.get(topic, 'D’autres expériences concrètes à explorer.')
                 topics.append(f'''<section class="resource-topic" id="{topic}" aria-labelledby="{topic}-title">
-    <header class="resource-group-heading"><h2 id="{topic}-title">{topic_title}</h2><a class="resources-back-link" href="#choisir-usage">Retour aux usages <span aria-hidden="true">↑</span></a></header>
+   <details class="resource-topic-disclosure" name="rubriques-ressources">
+    <summary class="resource-topic-summary"><h2 id="{topic}-title"><span class="resource-topic-count">{len(topic_entries)} guides</span><span class="resource-topic-label">{topic_title}</span><span class="resource-topic-description">{descriptor}</span></h2></summary>
     <div class="resources-grid" data-count="{len(topic_entries)}">{cards}</div>
-   </section>''')
+   </details>
+  </section>''')
             sections.append('<div class="resource-group" id="cas-usage">' + '\n'.join(topics) + '</div>')
             continue
         elif not any(item.get('kind', 'usage') == 'usage' for item in published):
             navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
         body = '\n'.join(render_card(item, asset) if kind == 'usage' else render_resource(item, asset) for item in entries)
-        heading = f'<header class="resource-group-heading"><h2 id="{anchor}-title">{title}</h2><p>{intro}</p></header>' if intro else f'<h2 class="visually-hidden" id="{anchor}-title">{title}</h2>'
-        sections.append(f'''<section class="resource-group" id="{anchor}" aria-labelledby="{anchor}-title">
-   {heading}
-   <div class="resources-grid">{body}</div>
+        descriptor = 'Prompts simples à copier et bons réflexes pour mieux utiliser l’IA.'
+        sections.append(f'''<section class="resource-group resources-tips-group" id="{anchor}" aria-labelledby="{anchor}-title">
+   <details class="resource-topic-disclosure" name="rubriques-ressources">
+    <summary class="resource-topic-summary"><h2 id="{anchor}-title"><span class="resource-topic-count">{len(entries)} astuces</span><span class="resource-topic-label">{title}</span><span class="resource-topic-description">{descriptor}</span></h2></summary>
+    <div class="resources-grid">{body}</div>
+   </details>
   </section>''')
     legacy = {}
     for item in published:
