@@ -571,13 +571,22 @@ Sources et repères
 ## Ressources
 
 Auteur : Charles Berthou
-Mise à jour : 2026-10-22
+Mise à jour : 2026-11-11
 
 ### Automatiser les menus et la commande des courses
 
 Source : https://charlesberthou.fr/ressources/organiser-repas-courses/
 
 À partir des tickets de courses et des goûts du foyer, l’IA a préparé les menus, calculé les achats et rempli le panier sur le site du drive. Il me restait à vérifier la commande et à payer. Les retours servent ensuite à préparer la semaine suivante.
+
+Premier essai
+Indiquez le nombre de convives, trois ingrédients disponibles et vos goûts. Demandez trois repas simples et une liste d’achats à vérifier. Aucun accès au drive n’est nécessaire pour ce premier essai.
+
+Dans mon expérience
+L’IA a proposé les menus et renseigné un panier drive ; j’ai conservé la vérification et le paiement.
+
+À savoir
+Le panier automatique exige un accès compatible. Vérifiez références, prix et substitutions avant toute commande.
 
 Résultat attendu
 Des menus, un panier prêt à payer et un suivi réutilisable.
@@ -652,6 +661,15 @@ Source : https://charlesberthou.fr/ressources/transmettre-memoire-familiale/
 
 Pour créer un livre de mémoire familiale, l’IA a exploité les archives fournies, contacté une cinquantaine de personnes et d’organisations et organisé la collecte de témoignages. Ce travail a abouti à un livre illustré de 88 pages, préparé pour l’impression, avec ses sources conservées.
 
+Premier essai
+Choisissez un souvenir et notez cinq faits confirmés. Demandez un court récit en signalant les incertitudes. Vérifiez les noms, dates et citations avant d’ajouter des archives.
+
+Dans mon expérience
+J’ai préparé un livre familial illustré de 88 pages et conservé les sources de ce travail.
+
+À savoir
+La publication de témoignages, photographies ou documents personnels suppose de vérifier les droits et les accords nécessaires.
+
 Résultat attendu
 Un livre illustré prêt à imprimer, avec ses archives et ses sources.
 
@@ -723,6 +741,12 @@ Source : https://charlesberthou.fr/ressources/creer-bande-dessinee-ia/
 
 J’ai réalisé des bandes dessinées complètes avec l’IA, du scénario au PDF. L’un des albums compte dix planches, avec des personnages récurrents et un lettrage séparé. Les fichiers de composition permettent de corriger une scène ou un dialogue après la première version.
 
+Premier essai
+Décrivez deux personnages et une situation. Demandez un scénario de trois cases avec des dialogues courts ; corrigez-le avant de produire les premières illustrations.
+
+Dans mon expérience
+J’ai composé un album de dix planches avec des personnages récurrents et des fichiers permettant les corrections.
+
 Résultat attendu
 Un album en PDF et les fichiers pour le corriger.
 
@@ -789,6 +813,15 @@ Validez une première planche jusqu’au lettrage avant de produire les suivante
 Source : https://charlesberthou.fr/ressources/reduire-depenses-energetiques/
 
 L’IA a analysé mes factures et mes usages, comparé les offres sur ma consommation réelle et accompagné les démarches jusqu’au changement de fournisseur. L’étude a aussi porté sur la puissance souscrite et les options tarifaires. Les économies estimées restent à mesurer sur les factures suivantes.
+
+Premier essai
+Relevez les montants et la consommation d’une facture, sans transmettre d’identifiants personnels. Demandez une explication des postes de dépense, puis les éléments nécessaires pour comparer deux offres.
+
+Dans mon expérience
+J’ai comparé les offres à partir de mes factures puis changé de fournisseur ; les économies restent à mesurer.
+
+À savoir
+Les tarifs et conditions évoluent. Vérifiez les offres actuelles et les économies sur les prochaines factures.
 
 Résultat attendu
 Un comparatif chiffré, les démarches de changement et un suivi des factures.
@@ -861,6 +894,9 @@ Source : https://charlesberthou.fr/ressources/experiences-familiales-sur-mesure/
 
 L’IA m’a accompagné pendant tout un séjour familial : découverte de sorties, parcours adaptés aux enfants d’âges différents et ajustements quotidiens. Les envies de chacun, les trajets, la météo et la fatigue ont fait évoluer le programme au fil des journées.
 
+Premier essai
+Indiquez la destination, le nombre de jours et l’âge des enfants. Demandez deux idées de sortie avec leurs sources, puis vérifiez horaires et trajets avant de composer une journée.
+
 Résultat attendu
 Un programme quotidien avec trajets, pauses et solutions de repli.
 
@@ -929,6 +965,12 @@ Après chaque journée, indiquez simplement ce qui a plu et ce qui a pesé. Ces 
 Source : https://charlesberthou.fr/ressources/assistant-personnel-sante/
 
 J’ai rapproché bilans sanguins, symptômes et données de santé et d’activité pour préparer les consultations. L’IA a aussi aidé à explorer les publications et essais cliniques, rechercher un professionnel et préparer un contact avec une synthèse précise. Les décisions médicales restent prises avec les soignants.
+
+Premier essai
+Sans transmettre immédiatement votre dossier médical, indiquez l’objectif du rendez-vous et demandez cinq questions à préparer. Ajoutez ensuite uniquement les pièces utiles dans un service dont vous avez vérifié la confidentialité.
+
+À savoir
+Les données médicales sont sensibles. L’IA aide à préparer les échanges ; les conclusions et décisions reviennent aux professionnels de santé.
 
 Résultat attendu
 Une synthèse sourcée d’une page et les questions pour le médecin.
@@ -1008,6 +1050,12 @@ Source : https://charlesberthou.fr/ressources/comprendre-finances-foyer/
 
 L’IA m’a aidé à relier budget, patrimoine et projets de vie, puis à comparer plusieurs trajectoires. Les travaux ont porté sur la fiscalité, la recherche de biens locatifs et leur rentabilité, ainsi que sur le coût d’un véhicule et le moment de sa revente.
 
+Premier essai
+Choisissez une décision concrète, par exemple comparer deux budgets mensuels. Commencez avec des chiffres fictifs et demandez un tableau de scénarios. Vérifiez les calculs avant d’utiliser vos données réelles.
+
+À savoir
+Les données financières sont sensibles. Retirez les identifiants inutiles et faites vérifier les hypothèses fiscales ou financières déterminantes.
+
 Résultat attendu
 Un classeur de scénarios, avec formules, hypothèses et sources.
 
@@ -1082,6 +1130,15 @@ Source : https://charlesberthou.fr/ressources/creer-application-personnelle/
 
 J’ai créé avec l’IA une application pour mes collections de films, séries et bandes dessinées, avec mes critères de classement et de suivi. Elle a été compilée à distance et installée sur mon iPhone, sans Mac. Le code et les données restent conservés.
 
+Premier essai
+Décrivez un besoin et trois actions indispensables. Faites d’abord produire un prototype avec des données fictives, à essayer dans un navigateur. L’installation sur iPhone viendra ensuite.
+
+Dans mon expérience
+J’ai créé une application de collection, compilée à distance et installée sur mon iPhone sans Mac.
+
+À savoir
+La distribution iPhone décrite nécessite un compte Apple Developer payant et un appareil autorisé. Le prototype peut être essayé avant cet engagement.
+
 Résultat attendu
 Une application utilisable, son code et une sauvegarde de vos données.
 
@@ -1152,6 +1209,12 @@ Faites essayer très tôt les trois actions essentielles avec quelques élément
 Source : https://charlesberthou.fr/ressources/mettre-decisions-epreuve/
 
 J’ai créé un Conseil à cinq rôles pour confronter les arguments avant une décision. Le protocole produit des avis distincts, examine leurs désaccords et aboutit à un arbitrage avec une première action. Dans cette version, un même modèle tient les cinq perspectives.
+
+Premier essai
+Formulez une décision précise. Demandez trois arguments favorables, trois risques et les informations manquantes. Vérifiez les faits décisifs avant de poursuivre avec les cinq rôles.
+
+À savoir
+Cinq rôles joués par un même modèle ne constituent pas cinq expertises indépendantes.
 
 Résultat attendu
 Un arbitrage argumenté, ses incertitudes et une première action.
@@ -1227,6 +1290,12 @@ Demandez quel fait ferait changer la conclusion, puis vérifiez-le. La qualité 
 Source : https://charlesberthou.fr/ressources/intermediaire-ia-pour-mes-mails/
 
 À réception d’un devis d’assurance, mon assistant a comparé les garanties avec mes contrats existants et anticipé la réponse à préparer. Le dossier conserve les pièces et les échanges, pour poursuivre les démarches sans reconstruire le contexte à chaque nouveau mail.
+
+Premier essai
+Copiez un courriel dont vous avez masqué les informations personnelles. Demandez un résumé, les points à vérifier et une proposition de réponse. La connexion à votre messagerie pourra venir ensuite.
+
+À savoir
+Une connexion à la messagerie donne accès à des données privées. Vérifiez les autorisations et relisez tout message avant son envoi.
 
 Résultat attendu
 Un dossier à jour, les réponses préparées et le suivi des échanges.
