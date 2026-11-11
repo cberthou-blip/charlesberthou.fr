@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-11-11",
   "resources": [
     {
       "slug": "organiser-repas-courses",
@@ -83,7 +83,11 @@
       "short_title": "Menus et courses",
       "topic": "quotidien",
       "summary_highlight": "préparé les menus, calculé les achats et rempli le panier",
-      "meta_description": "Préparer ses menus, calculer les courses et organiser un panier drive avec l’IA. Un guide pas à pas et un prompt à adapter aux goûts du foyer."
+      "meta_description": "Préparer ses menus, calculer les courses et organiser un panier drive avec l’IA. Un guide pas à pas et un prompt à adapter aux goûts du foyer.",
+      "catalog_outcome": "Menus préparés, achats calculés et panier drive renseigné avant validation.",
+      "quick_start": "Indiquez le nombre de convives, trois ingrédients disponibles et vos goûts. Demandez trois repas simples et une liste d’achats à vérifier. Aucun accès au drive n’est nécessaire pour ce premier essai.",
+      "case_result": "L’IA a proposé les menus et renseigné un panier drive ; j’ai conservé la vérification et le paiement.",
+      "caution": "Le panier automatique exige un accès compatible. Vérifiez références, prix et substitutions avant toute commande."
     },
     {
       "slug": "transmettre-memoire-familiale",
@@ -169,7 +173,11 @@
       "short_title": "Mémoire familiale",
       "topic": "creation",
       "summary_highlight": "un livre illustré de 88 pages",
-      "meta_description": "Transformer archives et témoignages en livre de mémoire familiale avec l’IA. Méthode, étapes et prompt pour écrire un récit sourcé et illustré."
+      "meta_description": "Transformer archives et témoignages en livre de mémoire familiale avec l’IA. Méthode, étapes et prompt pour écrire un récit sourcé et illustré.",
+      "catalog_outcome": "Livre familial illustré de 88 pages, préparé pour l’impression.",
+      "quick_start": "Choisissez un souvenir et notez cinq faits confirmés. Demandez un court récit en signalant les incertitudes. Vérifiez les noms, dates et citations avant d’ajouter des archives.",
+      "case_result": "J’ai préparé un livre familial illustré de 88 pages et conservé les sources de ce travail.",
+      "caution": "La publication de témoignages, photographies ou documents personnels suppose de vérifier les droits et les accords nécessaires."
     },
     {
       "slug": "creer-bande-dessinee-ia",
@@ -246,7 +254,10 @@
       "short_title": "Bande dessinée",
       "topic": "creation",
       "summary_highlight": "du scénario au PDF",
-      "meta_description": "Créer une bande dessinée avec l’IA, du scénario au PDF : personnages, découpage, images et lettrage. Guide complet et prompt à adapter."
+      "meta_description": "Créer une bande dessinée avec l’IA, du scénario au PDF : personnages, découpage, images et lettrage. Guide complet et prompt à adapter.",
+      "catalog_outcome": "Album de dix planches, du scénario au PDF, avec fichiers modifiables.",
+      "quick_start": "Décrivez deux personnages et une situation. Demandez un scénario de trois cases avec des dialogues courts ; corrigez-le avant de produire les premières illustrations.",
+      "case_result": "J’ai composé un album de dix planches avec des personnages récurrents et des fichiers permettant les corrections."
     },
     {
       "slug": "reduire-depenses-energetiques",
@@ -330,7 +341,11 @@
       "short_title": "Dépenses d’énergie",
       "topic": "quotidien",
       "summary_highlight": "comparé les offres sur ma consommation réelle",
-      "meta_description": "Analyser ses factures, comparer les offres et préparer un changement de fournisseur avec l’IA. Guide et prompt pour réduire ses dépenses d’énergie."
+      "meta_description": "Analyser ses factures, comparer les offres et préparer un changement de fournisseur avec l’IA. Guide et prompt pour réduire ses dépenses d’énergie.",
+      "catalog_outcome": "Offres comparées sur la consommation réelle, puis changement de fournisseur effectué.",
+      "quick_start": "Relevez les montants et la consommation d’une facture, sans transmettre d’identifiants personnels. Demandez une explication des postes de dépense, puis les éléments nécessaires pour comparer deux offres.",
+      "case_result": "J’ai comparé les offres à partir de mes factures puis changé de fournisseur ; les économies restent à mesurer.",
+      "caution": "Les tarifs et conditions évoluent. Vérifiez les offres actuelles et les économies sur les prochaines factures."
     },
     {
       "slug": "experiences-familiales-sur-mesure",
@@ -411,7 +426,9 @@
       "short_title": "Séjour en famille",
       "topic": "quotidien",
       "summary_highlight": "parcours adaptés aux enfants d’âges différents",
-      "meta_description": "Organiser un séjour en famille avec l’IA : sorties, trajets et programme adapté aux enfants. Étapes et prompt pour ajuster chaque journée."
+      "meta_description": "Organiser un séjour en famille avec l’IA : sorties, trajets et programme adapté aux enfants. Étapes et prompt pour ajuster chaque journée.",
+      "catalog_outcome": "Sorties et journées familiales ajustées aux trajets, à la météo et aux envies.",
+      "quick_start": "Indiquez la destination, le nombre de jours et l’âge des enfants. Demandez deux idées de sortie avec leurs sources, puis vérifiez horaires et trajets avant de composer une journée."
     },
     {
       "slug": "assistant-personnel-sante",
@@ -505,7 +522,10 @@
       "short_title": "Assistant santé",
       "topic": "decisions",
       "summary_highlight": "préparer les consultations",
-      "meta_description": "Organiser ses documents de santé avec l’IA et préparer ses consultations. Guide et prompt pour construire une synthèse à discuter avec ses soignants."
+      "meta_description": "Organiser ses documents de santé avec l’IA et préparer ses consultations. Guide et prompt pour construire une synthèse à discuter avec ses soignants.",
+      "catalog_outcome": "Bilans rapprochés et synthèse préparée pour échanger avec un médecin.",
+      "quick_start": "Sans transmettre immédiatement votre dossier médical, indiquez l’objectif du rendez-vous et demandez cinq questions à préparer. Ajoutez ensuite uniquement les pièces utiles dans un service dont vous avez vérifié la confidentialité.",
+      "caution": "Les données médicales sont sensibles. L’IA aide à préparer les échanges ; les conclusions et décisions reviennent aux professionnels de santé."
     },
     {
       "slug": "comprendre-finances-foyer",
@@ -597,7 +617,10 @@
       "short_title": "Budget et patrimoine",
       "topic": "decisions",
       "summary_highlight": "comparer plusieurs trajectoires",
-      "meta_description": "Relier budget, patrimoine et projets du foyer avec l’IA. Guide et prompt pour comparer des scénarios, vérifier les hypothèses et préparer ses choix."
+      "meta_description": "Relier budget, patrimoine et projets du foyer avec l’IA. Guide et prompt pour comparer des scénarios, vérifier les hypothèses et préparer ses choix.",
+      "catalog_outcome": "Budget et patrimoine reliés à des scénarios pour éclairer les arbitrages.",
+      "quick_start": "Choisissez une décision concrète, par exemple comparer deux budgets mensuels. Commencez avec des chiffres fictifs et demandez un tableau de scénarios. Vérifiez les calculs avant d’utiliser vos données réelles.",
+      "caution": "Les données financières sont sensibles. Retirez les identifiants inutiles et faites vérifier les hypothèses fiscales ou financières déterminantes."
     },
     {
       "slug": "creer-application-personnelle",
@@ -684,7 +707,11 @@
       "short_title": "Application personnelle",
       "topic": "creation",
       "summary_highlight": "installée sur mon iPhone, sans Mac",
-      "meta_description": "Créer une application personnelle avec l’IA, du besoin à l’installation sur iPhone. Guide, outils et prompt pour avancer avec un code conservé."
+      "meta_description": "Créer une application personnelle avec l’IA, du besoin à l’installation sur iPhone. Guide, outils et prompt pour avancer avec un code conservé.",
+      "catalog_outcome": "Application de collection compilée à distance et installée sur iPhone, sans Mac.",
+      "quick_start": "Décrivez un besoin et trois actions indispensables. Faites d’abord produire un prototype avec des données fictives, à essayer dans un navigateur. L’installation sur iPhone viendra ensuite.",
+      "case_result": "J’ai créé une application de collection, compilée à distance et installée sur mon iPhone sans Mac.",
+      "caution": "La distribution iPhone décrite nécessite un compte Apple Developer payant et un appareil autorisé. Le prototype peut être essayé avant cet engagement."
     },
     {
       "slug": "mettre-decisions-epreuve",
@@ -765,7 +792,10 @@
       "short_title": "Aide à la décision",
       "topic": "decisions",
       "summary_highlight": "un arbitrage avec une première action",
-      "meta_description": "Examiner une décision avec cinq perspectives dans une conversation IA. Guide et prompt pour confronter les arguments et définir une première action."
+      "meta_description": "Examiner une décision avec cinq perspectives dans une conversation IA. Guide et prompt pour confronter les arguments et définir une première action.",
+      "catalog_outcome": "Cinq perspectives simulées pour aboutir à un arbitrage et une première action.",
+      "quick_start": "Formulez une décision précise. Demandez trois arguments favorables, trois risques et les informations manquantes. Vérifiez les faits décisifs avant de poursuivre avec les cinq rôles.",
+      "caution": "Cinq rôles joués par un même modèle ne constituent pas cinq expertises indépendantes."
     },
     {
       "slug": "intermediaire-ia-pour-mes-mails",
@@ -846,7 +876,10 @@
       "short_title": "Suivi des mails",
       "topic": "quotidien",
       "summary_highlight": "anticipé la réponse à préparer",
-      "meta_description": "Suivre ses mails avec l’IA, rapprocher devis et contrats, puis préparer ses réponses. Guide et prompt pour conserver le contexte de ses démarches."
+      "meta_description": "Suivre ses mails avec l’IA, rapprocher devis et contrats, puis préparer ses réponses. Guide et prompt pour conserver le contexte de ses démarches.",
+      "catalog_outcome": "Devis comparé aux contrats existants et réponse préparée pour poursuivre les échanges.",
+      "quick_start": "Copiez un courriel dont vous avez masqué les informations personnelles. Demandez un résumé, les points à vérifier et une proposition de réponse. La connexion à votre messagerie pourra venir ensuite.",
+      "caution": "Une connexion à la messagerie donne accès à des données privées. Vérifiez les autorisations et relisez tout message avant son envoi."
     },
     {
       "slug": "activer-memoire-ia",
