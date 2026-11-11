@@ -264,3 +264,22 @@ details[open] > summary > .when-open { display: inline; }
   .resources-catalog .resource-topic-summary { min-height: 100px; padding-block: 1.125rem; }
   .resources-catalog .resource-topic-disclosure > .resources-grid { margin-block: 1rem 2rem; }
 }
+/* Choix direct : les dix guides visibles dès l'arrivée, en deux rangées sur grand écran. */
+.resources-catalog .resources-nav { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.resources-catalog .resources-index ul {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .125rem .875rem;
+  margin-block: .375rem .5rem;
+}
+.resources-catalog .resources-index ul a {
+  font-size: .875rem; line-height: 1.45; overflow-wrap: break-word;
+}
+@media (max-width: 940px) {
+  .resources-catalog .resources-index ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .resources-catalog .resources-index ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 360px) {
+  .resources-catalog .resources-index ul { grid-template-columns: minmax(0, 1fr); }
+}

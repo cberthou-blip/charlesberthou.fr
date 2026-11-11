@@ -10,14 +10,14 @@ from resource_icons import ICONS, render_icon
 RESOURCE_URL = 'https://charlesberthou.fr/ressources/'
 RESOURCE_DESCRIPTION = 'Des usages réels de l’IA, du projet au résultat : courses, livre, énergie, mails et applications. Modes d’emploi et prompts de Charles Berthou.'
 USAGE_TOPICS = (
-    ('quotidien', 'Organiser son quotidien'),
-    ('creation', 'Créer et transmettre'),
-    ('decisions', 'Préparer ses décisions'),
+    ('quotidien', 'Courses, énergie, séjours et mails'),
+    ('creation', 'Livres, BD et applications'),
+    ('decisions', 'Santé, budget et décisions'),
 )
 TOPIC_DESCRIPTIONS = {
-    'quotidien': 'Menus, courses, énergie, séjours et suivi des mails.',
-    'creation': 'Mémoire familiale, bande dessinée et application personnelle.',
-    'decisions': 'Santé, patrimoine et arbitrages à approfondir.',
+    'quotidien': 'Quatre exemples pour simplifier les tâches et démarches courantes.',
+    'creation': 'Du livre familial à la BD et à l’application, de l’idée au résultat.',
+    'decisions': 'Préparer une consultation, analyser ses finances ou confronter ses choix.',
 }
 EMPTY_STATE = '''<section class="resources-empty" aria-labelledby="resources-empty-title">
    <p class="eyebrow">Prochainement</p>
@@ -375,7 +375,7 @@ def render_collection(published, asset):
         return EMPTY_STATE
     groups = (
         ('usage', 'cas-usage', 'Modes d’emploi', ''),
-        ('astuce', 'astuces', 'Astuces', 'Quelques habitudes pour mieux utiliser l’IA. Les fonctions disponibles varient selon le compte et l’appareil.'),
+        ('astuce', 'astuces', 'Astuces pour mieux utiliser l’IA', 'Quelques habitudes pour mieux utiliser l’IA. Les fonctions disponibles varient selon le compte et l’appareil.'),
     )
     navigation, sections = [], []
     for kind, anchor, title, intro in groups:
@@ -385,7 +385,7 @@ def render_collection(published, asset):
         if kind == 'usage':
             links = ''.join(f'<li><a href="{path(item)}">{escape(item.get("short_title", item["title"]))}</a></li>' for item in entries)
             tips_link = '<a class="text-link" href="#astuces">Astuces</a>' if any(item.get('kind') == 'astuce' for item in published) else ''
-            navigation.append(f'<div class="resources-catalog-nav" id="choisir-usage" tabindex="-1" aria-labelledby="usage-index-title"><details class="resources-index"><summary id="usage-index-title">Choisir un usage</summary><ul>{links}</ul></details>{tips_link}</div>')
+            navigation.append(f'<div class="resources-catalog-nav" id="choisir-usage" tabindex="-1" aria-labelledby="usage-index-title"><details class="resources-index" open><summary id="usage-index-title">Choisir un usage</summary><ul>{links}</ul></details>{tips_link}</div>')
             topics = []
             for topic, topic_title, topic_entries in usage_groups(published):
                 cards = '\n'.join(render_card(item, asset) for item in topic_entries)
@@ -401,7 +401,7 @@ def render_collection(published, asset):
         elif not any(item.get('kind', 'usage') == 'usage' for item in published):
             navigation.append(f'<a class="text-link" href="#{anchor}">{title}</a>')
         body = '\n'.join(render_card(item, asset) if kind == 'usage' else render_resource(item, asset) for item in entries)
-        descriptor = 'Prompts simples à copier et bons réflexes pour mieux utiliser l’IA.'
+        descriptor = 'Mémoire, documents, dictée et requêtes prêtes à copier.'
         sections.append(f'''<section class="resource-group resources-tips-group" id="{anchor}" aria-labelledby="{anchor}-title">
    <details class="resource-topic-disclosure" name="rubriques-ressources">
     <summary class="resource-topic-summary"><h2 id="{anchor}-title"><span class="resource-topic-count">{len(entries)} astuces</span><span class="resource-topic-label">{title}</span><span class="resource-topic-description">{descriptor}</span></h2></summary>

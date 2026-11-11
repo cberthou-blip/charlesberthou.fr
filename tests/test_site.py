@@ -202,7 +202,14 @@ class ResourcesTest(unittest.TestCase):
         self.assertTrue(all(attrs.get('aria-hidden') == 'true' and attrs.get('focusable') == 'false'
                             for tag, attrs in doc.tags if tag == 'svg'))
         self.assertFalse(any(tag in ('img', 'video', 'audio', 'iframe') for tag, _ in doc.tags))
-        self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags if tag == 'details'))
+        self.assertEqual(len([1 for tag, attrs in doc.tags if tag == 'details' and 'open' in attrs]), 1)
+        self.assertIn('<details class="resources-index" open>', page)
+        self.assertTrue(all('open' not in attrs for tag, attrs in doc.tags
+                            if tag == 'details' and attrs.get('class') == 'resource-topic-disclosure'))
+        for heading in ('Courses, énergie, séjours et mails',
+                        'Livres, BD et applications', 'Santé, budget et décisions',
+                        'Astuces pour mieux utiliser l’IA'):
+            self.assertIn(heading, page)
         self.assertEqual(len([id for id in doc.ids if id in {'resource-' + item['slug'] for item in published}]), 17)
         self.assertIn('cas-usage', doc.ids)
         self.assertIn('#astuces', doc.links)

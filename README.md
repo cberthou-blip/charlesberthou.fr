@@ -65,7 +65,7 @@ Chaque entrée de `content/resources.json` possède un `slug` stable, `published
 
 Actualiser `updated` après une modification significative. `published: false` exclut l’entrée des pages, du sitemap et des exports texte. Le dépôt reste public : aucun brouillon ne doit contenir de donnée privée.
 
-Les dix guides sont autonomes. Le catalogue affiche d’abord quatre rubriques repliées, ouvertes individuellement sans JavaScript. Les dix guides et les sept astuces restent accessibles et les liens profonds ouvrent leur rubrique lorsque JavaScript est disponible. Chaque guide conserve tous ses préparatifs, étapes, vérifications, conseils et prompts. Le second bouton de copie cible le même texte original. Les requêtes des astuces sont également copiables, sans guillemets typographiques. En cas d’échec, le texte est rendu accessible pour une sélection manuelle.
+Les dix guides sont autonomes. Le catalogue présente directement les dix liens de guides, puis quatre rubriques repliées aux intitulés concrets, ouvertes individuellement sans JavaScript. Les dix guides et les sept astuces restent accessibles et les liens profonds ouvrent leur rubrique lorsque JavaScript est disponible. Chaque guide conserve tous ses préparatifs, étapes, vérifications, conseils et prompts. Le second bouton de copie cible le même texte original. Les requêtes des astuces sont également copiables, sans guillemets typographiques. En cas d’échec, le texte est rendu accessible pour une sélection manuelle.
 
 Les anciennes ancres de catalogue rejoignent les sections correspondantes des guides. Sans JavaScript, elles conduisent à la fiche et à son lien de lecture. Les anciens champs optionnels `experience`, `paragraphs`, `links` et `image` restent compatibles avec le générateur.
 
